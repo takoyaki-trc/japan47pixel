@@ -1,1 +1,1135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
+<title>TRAVELING TAKOYAKI — Japan 47 Collection</title>
+
+<style>
+
+:root{
+  --ink:#17130f;
+  --paper:#fff7e5;
+  --red:#e43d34;
+  --navy:#172a3d;
+  --gold:#f4b62c;
+  --green:#48a65d;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+
+.pixel{
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.top{
+  height:58px;
+  background:var(--ink);
+  color:#fff7e5;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5vw;
+  border-bottom:4px solid #fff;
+  font-weight:900;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.top nav{
+  display:flex;
+  gap:24px;
+  font-size:12px;
+}
+
+.top a{
+  color:inherit;
+  text-decoration:none;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  background:#3aa7ed;
+  border-bottom:6px solid var(--ink);
+  overflow:hidden;
+}
+
+.hero img{
+  display:block;
+  width:100%;
+  min-height:240px;
+  object-fit:cover;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+  max-width:1050px;
+  margin:auto;
+  padding:58px 22px;
+  text-align:center;
+}
+
+.ey{
+  font-size:12px;
+  letter-spacing:.18em;
+  font-weight:900;
+  color:#c72f28;
+}
+
+.intro h1,
+.cta h2{
+  font-size:clamp(38px,6vw,70px);
+  line-height:.95;
+  letter-spacing:-.06em;
+  margin:12px 0 20px;
+}
+
+.lead{
+  font:650 16px/1.7 system-ui,sans-serif;
+  max-width:720px;
+  margin:auto;
+  color:#4e4538;
+}
+
+
+/* =========================
+   INTRO CARDS
+========================= */
+
+.cards{
+  max-width:1050px;
+  margin:0 auto 65px;
+  padding:0 22px;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:20px;
+}
+
+.card{
+  border:4px solid var(--ink);
+  box-shadow:8px 8px 0 var(--ink);
+  background:#fff;
+  padding:26px;
+}
+
+.red{
+  background:var(--red);
+  color:#fff;
+}
+
+.card h2{
+  font-size:28px;
+  margin:7px 0 13px;
+}
+
+.card p{
+  font:650 15px/1.6 system-ui,sans-serif;
+}
+
+.tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.tag{
+  border:3px solid currentColor;
+  padding:7px 10px;
+  font-size:12px;
+  font-weight:900;
+}
+
+
+/* =========================
+   RARITY
+========================= */
+
+.drop{
+  background:var(--navy);
+  color:#fff;
+  border-block:6px solid var(--ink);
+  padding:65px 22px;
+}
+
+.inner{
+  max-width:1050px;
+  margin:auto;
+}
+
+.drop h2,
+.journey h2,
+.book h2{
+  font-size:clamp(32px,5vw,52px);
+  margin:8px 0 20px;
+}
+
+.rarity{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+
+.r{
+  background:#fff;
+  color:var(--ink);
+  border:4px solid var(--ink);
+  text-align:center;
+  padding:20px;
+}
+
+.r b{
+  font-size:30px;
+  display:block;
+}
+
+.lr{
+  background:#ffe8a1;
+}
+
+
+/* =========================
+   HOKKAIDO COLLECTION BOOK
+========================= */
+
+.book{
+  max-width:1120px;
+  margin:auto;
+  padding:65px 22px;
+}
+
+.book-head{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:end;
+  margin-bottom:26px;
+}
+
+.book-note{
+  font:650 14px/1.55 system-ui,sans-serif;
+  max-width:460px;
+  color:#5b5144;
+}
+
+
+/* swipe text */
+
+.gallery-hint{
+  text-align:right;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+  margin:-10px 2px 12px;
+  color:#756957;
+}
+
+
+/* horizontal gallery */
+
+.gallery{
+  display:flex;
+  gap:18px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  scroll-snap-type:x mandatory;
+
+  padding:
+    4px
+    8px
+    18px
+    4px;
+
+  -webkit-overflow-scrolling:touch;
+
+  scrollbar-width:thin;
+}
+
+
+/* scrollbar */
+
+.gallery::-webkit-scrollbar{
+  height:8px;
+}
+
+.gallery::-webkit-scrollbar-thumb{
+  background:var(--ink);
+}
+
+
+/* individual NFT card */
+
+.piece{
+  background:#fff;
+
+  border:4px solid var(--ink);
+
+  box-shadow:
+    7px
+    7px
+    0
+    var(--ink);
+
+  overflow:hidden;
+
+  flex:
+    0
+    0
+    clamp(240px,34vw,350px);
+
+  scroll-snap-align:start;
+}
+
+
+/* NFT image */
+
+.piece img{
+  width:100%;
+  display:block;
+  aspect-ratio:1;
+  object-fit:cover;
+}
+
+
+/* NFT information */
+
+.meta{
+  padding:14px 16px 16px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  align-items:center;
+}
+
+.meta b{
+  font-size:14px;
+}
+
+.meta span{
+  font-size:11px;
+  font-weight:900;
+
+  border:2px solid var(--ink);
+
+  padding:5px 7px;
+}
+
+
+/* legendary */
+
+.piece.legend{
+  background:var(--navy);
+  color:#fff;
+}
+
+.piece.legend .meta span{
+  border-color:#fff;
+}
+
+
+/* =========================
+   JOURNEY
+========================= */
+
+.journey{
+  max-width:1050px;
+  margin:auto;
+  padding:65px 22px;
+}
+
+.road{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.stop{
+  border:4px solid var(--ink);
+  background:#fff;
+  padding:18px;
+  min-height:115px;
+}
+
+.active{
+  background:var(--green);
+  color:#fff;
+}
+
+.stop strong{
+  display:block;
+  font-size:20px;
+  margin-top:24px;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+  text-align:center;
+  background:var(--gold);
+  border-top:6px solid var(--ink);
+  padding:65px 22px;
+}
+
+.cta h2{
+  font-size:clamp(34px,5vw,56px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  text-align:center;
+  background:var(--ink);
+  color:#fff7e5;
+  padding:24px;
+  font-size:11px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+  .top nav{
+    display:none;
+  }
+
+  .top{
+    height:50px;
+  }
+
+  .hero img{
+    min-height:200px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+
+  /* Hokkaido cards
+     画面の約78%の大きさ
+     次のカードが少し見える */
+
+  .gallery{
+    margin-right:-22px;
+    padding-right:22px;
+  }
+
+  .piece{
+    flex-basis:78vw;
+    max-width:330px;
+  }
+
+
+  .rarity{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .lr{
+    grid-column:1/-1;
+  }
+
+  .road{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .book-head{
+    display:block;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="top">
+
+  <span>TRAVELING TAKOYAKI</span>
+
+  <nav>
+    <a href="#story">STORY</a>
+    <a href="#collection">COLLECTION</a>
+    <a href="#journey">JOURNEY</a>
+  </nav>
+
+</header>
+
+
+
+<!-- =========================
+     TITLE GIF
+========================= -->
+
+<section class="hero">
+
+  <img
+    class="pixel"
+    src="https://ul.h3z.jp/nz0rNaws.gif"
+    alt="Traveling Takoyaki animated journey"
+  >
+
+</section>
+
+
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section
+  class="intro"
+  id="story"
+>
+
+  <div class="ey">
+    A PIXEL JOURNEY ACROSS JAPAN
+  </div>
+
+  <h1>
+    47 PREFECTURES.<br>
+    ONE TAKOYAKI.
+  </h1>
+
+  <p class="lead">
+
+    A tiny takoyaki truck is traveling across Japan.
+    Every stop becomes a new pixel-art collection
+    inspired by local landscapes, flavors and stories.
+
+  </p>
+
+</section>
+
+
+
+<!-- =========================
+     HOKKAIDO / PASSPORT
+========================= -->
+
+<section class="cards">
+
+
+  <article class="card red">
+
+    <div
+      class="ey"
+      style="color:#fff4cf"
+    >
+      FIRST DESTINATION
+    </div>
+
+    <h2>
+      01 — HOKKAIDO
+    </h2>
+
+    <p>
+
+      The journey begins in the north.
+      Seven local artworks and one hidden
+      legendary piece are waiting to be discovered.
+
+    </p>
+
+    <div class="tags">
+
+      <span class="tag">
+        7 + 1 ART
+      </span>
+
+      <span class="tag">
+        5 RARITIES
+      </span>
+
+      <span class="tag">
+        LR 1/1
+      </span>
+
+    </div>
+
+  </article>
+
+
+
+  <article class="card">
+
+    <div class="ey">
+      FREE JOURNEY PASSPORT
+    </div>
+
+    <h2>
+      GET PRIORITY ACCESS.
+    </h2>
+
+    <p>
+
+      Free Passport holders get priority access
+      to the Hokkaido drop.
+
+      Final collection supply will be announced
+      before mint.
+
+    </p>
+
+    <div class="tags">
+
+      <span class="tag">
+        FREE MINT
+      </span>
+
+      <span class="tag">
+        PRIORITY ACCESS
+      </span>
+
+    </div>
+
+  </article>
+
+
+</section>
+
+
+
+<!-- =========================
+     RARITIES
+========================= -->
+
+<section
+  class="drop"
+  id="collection"
+>
+
+  <div class="inner">
+
+    <div
+      class="ey"
+      style="color:#ffd05b"
+    >
+      HOKKAIDO DROP — CHAPTER 01
+    </div>
+
+    <h2>
+      FIVE RARITIES.
+      ONE JOURNEY.
+    </h2>
+
+
+    <div class="rarity">
+
+
+      <div class="r">
+
+        <b>N</b>
+
+        NORMAL
+
+      </div>
+
+
+      <div class="r">
+
+        <b>R</b>
+
+        RARE
+
+      </div>
+
+
+      <div class="r">
+
+        <b>SR</b>
+
+        SUPER RARE
+
+      </div>
+
+
+      <div class="r">
+
+        <b>UR</b>
+
+        ULTRA RARE
+
+      </div>
+
+
+      <div class="r lr">
+
+        <b>LR</b>
+
+        1 / 1
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     HOKKAIDO COLLECTION BOOK
+========================= -->
+
+<section class="book">
+
+
+  <div class="book-head">
+
+
+    <div>
+
+      <div class="ey">
+        HOKKAIDO COLLECTION BOOK
+      </div>
+
+      <h2>
+        WHAT'S HIDING<br>
+        IN HOKKAIDO?
+      </h2>
+
+    </div>
+
+
+    <p class="book-note">
+
+      The landscapes are revealed.
+      The takoyaki are still hiding.
+
+      Discover the full artworks when
+      the Hokkaido collection is revealed.
+
+    </p>
+
+
+  </div>
+
+
+
+  <div class="gallery-hint">
+
+    SWIPE TO EXPLORE →
+
+  </div>
+
+
+
+  <!-- 横スライド開始 -->
+
+  <div class="gallery">
+
+
+
+    <!-- 01 -->
+
+    <article class="piece">
+
+      <img
+        class="pixel"
+        src="https://ul.h3z.jp/oHLrQFcg.png"
+        alt="Hokkaido mystery artwork 01"
+      >
+
+      <div class="meta">
+
+        <b>
+          HOKKAIDO · 01
+        </b>
+
+        <span>
+          ???
+        </span>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 02 -->
+
+    <article class="piece">
+
+      <img
+        class="pixel"
+        src="https://ul.h3z.jp/aOR8jMRq.png"
+        alt="Hokkaido mystery artwork 02"
+      >
+
+      <div class="meta">
+
+        <b>
+          HOKKAIDO · 02
+        </b>
+
+        <span>
+          ???
+        </span>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 03 -->
+
+    <article class="piece">
+
+      <img
+        class="pixel"
+        src="https://ul.h3z.jp/0vloKjXW.png"
+        alt="Hokkaido mystery artwork 03"
+      >
+
+      <div class="meta">
+
+        <b>
+          HOKKAIDO · 03
+        </b>
+
+        <span>
+          ???
+        </span>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 04 -->
+
+    <article class="piece">
+
+      <img
+        class="pixel"
+        src="https://ul.h3z.jp/7WDVfZlJ.png"
+        alt="Hokkaido mystery artwork 04"
+      >
+
+      <div class="meta">
+
+        <b>
+          HOKKAIDO · 04
+        </b>
+
+        <span>
+          ???
+        </span>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 05 -->
+
+    <article class="piece">
+
+      <img
+        class="pixel"
+        src="https://ul.h3z.jp/18GboHdY.png"
+        alt="Hokkaido mystery artwork 05"
+      >
+
+      <div class="meta">
+
+        <b>
+          HOKKAIDO · 05
+        </b>
+
+        <span>
+          ???
+        </span>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 06 -->
+
+    <article class="piece">
+
+      <img
+        class="pixel"
+        src="https://ul.h3z.jp/KerclwaE.png"
+        alt="Hokkaido mystery artwork 06"
+      >
+
+      <div class="meta">
+
+        <b>
+          HOKKAIDO · 06
+        </b>
+
+        <span>
+          ???
+        </span>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 07 -->
+
+    <article class="piece">
+
+      <img
+        class="pixel"
+        src="https://ul.h3z.jp/jQah92SE.png"
+        alt="Hokkaido mystery artwork 07"
+      >
+
+      <div class="meta">
+
+        <b>
+          HOKKAIDO · 07
+        </b>
+
+        <span>
+          ???
+        </span>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 08 LR -->
+
+    <article class="piece legend">
+
+      <img
+        class="pixel"
+        src="https://ul.h3z.jp/kATTRB7n.png"
+        alt="Hokkaido legendary mystery artwork"
+      >
+
+      <div class="meta">
+
+        <b>
+          HOKKAIDO · 08 · LEGENDARY
+        </b>
+
+        <span>
+          LR · 1/1
+        </span>
+
+      </div>
+
+    </article>
+
+
+
+  </div>
+
+  <!-- 横スライド終了 -->
+
+
+</section>
+
+
+
+<!-- =========================
+     JAPAN JOURNEY
+========================= -->
+
+<section
+  class="journey"
+  id="journey"
+>
+
+
+  <div class="ey">
+
+    THE ROAD AHEAD
+
+  </div>
+
+
+  <h2>
+
+    JAPAN 47 JOURNEY
+
+  </h2>
+
+
+  <p
+    class="lead"
+    style="margin:0 0 28px"
+  >
+
+    The journey starts in Hokkaido
+    and continues south,
+    one prefecture at a time.
+
+  </p>
+
+
+
+  <div class="road">
+
+
+    <div class="stop active">
+
+      STOP 01
+
+      <strong>
+        HOKKAIDO
+      </strong>
+
+    </div>
+
+
+
+    <div class="stop">
+
+      STOP 02
+
+      <strong>
+        AOMORI
+      </strong>
+
+    </div>
+
+
+
+    <div class="stop">
+
+      STOP 03
+
+      <strong>
+        ???
+      </strong>
+
+    </div>
+
+
+
+    <div class="stop">
+
+      47 STOPS
+
+      <strong>
+        TO BE CONTINUED →
+      </strong>
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="cta">
+
+
+  <div class="ey">
+
+    ONE BITE, A NEW STORY.
+
+  </div>
+
+
+  <h2>
+
+    FOLLOW THE TAKOYAKI.
+
+  </h2>
+
+
+  <p class="lead">
+
+    Get the free Journey Passport first.
+
+    Passport holders will receive
+    priority access when the
+    Hokkaido chapter opens.
+
+  </p>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  © TRAVELING TAKOYAKI
+  — JAPAN 47 COLLECTION
+
+</footer>
+
+
+</body>
+</html>
