@@ -3,15 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TRAVELING TAKOYAKI — Japan 47 Collection</title>
+
+<title>TRAVELING TAKOYAKI — Japan 47 Journey</title>
+
+<meta
+  name="description"
+  content="Collect a free Journey Ticket for each destination and follow the Traveling Takoyaki truck across all 47 prefectures of Japan."
+>
 
 <link rel="icon" type="image/png" href="./traveling-takoyaki-icon.png">
 <link rel="apple-touch-icon" href="./traveling-takoyaki-icon.png">
 <link rel="manifest" href="./site.webmanifest">
+
 <meta name="theme-color" content="#10233d">
 
 <style>
-:root {
+:root{
   --ink:#22251e;
   --paper:#f5f0df;
   --red:#d8513d;
@@ -19,21 +26,50 @@
   --gold:#efbd58;
   --muted:#5c594b;
 }
-* { box-sizing:border-box }
-html { scroll-behavior:smooth }
-body {
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
   margin:0;
   color:var(--ink);
   background:var(--paper);
   font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   overflow-wrap:anywhere;
 }
-.pixel { image-rendering:pixelated }
-h1,h2,p { margin-top:0 }
-h1,h2 { line-height:1.13;letter-spacing:-.035em }
-p { font:500 15px/1.65 system-ui,sans-serif }
 
-.top {
+.pixel{
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+}
+
+h1,
+h2,
+p{
+  margin-top:0;
+}
+
+h1,
+h2{
+  line-height:1.13;
+  letter-spacing:-.035em;
+}
+
+p{
+  font:500 15px/1.65 system-ui,sans-serif;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.top{
   min-height:56px;
   background:var(--ink);
   color:#fff9e9;
@@ -45,45 +81,107 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   border-bottom:4px solid #f8e8bb;
   position:sticky;
   top:0;
-  z-index:5;
+  z-index:10;
   font-weight:900;
 }
-.top nav { display:flex;gap:20px;font-size:12px }
-.top a { color:inherit;text-decoration:none }
 
-.hero { background:#65abd2;border-bottom:6px solid var(--ink) }
-.hero img {
+.top nav{
+  display:flex;
+  gap:20px;
+  font-size:12px;
+}
+
+.top a{
+  color:inherit;
+  text-decoration:none;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  background:#65abd2;
+  border-bottom:6px solid var(--ink);
+}
+
+.hero img{
   display:block;
   width:100%;
   max-height:560px;
   object-fit:cover;
 }
 
-.map-paper {
+
+/* =========================
+   PAPER BACKGROUND
+========================= */
+
+.map-paper{
   background-color:var(--paper);
+
   background-image:
     radial-gradient(#baad8d55 1px,transparent 1px),
-    repeating-linear-gradient(0deg,transparent 0 71px,#bfab7a21 72px 73px),
-    repeating-linear-gradient(90deg,transparent 0 71px,#bfab7a21 72px 73px);
-  background-size:18px 18px,73px 73px,73px 73px;
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 71px,
+      #bfab7a21 72px 73px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 71px,
+      #bfab7a21 72px 73px
+    );
+
+  background-size:
+    18px 18px,
+    73px 73px,
+    73px 73px;
 }
-.intro,.journey { max-width:1060px;margin:auto;padding:54px 22px }
-.intro { text-align:center }
-.ey {
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro,
+.journey{
+  max-width:1060px;
+  margin:auto;
+  padding:54px 22px;
+}
+
+.intro{
+  text-align:center;
+}
+
+.ey{
   font-size:11px;
   letter-spacing:.12em;
   font-weight:900;
   color:#a93e32;
   line-height:1.5;
 }
-.intro h1 {
+
+.intro h1{
   font-size:clamp(30px,5vw,58px);
   margin:12px auto 20px;
   max-width:940px;
 }
-.lead { max-width:690px;margin:0 auto;color:#49483d }
 
-.cards {
+.lead{
+  max-width:690px;
+  margin:0 auto;
+  color:#49483d;
+}
+
+
+/* =========================
+   INTRO CARDS
+========================= */
+
+.cards{
   max-width:1060px;
   margin:0 auto;
   padding:0 22px 66px;
@@ -91,18 +189,39 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   grid-template-columns:1.05fr .95fr;
   gap:22px;
 }
-.card {
+
+.card{
   background:#fffdf6;
   border:3px solid var(--ink);
   box-shadow:6px 6px 0 var(--ink);
   padding:24px;
 }
-.card.red { background:var(--red);color:white }
-.card.red .ey { color:#fff4cf }
-.card h2 { font-size:clamp(23px,2.7vw,31px);margin:10px 0 14px }
-.card p { margin-bottom:18px }
-.tags { display:flex;gap:7px;flex-wrap:wrap }
-.tag {
+
+.card.red{
+  background:var(--red);
+  color:white;
+}
+
+.card.red .ey{
+  color:#fff4cf;
+}
+
+.card h2{
+  font-size:clamp(23px,2.7vw,31px);
+  margin:10px 0 14px;
+}
+
+.card p{
+  margin-bottom:18px;
+}
+
+.tags{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.tag{
   border:2px solid currentColor;
   padding:5px 8px;
   font-size:11px;
@@ -110,9 +229,21 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   line-height:1.3;
 }
 
-.ticket-card { display:flex;flex-direction:column }
-.ticket-card .tags { margin-top:auto }
-.ticket-art-stage {
+
+/* =========================
+   JOURNEY TICKET
+========================= */
+
+.ticket-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.ticket-card .tags{
+  margin-top:auto;
+}
+
+.ticket-art-stage{
   background:#10233d;
   padding:16px;
   margin:5px 0 17px;
@@ -120,7 +251,8 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   display:grid;
   place-items:center;
 }
-.ticket-art {
+
+.ticket-art{
   display:block;
   width:100%;
   max-height:240px;
@@ -128,98 +260,179 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   margin:0;
   background:transparent;
 }
-.mint-countdown {
+
+.mint-countdown{
   background:#10233d;
   color:#fff9e9;
   border:3px solid #0b192c;
   padding:12px;
   margin:1px 0 14px;
 }
-.countdown-caption {
+
+.countdown-caption{
   font:900 11px/1.35 ui-monospace,monospace;
   letter-spacing:.05em;
   color:#f6ca78;
   margin-bottom:10px;
 }
-.countdown-units {
+
+.countdown-units{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
   gap:7px;
 }
-.countdown-units > div {
+
+.countdown-units > div{
   background:#1c3651;
   border:1px solid #536b7b;
   text-align:center;
   padding:7px 2px;
   min-width:0;
 }
-.countdown-units strong {
+
+.countdown-units strong{
   display:block;
   font:900 clamp(18px,2.6vw,28px)/1.1 ui-monospace,monospace;
 }
-.countdown-units span {
+
+.countdown-units span{
   display:block;
   font:900 clamp(8px,.9vw,10px)/1.3 ui-monospace,monospace;
   margin-top:4px;
   color:#d8e0e2;
 }
 
-.supply {
+
+/* =========================
+   SUPPLY SYSTEM
+========================= */
+
+.supply{
   background:#e5eedf;
   border-top:4px solid #213c35;
   padding:52px 22px;
 }
-.supply-inner { max-width:1050px;margin:auto }
-.supply h2 { font-size:clamp(27px,4vw,43px);margin:8px 0 14px }
-.supply-inner > p:not(.supply-min) { max-width:750px }
-.supply-steps {
+
+.supply-inner{
+  max-width:1050px;
+  margin:auto;
+}
+
+.supply h2{
+  font-size:clamp(27px,4vw,43px);
+  margin:8px 0 14px;
+}
+
+.supply-inner > p:not(.supply-min){
+  max-width:750px;
+}
+
+.supply-steps{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:12px;
   margin:25px 0;
 }
-.supply-steps > div {
+
+.supply-steps > div{
   border-top:4px solid #286653;
   padding:12px 2px;
   display:flex;
   gap:10px;
   align-items:baseline;
 }
-.supply-steps strong { font-size:24px;color:#286653 }
-.supply-steps span { font:700 14px/1.4 system-ui,sans-serif }
-.supply-min {
+
+.supply-steps strong{
+  font-size:24px;
+  color:#286653;
+}
+
+.supply-steps span{
+  font:700 14px/1.4 system-ui,sans-serif;
+}
+
+.ticket-rule{
+  border-block:2px dashed #7f9c85;
+  padding:14px 2px;
+  margin:4px 0 24px;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.ticket-rule b{
+  font-size:13px;
+  color:#286653;
+  white-space:nowrap;
+}
+
+.ticket-rule span{
+  max-width:720px;
+  font:600 13px/1.55 system-ui,sans-serif;
+}
+
+.supply-min{
   border-left:5px solid #c8513e;
   padding:5px 0 5px 15px;
   margin:0;
 }
-.supply-min b { display:block;font-size:16px }
-.supply-min small {
+
+.supply-min b{
+  display:block;
+  font-size:16px;
+}
+
+.supply-min small{
   display:block;
   font:500 12px/1.5 system-ui,sans-serif;
   color:#484b3d;
   margin-top:5px;
 }
 
-.drop {
+
+/* =========================
+   RARITY
+========================= */
+
+.drop{
   background:#254459;
   color:#fff;
   border-block:5px solid var(--ink);
   padding:52px 22px 58px;
 }
-.inner { max-width:1060px;margin:auto }
-.drop .ey { color:#f8ca67 }
-.drop h2,.journey h2,.book h2 {
+
+.inner{
+  max-width:1060px;
+  margin:auto;
+}
+
+.drop .ey{
+  color:#f8ca67;
+}
+
+.drop h2,
+.journey h2,
+.book h2{
   font-size:clamp(27px,3.8vw,44px);
   margin:8px 0 20px;
 }
-.drop-example { max-width:650px;color:#eddfbe;margin-bottom:18px }
-.rarity {
+
+.drop-example{
+  max-width:650px;
+  color:#eddfbe;
+  margin-bottom:18px;
+}
+
+.rarity{
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
   gap:14px;
   align-items:stretch;
 }
-.rarity .r {
+
+.rarity .r,
+.rarity .r.lr{
   min-width:0;
   background:#f9f5e8;
   color:#20251f;
@@ -233,21 +446,25 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   text-align:center;
   box-shadow:4px 4px 0 #17222b;
 }
-.rarity-frame {
+
+.rarity-frame{
   position:relative;
   width:100%;
   height:clamp(130px,19vw,225px);
   display:grid;
   place-items:center;
 }
-.rarity-frame img {
+
+.rarity-frame img{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:contain;
+  image-rendering:pixelated;
 }
-.rarity-overlay {
+
+.rarity-overlay{
   position:relative;
   z-index:1;
   display:grid;
@@ -260,35 +477,64 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   max-width:78%;
   box-shadow:2px 2px 0 #272b27;
 }
-.rarity-overlay strong {
+
+.rarity-overlay strong{
   font:900 clamp(15px,1.7vw,22px)/1.1 ui-monospace,monospace;
 }
-.rarity-overlay small { font:900 10px/1.2 ui-monospace,monospace }
-.rarity .r > b { font-size:25px;line-height:1.1 }
-.rarity .r > span {
+
+.rarity-overlay small{
+  font:900 10px/1.2 ui-monospace,monospace;
+}
+
+.rarity .r > b{
+  font-size:25px;
+  line-height:1.1;
+}
+
+.rarity .r > span{
   font-size:10px;
   font-weight:900;
   line-height:1.3;
   letter-spacing:.04em;
 }
-.rarity-note {
+
+.rarity-note{
   font:700 11px/1.5 ui-monospace,monospace;
   color:#ecdfbe;
   margin:17px 0 0;
   text-align:center;
 }
 
-.book { max-width:1120px;margin:auto;padding:58px 22px 66px }
-.book-head {
+
+/* =========================
+   COLLECTION BOOK
+========================= */
+
+.book{
+  max-width:1120px;
+  margin:auto;
+  padding:58px 22px 66px;
+}
+
+.book-head{
   display:flex;
   justify-content:space-between;
   gap:20px;
   align-items:end;
   margin-bottom:17px;
 }
-.book-head h2 { margin-bottom:0 }
-.book-note { max-width:400px;margin:0;color:var(--muted) }
-.gallery-hint {
+
+.book-head h2{
+  margin-bottom:0;
+}
+
+.book-note{
+  max-width:400px;
+  margin:0;
+  color:var(--muted);
+}
+
+.gallery-hint{
   text-align:right;
   font-size:11px;
   font-weight:900;
@@ -296,7 +542,8 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   margin:0 0 10px;
   color:#6d6454;
 }
-.gallery {
+
+.gallery{
   display:flex;
   gap:14px;
   overflow-x:auto;
@@ -304,10 +551,18 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   scroll-snap-type:x mandatory;
   padding:3px 8px 14px 3px;
   scrollbar-width:thin;
+  -webkit-overflow-scrolling:touch;
 }
-.gallery::-webkit-scrollbar { height:7px }
-.gallery::-webkit-scrollbar-thumb { background:var(--ink) }
-.piece {
+
+.gallery::-webkit-scrollbar{
+  height:7px;
+}
+
+.gallery::-webkit-scrollbar-thumb{
+  background:var(--ink);
+}
+
+.piece{
   background:#fff;
   border:3px solid var(--ink);
   box-shadow:5px 5px 0 var(--ink);
@@ -315,13 +570,15 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   flex:0 0 clamp(150px,17vw,175px);
   scroll-snap-align:start;
 }
-.piece img {
+
+.piece img{
   width:100%;
   display:block;
   aspect-ratio:1;
   object-fit:cover;
 }
-.meta {
+
+.meta{
   min-height:45px;
   padding:7px 8px;
   display:flex;
@@ -329,24 +586,48 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   gap:5px;
   align-items:center;
 }
-.meta b { font-size:10px;line-height:1.35 }
-.meta span {
+
+.meta b{
+  font-size:10px;
+  line-height:1.35;
+}
+
+.meta span{
   font-size:9px;
   font-weight:900;
   border:1px solid currentColor;
   padding:3px;
   white-space:nowrap;
 }
-.piece.legend { background:#254459;color:#fff }
 
-.journey { padding-block:56px 64px }
-.journey .lead { margin:0 0 24px }
-.route-wrap {
+.piece.legend{
+  background:#254459;
+  color:#fff;
+}
+
+
+/* =========================
+   JOURNEY ROUTE
+========================= */
+
+.journey{
+  padding-block:56px 64px;
+}
+
+.journey .lead{
+  margin:0 0 24px;
+}
+
+.route-wrap{
   margin-top:18px;
   padding:10px 0 8px;
   background:transparent;
+  border:0;
+  box-shadow:none;
 }
-.route-top,.route-bottom {
+
+.route-top,
+.route-bottom{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -355,17 +636,20 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   font-weight:900;
   letter-spacing:.04em;
 }
-.route-top {
+
+.route-top{
   border-block:2px solid #bbaa83;
   padding:8px 4px;
   color:#695940;
 }
-.route-bottom {
+
+.route-bottom{
   border-top:2px solid #bbaa83;
   margin-top:10px;
   padding:12px 4px 0;
 }
-.route-bottom button {
+
+.route-bottom button{
   font:900 11px/1.3 ui-monospace,monospace;
   color:#fff;
   background:var(--red);
@@ -374,12 +658,19 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   cursor:pointer;
   box-shadow:3px 3px 0 var(--ink);
 }
-.route-bottom button:focus-visible {
+
+.route-bottom button:focus-visible{
   outline:3px solid #cc3e34;
   outline-offset:4px;
 }
-.board { position:relative;isolation:isolate;margin:16px 0 12px }
-.route-svg {
+
+.board{
+  position:relative;
+  isolation:isolate;
+  margin:16px 0 12px;
+}
+
+.route-svg{
   position:absolute;
   inset:0;
   width:100%;
@@ -388,7 +679,8 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   z-index:0;
   overflow:visible;
 }
-.route-tiles {
+
+.route-tiles{
   position:relative;
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
@@ -396,10 +688,12 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   row-gap:32px;
   z-index:1;
 }
-.route-tile {
+
+.route-tile{
   width:48%;
   aspect-ratio:1;
   border-radius:50%;
+  background:#fdf9e8;
   border:2px solid #3a4b3f;
   box-shadow:2px 3px 0 #3a4b3f;
   display:flex;
@@ -414,81 +708,167 @@ p { font:500 15px/1.65 system-ui,sans-serif }
   position:relative;
   transition:transform .2s;
 }
-.route-tile b {
+
+.route-tile b{
   font-size:clamp(15px,1.9vw,23px);
   font-weight:1000;
   line-height:1;
   letter-spacing:-.06em;
 }
-.route-tile small {
+
+.route-tile small{
   position:absolute;
   top:calc(100% + 10px);
   font-size:clamp(9px,1vw,12px);
   font-weight:900;
   white-space:nowrap;
   max-width:170%;
+  overflow:visible;
   background:#f5f0df;
   padding:1px 4px;
   border-radius:3px;
   box-shadow:0 0 0 2px #f5f0df;
   z-index:4;
 }
-.route-tile.hokkaido { background:#f8d37b;border-color:#986333 }
-.route-tile.tohoku   { background:#addce5;border-color:#477b8e }
-.route-tile.kanto    { background:#f7bdac;border-color:#af6b5c }
-.route-tile.chubu    { background:#bee1b7;border-color:#648b60 }
-.route-tile.kansai   { background:#d4c4e9;border-color:#796995 }
-.route-tile.chugoku  { background:#f6d994;border-color:#a78443 }
-.route-tile.shikoku  { background:#eeadd2;border-color:#a36387 }
-.route-tile.kyushu   { background:#b8ddc8;border-color:#548774 }
-.route-tile.current {
+
+.route-tile.hokkaido{
+  background:#f8d37b;
+  border-color:#986333;
+}
+
+.route-tile.tohoku{
+  background:#addce5;
+  border-color:#477b8e;
+}
+
+.route-tile.kanto{
+  background:#f7bdac;
+  border-color:#af6b5c;
+}
+
+.route-tile.chubu{
+  background:#bee1b7;
+  border-color:#648b60;
+}
+
+.route-tile.kansai{
+  background:#d4c4e9;
+  border-color:#796995;
+}
+
+.route-tile.chugoku{
+  background:#f6d994;
+  border-color:#a78443;
+}
+
+.route-tile.shikoku{
+  background:#eeadd2;
+  border-color:#a36387;
+}
+
+.route-tile.kyushu{
+  background:#b8ddc8;
+  border-color:#548774;
+}
+
+.route-tile.current{
   background:#f4c355;
   border:7px solid #ac3c2a;
   color:#2b2821;
   z-index:2;
-  box-shadow:0 0 0 3px #fff8dc,2px 4px 0 4px #423c2d;
+  box-shadow:
+    0 0 0 3px #fff8dc,
+    2px 4px 0 4px #423c2d;
 }
-.route-tile.next {
+
+.route-tile.next{
   background:#a7dbdf;
   border-color:#2e6282;
-  box-shadow:0 0 0 2px #fff8dc,2px 3px 0 3px #2e6282;
+  box-shadow:
+    0 0 0 2px #fff8dc,
+    2px 3px 0 3px #2e6282;
 }
-.route-tile.locked {
+
+.route-tile.locked{
   color:#514e46;
   box-shadow:2px 3px 0 #514e46;
 }
-.route-tile.locked small { display:none }
-.route-tile.goal { background:#f6d895;color:#443422 }
-.route-tile.filler { visibility:hidden }
-.route-car {
+
+.route-tile.locked small{
+  display:none;
+}
+
+.route-tile.goal{
+  background:#f6d895;
+  color:#443422;
+}
+
+.route-tile.filler{
+  visibility:hidden;
+}
+
+.route-car{
   position:absolute;
   width:clamp(55px,8vw,86px);
   height:auto;
   z-index:3;
   pointer-events:none;
   filter:drop-shadow(2px 4px 0 #362f2699);
+
   transition:
     left 1.4s cubic-bezier(.32,.75,.2,1),
     top 1.4s cubic-bezier(.32,.75,.2,1);
+
   transform:translate(-50%,-92%);
 }
-@keyframes truck-idle {
-  0%,100% { transform:translate(-50%,-92%) rotate(-2deg) }
-  50% { transform:translate(-50%,-95%) rotate(2deg) }
-}
-.route-car.idle { animation:truck-idle .48s ease-in-out infinite }
 
-.cta {
+@keyframes truck-idle{
+  0%,
+  100%{
+    transform:translate(-50%,-92%) rotate(-2deg);
+  }
+
+  50%{
+    transform:translate(-50%,-95%) rotate(2deg);
+  }
+}
+
+.route-car.idle{
+  animation:truck-idle .48s ease-in-out infinite;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
   text-align:center;
   background:#efbd58;
   border-top:5px solid var(--ink);
   padding:58px 22px;
-  background-image:radial-gradient(#fff5ce77 2px,transparent 2px);
+
+  background-image:
+    radial-gradient(#fff5ce77 2px,transparent 2px);
+
   background-size:26px 26px;
 }
-.cta h2 { font-size:clamp(29px,4vw,48px);margin:12px 0 20px }
-.cta .lead { color:#292a22 }
-footer {
+
+.cta h2{
+  font-size:clamp(29px,4vw,48px);
+  margin:12px 0 20px;
+}
+
+.cta .lead{
+  color:#292a22;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
   text-align:center;
   background:var(--ink);
   color:#fff7e5;
@@ -496,78 +876,275 @@ footer {
   font-size:11px;
 }
 
-/* 日本語への自動翻訳後に文字サイズを調整 */
-body.is-ja { font-family:system-ui,"Noto Sans JP",sans-serif }
-body.is-ja h1,body.is-ja h2 {
+
+/* =========================
+   JAPANESE TRANSLATION
+========================= */
+
+body.is-ja{
+  font-family:system-ui,"Noto Sans JP",sans-serif;
+}
+
+body.is-ja h1,
+body.is-ja h2{
   letter-spacing:.01em;
   font-weight:850;
   line-height:1.35;
 }
-body.is-ja .intro h1 { font-size:clamp(27px,4.1vw,44px) }
+
+body.is-ja .intro h1{
+  font-size:clamp(27px,4.1vw,44px);
+}
+
 body.is-ja .drop h2,
 body.is-ja .journey h2,
-body.is-ja .book h2 { font-size:clamp(25px,3.1vw,37px) }
-body.is-ja .cta h2 { font-size:clamp(27px,3.1vw,39px) }
-body.is-ja .card h2 { font-size:clamp(22px,2.3vw,27px) }
-body.is-ja .ey { letter-spacing:.04em }
-body.is-ja p { font-size:14px;line-height:1.75 }
-body.is-ja .card p { font-size:14px }
-body.is-ja .meta b { font-size:10px }
+body.is-ja .book h2{
+  font-size:clamp(25px,3.1vw,37px);
+}
 
-@media (max-width:700px) {
-  .top { min-height:50px;padding:8px 18px;font-size:13px }
-  .top nav { display:none }
-  .hero img { min-height:170px;object-fit:cover }
-  .intro { padding:45px 20px 49px }
-  .intro h1 { font-size:clamp(31px,8.2vw,42px) }
-  .cards { grid-template-columns:1fr;padding:0 20px 55px;gap:17px }
-  .card { padding:20px }
-  .ticket-art-stage { padding:10px }
-  .countdown-caption { font-size:10px }
-  .countdown-units { gap:5px }
-  .supply { padding:42px 20px }
-  .supply-steps { grid-template-columns:1fr;gap:0;margin:18px 0 }
-  .supply-steps > div { padding:9px 2px }
-  .drop { padding:47px 20px }
-  .rarity { grid-template-columns:repeat(2,minmax(0,1fr));gap:12px }
-  .rarity .r.lr { grid-column:1/-1 }
-  .rarity-frame { height:clamp(145px,44vw,190px) }
-  .rarity .r.lr .rarity-frame { height:clamp(170px,52vw,240px) }
-  .book { padding:49px 20px 55px }
-  .book-head { display:block }
-  .book-note { margin:12px 0 }
-  .gallery { margin-right:-20px;padding-right:20px }
-  .piece { flex-basis:clamp(145px,39vw,175px) }
-  .journey { padding:50px 20px }
-  .route-wrap { padding:6px 0 }
-  .route-top { font-size:9px;flex-wrap:wrap;gap:4px }
-  .route-tiles { column-gap:2px;row-gap:28px }
-  .route-tile { width:69%;border-width:2px;font-size:10px }
-  .route-tile.current { border-width:5px }
-  .route-tile b { font-size:clamp(14px,4vw,19px) }
-  .route-tile small { font-size:10px;top:calc(100% + 10px) }
-  .route-car { width:clamp(55px,17vw,76px) }
-  .route-bottom { display:grid;gap:10px;font-size:10px }
-  .route-bottom button { width:100%;padding:11px 7px }
-  .cta { padding:55px 20px }
-  body.is-ja .intro h1 { font-size:clamp(27px,7vw,34px) }
+body.is-ja .cta h2{
+  font-size:clamp(27px,3.1vw,39px);
+}
+
+body.is-ja .card h2{
+  font-size:clamp(22px,2.3vw,27px);
+}
+
+body.is-ja .ey{
+  letter-spacing:.04em;
+}
+
+body.is-ja p{
+  font-size:14px;
+  line-height:1.75;
+}
+
+body.is-ja .card p{
+  font-size:14px;
+}
+
+body.is-ja .meta b{
+  font-size:10px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+  .top{
+    min-height:50px;
+    padding:8px 18px;
+    font-size:13px;
+  }
+
+  .top nav{
+    display:none;
+  }
+
+  .hero img{
+    min-height:170px;
+    object-fit:cover;
+  }
+
+  .intro{
+    padding:45px 20px 49px;
+  }
+
+  .intro h1{
+    font-size:clamp(31px,8.2vw,42px);
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+    padding:0 20px 55px;
+    gap:17px;
+  }
+
+  .card{
+    padding:20px;
+  }
+
+  .ticket-art-stage{
+    padding:10px;
+  }
+
+  .countdown-caption{
+    font-size:10px;
+  }
+
+  .countdown-units{
+    gap:5px;
+  }
+
+  .supply{
+    padding:42px 20px;
+  }
+
+  .supply-steps{
+    grid-template-columns:1fr;
+    gap:0;
+    margin:18px 0;
+  }
+
+  .supply-steps > div{
+    padding:9px 2px;
+  }
+
+  .ticket-rule{
+    display:block;
+  }
+
+  .ticket-rule b{
+    display:block;
+    margin-bottom:7px;
+  }
+
+  .drop{
+    padding:47px 20px;
+  }
+
+  .rarity{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+
+  .rarity .r.lr{
+    grid-column:1/-1;
+  }
+
+  .rarity-frame{
+    height:clamp(145px,44vw,190px);
+  }
+
+  .rarity .r.lr .rarity-frame{
+    height:clamp(170px,52vw,240px);
+  }
+
+  .book{
+    padding:49px 20px 55px;
+  }
+
+  .book-head{
+    display:block;
+  }
+
+  .book-note{
+    margin:12px 0;
+  }
+
+  .gallery{
+    margin-right:-20px;
+    padding-right:20px;
+  }
+
+  .piece{
+    flex-basis:clamp(145px,39vw,175px);
+  }
+
+  .journey{
+    padding:50px 20px;
+  }
+
+  .route-wrap{
+    padding:6px 0;
+  }
+
+  .route-top{
+    font-size:9px;
+    flex-wrap:wrap;
+    gap:4px;
+  }
+
+  .route-tiles{
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    column-gap:2px;
+    row-gap:28px;
+  }
+
+  .route-tile{
+    width:69%;
+    border-width:2px;
+    font-size:10px;
+    box-shadow:2px 2px 0 #555a4c;
+  }
+
+  .route-tile.current{
+    border-width:5px;
+  }
+
+  .route-tile b{
+    font-size:clamp(14px,4vw,19px);
+  }
+
+  .route-tile small{
+    font-size:10px;
+    top:calc(100% + 10px);
+  }
+
+  .route-car{
+    width:clamp(55px,17vw,76px);
+  }
+
+  .route-bottom{
+    display:grid;
+    gap:10px;
+    font-size:10px;
+  }
+
+  .route-bottom button{
+    width:100%;
+    padding:11px 7px;
+  }
+
+  .cta{
+    padding:55px 20px;
+  }
+
+  body.is-ja .intro h1{
+    font-size:clamp(27px,7vw,34px);
+  }
+
   body.is-ja .drop h2,
   body.is-ja .book h2,
-  body.is-ja .journey h2 { font-size:clamp(24px,6.5vw,31px) }
-  body.is-ja .card h2 { font-size:clamp(22px,6vw,27px) }
-  body.is-ja .cta h2 { font-size:clamp(26px,7vw,34px) }
-  body.is-ja .lead { font-size:14px }
+  body.is-ja .journey h2{
+    font-size:clamp(24px,6.5vw,31px);
+  }
+
+  body.is-ja .card h2{
+    font-size:clamp(22px,6vw,27px);
+  }
+
+  body.is-ja .cta h2{
+    font-size:clamp(26px,7vw,34px);
+  }
+
+  body.is-ja .lead{
+    font-size:14px;
+  }
 }
-@media (prefers-reduced-motion:reduce) {
-  .route-car,.route-tile { transition:none }
-  .route-car.idle { animation:none }
+
+@media(prefers-reduced-motion:reduce){
+
+  .route-car,
+  .route-tile{
+    transition:none;
+  }
+
+  .route-car.idle{
+    animation:none;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <header class="top">
   <span>TRAVELING TAKOYAKI</span>
+
   <nav>
     <a href="#story">STORY</a>
     <a href="#collection">COLLECTION</a>
@@ -575,30 +1152,53 @@ body.is-ja .meta b { font-size:10px }
   </nav>
 </header>
 
+
 <section class="hero">
-  <img class="pixel"
-       src="https://ul.h3z.jp/nz0rNaws.gif"
-       alt="Traveling Takoyaki animated journey">
+  <img
+    class="pixel"
+    src="https://ul.h3z.jp/nz0rNaws.gif"
+    alt="Traveling Takoyaki animated journey"
+  >
 </section>
 
+
 <main class="map-paper">
+
   <section class="intro" id="story">
-    <div class="ey">A PIXEL JOURNEY ACROSS JAPAN</div>
-    <h1>47 PREFECTURES.<br>ONE TAKOYAKI.</h1>
+    <div class="ey">
+      A PIXEL JOURNEY ACROSS JAPAN
+    </div>
+
+    <h1>
+      47 PREFECTURES.<br>
+      ONE TAKOYAKI.
+    </h1>
+
     <p class="lead">
-      A tiny takoyaki truck is traveling across Japan. Every stop becomes
-      a new pixel-art collection inspired by local landscapes, flavors and stories.
+      A tiny takoyaki truck is traveling across Japan.
+      Every stop becomes a new pixel-art collection
+      inspired by local landscapes, flavors and stories.
     </p>
   </section>
 
+
   <section class="cards">
+
     <article class="card red">
-      <div class="ey">FIRST DESTINATION</div>
-      <h2>01 — HOKKAIDO</h2>
+      <div class="ey">
+        FIRST DESTINATION
+      </div>
+
+      <h2>
+        01 — HOKKAIDO
+      </h2>
+
       <p>
-        The journey begins in the north. Seven local artworks and one hidden
-        legendary piece are waiting to be discovered.
+        The journey begins in the north.
+        Seven local artworks and one hidden legendary piece
+        are waiting to be discovered.
       </p>
+
       <div class="tags">
         <span class="tag">7 + 1 ART</span>
         <span class="tag">5 RARITIES</span>
@@ -606,451 +1206,1196 @@ body.is-ja .meta b { font-size:10px }
       </div>
     </article>
 
-    <article class="card ticket-card">
-      <div class="ey">FREE MINT · PRIORITY TICKET</div>
-      <h2>YOUR TICKET TO HOKKAIDO.</h2>
 
-      <div class="mint-countdown"
-           id="ticket-countdown"
-           data-mint-start=""
-           aria-live="off">
-        <div class="countdown-caption" id="countdown-caption">
-          FREE TICKET MINT · DATE TO BE ANNOUNCED
+    <article class="card ticket-card">
+
+      <div class="ey">
+        FREE MINT · JOURNEY TICKET
+      </div>
+
+      <h2>
+        YOUR BOARDING PASS TO HOKKAIDO.
+      </h2>
+
+      <div
+        class="mint-countdown"
+        id="ticket-countdown"
+        data-mint-start=""
+        aria-live="off"
+      >
+        <div
+          class="countdown-caption"
+          id="countdown-caption"
+        >
+          FREE JOURNEY TICKET · DATE TO BE ANNOUNCED
         </div>
-        <div class="countdown-units" aria-label="Countdown to ticket mint">
-          <div><strong id="count-days">--</strong><span>DAYS</span></div>
-          <div><strong id="count-hours">--</strong><span>HOURS</span></div>
-          <div><strong id="count-minutes">--</strong><span>MINUTES</span></div>
-          <div><strong id="count-seconds">--</strong><span>SECONDS</span></div>
+
+        <div
+          class="countdown-units"
+          aria-label="Countdown to Journey Ticket mint"
+        >
+          <div>
+            <strong id="count-days">--</strong>
+            <span>DAYS</span>
+          </div>
+
+          <div>
+            <strong id="count-hours">--</strong>
+            <span>HOURS</span>
+          </div>
+
+          <div>
+            <strong id="count-minutes">--</strong>
+            <span>MINUTES</span>
+          </div>
+
+          <div>
+            <strong id="count-seconds">--</strong>
+            <span>SECONDS</span>
+          </div>
         </div>
       </div>
 
       <div class="ticket-art-stage">
-        <img class="ticket-art pixel"
-             src="https://ul.h3z.jp/JdJ1ZSjj.png"
-             alt="Traveling Takoyaki Hokkaido priority ticket artwork"
-             loading="lazy">
+        <img
+          class="ticket-art pixel"
+          src="https://ul.h3z.jp/JdJ1ZSjj.png"
+          alt="Traveling Takoyaki Hokkaido Journey Ticket artwork"
+          loading="lazy"
+        >
       </div>
+
       <p>
-        Mint the Hokkaido ticket for free. Ticket holders get priority access
-        to purchase a Hokkaido NFT before the public sale.
+        Every journey begins with a ticket.
+        Mint the Hokkaido Journey Ticket for free to join Stop 01.
+        Ticket holders receive priority access to purchase
+        a Hokkaido NFT before the public sale.
       </p>
+
       <div class="tags">
-        <span class="tag">FREE TICKET MINT</span>
-        <span class="tag">PRIORITY PURCHASE</span>
+        <span class="tag">FREE JOURNEY TICKET</span>
+        <span class="tag">PRIORITY BOARDING</span>
       </div>
     </article>
+
   </section>
 
-  <section class="supply" aria-labelledby="supply-title">
+
+  <section
+    class="supply"
+    aria-labelledby="supply-title"
+  >
     <div class="supply-inner">
-      <div class="ey">HOW EACH CHAPTER BEGINS</div>
-      <h2 id="supply-title">YOUR TICKET SHAPES THE DROP.</h2>
-      <p>
-        We release a free priority ticket before each prefecture's NFT drop.
-        The number of people who claim that ticket helps us decide how many
-        NFTs to make for that prefecture.
-      </p>
-      <div class="supply-steps">
-        <div><strong>01</strong><span>Mint the ticket<br>for free</span></div>
-        <div><strong>02</strong><span>We set the NFT supply<br>based on ticket holders</span></div>
-        <div><strong>03</strong><span>Ticket holders get<br>priority purchase access</span></div>
+
+      <div class="ey">
+        EVERY JOURNEY BEGINS WITH A TICKET
       </div>
+
+      <h2 id="supply-title">
+        CLAIM A TICKET.<br>
+        JOIN THE JOURNEY.
+      </h2>
+
+      <p>
+        Before each prefecture, we release a free Journey Ticket
+        for that destination. The number of travelers who claim it
+        helps us decide the final NFT supply for that chapter.
+      </p>
+
+      <div class="supply-steps">
+
+        <div>
+          <strong>01</strong>
+          <span>
+            Claim that stop's<br>
+            Journey Ticket for free
+          </span>
+        </div>
+
+        <div>
+          <strong>02</strong>
+          <span>
+            Travelers are counted<br>
+            and the NFT supply is set
+          </span>
+        </div>
+
+        <div>
+          <strong>03</strong>
+          <span>
+            Ticket holders enter<br>
+            the priority mint first
+          </span>
+        </div>
+
+      </div>
+
+      <div class="ticket-rule">
+        <b>
+          ONE DESTINATION · ONE TICKET
+        </b>
+
+        <span>
+          Each prefecture has its own free Journey Ticket.
+          You can join the journey at any stop—an earlier ticket
+          or NFT is not required.
+        </span>
+      </div>
+
       <p class="supply-min">
-        <b>MINIMUM: 99 NFTs PER PREFECTURE</b>
+        <b>
+          MINIMUM: 99 NFTs PER PREFECTURE
+        </b>
+
         <small>
-          The final supply for each chapter will be announced before its NFT
-          mint begins. Claiming a free ticket does not guarantee an NFT;
-          the NFT is purchased separately.
+          The final supply for each chapter will be announced
+          before its NFT mint begins. A Journey Ticket provides
+          priority access but does not guarantee an NFT;
+          the destination NFT is purchased separately.
         </small>
       </p>
+
     </div>
   </section>
 
-  <section class="drop" id="collection">
+
+  <section
+    class="drop"
+    id="collection"
+  >
     <div class="inner">
-      <div class="ey">HOKKAIDO DROP — CHAPTER 01</div>
-      <h2>FIVE RARITIES.<br>ONE JOURNEY.</h2>
+
+      <div class="ey">
+        HOKKAIDO DROP — CHAPTER 01
+      </div>
+
+      <h2>
+        FIVE RARITIES.<br>
+        ONE JOURNEY.
+      </h2>
+
       <p class="drop-example">
-        Illustrative rarity distribution if the Hokkaido drop is set to
-        the minimum of 99 NFTs.
+        Illustrative rarity distribution if the Hokkaido drop
+        is set to the minimum of 99 NFTs.
       </p>
 
-      <div class="rarity" aria-label="Five rarity frame colors">
+      <div
+        class="rarity"
+        aria-label="Five rarity frame colors"
+      >
+
         <div class="r">
           <div class="rarity-frame">
-            <img class="pixel" src="https://ul.h3z.jp/mpichzx4.png"
-                 alt="Blue Normal card frame">
+            <img
+              class="pixel"
+              src="https://ul.h3z.jp/mpichzx4.png"
+              alt="Blue Normal card frame"
+            >
+
             <div class="rarity-overlay">
-              <strong>49.49%</strong><small>49 / 99</small>
+              <strong>49.49%</strong>
+              <small>49 / 99</small>
             </div>
           </div>
-          <b>N</b><span>NORMAL</span>
+
+          <b>N</b>
+          <span>NORMAL</span>
         </div>
+
+
         <div class="r">
           <div class="rarity-frame">
-            <img class="pixel" src="https://ul.h3z.jp/M1jWTHjc.png"
-                 alt="Red Rare card frame">
+            <img
+              class="pixel"
+              src="https://ul.h3z.jp/M1jWTHjc.png"
+              alt="Red Rare card frame"
+            >
+
             <div class="rarity-overlay">
-              <strong>28.28%</strong><small>28 / 99</small>
+              <strong>28.28%</strong>
+              <small>28 / 99</small>
             </div>
           </div>
-          <b>R</b><span>RARE</span>
+
+          <b>R</b>
+          <span>RARE</span>
         </div>
+
+
         <div class="r">
           <div class="rarity-frame">
-            <img class="pixel" src="https://ul.h3z.jp/YhFxUQNZ.png"
-                 alt="Silver Super Rare card frame">
+            <img
+              class="pixel"
+              src="https://ul.h3z.jp/YhFxUQNZ.png"
+              alt="Silver Super Rare card frame"
+            >
+
             <div class="rarity-overlay">
-              <strong>14.14%</strong><small>14 / 99</small>
+              <strong>14.14%</strong>
+              <small>14 / 99</small>
             </div>
           </div>
-          <b>SR</b><span>SUPER RARE</span>
+
+          <b>SR</b>
+          <span>SUPER RARE</span>
         </div>
+
+
         <div class="r">
           <div class="rarity-frame">
-            <img class="pixel" src="https://ul.h3z.jp/13BzTuwg.png"
-                 alt="Gold Ultra Rare card frame">
+            <img
+              class="pixel"
+              src="https://ul.h3z.jp/13BzTuwg.png"
+              alt="Gold Ultra Rare card frame"
+            >
+
             <div class="rarity-overlay">
-              <strong>7.07%</strong><small>7 / 99</small>
+              <strong>7.07%</strong>
+              <small>7 / 99</small>
             </div>
           </div>
-          <b>UR</b><span>ULTRA RARE</span>
+
+          <b>UR</b>
+          <span>ULTRA RARE</span>
         </div>
+
+
         <div class="r lr">
           <div class="rarity-frame">
-            <img class="pixel" src="https://ul.h3z.jp/K2TJtpe6.png"
-                 alt="Rainbow Legendary Rare card frame">
+            <img
+              class="pixel"
+              src="https://ul.h3z.jp/K2TJtpe6.png"
+              alt="Rainbow Legendary Rare card frame"
+            >
+
             <div class="rarity-overlay">
-              <strong>1.01%</strong><small>1 / 99</small>
+              <strong>1.01%</strong>
+              <small>1 / 99</small>
             </div>
           </div>
-          <b>LR</b><span>LEGENDARY · 1 / 1</span>
+
+          <b>LR</b>
+          <span>LEGENDARY · 1 / 1</span>
         </div>
+
       </div>
+
       <p class="rarity-note">
-        EXAMPLE ONLY: 99 PIECES · FINAL RARITY COUNTS AND ODDS WILL BE
-        ANNOUNCED WITH THE FINAL SUPPLY
+        EXAMPLE ONLY: 99 PIECES · FINAL RARITY COUNTS AND ODDS
+        WILL BE ANNOUNCED WITH THE FINAL SUPPLY
       </p>
+
     </div>
   </section>
+
 
   <section class="book">
+
     <div class="book-head">
+
       <div>
-        <div class="ey">HOKKAIDO COLLECTION BOOK</div>
-        <h2>WHAT'S HIDING<br>IN HOKKAIDO?</h2>
+        <div class="ey">
+          HOKKAIDO COLLECTION BOOK
+        </div>
+
+        <h2>
+          WHAT'S HIDING<br>
+          IN HOKKAIDO?
+        </h2>
       </div>
+
       <p class="book-note">
-        The landscapes are revealed. The takoyaki are still hiding.
-        Discover the full artworks when the Hokkaido collection is revealed.
+        The landscapes are revealed.
+        The takoyaki are still hiding.
+        Discover the full artworks when
+        the Hokkaido collection is revealed.
       </p>
+
     </div>
-    <div class="gallery-hint">SWIPE TO EXPLORE →</div>
-    <div class="gallery" aria-label="Hokkaido collection, scroll horizontally">
+
+    <div class="gallery-hint">
+      SWIPE TO EXPLORE →
+    </div>
+
+    <div
+      class="gallery"
+      aria-label="Hokkaido collection, scroll horizontally"
+    >
+
       <article class="piece">
-        <img class="pixel" src="https://ul.h3z.jp/oHLrQFcg.png"
-             alt="Hokkaido mystery artwork 01">
-        <div class="meta"><b>HOKKAIDO · 01</b><span>???</span></div>
-      </article>
-      <article class="piece">
-        <img class="pixel" src="https://ul.h3z.jp/aOR8jMRq.png"
-             alt="Hokkaido mystery artwork 02">
-        <div class="meta"><b>HOKKAIDO · 02</b><span>???</span></div>
-      </article>
-      <article class="piece">
-        <img class="pixel" src="https://ul.h3z.jp/0vloKjXW.png"
-             alt="Hokkaido mystery artwork 03">
-        <div class="meta"><b>HOKKAIDO · 03</b><span>???</span></div>
-      </article>
-      <article class="piece">
-        <img class="pixel" src="https://ul.h3z.jp/7WDVfZlJ.png"
-             alt="Hokkaido mystery artwork 04">
-        <div class="meta"><b>HOKKAIDO · 04</b><span>???</span></div>
-      </article>
-      <article class="piece">
-        <img class="pixel" src="https://ul.h3z.jp/18GboHdY.png"
-             alt="Hokkaido mystery artwork 05">
-        <div class="meta"><b>HOKKAIDO · 05</b><span>???</span></div>
-      </article>
-      <article class="piece">
-        <img class="pixel" src="https://ul.h3z.jp/KerclwaE.png"
-             alt="Hokkaido mystery artwork 06">
-        <div class="meta"><b>HOKKAIDO · 06</b><span>???</span></div>
-      </article>
-      <article class="piece">
-        <img class="pixel" src="https://ul.h3z.jp/jQah92SE.png"
-             alt="Hokkaido mystery artwork 07">
-        <div class="meta"><b>HOKKAIDO · 07</b><span>???</span></div>
-      </article>
-      <article class="piece legend">
-        <img class="pixel" src="https://ul.h3z.jp/kATTRB7n.png"
-             alt="Hokkaido legendary mystery artwork">
+        <img
+          class="pixel"
+          src="https://ul.h3z.jp/oHLrQFcg.png"
+          alt="Hokkaido mystery artwork 01"
+        >
+
         <div class="meta">
-          <b>HOKKAIDO · 08 · LEGENDARY</b><span>LR · 1/1</span>
+          <b>HOKKAIDO · 01</b>
+          <span>???</span>
         </div>
       </article>
+
+
+      <article class="piece">
+        <img
+          class="pixel"
+          src="https://ul.h3z.jp/aOR8jMRq.png"
+          alt="Hokkaido mystery artwork 02"
+        >
+
+        <div class="meta">
+          <b>HOKKAIDO · 02</b>
+          <span>???</span>
+        </div>
+      </article>
+
+
+      <article class="piece">
+        <img
+          class="pixel"
+          src="https://ul.h3z.jp/0vloKjXW.png"
+          alt="Hokkaido mystery artwork 03"
+        >
+
+        <div class="meta">
+          <b>HOKKAIDO · 03</b>
+          <span>???</span>
+        </div>
+      </article>
+
+
+      <article class="piece">
+        <img
+          class="pixel"
+          src="https://ul.h3z.jp/7WDVfZlJ.png"
+          alt="Hokkaido mystery artwork 04"
+        >
+
+        <div class="meta">
+          <b>HOKKAIDO · 04</b>
+          <span>???</span>
+        </div>
+      </article>
+
+
+      <article class="piece">
+        <img
+          class="pixel"
+          src="https://ul.h3z.jp/18GboHdY.png"
+          alt="Hokkaido mystery artwork 05"
+        >
+
+        <div class="meta">
+          <b>HOKKAIDO · 05</b>
+          <span>???</span>
+        </div>
+      </article>
+
+
+      <article class="piece">
+        <img
+          class="pixel"
+          src="https://ul.h3z.jp/KerclwaE.png"
+          alt="Hokkaido mystery artwork 06"
+        >
+
+        <div class="meta">
+          <b>HOKKAIDO · 06</b>
+          <span>???</span>
+        </div>
+      </article>
+
+
+      <article class="piece">
+        <img
+          class="pixel"
+          src="https://ul.h3z.jp/jQah92SE.png"
+          alt="Hokkaido mystery artwork 07"
+        >
+
+        <div class="meta">
+          <b>HOKKAIDO · 07</b>
+          <span>???</span>
+        </div>
+      </article>
+
+
+      <article class="piece legend">
+        <img
+          class="pixel"
+          src="https://ul.h3z.jp/kATTRB7n.png"
+          alt="Hokkaido legendary mystery artwork"
+        >
+
+        <div class="meta">
+          <b>HOKKAIDO · 08 · LEGENDARY</b>
+          <span>LR · 1/1</span>
+        </div>
+      </article>
+
     </div>
   </section>
 
-  <section class="journey" id="journey">
-    <div class="ey">THE ROAD AHEAD</div>
-    <h2>JAPAN 47 JOURNEY</h2>
+
+  <section
+    class="journey"
+    id="journey"
+  >
+
+    <div class="ey">
+      THE ROAD AHEAD
+    </div>
+
+    <h2>
+      JAPAN 47 JOURNEY
+    </h2>
+
     <p class="lead">
-      The journey starts in Hokkaido and continues south,
-      one prefecture at a time.
+      Collect a free ticket for each destination and follow
+      the truck from north to south.
+      You can join the journey at any stop.
     </p>
+
     <div class="route-wrap">
+
       <div class="route-top">
-        <span>START · HOKKAIDO</span>
-        <span>47 STOPS · ACROSS JAPAN</span>
+        <span>BOARDING · HOKKAIDO</span>
+        <span>47 TICKETS · 47 STOPS</span>
       </div>
-      <div class="board" id="board">
-        <svg class="route-svg" id="route-svg" aria-hidden="true"></svg>
-        <div class="route-tiles" id="route-tiles"></div>
-        <img class="route-car pixel"
-             id="route-car"
-             src="https://ul.h3z.jp/Lu7ch0Ne.png"
-             alt="Takoyaki truck at Hokkaido">
+
+      <div
+        class="board"
+        id="board"
+      >
+        <svg
+          class="route-svg"
+          id="route-svg"
+          aria-hidden="true"
+        ></svg>
+
+        <div
+          class="route-tiles"
+          id="route-tiles"
+        ></div>
+
+        <img
+          class="route-car pixel idle"
+          id="route-car"
+          src="https://ul.h3z.jp/Lu7ch0Ne.png"
+          alt="Takoyaki truck at Hokkaido"
+        >
       </div>
+
       <div class="route-bottom">
-        <span id="route-status">NOW EXPLORING: HOKKAIDO</span>
-        <button type="button" id="route-drive">
-          DRIVE TO THE NEXT STOP →
+
+        <span id="route-status">
+          CURRENT STOP: HOKKAIDO · BOARDING SOON
+        </span>
+
+        <button
+          type="button"
+          id="route-drive"
+        >
+          PREVIEW THE NEXT STOP →
         </button>
+
       </div>
     </div>
+
   </section>
+
 </main>
 
+
 <section class="cta">
-  <div class="ey">ONE BITE, A NEW STORY.</div>
-  <h2>FOLLOW THE TAKOYAKI.</h2>
+
+  <div class="ey">
+    EVERY JOURNEY BEGINS WITH A TICKET.
+  </div>
+
+  <h2>
+    CLAIM YOUR SEAT<br>
+    FOR HOKKAIDO.
+  </h2>
+
   <p class="lead">
-    Mint your priority ticket for free. Ticket holders get first access
-    to purchase a Hokkaido NFT before the public sale opens.
+    Mint the Hokkaido Journey Ticket for free and join Stop 01.
+    Ticket holders receive priority access when
+    the Hokkaido NFT drop opens.
   </p>
+
 </section>
 
-<footer>© TRAVELING TAKOYAKI — JAPAN 47 COLLECTION</footer>
+
+<footer>
+  © TRAVELING TAKOYAKI — A JAPAN47PIXEL PROJECT
+</footer>
+
 
 <script>
-/* ブラウザーが日本語に翻訳したら日本語用の文字サイズを適用 */
+/* ========================================
+   JAPANESE TRANSLATION DETECTION
+======================================== */
+
 (() => {
   let timer;
-  const update = () => {
-    const heading = document.querySelector('.intro h1');
+
+  const updateLanguageClass = () => {
+    const heading = document.querySelector(".intro h1");
+
+    const containsJapanese =
+      heading &&
+      /[\u3040-\u30ff\u3400-\u9fff]/.test(heading.textContent);
+
     document.body.classList.toggle(
-      'is-ja',
-      !!heading && /[\u3040-\u30ff\u3400-\u9fff]/.test(heading.textContent)
+      "is-ja",
+      Boolean(containsJapanese)
     );
   };
+
   const observer = new MutationObserver(() => {
     clearTimeout(timer);
-    timer = setTimeout(update, 80);
+
+    timer = setTimeout(
+      updateLanguageClass,
+      80
+    );
   });
-  observer.observe(document.body, {
-    subtree:true,
-    childList:true,
-    characterData:true
-  });
-  update();
+
+  observer.observe(
+    document.body,
+    {
+      subtree:true,
+      childList:true,
+      characterData:true
+    }
+  );
+
+  updateLanguageClass();
 })();
 
-/* 47都道府県のすごろく */
+
+/* ========================================
+   JAPAN 47 JOURNEY BOARD
+======================================== */
+
 (() => {
-  const names = [
-    'HOKKAIDO','AOMORI','IWATE','MIYAGI','AKITA','YAMAGATA',
-    'FUKUSHIMA','IBARAKI','TOCHIGI','GUNMA','SAITAMA','CHIBA',
-    'TOKYO','KANAGAWA','NIIGATA','TOYAMA','ISHIKAWA','FUKUI',
-    'YAMANASHI','NAGANO','GIFU','SHIZUOKA','AICHI','MIE',
-    'SHIGA','KYOTO','OSAKA','HYOGO','NARA','WAKAYAMA',
-    'TOTTORI','SHIMANE','OKAYAMA','HIROSHIMA','YAMAGUCHI',
-    'TOKUSHIMA','KAGAWA','EHIME','KOCHI','FUKUOKA',
-    'SAGA','NAGASAKI','KUMAMOTO','OITA','MIYAZAKI',
-    'KAGOSHIMA','OKINAWA'
+
+  const prefectures = [
+    "HOKKAIDO",
+    "AOMORI",
+    "IWATE",
+    "MIYAGI",
+    "AKITA",
+    "YAMAGATA",
+    "FUKUSHIMA",
+    "IBARAKI",
+    "TOCHIGI",
+    "GUNMA",
+    "SAITAMA",
+    "CHIBA",
+    "TOKYO",
+    "KANAGAWA",
+    "NIIGATA",
+    "TOYAMA",
+    "ISHIKAWA",
+    "FUKUI",
+    "YAMANASHI",
+    "NAGANO",
+    "GIFU",
+    "SHIZUOKA",
+    "AICHI",
+    "MIE",
+    "SHIGA",
+    "KYOTO",
+    "OSAKA",
+    "HYOGO",
+    "NARA",
+    "WAKAYAMA",
+    "TOTTORI",
+    "SHIMANE",
+    "OKAYAMA",
+    "HIROSHIMA",
+    "YAMAGUCHI",
+    "TOKUSHIMA",
+    "KAGAWA",
+    "EHIME",
+    "KOCHI",
+    "FUKUOKA",
+    "SAGA",
+    "NAGASAKI",
+    "KUMAMOTO",
+    "OITA",
+    "MIYAZAKI",
+    "KAGOSHIMA",
+    "OKINAWA"
   ];
 
-  const tiles = document.getElementById('route-tiles');
-  const board = document.getElementById('board');
-  const svg = document.getElementById('route-svg');
-  const car = document.getElementById('route-car');
-  const button = document.getElementById('route-drive');
-  const status = document.getElementById('route-status');
-  let position = 0;
+  const tiles =
+    document.getElementById("route-tiles");
+
+  const board =
+    document.getElementById("board");
+
+  const routeSvg =
+    document.getElementById("route-svg");
+
+  const car =
+    document.getElementById("route-car");
+
+  const driveButton =
+    document.getElementById("route-drive");
+
+  const routeStatus =
+    document.getElementById("route-status");
+
+  let currentPosition = 0;
   let driving = false;
+  let lastColumnCount = 0;
 
-  function columns() {
-    return getComputedStyle(tiles).gridTemplateColumns.split(' ').length;
-  }
-  function order(i) {
-    const c = columns();
-    const row = Math.floor(i / c);
-    const col = i % c;
-    return row * c + (row % 2 ? c - 1 - col : col);
-  }
-  function region(n) {
-    return n === 0 ? 'hokkaido'
-      : n < 7 ? 'tohoku'
-      : n < 14 ? 'kanto'
-      : n < 23 ? 'chubu'
-      : n < 30 ? 'kansai'
-      : n < 35 ? 'chugoku'
-      : n < 39 ? 'shikoku'
-      : 'kyushu';
+
+  function getColumnCount(){
+    return getComputedStyle(tiles)
+      .gridTemplateColumns
+      .split(" ")
+      .length;
   }
 
-  function render() {
-    tiles.innerHTML = '';
-    const c = columns();
-    const total = Math.ceil(48 / c) * c;
 
-    for (let i = 0; i < total; i++) {
-      const row = Math.floor(i / c);
-      const n = row * c + (row % 2 ? c - 1 - i % c : i % c);
-      const el = document.createElement('div');
-      el.className =
-        'route-tile ' +
-        (n >= 48 ? 'filler' : n === 47 ? 'goal' : region(n)) + ' ' +
-        (n === position ? 'current' : position === 0 && n === 1 ? 'next' : 'locked');
-      el.dataset.stop = n;
-      el.innerHTML = n < 47
-        ? `<b>${String(n + 1).padStart(2,'0')}</b><small>${
-            n < 2 || n === position ? names[n] : '?'
-          }</small>`
-        : n === 47 ? '<b>★</b><small>GOAL</small>' : '';
-      tiles.appendChild(el);
+  function getVisualOrder(stopNumber){
+
+    const columns = getColumnCount();
+    const row = Math.floor(stopNumber / columns);
+    const column = stopNumber % columns;
+
+    return (
+      row * columns +
+      (
+        row % 2
+          ? columns - 1 - column
+          : column
+      )
+    );
+  }
+
+
+  function getRegion(stopNumber){
+
+    if(stopNumber === 0){
+      return "hokkaido";
     }
-    requestAnimationFrame(draw);
+
+    if(stopNumber < 7){
+      return "tohoku";
+    }
+
+    if(stopNumber < 14){
+      return "kanto";
+    }
+
+    if(stopNumber < 23){
+      return "chubu";
+    }
+
+    if(stopNumber < 30){
+      return "kansai";
+    }
+
+    if(stopNumber < 35){
+      return "chugoku";
+    }
+
+    if(stopNumber < 39){
+      return "shikoku";
+    }
+
+    return "kyushu";
   }
 
-  function center(n) {
-    const el = tiles.children[order(n)];
-    const b = board.getBoundingClientRect();
-    const r = el.getBoundingClientRect();
+
+  function renderTiles(){
+
+    tiles.innerHTML = "";
+
+    const columns = getColumnCount();
+    const totalTiles =
+      Math.ceil(48 / columns) * columns;
+
+    for(
+      let visualIndex = 0;
+      visualIndex < totalTiles;
+      visualIndex++
+    ){
+
+      const row =
+        Math.floor(visualIndex / columns);
+
+      const column =
+        visualIndex % columns;
+
+      const stopNumber =
+        row * columns +
+        (
+          row % 2
+            ? columns - 1 - column
+            : column
+        );
+
+      const tile =
+        document.createElement("div");
+
+      let tileType;
+
+      if(stopNumber >= 48){
+        tileType = "filler";
+      }
+      else if(stopNumber === 47){
+        tileType = "goal";
+      }
+      else{
+        tileType = getRegion(stopNumber);
+      }
+
+      let tileState;
+
+      if(stopNumber === currentPosition){
+        tileState = "current";
+      }
+      else if(
+        currentPosition === 0 &&
+        stopNumber === 1
+      ){
+        tileState = "next";
+      }
+      else{
+        tileState = "locked";
+      }
+
+      tile.className =
+        "route-tile " +
+        tileType +
+        " " +
+        tileState;
+
+      tile.dataset.stop =
+        String(stopNumber);
+
+      if(stopNumber < 47){
+
+        const visibleName =
+          stopNumber < 2 ||
+          stopNumber === currentPosition
+            ? prefectures[stopNumber]
+            : "?";
+
+        tile.innerHTML = `
+          <b>
+            ${String(stopNumber + 1).padStart(2,"0")}
+          </b>
+
+          <small>
+            ${visibleName}
+          </small>
+        `;
+      }
+      else if(stopNumber === 47){
+
+        tile.innerHTML = `
+          <b>★</b>
+          <small>GOAL</small>
+        `;
+      }
+
+      tiles.appendChild(tile);
+    }
+
+    requestAnimationFrame(drawRoute);
+  }
+
+
+  function getTileCenter(stopNumber){
+
+    const visualIndex =
+      getVisualOrder(stopNumber);
+
+    const tile =
+      tiles.children[visualIndex];
+
+    const boardRect =
+      board.getBoundingClientRect();
+
+    const tileRect =
+      tile.getBoundingClientRect();
+
     return {
-      x:r.left - b.left + r.width / 2,
-      y:r.top - b.top + r.height / 2
+      x:
+        tileRect.left -
+        boardRect.left +
+        tileRect.width / 2,
+
+      y:
+        tileRect.top -
+        boardRect.top +
+        tileRect.height / 2
     };
   }
 
-  function draw() {
-    const w = board.clientWidth;
-    const h = board.clientHeight;
-    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
 
-    const pts = names.map((_, i) => center(i));
-    let d = `M ${pts[0].x} ${pts[0].y}`;
+  function drawRoute(){
 
-    for (let i = 1; i < pts.length; i++) {
-      const a = pts[i - 1];
-      const b = pts[i];
-      if (Math.abs(a.y - b.y) > 8) {
-        const bend = (a.y + b.y) / 2;
-        d += ` Q ${a.x} ${bend}, ${(a.x + b.x) / 2} ${bend}` +
-             ` Q ${b.x} ${bend}, ${b.x} ${b.y}`;
-      } else {
-        const mid = (a.x + b.x) / 2;
-        d += ` Q ${mid} ${a.y - 7}, ${b.x} ${b.y}`;
+    const boardWidth =
+      board.clientWidth;
+
+    const boardHeight =
+      board.clientHeight;
+
+    routeSvg.setAttribute(
+      "viewBox",
+      `0 0 ${boardWidth} ${boardHeight}`
+    );
+
+    const points =
+      prefectures.map(
+        (_,index) => getTileCenter(index)
+      );
+
+    let routePath =
+      `M ${points[0].x} ${points[0].y}`;
+
+    for(
+      let index = 1;
+      index < points.length;
+      index++
+    ){
+
+      const previousPoint =
+        points[index - 1];
+
+      const currentPoint =
+        points[index];
+
+      const changedRow =
+        Math.abs(
+          previousPoint.y -
+          currentPoint.y
+        ) > 8;
+
+      if(changedRow){
+
+        const bendY =
+          (
+            previousPoint.y +
+            currentPoint.y
+          ) / 2;
+
+        const middleX =
+          (
+            previousPoint.x +
+            currentPoint.x
+          ) / 2;
+
+        routePath +=
+          ` Q ${previousPoint.x} ${bendY},` +
+          ` ${middleX} ${bendY}` +
+          ` Q ${currentPoint.x} ${bendY},` +
+          ` ${currentPoint.x} ${currentPoint.y}`;
+      }
+      else{
+
+        const middleX =
+          (
+            previousPoint.x +
+            currentPoint.x
+          ) / 2;
+
+        routePath +=
+          ` Q ${middleX} ${previousPoint.y - 7},` +
+          ` ${currentPoint.x} ${currentPoint.y}`;
       }
     }
 
-    svg.innerHTML =
-      `<path d="${d}" fill="none" stroke="#786451" ` +
-      `stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>` +
-      `<path d="${d}" fill="none" stroke="#e6c994" ` +
-      `stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>` +
-      `<path d="${d}" fill="none" stroke="#fff8dc" ` +
-      `stroke-width="2" stroke-dasharray="7 10" stroke-linecap="round"/>`;
+    routeSvg.innerHTML = `
+      <path
+        d="${routePath}"
+        fill="none"
+        stroke="#786451"
+        stroke-width="19"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
 
-    const p = center(position);
-    car.style.left = p.x + 'px';
-    car.style.top = p.y + 'px';
-    car.src = Math.floor(position / columns()) % 2
-      ? 'https://ul.h3z.jp/DWCD23BJ.png'
-      : 'https://ul.h3z.jp/Lu7ch0Ne.png';
+      <path
+        d="${routePath}"
+        fill="none"
+        stroke="#e6c994"
+        stroke-width="14"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <path
+        d="${routePath}"
+        fill="none"
+        stroke="#fff8dc"
+        stroke-width="2"
+        stroke-dasharray="7 10"
+        stroke-linecap="round"
+      />
+    `;
+
+    const currentCenter =
+      getTileCenter(currentPosition);
+
+    car.style.left =
+      currentCenter.x + "px";
+
+    car.style.top =
+      currentCenter.y + "px";
+
+    const currentRow =
+      Math.floor(
+        currentPosition /
+        getColumnCount()
+      );
+
+    car.src =
+      currentRow % 2
+        ? "https://ul.h3z.jp/DWCD23BJ.png"
+        : "https://ul.h3z.jp/Lu7ch0Ne.png";
   }
 
-  button.addEventListener('click', () => {
-    if (driving) return;
-    driving = true;
-    car.classList.remove('idle');
 
-    const old = tiles.children[order(position)];
-    old.classList.remove('current');
-    if (position > 1) old.classList.add('locked');
+  driveButton.addEventListener(
+    "click",
+    () => {
 
-    position = position === 46 ? 0 : position + 1;
+      if(driving){
+        return;
+      }
 
-    const current = tiles.children[order(position)];
-    current.classList.remove('locked','next');
-    current.classList.add('current');
-    current.querySelector('small').textContent = names[position];
+      driving = true;
 
-    button.textContent = position === 46
-      ? 'RETURN TO START ↶'
-      : 'DRIVE TO THE NEXT STOP →';
-    status.textContent = position
-      ? 'ROUTE PREVIEW: ' + names[position] + ' · COMING SOON'
-      : 'NOW EXPLORING: HOKKAIDO';
+      car.classList.remove("idle");
 
-    draw();
-    setTimeout(() => {
-      driving = false;
-      car.classList.add('idle');
-    }, 1450);
-  });
+      const oldTile =
+        tiles.children[
+          getVisualOrder(currentPosition)
+        ];
 
-  let last = 0;
-  new ResizeObserver(() => {
-    const c = columns();
-    if (c !== last) {
-      last = c;
-      render();
-    } else {
-      draw();
+      oldTile.classList.remove("current");
+
+      if(currentPosition > 1){
+        oldTile.classList.add("locked");
+      }
+
+      currentPosition =
+        currentPosition === 46
+          ? 0
+          : currentPosition + 1;
+
+      const currentTile =
+        tiles.children[
+          getVisualOrder(currentPosition)
+        ];
+
+      currentTile.classList.remove(
+        "locked",
+        "next"
+      );
+
+      currentTile.classList.add("current");
+
+      const currentLabel =
+        currentTile.querySelector("small");
+
+      if(currentLabel){
+        currentLabel.textContent =
+          prefectures[currentPosition];
+      }
+
+      driveButton.textContent =
+        currentPosition === 46
+          ? "RETURN TO HOKKAIDO ↶"
+          : "PREVIEW THE NEXT STOP →";
+
+      routeStatus.textContent =
+        currentPosition
+          ? (
+              "NEXT TICKET: " +
+              prefectures[currentPosition] +
+              " · COMING SOON"
+            )
+          : (
+              "CURRENT STOP: " +
+              "HOKKAIDO · BOARDING SOON"
+            );
+
+      drawRoute();
+
+      setTimeout(
+        () => {
+          driving = false;
+          car.classList.add("idle");
+        },
+        1450
+      );
     }
-  }).observe(board);
+  );
 
-  render();
-  car.classList.add('idle');
+
+  const resizeObserver =
+    new ResizeObserver(
+      () => {
+
+        const currentColumns =
+          getColumnCount();
+
+        if(
+          currentColumns !==
+          lastColumnCount
+        ){
+          lastColumnCount =
+            currentColumns;
+
+          renderTiles();
+        }
+        else{
+          drawRoute();
+        }
+      }
+    );
+
+  resizeObserver.observe(board);
+
+  renderTiles();
+  car.classList.add("idle");
+
 })();
 
-/* 発行日時を指定した場合だけカウントダウン */
+
+/* ========================================
+   TICKET COUNTDOWN
+======================================== */
+
 (() => {
-  const root = document.getElementById('ticket-countdown');
-  if (!root) return;
 
-  const raw = root.dataset.mintStart;
-  if (!raw) return;
+  const countdown =
+    document.getElementById(
+      "ticket-countdown"
+    );
 
-  const start = new Date(raw).getTime();
-  if (!Number.isFinite(start)) return;
-
-  const ids = ['count-days','count-hours','count-minutes','count-seconds'];
-  const nodes = ids.map(id => document.getElementById(id));
-  const label = document.getElementById('countdown-caption');
-
-  function tick() {
-    const left = Math.max(0, Math.floor((start - Date.now()) / 1000));
-    const values = [
-      Math.floor(left / 86400),
-      Math.floor(left % 86400 / 3600),
-      Math.floor(left % 3600 / 60),
-      left % 60
-    ];
-    nodes.forEach((node, i) => {
-      node.textContent = String(values[i]).padStart(2,'0');
-    });
-    label.textContent = left
-      ? 'FREE TICKET MINTING IN'
-      : 'FREE TICKET MINT STARTED';
-    if (!left) clearInterval(timer);
+  if(!countdown){
+    return;
   }
 
-  const timer = setInterval(tick,1000);
-  tick();
+  /*
+    ミント開始日時が決まったら、
+    HTMLのdata-mint-startへ次の形式で入力します。
+
+    例：
+    data-mint-start="2026-11-01T12:00:00+09:00"
+  */
+
+  const rawStartDate =
+    countdown.dataset.mintStart;
+
+  if(!rawStartDate){
+    return;
+  }
+
+  const mintStartTime =
+    new Date(rawStartDate).getTime();
+
+  if(!Number.isFinite(mintStartTime)){
+    return;
+  }
+
+  const dayNode =
+    document.getElementById("count-days");
+
+  const hourNode =
+    document.getElementById("count-hours");
+
+  const minuteNode =
+    document.getElementById("count-minutes");
+
+  const secondNode =
+    document.getElementById("count-seconds");
+
+  const caption =
+    document.getElementById(
+      "countdown-caption"
+    );
+
+
+  function updateCountdown(){
+
+    const secondsLeft =
+      Math.max(
+        0,
+        Math.floor(
+          (
+            mintStartTime -
+            Date.now()
+          ) / 1000
+        )
+      );
+
+    const days =
+      Math.floor(
+        secondsLeft / 86400
+      );
+
+    const hours =
+      Math.floor(
+        (
+          secondsLeft % 86400
+        ) / 3600
+      );
+
+    const minutes =
+      Math.floor(
+        (
+          secondsLeft % 3600
+        ) / 60
+      );
+
+    const seconds =
+      secondsLeft % 60;
+
+    dayNode.textContent =
+      String(days).padStart(2,"0");
+
+    hourNode.textContent =
+      String(hours).padStart(2,"0");
+
+    minuteNode.textContent =
+      String(minutes).padStart(2,"0");
+
+    secondNode.textContent =
+      String(seconds).padStart(2,"0");
+
+    caption.textContent =
+      secondsLeft
+        ? "FREE JOURNEY TICKET MINTING IN"
+        : "JOURNEY TICKET MINT IS OPEN";
+
+    if(!secondsLeft){
+      clearInterval(countdownTimer);
+    }
+  }
+
+
+  const countdownTimer =
+    setInterval(
+      updateCountdown,
+      1000
+    );
+
+  updateCountdown();
+
 })();
 </script>
+
 </body>
 </html>
