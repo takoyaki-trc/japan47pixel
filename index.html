@@ -13,7 +13,7 @@
 
   <meta
     name="description"
-    content="Collect a free Journey Ticket and follow Traveling Takoyaki across Japan. Hokkaido Journey Ticket mint opens October 18, 2026 at 22:00 JST / 13:00 UTC on OpenSea."
+    content="Collect one of 333 free Hokkaido Journey Tickets and follow Traveling Takoyaki across Japan. Mint opens October 18, 2026 at 22:00 JST / 13:00 UTC on OpenSea. One ticket per wallet."
   >
 
   <link
@@ -36,7 +36,6 @@
 
   <link rel="stylesheet" href="./styles.css">
 
-  <!-- Additional styles for the OpenSea links and mint date -->
   <style>
     .opensea-actions {
       display: flex;
@@ -289,14 +288,27 @@
           Mint the Hokkaido Journey Ticket for free
           to join Stop 01.
           Ticket holders receive priority access
-          to purchase a Hokkaido NFT
+          to purchase a Hokkaido artwork NFT
           before the public sale.
         </p>
 
         <div class="tags">
           <span class="tag">FREE JOURNEY TICKET</span>
+          <span class="tag">333 TICKETS</span>
+          <span class="tag">1 PER WALLET</span>
           <span class="tag">PRIORITY BOARDING</span>
         </div>
+
+        <p class="mint-link-note">
+          Priority access is based on ticket ownership
+          at a snapshot date to be announced.
+          We will check which wallets hold a ticket
+          at that time to determine eligibility.
+          The snapshot date, artwork price and sale schedule
+          will be announced before the Hokkaido artwork mint.
+          The artwork is sold separately.
+          A ticket does not guarantee a purchase.
+        </p>
 
         <!-- OPENSEA LINK -->
         <div class="opensea-actions">
@@ -795,6 +807,9 @@
               It acts as your boarding pass
               for that destination and gives its holder
               priority access to the destination NFT mint.
+              The Hokkaido Journey Ticket is limited
+              to 333 tickets, with a mint limit
+              of one ticket per wallet.
             </p>
           </div>
         </details>
@@ -822,8 +837,8 @@
             <p>
               No. A ticket gives you priority access,
               but it does not guarantee a purchase.
-              The destination NFT is minted separately
-              and availability is limited.
+              The Hokkaido artwork NFT is sold separately,
+              and availability and mint limits apply.
             </p>
           </div>
         </details>
@@ -834,7 +849,7 @@
 
           <div class="faq-answer">
             <p>
-              The number of genuine Journey Ticket holders
+              The number of Journey Ticket holders
               helps determine the supply
               for that prefecture.
               Each chapter will have
@@ -867,9 +882,38 @@
             <p>
               The Hokkaido Journey Ticket mint is scheduled
               to open on October 18, 2026 at 22:00 JST
-              / 13:00 UTC.
+              / 13:00 UTC on Robinhood Chain.
+              There are 333 tickets available,
+              with a mint limit of one per wallet.
               Use the OpenSea buttons on this website
-              to visit the official collection.
+              to visit the official collection
+              and check current availability.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 08 -->
+        <details class="faq-item">
+          <summary>How do I qualify for the Hokkaido priority sale?</summary>
+
+          <div class="faq-answer">
+            <p>
+              Hold a Hokkaido Journey Ticket in your wallet
+              at the snapshot date, which will be announced
+              in advance.
+              A snapshot is a record of which wallets
+              hold a ticket at a specific time.
+              Eligible wallets will be added
+              to the Hokkaido artwork priority-sale allowlist.
+            </p>
+
+            <p>
+              You do not need to post your wallet address
+              in social media replies for this process.
+              The snapshot date, artwork price,
+              sale schedule and per-wallet mint limit
+              will be announced before the artwork mint.
+              Priority access does not guarantee a purchase.
             </p>
           </div>
         </details>
@@ -898,10 +942,18 @@
     </h2>
 
     <p class="lead">
-      Mint the Hokkaido Journey Ticket for free
+      Mint one of 333 free Hokkaido Journey Tickets
       and join Stop 01.
-      Ticket holders receive priority access
-      when the Hokkaido NFT drop opens.
+      One ticket per wallet.
+      Eligible ticket holders receive priority access
+      when the Hokkaido artwork NFT drop opens.
+    </p>
+
+    <p class="mint-link-note">
+      Eligibility is based on ticket ownership
+      at a snapshot date to be announced.
+      The artwork is sold separately.
+      Priority access does not guarantee a purchase.
     </p>
 
     <p class="mint-date">
@@ -939,11 +991,7 @@
   <!-- EXISTING JAVASCRIPT -->
   <script src="./script.js" defer></script>
 
-  <!--
-    Countdown and OpenSea button labels.
-    The +09:00 offset fixes the start time to Japan time,
-    regardless of the visitor's timezone.
-  -->
+  <!-- COUNTDOWN AND OPENSEA BUTTON LABELS -->
   <script>
     (() => {
       "use strict";
