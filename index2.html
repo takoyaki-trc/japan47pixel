@@ -1,1059 +1,1322 @@
+
 <!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10233d">
+<title>TRAVELING TAKOYAKI — Japan 47 Journey</title>
+<meta name="description" content="A pixel-art NFT journey across Japan's 47 prefectures.">
 
-  <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1"
-  >
-
-  <title>TRAVELING TAKOYAKI — Japan 47 Journey</title>
-
-  <meta
-    name="description"
-    content="Collect a free Journey Ticket and follow Traveling Takoyaki across Japan. Hokkaido Journey Ticket mint opens October 18, 2026 at 22:00 JST / 13:00 UTC on OpenSea."
-  >
-
-  <link
-    rel="icon"
-    type="image/png"
-    href="./traveling-takoyaki-icon.png"
-  >
-
-  <link
-    rel="apple-touch-icon"
-    href="./traveling-takoyaki-icon.png"
-  >
-
-  <link
-    rel="manifest"
-    href="./site.webmanifest"
-  >
-
-  <meta name="theme-color" content="#10233d">
-
-  <link rel="stylesheet" href="./styles.css">
-
-  <!-- Additional styles for the OpenSea links and mint date -->
-  <style>
-    .opensea-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .opensea-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      min-height: 52px;
-      max-width: 100%;
-      padding: 15px 22px;
-      border: 2px solid #10233d;
-      border-radius: 8px;
-      background: #10233d;
-      color: #ffffff;
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 800;
-      line-height: 1.5;
-      letter-spacing: 0.06em;
-      text-align: center;
-      text-decoration: none;
-      transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
-    }
-
-    .opensea-link:hover {
-      background: #ffffff;
-      color: #10233d;
-    }
-
-    .opensea-link:focus-visible {
-      outline: 3px solid #e89b32;
-      outline-offset: 4px;
-    }
-
-    .mint-date {
-      margin: 14px 0 0;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.8;
-    }
-
-    .mint-date span {
-      display: block;
-      font-size: 12px;
-      font-weight: 400;
-    }
-
-    .mint-link-note {
-      margin: 12px 0 0;
-      font-size: 12px;
-      line-height: 1.7;
-    }
-
-    .cta .opensea-actions {
-      justify-content: center;
-    }
-
-    .cta .mint-date,
-    .cta .mint-link-note {
-      text-align: center;
-    }
-
-    .ticket-art-stage {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      padding: 20px;
-    }
-
-    .ticket-art-stage .ticket-art {
-      display: block;
-      width: 100%;
-      max-width: 320px;
-      height: auto;
-      object-fit: contain;
-    }
-
-    @media (max-width: 600px) {
-      .opensea-actions {
-        width: 100%;
-      }
-
-      .opensea-link {
-        width: 100%;
-        padding: 14px 16px;
-        font-size: 13px;
-      }
-
-      .ticket-art-stage {
-        padding: 16px;
-      }
-
-      .ticket-art-stage .ticket-art {
-        max-width: 260px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .opensea-link {
-        transition: none;
-      }
-    }
-  </style>
+<style>
+:root{
+  --ink:#11131a;
+  --navy:#10233d;
+  --cream:#fff4d8;
+  --paper:#fffdf5;
+  --red:#f04438;
+  --yellow:#ffc928;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Courier New",monospace;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible{
+  outline:3px solid #149cff;
+  outline-offset:3px;
+}
+img{max-width:100%}
+h1,h2,h3{
+  font-weight:900;
+  line-height:1.12;
+}
+h1{font-size:clamp(30px,6vw,58px)}
+h2{font-size:clamp(23px,4vw,36px)}
+p{
+  font-family:Arial,sans-serif;
+  font-size:14px;
+  line-height:1.7;
+}
+a{color:inherit}
+[hidden]{display:none!important}
+.eyebrow{
+  color:var(--red);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.site-header{
+  background:var(--ink);
+  color:white;
+  border-bottom:5px solid var(--yellow);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 18px;
+  gap:12px;
+}
+.brand{
+  color:white;
+  text-decoration:none;
+  font-size:17px;
+  font-weight:900;
+  line-height:1.05;
+}
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.header-kicker{
+  font-size:10px;
+  color:var(--yellow);
+}
+.lang-switch{
+  border:2px solid white;
+  background:transparent;
+  color:white;
+  padding:7px 10px;
+  font-size:11px;
+}
+.hero{
+  background:#149cff;
+  border-bottom:4px solid var(--ink);
+}
+.hero-image{
+  display:block;
+  width:100%;
+  max-height:360px;
+  object-fit:cover;
+  image-rendering:pixelated;
+}
+.hero-copy{
+  background-color:var(--cream);
+  background-image:radial-gradient(#c9b88c 1px,transparent 1px);
+  background-size:18px 18px;
+  text-align:center;
+  padding:30px 16px;
+}
+.hero-copy h1{margin:12px 0}
+.hero-copy p{max-width:550px;margin:auto}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  background:var(--yellow);
+  border-bottom:4px solid var(--ink);
+}
+.stats>div{
+  text-align:center;
+  padding:14px 5px;
+  border-right:2px solid var(--ink);
+}
+.stats>div:last-child{border:0}
+.stats strong{
+  display:block;
+  font-size:clamp(17px,3vw,26px);
+}
+.stats small{
+  display:block;
+  font-size:9px;
+  font-weight:900;
+}
+.section-tabs{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  padding:15px;
+  max-width:1100px;
+  margin:auto;
+}
+.section-tabs button{
+  border:3px solid var(--ink);
+  background:var(--paper);
+  box-shadow:3px 3px 0 var(--ink);
+  padding:13px 5px;
+  font-size:11px;
+  font-weight:900;
+}
+.section-tabs button.active{
+  background:var(--red);
+  color:white;
+}
+.page{
+  max-width:1100px;
+  margin:auto;
+  padding:22px 15px 38px;
+}
+.page>h2{margin:10px 0 12px}
+.feature{
+  background:var(--red);
+  color:white;
+  border:3px solid var(--ink);
+  box-shadow:5px 5px 0 var(--ink);
+  padding:17px;
+  margin:20px 0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 110px;
+  gap:12px;
+  align-items:center;
+}
+.feature .eyebrow{color:#ffe59e}
+.feature h3{font-size:22px;margin:10px 0}
+.feature img{
+  width:100%;
+  image-rendering:pixelated;
+}
+.stamp{
+  display:inline-block;
+  border:2px solid currentColor;
+  padding:5px 7px;
+  font-size:10px;
+  font-weight:900;
+  margin:4px 3px 0 0;
+}
+.filters{
+  display:grid;
+  gap:9px;
+  margin:20px 0 12px;
+}
+.filters input,.filters select{
+  width:100%;
+  min-width:0;
+  padding:12px;
+  border:2px solid var(--ink);
+  background:white;
+  font-size:12px;
+}
+.result-count{
+  font-size:11px;
+  font-weight:bold;
+}
+.book-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin:15px 0;
+}
+.book-tile{
+  min-width:0;
+  padding:4px;
+  background:var(--paper);
+  border:2px solid var(--ink);
+  box-shadow:2px 2px 0 var(--ink);
+  text-align:center;
+  color:var(--ink);
+}
+.book-tile.selected{
+  border-color:var(--red);
+  box-shadow:2px 2px 0 var(--red);
+}
+.book-tile .thumb{
+  width:100%;
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  background:#e8dfcd;
+  overflow:hidden;
+}
+.book-tile .thumb img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:var(--navy);
+  image-rendering:pixelated;
+}
+.book-tile .lock{
+  color:#978971;
+  font-size:24px;
+}
+.book-tile .name{
+  display:block;
+  margin:5px 0 2px;
+  font-size:clamp(8px,2.2vw,11px);
+  font-weight:900;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.detail{
+  border:3px solid var(--ink);
+  background:var(--paper);
+  padding:18px;
+  margin:20px 0;
+  overflow-wrap:anywhere;
+}
+.detail h3{font-size:19px}
+.detail img{
+  display:block;
+  max-width:270px;
+  max-height:260px;
+  width:100%;
+  object-fit:contain;
+  background:var(--navy);
+  margin:15px auto;
+  image-rendering:pixelated;
+}
+.status{
+  color:#bf3228;
+  font-weight:900;
+}
+.action-link{
+  display:inline-block;
+  padding:13px 16px;
+  background:var(--navy);
+  color:white;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:900;
+  border:2px solid var(--ink);
+  margin:10px 0;
+}
+.unavailable{
+  display:inline-block;
+  background:#e9e0cf;
+  border:2px solid #a99d89;
+  padding:12px;
+  color:#625a50;
+  font-size:11px;
+  font-weight:900;
+}
+.subheading{margin-top:30px}
+.gallery-stage{
+  background:var(--navy);
+  border:3px solid var(--ink);
+  padding:14px 8px;
+  display:grid;
+  grid-template-columns:35px minmax(0,1fr) 35px;
+  align-items:center;
+  gap:6px;
+}
+.gallery-stage button{
+  border:2px solid var(--ink);
+  background:var(--yellow);
+  padding:12px 3px;
+}
+.gallery-stage img{
+  display:block;
+  max-width:100%;
+  max-height:340px;
+  object-fit:contain;
+  margin:auto;
+  image-rendering:pixelated;
+}
+.gallery-caption{
+  text-align:center;
+  font-weight:bold;
+}
+.gallery-thumbs{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:7px;
+}
+.gallery-thumbs button{
+  padding:3px;
+  background:var(--navy);
+  border:2px solid var(--ink);
+}
+.gallery-thumbs button.selected{
+  border:3px solid var(--red);
+}
+.gallery-thumbs img{
+  display:block;
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  image-rendering:pixelated;
+}
+.dark-page{
+  background:var(--navy);
+  color:white;
+  border:3px solid var(--ink);
+}
+.dark-page .eyebrow{color:var(--yellow)}
+.time-track{
+  height:34px;
+  background:linear-gradient(
+    90deg,
+    #b5e5f5 0%,
+    #ffe38c 25%,
+    #f9a46f 50%,
+    #62558b 75%,
+    #0a1535 100%
+  );
+  border:3px solid var(--ink);
+  margin:20px 0;
+}
+.time-labels{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  font-weight:900;
+}
+.rarity-tabs{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:6px;
+  margin:20px 0;
+}
+.rarity-tabs button{
+  background:white;
+  color:var(--ink);
+  border:2px solid var(--ink);
+  padding:12px 2px;
+  font-weight:900;
+}
+.rarity-tabs button.active{background:var(--yellow)}
+.rarity-card{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:15px;
+  align-items:center;
+  text-align:center;
+  background:var(--paper);
+  color:var(--ink);
+  border:3px solid var(--ink);
+  padding:20px;
+}
+.rarity-card img{
+  width:100%;
+  max-width:230px;
+  max-height:310px;
+  object-fit:contain;
+  margin:auto;
+  image-rendering:pixelated;
+}
+.rarity-card strong{font-size:27px}
+.notice{
+  margin:22px 0 0;
+  padding:15px;
+  border:2px solid var(--yellow);
+  background:#182f50;
+  color:white;
+}
+.notice p{font-size:12px}
+.map-panel{
+  background:#d7f0e3;
+  border:3px solid var(--ink);
+  box-shadow:5px 5px 0 var(--ink);
+  padding:10px;
+  margin:20px 0;
+}
+.map-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-size:11px;
+  font-weight:900;
+  padding:8px 4px;
+}
+.map-scroll{
+  width:100%;
+  overflow-x:auto;
+  background:#a6d5c5;
+  border:2px solid var(--ink);
+}
+.map-canvas{
+  width:100%;
+  min-width:460px;
+}
+#routeSvg{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.route-node{
+  cursor:pointer;
+  outline:none;
+}
+.route-node circle{
+  fill:#fff9dc;
+  stroke:#11131a;
+  stroke-width:4;
+}
+.route-node.visited circle{fill:#f7ca58}
+.route-node.selected circle{
+  fill:#f04438;
+  stroke:#fff;
+  stroke-width:5;
+}
+.route-node text{
+  font-size:15px;
+  font-family:monospace;
+  font-weight:900;
+  text-anchor:middle;
+  dominant-baseline:middle;
+  fill:#11131a;
+  pointer-events:none;
+}
+.route-node.selected text{fill:white}
+.map-actions{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:6px;
+  margin-top:12px;
+}
+.map-actions button{
+  padding:12px 3px;
+  border:2px solid var(--ink);
+  background:var(--yellow);
+  font-size:10px;
+  font-weight:900;
+}
+.map-actions button:nth-child(2){
+  background:var(--red);
+  color:white;
+}
+#journeyDetail{
+  display:grid;
+  gap:15px;
+}
+#journeyDetail>div{
+  min-width:0;
+}
+#faq details{
+  border-bottom:1px solid #ffffff55;
+  padding:16px 0;
+}
+#faq summary{
+  cursor:pointer;
+  font-size:13px;
+  font-weight:900;
+}
+#faq details p{color:#e2eaf5}
+footer{
+  background:var(--ink);
+  color:white;
+  text-align:center;
+  padding:26px 15px;
+}
+footer strong{font-size:19px}
+footer p{font-size:12px}
+footer a{
+  display:inline-block;
+  color:var(--yellow);
+  margin:10px;
+  font-size:12px;
+}
+footer small{display:block;margin-top:15px}
+@media(min-width:650px){
+  .section-tabs{
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    padding:18px;
+  }
+  .page{padding:35px 28px 50px}
+  .book-grid{
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:12px;
+  }
+  .filters{grid-template-columns:1fr 1fr}
+  .feature{
+    grid-template-columns:1fr 180px;
+    padding:23px;
+  }
+  .gallery-thumbs{grid-template-columns:repeat(8,minmax(0,1fr))}
+  .rarity-card{
+    grid-template-columns:1fr 1fr;
+    text-align:left;
+  }
+  #journeyDetail{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="top">
-    <span>TRAVELING TAKOYAKI</span>
-
-    <nav aria-label="Main navigation">
-      <a href="#story">STORY</a>
-      <a href="#collection">COLLECTION</a>
-      <a href="#journey">JOURNEY</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <img
-      class="pixel"
-      src="https://ul.h3z.jp/nz0rNaws.gif"
-      alt="Traveling Takoyaki animated journey"
-    >
-  </section>
-
-  <main class="map-paper">
-
-    <!-- INTRO -->
-    <section class="intro" id="story">
-      <div class="ey">
-        A PIXEL JOURNEY ACROSS JAPAN
-      </div>
-
-      <h1>
-        47 PREFECTURES.<br>
-        ONE TAKOYAKI.
-      </h1>
-
-      <p class="lead">
-        A tiny takoyaki truck is traveling across Japan.
-        Every stop becomes a new pixel-art collection
-        inspired by local landscapes, flavors and stories.
-      </p>
-    </section>
-
-    <!-- HOKKAIDO / JOURNEY TICKET -->
-    <section class="cards">
-
-      <!-- HOKKAIDO -->
-      <article class="card red">
-        <div class="ey">FIRST DESTINATION</div>
-
-        <h2>01 — HOKKAIDO</h2>
-
-        <p>
-          The journey begins in the north.
-          Seven local artworks and one hidden legendary artwork
-          are waiting to be discovered.
-        </p>
-
-        <div class="tags">
-          <span class="tag">7 + 1 ART</span>
-          <span class="tag">5 RARITIES</span>
-          <span class="tag">LR · ABOUT 1%</span>
-        </div>
-      </article>
-
-      <!-- JOURNEY TICKET -->
-      <article class="card ticket-card">
-        <div class="ey">
-          FREE MINT · JOURNEY TICKET
-        </div>
-
-        <h2>YOUR BOARDING PASS TO HOKKAIDO.</h2>
-
-        <!-- COUNTDOWN: October 18, 2026, 22:00 JST -->
-        <div
-          class="mint-countdown"
-          id="ticket-countdown"
-          data-mint-start="2026-10-18T22:00:00+09:00"
-          aria-live="off"
-        >
-          <div
-            class="countdown-caption"
-            id="countdown-caption"
-          >
-            FREE JOURNEY TICKET · MINT OPENS IN
-          </div>
-
-          <div
-            class="countdown-units"
-            aria-label="Countdown to Journey Ticket mint"
-          >
-            <div>
-              <strong id="count-days">--</strong>
-              <span>DAYS</span>
-            </div>
-
-            <div>
-              <strong id="count-hours">--</strong>
-              <span>HOURS</span>
-            </div>
-
-            <div>
-              <strong id="count-minutes">--</strong>
-              <span>MINUTES</span>
-            </div>
-
-            <div>
-              <strong id="count-seconds">--</strong>
-              <span>SECONDS</span>
-            </div>
-          </div>
-        </div>
-
-        <p class="mint-date">
-          <time datetime="2026-10-18T22:00:00+09:00">
-            OCTOBER 18, 2026 · 22:00 JST
-          </time>
-          <span>
-            13:00 UTC · The countdown uses your device's clock.
-          </span>
-        </p>
-
-        <!-- TICKET IMAGE -->
-        <div class="ticket-art-stage">
-          <img
-            class="ticket-art pixel"
-            src="https://ul.h3z.jp/JdJ1ZSjj.png"
-            alt="Traveling Takoyaki Hokkaido Journey Ticket artwork"
-            loading="lazy"
-          >
-        </div>
-
-        <p>
-          Every journey begins with a ticket.
-          Mint the Hokkaido Journey Ticket for free
-          to join Stop 01.
-          Ticket holders receive priority access
-          to purchase a Hokkaido NFT
-          before the public sale.
-        </p>
-
-        <div class="tags">
-          <span class="tag">FREE JOURNEY TICKET</span>
-          <span class="tag">PRIORITY BOARDING</span>
-        </div>
-
-        <!-- OPENSEA LINK -->
-        <div class="opensea-actions">
-          <a
-            class="opensea-link"
-            href="https://opensea.io/collection/traveling-takoyaki/overview"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-ticket-opensea-link
-          >
-            VIEW JOURNEY TICKET ON OPENSEA ↗
-          </a>
-        </div>
-
-        <p class="mint-link-note">
-          Opens the official OpenSea collection in a new tab.
-          <span data-ticket-mint-note>
-            Minting opens October 18 at 22:00 JST / 13:00 UTC.
-          </span>
-        </p>
-      </article>
-    </section>
-
-    <!-- SUPPLY SYSTEM -->
-    <section
-      class="supply"
-      aria-labelledby="supply-title"
-    >
-      <div class="supply-inner">
-        <div class="ey">
-          EVERY JOURNEY BEGINS WITH A TICKET
-        </div>
-
-        <h2 id="supply-title">
-          CLAIM A TICKET.<br>
-          JOIN THE JOURNEY.
-        </h2>
-
-        <p>
-          Before each prefecture, we release
-          a free Journey Ticket for that destination.
-          The number of travelers who claim it
-          helps us decide the final NFT supply
-          for that chapter.
-        </p>
-
-        <div class="supply-steps">
-          <div>
-            <strong>01</strong>
-            <span>
-              Claim that stop's<br>
-              Journey Ticket for free
-            </span>
-          </div>
-
-          <div>
-            <strong>02</strong>
-            <span>
-              Travelers are counted<br>
-              and the NFT supply is set
-            </span>
-          </div>
-
-          <div>
-            <strong>03</strong>
-            <span>
-              Ticket holders enter<br>
-              the priority mint first
-            </span>
-          </div>
-        </div>
-
-        <div class="ticket-rule">
-          <b>ONE DESTINATION · ONE TICKET</b>
-          <span>
-            Each prefecture has its own free Journey Ticket.
-            You can join the journey at any stop—
-            an earlier ticket or NFT is not required.
-          </span>
-        </div>
-
-        <p class="supply-min">
-          <b>MINIMUM: 99 NFTs PER PREFECTURE</b>
-          <small>
-            The final supply for each chapter
-            will be announced before its NFT mint begins.
-            A Journey Ticket provides priority access
-            but does not guarantee an NFT.
-            The destination NFT is purchased separately.
-          </small>
-        </p>
-      </div>
-    </section>
-
-    <!-- RARITY -->
-    <section class="drop" id="collection">
-      <div class="inner">
-        <div class="ey">
-          HOKKAIDO DROP — CHAPTER 01
-        </div>
-
-        <h2>
-          FIVE RARITIES.<br>
-          ONE JOURNEY.
-        </h2>
-
-        <p class="drop-example">
-          Illustrative rarity distribution
-          if the Hokkaido drop is set
-          to the minimum of 99 NFTs.
-        </p>
-
-        <div
-          class="rarity"
-          aria-label="Five rarity frame colors"
-        >
-
-          <!-- NORMAL -->
-          <div class="r">
-            <div class="rarity-frame">
-              <img
-                class="pixel"
-                src="https://ul.h3z.jp/mpichzx4.png"
-                alt="Blue Normal card frame"
-              >
-
-              <div class="rarity-overlay">
-                <strong>49.49%</strong>
-                <small>49 / 99</small>
-              </div>
-            </div>
-
-            <b>N</b>
-            <span>NORMAL</span>
-          </div>
-
-          <!-- RARE -->
-          <div class="r">
-            <div class="rarity-frame">
-              <img
-                class="pixel"
-                src="https://ul.h3z.jp/M1jWTHjc.png"
-                alt="Red Rare card frame"
-              >
-
-              <div class="rarity-overlay">
-                <strong>28.28%</strong>
-                <small>28 / 99</small>
-              </div>
-            </div>
-
-            <b>R</b>
-            <span>RARE</span>
-          </div>
-
-          <!-- SUPER RARE -->
-          <div class="r">
-            <div class="rarity-frame">
-              <img
-                class="pixel"
-                src="https://ul.h3z.jp/YhFxUQNZ.png"
-                alt="Silver Super Rare card frame"
-              >
-
-              <div class="rarity-overlay">
-                <strong>14.14%</strong>
-                <small>14 / 99</small>
-              </div>
-            </div>
-
-            <b>SR</b>
-            <span>SUPER RARE</span>
-          </div>
-
-          <!-- ULTRA RARE -->
-          <div class="r">
-            <div class="rarity-frame">
-              <img
-                class="pixel"
-                src="https://ul.h3z.jp/13BzTuwg.png"
-                alt="Gold Ultra Rare card frame"
-              >
-
-              <div class="rarity-overlay">
-                <strong>7.07%</strong>
-                <small>7 / 99</small>
-              </div>
-            </div>
-
-            <b>UR</b>
-            <span>ULTRA RARE</span>
-          </div>
-
-          <!-- LEGENDARY RARE -->
-          <div class="r lr">
-            <div class="rarity-frame">
-              <img
-                class="pixel"
-                src="https://ul.h3z.jp/K2TJtpe6.png"
-                alt="Rainbow Legendary Rare card frame"
-              >
-
-              <div class="rarity-overlay">
-                <strong>1.01%</strong>
-                <small>1 / 99</small>
-              </div>
-            </div>
-
-            <b>LR</b>
-            <span>LEGENDARY · ABOUT 1%</span>
-          </div>
-        </div>
-
-        <p class="rarity-note">
-          EXAMPLE ONLY: 99 PIECES ·
-          FINAL RARITY COUNTS AND ODDS
-          WILL BE ANNOUNCED WITH THE FINAL SUPPLY
-        </p>
-      </div>
-    </section>
-
-    <!-- HOKKAIDO COLLECTION -->
-    <section class="book">
-      <div class="book-head">
-        <div>
-          <div class="ey">
-            HOKKAIDO COLLECTION BOOK
-          </div>
-
-          <h2>
-            WHAT'S HIDING<br>
-            IN HOKKAIDO?
-          </h2>
-        </div>
-
-        <p class="book-note">
-          The landscapes are revealed.
-          The takoyaki are still hiding.
-          Discover the full artworks when
-          the Hokkaido collection is revealed.
-        </p>
-      </div>
-
-      <!-- GALLERY CONTROLS -->
-      <div class="gallery-toolbar">
-        <div class="gallery-hint">
-          AUTO-SCROLLING · SWIPE TO EXPLORE
-        </div>
-
-        <div
-          class="gallery-controls"
-          aria-label="Collection gallery controls"
-        >
-          <button
-            class="gallery-button"
-            id="gallery-previous"
-            type="button"
-            aria-label="Previous artwork"
-          >
-            ←
-          </button>
-
-          <button
-            class="gallery-button toggle"
-            id="gallery-toggle"
-            type="button"
-            aria-label="Pause automatic scrolling"
-            aria-pressed="false"
-          >
-            PAUSE
-          </button>
-
-          <button
-            class="gallery-button"
-            id="gallery-next"
-            type="button"
-            aria-label="Next artwork"
-          >
-            →
-          </button>
-        </div>
-      </div>
-
-      <!-- AUTO-SCROLL GALLERY -->
-      <div class="gallery-shell">
-        <div
-          class="gallery is-auto"
-          id="collection-gallery"
-          aria-label="Hokkaido collection, automatically scrolling horizontally"
-        >
-
-          <!-- ARTWORK 01 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/oHLrQFcg.png"
-              alt="Hokkaido mystery artwork 01"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 01</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 02 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/aOR8jMRq.png"
-              alt="Hokkaido mystery artwork 02"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 02</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 03 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/0vloKjXW.png"
-              alt="Hokkaido mystery artwork 03"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 03</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 04 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/7WDVfZlJ.png"
-              alt="Hokkaido mystery artwork 04"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 04</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 05 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/18GboHdY.png"
-              alt="Hokkaido mystery artwork 05"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 05</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 06 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/KerclwaE.png"
-              alt="Hokkaido mystery artwork 06"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 06</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 07 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/jQah92SE.png"
-              alt="Hokkaido mystery artwork 07"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 07</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- LR EXCLUSIVE ARTWORK -->
-          <article class="piece legend">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/kATTRB7n.png"
-              alt="Hokkaido exclusive Legendary Rare mystery artwork"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 08 · LR EXCLUSIVE</b>
-              <span>LR · ABOUT 1%</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- JAPAN 47 JOURNEY -->
-    <section class="journey" id="journey">
-      <div class="ey">THE ROAD AHEAD</div>
-
-      <h2>JAPAN 47 JOURNEY</h2>
-
-      <p class="lead">
-        Collect a free ticket for each destination
-        and follow the truck from north to south.
-        You can join the journey at any stop.
-      </p>
-
-      <div class="route-wrap">
-        <div class="route-top">
-          <span>BOARDING · HOKKAIDO</span>
-          <span>47 TICKETS · 47 STOPS</span>
-        </div>
-
-        <div class="board" id="board">
-          <svg
-            class="route-svg"
-            id="route-svg"
-            aria-hidden="true"
-          ></svg>
-
-          <div
-            class="route-tiles"
-            id="route-tiles"
-          ></div>
-
-          <img
-            class="route-car pixel"
-            id="route-car"
-            src="https://ul.h3z.jp/Lu7ch0Ne.png"
-            alt="Takoyaki truck at Hokkaido"
-          >
-        </div>
-
-        <div class="route-bottom">
-          <span id="route-status">
-            CURRENT STOP: HOKKAIDO · BOARDING SOON
-          </span>
-
-          <button type="button" id="route-drive">
-            PREVIEW THE NEXT STOP →
-          </button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FAQ -->
-  <section
-    class="faq"
-    id="faq"
-    aria-labelledby="faq-title"
+<header class="site-header">
+  <a class="brand" href="#home">
+    TRAVELING<br>TAKOYAKI 🐙🚚
+  </a>
+  <div class="header-right">
+    <span class="header-kicker">JAPAN 47 JOURNEY</span>
+    <button id="langSwitch" class="lang-switch" type="button">日本語</button>
+  </div>
+</header>
+
+<main id="home">
+
+<section class="hero">
+  <img
+    class="hero-image"
+    src="https://ul.h3z.jp/nz0rNaws.gif"
+    alt="Traveling Takoyaki animated hero"
   >
-    <div class="faq-inner">
-      <div class="ey">
-        QUESTIONS BEFORE DEPARTURE
-      </div>
+  <div class="hero-copy">
+    <span class="eyebrow">A PIXEL JOURNEY ACROSS JAPAN</span>
+    <h1>47 PREFECTURES.<br>ONE TAKOYAKI.</h1>
+    <p data-en="One tiny takoyaki truck. Forty-seven destinations. Collect the journey, one stop at a time."
+       data-ja="一台のたこ焼きカーが、日本全国47都道府県を旅する。ひとつずつ旅の記録を集めよう。">
+       One tiny takoyaki truck. Forty-seven destinations. Collect the journey, one stop at a time.
+    </p>
+  </div>
+</section>
 
-      <h2 id="faq-title">FAQ</h2>
+<div class="stats">
+  <div><strong>01 / 47</strong><small>CURRENT STOP</small></div>
+  <div><strong>333 / 333</strong><small>HOKKAIDO TICKETS</small></div>
+  <div><strong>5</strong><small>RARITIES</small></div>
+</div>
 
-      <div class="faq-list">
+<nav class="section-tabs" aria-label="Website sections">
+  <button type="button" data-tab="tickets" class="active">🎟️ TICKET BOOK</button>
+  <button type="button" data-tab="art">🖼️ NFT ART BOOK</button>
+  <button type="button" data-tab="rarity">💎 RARITY</button>
+  <button type="button" data-tab="journey">🚚 JOURNEY</button>
+  <button type="button" data-tab="faq">❔ FAQ</button>
+</nav>
 
-        <!-- FAQ 01 -->
-        <details class="faq-item" open>
-          <summary>What is Traveling Takoyaki?</summary>
+<!-- TICKET COLLECTION -->
+<section class="page" id="tickets">
+  <span class="eyebrow">47 DESTINATIONS · 47 TICKETS</span>
+  <h2>JOURNEY TICKET BOOK</h2>
+  <p data-en="Choose a prefecture to view its Journey Ticket and official OpenSea collection."
+     data-ja="都道府県を選ぶと、Journey Ticketの詳細と専用OpenSeaリンクを確認できます。">
+     Choose a prefecture to view its Journey Ticket and official OpenSea collection.
+  </p>
 
-          <div class="faq-answer">
-            <p>
-              Traveling Takoyaki is a pixel-art NFT journey
-              across all 47 prefectures of Japan.
-              Each destination becomes a new chapter
-              inspired by its landscapes, food
-              and local stories.
-            </p>
-          </div>
-        </details>
+  <div class="feature">
+    <div>
+      <span class="eyebrow">STOP 01 · HOKKAIDO</span>
+      <h3>333 / 333 CLAIMED!</h3>
+      <p>All Hokkaido Journey Tickets have been claimed. Eligible holders may receive priority access to the upcoming artwork sale after the announced snapshot.</p>
+      <span class="stamp">SOLD OUT</span>
+      <span class="stamp">1 PER WALLET</span>
+    </div>
+    <img src="https://ul.h3z.jp/JdJ1ZSjj.png" alt="Hokkaido Journey Ticket">
+  </div>
 
-        <!-- FAQ 02 -->
-        <details class="faq-item">
-          <summary>What is a Journey Ticket?</summary>
+  <div class="filters">
+    <input id="ticketSearch" type="search" placeholder="SEARCH PREFECTURE..." aria-label="Search prefecture">
+    <select id="ticketRegion" aria-label="Ticket region"></select>
+  </div>
+  <p id="ticketCount" class="result-count"></p>
+  <div id="ticketGrid" class="book-grid"></div>
+  <div id="ticketDetail" class="detail" aria-live="polite"></div>
+</section>
 
-          <div class="faq-answer">
-            <p>
-              A Journey Ticket is a free NFT
-              issued before each prefecture's main collection.
-              It acts as your boarding pass
-              for that destination and gives its holder
-              priority access to the destination NFT mint.
-            </p>
-          </div>
-        </details>
+<!-- ART COLLECTION -->
+<section class="page" id="art" hidden>
+  <span class="eyebrow">47 DESTINATIONS · 47 ART CHAPTERS</span>
+  <h2>NFT ART COLLECTION BOOK</h2>
+  <p>Every prefecture has its own artwork NFT collection, separate from the Journey Ticket.</p>
 
-        <!-- FAQ 03 -->
-        <details class="faq-item">
-          <summary>Is the Journey Ticket free?</summary>
+  <div class="feature">
+    <div>
+      <span class="eyebrow">CHAPTER 01 · HOKKAIDO</span>
+      <h3>7 + 1 ARTWORKS</h3>
+      <p>Seven Hokkaido-inspired designs plus one LR-exclusive artwork. Five rarities with different time-of-day backgrounds.</p>
+      <span class="stamp">ART DROP COMING SOON</span>
+    </div>
+    <img src="https://ul.h3z.jp/oHLrQFcg.png" alt="Hokkaido NFT artwork">
+  </div>
 
-          <div class="faq-answer">
-            <p>
-              Yes. The Journey Ticket itself is a free mint.
-              A network transaction fee may still apply
-              depending on the blockchain and wallet.
-              Check the transaction details on OpenSea
-              before confirming.
-            </p>
-          </div>
-        </details>
+  <h3 class="subheading">HOKKAIDO ART GALLERY</h3>
+  <div class="gallery-stage">
+    <button id="prevArt" type="button" aria-label="Previous artwork">◀</button>
+    <img id="galleryImage" src="https://ul.h3z.jp/oHLrQFcg.png" alt="Hokkaido artwork">
+    <button id="nextArt" type="button" aria-label="Next artwork">▶</button>
+  </div>
+  <p id="galleryCaption" class="gallery-caption">HOKKAIDO 01 / 08</p>
+  <div id="galleryThumbs" class="gallery-thumbs"></div>
 
-        <!-- FAQ 04 -->
-        <details class="faq-item">
-          <summary>Does a ticket guarantee an NFT?</summary>
+  <h3 class="subheading">47 ART CHAPTERS</h3>
+  <div class="filters">
+    <select id="artRegion" aria-label="Artwork region"></select>
+  </div>
+  <div id="artGrid" class="book-grid"></div>
+  <div id="artDetail" class="detail" aria-live="polite"></div>
+</section>
 
-          <div class="faq-answer">
-            <p>
-              No. A ticket gives you priority access,
-              but it does not guarantee a purchase.
-              The destination NFT is minted separately
-              and availability is limited.
-            </p>
-          </div>
-        </details>
+<!-- RARITY -->
+<section class="page dark-page" id="rarity" hidden>
+  <span class="eyebrow">HOKKAIDO · CHAPTER 01</span>
+  <h2>FIVE RARITIES.<br>ONE JOURNEY.</h2>
+  <p>Each rarity has its own frame and a background atmosphere connected to the passage from morning to night.</p>
 
-        <!-- FAQ 05 -->
-        <details class="faq-item">
-          <summary>How is the NFT supply decided?</summary>
+  <div class="time-track" aria-label="Background atmosphere from morning to night"></div>
+  <div class="time-labels"><span>☀ MORNING</span><span>🌙 NIGHT</span></div>
 
-          <div class="faq-answer">
-            <p>
-              The number of genuine Journey Ticket holders
-              helps determine the supply
-              for that prefecture.
-              Each chapter will have
-              a minimum of 99 NFTs.
-              The final supply will be announced
-              before the main mint.
-            </p>
-          </div>
-        </details>
+  <div id="rarityTabs" class="rarity-tabs"></div>
+  <div class="rarity-card">
+    <img id="rarityImage" src="https://ul.h3z.jp/mpichzx4.png" alt="Rarity frame">
+    <div>
+      <span class="eyebrow">RARITY FRAME</span>
+      <h3 id="rarityTitle">NORMAL · N</h3>
+      <strong id="rarityRate">49.49%</strong>
+      <p id="rarityCount">49 / 99 — EXAMPLE ONLY</p>
+    </div>
+  </div>
 
-        <!-- FAQ 06 -->
-        <details class="faq-item">
-          <summary>Can I join the journey at a later stop?</summary>
+  <div class="notice">
+    <strong>ILLUSTRATIVE EXAMPLE · 99 NFTs</strong>
+    <p>N 49 · R 28 · SR 14 · UR 7 · LR 1</p>
+    <p>These are example rarity proportions for a 99-NFT supply, not final mint odds. Final supply and rarity allocation will be announced before the art sale. The exact background-to-rarity mapping is not yet shown here.</p>
+  </div>
+</section>
 
-          <div class="faq-answer">
-            <p>
-              Yes. You can join at any prefecture.
-              You do not need to own
-              an earlier Journey Ticket or NFT.
-              Each destination can be collected separately.
-            </p>
-          </div>
-        </details>
+<!-- JOURNEY MAP -->
+<section class="page" id="journey" hidden>
+  <span class="eyebrow">47 STOPS · ONE LONG ROAD</span>
+  <h2>THE JAPAN 47 JOURNEY</h2>
+  <p>Follow the takoyaki truck along the winding route. Tap a stop to explore its ticket and artwork collections.</p>
 
-        <!-- FAQ 07 -->
-        <details class="faq-item">
-          <summary>When and where can I mint the Hokkaido ticket?</summary>
-
-          <div class="faq-answer">
-            <p>
-              The Hokkaido Journey Ticket mint is scheduled
-              to open on October 18, 2026 at 22:00 JST
-              / 13:00 UTC.
-              Use the OpenSea buttons on this website
-              to visit the official collection.
-            </p>
-          </div>
-        </details>
-      </div>
-
-      <!-- SECURITY WARNING -->
-      <div class="faq-safety">
-        SAFETY NOTICE — Use only links published
-        on this official website.
-        We will never ask for your seed phrase
-        or private key, and we will never send
-        an unexpected mint link by direct message.
+  <div class="map-panel">
+    <div class="map-head">
+      <span>JAPAN 47 ROUTE</span>
+      <span id="mapCounter">STOP 01 / 47</span>
+    </div>
+    <div class="map-scroll">
+      <div class="map-canvas">
+        <svg id="routeSvg" viewBox="0 0 960 800" aria-label="47-stop journey route">
+          <path id="roadOutline" fill="none" stroke="#11131a" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path id="road" fill="none" stroke="#f6c95b" stroke-width="19" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 10"></path>
+          <path id="routeProgress" fill="none" stroke="#f04438" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path>
+          <g id="routeNodes"></g>
+          <image
+            id="truckSprite"
+            href="https://ul.h3z.jp/Lu7ch0Ne.png"
+            width="64"
+            height="64"
+            x="-32"
+            y="-48"
+            style="image-rendering:pixelated"
+          ></image>
+        </svg>
       </div>
     </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="ey">
-      EVERY JOURNEY BEGINS WITH A TICKET.
+    <div class="map-actions">
+      <button id="prevStop" type="button">◀ PREV</button>
+      <button id="playRoute" type="button">▶ PLAY</button>
+      <button id="nextStop" type="button">NEXT ▶</button>
     </div>
+  </div>
+  <div id="journeyDetail" class="detail"></div>
+</section>
 
-    <h2>
-      CLAIM YOUR SEAT<br>
-      FOR HOKKAIDO.
-    </h2>
+<!-- FAQ -->
+<section class="page dark-page" id="faq" hidden>
+  <span class="eyebrow">QUESTIONS BEFORE DEPARTURE</span>
+  <h2>FAQ & SAFETY</h2>
 
-    <p class="lead">
-      Mint the Hokkaido Journey Ticket for free
-      and join Stop 01.
-      Ticket holders receive priority access
-      when the Hokkaido NFT drop opens.
-    </p>
+  <details open>
+    <summary>What is TRAVELING TAKOYAKI?</summary>
+    <p>A pixel-art NFT journey across all 47 prefectures of Japan. Each stop has a Journey Ticket and a separately released artwork NFT collection.</p>
+  </details>
+  <details>
+    <summary>What is a Journey Ticket?</summary>
+    <p>A prefecture-specific NFT. Holding an eligible ticket at an announced snapshot may provide priority access to purchase artwork NFTs for that prefecture.</p>
+  </details>
+  <details>
+    <summary>Are all Journey Tickets free?</summary>
+    <p>Hokkaido's ticket was free to mint, apart from possible network fees. Future destinations may have different terms and prices.</p>
+  </details>
+  <details>
+    <summary>Does a ticket guarantee an artwork NFT?</summary>
+    <p>No. Art NFTs are purchased separately and are subject to eligibility, supply, availability, and per-wallet limits.</p>
+  </details>
+  <details>
+    <summary>When is the Hokkaido art mint?</summary>
+    <p>The artwork sale date, price, final supply and ticket-holder snapshot date have not yet been announced.</p>
+  </details>
+  <details>
+    <summary>What are the five rarities?</summary>
+    <p>N, R, SR, UR and LR. Each has its own frame and time-of-day background atmosphere. The example distribution is not the final mint distribution.</p>
+  </details>
+  <details>
+    <summary>Where are the official OpenSea pages?</summary>
+    <p>Select a prefecture in the Ticket Book or NFT Art Book. Each collection has its own OpenSea URL when released.</p>
+  </details>
+  <details>
+    <summary>Can I join at a later stop?</summary>
+    <p>Yes. Future ticket eligibility and release conditions will be announced for each stop.</p>
+  </details>
 
-    <p class="mint-date">
-      <time datetime="2026-10-18T22:00:00+09:00">
-        OCTOBER 18, 2026 · 22:00 JST
-      </time>
-      <span>13:00 UTC</span>
-    </p>
+  <div class="notice">
+    <strong>STAY SAFE</strong>
+    <p>Never share your seed phrase or private key. Check URLs carefully and use only official project links.</p>
+  </div>
+</section>
 
-    <div class="opensea-actions">
-      <a
-        class="opensea-link"
-        href="https://opensea.io/collection/traveling-takoyaki/overview"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-ticket-opensea-link
-      >
-        VIEW JOURNEY TICKET ON OPENSEA ↗
-      </a>
-    </div>
+</main>
 
-    <p class="mint-link-note">
-      Opens the official OpenSea collection in a new tab.
-      <span data-ticket-mint-note>
-        Minting opens October 18 at 22:00 JST / 13:00 UTC.
-      </span>
-    </p>
-  </section>
+<footer>
+  <strong>TRAVELING TAKOYAKI</strong>
+  <p>47 PREFECTURES · 47 STOPS · ONE PIXEL JOURNEY</p>
+  <a href="https://opensea.io/collection/traveling-takoyaki/overview" target="_blank" rel="noopener noreferrer">OFFICIAL OPENSEA ↗</a>
+  <small>© JAPAN47PIXEL</small>
+</footer>
 
-  <!-- FOOTER -->
-  <footer>
-    © TRAVELING TAKOYAKI — A JAPAN47PIXEL PROJECT
-  </footer>
+<script>
+"use strict";
 
-  <!-- EXISTING JAVASCRIPT -->
-  <script src="./script.js" defer></script>
+/* ======================================
+   DATA: 47 PREFECTURES
+   ====================================== */
 
-  <!--
-    Countdown and OpenSea button labels.
-    The +09:00 offset fixes the start time to Japan time,
-    regardless of the visitor's timezone.
-  -->
-  <script>
-    (() => {
-      "use strict";
+const PREFECTURE_NAMES = [
+  "HOKKAIDO","AOMORI","IWATE","MIYAGI","AKITA",
+  "YAMAGATA","FUKUSHIMA","IBARAKI","TOCHIGI","GUNMA",
+  "SAITAMA","CHIBA","TOKYO","KANAGAWA","NIIGATA",
+  "TOYAMA","ISHIKAWA","FUKUI","YAMANASHI","NAGANO",
+  "GIFU","SHIZUOKA","AICHI","MIE","SHIGA",
+  "KYOTO","OSAKA","HYOGO","NARA","WAKAYAMA",
+  "TOTTORI","SHIMANE","OKAYAMA","HIROSHIMA","YAMAGUCHI",
+  "TOKUSHIMA","KAGAWA","EHIME","KOCHI","FUKUOKA",
+  "SAGA","NAGASAKI","KUMAMOTO","OITA","MIYAZAKI",
+  "KAGOSHIMA","OKINAWA"
+];
 
-      function initializeTicketMint() {
-        const countdown = document.getElementById("ticket-countdown");
+const REGIONS = [
+  "HOKKAIDO","TOHOKU","KANTO","CHUBU",
+  "KANSAI","CHUGOKU","SHIKOKU","KYUSHU & OKINAWA"
+];
 
-        if (!countdown) {
-          return;
-        }
+function regionFor(i){
+  if(i===0)return REGIONS[0];
+  if(i<7)return REGIONS[1];
+  if(i<14)return REGIONS[2];
+  if(i<23)return REGIONS[3];
+  if(i<30)return REGIONS[4];
+  if(i<35)return REGIONS[5];
+  if(i<39)return REGIONS[6];
+  return REGIONS[7];
+}
 
-        const mintStart = Date.parse(countdown.dataset.mintStart);
+/*
+  IMPORTANT:
+  Each prefecture has TWO separate OpenSea URLs.
 
-        if (!Number.isFinite(mintStart)) {
-          return;
-        }
+  ticketUrl = Journey Ticket collection
+  artUrl    = Artwork NFT collection
 
-        const caption = document.getElementById("countdown-caption");
+  Leave null until the official collection exists.
+*/
 
-        const fields = {
-          days: document.getElementById("count-days"),
-          hours: document.getElementById("count-hours"),
-          minutes: document.getElementById("count-minutes"),
-          seconds: document.getElementById("count-seconds")
-        };
+const PREFECTURES = PREFECTURE_NAMES.map((name,i)=>({
+  number:i+1,
+  name:name,
+  region:regionFor(i),
+  ticketImage:i===0
+    ?"https://ul.h3z.jp/JdJ1ZSjj.png"
+    :null,
+  artImage:i===0
+    ?"https://ul.h3z.jp/oHLrQFcg.png"
+    :null,
+  ticketUrl:i===0
+    ?"https://opensea.io/collection/traveling-takoyaki/overview"
+    :null,
+  artUrl:null,
+  ticketStatus:i===0?"SOLD OUT":"COMING SOON",
+  artStatus:"COMING SOON",
+  ticketSupply:i===0?333:null
+}));
 
-        const links = document.querySelectorAll(
-          "[data-ticket-opensea-link]"
-        );
+/*
+  Example of adding a future prefecture:
 
-        const notes = document.querySelectorAll(
-          "[data-ticket-mint-note]"
-        );
+  PREFECTURES[1].ticketImage = "IMAGE_URL";
+  PREFECTURES[1].ticketUrl = "TICKET_OPENSEA_URL";
+  PREFECTURES[1].ticketStatus = "AVAILABLE";
 
-        let previousStarted = null;
+  PREFECTURES[1].artImage = "ART_IMAGE_URL";
+  PREFECTURES[1].artUrl = "ART_OPENSEA_URL";
+  PREFECTURES[1].artStatus = "AVAILABLE";
+*/
 
-        function setNumber(element, value) {
-          if (element) {
-            element.textContent = String(value).padStart(2, "0");
-          }
-        }
+const HOKKAIDO_ART = [
+  "https://ul.h3z.jp/oHLrQFcg.png",
+  "https://ul.h3z.jp/aOR8jMRq.png",
+  "https://ul.h3z.jp/0vloKjXW.png",
+  "https://ul.h3z.jp/7WDVfZlJ.png",
+  "https://ul.h3z.jp/18GboHdY.png",
+  "https://ul.h3z.jp/KerclwaE.png",
+  "https://ul.h3z.jp/jQah92SE.png",
+  "https://ul.h3z.jp/kATTRB7n.png"
+];
 
-        function updateTicketMint() {
-          const remainingMilliseconds = mintStart - Date.now();
-          const started = remainingMilliseconds <= 0;
+const RARITIES = [
+  {name:"NORMAL",code:"N",count:49,rate:"49.49%",frame:"https://ul.h3z.jp/mpichzx4.png"},
+  {name:"RARE",code:"R",count:28,rate:"28.28%",frame:"https://ul.h3z.jp/M1jWTHjc.png"},
+  {name:"SUPER RARE",code:"SR",count:14,rate:"14.14%",frame:"https://ul.h3z.jp/YhFxUQNZ.png"},
+  {name:"ULTRA RARE",code:"UR",count:7,rate:"7.07%",frame:"https://ul.h3z.jp/13BzTuwg.png"},
+  {name:"LEGENDARY",code:"LR",count:1,rate:"1.01%",frame:"https://ul.h3z.jp/K2TJtpe6.png"}
+];
 
-          const totalSeconds = Math.max(
-            0,
-            Math.ceil(remainingMilliseconds / 1000)
-          );
+const TRUCK_RIGHT="https://ul.h3z.jp/Lu7ch0Ne.png";
+const TRUCK_LEFT="https://ul.h3z.jp/DWCD23BJ.png";
 
-          setNumber(fields.days, Math.floor(totalSeconds / 86400));
+/* ======================================
+   WEBSITE INTERACTIONS
+   ====================================== */
 
-          setNumber(
-            fields.hours,
-            Math.floor((totalSeconds % 86400) / 3600)
-          );
+const $=s=>document.querySelector(s);
+const pad=n=>String(n).padStart(2,"0");
 
-          setNumber(
-            fields.minutes,
-            Math.floor((totalSeconds % 3600) / 60)
-          );
+const state={
+  ticket:0,
+  art:0,
+  rarity:0,
+  gallery:0,
+  stop:0,
+  playing:false,
+  lang:"en"
+};
 
-          setNumber(fields.seconds, totalSeconds % 60);
+function make(tag,className,text){
+  const node=document.createElement(tag);
+  if(className)node.className=className;
+  if(text!==undefined)node.textContent=text;
+  return node;
+}
 
-          if (caption) {
-            caption.textContent = started
-              ? "FREE JOURNEY TICKET · CHECK AVAILABILITY ON OPENSEA"
-              : "FREE JOURNEY TICKET · MINT OPENS IN";
-          }
+/* LANGUAGE */
 
-          if (previousStarted !== started) {
-            links.forEach((link) => {
-              link.textContent = started
-                ? "CHECK JOURNEY TICKET ON OPENSEA ↗"
-                : "VIEW JOURNEY TICKET ON OPENSEA ↗";
-            });
+$("#langSwitch").addEventListener("click",()=>{
+  state.lang=state.lang==="en"?"ja":"en";
+  document.documentElement.lang=state.lang;
+  $("#langSwitch").textContent=state.lang==="en"?"日本語":"ENGLISH";
 
-            notes.forEach((note) => {
-              note.textContent = started
-                ? "The scheduled mint start time has arrived. Check OpenSea for current availability."
-                : "Minting opens October 18 at 22:00 JST / 13:00 UTC.";
-            });
+  document.querySelectorAll("[data-en][data-ja]").forEach(node=>{
+    node.textContent=node.dataset[state.lang];
+  });
 
-            previousStarted = started;
-          }
-        }
+  $("#ticketSearch").placeholder=
+    state.lang==="ja"?"都道府県を検索…":"SEARCH PREFECTURE...";
+});
 
-        updateTicketMint();
+/* MAIN NAVIGATION */
 
-        window.setInterval(updateTicketMint, 1000);
+function showTab(name){
+  document.querySelectorAll("[data-tab]").forEach(button=>{
+    const active=button.dataset.tab===name;
+    button.classList.toggle("active",active);
+    button.setAttribute("aria-selected",String(active));
+  });
 
-        document.addEventListener("visibilitychange", () => {
-          if (!document.hidden) {
-            updateTicketMint();
-          }
-        });
-      }
+  document.querySelectorAll(".page").forEach(page=>{
+    page.hidden=page.id!==name;
+  });
+}
 
-      if (document.readyState === "loading") {
-        document.addEventListener(
-          "DOMContentLoaded",
-          initializeTicketMint,
-          { once: true }
-        );
-      } else {
-        initializeTicketMint();
-      }
-    })();
-  </script>
+document.querySelectorAll("[data-tab]").forEach(button=>{
+  button.addEventListener("click",()=>showTab(button.dataset.tab));
+});
 
+/* REGIONAL FILTERS */
+
+function fillRegions(select){
+  select.add(new Option("ALL REGIONS · 47 PREFECTURES","all"));
+  REGIONS.forEach(region=>select.add(new Option(region,region)));
+}
+
+fillRegions($("#ticketRegion"));
+fillRegions($("#artRegion"));
+
+/* PREFECTURE DETAILS */
+
+function createDetail(index,type){
+  const p=PREFECTURES[index];
+  const isTicket=type==="ticket";
+  const url=isTicket?p.ticketUrl:p.artUrl;
+  const imageUrl=isTicket?p.ticketImage:p.artImage;
+  const status=isTicket?p.ticketStatus:p.artStatus;
+
+  const wrapper=make("div");
+  wrapper.append(
+    make("span","eyebrow",`STOP ${pad(index+1)} · ${p.region}`),
+    make("h3","",`${p.name} · ${isTicket?"JOURNEY TICKET":"NFT ART"}`)
+  );
+
+  if(imageUrl){
+    const img=make("img");
+    img.src=imageUrl;
+    img.alt=`${p.name} ${type}`;
+    wrapper.append(img);
+  }
+
+  wrapper.append(make("p","status",status));
+
+  if(isTicket&&index===0){
+    wrapper.append(make("p","",
+      "333 / 333 CLAIMED. Snapshot date to be announced."
+    ));
+  }
+
+  if(!isTicket&&index===0){
+    wrapper.append(make("p","",
+      "Artwork mint date, price and final supply are not yet announced."
+    ));
+  }
+
+  if(url){
+    const link=make("a","action-link","VIEW ON OPENSEA ↗");
+    link.href=url;
+    link.target="_blank";
+    link.rel="noopener noreferrer";
+    wrapper.append(link);
+  }else{
+    wrapper.append(
+      make("span","unavailable","OPENSEA LINK — COMING SOON")
+    );
+  }
+
+  return wrapper;
+}
+
+function renderDetails(){
+  $("#ticketDetail").replaceChildren(createDetail(state.ticket,"ticket"));
+  $("#artDetail").replaceChildren(createDetail(state.art,"art"));
+
+  $("#journeyDetail").replaceChildren(
+    createDetail(state.stop,"ticket"),
+    createDetail(state.stop,"art")
+  );
+}
+
+/* COMPACT COLLECTION BOOK */
+
+function renderBook(type){
+  const isTicket=type==="ticket";
+  const grid=$(isTicket?"#ticketGrid":"#artGrid");
+  const region=$(isTicket?"#ticketRegion":"#artRegion").value;
+  const search=isTicket
+    ?$("#ticketSearch").value.trim().toLowerCase()
+    :"";
+
+  grid.replaceChildren();
+  let count=0;
+
+  PREFECTURES.forEach((p,index)=>{
+    if(region!=="all"&&p.region!==region)return;
+    if(search&&!p.name.toLowerCase().includes(search)&&!pad(index+1).includes(search))return;
+
+    count++;
+
+    const selected=(isTicket?state.ticket:state.art)===index;
+    const button=make("button","book-tile"+(selected?" selected":""));
+    button.type="button";
+    button.setAttribute("aria-label",`${p.name} ${type}`);
+
+    const thumb=make("div","thumb");
+    const imageUrl=isTicket?p.ticketImage:p.artImage;
+
+    if(imageUrl){
+      const image=make("img");
+      image.src=imageUrl;
+      image.alt="";
+      image.loading="lazy";
+      thumb.append(image);
+    }else{
+      thumb.append(make("span","lock","🔒"));
+    }
+
+    button.append(
+      thumb,
+      make("span","name",`${pad(index+1)} ${p.name}`)
+    );
+
+    button.addEventListener("click",()=>{
+      if(isTicket)state.ticket=index;
+      else state.art=index;
+
+      renderBook(type);
+      renderDetails();
+
+      const detail=$(isTicket?"#ticketDetail":"#artDetail");
+      detail.scrollIntoView({
+        behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",
+        block:"nearest"
+      });
+    });
+
+    grid.append(button);
+  });
+
+  if(isTicket){
+    $("#ticketCount").textContent=`${count} / 47 DESTINATIONS`;
+  }
+}
+
+$("#ticketSearch").addEventListener("input",()=>renderBook("ticket"));
+$("#ticketRegion").addEventListener("change",()=>renderBook("ticket"));
+$("#artRegion").addEventListener("change",()=>renderBook("art"));
+
+/* HOKKAIDO ART GALLERY */
+
+function renderGallery(){
+  const index=state.gallery;
+  $("#galleryImage").src=HOKKAIDO_ART[index];
+  $("#galleryCaption").textContent=index===7
+    ?"HOKKAIDO LR EXCLUSIVE · 08 / 08"
+    :`HOKKAIDO ${pad(index+1)} / 08`;
+
+  document.querySelectorAll(".gallery-thumbs button").forEach((button,i)=>{
+    button.classList.toggle("selected",i===index);
+  });
+}
+
+HOKKAIDO_ART.forEach((src,index)=>{
+  const button=make("button");
+  button.type="button";
+  button.setAttribute("aria-label",`Hokkaido artwork ${index+1}`);
+
+  const img=make("img");
+  img.src=src;
+  img.alt=`Hokkaido artwork ${index+1}`;
+  img.loading="lazy";
+
+  button.append(img);
+  button.addEventListener("click",()=>{
+    state.gallery=index;
+    renderGallery();
+  });
+
+  $("#galleryThumbs").append(button);
+});
+
+$("#prevArt").addEventListener("click",()=>{
+  state.gallery=(state.gallery+7)%8;
+  renderGallery();
+});
+
+$("#nextArt").addEventListener("click",()=>{
+  state.gallery=(state.gallery+1)%8;
+  renderGallery();
+});
+
+/* RARITY FRAME SELECTOR */
+
+function renderRarity(){
+  const rarity=RARITIES[state.rarity];
+
+  $("#rarityImage").src=rarity.frame;
+  $("#rarityImage").alt=rarity.name+" rarity frame";
+  $("#rarityTitle").textContent=rarity.name+" · "+rarity.code;
+  $("#rarityRate").textContent=rarity.rate;
+  $("#rarityCount").textContent=
+    `${rarity.count} / 99 — EXAMPLE ONLY`;
+
+  document.querySelectorAll("#rarityTabs button").forEach((button,index)=>{
+    button.classList.toggle("active",index===state.rarity);
+  });
+}
+
+RARITIES.forEach((rarity,index)=>{
+  const button=make("button","",rarity.code);
+  button.type="button";
+  button.addEventListener("click",()=>{
+    state.rarity=index;
+    renderRarity();
+  });
+  $("#rarityTabs").append(button);
+});
+
+/* ======================================
+   47-STOP ANIMATED ROUTE
+   ====================================== */
+
+/*
+  Serpentine route:
+  Seven columns, seven rows.
+  The truck travels left-to-right, then
+  right-to-left on the next row.
+*/
+
+const coordinates=PREFECTURES.map((p,index)=>{
+  const row=Math.floor(index/7);
+  const column=index%7;
+  const xColumn=row%2===0?column:6-column;
+
+  return {
+    x:90+xColumn*130,
+    y:90+row*105
+  };
+});
+
+const pathData="M "+coordinates.map(p=>`${p.x} ${p.y}`).join(" L ");
+
+$("#roadOutline").setAttribute("d",pathData);
+$("#road").setAttribute("d",pathData);
+$("#routeProgress").setAttribute("d",pathData);
+
+const svgNS="http://www.w3.org/2000/svg";
+
+coordinates.forEach((point,index)=>{
+  const group=document.createElementNS(svgNS,"g");
+  group.setAttribute("class","route-node");
+  group.setAttribute("transform",`translate(${point.x} ${point.y})`);
+  group.setAttribute("role","button");
+  group.setAttribute("tabindex","0");
+  group.setAttribute("aria-label",`${pad(index+1)} ${PREFECTURES[index].name}`);
+
+  const circle=document.createElementNS(svgNS,"circle");
+  circle.setAttribute("r","21");
+
+  const text=document.createElementNS(svgNS,"text");
+  text.textContent=pad(index+1);
+
+  group.append(circle,text);
+
+  group.addEventListener("click",()=>moveTo(index));
+  group.addEventListener("keydown",event=>{
+    if(event.key==="Enter"||event.key===" "){
+      event.preventDefault();
+      moveTo(index);
+    }
+  });
+
+  $("#routeNodes").append(group);
+});
+
+const truck=$("#truckSprite");
+const roadPath=$("#roadOutline");
+const progressPath=$("#routeProgress");
+
+const cumulative=[0];
+
+for(let i=1;i<coordinates.length;i++){
+  const a=coordinates[i-1];
+  const b=coordinates[i];
+
+  cumulative.push(
+    cumulative[i-1]+Math.hypot(b.x-a.x,b.y-a.y)
+  );
+}
+
+let animationId=null;
+let truckDistance=0;
+let playTimer=null;
+
+function positionTruck(distance){
+  const total=roadPath.getTotalLength();
+  const d=Math.max(0,Math.min(total,distance));
+
+  const point=roadPath.getPointAtLength(d);
+  const ahead=roadPath.getPointAtLength(Math.min(total,d+3));
+  const behind=roadPath.getPointAtLength(Math.max(0,d-3));
+
+  truck.setAttribute("x",point.x-32);
+  truck.setAttribute("y",point.y-48);
+  truck.setAttribute(
+    "href",
+    ahead.x<behind.x?TRUCK_LEFT:TRUCK_RIGHT
+  );
+
+  progressPath.style.strokeDasharray=`${d} ${total+2}`;
+}
+
+function moveTo(index,animate=true){
+  state.stop=Math.max(0,Math.min(46,index));
+
+  $("#mapCounter").textContent=
+    `STOP ${pad(state.stop+1)} / 47`;
+
+  document.querySelectorAll(".route-node").forEach((node,i)=>{
+    node.classList.toggle("selected",i===state.stop);
+    node.classList.toggle("visited",i<state.stop);
+  });
+
+  renderDetails();
+
+  if(animationId!==null){
+    cancelAnimationFrame(animationId);
+    animationId=null;
+  }
+
+  const start=truckDistance;
+  const end=cumulative[state.stop];
+
+  if(!animate||window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    truckDistance=end;
+    positionTruck(end);
+    return;
+  }
+
+  const begin=performance.now();
+  const duration=Math.min(2500,500+Math.abs(end-start)*2);
+
+  function frame(now){
+    const t=Math.min(1,(now-begin)/duration);
+    const eased=t*t*(3-2*t);
+    truckDistance=start+(end-start)*eased;
+    positionTruck(truckDistance);
+
+    if(t<1){
+      animationId=requestAnimationFrame(frame);
+    }else{
+      truckDistance=end;
+      animationId=null;
+    }
+  }
+
+  animationId=requestAnimationFrame(frame);
+}
+
+$("#prevStop").addEventListener("click",()=>{
+  stopPlayback();
+  moveTo(state.stop-1);
+});
+
+$("#nextStop").addEventListener("click",()=>{
+  stopPlayback();
+  moveTo(state.stop+1);
+});
+
+function stopPlayback(){
+  state.playing=false;
+  if(playTimer!==null){
+    clearTimeout(playTimer);
+    playTimer=null;
+  }
+  $("#playRoute").textContent="▶ PLAY";
+}
+
+function playNext(){
+  if(!state.playing)return;
+
+  if(state.stop>=46){
+    stopPlayback();
+    return;
+  }
+
+  moveTo(state.stop+1);
+  playTimer=setTimeout(playNext,1500);
+}
+
+$("#playRoute").addEventListener("click",()=>{
+  if(state.playing){
+    stopPlayback();
+    return;
+  }
+
+  if(state.stop>=46)moveTo(0,false);
+
+  state.playing=true;
+  $("#playRoute").textContent="■ STOP";
+  playNext();
+});
+
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden)stopPlayback();
+});
+
+/* INITIAL RENDER */
+
+renderBook("ticket");
+renderBook("art");
+renderDetails();
+renderGallery();
+renderRarity();
+moveTo(0,false);
+
+</script>
 </body>
 </html>
