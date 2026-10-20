@@ -916,3 +916,67 @@ footer small {
     transform: none;
   }
 }
+
+
+
+/* ==========================================
+   FOOTER SOCIAL ICONS
+========================================== */
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 24px auto;
+}
+
+.footer-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: 2px solid #11131a;
+  border-radius: 50%;
+  background: #fff4d8;
+  color: #10233d;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.footer-icons a:hover {
+  background: #ffc928;
+  transform: translateY(-3px);
+}
+
+.footer-icons a:focus-visible {
+  outline: 3px solid #ffc928;
+  outline-offset: 3px;
+}
+
+.footer-icon-symbol {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.footer-x {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 27px;
+}
+
+@media (max-width: 600px) {
+  .footer-icons {
+    gap: 12px;
+  }
+
+  .footer-icons a {
+    width: 44px;
+    height: 44px;
+  }
+}
