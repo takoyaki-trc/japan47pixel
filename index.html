@@ -3,1105 +3,440 @@
 
 <head>
   <meta charset="utf-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10233d">
 
   <title>TRAVELING TAKOYAKI — Japan 47 Journey</title>
 
   <meta
     name="description"
-    content="Collect one of 333 free Hokkaido Journey Tickets and follow Traveling Takoyaki across Japan. Mint opens October 18, 2026 at 22:00 JST / 13:00 UTC on OpenSea. One ticket per wallet."
+    content="A pixel-art NFT journey across Japan's 47 prefectures."
   >
-
-  <link
-    rel="icon"
-    type="image/png"
-    href="./traveling-takoyaki-icon.png"
-  >
-
-  <link
-    rel="apple-touch-icon"
-    href="./traveling-takoyaki-icon.png"
-  >
-
-  <link
-    rel="manifest"
-    href="./site.webmanifest"
-  >
-
-  <meta name="theme-color" content="#10233d">
 
   <link rel="stylesheet" href="./styles.css">
-
-  <style>
-    .opensea-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .opensea-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      min-height: 52px;
-      max-width: 100%;
-      padding: 15px 22px;
-      border: 2px solid #10233d;
-      border-radius: 8px;
-      background: #10233d;
-      color: #ffffff;
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 800;
-      line-height: 1.5;
-      letter-spacing: 0.06em;
-      text-align: center;
-      text-decoration: none;
-      transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
-    }
-
-    .opensea-link:hover {
-      background: #ffffff;
-      color: #10233d;
-    }
-
-    .opensea-link:focus-visible {
-      outline: 3px solid #e89b32;
-      outline-offset: 4px;
-    }
-
-    .mint-date {
-      margin: 14px 0 0;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.8;
-    }
-
-    .mint-date span {
-      display: block;
-      font-size: 12px;
-      font-weight: 400;
-    }
-
-    .mint-link-note {
-      margin: 12px 0 0;
-      font-size: 12px;
-      line-height: 1.7;
-    }
-
-    .cta .opensea-actions {
-      justify-content: center;
-    }
-
-    .cta .mint-date,
-    .cta .mint-link-note {
-      text-align: center;
-    }
-
-    .ticket-art-stage {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      padding: 20px;
-    }
-
-    .ticket-art-stage .ticket-art {
-      display: block;
-      width: 100%;
-      max-width: 320px;
-      height: auto;
-      object-fit: contain;
-    }
-
-    @media (max-width: 600px) {
-      .opensea-actions {
-        width: 100%;
-      }
-
-      .opensea-link {
-        width: 100%;
-        padding: 14px 16px;
-        font-size: 13px;
-      }
-
-      .ticket-art-stage {
-        padding: 16px;
-      }
-
-      .ticket-art-stage .ticket-art {
-        max-width: 260px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .opensea-link {
-        transition: none;
-      }
-    }
-  </style>
+  <script src="./script.js" defer></script>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="top">
-    <span>TRAVELING TAKOYAKI</span>
+<header class="site-header">
+  <a class="brand" href="#home">
+    TRAVELING<br>TAKOYAKI 🐙🚚
+  </a>
 
-    <nav aria-label="Main navigation">
-      <a href="#story">STORY</a>
-      <a href="#collection">COLLECTION</a>
-      <a href="#journey">JOURNEY</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-  </header>
+  <div class="header-right">
+    <span class="header-kicker">JAPAN 47 JOURNEY</span>
+    <button id="langSwitch" class="lang-switch" type="button">
+      日本語
+    </button>
+  </div>
+</header>
+
+<main id="home">
 
   <!-- HERO -->
   <section class="hero">
     <img
-      class="pixel"
-      src="https://ul.h3z.jp/nz0rNaws.gif"
-      alt="Traveling Takoyaki animated journey"
+      id="heroImage"
+      class="hero-image"
+      alt="Traveling Takoyaki animated hero"
     >
-  </section>
 
-  <main class="map-paper">
-
-    <!-- INTRO -->
-    <section class="intro" id="story">
-      <div class="ey">
+    <div class="hero-copy">
+      <span class="eyebrow">
         A PIXEL JOURNEY ACROSS JAPAN
-      </div>
+      </span>
 
       <h1>
         47 PREFECTURES.<br>
         ONE TAKOYAKI.
       </h1>
 
-      <p class="lead">
-        A tiny takoyaki truck is traveling across Japan.
-        Every stop becomes a new pixel-art collection
-        inspired by local landscapes, flavors and stories.
+      <p
+        data-en="One tiny takoyaki truck. Forty-seven destinations. Collect the journey, one stop at a time."
+        data-ja="一台のたこ焼きカーが、日本全国47都道府県を旅する。ひとつずつ旅の記録を集めよう。"
+      >
+        One tiny takoyaki truck. Forty-seven destinations.
+        Collect the journey, one stop at a time.
       </p>
-    </section>
+    </div>
+  </section>
 
-    <!-- HOKKAIDO / JOURNEY TICKET -->
-    <section class="cards">
+  <!-- STATS -->
+  <div class="stats">
+    <div>
+      <strong id="currentStopStat">01 / 47</strong>
+      <small>CURRENT STOP</small>
+    </div>
 
-      <!-- HOKKAIDO -->
-      <article class="card red">
-        <div class="ey">FIRST DESTINATION</div>
+    <div>
+      <strong id="ticketStat">333 / 333</strong>
+      <small>HOKKAIDO TICKETS</small>
+    </div>
 
-        <h2>01 — HOKKAIDO</h2>
+    <div>
+      <strong id="rarityStat">5</strong>
+      <small>RARITIES</small>
+    </div>
+  </div>
 
-        <p>
-          The journey begins in the north.
-          Seven local artworks and one hidden legendary artwork
-          are waiting to be discovered.
-        </p>
+  <!-- NAVIGATION -->
+  <nav class="section-tabs" aria-label="Website sections">
+    <button type="button" data-tab="tickets" class="active">
+      🎟️ TICKET BOOK
+    </button>
+    <button type="button" data-tab="art">
+      🖼️ NFT ART BOOK
+    </button>
+    <button type="button" data-tab="rarity">
+      💎 RARITY
+    </button>
+    <button type="button" data-tab="journey">
+      🚚 JOURNEY
+    </button>
+    <button type="button" data-tab="faq">
+      ❔ FAQ
+    </button>
+  </nav>
 
-        <div class="tags">
-          <span class="tag">7 + 1 ART</span>
-          <span class="tag">5 RARITIES</span>
-          <span class="tag">LR · ABOUT 1%</span>
-        </div>
-      </article>
+  <div id="loading" class="loading" role="status">
+    LOADING JOURNEY...
+  </div>
 
-      <!-- JOURNEY TICKET -->
-      <article class="card ticket-card">
-        <div class="ey">
-          FREE MINT · JOURNEY TICKET
-        </div>
+  <div id="error" class="detail" role="alert" hidden></div>
 
-        <h2>YOUR BOARDING PASS TO HOKKAIDO.</h2>
+  <!-- TICKET BOOK -->
+  <section class="page" id="tickets" hidden>
+    <span class="eyebrow">
+      47 DESTINATIONS · 47 TICKETS
+    </span>
 
-        <!-- COUNTDOWN: October 18, 2026, 22:00 JST -->
-        <div
-          class="mint-countdown"
-          id="ticket-countdown"
-          data-mint-start="2026-10-18T22:00:00+09:00"
-          aria-live="off"
-        >
-          <div
-            class="countdown-caption"
-            id="countdown-caption"
-          >
-            FREE JOURNEY TICKET · MINT OPENS IN
-          </div>
+    <h2>JOURNEY TICKET BOOK</h2>
 
-          <div
-            class="countdown-units"
-            aria-label="Countdown to Journey Ticket mint"
-          >
-            <div>
-              <strong id="count-days">--</strong>
-              <span>DAYS</span>
-            </div>
-
-            <div>
-              <strong id="count-hours">--</strong>
-              <span>HOURS</span>
-            </div>
-
-            <div>
-              <strong id="count-minutes">--</strong>
-              <span>MINUTES</span>
-            </div>
-
-            <div>
-              <strong id="count-seconds">--</strong>
-              <span>SECONDS</span>
-            </div>
-          </div>
-        </div>
-
-        <p class="mint-date">
-          <time datetime="2026-10-18T22:00:00+09:00">
-            OCTOBER 18, 2026 · 22:00 JST
-          </time>
-          <span>
-            13:00 UTC · The countdown uses your device's clock.
-          </span>
-        </p>
-
-        <!-- TICKET IMAGE -->
-        <div class="ticket-art-stage">
-          <img
-            class="ticket-art pixel"
-            src="https://ul.h3z.jp/JdJ1ZSjj.png"
-            alt="Traveling Takoyaki Hokkaido Journey Ticket artwork"
-            loading="lazy"
-          >
-        </div>
-
-        <p>
-          Every journey begins with a ticket.
-          Mint the Hokkaido Journey Ticket for free
-          to join Stop 01.
-          Ticket holders receive priority access
-          to purchase a Hokkaido artwork NFT
-          before the public sale.
-        </p>
-
-        <div class="tags">
-          <span class="tag">FREE JOURNEY TICKET</span>
-          <span class="tag">333 TICKETS</span>
-          <span class="tag">1 PER WALLET</span>
-          <span class="tag">PRIORITY BOARDING</span>
-        </div>
-
-        <p class="mint-link-note">
-          Priority access is based on ticket ownership
-          at a snapshot date to be announced.
-          We will check which wallets hold a ticket
-          at that time to determine eligibility.
-          The snapshot date, artwork price and sale schedule
-          will be announced before the Hokkaido artwork mint.
-          The artwork is sold separately.
-          A ticket does not guarantee a purchase.
-        </p>
-
-        <!-- OPENSEA LINK -->
-        <div class="opensea-actions">
-          <a
-            class="opensea-link"
-            href="https://opensea.io/collection/traveling-takoyaki/overview"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-ticket-opensea-link
-          >
-            VIEW JOURNEY TICKET ON OPENSEA ↗
-          </a>
-        </div>
-
-        <p class="mint-link-note">
-          Opens the official OpenSea collection in a new tab.
-          <span data-ticket-mint-note>
-            Minting opens October 18 at 22:00 JST / 13:00 UTC.
-          </span>
-        </p>
-      </article>
-    </section>
-
-    <!-- SUPPLY SYSTEM -->
-    <section
-      class="supply"
-      aria-labelledby="supply-title"
+    <p
+      data-en="Choose a prefecture to view its Journey Ticket and official OpenSea collection."
+      data-ja="都道府県を選ぶと、Journey Ticketの詳細と専用OpenSeaリンクを確認できます。"
     >
-      <div class="supply-inner">
-        <div class="ey">
-          EVERY JOURNEY BEGINS WITH A TICKET
-        </div>
+      Choose a prefecture to view its Journey Ticket and
+      official OpenSea collection.
+    </p>
 
-        <h2 id="supply-title">
-          CLAIM A TICKET.<br>
-          JOIN THE JOURNEY.
-        </h2>
+    <div class="feature">
+      <div>
+        <span class="eyebrow">STOP 01 · HOKKAIDO</span>
+        <h3 id="featureTicketTitle">333 / 333 CLAIMED!</h3>
 
         <p>
-          Before each prefecture, we release
-          a free Journey Ticket for that destination.
-          The number of travelers who claim it
-          helps us decide the final NFT supply
-          for that chapter.
+          All Hokkaido Journey Tickets have been claimed.
+          Eligible holders may receive priority access to
+          the upcoming artwork sale after the announced snapshot.
         </p>
 
-        <div class="supply-steps">
-          <div>
-            <strong>01</strong>
-            <span>
-              Claim that stop's<br>
-              Journey Ticket for free
-            </span>
-          </div>
-
-          <div>
-            <strong>02</strong>
-            <span>
-              Travelers are counted<br>
-              and the NFT supply is set
-            </span>
-          </div>
-
-          <div>
-            <strong>03</strong>
-            <span>
-              Ticket holders enter<br>
-              the priority mint first
-            </span>
-          </div>
-        </div>
-
-        <div class="ticket-rule">
-          <b>ONE DESTINATION · ONE TICKET</b>
-          <span>
-            Each prefecture has its own free Journey Ticket.
-            You can join the journey at any stop—
-            an earlier ticket or NFT is not required.
-          </span>
-        </div>
-
-        <p class="supply-min">
-          <b>MINIMUM: 99 NFTs PER PREFECTURE</b>
-          <small>
-            The final supply for each chapter
-            will be announced before its NFT mint begins.
-            A Journey Ticket provides priority access
-            but does not guarantee an NFT.
-            The destination NFT is purchased separately.
-          </small>
-        </p>
+        <span class="stamp">SOLD OUT</span>
+        <span class="stamp">1 PER WALLET</span>
       </div>
-    </section>
 
-    <!-- RARITY -->
-    <section class="drop" id="collection">
-      <div class="inner">
-        <div class="ey">
-          HOKKAIDO DROP — CHAPTER 01
-        </div>
+      <img id="featureTicketImage" alt="Hokkaido Journey Ticket">
+    </div>
 
-        <h2>
-          FIVE RARITIES.<br>
-          ONE JOURNEY.
-        </h2>
+    <div class="filters">
+      <input
+        id="ticketSearch"
+        type="search"
+        placeholder="SEARCH PREFECTURE..."
+        aria-label="Search prefecture"
+      >
 
-        <p class="drop-example">
-          Illustrative rarity distribution
-          if the Hokkaido drop is set
-          to the minimum of 99 NFTs.
+      <select id="ticketRegion" aria-label="Ticket region"></select>
+    </div>
+
+    <p id="ticketCount" class="result-count"></p>
+    <div id="ticketGrid" class="book-grid"></div>
+    <div id="ticketDetail" class="detail" aria-live="polite"></div>
+  </section>
+
+  <!-- NFT ART BOOK -->
+  <section class="page" id="art" hidden>
+    <span class="eyebrow">
+      47 DESTINATIONS · 47 ART CHAPTERS
+    </span>
+
+    <h2>NFT ART COLLECTION BOOK</h2>
+
+    <p>
+      Every prefecture has its own artwork NFT collection,
+      separate from the Journey Ticket.
+    </p>
+
+    <div class="feature">
+      <div>
+        <span class="eyebrow">CHAPTER 01 · HOKKAIDO</span>
+        <h3 id="featureArtTitle">7 + 1 ARTWORKS</h3>
+
+        <p>
+          Seven Hokkaido-inspired designs plus one
+          LR-exclusive artwork. Five rarities with
+          different time-of-day backgrounds.
         </p>
 
-        <div
-          class="rarity"
-          aria-label="Five rarity frame colors"
-        >
-
-          <!-- NORMAL -->
-          <div class="r">
-            <div class="rarity-frame">
-              <img
-                class="pixel"
-                src="https://ul.h3z.jp/mpichzx4.png"
-                alt="Blue Normal card frame"
-              >
-
-              <div class="rarity-overlay">
-                <strong>49.49%</strong>
-                <small>49 / 99</small>
-              </div>
-            </div>
-
-            <b>N</b>
-            <span>NORMAL</span>
-          </div>
-
-          <!-- RARE -->
-          <div class="r">
-            <div class="rarity-frame">
-              <img
-                class="pixel"
-                src="https://ul.h3z.jp/M1jWTHjc.png"
-                alt="Red Rare card frame"
-              >
-
-              <div class="rarity-overlay">
-                <strong>28.28%</strong>
-                <small>28 / 99</small>
-              </div>
-            </div>
-
-            <b>R</b>
-            <span>RARE</span>
-          </div>
-
-          <!-- SUPER RARE -->
-          <div class="r">
-            <div class="rarity-frame">
-              <img
-                class="pixel"
-                src="https://ul.h3z.jp/YhFxUQNZ.png"
-                alt="Silver Super Rare card frame"
-              >
-
-              <div class="rarity-overlay">
-                <strong>14.14%</strong>
-                <small>14 / 99</small>
-              </div>
-            </div>
-
-            <b>SR</b>
-            <span>SUPER RARE</span>
-          </div>
-
-          <!-- ULTRA RARE -->
-          <div class="r">
-            <div class="rarity-frame">
-              <img
-                class="pixel"
-                src="https://ul.h3z.jp/13BzTuwg.png"
-                alt="Gold Ultra Rare card frame"
-              >
-
-              <div class="rarity-overlay">
-                <strong>7.07%</strong>
-                <small>7 / 99</small>
-              </div>
-            </div>
-
-            <b>UR</b>
-            <span>ULTRA RARE</span>
-          </div>
-
-          <!-- LEGENDARY RARE -->
-          <div class="r lr">
-            <div class="rarity-frame">
-              <img
-                class="pixel"
-                src="https://ul.h3z.jp/K2TJtpe6.png"
-                alt="Rainbow Legendary Rare card frame"
-              >
-
-              <div class="rarity-overlay">
-                <strong>1.01%</strong>
-                <small>1 / 99</small>
-              </div>
-            </div>
-
-            <b>LR</b>
-            <span>LEGENDARY · ABOUT 1%</span>
-          </div>
-        </div>
-
-        <p class="rarity-note">
-          EXAMPLE ONLY: 99 PIECES ·
-          FINAL RARITY COUNTS AND ODDS
-          WILL BE ANNOUNCED WITH THE FINAL SUPPLY
-        </p>
-      </div>
-    </section>
-
-    <!-- HOKKAIDO COLLECTION -->
-    <section class="book">
-      <div class="book-head">
-        <div>
-          <div class="ey">
-            HOKKAIDO COLLECTION BOOK
-          </div>
-
-          <h2>
-            WHAT'S HIDING<br>
-            IN HOKKAIDO?
-          </h2>
-        </div>
-
-        <p class="book-note">
-          The landscapes are revealed.
-          The takoyaki are still hiding.
-          Discover the full artworks when
-          the Hokkaido collection is revealed.
-        </p>
+        <span class="stamp">ART DROP COMING SOON</span>
       </div>
 
-      <!-- GALLERY CONTROLS -->
-      <div class="gallery-toolbar">
-        <div class="gallery-hint">
-          AUTO-SCROLLING · SWIPE TO EXPLORE
-        </div>
+      <img id="featureArtImage" alt="Hokkaido NFT artwork">
+    </div>
 
-        <div
-          class="gallery-controls"
-          aria-label="Collection gallery controls"
-        >
-          <button
-            class="gallery-button"
-            id="gallery-previous"
-            type="button"
-            aria-label="Previous artwork"
-          >
-            ←
-          </button>
+    <h3 class="subheading">HOKKAIDO ART GALLERY</h3>
 
-          <button
-            class="gallery-button toggle"
-            id="gallery-toggle"
-            type="button"
-            aria-label="Pause automatic scrolling"
-            aria-pressed="false"
-          >
-            PAUSE
-          </button>
+    <div class="gallery-stage">
+      <button id="prevArt" type="button" aria-label="Previous artwork">
+        ◀
+      </button>
 
-          <button
-            class="gallery-button"
-            id="gallery-next"
-            type="button"
-            aria-label="Next artwork"
-          >
-            →
-          </button>
-        </div>
+      <img id="galleryImage" alt="Hokkaido artwork">
+
+      <button id="nextArt" type="button" aria-label="Next artwork">
+        ▶
+      </button>
+    </div>
+
+    <p id="galleryCaption" class="gallery-caption"></p>
+    <div id="galleryThumbs" class="gallery-thumbs"></div>
+
+    <h3 class="subheading">47 ART CHAPTERS</h3>
+
+    <div class="filters">
+      <select id="artRegion" aria-label="Artwork region"></select>
+    </div>
+
+    <div id="artGrid" class="book-grid"></div>
+    <div id="artDetail" class="detail" aria-live="polite"></div>
+  </section>
+
+  <!-- RARITY -->
+  <section class="page dark-page" id="rarity" hidden>
+    <span class="eyebrow">HOKKAIDO · CHAPTER 01</span>
+
+    <h2>FIVE RARITIES.<br>ONE JOURNEY.</h2>
+
+    <p>
+      Each rarity has its own frame and a background
+      atmosphere connected to the passage from morning to night.
+    </p>
+
+    <div
+      class="time-track"
+      aria-label="Background atmosphere from morning to night"
+    ></div>
+
+    <div class="time-labels">
+      <span>☀ MORNING</span>
+      <span>🌙 NIGHT</span>
+    </div>
+
+    <div id="rarityTabs" class="rarity-tabs"></div>
+
+    <div class="rarity-card">
+      <img id="rarityImage" alt="Rarity frame">
+
+      <div>
+        <span class="eyebrow">RARITY FRAME</span>
+        <h3 id="rarityTitle"></h3>
+        <strong id="rarityRate"></strong>
+        <p id="rarityCount"></p>
       </div>
+    </div>
 
-      <!-- AUTO-SCROLL GALLERY -->
-      <div class="gallery-shell">
-        <div
-          class="gallery is-auto"
-          id="collection-gallery"
-          aria-label="Hokkaido collection, automatically scrolling horizontally"
-        >
+    <div class="notice">
+      <strong id="rarityNoticeTitle">
+        ILLUSTRATIVE EXAMPLE · 99 NFTs
+      </strong>
 
-          <!-- ARTWORK 01 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/oHLrQFcg.png"
-              alt="Hokkaido mystery artwork 01"
-            >
+      <p id="rarityBreakdown"></p>
 
-            <div class="meta">
-              <b>HOKKAIDO · 01</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 02 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/aOR8jMRq.png"
-              alt="Hokkaido mystery artwork 02"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 02</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 03 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/0vloKjXW.png"
-              alt="Hokkaido mystery artwork 03"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 03</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 04 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/7WDVfZlJ.png"
-              alt="Hokkaido mystery artwork 04"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 04</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 05 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/18GboHdY.png"
-              alt="Hokkaido mystery artwork 05"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 05</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 06 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/KerclwaE.png"
-              alt="Hokkaido mystery artwork 06"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 06</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- ARTWORK 07 -->
-          <article class="piece">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/jQah92SE.png"
-              alt="Hokkaido mystery artwork 07"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 07</b>
-              <span>???</span>
-            </div>
-          </article>
-
-          <!-- LR EXCLUSIVE ARTWORK -->
-          <article class="piece legend">
-            <img
-              class="pixel"
-              src="https://ul.h3z.jp/kATTRB7n.png"
-              alt="Hokkaido exclusive Legendary Rare mystery artwork"
-            >
-
-            <div class="meta">
-              <b>HOKKAIDO · 08 · LR EXCLUSIVE</b>
-              <span>LR · ABOUT 1%</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- JAPAN 47 JOURNEY -->
-    <section class="journey" id="journey">
-      <div class="ey">THE ROAD AHEAD</div>
-
-      <h2>JAPAN 47 JOURNEY</h2>
-
-      <p class="lead">
-        Collect a free ticket for each destination
-        and follow the truck from north to south.
-        You can join the journey at any stop.
+      <p>
+        These are example rarity proportions, not final mint odds.
+        Final supply and rarity allocation will be announced before
+        the art sale. The exact background-to-rarity mapping is not
+        yet shown here.
       </p>
+    </div>
+  </section>
 
-      <div class="route-wrap">
-        <div class="route-top">
-          <span>BOARDING · HOKKAIDO</span>
-          <span>47 TICKETS · 47 STOPS</span>
-        </div>
+  <!-- JOURNEY -->
+  <section class="page" id="journey" hidden>
+    <span class="eyebrow">47 STOPS · ONE LONG ROAD</span>
+    <h2>THE JAPAN 47 JOURNEY</h2>
 
-        <div class="board" id="board">
+    <p>
+      Follow the takoyaki truck along the winding route.
+      Tap a stop to explore its ticket and artwork collections.
+    </p>
+
+    <div class="map-panel">
+      <div class="map-head">
+        <span>JAPAN 47 ROUTE</span>
+        <span id="mapCounter">STOP 01 / 47</span>
+      </div>
+
+      <div class="map-scroll">
+        <div class="map-canvas">
           <svg
-            class="route-svg"
-            id="route-svg"
-            aria-hidden="true"
-          ></svg>
-
-          <div
-            class="route-tiles"
-            id="route-tiles"
-          ></div>
-
-          <img
-            class="route-car pixel"
-            id="route-car"
-            src="https://ul.h3z.jp/Lu7ch0Ne.png"
-            alt="Takoyaki truck at Hokkaido"
+            id="routeSvg"
+            viewBox="0 0 960 800"
+            aria-label="47-stop journey route"
           >
-        </div>
+            <path
+              id="roadOutline"
+              fill="none"
+              stroke="#11131a"
+              stroke-width="28"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
 
-        <div class="route-bottom">
-          <span id="route-status">
-            CURRENT STOP: HOKKAIDO · BOARDING SOON
-          </span>
+            <path
+              id="road"
+              fill="none"
+              stroke="#f6c95b"
+              stroke-width="19"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-dasharray="2 10"
+            ></path>
 
-          <button type="button" id="route-drive">
-            PREVIEW THE NEXT STOP →
-          </button>
+            <path
+              id="routeProgress"
+              fill="none"
+              stroke="#f04438"
+              stroke-width="9"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+
+            <g id="routeNodes"></g>
+
+            <image
+              id="truckSprite"
+              width="64"
+              height="64"
+              x="-32"
+              y="-48"
+              style="image-rendering:pixelated"
+            ></image>
+          </svg>
         </div>
       </div>
-    </section>
-  </main>
+
+      <div class="map-actions">
+        <button id="prevStop" type="button">◀ PREV</button>
+        <button id="playRoute" type="button">▶ PLAY</button>
+        <button id="nextStop" type="button">NEXT ▶</button>
+      </div>
+    </div>
+
+    <div id="journeyDetail" class="detail"></div>
+  </section>
 
   <!-- FAQ -->
-  <section
-    class="faq"
-    id="faq"
-    aria-labelledby="faq-title"
+  <section class="page dark-page" id="faq" hidden>
+    <span class="eyebrow">QUESTIONS BEFORE DEPARTURE</span>
+    <h2>FAQ & SAFETY</h2>
+
+    <details open>
+      <summary>What is TRAVELING TAKOYAKI?</summary>
+      <p>
+        A pixel-art NFT journey across all 47 prefectures of Japan.
+        Each stop has a Journey Ticket and a separately released
+        artwork NFT collection.
+      </p>
+    </details>
+
+    <details>
+      <summary>What is a Journey Ticket?</summary>
+      <p>
+        A prefecture-specific NFT. Holding an eligible ticket at
+        an announced snapshot may provide priority access to
+        purchase artwork NFTs for that prefecture.
+      </p>
+    </details>
+
+    <details>
+      <summary>Are all Journey Tickets free?</summary>
+      <p>
+        Hokkaido's ticket was free to mint, apart from possible
+        network fees. Future destinations may have different
+        terms and prices.
+      </p>
+    </details>
+
+    <details>
+      <summary>Does a ticket guarantee an artwork NFT?</summary>
+      <p>
+        No. Art NFTs are purchased separately and are subject
+        to eligibility, supply, availability, and per-wallet limits.
+      </p>
+    </details>
+
+    <details>
+      <summary>When is the Hokkaido art mint?</summary>
+      <p id="mintFaq">
+        The artwork sale date, price, final supply and
+        ticket-holder snapshot date have not yet been announced.
+      </p>
+    </details>
+
+    <details>
+      <summary>What are the five rarities?</summary>
+      <p>
+        N, R, SR, UR and LR. Each has its own frame and
+        time-of-day background atmosphere. The example
+        distribution is not the final mint distribution.
+      </p>
+    </details>
+
+    <details>
+      <summary>Where are the official OpenSea pages?</summary>
+      <p>
+        Select a prefecture in the Ticket Book or NFT Art Book.
+        Each collection has its own OpenSea URL when released.
+      </p>
+    </details>
+
+    <details>
+      <summary>Can I join at a later stop?</summary>
+      <p>
+        Yes. Future ticket eligibility and release conditions
+        will be announced for each stop.
+      </p>
+    </details>
+
+    <div class="notice">
+      <strong>STAY SAFE</strong>
+      <p>
+        Never share your seed phrase or private key.
+        Check URLs carefully and use only official project links.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>TRAVELING TAKOYAKI</strong>
+
+  <p>47 PREFECTURES · 47 STOPS · ONE PIXEL JOURNEY</p>
+
+  <a
+    id="officialLink"
+    href="https://opensea.io/collection/traveling-takoyaki/overview"
+    target="_blank"
+    rel="noopener noreferrer"
   >
-    <div class="faq-inner">
-      <div class="ey">
-        QUESTIONS BEFORE DEPARTURE
-      </div>
+    OFFICIAL OPENSEA ↗
+  </a>
 
-      <h2 id="faq-title">FAQ</h2>
-
-      <div class="faq-list">
-
-        <!-- FAQ 01 -->
-        <details class="faq-item" open>
-          <summary>What is Traveling Takoyaki?</summary>
-
-          <div class="faq-answer">
-            <p>
-              Traveling Takoyaki is a pixel-art NFT journey
-              across all 47 prefectures of Japan.
-              Each destination becomes a new chapter
-              inspired by its landscapes, food
-              and local stories.
-            </p>
-          </div>
-        </details>
-
-        <!-- FAQ 02 -->
-        <details class="faq-item">
-          <summary>What is a Journey Ticket?</summary>
-
-          <div class="faq-answer">
-            <p>
-              A Journey Ticket is a free NFT
-              issued before each prefecture's main collection.
-              It acts as your boarding pass
-              for that destination and gives its holder
-              priority access to the destination NFT mint.
-              The Hokkaido Journey Ticket is limited
-              to 333 tickets, with a mint limit
-              of one ticket per wallet.
-            </p>
-          </div>
-        </details>
-
-        <!-- FAQ 03 -->
-        <details class="faq-item">
-          <summary>Is the Journey Ticket free?</summary>
-
-          <div class="faq-answer">
-            <p>
-              Yes. The Journey Ticket itself is a free mint.
-              A network transaction fee may still apply
-              depending on the blockchain and wallet.
-              Check the transaction details on OpenSea
-              before confirming.
-            </p>
-          </div>
-        </details>
-
-        <!-- FAQ 04 -->
-        <details class="faq-item">
-          <summary>Does a ticket guarantee an NFT?</summary>
-
-          <div class="faq-answer">
-            <p>
-              No. A ticket gives you priority access,
-              but it does not guarantee a purchase.
-              The Hokkaido artwork NFT is sold separately,
-              and availability and mint limits apply.
-            </p>
-          </div>
-        </details>
-
-        <!-- FAQ 05 -->
-        <details class="faq-item">
-          <summary>How is the NFT supply decided?</summary>
-
-          <div class="faq-answer">
-            <p>
-              The number of Journey Ticket holders
-              helps determine the supply
-              for that prefecture.
-              Each chapter will have
-              a minimum of 99 NFTs.
-              The final supply will be announced
-              before the main mint.
-            </p>
-          </div>
-        </details>
-
-        <!-- FAQ 06 -->
-        <details class="faq-item">
-          <summary>Can I join the journey at a later stop?</summary>
-
-          <div class="faq-answer">
-            <p>
-              Yes. You can join at any prefecture.
-              You do not need to own
-              an earlier Journey Ticket or NFT.
-              Each destination can be collected separately.
-            </p>
-          </div>
-        </details>
-
-        <!-- FAQ 07 -->
-        <details class="faq-item">
-          <summary>When and where can I mint the Hokkaido ticket?</summary>
-
-          <div class="faq-answer">
-            <p>
-              The Hokkaido Journey Ticket mint is scheduled
-              to open on October 18, 2026 at 22:00 JST
-              / 13:00 UTC on Robinhood Chain.
-              There are 333 tickets available,
-              with a mint limit of one per wallet.
-              Use the OpenSea buttons on this website
-              to visit the official collection
-              and check current availability.
-            </p>
-          </div>
-        </details>
-
-        <!-- FAQ 08 -->
-        <details class="faq-item">
-          <summary>How do I qualify for the Hokkaido priority sale?</summary>
-
-          <div class="faq-answer">
-            <p>
-              Hold a Hokkaido Journey Ticket in your wallet
-              at the snapshot date, which will be announced
-              in advance.
-              A snapshot is a record of which wallets
-              hold a ticket at a specific time.
-              Eligible wallets will be added
-              to the Hokkaido artwork priority-sale allowlist.
-            </p>
-
-            <p>
-              You do not need to post your wallet address
-              in social media replies for this process.
-              The snapshot date, artwork price,
-              sale schedule and per-wallet mint limit
-              will be announced before the artwork mint.
-              Priority access does not guarantee a purchase.
-            </p>
-          </div>
-        </details>
-      </div>
-
-      <!-- SECURITY WARNING -->
-      <div class="faq-safety">
-        SAFETY NOTICE — Use only links published
-        on this official website.
-        We will never ask for your seed phrase
-        or private key, and we will never send
-        an unexpected mint link by direct message.
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="ey">
-      EVERY JOURNEY BEGINS WITH A TICKET.
-    </div>
-
-    <h2>
-      CLAIM YOUR SEAT<br>
-      FOR HOKKAIDO.
-    </h2>
-
-    <p class="lead">
-      Mint one of 333 free Hokkaido Journey Tickets
-      and join Stop 01.
-      One ticket per wallet.
-      Eligible ticket holders receive priority access
-      when the Hokkaido artwork NFT drop opens.
-    </p>
-
-    <p class="mint-link-note">
-      Eligibility is based on ticket ownership
-      at a snapshot date to be announced.
-      The artwork is sold separately.
-      Priority access does not guarantee a purchase.
-    </p>
-
-    <p class="mint-date">
-      <time datetime="2026-10-18T22:00:00+09:00">
-        OCTOBER 18, 2026 · 22:00 JST
-      </time>
-      <span>13:00 UTC</span>
-    </p>
-
-    <div class="opensea-actions">
-      <a
-        class="opensea-link"
-        href="https://opensea.io/collection/traveling-takoyaki/overview"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-ticket-opensea-link
-      >
-        VIEW JOURNEY TICKET ON OPENSEA ↗
-      </a>
-    </div>
-
-    <p class="mint-link-note">
-      Opens the official OpenSea collection in a new tab.
-      <span data-ticket-mint-note>
-        Minting opens October 18 at 22:00 JST / 13:00 UTC.
-      </span>
-    </p>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    © TRAVELING TAKOYAKI — A JAPAN47PIXEL PROJECT
-  </footer>
-
-  <!-- EXISTING JAVASCRIPT -->
-  <script src="./script.js" defer></script>
-
-  <!-- COUNTDOWN AND OPENSEA BUTTON LABELS -->
-  <script>
-    (() => {
-      "use strict";
-
-      function initializeTicketMint() {
-        const countdown = document.getElementById("ticket-countdown");
-
-        if (!countdown) {
-          return;
-        }
-
-        const mintStart = Date.parse(countdown.dataset.mintStart);
-
-        if (!Number.isFinite(mintStart)) {
-          return;
-        }
-
-        const caption = document.getElementById("countdown-caption");
-
-        const fields = {
-          days: document.getElementById("count-days"),
-          hours: document.getElementById("count-hours"),
-          minutes: document.getElementById("count-minutes"),
-          seconds: document.getElementById("count-seconds")
-        };
-
-        const links = document.querySelectorAll(
-          "[data-ticket-opensea-link]"
-        );
-
-        const notes = document.querySelectorAll(
-          "[data-ticket-mint-note]"
-        );
-
-        let previousStarted = null;
-
-        function setNumber(element, value) {
-          if (element) {
-            element.textContent = String(value).padStart(2, "0");
-          }
-        }
-
-        function updateTicketMint() {
-          const remainingMilliseconds = mintStart - Date.now();
-          const started = remainingMilliseconds <= 0;
-
-          const totalSeconds = Math.max(
-            0,
-            Math.ceil(remainingMilliseconds / 1000)
-          );
-
-          setNumber(fields.days, Math.floor(totalSeconds / 86400));
-
-          setNumber(
-            fields.hours,
-            Math.floor((totalSeconds % 86400) / 3600)
-          );
-
-          setNumber(
-            fields.minutes,
-            Math.floor((totalSeconds % 3600) / 60)
-          );
-
-          setNumber(fields.seconds, totalSeconds % 60);
-
-          if (caption) {
-            caption.textContent = started
-              ? "FREE JOURNEY TICKET · CHECK AVAILABILITY ON OPENSEA"
-              : "FREE JOURNEY TICKET · MINT OPENS IN";
-          }
-
-          if (previousStarted !== started) {
-            links.forEach((link) => {
-              link.textContent = started
-                ? "CHECK JOURNEY TICKET ON OPENSEA ↗"
-                : "VIEW JOURNEY TICKET ON OPENSEA ↗";
-            });
-
-            notes.forEach((note) => {
-              note.textContent = started
-                ? "The scheduled mint start time has arrived. Check OpenSea for current availability."
-                : "Minting opens October 18 at 22:00 JST / 13:00 UTC.";
-            });
-
-            previousStarted = started;
-          }
-        }
-
-        updateTicketMint();
-
-        window.setInterval(updateTicketMint, 1000);
-
-        document.addEventListener("visibilitychange", () => {
-          if (!document.hidden) {
-            updateTicketMint();
-          }
-        });
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener(
-          "DOMContentLoaded",
-          initializeTicketMint,
-          { once: true }
-        );
-      } else {
-        initializeTicketMint();
-      }
-    })();
-  </script>
+  <small>© JAPAN47PIXEL</small>
+</footer>
 
 </body>
 </html>
