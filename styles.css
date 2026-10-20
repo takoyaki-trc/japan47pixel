@@ -336,18 +336,28 @@ a {
 .book-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  gap: 10px;
   margin: 15px 0;
+  align-items: stretch;
+}
+
+.book-entry {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .book-tile {
   min-width: 0;
+  width: 100%;
   padding: 4px;
   background: var(--paper);
   border: 2px solid var(--ink);
   box-shadow: 2px 2px 0 var(--ink);
   text-align: center;
   color: var(--ink);
+  flex: 1;
 }
 
 .book-tile:hover {
@@ -389,6 +399,43 @@ a {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+/* ======================================
+   OPENSEA BUTTONS UNDER BOOK CARDS
+   ====================================== */
+
+.book-opensea,
+.book-coming-soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 3px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  line-height: 1.3;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.book-opensea {
+  background: var(--navy);
+  color: white;
+  border: 2px solid var(--ink);
+  text-decoration: none;
+}
+
+.book-opensea:hover {
+  background: var(--red);
+}
+
+.book-coming-soon {
+  background: #e9e0cf;
+  color: #756b5b;
+  border: 2px solid #c8bda9;
 }
 
 /* ======================================
@@ -626,14 +673,14 @@ a {
 
 .map-scroll {
   width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   background: #a6d5c5;
   border: 2px solid var(--ink);
 }
 
 .map-canvas {
   width: 100%;
-  min-width: 460px;
+  min-width: 0;
 }
 
 #routeSvg {
@@ -664,7 +711,7 @@ a {
 }
 
 .route-node text {
-  font-size: 15px;
+  font-size: 17px;
   font-family: monospace;
   font-weight: 900;
   text-anchor: middle;
@@ -837,6 +884,20 @@ footer small {
 
   .stats strong {
     font-size: 16px;
+  }
+
+  .book-opensea,
+  .book-coming-soon {
+    font-size: 8px;
+    padding: 5px 2px;
+  }
+
+  .map-panel {
+    padding: 7px;
+  }
+
+  .map-head {
+    font-size: 9px;
   }
 }
 
