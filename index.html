@@ -10,920 +10,1043 @@
     content="width=device-width, initial-scale=1"
   >
 
-  <meta
-    name="theme-color"
-    content="#10233d"
-  >
-
   <title>
     TRAVELING TAKOYAKI — Japan 47 Journey
   </title>
 
   <meta
     name="description"
-    content="A pixel-art NFT journey across Japan's 47 prefectures."
+    content="One takoyaki truck. 47 prefectures. Collect Journey Tickets and discover pixel-art NFT chapters across Japan."
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="./traveling-takoyaki-icon.png"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="./traveling-takoyaki-icon.png"
+  >
+
+  <link
+    rel="manifest"
+    href="./site.webmanifest"
+  >
+
+  <meta
+    name="theme-color"
+    content="#10233d"
   >
 
   <link
     rel="stylesheet"
-    href="./styles.css?v=4"
+    href="./styles.css?v=5"
   >
 
   <script
-    src="./script.js?v=4"
+    src="./script.js?v=5"
     defer
   ></script>
 </head>
 
 <body>
 
-<!-- ==========================================
-     HEADER
-========================================== -->
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-<header class="site-header">
+  <header class="site-header" id="home">
 
-  <a class="brand" href="#home">
-    TRAVELING<br>TAKOYAKI 🐙🚚
-  </a>
+    <a class="brand" href="#home">
+      TRAVELING<br>
+      TAKOYAKI
+    </a>
 
-  <div class="header-right">
+    <div class="header-right">
 
-    <span class="header-kicker">
-      JAPAN 47 JOURNEY
-    </span>
-
-    <button
-      id="langSwitch"
-      class="lang-switch"
-      type="button"
-    >
-      日本語
-    </button>
-
-  </div>
-
-</header>
-
-
-<main id="home">
-
-<!-- ==========================================
-     HERO
-========================================== -->
-
-<section class="hero">
-
-  <img
-    id="heroImage"
-    class="hero-image"
-    alt="Traveling Takoyaki animated hero"
-  >
-
-  <div class="hero-copy">
-
-    <span class="eyebrow">
-      A PIXEL JOURNEY ACROSS JAPAN
-    </span>
-
-    <h1>
-      47 PREFECTURES.<br>
-      ONE TAKOYAKI.
-    </h1>
-
-    <p
-      data-en="One tiny takoyaki truck. Forty-seven destinations. Collect the journey, one stop at a time."
-      data-ja="一台のたこ焼きカーが、日本全国47都道府県を旅する。ひとつずつ旅の記録を集めよう。"
-    >
-      One tiny takoyaki truck.
-      Forty-seven destinations.
-      Collect the journey, one stop at a time.
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- ==========================================
-     STATS
-========================================== -->
-
-<div class="stats">
-
-  <div>
-    <strong id="currentStopStat">
-      01 / 47
-    </strong>
-    <small>CURRENT STOP</small>
-  </div>
-
-  <div>
-    <strong id="ticketStat">
-      333 / 333
-    </strong>
-    <small>HOKKAIDO TICKETS</small>
-  </div>
-
-  <div>
-    <strong id="rarityStat">
-      5
-    </strong>
-    <small>RARITIES</small>
-  </div>
-
-</div>
-
-
-<!-- ==========================================
-     NAVIGATION
-========================================== -->
-
-<nav
-  class="section-tabs"
-  aria-label="Website sections"
->
-
-  <button
-    type="button"
-    data-tab="tickets"
-    class="active"
-  >
-    🎟️ TICKET BOOK
-  </button>
-
-  <button
-    type="button"
-    data-tab="art"
-  >
-    🖼️ NFT ART BOOK
-  </button>
-
-  <button
-    type="button"
-    data-tab="rarity"
-  >
-    💎 RARITY
-  </button>
-
-  <button
-    type="button"
-    data-tab="journey"
-  >
-    🚚 JOURNEY
-  </button>
-
-  <button
-    type="button"
-    data-tab="faq"
-  >
-    ❔ FAQ
-  </button>
-
-</nav>
-
-
-<!-- ==========================================
-     LOADING / ERROR
-========================================== -->
-
-<div
-  id="loading"
-  class="loading"
-  role="status"
->
-  LOADING JOURNEY...
-</div>
-
-<div
-  id="error"
-  class="detail"
-  role="alert"
-  hidden
-></div>
-
-
-<!-- ==========================================
-     TICKET BOOK
-========================================== -->
-
-<section
-  class="page"
-  id="tickets"
-  hidden
->
-
-  <span class="eyebrow">
-    47 DESTINATIONS · 47 TICKETS
-  </span>
-
-  <h2>
-    JOURNEY TICKET BOOK
-  </h2>
-
-  <p
-    data-en="Choose a prefecture to view its Journey Ticket and official OpenSea collection."
-    data-ja="都道府県を選ぶと、Journey Ticketの詳細と専用OpenSeaリンクを確認できます。"
-  >
-    Choose a prefecture to view its
-    Journey Ticket and official OpenSea collection.
-  </p>
-
-
-  <!-- HOKKAIDO FEATURE -->
-
-  <div class="feature">
-
-    <div>
-
-      <span class="eyebrow">
-        STOP 01 · HOKKAIDO
+      <span class="header-kicker">
+        JAPAN 47 JOURNEY
       </span>
 
-      <h3 id="featureTicketTitle">
-        333 / 333 CLAIMED!
-      </h3>
+      <button
+        type="button"
+        class="lang-switch"
+        id="langSwitch"
+        aria-label="Switch language"
+      >
+        日本語
+      </button>
 
-      <p>
-        All Hokkaido Journey Tickets have been claimed.
-        Eligible holders may receive priority access
-        to the upcoming artwork sale after the
-        announced snapshot.
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero">
+
+    <img
+      id="heroImage"
+      class="hero-image"
+      src="https://ul.h3z.jp/nz0rNaws.gif"
+      alt="TRAVELING TAKOYAKI pixel-art journey"
+    >
+
+    <div class="hero-copy">
+
+      <span class="eyebrow">
+        47 TICKETS · 47 STOPS
+      </span>
+
+      <h1>
+        TRAVELING<br>
+        TAKOYAKI
+      </h1>
+
+      <p
+        data-en="One takoyaki truck. Forty-seven prefectures. A pixel-art journey across Japan."
+        data-ja="一台のたこ焼きカーで、日本全国47都道府県を巡るピクセルアートの旅。"
+      >
+        One takoyaki truck. Forty-seven prefectures.
+        A pixel-art journey across Japan.
       </p>
 
-      <span class="stamp">
-        SOLD OUT
-      </span>
-
-      <span class="stamp">
-        1 PER WALLET
-      </span>
-
     </div>
 
-    <img
-      id="featureTicketImage"
-      alt="Hokkaido Journey Ticket"
-    >
-
-  </div>
+  </section>
 
 
-  <!-- FILTERS -->
+  <!-- =========================
+       STATISTICS
+  ========================== -->
 
-  <div class="filters">
-
-    <input
-      id="ticketSearch"
-      type="search"
-      placeholder="SEARCH PREFECTURE..."
-      aria-label="Search prefecture"
-    >
-
-    <select
-      id="ticketRegion"
-      aria-label="Ticket region"
-    ></select>
-
-  </div>
-
-  <p
-    id="ticketCount"
-    class="result-count"
-  ></p>
-
-  <div
-    id="ticketGrid"
-    class="book-grid"
-  ></div>
-
-  <div
-    id="ticketDetail"
-    class="detail"
-    aria-live="polite"
-  ></div>
-
-</section>
-
-
-<!-- ==========================================
-     NFT ART BOOK
-========================================== -->
-
-<section
-  class="page"
-  id="art"
-  hidden
->
-
-  <span class="eyebrow">
-    47 DESTINATIONS · 47 ART CHAPTERS
-  </span>
-
-  <h2>
-    NFT ART COLLECTION BOOK
-  </h2>
-
-  <p
-    data-en="Every prefecture has its own artwork NFT collection, separate from the Journey Ticket."
-    data-ja="47都道府県それぞれに、Journey Ticketとは別のNFTアートコレクションが用意されています。"
-  >
-    Every prefecture has its own artwork
-    NFT collection, separate from the Journey Ticket.
-  </p>
-
-
-  <!-- HOKKAIDO ART FEATURE -->
-
-  <div class="feature">
+  <section class="stats" aria-label="Journey statistics">
 
     <div>
+      <strong id="currentStopStat">01 / 47</strong>
+      <small
+        data-en="CURRENT STOP"
+        data-ja="現在の旅の地点"
+      >
+        CURRENT STOP
+      </small>
+    </div>
+
+    <div>
+      <strong id="ticketStat">333 / 333</strong>
+      <small
+        data-en="HOKKAIDO TICKETS"
+        data-ja="北海道チケット"
+      >
+        HOKKAIDO TICKETS
+      </small>
+    </div>
+
+    <div>
+      <strong id="rarityStat">5</strong>
+      <small
+        data-en="RARITIES"
+        data-ja="レアリティ"
+      >
+        RARITIES
+      </small>
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SECTION NAVIGATION
+  ========================== -->
+
+  <nav
+    class="section-tabs"
+    aria-label="Main sections"
+  >
+
+    <button
+      type="button"
+      data-tab="tickets"
+      class="active"
+      aria-selected="true"
+      data-en="TICKET BOOK"
+      data-ja="チケット図鑑"
+    >
+      TICKET BOOK
+    </button>
+
+    <button
+      type="button"
+      data-tab="art"
+      aria-selected="false"
+      data-en="NFT ART BOOK"
+      data-ja="NFTアート図鑑"
+    >
+      NFT ART BOOK
+    </button>
+
+    <button
+      type="button"
+      data-tab="rarity"
+      aria-selected="false"
+      data-en="RARITY"
+      data-ja="レアリティ"
+    >
+      RARITY
+    </button>
+
+    <button
+      type="button"
+      data-tab="journey"
+      aria-selected="false"
+      data-en="JOURNEY MAP"
+      data-ja="旅のマップ"
+    >
+      JOURNEY MAP
+    </button>
+
+    <button
+      type="button"
+      data-tab="faq"
+      aria-selected="false"
+    >
+      FAQ
+    </button>
+
+  </nav>
+
+
+  <!-- =========================
+       LOADING / ERROR
+  ========================== -->
+
+  <div
+    id="loading"
+    class="loading"
+    role="status"
+  >
+    LOADING JAPAN 47 JOURNEY...
+  </div>
+
+  <div
+    id="error"
+    class="detail"
+    role="alert"
+    hidden
+  ></div>
+
+
+  <!-- =========================
+       TICKET BOOK
+  ========================== -->
+
+  <main>
+
+    <section
+      class="page"
+      id="tickets"
+    >
 
       <span class="eyebrow">
-        CHAPTER 01 · HOKKAIDO
+        47 JOURNEY TICKETS
       </span>
 
-      <h3 id="featureArtTitle">
-        7 + 1 ARTWORKS
-      </h3>
+      <h2
+        data-en="THE TICKET BOOK"
+        data-ja="チケット図鑑"
+      >
+        THE TICKET BOOK
+      </h2>
 
-      <p>
-        Seven Hokkaido-inspired designs
-        plus one LR-exclusive artwork.
-        Five rarities with different
-        time-of-day backgrounds.
+      <p
+        data-en="Explore the Journey Tickets from all 47 prefectures. Each destination has its own chapter."
+        data-ja="47都道府県のJourney Ticketを集める旅。各地のチケットをチェックしよう！"
+      >
+        Explore the Journey Tickets from all
+        47 prefectures. Each destination has
+        its own chapter.
       </p>
 
-      <span class="stamp">
-        ART DROP COMING SOON
-      </span>
 
-    </div>
+      <!-- CURRENT TICKET FEATURE -->
 
-    <img
-      id="featureArtImage"
-      alt="Hokkaido NFT artwork"
-    >
+      <div class="feature">
 
-  </div>
+        <div>
 
+          <span class="eyebrow">
+            STOP 01 · HOKKAIDO
+          </span>
 
-  <!-- HOKKAIDO ART GALLERY -->
+          <h3 id="featureTicketTitle">
+            333 / 333 CLAIMED
+          </h3>
 
-  <h3 class="subheading">
-    HOKKAIDO ART GALLERY
-  </h3>
+          <p>
+            All 333 Hokkaido Journey Tickets
+            have been claimed.
+          </p>
 
-  <div class="gallery-stage">
+          <span class="stamp">
+            SOLD OUT
+          </span>
 
-    <button
-      id="prevArt"
-      type="button"
-      aria-label="Previous artwork"
-    >
-      ◀
-    </button>
+          <span class="stamp">
+            1 PER WALLET
+          </span>
 
-    <img
-      id="galleryImage"
-      alt="Hokkaido artwork"
-    >
+        </div>
 
-    <button
-      id="nextArt"
-      type="button"
-      aria-label="Next artwork"
-    >
-      ▶
-    </button>
-
-  </div>
-
-  <p
-    id="galleryCaption"
-    class="gallery-caption"
-  ></p>
-
-  <div
-    id="galleryThumbs"
-    class="gallery-thumbs"
-  ></div>
-
-
-  <!-- 47 ART CHAPTERS -->
-
-  <h3 class="subheading">
-    47 ART CHAPTERS
-  </h3>
-
-  <div class="filters">
-
-    <select
-      id="artRegion"
-      aria-label="Artwork region"
-    ></select>
-
-  </div>
-
-
-  <!--
-    HOKKAIDO CONTRACT IMAGE
-
-    北海道のARTBOOK画像のみ変更。
-    script.jsがこのURLを読み込む。
-
-    TICKET BOOKやNFTギャラリーには
-    影響しない。
-  -->
-
-  <div
-    id="artGrid"
-    class="book-grid"
-    data-hokkaido-art-image="https://ul.h3z.jp/oyLZXgar.png"
-  ></div>
-
-  <div
-    id="artDetail"
-    class="detail"
-    aria-live="polite"
-  ></div>
-
-</section>
-
-
-<!-- ==========================================
-     RARITY
-========================================== -->
-
-<section
-  class="page dark-page"
-  id="rarity"
-  hidden
->
-
-  <span class="eyebrow">
-    HOKKAIDO · CHAPTER 01
-  </span>
-
-  <h2>
-    FIVE RARITIES.<br>
-    ONE JOURNEY.
-  </h2>
-
-  <p>
-    Each rarity has its own frame and
-    a background atmosphere connected
-    to the passage from morning to night.
-  </p>
-
-  <div
-    class="time-track"
-    aria-label="Background atmosphere from morning to night"
-  ></div>
-
-  <div class="time-labels">
-    <span>☀ MORNING</span>
-    <span>🌙 NIGHT</span>
-  </div>
-
-  <div
-    id="rarityTabs"
-    class="rarity-tabs"
-  ></div>
-
-  <div class="rarity-card">
-
-    <img
-      id="rarityImage"
-      alt="Rarity frame"
-    >
-
-    <div>
-
-      <span class="eyebrow">
-        RARITY FRAME
-      </span>
-
-      <h3 id="rarityTitle"></h3>
-
-      <strong id="rarityRate"></strong>
-
-      <p id="rarityCount"></p>
-
-    </div>
-
-  </div>
-
-
-  <div class="notice">
-
-    <strong id="rarityNoticeTitle">
-      ILLUSTRATIVE EXAMPLE · 99 NFTs
-    </strong>
-
-    <p id="rarityBreakdown"></p>
-
-    <p>
-      These are example rarity proportions,
-      not final mint odds.
-      Final supply and rarity allocation
-      will be announced before the art sale.
-      The exact background-to-rarity mapping
-      is not yet shown here.
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- ==========================================
-     JOURNEY
-========================================== -->
-
-<section
-  class="page"
-  id="journey"
-  hidden
->
-
-  <span class="eyebrow">
-    47 STOPS · ONE LONG ROAD
-  </span>
-
-  <h2>
-    THE JAPAN 47 JOURNEY
-  </h2>
-
-  <p
-    data-en="Follow the takoyaki truck along the winding route. Tap a stop to explore its ticket and artwork collections."
-    data-ja="たこ焼きカーと一緒に47都道府県を巡ろう！各地点をタップすると、チケットやNFTアートの情報を確認できます。"
-  >
-    Follow the takoyaki truck along the winding route.
-    Tap a stop to explore its ticket and artwork collections.
-  </p>
-
-
-  <div class="map-panel">
-
-    <div class="map-head">
-
-      <span>
-        JAPAN 47 ROUTE
-      </span>
-
-      <span id="mapCounter">
-        STOP 01 / 47
-      </span>
-
-    </div>
-
-
-    <div class="map-scroll">
-
-      <div class="map-canvas">
-
-        <svg
-          id="routeSvg"
-          viewBox="0 0 660 1050"
-          aria-label="47-stop journey route"
+        <img
+          id="featureTicketImage"
+          src="https://ul.h3z.jp/JdJ1ZSjj.png"
+          alt="Current Journey Ticket"
         >
-
-          <path
-            id="roadOutline"
-            fill="none"
-            stroke="#11131a"
-            stroke-width="28"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></path>
-
-          <path
-            id="road"
-            fill="none"
-            stroke="#f6c95b"
-            stroke-width="19"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-dasharray="2 10"
-          ></path>
-
-          <path
-            id="routeProgress"
-            fill="none"
-            stroke="#f04438"
-            stroke-width="9"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></path>
-
-          <g id="routeNodes"></g>
-
-          <image
-            id="truckSprite"
-            width="64"
-            height="64"
-            x="-32"
-            y="-48"
-            style="image-rendering:pixelated"
-          ></image>
-
-        </svg>
 
       </div>
 
-    </div>
 
+      <!-- TICKET FILTERS -->
 
-    <div class="map-actions">
+      <div class="filters">
 
-      <button
-        id="prevStop"
-        type="button"
+        <input
+          type="search"
+          id="ticketSearch"
+          placeholder="SEARCH PREFECTURE..."
+          aria-label="Search prefectures"
+        >
+
+        <select
+          id="ticketRegion"
+          aria-label="Filter ticket region"
+        >
+          <option value="all">
+            ALL REGIONS
+          </option>
+        </select>
+
+      </div>
+
+      <div
+        class="result-count"
+        id="ticketCount"
+        aria-live="polite"
       >
-        ◀ PREV
-      </button>
+        47 / 47 DESTINATIONS
+      </div>
 
-      <button
-        id="playRoute"
-        type="button"
+
+      <!-- TICKET GRID -->
+
+      <div
+        id="ticketGrid"
+        class="book-grid"
+      ></div>
+
+
+      <!-- TICKET DETAILS -->
+
+      <h3
+        class="subheading"
+        data-en="TICKET DETAILS"
+        data-ja="チケット詳細"
       >
-        ▶ PLAY
-      </button>
+        TICKET DETAILS
+      </h3>
 
-      <button
-        id="nextStop"
-        type="button"
+      <div
+        id="ticketDetail"
+        class="detail"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         NFT ART BOOK
+    ========================== -->
+
+    <section
+      class="page"
+      id="art"
+      hidden
+    >
+
+      <span class="eyebrow">
+        47 ART CHAPTERS
+      </span>
+
+      <h2
+        data-en="THE NFT ART BOOK"
+        data-ja="NFTアート図鑑"
       >
-        NEXT ▶
-      </button>
+        THE NFT ART BOOK
+      </h2>
 
-    </div>
-
-  </div>
-
-  <div
-    id="journeyDetail"
-    class="detail"
-  ></div>
-
-</section>
+      <p
+        data-en="Discover pixel-art NFT chapters inspired by the 47 prefectures of Japan."
+        data-ja="日本全国47都道府県をテーマにした、ピクセルアートNFTのコレクション。"
+      >
+        Discover pixel-art NFT chapters inspired
+        by the 47 prefectures of Japan.
+      </p>
 
 
-<!-- ==========================================
-     FAQ
-     LONG-TERM VERSION
-     ENGLISH / JAPANESE
-========================================== -->
+      <!-- CURRENT ART FEATURE -->
 
-<section
-  class="page dark-page"
-  id="faq"
-  hidden
->
+      <div class="feature">
 
-  <span class="eyebrow">
-    QUESTIONS BEFORE DEPARTURE
-  </span>
+        <div>
 
-  <h2>
-    FAQ & SAFETY
-  </h2>
+          <span class="eyebrow">
+            CHAPTER 01 · HOKKAIDO
+          </span>
+
+          <h3 id="featureArtTitle">
+            HOKKAIDO · 8 ARTWORKS
+          </h3>
+
+          <p>
+            Explore eight pixel-art artworks
+            from Hokkaido.
+          </p>
+
+          <span class="stamp">
+            COMING SOON
+          </span>
+
+        </div>
+
+        <img
+          id="featureArtImage"
+          src="https://ul.h3z.jp/oHLrQFcg.png"
+          alt="Current NFT art chapter"
+        >
+
+      </div>
 
 
-  <!-- FAQ 01 -->
+      <!-- ART GALLERY -->
 
-  <details open>
+      <h3
+        class="subheading"
+        data-en="PIXEL ART GALLERY"
+        data-ja="ピクセルアートギャラリー"
+      >
+        PIXEL ART GALLERY
+      </h3>
 
-    <summary
-      data-en="What is TRAVELING TAKOYAKI?"
-      data-ja="TRAVELING TAKOYAKIとは？"
+      <p
+        data-en="Select an artwork to view it. Choosing a prefecture from the Art Book also switches the gallery."
+        data-ja="作品を選んで拡大表示できます。アート図鑑で都道府県を選ぶと、その地域のギャラリーに切り替わります。"
+      >
+        Select an artwork to view it.
+        Choosing a prefecture from the Art Book
+        also switches the gallery.
+      </p>
+
+      <div class="gallery-stage">
+
+        <button
+          type="button"
+          id="prevArt"
+          aria-label="Previous artwork"
+        >
+          ◀
+        </button>
+
+        <img
+          id="galleryImage"
+          src="https://ul.h3z.jp/oHLrQFcg.png"
+          alt="Selected NFT artwork"
+        >
+
+        <button
+          type="button"
+          id="nextArt"
+          aria-label="Next artwork"
+        >
+          ▶
+        </button>
+
+      </div>
+
+      <p
+        class="gallery-caption"
+        id="galleryCaption"
+        aria-live="polite"
+      >
+        HOKKAIDO · 01 / 08
+      </p>
+
+      <div
+        class="gallery-thumbs"
+        id="galleryThumbs"
+      ></div>
+
+
+      <!-- ART BOOK FILTER -->
+
+      <h3
+        class="subheading"
+        data-en="47 ART CHAPTERS"
+        data-ja="47都道府県のアート図鑑"
+      >
+        47 ART CHAPTERS
+      </h3>
+
+      <div class="filters">
+
+        <select
+          id="artRegion"
+          aria-label="Filter art region"
+        >
+          <option value="all">
+            ALL REGIONS
+          </option>
+        </select>
+
+      </div>
+
+
+      <!-- ART BOOK GRID -->
+
+      <div
+        id="artGrid"
+        class="book-grid"
+        data-hokkaido-art-image="https://ul.h3z.jp/oyLZXgar.png"
+      ></div>
+
+
+      <!-- ART DETAILS -->
+
+      <h3
+        class="subheading"
+        data-en="ART CHAPTER DETAILS"
+        data-ja="アート作品の詳細"
+      >
+        ART CHAPTER DETAILS
+      </h3>
+
+      <div
+        id="artDetail"
+        class="detail"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         RARITY
+    ========================== -->
+
+    <section
+      class="page dark-page"
+      id="rarity"
+      hidden
     >
-      What is TRAVELING TAKOYAKI?
-    </summary>
 
-    <p
-      data-en="TRAVELING TAKOYAKI is a pixel-art NFT journey across all 47 prefectures of Japan. Each destination has its own Journey Ticket and artwork NFT collection."
-      data-ja="TRAVELING TAKOYAKIは、日本全国47都道府県を巡るピクセルアートNFTプロジェクトです。各都道府県ごとにJourney TicketとNFTアートコレクションが用意されています。"
+      <span class="eyebrow">
+        FIVE RARITIES
+      </span>
+
+      <h2
+        data-en="THE RARITY SYSTEM"
+        data-ja="レアリティシステム"
+      >
+        THE RARITY SYSTEM
+      </h2>
+
+      <p
+        data-en="Each NFT chapter features five rarity tiers, from Normal to Legendary."
+        data-ja="NFTアートにはNORMALからLEGENDARYまで、5段階のレアリティがあります。"
+      >
+        Each NFT chapter features five rarity
+        tiers, from Normal to Legendary.
+      </p>
+
+
+      <!-- TIME BACKGROUND -->
+
+      <h3
+        class="subheading"
+        data-en="THE PASSAGE OF TIME"
+        data-ja="時間とともに変わる背景"
+      >
+        THE PASSAGE OF TIME
+      </h3>
+
+      <p
+        data-en="The pixel-art journey explores different moods and times of day."
+        data-ja="時間帯によって表情を変える、ピクセルアートの世界。"
+      >
+        The pixel-art journey explores
+        different moods and times of day.
+      </p>
+
+      <div
+        class="time-track"
+        aria-hidden="true"
+      ></div>
+
+      <div class="time-labels">
+        <span>DAY</span>
+        <span>EVENING</span>
+        <span>NIGHT</span>
+      </div>
+
+
+      <!-- RARITY TABS -->
+
+      <h3
+        class="subheading"
+        data-en="EXPLORE THE RARITIES"
+        data-ja="レアリティをチェック"
+      >
+        EXPLORE THE RARITIES
+      </h3>
+
+      <div
+        class="rarity-tabs"
+        id="rarityTabs"
+      ></div>
+
+
+      <!-- RARITY DETAIL -->
+
+      <div class="rarity-card">
+
+        <img
+          id="rarityImage"
+          src="https://ul.h3z.jp/mpichzx4.png"
+          alt="Rarity frame"
+        >
+
+        <div>
+
+          <span class="eyebrow">
+            NFT RARITY
+          </span>
+
+          <h3 id="rarityTitle">
+            NORMAL · N
+          </h3>
+
+          <strong id="rarityRate">
+            49.49%
+          </strong>
+
+          <p id="rarityCount">
+            49 / 99 — EXAMPLE ONLY
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- RARITY NOTICE -->
+
+      <div class="notice">
+
+        <strong id="rarityNoticeTitle">
+          ILLUSTRATIVE EXAMPLE · 99 NFTs
+        </strong>
+
+        <p id="rarityBreakdown">
+          N 49 · R 28 · SR 14 · UR 7 · LR 1
+        </p>
+
+        <p
+          data-en="This is an illustrative example only. Actual supply, allocation and rarity rates may vary by chapter and will be announced separately."
+          data-ja="これは99枚発行した場合の参考例です。実際の発行枚数・レアリティ配分・出現率は各章で異なる場合があり、別途発表します。"
+        >
+          This is an illustrative example only.
+          Actual supply, allocation and rarity
+          rates may vary by chapter and will be
+          announced separately.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         JOURNEY MAP
+    ========================== -->
+
+    <section
+      class="page"
+      id="journey"
+      hidden
     >
-      TRAVELING TAKOYAKI is a pixel-art NFT journey
-      across all 47 prefectures of Japan.
-      Each destination has its own Journey Ticket
-      and artwork NFT collection.
-    </p>
 
-  </details>
+      <span class="eyebrow">
+        47 STOPS · ONE JOURNEY
+      </span>
+
+      <h2
+        data-en="THE JAPAN 47 JOURNEY"
+        data-ja="日本全国47都道府県の旅"
+      >
+        THE JAPAN 47 JOURNEY
+      </h2>
+
+      <p
+        data-en="Follow the takoyaki truck through all 47 prefectures. Select a stop to explore its Ticket and NFT Art chapter."
+        data-ja="たこ焼きカーと一緒に47都道府県を巡ろう！各地点を選ぶと、チケットとNFTアートの情報を見ることができます。"
+      >
+        Follow the takoyaki truck through
+        all 47 prefectures. Select a stop
+        to explore its Ticket and NFT Art chapter.
+      </p>
 
 
-  <!-- FAQ 02 -->
+      <!-- MAP -->
 
-  <details>
+      <div class="map-panel">
 
-    <summary
-      data-en="What is a Journey Ticket?"
-      data-ja="Journey Ticketとは？"
+        <div class="map-head">
+
+          <span>
+            TRAVELING TAKOYAKI
+          </span>
+
+          <span id="mapCounter">
+            STOP 01 / 47
+          </span>
+
+        </div>
+
+        <div class="map-scroll">
+
+          <div class="map-canvas">
+
+            <svg
+              id="routeSvg"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 660 1020"
+              role="img"
+              aria-label="Interactive route through 47 Japanese prefectures"
+              preserveAspectRatio="xMidYMid meet"
+            >
+
+              <!-- ROUTE OUTLINE -->
+
+              <path
+                id="roadOutline"
+                d=""
+                fill="none"
+                stroke="#11131a"
+                stroke-width="19"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+
+              <!-- ROUTE -->
+
+              <path
+                id="road"
+                d=""
+                fill="none"
+                stroke="#fff5d8"
+                stroke-width="12"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+
+              <!-- COMPLETED ROUTE -->
+
+              <path
+                id="routeProgress"
+                d=""
+                fill="none"
+                stroke="#f04438"
+                stroke-width="9"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+
+              <!-- ALL 47 NODES -->
+
+              <g id="routeNodes"></g>
+
+              <!-- TAKOYAKI TRUCK -->
+
+              <image
+                id="truckSprite"
+                href="https://ul.h3z.jp/Lu7ch0Ne.png"
+                x="43"
+                y="27"
+                width="64"
+                height="64"
+                preserveAspectRatio="xMidYMid meet"
+                style="pointer-events:none"
+              ></image>
+
+            </svg>
+
+          </div>
+
+        </div>
+
+
+        <!-- MAP CONTROLS -->
+
+        <div class="map-actions">
+
+          <button
+            type="button"
+            id="prevStop"
+            data-en="◀ PREV"
+            data-ja="◀ 前へ"
+          >
+            ◀ PREV
+          </button>
+
+          <button
+            type="button"
+            id="playRoute"
+          >
+            ▶ PLAY
+          </button>
+
+          <button
+            type="button"
+            id="nextStop"
+            data-en="NEXT ▶"
+            data-ja="次へ ▶"
+          >
+            NEXT ▶
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- SELECTED STOP DETAILS -->
+
+      <h3
+        class="subheading"
+        data-en="SELECTED DESTINATION"
+        data-ja="選択中の都道府県"
+      >
+        SELECTED DESTINATION
+      </h3>
+
+      <div
+        id="journeyDetail"
+        class="detail"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         FAQ
+    ========================== -->
+
+    <section
+      class="page dark-page"
+      id="faq"
+      hidden
     >
-      What is a Journey Ticket?
-    </summary>
 
-    <p
-      data-en="A Journey Ticket is a prefecture-specific NFT. Eligible holders at an announced snapshot may receive priority access to purchase artwork NFTs for that destination."
-      data-ja="Journey Ticketは各都道府県ごとに発行されるNFTです。指定されたスナップショット時点で条件を満たす保有者には、その地域のNFTアートを優先購入できる機会が提供される場合があります。"
-    >
-      A Journey Ticket is a prefecture-specific NFT.
-      Eligible holders at an announced snapshot may
-      receive priority access to purchase artwork NFTs
-      for that destination.
-    </p>
+      <span class="eyebrow">
+        QUESTIONS & ANSWERS
+      </span>
 
-  </details>
+      <h2
+        data-en="FREQUENTLY ASKED QUESTIONS"
+        data-ja="よくある質問"
+      >
+        FREQUENTLY ASKED QUESTIONS
+      </h2>
 
 
-  <!-- FAQ 03 -->
+      <details>
+        <summary
+          data-en="What is TRAVELING TAKOYAKI?"
+          data-ja="TRAVELING TAKOYAKIとは？"
+        >
+          What is TRAVELING TAKOYAKI?
+        </summary>
 
-  <details>
-
-    <summary
-      data-en="Are Journey Tickets always free?"
-      data-ja="Journey Ticketはすべて無料ですか？"
-    >
-      Are Journey Tickets always free?
-    </summary>
-
-    <p
-      data-en="Not necessarily. Ticket prices, supply and distribution conditions may vary by destination. Please check the official announcements for each stop. Network fees may also apply."
-      data-ja="必ずしもすべて無料ではありません。チケットの価格、発行枚数、配布条件は都道府県ごとに異なる場合があります。各地域の公式発表をご確認ください。また、ネットワーク手数料が発生する場合があります。"
-    >
-      Not necessarily.
-      Ticket prices, supply and distribution
-      conditions may vary by destination.
-      Please check the official announcements
-      for each stop.
-      Network fees may also apply.
-    </p>
-
-  </details>
+        <p
+          data-en="TRAVELING TAKOYAKI — Japan 47 Journey is a pixel-art NFT project that follows a takoyaki truck across all 47 prefectures of Japan. Each destination has its own Journey Ticket and NFT art chapter."
+          data-ja="たこ焼きカーが日本全国47都道府県を巡るピクセルアートNFTプロジェクトです。各都道府県にJourney TicketとNFTアートの章があります。"
+        >
+          TRAVELING TAKOYAKI — Japan 47 Journey
+          is a pixel-art NFT project that follows
+          a takoyaki truck across all 47 prefectures
+          of Japan.
+        </p>
+      </details>
 
 
-  <!-- FAQ 04 -->
+      <details>
+        <summary
+          data-en="What is a Journey Ticket?"
+          data-ja="Journey Ticketとは？"
+        >
+          What is a Journey Ticket?
+        </summary>
 
-  <details>
-
-    <summary
-      data-en="Does a Journey Ticket guarantee an artwork NFT?"
-      data-ja="Journey TicketがあればNFTアートを必ず購入できますか？"
-    >
-      Does a Journey Ticket guarantee an artwork NFT?
-    </summary>
-
-    <p
-      data-en="No. A Journey Ticket does not guarantee an artwork NFT. Artwork NFTs are purchased separately and may be subject to eligibility requirements, limited supply, availability and per-wallet limits."
-      data-ja="いいえ。Journey TicketはNFTアートの購入や入手を保証するものではありません。NFTアートは別途購入する必要があり、購入資格、発行枚数、在庫、ウォレットごとの購入上限などの条件があります。"
-    >
-      No. A Journey Ticket does not guarantee
-      an artwork NFT.
-      Artwork NFTs are purchased separately
-      and may be subject to eligibility requirements,
-      limited supply, availability
-      and per-wallet limits.
-    </p>
-
-  </details>
+        <p
+          data-en="A Journey Ticket is a collectible NFT associated with a specific prefecture. Ticket holders may receive access to announced benefits, including eligibility for priority purchase opportunities, subject to the conditions of each chapter."
+          data-ja="各都道府県に対応したコレクションNFTです。チケット保有者は、各章で発表される条件に応じて、NFTアートの優先購入などの特典の対象となる場合があります。"
+        >
+          A Journey Ticket is a collectible NFT
+          associated with a specific prefecture.
+        </p>
+      </details>
 
 
-  <!-- FAQ 05 -->
+      <details>
+        <summary
+          data-en="Are Journey Tickets free?"
+          data-ja="Journey Ticketは無料ですか？"
+        >
+          Are Journey Tickets free?
+        </summary>
 
-  <details>
-
-    <summary
-      data-en="How can I find upcoming NFT releases?"
-      data-ja="今後のNFT販売情報はどこで確認できますか？"
-    >
-      How can I find upcoming NFT releases?
-    </summary>
-
-    <p
-      data-en="Release dates, snapshot schedules, prices and other important updates will be announced through our official social media accounts and OpenSea collections. Check the latest announcements before participating."
-      data-ja="NFTの発売日、スナップショットの日程、価格などの重要なお知らせは、公式SNSおよびOpenSeaでご案内します。参加前に最新情報をご確認ください。"
-    >
-      Release dates, snapshot schedules,
-      prices and other important updates
-      will be announced through our
-      official social media accounts
-      and OpenSea collections.
-      Check the latest announcements
-      before participating.
-    </p>
-
-  </details>
+        <p
+          data-en="Ticket prices may vary by destination. Some releases may be free to mint, while network fees may still apply. Always check the official release details."
+          data-ja="チケットの価格は都道府県によって異なる場合があります。無料ミントでもネットワーク手数料が発生することがあります。各回の公式案内をご確認ください。"
+        >
+          Ticket prices may vary by destination.
+          Some releases may be free to mint,
+          while network fees may still apply.
+        </p>
+      </details>
 
 
-  <!-- FAQ 06 -->
+      <details>
+        <summary
+          data-en="Does a Journey Ticket guarantee an NFT artwork?"
+          data-ja="チケットがあればNFTアートを必ず購入できますか？"
+        >
+          Does a Journey Ticket guarantee an NFT artwork?
+        </summary>
 
-  <details>
-
-    <summary
-      data-en="What are the five rarities?"
-      data-ja="5種類のレアリティとは？"
-    >
-      What are the five rarities?
-    </summary>
-
-    <p
-      data-en="The five rarity levels are N (Normal), R (Rare), SR (Super Rare), UR (Ultra Rare) and LR (Legend Rare). Rarity distributions and artwork details are announced for each collection."
-      data-ja="レアリティはN（ノーマル）、R（レア）、SR（スーパーレア）、UR（ウルトラレア）、LR（レジェンドレア）の5段階です。各レアリティの発行割合や作品の詳細は、コレクションごとにご案内します。"
-    >
-      The five rarity levels are
-      N (Normal), R (Rare), SR (Super Rare),
-      UR (Ultra Rare) and LR (Legend Rare).
-      Rarity distributions and artwork details
-      are announced for each collection.
-    </p>
-
-  </details>
+        <p
+          data-en="No. A Journey Ticket does not guarantee an artwork or a successful purchase. Eligibility, snapshots, wallet limits and supply are determined by each chapter's announced rules."
+          data-ja="いいえ。チケットはNFTアートの取得や購入成功を保証するものではありません。スナップショット、購入上限、発行枚数などは各章の発表条件に従います。"
+        >
+          No. A Journey Ticket does not guarantee
+          an artwork or a successful purchase.
+        </p>
+      </details>
 
 
-  <!-- FAQ 07 -->
+      <details>
+        <summary
+          data-en="When will new destinations and NFTs be released?"
+          data-ja="次の都道府県やNFTの発売はいつですか？"
+        >
+          When will new destinations and NFTs be released?
+        </summary>
 
-  <details>
-
-    <summary
-      data-en="Where can I find the official OpenSea collections?"
-      data-ja="公式OpenSeaコレクションはどこにありますか？"
-    >
-      Where can I find the official OpenSea collections?
-    </summary>
-
-    <p
-      data-en="Visit the Journey Ticket Book or NFT Art Collection Book on this website. Each released destination has its own official OpenSea collection link."
-      data-ja="この公式サイトのJourney Ticket BookまたはNFT Art Collection Bookから確認できます。公開済みの各都道府県には、それぞれ専用のOpenSeaコレクションへのリンクが用意されています。"
-    >
-      Visit the Journey Ticket Book
-      or NFT Art Collection Book on this website.
-      Each released destination has its own
-      official OpenSea collection link.
-    </p>
-
-  </details>
+        <p
+          data-en="Release schedules will be announced through official social media channels and OpenSea. Please check the latest announcements for confirmed dates."
+          data-ja="公開日や販売日は、公式SNSとOpenSeaで順次お知らせします。確定した日程は最新の公式発表をご確認ください。"
+        >
+          Release schedules will be announced
+          through official social media channels
+          and OpenSea.
+        </p>
+      </details>
 
 
-  <!-- FAQ 08 -->
+      <details>
+        <summary
+          data-en="What are the five rarity tiers?"
+          data-ja="5種類のレアリティとは？"
+        >
+          What are the five rarity tiers?
+        </summary>
 
-  <details>
-
-    <summary
-      data-en="Can I join the journey at a later stop?"
-      data-ja="途中の都道府県から参加できますか？"
-    >
-      Can I join the journey at a later stop?
-    </summary>
-
-    <p
-      data-en="Yes! You can join the journey at any destination. Each stop has its own release schedule and participation conditions, so you do not need to have collected previous tickets to follow the journey."
-      data-ja="はい！どの都道府県からでも旅に参加できます。各地域にはそれぞれの公開スケジュールと参加条件があり、過去のチケットをすべて集めていなくても旅を楽しめます。"
-    >
-      Yes! You can join the journey
-      at any destination.
-      Each stop has its own release schedule
-      and participation conditions,
-      so you do not need to have collected
-      previous tickets to follow the journey.
-    </p>
-
-  </details>
+        <p
+          data-en="The five tiers are Normal (N), Rare (R), Super Rare (SR), Ultra Rare (UR), and Legendary (LR). Any percentages shown as examples are illustrative and are not confirmed allocations for future chapters."
+          data-ja="NORMAL（N）、RARE（R）、SUPER RARE（SR）、ULTRA RARE（UR）、LEGENDARY（LR）の5種類です。参考例の確率は、今後の章の確定配分を示すものではありません。"
+        >
+          The five tiers are Normal, Rare,
+          Super Rare, Ultra Rare, and Legendary.
+        </p>
+      </details>
 
 
-  <!-- SAFETY -->
+      <details>
+        <summary
+          data-en="Where can I find the official OpenSea collection?"
+          data-ja="公式OpenSeaコレクションはどこですか？"
+        >
+          Where can I find the official OpenSea collection?
+        </summary>
 
-  <div class="notice">
-
-    <strong
-      data-en="STAY SAFE"
-      data-ja="安全に楽しむために"
-    >
-      STAY SAFE
-    </strong>
-
-    <p
-      data-en="Never share your seed phrase or private key. Always verify official URLs before connecting your wallet or making a purchase."
-      data-ja="シードフレーズや秘密鍵は絶対に他人に教えないでください。ウォレット接続や購入の前には、必ず公式URLをご確認ください。"
-    >
-      Never share your seed phrase or private key.
-      Always verify official URLs before connecting
-      your wallet or making a purchase.
-    </p>
-
-  </div>
-
-</section>
+        <p
+          data-en="Use the official OpenSea link at the bottom of this website. Individual destination links will also appear in the Ticket Book and NFT Art Book when available."
+          data-ja="このサイト下部の公式OpenSeaリンクをご利用ください。各都道府県の公開後は、チケット図鑑やNFTアート図鑑にもリンクが表示されます。"
+        >
+          Use the official OpenSea link at
+          the bottom of this website.
+        </p>
+      </details>
 
 
-</main>
+      <details>
+        <summary
+          data-en="Can I join the journey later?"
+          data-ja="途中から旅に参加できますか？"
+        >
+          Can I join the journey later?
+        </summary>
+
+        <p
+          data-en="Yes. You can follow the project at any stage. Availability of past Tickets and NFT artworks depends on their release status and secondary-market listings."
+          data-ja="はい。途中からでも参加できます。ただし、過去のチケットやNFTアートを入手できるかどうかは、配布状況や二次流通での出品状況によります。"
+        >
+          Yes. You can follow the project
+          at any stage.
+        </p>
+      </details>
 
 
-<!-- ==========================================
-     FOOTER
-========================================== -->
+      <details>
+        <summary
+          data-en="How can I stay safe?"
+          data-ja="安全に参加するには？"
+        >
+          How can I stay safe?
+        </summary>
+
+        <p
+          data-en="Always verify official links. Never share your wallet's seed phrase or private keys. Be cautious of impersonators and unsolicited direct messages."
+          data-ja="必ず公式リンクを確認してください。ウォレットのシードフレーズや秘密鍵は絶対に他人に教えないでください。なりすましや不審なDMにもご注意ください。"
+        >
+          Always verify official links.
+          Never share your wallet's seed phrase
+          or private keys.
+        </p>
+      </details>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
 
 <footer>
 
@@ -932,23 +1055,84 @@
   </strong>
 
   <p>
-    47 PREFECTURES · 47 STOPS · ONE PIXEL JOURNEY
+    JAPAN 47 JOURNEY
   </p>
 
+  <p
+    data-en="One truck. 47 prefectures. A journey worth collecting."
+    data-ja="一台のたこ焼きカーと47都道府県。集めながら楽しむ日本一周の旅。"
+  >
+    One truck. 47 prefectures.
+    A journey worth collecting.
+  </p>
+
+ 
+<nav class="footer-icons" aria-label="Official links">
+
   <a
-    id="officialLink"
     href="https://opensea.io/collection/traveling-takoyaki/overview"
+    id="officialLink"
     target="_blank"
     rel="noopener noreferrer"
+    aria-label="OpenSea"
+    title="OpenSea"
   >
-    OFFICIAL OPENSEA ↗
+    <span class="footer-icon-symbol">🌊</span>
   </a>
 
+  <a
+    href="https://japan47pixel.net/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Official Website"
+    title="Official Website"
+  >
+    <span class="footer-icon-symbol">🌐</span>
+  </a>
+
+  <a
+    href="https://x.com/JAPAN47PIXEL"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Official X"
+    title="X"
+  >
+    <span class="footer-icon-symbol footer-x">𝕏</span>
+  </a>
+
+  <a
+    href="https://www.instagram.com/japan47pixel?vrfl=MTVvZjlnNXAzMmU1aA=="
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Official Instagram"
+    title="Instagram"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="25"
+      height="25"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+  </a>
+
+</nav>
+
+
   <small>
-    © JAPAN47PIXEL
+    © TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
   </small>
 
 </footer>
+
 
 </body>
 </html>
