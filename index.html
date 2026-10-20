@@ -209,7 +209,25 @@
       <select id="artRegion" aria-label="Artwork region"></select>
     </div>
 
-    <div id="artGrid" class="book-grid"></div>
+    <!--
+      ART CHAPTER IMAGE SETTINGS
+
+      HOKKAIDO:
+      https://ul.h3z.jp/oyLZXgar.png
+
+      This URL is also stored as a data attribute below.
+      The script.js renderer must read this value when
+      creating the Hokkaido card.
+
+      Other prefectures remain unchanged.
+    -->
+
+    <div
+      id="artGrid"
+      class="book-grid"
+      data-hokkaido-art-image="https://ul.h3z.jp/oyLZXgar.png"
+    ></div>
+
     <div id="artDetail" class="detail" aria-live="polite"></div>
   </section>
 
