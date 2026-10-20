@@ -1,0 +1,79 @@
+
+{
+  "projectName": "TRAVELING TAKOYAKI",
+  "subtitle": "Japan 47 Journey",
+  "totalStops": 47,
+  "currentStop": 1,
+
+  "officialOpenSea": "https://opensea.io/collection/traveling-takoyaki/overview",
+
+  "images": {
+    "hero": "https://ul.h3z.jp/nz0rNaws.gif",
+    "truckRight": "https://ul.h3z.jp/Lu7ch0Ne.png",
+    "truckLeft": "https://ul.h3z.jp/DWCD23BJ.png"
+  },
+
+  "hokkaido": {
+    "ticketSupply": 333,
+    "ticketClaimed": 333,
+    "ticketStatus": "SOLD OUT",
+    "ticketPrice": 0,
+    "ticketMaxPerWallet": 1,
+
+    "snapshotDate": null,
+    "mintDate": null,
+    "mintPrice": null,
+    "artSupply": null,
+
+    "artGallery": [
+      "https://ul.h3z.jp/oHLrQFcg.png",
+      "https://ul.h3z.jp/aOR8jMRq.png",
+      "https://ul.h3z.jp/0vloKjXW.png",
+      "https://ul.h3z.jp/7WDVfZlJ.png",
+      "https://ul.h3z.jp/18GboHdY.png",
+      "https://ul.h3z.jp/KerclwaE.png",
+      "https://ul.h3z.jp/jQah92SE.png",
+      "https://ul.h3z.jp/kATTRB7n.png"
+    ]
+  },
+
+  "rarityExampleSupply": 99,
+
+  "rarities": [
+    {
+      "name": "NORMAL",
+      "code": "N",
+      "count": 49,
+      "rate": "49.49%",
+      "frame": "https://ul.h3z.jp/mpichzx4.png"
+    },
+    {
+      "name": "RARE",
+      "code": "R",
+      "count": 28,
+      "rate": "28.28%",
+      "frame": "https://ul.h3z.jp/M1jWTHjc.png"
+    },
+    {
+      "name": "SUPER RARE",
+      "code": "SR",
+      "count": 14,
+      "rate": "14.14%",
+      "frame": "https://ul.h3z.jp/YhFxUQNZ.png"
+    },
+    {
+      "name": "ULTRA RARE",
+      "code": "UR",
+      "count": 7,
+      "rate": "7.07%",
+      "frame": "https://ul.h3z.jp/13BzTuwg.png"
+    },
+    {
+      "name": "LEGENDARY",
+      "code": "LR",
+      "count": 1,
+      "rate": "1.01%",
+      "frame": "https://ul.h3z.jp/K2TJtpe6.png"
+    }
+  ]
+}
