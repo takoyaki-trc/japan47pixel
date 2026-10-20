@@ -42,6 +42,32 @@ let cumulative = [];
 let currentGallery = [];
 
 /* ==========================================
+   HOKKAIDO ART BOOK IMAGE
+
+   47 ART CHAPTERSの北海道だけに使用。
+   HTMLのdata-hokkaido-art-imageを優先。
+   ========================================== */
+
+const HOKKAIDO_ART_BOOK_IMAGE =
+  "https://ul.h3z.jp/oyLZXgar.png";
+
+function getArtBookImage(p, index) {
+  if (index === 0) {
+    const grid = $("#artGrid");
+
+    const customUrl =
+      grid?.dataset.hokkaidoArtImage ||
+      HOKKAIDO_ART_BOOK_IMAGE;
+
+    if (validUrl(customUrl)) {
+      return customUrl;
+    }
+  }
+
+  return p.artImage;
+}
+
+/* ==========================================
    HELPERS
    ========================================== */
 
@@ -258,8 +284,16 @@ function renderStats() {
   const images = SETTINGS.images || {};
 
   setImage("#heroImage", images.hero);
-  setImage("#featureTicketImage", PREFECTURES[0].ticketImage);
-  setImage("#featureArtImage", PREFECTURES[0].artImage);
+  setImage(
+    "#featureTicketImage",
+    PREFECTURES[0].ticketImage
+  );
+
+  // 上部のNFT紹介画像は従来のまま
+  setImage(
+    "#featureArtImage",
+    PREFECTURES[0].artImage
+  );
 
   if (validUrl(SETTINGS.officialOpenSea)) {
     $("#officialLink").href = SETTINGS.officialOpenSea;
@@ -323,8 +357,15 @@ function createDetail(index, type) {
   const isTicket = type === "ticket";
 
   const url = isTicket ? p.ticketUrl : p.artUrl;
-  const imageUrl = isTicket ? p.ticketImage : p.artImage;
-  const status = isTicket ? p.ticketStatus : p.artStatus;
+
+  // ART BOOKの北海道詳細画像も統一
+  const imageUrl = isTicket
+    ? p.ticketImage
+    : getArtBookImage(p, index);
+
+  const status = isTicket
+    ? p.ticketStatus
+    : p.artStatus;
 
   const wrapper = make("div");
 
@@ -337,7 +378,9 @@ function createDetail(index, type) {
     make(
       "h3",
       "",
-      `${p.name} · ${isTicket ? "JOURNEY TICKET" : "NFT ART"}`
+      `${p.name} · ${
+        isTicket ? "JOURNEY TICKET" : "NFT ART"
+      }`
     )
   );
 
@@ -447,12 +490,17 @@ function renderDetails() {
 /* ==========================================
    COLLECTION BOOK
    OPENSEA LINKS BELOW EACH CARD
+
+   HOKKAIDO ART BOOK:
+   CONTRACT IMAGE
    ========================================== */
 
 function renderBook(type) {
   const isTicket = type === "ticket";
 
-  const grid = $(isTicket ? "#ticketGrid" : "#artGrid");
+  const grid = $(
+    isTicket ? "#ticketGrid" : "#artGrid"
+  );
 
   const region = $(
     isTicket ? "#ticketRegion" : "#artRegion"
@@ -495,16 +543,24 @@ function renderBook(type) {
     );
 
     const thumb = make("div", "thumb");
-    const imageUrl = isTicket ? p.ticketImage : p.artImage;
+
+    // Ticket Bookは従来の画像
+    // Art Bookの北海道のみコントラクト画像
+    const imageUrl = isTicket
+      ? p.ticketImage
+      : getArtBookImage(p, index);
 
     if (validUrl(imageUrl)) {
       const image = make("img");
       image.src = imageUrl;
       image.alt = "";
       image.loading = "lazy";
+
       thumb.append(image);
     } else {
-      thumb.append(make("span", "lock", "🔒"));
+      thumb.append(
+        make("span", "lock", "🔒")
+      );
     }
 
     button.append(
@@ -535,16 +591,19 @@ function renderBook(type) {
       );
 
       detail.scrollIntoView({
-        behavior: reducedMotion() ? "auto" : "smooth",
+        behavior: reducedMotion()
+          ? "auto"
+          : "smooth",
         block: "nearest"
       });
     });
 
-    /* Card and OpenSea link are separate */
     const entry = make("div", "book-entry");
     entry.append(button);
 
-    const openSeaUrl = isTicket ? p.ticketUrl : p.artUrl;
+    const openSeaUrl = isTicket
+      ? p.ticketUrl
+      : p.artUrl;
 
     if (validUrl(openSeaUrl)) {
       const link = make(
@@ -592,7 +651,10 @@ function renderGallery() {
 
   state.gallery = Math.max(
     0,
-    Math.min(currentGallery.length - 1, state.gallery)
+    Math.min(
+      currentGallery.length - 1,
+      state.gallery
+    )
   );
 
   const index = state.gallery;
@@ -602,20 +664,31 @@ function renderGallery() {
     $("#galleryImage").src = src;
   }
 
-  const isLast = index === currentGallery.length - 1;
+  const isLast =
+    index === currentGallery.length - 1;
 
   $("#galleryCaption").textContent =
     isLast
-      ? `HOKKAIDO LR EXCLUSIVE · ${pad(index + 1)} / ${pad(currentGallery.length)}`
-      : `HOKKAIDO ${pad(index + 1)} / ${pad(currentGallery.length)}`;
+      ? `HOKKAIDO LR EXCLUSIVE · ${
+          pad(index + 1)
+        } / ${pad(currentGallery.length)}`
+      : `HOKKAIDO ${
+          pad(index + 1)
+        } / ${pad(currentGallery.length)}`;
 
-  $$("#galleryThumbs button").forEach((button, i) => {
-    button.classList.toggle("selected", i === index);
-    button.setAttribute(
-      "aria-pressed",
-      String(i === index)
-    );
-  });
+  $$("#galleryThumbs button").forEach(
+    (button, i) => {
+      button.classList.toggle(
+        "selected",
+        i === index
+      );
+
+      button.setAttribute(
+        "aria-pressed",
+        String(i === index)
+      );
+    }
+  );
 }
 
 function initGallery() {
@@ -627,6 +700,7 @@ function initGallery() {
   currentGallery.forEach((src, index) => {
     const button = make("button");
     button.type = "button";
+
     button.setAttribute(
       "aria-label",
       `Hokkaido artwork ${index + 1}`
@@ -634,9 +708,13 @@ function initGallery() {
 
     const image = make("img");
 
-    if (validUrl(src)) image.src = src;
+    if (validUrl(src)) {
+      image.src = src;
+    }
 
-    image.alt = `Hokkaido artwork ${index + 1}`;
+    image.alt =
+      `Hokkaido artwork ${index + 1}`;
+
     image.loading = "lazy";
 
     button.append(image);
@@ -653,8 +731,10 @@ function initGallery() {
     if (!currentGallery.length) return;
 
     state.gallery =
-      (state.gallery - 1 + currentGallery.length) %
-      currentGallery.length;
+      (
+        state.gallery - 1 +
+        currentGallery.length
+      ) % currentGallery.length;
 
     renderGallery();
   });
@@ -663,7 +743,8 @@ function initGallery() {
     if (!currentGallery.length) return;
 
     state.gallery =
-      (state.gallery + 1) % currentGallery.length;
+      (state.gallery + 1) %
+      currentGallery.length;
 
     renderGallery();
   });
@@ -681,9 +762,11 @@ function getRarities() {
 
 function renderRarity() {
   const rarities = getRarities();
+
   if (!rarities.length) return;
 
   const rarity = rarities[state.rarity];
+
   if (!rarity) return;
 
   setImage("#rarityImage", rarity.frame);
@@ -699,44 +782,61 @@ function renderRarity() {
 
   $("#rarityCount").textContent =
     rarity.count != null
-      ? `${rarity.count} / ${SETTINGS.rarityExampleSupply || 99} — EXAMPLE ONLY`
+      ? `${rarity.count} / ${
+          SETTINGS.rarityExampleSupply || 99
+        } — EXAMPLE ONLY`
       : "FINAL ALLOCATION TBA";
 
-  $$("#rarityTabs button").forEach((button, index) => {
-    button.classList.toggle(
-      "active",
-      index === state.rarity
-    );
-    button.setAttribute(
-      "aria-pressed",
-      String(index === state.rarity)
-    );
-  });
+  $$("#rarityTabs button").forEach(
+    (button, index) => {
+      button.classList.toggle(
+        "active",
+        index === state.rarity
+      );
 
-  const exampleSupply = SETTINGS.rarityExampleSupply || 99;
+      button.setAttribute(
+        "aria-pressed",
+        String(index === state.rarity)
+      );
+    }
+  );
+
+  const exampleSupply =
+    SETTINGS.rarityExampleSupply || 99;
 
   $("#rarityNoticeTitle").textContent =
-    `ILLUSTRATIVE EXAMPLE · ${exampleSupply} NFTs`;
+    `ILLUSTRATIVE EXAMPLE · ${
+      exampleSupply
+    } NFTs`;
 
   $("#rarityBreakdown").textContent =
-    rarities.map(r => `${r.code} ${r.count}`).join(" · ");
+    rarities
+      .map(r => `${r.code} ${r.count}`)
+      .join(" · ");
 }
 
 function initRarity() {
   const container = $("#rarityTabs");
   container.replaceChildren();
 
-  getRarities().forEach((rarity, index) => {
-    const button = make("button", "", rarity.code);
-    button.type = "button";
+  getRarities().forEach(
+    (rarity, index) => {
+      const button = make(
+        "button",
+        "",
+        rarity.code
+      );
 
-    button.addEventListener("click", () => {
-      state.rarity = index;
-      renderRarity();
-    });
+      button.type = "button";
 
-    container.append(button);
-  });
+      button.addEventListener("click", () => {
+        state.rarity = index;
+        renderRarity();
+      });
+
+      container.append(button);
+    }
+  );
 
   renderRarity();
 }
@@ -746,7 +846,8 @@ function initRarity() {
    6 STOPS PER ROW
    ========================================== */
 
-const svgNS = "http://www.w3.org/2000/svg";
+const svgNS =
+  "http://www.w3.org/2000/svg";
 
 function createCoordinates() {
   const columns = 6;
@@ -755,29 +856,42 @@ function createCoordinates() {
   const startX = 75;
   const startY = 75;
 
-  coordinates = PREFECTURES.map((p, index) => {
-    const row = Math.floor(index / columns);
-    const column = index % columns;
+  coordinates = PREFECTURES.map(
+    (p, index) => {
+      const row =
+        Math.floor(index / columns);
 
-    const xColumn = row % 2 === 0
-      ? column
-      : columns - 1 - column;
+      const column =
+        index % columns;
 
-    return {
-      x: startX + xColumn * spacingX,
-      y: startY + row * spacingY
-    };
-  });
+      const xColumn =
+        row % 2 === 0
+          ? column
+          : columns - 1 - column;
+
+      return {
+        x: startX + xColumn * spacingX,
+        y: startY + row * spacingY
+      };
+    }
+  );
 
   cumulative = [0];
 
-  for (let i = 1; i < coordinates.length; i++) {
+  for (
+    let i = 1;
+    i < coordinates.length;
+    i++
+  ) {
     const a = coordinates[i - 1];
     const b = coordinates[i];
 
     cumulative.push(
       cumulative[i - 1] +
-      Math.hypot(b.x - a.x, b.y - a.y)
+      Math.hypot(
+        b.x - a.x,
+        b.y - a.y
+      )
     );
   }
 }
@@ -786,18 +900,20 @@ function renderMapLabels() {
   $("#mapCounter").textContent =
     `STOP ${pad(state.stop + 1)} / 47`;
 
-  $$(".route-node").forEach((node, index) => {
-    const p = PREFECTURES[index];
+  $$(".route-node").forEach(
+    (node, index) => {
+      const p = PREFECTURES[index];
 
-    node.setAttribute(
-      "aria-label",
-      `${pad(index + 1)} ${
-        state.lang === "ja" && p.nameJa
-          ? p.nameJa
-          : p.name
-      }`
-    );
-  });
+      node.setAttribute(
+        "aria-label",
+        `${pad(index + 1)} ${
+          state.lang === "ja" && p.nameJa
+            ? p.nameJa
+            : p.name
+        }`
+      );
+    }
+  );
 }
 
 function positionTruck(distance) {
@@ -812,18 +928,28 @@ function positionTruck(distance) {
     Math.min(total, distance)
   );
 
-  const point = roadPath.getPointAtLength(d);
+  const point =
+    roadPath.getPointAtLength(d);
 
-  const ahead = roadPath.getPointAtLength(
-    Math.min(total, d + 3)
+  const ahead =
+    roadPath.getPointAtLength(
+      Math.min(total, d + 3)
+    );
+
+  const behind =
+    roadPath.getPointAtLength(
+      Math.max(0, d - 3)
+    );
+
+  truck.setAttribute(
+    "x",
+    point.x - 32
   );
 
-  const behind = roadPath.getPointAtLength(
-    Math.max(0, d - 3)
+  truck.setAttribute(
+    "y",
+    point.y - 48
   );
-
-  truck.setAttribute("x", point.x - 32);
-  truck.setAttribute("y", point.y - 48);
 
   const images = SETTINGS.images || {};
 
@@ -831,10 +957,15 @@ function positionTruck(distance) {
   const left = images.truckLeft;
 
   const direction =
-    ahead.x < behind.x ? left : right;
+    ahead.x < behind.x
+      ? left
+      : right;
 
   if (validUrl(direction)) {
-    truck.setAttribute("href", direction);
+    truck.setAttribute(
+      "href",
+      direction
+    );
   }
 
   progressPath.style.strokeDasharray =
@@ -844,22 +975,27 @@ function positionTruck(distance) {
 function moveTo(index, animate = true) {
   state.stop = Math.max(
     0,
-    Math.min(PREFECTURES.length - 1, index)
+    Math.min(
+      PREFECTURES.length - 1,
+      index
+    )
   );
 
   renderMapLabels();
 
-  $$(".route-node").forEach((node, i) => {
-    node.classList.toggle(
-      "selected",
-      i === state.stop
-    );
+  $$(".route-node").forEach(
+    (node, i) => {
+      node.classList.toggle(
+        "selected",
+        i === state.stop
+      );
 
-    node.classList.toggle(
-      "visited",
-      i < state.stop
-    );
-  });
+      node.classList.toggle(
+        "visited",
+        i < state.stop
+      );
+    }
+  );
 
   renderDetails();
 
@@ -890,7 +1026,8 @@ function moveTo(index, animate = true) {
       (now - begin) / duration
     );
 
-    const eased = t * t * (3 - 2 * t);
+    const eased =
+      t * t * (3 - 2 * t);
 
     truckDistance =
       start + (end - start) * eased;
@@ -898,14 +1035,16 @@ function moveTo(index, animate = true) {
     positionTruck(truckDistance);
 
     if (t < 1) {
-      animationId = requestAnimationFrame(frame);
+      animationId =
+        requestAnimationFrame(frame);
     } else {
       truckDistance = end;
       animationId = null;
     }
   }
 
-  animationId = requestAnimationFrame(frame);
+  animationId =
+    requestAnimationFrame(frame);
 }
 
 function stopPlayback() {
@@ -916,20 +1055,25 @@ function stopPlayback() {
     playTimer = null;
   }
 
-  $("#playRoute").textContent = "▶ PLAY";
+  $("#playRoute").textContent =
+    "▶ PLAY";
 }
 
 function playNext() {
   if (!state.playing) return;
 
-  if (state.stop >= PREFECTURES.length - 1) {
+  if (
+    state.stop >=
+    PREFECTURES.length - 1
+  ) {
     stopPlayback();
     return;
   }
 
   moveTo(state.stop + 1);
 
-  playTimer = setTimeout(playNext, 2700);
+  playTimer =
+    setTimeout(playNext, 2700);
 }
 
 function initRoute() {
@@ -937,89 +1081,150 @@ function initRoute() {
 
   const pathData =
     "M " +
-    coordinates.map(p => `${p.x} ${p.y}`).join(" L ");
+    coordinates
+      .map(p => `${p.x} ${p.y}`)
+      .join(" L ");
 
-  $("#roadOutline").setAttribute("d", pathData);
-  $("#road").setAttribute("d", pathData);
-  $("#routeProgress").setAttribute("d", pathData);
+  $("#roadOutline").setAttribute(
+    "d",
+    pathData
+  );
+
+  $("#road").setAttribute(
+    "d",
+    pathData
+  );
+
+  $("#routeProgress").setAttribute(
+    "d",
+    pathData
+  );
 
   const nodes = $("#routeNodes");
   nodes.replaceChildren();
 
-  coordinates.forEach((point, index) => {
-    const group = document.createElementNS(svgNS, "g");
+  coordinates.forEach(
+    (point, index) => {
+      const group =
+        document.createElementNS(
+          svgNS,
+          "g"
+        );
 
-    group.setAttribute("class", "route-node");
-    group.setAttribute(
-      "transform",
-      `translate(${point.x} ${point.y})`
-    );
+      group.setAttribute(
+        "class",
+        "route-node"
+      );
 
-    group.setAttribute("role", "button");
-    group.setAttribute("tabindex", "0");
+      group.setAttribute(
+        "transform",
+        `translate(${point.x} ${point.y})`
+      );
 
-    const circle = document.createElementNS(
-      svgNS,
-      "circle"
-    );
+      group.setAttribute(
+        "role",
+        "button"
+      );
 
-    circle.setAttribute("r", "26");
+      group.setAttribute(
+        "tabindex",
+        "0"
+      );
 
-    const label = document.createElementNS(
-      svgNS,
-      "text"
-    );
+      const circle =
+        document.createElementNS(
+          svgNS,
+          "circle"
+        );
 
-    label.textContent = pad(index + 1);
+      circle.setAttribute(
+        "r",
+        "26"
+      );
 
-    group.append(circle, label);
+      const label =
+        document.createElementNS(
+          svgNS,
+          "text"
+        );
 
-    group.addEventListener("click", () => {
+      label.textContent =
+        pad(index + 1);
+
+      group.append(circle, label);
+
+      group.addEventListener(
+        "click",
+        () => {
+          stopPlayback();
+          moveTo(index);
+        }
+      );
+
+      group.addEventListener(
+        "keydown",
+        event => {
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+            event.preventDefault();
+            stopPlayback();
+            moveTo(index);
+          }
+        }
+      );
+
+      nodes.append(group);
+    }
+  );
+
+  $("#prevStop").addEventListener(
+    "click",
+    () => {
       stopPlayback();
-      moveTo(index);
-    });
+      moveTo(state.stop - 1);
+    }
+  );
 
-    group.addEventListener("keydown", event => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
+  $("#nextStop").addEventListener(
+    "click",
+    () => {
+      stopPlayback();
+      moveTo(state.stop + 1);
+    }
+  );
+
+  $("#playRoute").addEventListener(
+    "click",
+    () => {
+      if (state.playing) {
         stopPlayback();
-        moveTo(index);
+        return;
       }
-    });
 
-    nodes.append(group);
-  });
+      if (
+        state.stop >=
+        PREFECTURES.length - 1
+      ) {
+        moveTo(0, false);
+      }
 
-  $("#prevStop").addEventListener("click", () => {
-    stopPlayback();
-    moveTo(state.stop - 1);
-  });
+      state.playing = true;
 
-  $("#nextStop").addEventListener("click", () => {
-    stopPlayback();
-    moveTo(state.stop + 1);
-  });
+      $("#playRoute").textContent =
+        "■ STOP";
 
-  $("#playRoute").addEventListener("click", () => {
-    if (state.playing) {
-      stopPlayback();
-      return;
+      playNext();
     }
-
-    if (state.stop >= PREFECTURES.length - 1) {
-      moveTo(0, false);
-    }
-
-    state.playing = true;
-    $("#playRoute").textContent = "■ STOP";
-
-    playNext();
-  });
+  );
 
   document.addEventListener(
     "visibilitychange",
     () => {
-      if (document.hidden) stopPlayback();
+      if (document.hidden) {
+        stopPlayback();
+      }
     }
   );
 
@@ -1061,7 +1266,10 @@ async function init() {
     showTab("tickets");
 
   } catch (error) {
-    console.error("TRAVELING TAKOYAKI:", error);
+    console.error(
+      "TRAVELING TAKOYAKI:",
+      error
+    );
 
     $("#loading").hidden = true;
 
