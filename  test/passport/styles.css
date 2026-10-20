@@ -1,0 +1,236 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #10233d;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.header {
+  padding: 22px 18px;
+  text-align: center;
+  border-bottom: 2px solid #284768;
+}
+
+.back-link {
+  display: block;
+  color: #ffd166;
+  text-decoration: none;
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-size: 11px;
+  color: #8faac5;
+  letter-spacing: 3px;
+}
+
+.container {
+  max-width: 1050px;
+  margin: auto;
+  padding: 25px 16px 70px;
+}
+
+.hero {
+  text-align: center;
+  padding: 35px 10px;
+}
+
+.hero-icon {
+  font-size: 54px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  color: #ffd166;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  font-size: clamp(25px, 5vw, 42px);
+  margin: 10px 0;
+}
+
+.hero p {
+  color: #a9bfd5;
+  max-width: 500px;
+  margin: auto;
+}
+
+.wallet-panel,
+.progress-panel {
+  background: #183451;
+  border: 1px solid #345577;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.panel-title {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #a9bfd5;
+  margin-bottom: 15px;
+}
+
+#connectWallet {
+  background: #ffd166;
+  color: #10233d;
+  border: 0;
+  border-radius: 9px;
+  padding: 15px 35px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+#connectWallet:hover {
+  background: #ffe19a;
+}
+
+#walletStatus {
+  color: #a9bfd5;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: #183451;
+  border: 1px solid #345577;
+  border-radius: 15px;
+  text-align: center;
+  padding: 25px 10px;
+}
+
+.stat-icon {
+  font-size: 32px;
+}
+
+.stat-number {
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: 900;
+  color: #ffd166;
+}
+
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #a9bfd5;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-heading h2,
+.destinations h2 {
+  font-size: 19px;
+  margin: 0;
+}
+
+#progressText {
+  color: #ffd166;
+  font-weight: bold;
+}
+
+.progress-track {
+  background: #0b1b2e;
+  height: 13px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: #38b69a;
+  transition: width .4s;
+}
+
+.progress-panel p,
+.section-description {
+  color: #a9bfd5;
+  font-size: 13px;
+}
+
+.destinations {
+  margin-top: 40px;
+}
+
+.prefecture-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.prefecture-card {
+  background: #183451;
+  border: 1px solid #345577;
+  border-radius: 12px;
+  padding: 17px 10px;
+  text-align: center;
+}
+
+.prefecture-number {
+  color: #8faac5;
+  font-size: 11px;
+}
+
+.prefecture-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.prefecture-status {
+  color: #8faac5;
+  font-size: 11px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid #345577;
+  color: #8faac5;
+  font-size: 12px;
+}
+
+footer p {
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 650px) {
+  .prefecture-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wallet-panel,
+  .progress-panel {
+    padding: 20px 15px;
+  }
+}
