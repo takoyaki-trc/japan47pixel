@@ -77,7 +77,10 @@ function validUrl(url) {
 
 function setImage(selector, src) {
   const image = $(selector);
-  if (image && validUrl(src)) image.src = src;
+
+  if (image && validUrl(src)) {
+    image.src = src;
+  }
 }
 
 function formatDate(value) {
@@ -443,6 +446,7 @@ function renderDetails() {
 
 /* ==========================================
    COLLECTION BOOK
+   OPENSEA LINKS BELOW EACH CARD
    ========================================== */
 
 function renderBook(type) {
@@ -536,7 +540,35 @@ function renderBook(type) {
       });
     });
 
-    grid.append(button);
+    /* Card and OpenSea link are separate */
+    const entry = make("div", "book-entry");
+    entry.append(button);
+
+    const openSeaUrl = isTicket ? p.ticketUrl : p.artUrl;
+
+    if (validUrl(openSeaUrl)) {
+      const link = make(
+        "a",
+        "book-opensea",
+        "VIEW ON OPENSEA ↗"
+      );
+
+      link.href = openSeaUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+
+      entry.append(link);
+    } else {
+      entry.append(
+        make(
+          "span",
+          "book-coming-soon",
+          translate("COMING SOON", "近日公開")
+        )
+      );
+    }
+
+    grid.append(entry);
   });
 
   if (isTicket) {
@@ -711,21 +743,29 @@ function initRarity() {
 
 /* ==========================================
    JOURNEY ROUTE
+   6 STOPS PER ROW
    ========================================== */
 
 const svgNS = "http://www.w3.org/2000/svg";
 
 function createCoordinates() {
+  const columns = 6;
+  const spacingX = 102;
+  const spacingY = 125;
+  const startX = 75;
+  const startY = 75;
+
   coordinates = PREFECTURES.map((p, index) => {
-    const row = Math.floor(index / 7);
-    const column = index % 7;
+    const row = Math.floor(index / columns);
+    const column = index % columns;
+
     const xColumn = row % 2 === 0
       ? column
-      : 6 - column;
+      : columns - 1 - column;
 
     return {
-      x: 90 + xColumn * 130,
-      y: 90 + row * 105
+      x: startX + xColumn * spacingX,
+      y: startY + row * spacingY
     };
   });
 
@@ -923,7 +963,7 @@ function initRoute() {
       "circle"
     );
 
-    circle.setAttribute("r", "21");
+    circle.setAttribute("r", "26");
 
     const label = document.createElementNS(
       svgNS,
