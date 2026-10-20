@@ -1,0 +1,656 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Allowlist Campaign | TRAVELING TAKOYAKI
+  </title>
+
+  <meta
+    name="description"
+    content="Apply for the TRAVELING TAKOYAKI NFT priority purchase allowlist."
+  >
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --navy: #10233d;
+      --panel: #1b3452;
+      --cream: #fff4d8;
+      --yellow: #ffc928;
+      --red: #f35b4f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--navy);
+      color: var(--cream);
+      font-family: Arial, "Noto Sans JP", sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      width: min(760px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    header {
+      padding: 22px 0;
+      border-bottom: 2px solid #344b64;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      font-family: "Courier New", monospace;
+      font-weight: 900;
+      text-decoration: none;
+      line-height: 1.25;
+      letter-spacing: 0.04em;
+    }
+
+    button,
+    .button {
+      cursor: pointer;
+      font: inherit;
+    }
+
+    #lang {
+      background: transparent;
+      border: 1px solid var(--cream);
+      border-radius: 8px;
+      color: var(--cream);
+      padding: 8px 12px;
+    }
+
+    main {
+      padding: 42px 0 70px;
+    }
+
+    .kicker {
+      font-family: "Courier New", monospace;
+      color: var(--yellow);
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    h1 {
+      font-family: "Courier New", monospace;
+      font-size: clamp(1.7rem, 6vw, 3.1rem);
+      line-height: 1.2;
+      margin: 12px 0;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      margin: 0 0 18px;
+    }
+
+    .lead {
+      color: #dbe6f0;
+      margin: 0 0 28px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 2px solid #38506c;
+      border-radius: 16px;
+      padding: clamp(18px, 4vw, 30px);
+      margin: 24px 0;
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid #49607b;
+      padding-bottom: 14px;
+    }
+
+    .step:last-child {
+      border: 0;
+      padding: 0;
+    }
+
+    .step span {
+      font-weight: 700;
+    }
+
+    .step a {
+      background: var(--yellow);
+      color: #10233d;
+      padding: 10px 15px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .step a:hover,
+    .submit:hover {
+      filter: brightness(1.08);
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin: 18px 0 7px;
+    }
+
+    input[type="text"] {
+      display: block;
+      width: 100%;
+      border: 2px solid #8594a8;
+      border-radius: 9px;
+      padding: 14px;
+      background: var(--cream);
+      color: #10233d;
+      font-size: 16px;
+    }
+
+    input:focus {
+      outline: 3px solid var(--yellow);
+      outline-offset: 2px;
+    }
+
+    .help {
+      font-size: 0.82rem;
+      color: #c9d6e6;
+      margin: 5px 0 0;
+    }
+
+    .check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .check input {
+      margin-top: 7px;
+      flex: none;
+      width: 18px;
+      height: 18px;
+    }
+
+    .check label {
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .submit {
+      display: block;
+      width: 100%;
+      border: 0;
+      border-radius: 9px;
+      background: var(--yellow);
+      color: var(--navy);
+      font-weight: 900;
+      padding: 15px;
+      font-size: 1rem;
+    }
+
+    .submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .notice {
+      font-size: 0.88rem;
+      color: #e2eaf3;
+    }
+
+    .error {
+      color: #ffb3a9;
+      min-height: 1.4em;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 25px 0;
+      border-top: 1px solid #344b64;
+      font-size: 0.8rem;
+      color: #dbe6f0;
+    }
+
+    @media (max-width: 480px) {
+      .step {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .step a {
+        text-align: center;
+      }
+
+      main {
+        padding-top: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="wrap header">
+
+      <a
+        class="brand"
+        href="./index.html"
+      >
+        TRAVELING<br>
+        TAKOYAKI
+      </a>
+
+      <button
+        type="button"
+        id="lang"
+      >
+        日本語
+      </button>
+
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <div class="kicker">
+      JAPAN 47 JOURNEY / NFT CAMPAIGN
+    </div>
+
+    <h1>
+      ALLOWLIST<br>
+      CAMPAIGN
+    </h1>
+
+    <p
+      class="lead"
+      data-en="Apply for a chance to receive priority purchase eligibility for an upcoming NFT release."
+      data-ja="今後のNFT販売に向けた、優先購入枠の応募ページです。"
+    >
+      Apply for a chance to receive priority purchase
+      eligibility for an upcoming NFT release.
+    </p>
+
+    <!-- APPLICATION STEPS -->
+
+    <section class="card">
+
+      <h2
+        data-en="HOW TO APPLY"
+        data-ja="応募方法"
+      >
+        HOW TO APPLY
+      </h2>
+
+      <div class="steps">
+
+        <div class="step">
+
+          <span
+            data-en="1. Follow our official X account"
+            data-ja="1. 公式Xをフォロー"
+          >
+            1. Follow our official X account
+          </span>
+
+          <a
+            href="https://x.com/JAPAN47PIXEL"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-en="FOLLOW ↗"
+            data-ja="フォロー ↗"
+          >
+            FOLLOW ↗
+          </a>
+
+        </div>
+
+        <div class="step">
+
+          <span
+            data-en="2. Repost the campaign post"
+            data-ja="2. キャンペーン投稿をリポスト"
+          >
+            2. Repost the campaign post
+          </span>
+
+          <a
+            id="repostLink"
+            href="https://x.com/JAPAN47PIXEL"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-en="VIEW POST ↗"
+            data-ja="投稿を見る ↗"
+          >
+            VIEW POST ↗
+          </a>
+
+        </div>
+
+        <div class="step">
+
+          <span
+            data-en="3. Submit your X username and public wallet address"
+            data-ja="3. Xユーザー名と公開ウォレットアドレスを送信"
+          >
+            3. Submit your X username and public
+            wallet address
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- APPLICATION FORM -->
+
+    <section class="card">
+
+      <h2
+        data-en="APPLICATION FORM"
+        data-ja="応募フォーム"
+      >
+        APPLICATION FORM
+      </h2>
+
+      <form
+        id="application"
+        method="POST"
+        target="_blank"
+        novalidate
+      >
+
+        <label
+          for="xUsername"
+          data-en="X username"
+          data-ja="Xユーザー名"
+        >
+          X username
+        </label>
+
+        <input
+          id="xUsername"
+          name="xUsername"
+          type="text"
+          placeholder="@username"
+          maxlength="30"
+          autocomplete="off"
+          required
+        >
+
+        <label
+          for="wallet"
+          data-en="Public wallet address (Ethereum / EVM)"
+          data-ja="公開ウォレットアドレス（Ethereum / EVM）"
+        >
+          Public wallet address (Ethereum / EVM)
+        </label>
+
+        <input
+          id="wallet"
+          name="wallet"
+          type="text"
+          placeholder="0x..."
+          maxlength="42"
+          autocomplete="off"
+          spellcheck="false"
+          required
+        >
+
+        <p
+          class="help"
+          data-en="Only your public address is needed. Never share your seed phrase or private key."
+          data-ja="必要なのは公開アドレスのみです。シードフレーズや秘密鍵は絶対に入力しないでください。"
+        >
+          Only your public address is needed.
+          Never share your seed phrase or private key.
+        </p>
+
+        <div class="check">
+
+          <input
+            type="checkbox"
+            id="confirm"
+            required
+          >
+
+          <label
+            for="confirm"
+            data-en="I have followed the official X account and reposted the campaign post."
+            data-ja="公式Xをフォローし、キャンペーン投稿をリポストしました。"
+          >
+            I have followed the official X account
+            and reposted the campaign post.
+          </label>
+
+        </div>
+
+        <div class="check">
+
+          <input
+            type="checkbox"
+            id="consent"
+            required
+          >
+
+          <label
+            for="consent"
+            data-en="I agree that my X username and public wallet address will be stored for campaign administration and eligibility checks."
+            data-ja="応募管理・条件確認のため、Xユーザー名と公開ウォレットアドレスを保存することに同意します。"
+          >
+            I agree that my X username and public
+            wallet address will be stored for campaign
+            administration and eligibility checks.
+          </label>
+
+        </div>
+
+        <p
+          class="error"
+          id="error"
+          role="alert"
+        ></p>
+
+        <button
+          type="submit"
+          class="submit"
+          id="submit"
+          data-en="SUBMIT APPLICATION →"
+          data-ja="応募内容を送信 →"
+        >
+          SUBMIT APPLICATION →
+        </button>
+
+      </form>
+
+    </section>
+
+    <p
+      class="notice"
+      data-en="Submitting does not guarantee selection, allocation or a successful purchase. Follow/repost activity is checked separately. The submission result opens in a new tab. Campaign dates, selection method and rules will be announced separately."
+      data-ja="応募は当選・優先購入枠・購入成功を保証するものではありません。フォロー・リポストの確認は別途行います。送信結果は新しいタブで表示されます。応募期間・選考方法・詳細条件は別途発表します。"
+    >
+      Submitting does not guarantee selection,
+      allocation or a successful purchase.
+      Follow/repost activity is checked separately.
+      The submission result opens in a new tab.
+      Campaign dates, selection method and rules
+      will be announced separately.
+    </p>
+
+  </main>
+
+  <footer class="footer">
+    © TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
+  </footer>
+
+  <script>
+    // ==========================================
+    // CONFIGURATION
+    // ==========================================
+
+    // Replace with the Google Apps Script Web App URL.
+    const SCRIPT_URL =
+      "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+    // Replace with the actual X campaign post URL.
+    const CAMPAIGN_POST_URL =
+      "https://x.com/JAPAN47PIXEL";
+
+    // ==========================================
+    // REPOST LINK
+    // ==========================================
+
+    const repost =
+      document.getElementById("repostLink");
+
+    repost.href = CAMPAIGN_POST_URL;
+
+    // ==========================================
+    // LANGUAGE SWITCH
+    // ==========================================
+
+    let language = "en";
+
+    const langButton =
+      document.getElementById("lang");
+
+    langButton.addEventListener("click", () => {
+      language = language === "en" ? "ja" : "en";
+
+      document.documentElement.lang = language;
+
+      langButton.textContent =
+        language === "en" ? "日本語" : "ENGLISH";
+
+      document
+        .querySelectorAll("[data-en][data-ja]")
+        .forEach((el) => {
+          el.textContent = el.dataset[language];
+        });
+    });
+
+    // ==========================================
+    // APPLICATION VALIDATION
+    // ==========================================
+
+    const form =
+      document.getElementById("application");
+
+    form.addEventListener("submit", (event) => {
+      const error =
+        document.getElementById("error");
+
+      error.textContent = "";
+
+      const username =
+        document
+          .getElementById("xUsername")
+          .value
+          .trim()
+          .replace(/^@/, "");
+
+      const wallet =
+        document
+          .getElementById("wallet")
+          .value
+          .trim();
+
+      const fail = (message) => {
+        event.preventDefault();
+        error.textContent = message;
+      };
+
+      // X USERNAME VALIDATION
+
+      if (!/^[A-Za-z0-9_]{1,15}$/.test(username)) {
+        return fail(
+          language === "ja"
+            ? "Xユーザー名は1〜15文字の英数字と_で入力してください。"
+            : "Enter a valid X username (1–15 letters, digits or underscores)."
+        );
+      }
+
+      // WALLET ADDRESS VALIDATION
+
+      if (!/^0x[a-fA-F0-9]{40}$/.test(wallet)) {
+        return fail(
+          language === "ja"
+            ? "0xから始まる42文字のEVMアドレスを入力してください。"
+            : "Enter a valid 42-character EVM wallet address beginning with 0x."
+        );
+      }
+
+      // CONFIRMATION CHECKS
+
+      const confirmed =
+        document.getElementById("confirm").checked;
+
+      const consented =
+        document.getElementById("consent").checked;
+
+      if (!confirmed || !consented) {
+        return fail(
+          language === "ja"
+            ? "確認事項と同意にチェックしてください。"
+            : "Please check both confirmation boxes."
+        );
+      }
+
+      // GOOGLE APPS SCRIPT URL CHECK
+
+      if (
+        !SCRIPT_URL.startsWith(
+          "https://script.google.com/macros/s/"
+        )
+      ) {
+        return fail(
+          language === "ja"
+            ? "応募フォームは現在準備中です。"
+            : "Applications are not open yet."
+        );
+      }
+
+      // NORMALIZE USERNAME
+
+      document.getElementById("xUsername").value =
+        username;
+
+      // SUBMIT TO GOOGLE APPS SCRIPT
+
+      form.action = SCRIPT_URL;
+    });
+  </script>
+
+</body>
+</html>
