@@ -1,236 +1,520 @@
+
+:root {
+  --bg: #10233d;
+  --panel: #1b3655;
+  --panel-dark: #142b46;
+  --border: #355777;
+  --gold: #ffdf98;
+  --gold-strong: #ffd166;
+  --white: #ffffff;
+  --muted: #a9bdd3;
+  --green: #86e0ae;
+  --red: #ff9e9e;
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  background: #10233d;
-  color: #fff;
-  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  font-family:
+    -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
 }
 
-.header {
-  padding: 22px 18px;
-  text-align: center;
-  border-bottom: 2px solid #284768;
+button,
+input {
+  font: inherit;
 }
 
-.back-link {
-  display: block;
-  color: #ffd166;
-  text-decoration: none;
-  font-size: 12px;
-  margin-bottom: 14px;
-}
-
-.brand {
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
-
-.subtitle {
-  font-size: 11px;
-  color: #8faac5;
-  letter-spacing: 3px;
-}
-
-.container {
-  max-width: 1050px;
-  margin: auto;
-  padding: 25px 16px 70px;
-}
-
-.hero {
-  text-align: center;
-  padding: 35px 10px;
-}
-
-.hero-icon {
-  font-size: 54px;
-}
-
-.eyebrow {
-  font-size: 11px;
-  color: #ffd166;
-  letter-spacing: 3px;
-}
-
-.hero h1 {
-  font-size: clamp(25px, 5vw, 42px);
-  margin: 10px 0;
-}
-
-.hero p {
-  color: #a9bfd5;
-  max-width: 500px;
-  margin: auto;
-}
-
-.wallet-panel,
-.progress-panel {
-  background: #183451;
-  border: 1px solid #345577;
-  border-radius: 15px;
-  padding: 25px;
-  margin-bottom: 25px;
-  text-align: center;
-}
-
-.panel-title {
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: #a9bfd5;
-  margin-bottom: 15px;
-}
-
-#connectWallet {
-  background: #ffd166;
-  color: #10233d;
-  border: 0;
-  border-radius: 9px;
-  padding: 15px 35px;
-  font-size: 15px;
-  font-weight: 900;
+button {
   cursor: pointer;
 }
 
-#connectWallet:hover {
-  background: #ffe19a;
+button:disabled {
+  opacity: .65;
+  cursor: wait;
 }
 
-#walletStatus {
-  color: #a9bfd5;
+a {
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 25px 20px 28px;
+  text-align: center;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: var(--gold);
+  font-size: 13px;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.brand span {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: 4px;
+}
+
+.container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.hero {
+  padding: 72px 10px 54px;
+  text-align: center;
+}
+
+.passport-icon {
+  font-size: 68px;
+  line-height: 1.2;
+  margin-bottom: 26px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin: 20px 0 18px;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.25;
+  letter-spacing: 1px;
+}
+
+.hero-description {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: clamp(15px, 2.5vw, 20px);
+}
+
+.wallet-panel {
+  padding: 30px 24px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.section-label {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.primary-button {
+  width: min(100%, 340px);
+  padding: 16px 20px;
+  border: none;
+  border-radius: 12px;
+  background: var(--gold);
+  color: #172943;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.primary-button:hover {
+  background: var(--gold-strong);
+}
+
+.wallet-status {
+  max-width: 700px;
+  margin: 20px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.wallet-status.error {
+  color: var(--red);
+}
+
+.wallet-status.success {
+  color: var(--green);
+}
+
+.wallet-details {
+  margin-top: 20px;
+}
+
+#walletAddress {
+  margin: 0 0 15px;
+  color: var(--gold);
   font-size: 13px;
   overflow-wrap: anywhere;
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-.stat-card {
-  background: #183451;
-  border: 1px solid #345577;
-  border-radius: 15px;
-  text-align: center;
-  padding: 25px 10px;
-}
-
-.stat-icon {
-  font-size: 32px;
-}
-
-.stat-number {
-  font-size: clamp(22px, 4vw, 34px);
-  font-weight: 900;
-  color: #ffd166;
-}
-
-.stat-label {
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: #a9bfd5;
-}
-
-.section-heading {
+.wallet-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
-.section-heading h2,
-.destinations h2 {
-  font-size: 19px;
-  margin: 0;
+.small-button {
+  padding: 11px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-dark);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
 }
 
-#progressText {
-  color: #ffd166;
-  font-weight: bold;
+.small-button:hover {
+  border-color: var(--gold);
 }
 
-.progress-track {
-  background: #0b1b2e;
-  height: 13px;
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 20px 0;
+.manual-wallet {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid var(--border);
 }
 
-.progress-bar {
-  width: 0%;
-  height: 100%;
-  background: #38b69a;
-  transition: width .4s;
+.manual-wallet > p:first-child {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 
-.progress-panel p,
-.section-description {
-  color: #a9bfd5;
+.manual-description {
+  max-width: 580px;
+  margin: 0 auto 15px;
+  color: var(--muted);
   font-size: 13px;
 }
 
-.destinations {
-  margin-top: 40px;
+.address-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.address-form input {
+  flex: 1 1 260px;
+  max-width: 440px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0c1d32;
+  color: var(--white);
+  font-size: 14px;
+}
+
+.address-form input:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.stat-card {
+  padding: 32px 15px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  text-align: center;
+}
+
+.stat-icon {
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.stat-number {
+  color: var(--gold-strong);
+  font-size: clamp(23px, 4vw, 36px);
+  font-weight: 800;
+}
+
+.stat-label {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.journey-section,
+.destinations-section {
+  padding-top: 75px;
+}
+
+.section-heading {
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin: 8px 0 28px;
+  font-size: clamp(26px, 4vw, 36px);
+  letter-spacing: 1px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.progress-header strong {
+  color: var(--gold);
+  font-size: 18px;
+}
+
+.progress-track {
+  height: 16px;
+  overflow: hidden;
+  background: #07182a;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    #e8b95c,
+    #ffe5a4
+  );
+  transition: width .5s ease;
+}
+
+.section-description {
+  max-width: 650px;
+  margin: 24px auto 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.progress-note {
+  margin: 10px 0 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 26px 0;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .prefecture-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-top: 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .prefecture-card {
-  background: #183451;
-  border: 1px solid #345577;
-  border-radius: 12px;
-  padding: 17px 10px;
+  position: relative;
+  min-width: 0;
+  padding: 22px 12px;
+  background: var(--panel-dark);
+  border: 1px solid var(--border);
+  border-radius: 16px;
   text-align: center;
 }
 
-.prefecture-number {
-  color: #8faac5;
+.prefecture-card.collected {
+  border-color: var(--gold);
+  background: #263d57;
+}
+
+.prefecture-card.upcoming {
+  opacity: .7;
+}
+
+.stop-number {
+  margin-bottom: 12px;
+  color: var(--gold);
   font-size: 11px;
-}
-
-.prefecture-name {
-  font-size: 14px;
-  font-weight: bold;
-  margin: 8px 0;
-}
-
-.prefecture-status {
-  color: #8faac5;
-  font-size: 11px;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
-  border-top: 1px solid #345577;
-  color: #8faac5;
-  font-size: 12px;
-}
-
-footer p {
-  font-size: 10px;
   letter-spacing: 2px;
 }
 
-@media (max-width: 650px) {
+.prefecture-symbol {
+  font-size: 32px;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.prefecture-name {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.collection-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.collection-badge {
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #0c1d32;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.collection-badge.owned {
+  background: #315d4c;
+  color: #aaf3c7;
+}
+
+.collection-badge.pending {
+  background: #37475c;
+  color: #b8c9dc;
+}
+
+.prefecture-state {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.prefecture-state.complete {
+  color: var(--green);
+}
+
+.prefecture-state.warning {
+  color: var(--red);
+}
+
+.site-footer {
+  margin-top: 85px;
+  padding: 35px 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.site-footer p {
+  margin: 5px 0;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 20px;
+}
+
+.footer-links a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+@media (max-width: 800px) {
   .prefecture-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 550px) {
+  .site-header {
+    padding: 22px 14px;
   }
 
-  .wallet-panel,
-  .progress-panel {
-    padding: 20px 15px;
+  .brand {
+    font-size: 20px;
+  }
+
+  .hero {
+    padding: 60px 4px 45px;
+  }
+
+  .wallet-panel {
+    padding: 28px 16px;
+  }
+
+  .stats {
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 25px 10px;
+  }
+
+  .prefecture-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .prefecture-card {
+    padding: 19px 8px;
+  }
+
+  .prefecture-name {
+    font-size: 14px;
+  }
+
+  .journey-section,
+  .destinations-section {
+    padding-top: 60px;
   }
 }
