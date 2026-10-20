@@ -1,1420 +1,1037 @@
+
 "use strict";
 
+/* ==========================================
+   TRAVELING TAKOYAKI
+   JAPAN 47 JOURNEY
+   ========================================== */
 
-/* ========================================
-   JAPANESE TRANSLATION DETECTION
-======================================== */
+const $ = selector => document.querySelector(selector);
+const $$ = selector => [...document.querySelectorAll(selector)];
+const pad = n => String(n).padStart(2, "0");
 
-(() => {
+const REGIONS = [
+  "HOKKAIDO",
+  "TOHOKU",
+  "KANTO",
+  "CHUBU",
+  "KANSAI",
+  "CHUGOKU",
+  "SHIKOKU",
+  "KYUSHU & OKINAWA"
+];
 
-  let updateTimer;
+let PREFECTURES = [];
+let SETTINGS = {};
 
+const state = {
+  ticket: 0,
+  art: 0,
+  rarity: 0,
+  gallery: 0,
+  stop: 0,
+  playing: false,
+  lang: "en"
+};
 
-  function updateLanguageClass(){
+let animationId = null;
+let playTimer = null;
+let truckDistance = 0;
+let coordinates = [];
+let cumulative = [];
+let currentGallery = [];
 
-    const heading =
-      document.querySelector(".intro h1");
+/* ==========================================
+   HELPERS
+   ========================================== */
 
-    const containsJapanese =
-      heading &&
-      /[\u3040-\u30ff\u3400-\u9fff]/.test(
-        heading.textContent
-      );
+function make(tag, className = "", content) {
+  const node = document.createElement(tag);
 
-    document.body.classList.toggle(
-      "is-ja",
-      Boolean(containsJapanese)
+  if (className) node.className = className;
+  if (content !== undefined) node.textContent = content;
+
+  return node;
+}
+
+function translate(en, ja) {
+  return state.lang === "ja" ? ja : en;
+}
+
+function reducedMotion() {
+  return window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+}
+
+function validUrl(url) {
+  if (typeof url !== "string") return false;
+
+  try {
+    const parsed = new URL(url);
+    return ["https:", "http:"].includes(parsed.protocol);
+  } catch {
+    return false;
+  }
+}
+
+function setImage(selector, src) {
+  const image = $(selector);
+  if (image && validUrl(src)) image.src = src;
+}
+
+function formatDate(value) {
+  if (!value) return null;
+  return String(value);
+}
+
+function stopNumber(index) {
+  return `STOP ${pad(index + 1)}`;
+}
+
+function statusText(status) {
+  const values = {
+    "SOLD OUT": ["SOLD OUT", "配布終了"],
+    "AVAILABLE": ["AVAILABLE", "公開中"],
+    "COMING SOON": ["COMING SOON", "近日公開"],
+    "UPCOMING": ["UPCOMING", "公開予定"]
+  };
+
+  const pair = values[status];
+
+  return pair
+    ? translate(pair[0], pair[1])
+    : status || "COMING SOON";
+}
+
+/* ==========================================
+   LOAD JSON DATA
+   ========================================== */
+
+async function loadData() {
+  const [prefecturesResponse, settingsResponse] =
+    await Promise.all([
+      fetch("./prefectures.json", { cache: "no-cache" }),
+      fetch("./settings.json", { cache: "no-cache" })
+    ]);
+
+  if (!prefecturesResponse.ok) {
+    throw new Error("Could not load prefectures.json");
+  }
+
+  if (!settingsResponse.ok) {
+    throw new Error("Could not load settings.json");
+  }
+
+  const prefectures = await prefecturesResponse.json();
+  const settings = await settingsResponse.json();
+
+  if (!Array.isArray(prefectures) || prefectures.length !== 47) {
+    throw new Error(
+      "prefectures.json must contain exactly 47 prefectures."
     );
   }
 
+  if (
+    !prefectures.every(p =>
+      p &&
+      typeof p.name === "string" &&
+      REGIONS.includes(p.region)
+    )
+  ) {
+    throw new Error("Invalid prefecture data.");
+  }
 
-  const translationObserver =
-    new MutationObserver(() => {
+  if (!settings || typeof settings !== "object") {
+    throw new Error("Invalid settings.json");
+  }
 
-      window.clearTimeout(updateTimer);
+  PREFECTURES = prefectures;
+  SETTINGS = settings;
+}
 
-      updateTimer =
-        window.setTimeout(
-          updateLanguageClass,
-          80
-        );
-    });
+/* ==========================================
+   LANGUAGE
+   ========================================== */
 
+function renderLanguage() {
+  document.documentElement.lang = state.lang;
 
-  translationObserver.observe(
-    document.body,
-    {
-      subtree:true,
-      childList:true,
-      characterData:true
-    }
+  $("#langSwitch").textContent =
+    state.lang === "en" ? "日本語" : "ENGLISH";
+
+  $$("[data-en][data-ja]").forEach(node => {
+    node.textContent = node.dataset[state.lang];
+  });
+
+  $("#ticketSearch").placeholder = translate(
+    "SEARCH PREFECTURE...",
+    "都道府県を検索..."
   );
 
+  renderStats();
+  renderBook("ticket");
+  renderBook("art");
+  renderDetails();
+  renderGallery();
+  renderRarity();
+  renderMapLabels();
+}
 
-  updateLanguageClass();
+function initLanguage() {
+  $("#langSwitch").addEventListener("click", () => {
+    state.lang = state.lang === "en" ? "ja" : "en";
+    renderLanguage();
+  });
+}
 
-})();
+/* ==========================================
+   NAVIGATION
+   ========================================== */
 
+function showTab(name) {
+  $$("[data-tab]").forEach(button => {
+    const active = button.dataset.tab === name;
 
-/* ========================================
-   JAPAN 47 JOURNEY BOARD
-======================================== */
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-selected", String(active));
+  });
 
-(() => {
+  $$(".page").forEach(page => {
+    page.hidden = page.id !== name;
+  });
+}
 
-  const prefectures = [
-    "HOKKAIDO",
-    "AOMORI",
-    "IWATE",
-    "MIYAGI",
-    "AKITA",
-    "YAMAGATA",
-    "FUKUSHIMA",
-    "IBARAKI",
-    "TOCHIGI",
-    "GUNMA",
-    "SAITAMA",
-    "CHIBA",
-    "TOKYO",
-    "KANAGAWA",
-    "NIIGATA",
-    "TOYAMA",
-    "ISHIKAWA",
-    "FUKUI",
-    "YAMANASHI",
-    "NAGANO",
-    "GIFU",
-    "SHIZUOKA",
-    "AICHI",
-    "MIE",
-    "SHIGA",
-    "KYOTO",
-    "OSAKA",
-    "HYOGO",
-    "NARA",
-    "WAKAYAMA",
-    "TOTTORI",
-    "SHIMANE",
-    "OKAYAMA",
-    "HIROSHIMA",
-    "YAMAGUCHI",
-    "TOKUSHIMA",
-    "KAGAWA",
-    "EHIME",
-    "KOCHI",
-    "FUKUOKA",
-    "SAGA",
-    "NAGASAKI",
-    "KUMAMOTO",
-    "OITA",
-    "MIYAZAKI",
-    "KAGOSHIMA",
-    "OKINAWA"
-  ];
+function initNavigation() {
+  $$("[data-tab]").forEach(button => {
+    button.addEventListener("click", () => {
+      showTab(button.dataset.tab);
+    });
+  });
+}
 
+/* ==========================================
+   SITE SETTINGS / STATS
+   ========================================== */
 
-  const routeTiles =
-    document.getElementById("route-tiles");
+function renderStats() {
+  const current = Math.max(
+    1,
+    Math.min(47, Number(SETTINGS.currentStop) || 1)
+  );
 
-  const routeBoard =
-    document.getElementById("board");
+  $("#currentStopStat").textContent =
+    `${pad(current)} / 47`;
 
-  const routeSvg =
-    document.getElementById("route-svg");
+  const hokkaido = SETTINGS.hokkaido || {};
 
-  const routeCar =
-    document.getElementById("route-car");
+  const claimed = hokkaido.ticketClaimed;
+  const supply = hokkaido.ticketSupply;
 
-  const driveButton =
-    document.getElementById("route-drive");
+  $("#ticketStat").textContent =
+    claimed != null && supply != null
+      ? `${claimed} / ${supply}`
+      : "— / —";
 
-  const routeStatus =
-    document.getElementById("route-status");
+  $("#rarityStat").textContent =
+    Array.isArray(SETTINGS.rarities)
+      ? SETTINGS.rarities.length
+      : 5;
 
-
-  if(
-    !routeTiles ||
-    !routeBoard ||
-    !routeSvg ||
-    !routeCar ||
-    !driveButton ||
-    !routeStatus
-  ){
-    return;
+  if (claimed != null && supply != null) {
+    $("#featureTicketTitle").textContent =
+      `${claimed} / ${supply} CLAIMED!`;
   }
 
+  const artCount = Array.isArray(hokkaido.artGallery)
+    ? hokkaido.artGallery.length
+    : 0;
 
-  let currentPosition = 0;
-  let isDriving = false;
-  let lastColumnCount = 0;
-
-
-  /* 現在の列数を取得 */
-
-  function getColumnCount(){
-
-    const gridColumns =
-      getComputedStyle(routeTiles)
-        .gridTemplateColumns
-        .split(" ");
-
-    return gridColumns.length;
+  if (artCount) {
+    $("#featureArtTitle").textContent =
+      `${Math.max(0, artCount - 1)} + 1 ARTWORKS`;
   }
 
+  const images = SETTINGS.images || {};
 
-  /*
-    都道府県番号から、
-    折り返しを含めた画面上の位置を取得
-  */
+  setImage("#heroImage", images.hero);
+  setImage("#featureTicketImage", PREFECTURES[0].ticketImage);
+  setImage("#featureArtImage", PREFECTURES[0].artImage);
 
-  function getVisualOrder(stopNumber){
+  if (validUrl(SETTINGS.officialOpenSea)) {
+    $("#officialLink").href = SETTINGS.officialOpenSea;
+  }
 
-    const columnCount =
-      getColumnCount();
+  const faq = $("#mintFaq");
 
-    const row =
-      Math.floor(
-        stopNumber / columnCount
-      );
+  if (hokkaido.mintDate) {
+    const price = hokkaido.mintPrice != null
+      ? ` · ${hokkaido.mintPrice}`
+      : "";
 
-    const column =
-      stopNumber % columnCount;
+    faq.textContent =
+      `Hokkaido artwork mint: ${formatDate(hokkaido.mintDate)}${price}. ` +
+      (hokkaido.snapshotDate
+        ? `Snapshot: ${formatDate(hokkaido.snapshotDate)}.`
+        : "Snapshot date to be announced.");
+  }
+}
 
+/* ==========================================
+   REGIONAL FILTERS
+   ========================================== */
 
-    if(row % 2 === 1){
+function fillRegions(select) {
+  select.replaceChildren();
 
-      return (
-        row * columnCount +
-        columnCount -
-        1 -
-        column
-      );
-    }
+  select.add(new Option(
+    "ALL REGIONS · 47 PREFECTURES",
+    "all"
+  ));
 
+  REGIONS.forEach(region => {
+    select.add(new Option(region, region));
+  });
+}
 
-    return (
-      row * columnCount +
-      column
+function initFilters() {
+  fillRegions($("#ticketRegion"));
+  fillRegions($("#artRegion"));
+
+  $("#ticketSearch").addEventListener("input", () => {
+    renderBook("ticket");
+  });
+
+  $("#ticketRegion").addEventListener("change", () => {
+    renderBook("ticket");
+  });
+
+  $("#artRegion").addEventListener("change", () => {
+    renderBook("art");
+  });
+}
+
+/* ==========================================
+   PREFECTURE DETAIL
+   ========================================== */
+
+function createDetail(index, type) {
+  const p = PREFECTURES[index];
+  const isTicket = type === "ticket";
+
+  const url = isTicket ? p.ticketUrl : p.artUrl;
+  const imageUrl = isTicket ? p.ticketImage : p.artImage;
+  const status = isTicket ? p.ticketStatus : p.artStatus;
+
+  const wrapper = make("div");
+
+  wrapper.append(
+    make(
+      "span",
+      "eyebrow",
+      `${stopNumber(index)} · ${p.region}`
+    ),
+    make(
+      "h3",
+      "",
+      `${p.name} · ${isTicket ? "JOURNEY TICKET" : "NFT ART"}`
+    )
+  );
+
+  if (validUrl(imageUrl)) {
+    const image = make("img");
+    image.src = imageUrl;
+    image.alt = `${p.name} ${type}`;
+    image.loading = "lazy";
+    wrapper.append(image);
+  }
+
+  wrapper.append(
+    make("p", "status", statusText(status))
+  );
+
+  if (isTicket && p.ticketSupply != null) {
+    const claimed = p.ticketClaimed;
+
+    wrapper.append(
+      make(
+        "p",
+        "",
+        claimed != null
+          ? `${claimed} / ${p.ticketSupply} CLAIMED`
+          : `TOTAL SUPPLY: ${p.ticketSupply}`
+      )
     );
   }
 
+  if (index === 0 && isTicket) {
+    const snapshot = SETTINGS.hokkaido?.snapshotDate;
 
-  /* 地方ごとのクラス名 */
-
-  function getRegion(stopNumber){
-
-    if(stopNumber === 0){
-      return "hokkaido";
-    }
-
-    if(stopNumber < 7){
-      return "tohoku";
-    }
-
-    if(stopNumber < 14){
-      return "kanto";
-    }
-
-    if(stopNumber < 23){
-      return "chubu";
-    }
-
-    if(stopNumber < 30){
-      return "kansai";
-    }
-
-    if(stopNumber < 35){
-      return "chugoku";
-    }
-
-    if(stopNumber < 39){
-      return "shikoku";
-    }
-
-    return "kyushu";
-  }
-
-
-  /* 47都道府県の丸いマスを作る */
-
-  function renderRouteTiles(){
-
-    routeTiles.innerHTML = "";
-
-    const columnCount =
-      getColumnCount();
-
-    /*
-      47都道府県のあとに
-      GOALを1つ加えるため48マス
-    */
-
-    const totalTiles =
-      Math.ceil(48 / columnCount) *
-      columnCount;
-
-
-    for(
-      let visualIndex = 0;
-      visualIndex < totalTiles;
-      visualIndex++
-    ){
-
-      const row =
-        Math.floor(
-          visualIndex / columnCount
-        );
-
-      const column =
-        visualIndex % columnCount;
-
-
-      /*
-        偶数段は左から右、
-        奇数段は右から左へ進む
-      */
-
-      const stopNumber =
-        row * columnCount +
-        (
-          row % 2 === 1
-            ? columnCount - 1 - column
-            : column
-        );
-
-
-      const routeTile =
-        document.createElement("div");
-
-
-      let tileType;
-
-      if(stopNumber >= 48){
-        tileType = "filler";
-      }
-      else if(stopNumber === 47){
-        tileType = "goal";
-      }
-      else{
-        tileType =
-          getRegion(stopNumber);
-      }
-
-
-      let tileState;
-
-      if(stopNumber === currentPosition){
-        tileState = "current";
-      }
-      else if(
-        currentPosition === 0 &&
-        stopNumber === 1
-      ){
-        tileState = "next";
-      }
-      else{
-        tileState = "locked";
-      }
-
-
-      routeTile.className =
-        "route-tile " +
-        tileType +
-        " " +
-        tileState;
-
-      routeTile.dataset.stop =
-        String(stopNumber);
-
-
-      if(stopNumber < 47){
-
-        const stopName =
-          stopNumber < 2 ||
-          stopNumber === currentPosition
-            ? prefectures[stopNumber]
-            : "?";
-
-
-        routeTile.innerHTML = `
-          <b>
-            ${String(stopNumber + 1).padStart(2,"0")}
-          </b>
-
-          <small>
-            ${stopName}
-          </small>
-        `;
-      }
-      else if(stopNumber === 47){
-
-        routeTile.innerHTML = `
-          <b>★</b>
-          <small>GOAL</small>
-        `;
-      }
-
-
-      routeTiles.appendChild(
-        routeTile
-      );
-    }
-
-
-    requestAnimationFrame(
-      drawRoute
+    wrapper.append(
+      make(
+        "p",
+        "",
+        snapshot
+          ? `SNAPSHOT: ${formatDate(snapshot)}`
+          : translate(
+              "Snapshot date to be announced.",
+              "スナップショット日は後日発表します。"
+            )
+      )
     );
   }
 
+  if (index === 0 && !isTicket) {
+    const h = SETTINGS.hokkaido || {};
 
-  /* 指定したマスの中心座標を取得 */
-
-  function getTileCenter(stopNumber){
-
-    const visualIndex =
-      getVisualOrder(stopNumber);
-
-    const routeTile =
-      routeTiles.children[visualIndex];
-
-
-    if(!routeTile){
-
-      return {
-        x:0,
-        y:0
-      };
-    }
-
-
-    const boardRectangle =
-      routeBoard.getBoundingClientRect();
-
-    const tileRectangle =
-      routeTile.getBoundingClientRect();
-
-
-    return {
-
-      x:
-        tileRectangle.left -
-        boardRectangle.left +
-        tileRectangle.width / 2,
-
-      y:
-        tileRectangle.top -
-        boardRectangle.top +
-        tileRectangle.height / 2
-
-    };
+    wrapper.append(
+      make(
+        "p",
+        "",
+        h.mintDate
+          ? `MINT: ${formatDate(h.mintDate)}`
+          : translate(
+              "Artwork mint date has not yet been announced.",
+              "NFTアートの販売日は後日発表します。"
+            )
+      )
+    );
   }
 
+  if (validUrl(url)) {
+    const link = make(
+      "a",
+      "action-link",
+      "VIEW ON OPENSEA ↗"
+    );
 
-  /* 道路のSVGを描く */
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
 
-  function drawRoute(){
+    wrapper.append(link);
+  } else {
+    wrapper.append(
+      make(
+        "span",
+        "unavailable",
+        translate(
+          "OPENSEA LINK — COMING SOON",
+          "OPENSEAリンク — 近日公開"
+        )
+      )
+    );
+  }
 
-    const boardWidth =
-      routeBoard.clientWidth;
+  return wrapper;
+}
 
-    const boardHeight =
-      routeBoard.clientHeight;
+function renderDetails() {
+  $("#ticketDetail").replaceChildren(
+    createDetail(state.ticket, "ticket")
+  );
 
+  $("#artDetail").replaceChildren(
+    createDetail(state.art, "art")
+  );
 
-    if(
-      boardWidth === 0 ||
-      boardHeight === 0
-    ){
+  $("#journeyDetail").replaceChildren(
+    createDetail(state.stop, "ticket"),
+    createDetail(state.stop, "art")
+  );
+}
+
+/* ==========================================
+   COLLECTION BOOK
+   ========================================== */
+
+function renderBook(type) {
+  const isTicket = type === "ticket";
+
+  const grid = $(isTicket ? "#ticketGrid" : "#artGrid");
+
+  const region = $(
+    isTicket ? "#ticketRegion" : "#artRegion"
+  ).value;
+
+  const search = isTicket
+    ? $("#ticketSearch").value.trim().toLowerCase()
+    : "";
+
+  grid.replaceChildren();
+
+  let count = 0;
+
+  PREFECTURES.forEach((p, index) => {
+    if (region !== "all" && p.region !== region) return;
+
+    if (
+      search &&
+      !p.name.toLowerCase().includes(search) &&
+      !(p.nameJa || "").includes(search) &&
+      !pad(index + 1).includes(search)
+    ) {
       return;
     }
 
+    count++;
 
-    routeSvg.setAttribute(
-      "viewBox",
-      `0 0 ${boardWidth} ${boardHeight}`
+    const selected =
+      (isTicket ? state.ticket : state.art) === index;
+
+    const button = make(
+      "button",
+      "book-tile" + (selected ? " selected" : "")
     );
 
-
-    const routePoints =
-      prefectures.map(
-        (_,index) =>
-          getTileCenter(index)
-      );
-
-
-    let routePath =
-      `M ${routePoints[0].x} ${routePoints[0].y}`;
-
-
-    for(
-      let index = 1;
-      index < routePoints.length;
-      index++
-    ){
-
-      const previousPoint =
-        routePoints[index - 1];
-
-      const currentPoint =
-        routePoints[index];
-
-
-      const changedRow =
-        Math.abs(
-          previousPoint.y -
-          currentPoint.y
-        ) > 8;
-
-
-      if(changedRow){
-
-        const bendY =
-          (
-            previousPoint.y +
-            currentPoint.y
-          ) / 2;
-
-        const middleX =
-          (
-            previousPoint.x +
-            currentPoint.x
-          ) / 2;
-
-
-        routePath +=
-          ` Q ${previousPoint.x} ${bendY},` +
-          ` ${middleX} ${bendY}` +
-          ` Q ${currentPoint.x} ${bendY},` +
-          ` ${currentPoint.x} ${currentPoint.y}`;
-      }
-      else{
-
-        const middleX =
-          (
-            previousPoint.x +
-            currentPoint.x
-          ) / 2;
-
-
-        routePath +=
-          ` Q ${middleX} ${previousPoint.y - 7},` +
-          ` ${currentPoint.x} ${currentPoint.y}`;
-      }
-    }
-
-
-    routeSvg.innerHTML = `
-      <path
-        d="${routePath}"
-        fill="none"
-        stroke="#786451"
-        stroke-width="19"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      ></path>
-
-      <path
-        d="${routePath}"
-        fill="none"
-        stroke="#e6c994"
-        stroke-width="14"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      ></path>
-
-      <path
-        d="${routePath}"
-        fill="none"
-        stroke="#fff8dc"
-        stroke-width="2"
-        stroke-dasharray="7 10"
-        stroke-linecap="round"
-      ></path>
-    `;
-
-
-    /* 車を現在地へ移動 */
-
-    const currentCenter =
-      getTileCenter(
-        currentPosition
-      );
-
-
-    routeCar.style.left =
-      currentCenter.x + "px";
-
-    routeCar.style.top =
-      currentCenter.y + "px";
-
-
-    /*
-      偶数段と奇数段で
-      車の向きを変更
-    */
-
-    const currentRow =
-      Math.floor(
-        currentPosition /
-        getColumnCount()
-      );
-
-
-    routeCar.src =
-      currentRow % 2 === 1
-        ? "https://ul.h3z.jp/DWCD23BJ.png"
-        : "https://ul.h3z.jp/Lu7ch0Ne.png";
-  }
-
-
-  /* 次の県へ車を進める */
-
-  driveButton.addEventListener(
-    "click",
-    () => {
-
-      if(isDriving){
-        return;
-      }
-
-
-      isDriving = true;
-
-      routeCar.classList.remove(
-        "idle"
-      );
-
-
-      const previousTile =
-        routeTiles.children[
-          getVisualOrder(
-            currentPosition
-          )
-        ];
-
-
-      if(previousTile){
-
-        previousTile.classList.remove(
-          "current"
-        );
-
-        previousTile.classList.add(
-          "locked"
-        );
-      }
-
-
-      /*
-        沖縄まで進んだら
-        北海道へ戻る
-      */
-
-      currentPosition =
-        currentPosition === 46
-          ? 0
-          : currentPosition + 1;
-
-
-      const currentTile =
-        routeTiles.children[
-          getVisualOrder(
-            currentPosition
-          )
-        ];
-
-
-      if(currentTile){
-
-        currentTile.classList.remove(
-          "locked",
-          "next"
-        );
-
-        currentTile.classList.add(
-          "current"
-        );
-
-
-        const currentLabel =
-          currentTile.querySelector(
-            "small"
-          );
-
-
-        if(currentLabel){
-
-          currentLabel.textContent =
-            prefectures[
-              currentPosition
-            ];
-        }
-      }
-
-
-      driveButton.textContent =
-        currentPosition === 46
-          ? "RETURN TO HOKKAIDO ↶"
-          : "PREVIEW THE NEXT STOP →";
-
-
-      routeStatus.textContent =
-        currentPosition === 0
-          ? (
-              "CURRENT STOP: " +
-              "HOKKAIDO · BOARDING SOON"
-            )
-          : (
-              "NEXT TICKET: " +
-              prefectures[
-                currentPosition
-              ] +
-              " · COMING SOON"
-            );
-
-
-      drawRoute();
-
-
-      window.setTimeout(
-        () => {
-
-          isDriving = false;
-
-          routeCar.classList.add(
-            "idle"
-          );
-
-        },
-        1450
-      );
-
-    }
-  );
-
-
-  /* 画面サイズ変更への対応 */
-
-  const routeResizeObserver =
-    new ResizeObserver(() => {
-
-      const currentColumnCount =
-        getColumnCount();
-
-
-      if(
-        currentColumnCount !==
-        lastColumnCount
-      ){
-
-        lastColumnCount =
-          currentColumnCount;
-
-        renderRouteTiles();
-      }
-      else{
-        drawRoute();
-      }
-
-    });
-
-
-  routeResizeObserver.observe(
-    routeBoard
-  );
-
-
-  renderRouteTiles();
-
-  routeCar.classList.add(
-    "idle"
-  );
-
-})();
-
-
-/* ========================================
-   TICKET COUNTDOWN
-======================================== */
-
-(() => {
-
-  const countdown =
-    document.getElementById(
-      "ticket-countdown"
-    );
-
-
-  if(!countdown){
-    return;
-  }
-
-
-  /*
-    ミント開始日時が決まったら、
-    index.htmlのdata-mint-startへ
-    日時を入力してください。
-
-    例：
-
-    data-mint-start=
-    "2026-11-01T12:00:00+09:00"
-
-    日時が空欄の場合は、
-    DATE TO BE ANNOUNCEDのまま表示します。
-  */
-
-  const rawStartDate =
-    countdown.dataset.mintStart;
-
-
-  if(!rawStartDate){
-    return;
-  }
-
-
-  const mintStartTime =
-    new Date(
-      rawStartDate
-    ).getTime();
-
-
-  if(
-    !Number.isFinite(
-      mintStartTime
-    )
-  ){
-    return;
-  }
-
-
-  const dayNode =
-    document.getElementById(
-      "count-days"
-    );
-
-  const hourNode =
-    document.getElementById(
-      "count-hours"
-    );
-
-  const minuteNode =
-    document.getElementById(
-      "count-minutes"
-    );
-
-  const secondNode =
-    document.getElementById(
-      "count-seconds"
-    );
-
-  const countdownCaption =
-    document.getElementById(
-      "countdown-caption"
-    );
-
-
-  function updateCountdown(){
-
-    const totalSeconds =
-      Math.max(
-        0,
-        Math.floor(
-          (
-            mintStartTime -
-            Date.now()
-          ) / 1000
-        )
-      );
-
-
-    const days =
-      Math.floor(
-        totalSeconds / 86400
-      );
-
-    const hours =
-      Math.floor(
-        (
-          totalSeconds % 86400
-        ) / 3600
-      );
-
-    const minutes =
-      Math.floor(
-        (
-          totalSeconds % 3600
-        ) / 60
-      );
-
-    const seconds =
-      totalSeconds % 60;
-
-
-    dayNode.textContent =
-      String(days).padStart(
-        2,
-        "0"
-      );
-
-    hourNode.textContent =
-      String(hours).padStart(
-        2,
-        "0"
-      );
-
-    minuteNode.textContent =
-      String(minutes).padStart(
-        2,
-        "0"
-      );
-
-    secondNode.textContent =
-      String(seconds).padStart(
-        2,
-        "0"
-      );
-
-
-    countdownCaption.textContent =
-      totalSeconds > 0
-        ? "FREE JOURNEY TICKET MINTING IN"
-        : "JOURNEY TICKET MINT IS OPEN";
-
-
-    if(totalSeconds === 0){
-
-      window.clearInterval(
-        countdownTimer
-      );
-    }
-  }
-
-
-  const countdownTimer =
-    window.setInterval(
-      updateCountdown,
-      1000
-    );
-
-
-  updateCountdown();
-
-})();
-
-
-/* ========================================
-   AUTO-SCROLL COLLECTION GALLERY
-======================================== */
-
-(() => {
-
-  const gallery =
-    document.getElementById(
-      "collection-gallery"
-    );
-
-  const previousButton =
-    document.getElementById(
-      "gallery-previous"
-    );
-
-  const nextButton =
-    document.getElementById(
-      "gallery-next"
-    );
-
-  const toggleButton =
-    document.getElementById(
-      "gallery-toggle"
-    );
-
-
-  if(
-    !gallery ||
-    !previousButton ||
-    !nextButton ||
-    !toggleButton
-  ){
-    return;
-  }
-
-
-  const reduceMotion =
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
-
-
-  /*
-    元画像を複製し、
-    終端から先頭へ自然につながる
-    ループを作る
-  */
-
-  const originalCards =
-    Array.from(
-      gallery.children
-    );
-
-
-  originalCards.forEach(
-    (card) => {
-
-      const clonedCard =
-        card.cloneNode(true);
-
-
-      clonedCard.classList.add(
-        "is-clone"
-      );
-
-
-      clonedCard.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-
-      clonedCard
-        .querySelectorAll("img")
-        .forEach(
-          (image) => {
-
-            image.alt = "";
-
-          }
-        );
-
-
-      gallery.appendChild(
-        clonedCard
-      );
-
-    }
-  );
-
-
-  let manuallyPaused =
-    reduceMotion.matches;
-
-  let temporarilyPaused = false;
-
-  let resumeTimer = 0;
-
-  let previousTime =
-    performance.now();
-
-
-  /* 複製前の画像全体の横幅 */
-
-  function getOriginalGalleryWidth(){
-
-    if(originalCards.length === 0){
-      return 0;
-    }
-
-
-    const firstCard =
-      originalCards[0];
-
-    const lastCard =
-      originalCards[
-        originalCards.length - 1
-      ];
-
-
-    return (
-      lastCard.offsetLeft +
-      lastCard.offsetWidth -
-      firstCard.offsetLeft +
-      14
-    );
-  }
-
-
-  /* 再生・停止ボタンの表示更新 */
-
-  function updateGalleryState(){
-
-    const isRunning =
-      !manuallyPaused &&
-      !temporarilyPaused &&
-      !reduceMotion.matches;
-
-
-    gallery.classList.toggle(
-      "is-auto",
-      isRunning
-    );
-
-
-    toggleButton.textContent =
-      manuallyPaused
-        ? "PLAY"
-        : "PAUSE";
-
-
-    toggleButton.setAttribute(
-      "aria-pressed",
-      String(manuallyPaused)
-    );
-
-
-    toggleButton.setAttribute(
+    button.type = "button";
+    button.setAttribute(
       "aria-label",
-      manuallyPaused
-        ? "Start automatic scrolling"
-        : "Pause automatic scrolling"
-    );
-  }
-
-
-  /*
-    スワイプ、ホイール、ボタン操作時は
-    一時的に自動スクロールを停止
-  */
-
-  function pauseTemporarily(
-    duration = 3500
-  ){
-
-    temporarilyPaused = true;
-
-    window.clearTimeout(
-      resumeTimer
+      `${p.name} ${type}`
     );
 
-    updateGalleryState();
+    const thumb = make("div", "thumb");
+    const imageUrl = isTicket ? p.ticketImage : p.artImage;
 
-
-    resumeTimer =
-      window.setTimeout(
-        () => {
-
-          temporarilyPaused = false;
-
-          updateGalleryState();
-
-        },
-        duration
-      );
-  }
-
-
-  /* カード1枚分の移動距離 */
-
-  function getCardDistance(){
-
-    const firstCard =
-      gallery.querySelector(
-        ".piece"
-      );
-
-
-    if(!firstCard){
-      return 180;
+    if (validUrl(imageUrl)) {
+      const image = make("img");
+      image.src = imageUrl;
+      image.alt = "";
+      image.loading = "lazy";
+      thumb.append(image);
+    } else {
+      thumb.append(make("span", "lock", "🔒"));
     }
 
-
-    return (
-      firstCard
-        .getBoundingClientRect()
-        .width +
-      14
+    button.append(
+      thumb,
+      make(
+        "span",
+        "name",
+        `${pad(index + 1)} ${
+          state.lang === "ja" && p.nameJa
+            ? p.nameJa
+            : p.name
+        }`
+      )
     );
-  }
 
-
-  /* 前後ボタンで画像を動かす */
-
-  function moveGallery(direction){
-
-    pauseTemporarily();
-
-
-    gallery.scrollBy({
-
-      left:
-        direction *
-        getCardDistance(),
-
-      behavior:
-        reduceMotion.matches
-          ? "auto"
-          : "smooth"
-
-    });
-  }
-
-
-  /*
-    requestAnimationFrameで
-    自動スクロール
-  */
-
-  function animateGallery(
-    currentTime
-  ){
-
-    const elapsedTime =
-      Math.min(
-        40,
-        currentTime -
-        previousTime
-      );
-
-
-    previousTime =
-      currentTime;
-
-
-    if(
-      !manuallyPaused &&
-      !temporarilyPaused &&
-      !reduceMotion.matches
-    ){
-
-      /*
-        数字を大きくすると速く、
-        小さくすると遅くなる
-      */
-
-      gallery.scrollLeft +=
-        elapsedTime * 0.035;
-
-
-      const originalWidth =
-        getOriginalGalleryWidth();
-
-
-      /*
-        複製部分へ到達したら、
-        同じ見た目の先頭位置へ戻す
-      */
-
-      if(
-        originalWidth > 0 &&
-        gallery.scrollLeft >=
-          originalWidth
-      ){
-
-        gallery.scrollLeft -=
-          originalWidth;
+    button.addEventListener("click", () => {
+      if (isTicket) {
+        state.ticket = index;
+      } else {
+        state.art = index;
       }
-    }
 
+      renderBook(type);
+      renderDetails();
 
-    requestAnimationFrame(
-      animateGallery
-    );
-  }
-
-
-  /* 前の画像 */
-
-  previousButton.addEventListener(
-    "click",
-    () => {
-
-      moveGallery(-1);
-
-    }
-  );
-
-
-  /* 次の画像 */
-
-  nextButton.addEventListener(
-    "click",
-    () => {
-
-      moveGallery(1);
-
-    }
-  );
-
-
-  /* 自動スクロールの再生・停止 */
-
-  toggleButton.addEventListener(
-    "click",
-    () => {
-
-      manuallyPaused =
-        !manuallyPaused;
-
-      temporarilyPaused = false;
-
-
-      window.clearTimeout(
-        resumeTimer
+      const detail = $(
+        isTicket ? "#ticketDetail" : "#artDetail"
       );
 
+      detail.scrollIntoView({
+        behavior: reducedMotion() ? "auto" : "smooth",
+        block: "nearest"
+      });
+    });
 
-      updateGalleryState();
+    grid.append(button);
+  });
 
-    }
-  );
-
-
-  /*
-    スマホ操作やマウス操作中は
-    自動スクロールを一時停止
-  */
-
-  gallery.addEventListener(
-    "pointerdown",
-    () => {
-
-      pauseTemporarily(5000);
-
-    }
-  );
-
-
-  gallery.addEventListener(
-    "wheel",
-    () => {
-
-      pauseTemporarily(5000);
-
-    },
-    {
-      passive:true
-    }
-  );
-
-
-  gallery.addEventListener(
-    "focusin",
-    () => {
-
-      pauseTemporarily(5000);
-
-    }
-  );
-
-
-  /*
-    パソコンでカーソルが
-    ギャラリー上にある間は停止
-  */
-
-  gallery.addEventListener(
-    "mouseenter",
-    () => {
-
-      temporarilyPaused = true;
-
-      updateGalleryState();
-
-    }
-  );
-
-
-  gallery.addEventListener(
-    "mouseleave",
-    () => {
-
-      temporarilyPaused = false;
-
-      updateGalleryState();
-
-    }
-  );
-
-
-  /*
-    端末側の
-    アニメーション軽減設定に対応
-  */
-
-  if(
-    typeof reduceMotion
-      .addEventListener ===
-      "function"
-  ){
-
-    reduceMotion.addEventListener(
-      "change",
-      updateGalleryState
-    );
+  if (isTicket) {
+    $("#ticketCount").textContent =
+      `${count} / 47 DESTINATIONS`;
   }
-  else{
+}
 
-    /*
-      古いSafari用
-    */
+/* ==========================================
+   NFT ART GALLERY
+   ========================================== */
 
-    reduceMotion.addListener(
-      updateGalleryState
-    );
+function getGallery() {
+  return SETTINGS.hokkaido?.artGallery || [];
+}
+
+function renderGallery() {
+  currentGallery = getGallery();
+
+  if (!currentGallery.length) return;
+
+  state.gallery = Math.max(
+    0,
+    Math.min(currentGallery.length - 1, state.gallery)
+  );
+
+  const index = state.gallery;
+  const src = currentGallery[index];
+
+  if (validUrl(src)) {
+    $("#galleryImage").src = src;
   }
 
+  const isLast = index === currentGallery.length - 1;
 
-  updateGalleryState();
+  $("#galleryCaption").textContent =
+    isLast
+      ? `HOKKAIDO LR EXCLUSIVE · ${pad(index + 1)} / ${pad(currentGallery.length)}`
+      : `HOKKAIDO ${pad(index + 1)} / ${pad(currentGallery.length)}`;
 
-  requestAnimationFrame(
-    animateGallery
-  );
+  $$("#galleryThumbs button").forEach((button, i) => {
+    button.classList.toggle("selected", i === index);
+    button.setAttribute(
+      "aria-pressed",
+      String(i === index)
+    );
+  });
+}
 
-})();
+function initGallery() {
+  currentGallery = getGallery();
 
+  const container = $("#galleryThumbs");
+  container.replaceChildren();
 
-/* ========================================
-   FAQ ACCORDION
-======================================== */
-
-(() => {
-
-  const faqItems =
-    document.querySelectorAll(
-      ".faq-item"
+  currentGallery.forEach((src, index) => {
+    const button = make("button");
+    button.type = "button";
+    button.setAttribute(
+      "aria-label",
+      `Hokkaido artwork ${index + 1}`
     );
 
+    const image = make("img");
 
-  faqItems.forEach(
-    (faqItem) => {
+    if (validUrl(src)) image.src = src;
 
-      faqItem.addEventListener(
-        "toggle",
-        () => {
+    image.alt = `Hokkaido artwork ${index + 1}`;
+    image.loading = "lazy";
 
-          /*
-            閉じたFAQでは
-            何もしない
-          */
+    button.append(image);
 
-          if(!faqItem.open){
-            return;
-          }
+    button.addEventListener("click", () => {
+      state.gallery = index;
+      renderGallery();
+    });
 
+    container.append(button);
+  });
 
-          /*
-            1つ開いたら、
-            ほかのFAQを閉じる
-          */
+  $("#prevArt").addEventListener("click", () => {
+    if (!currentGallery.length) return;
 
-          faqItems.forEach(
-            (otherItem) => {
+    state.gallery =
+      (state.gallery - 1 + currentGallery.length) %
+      currentGallery.length;
 
-              if(
-                otherItem !==
-                faqItem
-              ){
+    renderGallery();
+  });
 
-                otherItem.open =
-                  false;
-              }
+  $("#nextArt").addEventListener("click", () => {
+    if (!currentGallery.length) return;
 
-            }
-          );
+    state.gallery =
+      (state.gallery + 1) % currentGallery.length;
 
-        }
-      );
+    renderGallery();
+  });
 
+  renderGallery();
+}
+
+/* ==========================================
+   RARITY
+   ========================================== */
+
+function getRarities() {
+  return SETTINGS.rarities || [];
+}
+
+function renderRarity() {
+  const rarities = getRarities();
+  if (!rarities.length) return;
+
+  const rarity = rarities[state.rarity];
+  if (!rarity) return;
+
+  setImage("#rarityImage", rarity.frame);
+
+  $("#rarityImage").alt =
+    `${rarity.name} rarity frame`;
+
+  $("#rarityTitle").textContent =
+    `${rarity.name} · ${rarity.code}`;
+
+  $("#rarityRate").textContent =
+    rarity.rate || "TBA";
+
+  $("#rarityCount").textContent =
+    rarity.count != null
+      ? `${rarity.count} / ${SETTINGS.rarityExampleSupply || 99} — EXAMPLE ONLY`
+      : "FINAL ALLOCATION TBA";
+
+  $$("#rarityTabs button").forEach((button, index) => {
+    button.classList.toggle(
+      "active",
+      index === state.rarity
+    );
+    button.setAttribute(
+      "aria-pressed",
+      String(index === state.rarity)
+    );
+  });
+
+  const exampleSupply = SETTINGS.rarityExampleSupply || 99;
+
+  $("#rarityNoticeTitle").textContent =
+    `ILLUSTRATIVE EXAMPLE · ${exampleSupply} NFTs`;
+
+  $("#rarityBreakdown").textContent =
+    rarities.map(r => `${r.code} ${r.count}`).join(" · ");
+}
+
+function initRarity() {
+  const container = $("#rarityTabs");
+  container.replaceChildren();
+
+  getRarities().forEach((rarity, index) => {
+    const button = make("button", "", rarity.code);
+    button.type = "button";
+
+    button.addEventListener("click", () => {
+      state.rarity = index;
+      renderRarity();
+    });
+
+    container.append(button);
+  });
+
+  renderRarity();
+}
+
+/* ==========================================
+   JOURNEY ROUTE
+   ========================================== */
+
+const svgNS = "http://www.w3.org/2000/svg";
+
+function createCoordinates() {
+  coordinates = PREFECTURES.map((p, index) => {
+    const row = Math.floor(index / 7);
+    const column = index % 7;
+    const xColumn = row % 2 === 0
+      ? column
+      : 6 - column;
+
+    return {
+      x: 90 + xColumn * 130,
+      y: 90 + row * 105
+    };
+  });
+
+  cumulative = [0];
+
+  for (let i = 1; i < coordinates.length; i++) {
+    const a = coordinates[i - 1];
+    const b = coordinates[i];
+
+    cumulative.push(
+      cumulative[i - 1] +
+      Math.hypot(b.x - a.x, b.y - a.y)
+    );
+  }
+}
+
+function renderMapLabels() {
+  $("#mapCounter").textContent =
+    `STOP ${pad(state.stop + 1)} / 47`;
+
+  $$(".route-node").forEach((node, index) => {
+    const p = PREFECTURES[index];
+
+    node.setAttribute(
+      "aria-label",
+      `${pad(index + 1)} ${
+        state.lang === "ja" && p.nameJa
+          ? p.nameJa
+          : p.name
+      }`
+    );
+  });
+}
+
+function positionTruck(distance) {
+  const roadPath = $("#roadOutline");
+  const progressPath = $("#routeProgress");
+  const truck = $("#truckSprite");
+
+  const total = roadPath.getTotalLength();
+
+  const d = Math.max(
+    0,
+    Math.min(total, distance)
+  );
+
+  const point = roadPath.getPointAtLength(d);
+
+  const ahead = roadPath.getPointAtLength(
+    Math.min(total, d + 3)
+  );
+
+  const behind = roadPath.getPointAtLength(
+    Math.max(0, d - 3)
+  );
+
+  truck.setAttribute("x", point.x - 32);
+  truck.setAttribute("y", point.y - 48);
+
+  const images = SETTINGS.images || {};
+
+  const right = images.truckRight;
+  const left = images.truckLeft;
+
+  const direction =
+    ahead.x < behind.x ? left : right;
+
+  if (validUrl(direction)) {
+    truck.setAttribute("href", direction);
+  }
+
+  progressPath.style.strokeDasharray =
+    `${d} ${total + 2}`;
+}
+
+function moveTo(index, animate = true) {
+  state.stop = Math.max(
+    0,
+    Math.min(PREFECTURES.length - 1, index)
+  );
+
+  renderMapLabels();
+
+  $$(".route-node").forEach((node, i) => {
+    node.classList.toggle(
+      "selected",
+      i === state.stop
+    );
+
+    node.classList.toggle(
+      "visited",
+      i < state.stop
+    );
+  });
+
+  renderDetails();
+
+  if (animationId !== null) {
+    cancelAnimationFrame(animationId);
+    animationId = null;
+  }
+
+  const start = truckDistance;
+  const end = cumulative[state.stop];
+
+  if (!animate || reducedMotion()) {
+    truckDistance = end;
+    positionTruck(end);
+    return;
+  }
+
+  const begin = performance.now();
+
+  const duration = Math.min(
+    2500,
+    500 + Math.abs(end - start) * 2
+  );
+
+  function frame(now) {
+    const t = Math.min(
+      1,
+      (now - begin) / duration
+    );
+
+    const eased = t * t * (3 - 2 * t);
+
+    truckDistance =
+      start + (end - start) * eased;
+
+    positionTruck(truckDistance);
+
+    if (t < 1) {
+      animationId = requestAnimationFrame(frame);
+    } else {
+      truckDistance = end;
+      animationId = null;
+    }
+  }
+
+  animationId = requestAnimationFrame(frame);
+}
+
+function stopPlayback() {
+  state.playing = false;
+
+  if (playTimer !== null) {
+    clearTimeout(playTimer);
+    playTimer = null;
+  }
+
+  $("#playRoute").textContent = "▶ PLAY";
+}
+
+function playNext() {
+  if (!state.playing) return;
+
+  if (state.stop >= PREFECTURES.length - 1) {
+    stopPlayback();
+    return;
+  }
+
+  moveTo(state.stop + 1);
+
+  playTimer = setTimeout(playNext, 2700);
+}
+
+function initRoute() {
+  createCoordinates();
+
+  const pathData =
+    "M " +
+    coordinates.map(p => `${p.x} ${p.y}`).join(" L ");
+
+  $("#roadOutline").setAttribute("d", pathData);
+  $("#road").setAttribute("d", pathData);
+  $("#routeProgress").setAttribute("d", pathData);
+
+  const nodes = $("#routeNodes");
+  nodes.replaceChildren();
+
+  coordinates.forEach((point, index) => {
+    const group = document.createElementNS(svgNS, "g");
+
+    group.setAttribute("class", "route-node");
+    group.setAttribute(
+      "transform",
+      `translate(${point.x} ${point.y})`
+    );
+
+    group.setAttribute("role", "button");
+    group.setAttribute("tabindex", "0");
+
+    const circle = document.createElementNS(
+      svgNS,
+      "circle"
+    );
+
+    circle.setAttribute("r", "21");
+
+    const label = document.createElementNS(
+      svgNS,
+      "text"
+    );
+
+    label.textContent = pad(index + 1);
+
+    group.append(circle, label);
+
+    group.addEventListener("click", () => {
+      stopPlayback();
+      moveTo(index);
+    });
+
+    group.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        stopPlayback();
+        moveTo(index);
+      }
+    });
+
+    nodes.append(group);
+  });
+
+  $("#prevStop").addEventListener("click", () => {
+    stopPlayback();
+    moveTo(state.stop - 1);
+  });
+
+  $("#nextStop").addEventListener("click", () => {
+    stopPlayback();
+    moveTo(state.stop + 1);
+  });
+
+  $("#playRoute").addEventListener("click", () => {
+    if (state.playing) {
+      stopPlayback();
+      return;
+    }
+
+    if (state.stop >= PREFECTURES.length - 1) {
+      moveTo(0, false);
+    }
+
+    state.playing = true;
+    $("#playRoute").textContent = "■ STOP";
+
+    playNext();
+  });
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+      if (document.hidden) stopPlayback();
     }
   );
 
-})();
+  const current = Math.max(
+    0,
+    Math.min(
+      46,
+      (Number(SETTINGS.currentStop) || 1) - 1
+    )
+  );
+
+  moveTo(current, false);
+}
+
+/* ==========================================
+   INITIALIZATION
+   ========================================== */
+
+async function init() {
+  try {
+    await loadData();
+
+    initNavigation();
+    initLanguage();
+    initFilters();
+
+    renderStats();
+
+    initGallery();
+    initRarity();
+    initRoute();
+
+    renderBook("ticket");
+    renderBook("art");
+    renderDetails();
+
+    $("#loading").hidden = true;
+
+    showTab("tickets");
+
+  } catch (error) {
+    console.error("TRAVELING TAKOYAKI:", error);
+
+    $("#loading").hidden = true;
+
+    const errorBox = $("#error");
+    errorBox.hidden = false;
+
+    errorBox.textContent =
+      "Unable to load the journey data. " +
+      "Please check prefectures.json and settings.json.";
+  }
+}
+
+init();
