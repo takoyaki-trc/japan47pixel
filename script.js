@@ -4,7 +4,8 @@
 /* ==========================================
    TRAVELING TAKOYAKI
    JAPAN 47 JOURNEY
-   ========================================== */
+   LONG-TERM VERSION
+========================================== */
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
@@ -21,6 +22,9 @@ const REGIONS = [
   "KYUSHU & OKINAWA"
 ];
 
+const HOKKAIDO_ART_BOOK_IMAGE =
+  "https://ul.h3z.jp/oyLZXgar.png";
+
 let PREFECTURES = [];
 let SETTINGS = {};
 
@@ -29,6 +33,7 @@ const state = {
   art: 0,
   rarity: 0,
   gallery: 0,
+  galleryPrefecture: 0,
   stop: 0,
   playing: false,
   lang: "en"
@@ -42,34 +47,8 @@ let cumulative = [];
 let currentGallery = [];
 
 /* ==========================================
-   HOKKAIDO ART BOOK IMAGE
-
-   47 ART CHAPTERSの北海道だけに使用。
-   HTMLのdata-hokkaido-art-imageを優先。
-   ========================================== */
-
-const HOKKAIDO_ART_BOOK_IMAGE =
-  "https://ul.h3z.jp/oyLZXgar.png";
-
-function getArtBookImage(p, index) {
-  if (index === 0) {
-    const grid = $("#artGrid");
-
-    const customUrl =
-      grid?.dataset.hokkaidoArtImage ||
-      HOKKAIDO_ART_BOOK_IMAGE;
-
-    if (validUrl(customUrl)) {
-      return customUrl;
-    }
-  }
-
-  return p.artImage;
-}
-
-/* ==========================================
    HELPERS
-   ========================================== */
+========================================== */
 
 function make(tag, className = "", content) {
   const node = document.createElement(tag);
@@ -103,39 +82,127 @@ function validUrl(url) {
 
 function setImage(selector, src) {
   const image = $(selector);
+  if (!image) return;
 
-  if (image && validUrl(src)) {
+  if (validUrl(src)) {
     image.src = src;
+    image.hidden = false;
+  } else {
+    image.removeAttribute("src");
+    image.hidden = true;
   }
 }
 
 function formatDate(value) {
-  if (!value) return null;
-  return String(value);
+  return value ? String(value) : null;
 }
 
 function stopNumber(index) {
   return `STOP ${pad(index + 1)}`;
 }
 
+function getCurrentIndex() {
+  const current = Number(SETTINGS.currentStop) || 1;
+
+  return Math.max(
+    0,
+    Math.min(PREFECTURES.length - 1, current - 1)
+  );
+}
+
+function getPrefectureName(p) {
+  return state.lang === "ja" && p.nameJa
+    ? p.nameJa
+    : p.name;
+}
+
+function getPrefectureSettings(index) {
+  const p = PREFECTURES[index];
+
+  if (!p) return {};
+
+  const key = p.name.toLowerCase().replace(
+    /[^a-z0-9]/g,
+    ""
+  );
+
+  return SETTINGS[key] || {};
+}
+
+function getField(index, key) {
+  const p = PREFECTURES[index] || {};
+  const extra = getPrefectureSettings(index);
+
+  if (p[key] != null) return p[key];
+  if (extra[key] != null) return extra[key];
+
+  return null;
+}
+
 function statusText(status) {
   const values = {
     "SOLD OUT": ["SOLD OUT", "配布終了"],
     "AVAILABLE": ["AVAILABLE", "公開中"],
+    "LIVE": ["LIVE NOW", "販売中"],
+    "ON SALE": ["ON SALE", "販売中"],
     "COMING SOON": ["COMING SOON", "近日公開"],
-    "UPCOMING": ["UPCOMING", "公開予定"]
+    "UPCOMING": ["UPCOMING", "公開予定"],
+    "ENDED": ["ENDED", "販売終了"]
   };
 
   const pair = values[status];
 
   return pair
     ? translate(pair[0], pair[1])
-    : status || "COMING SOON";
+    : status || translate("COMING SOON", "近日公開");
+}
+
+function getArtBookImage(p, index) {
+  if (validUrl(p.artBookImage)) {
+    return p.artBookImage;
+  }
+
+  if (index === 0) {
+    const htmlImage =
+      $("#artGrid")?.dataset.hokkaidoArtImage;
+
+    return validUrl(htmlImage)
+      ? htmlImage
+      : HOKKAIDO_ART_BOOK_IMAGE;
+  }
+
+  return p.artImage;
+}
+
+function getGallery(index) {
+  const p = PREFECTURES[index] || {};
+  const extra = getPrefectureSettings(index);
+
+  const gallery = Array.isArray(p.artGallery)
+    ? p.artGallery
+    : Array.isArray(extra.artGallery)
+      ? extra.artGallery
+      : [];
+
+  return gallery.filter(validUrl);
+}
+
+function setText(selector, value) {
+  const node = $(selector);
+  if (node) node.textContent = value;
+}
+
+function setBilingualText(node, en, ja) {
+  if (!node) return;
+
+  node.dataset.en = en;
+  node.dataset.ja = ja;
+  node.textContent = translate(en, ja);
 }
 
 /* ==========================================
-   LOAD JSON DATA
-   ========================================== */
+   LOAD DATA
+========================================== */
 
 async function loadData() {
   const [prefecturesResponse, settingsResponse] =
@@ -155,9 +222,12 @@ async function loadData() {
   const prefectures = await prefecturesResponse.json();
   const settings = await settingsResponse.json();
 
-  if (!Array.isArray(prefectures) || prefectures.length !== 47) {
+  if (
+    !Array.isArray(prefectures) ||
+    prefectures.length !== 47
+  ) {
     throw new Error(
-      "prefectures.json must contain exactly 47 prefectures."
+      "prefectures.json must contain 47 prefectures."
     );
   }
 
@@ -177,26 +247,39 @@ async function loadData() {
 
   PREFECTURES = prefectures;
   SETTINGS = settings;
+
+  const current = getCurrentIndex();
+
+  state.ticket = current;
+  state.art = current;
+  state.galleryPrefecture = current;
+  state.stop = current;
 }
 
 /* ==========================================
    LANGUAGE
-   ========================================== */
+========================================== */
 
 function renderLanguage() {
   document.documentElement.lang = state.lang;
 
-  $("#langSwitch").textContent =
-    state.lang === "en" ? "日本語" : "ENGLISH";
+  setText(
+    "#langSwitch",
+    state.lang === "en" ? "日本語" : "ENGLISH"
+  );
 
   $$("[data-en][data-ja]").forEach(node => {
     node.textContent = node.dataset[state.lang];
   });
 
-  $("#ticketSearch").placeholder = translate(
-    "SEARCH PREFECTURE...",
-    "都道府県を検索..."
-  );
+  const search = $("#ticketSearch");
+
+  if (search) {
+    search.placeholder = translate(
+      "SEARCH PREFECTURE...",
+      "都道府県を検索..."
+    );
+  }
 
   renderStats();
   renderBook("ticket");
@@ -205,6 +288,7 @@ function renderLanguage() {
   renderGallery();
   renderRarity();
   renderMapLabels();
+  renderRegionLabels();
 }
 
 function initLanguage() {
@@ -216,14 +300,17 @@ function initLanguage() {
 
 /* ==========================================
    NAVIGATION
-   ========================================== */
+========================================== */
 
 function showTab(name) {
   $$("[data-tab]").forEach(button => {
     const active = button.dataset.tab === name;
 
     button.classList.toggle("active", active);
-    button.setAttribute("aria-selected", String(active));
+    button.setAttribute(
+      "aria-selected",
+      String(active)
+    );
   });
 
   $$(".page").forEach(page => {
@@ -240,94 +327,206 @@ function initNavigation() {
 }
 
 /* ==========================================
-   SITE SETTINGS / STATS
-   ========================================== */
+   CURRENT FEATURE / STATISTICS
+========================================== */
 
 function renderStats() {
-  const current = Math.max(
-    1,
-    Math.min(47, Number(SETTINGS.currentStop) || 1)
+  const index = getCurrentIndex();
+  const p = PREFECTURES[index];
+
+  if (!p) return;
+
+  const total = PREFECTURES.length;
+
+  setText(
+    "#currentStopStat",
+    `${pad(index + 1)} / ${total}`
   );
 
-  $("#currentStopStat").textContent =
-    `${pad(current)} / 47`;
+  const claimed = getField(index, "ticketClaimed");
+  const supply = getField(index, "ticketSupply");
 
-  const hokkaido = SETTINGS.hokkaido || {};
-
-  const claimed = hokkaido.ticketClaimed;
-  const supply = hokkaido.ticketSupply;
-
-  $("#ticketStat").textContent =
+  setText(
+    "#ticketStat",
     claimed != null && supply != null
       ? `${claimed} / ${supply}`
-      : "— / —";
+      : "— / —"
+  );
 
-  $("#rarityStat").textContent =
+  setText(
+    "#rarityStat",
     Array.isArray(SETTINGS.rarities)
       ? SETTINGS.rarities.length
-      : 5;
+      : 5
+  );
 
-  if (claimed != null && supply != null) {
-    $("#featureTicketTitle").textContent =
-      `${claimed} / ${supply} CLAIMED!`;
-  }
-
-  const artCount = Array.isArray(hokkaido.artGallery)
-    ? hokkaido.artGallery.length
-    : 0;
-
-  if (artCount) {
-    $("#featureArtTitle").textContent =
-      `${Math.max(0, artCount - 1)} + 1 ARTWORKS`;
-  }
+  renderFeature(index);
 
   const images = SETTINGS.images || {};
 
   setImage("#heroImage", images.hero);
-  setImage(
-    "#featureTicketImage",
-    PREFECTURES[0].ticketImage
-  );
-
-  // 上部のNFT紹介画像は従来のまま
-  setImage(
-    "#featureArtImage",
-    PREFECTURES[0].artImage
-  );
 
   if (validUrl(SETTINGS.officialOpenSea)) {
-    $("#officialLink").href = SETTINGS.officialOpenSea;
+    const link = $("#officialLink");
+    if (link) link.href = SETTINGS.officialOpenSea;
   }
 
-  const faq = $("#mintFaq");
+  const ticketStatLabel =
+    $(".stats > div:nth-child(2) small");
 
-  if (hokkaido.mintDate) {
-    const price = hokkaido.mintPrice != null
-      ? ` · ${hokkaido.mintPrice}`
-      : "";
+  setBilingualText(
+    ticketStatLabel,
+    `${p.name} TICKETS`,
+    `${p.nameJa || p.name} チケット`
+  );
+}
 
-    faq.textContent =
-      `Hokkaido artwork mint: ${formatDate(hokkaido.mintDate)}${price}. ` +
-      (hokkaido.snapshotDate
-        ? `Snapshot: ${formatDate(hokkaido.snapshotDate)}.`
-        : "Snapshot date to be announced.");
+function renderFeature(index) {
+  const p = PREFECTURES[index];
+  if (!p) return;
+
+  const ticketStatus =
+    getField(index, "ticketStatus") || "COMING SOON";
+
+  const artStatus =
+    getField(index, "artStatus") || "COMING SOON";
+
+  const claimed = getField(index, "ticketClaimed");
+  const supply = getField(index, "ticketSupply");
+
+  const ticketTitle =
+    claimed != null && supply != null
+      ? `${claimed} / ${supply} CLAIMED`
+      : `${p.name} · ${statusText(ticketStatus)}`;
+
+  setText("#featureTicketTitle", ticketTitle);
+
+  const gallery = getGallery(index);
+
+  const artTitle = gallery.length
+    ? `${p.name} · ${gallery.length} ARTWORKS`
+    : `${p.name} · ${statusText(artStatus)}`;
+
+  setText("#featureArtTitle", artTitle);
+
+  setImage("#featureTicketImage", p.ticketImage);
+  setImage("#featureArtImage", p.artImage);
+
+  const ticketFeature = $("#featureTicketTitle")
+    ?.closest(".feature");
+
+  const artFeature = $("#featureArtTitle")
+    ?.closest(".feature");
+
+  if (ticketFeature) {
+    const eyebrow = ticketFeature.querySelector(
+      ".eyebrow"
+    );
+
+    setText(
+      eyebrow ? "#featureTicketTitle" : null,
+      ticketTitle
+    );
+
+    if (eyebrow) {
+      eyebrow.textContent =
+        `${stopNumber(index)} · ${p.name}`;
+    }
+
+    const paragraph = ticketFeature.querySelector("p");
+
+    if (paragraph) {
+      setBilingualText(
+        paragraph,
+        claimed != null && supply != null
+          ? `${claimed} of ${supply} Journey Tickets claimed.`
+          : `Follow the Journey Ticket release for ${p.name}.`,
+        claimed != null && supply != null
+          ? `${supply}枚中${claimed}枚のJourney Ticketが取得されました。`
+          : `${p.nameJa || p.name}のJourney Ticket公開情報をチェック！`
+      );
+    }
+
+    const stamps = ticketFeature.querySelectorAll(
+      ".stamp"
+    );
+
+    if (stamps[0]) {
+      stamps[0].textContent = statusText(ticketStatus);
+    }
+
+    if (stamps[1]) {
+      const max = getField(index, "ticketMaxPerWallet");
+
+      stamps[1].textContent =
+        max != null
+          ? `${max} PER WALLET`
+          : stopNumber(index);
+    }
+  }
+
+  if (artFeature) {
+    const eyebrow = artFeature.querySelector(
+      ".eyebrow"
+    );
+
+    if (eyebrow) {
+      eyebrow.textContent =
+        `CHAPTER ${pad(index + 1)} · ${p.name}`;
+    }
+
+    const paragraph = artFeature.querySelector("p");
+
+    if (paragraph) {
+      setBilingualText(
+        paragraph,
+        gallery.length
+          ? `Explore ${gallery.length} pixel-art artworks from ${p.name}.`
+          : `The ${p.name} NFT artwork collection is being prepared.`,
+        gallery.length
+          ? `${p.nameJa || p.name}のピクセルアート作品${gallery.length}点をご覧いただけます。`
+          : `${p.nameJa || p.name}のNFTアートコレクションは準備中です。`
+      );
+    }
+
+    const stamp = artFeature.querySelector(".stamp");
+
+    if (stamp) {
+      stamp.textContent = statusText(artStatus);
+    }
   }
 }
 
 /* ==========================================
    REGIONAL FILTERS
-   ========================================== */
+========================================== */
 
 function fillRegions(select) {
+  if (!select) return;
+
   select.replaceChildren();
 
-  select.add(new Option(
-    "ALL REGIONS · 47 PREFECTURES",
-    "all"
-  ));
+  select.add(
+    new Option(
+      "ALL REGIONS · 47 PREFECTURES",
+      "all"
+    )
+  );
 
   REGIONS.forEach(region => {
     select.add(new Option(region, region));
+  });
+}
+
+function renderRegionLabels() {
+  ["#ticketRegion", "#artRegion"].forEach(selector => {
+    const select = $(selector);
+    if (!select || !select.options.length) return;
+
+    select.options[0].textContent = translate(
+      "ALL REGIONS · 47 PREFECTURES",
+      "すべての地域 · 47都道府県"
+    );
   });
 }
 
@@ -335,22 +534,25 @@ function initFilters() {
   fillRegions($("#ticketRegion"));
   fillRegions($("#artRegion"));
 
-  $("#ticketSearch").addEventListener("input", () => {
-    renderBook("ticket");
-  });
+  $("#ticketSearch").addEventListener(
+    "input",
+    () => renderBook("ticket")
+  );
 
-  $("#ticketRegion").addEventListener("change", () => {
-    renderBook("ticket");
-  });
+  $("#ticketRegion").addEventListener(
+    "change",
+    () => renderBook("ticket")
+  );
 
-  $("#artRegion").addEventListener("change", () => {
-    renderBook("art");
-  });
+  $("#artRegion").addEventListener(
+    "change",
+    () => renderBook("art")
+  );
 }
 
 /* ==========================================
-   PREFECTURE DETAIL
-   ========================================== */
+   PREFECTURE DETAILS
+========================================== */
 
 function createDetail(index, type) {
   const p = PREFECTURES[index];
@@ -358,10 +560,9 @@ function createDetail(index, type) {
 
   const url = isTicket ? p.ticketUrl : p.artUrl;
 
-  // ART BOOKの北海道詳細画像も統一
   const imageUrl = isTicket
     ? p.ticketImage
-    : getArtBookImage(p, index);
+    : p.artImage;
 
   const status = isTicket
     ? p.ticketStatus
@@ -378,7 +579,7 @@ function createDetail(index, type) {
     make(
       "h3",
       "",
-      `${p.name} · ${
+      `${getPrefectureName(p)} · ${
         isTicket ? "JOURNEY TICKET" : "NFT ART"
       }`
     )
@@ -386,9 +587,11 @@ function createDetail(index, type) {
 
   if (validUrl(imageUrl)) {
     const image = make("img");
+
     image.src = imageUrl;
     image.alt = `${p.name} ${type}`;
     image.loading = "lazy";
+
     wrapper.append(image);
   }
 
@@ -396,59 +599,87 @@ function createDetail(index, type) {
     make("p", "status", statusText(status))
   );
 
-  if (isTicket && p.ticketSupply != null) {
-    const claimed = p.ticketClaimed;
+  if (isTicket) {
+    const supply = getField(index, "ticketSupply");
+    const claimed = getField(index, "ticketClaimed");
 
-    wrapper.append(
-      make(
-        "p",
-        "",
-        claimed != null
-          ? `${claimed} / ${p.ticketSupply} CLAIMED`
-          : `TOTAL SUPPLY: ${p.ticketSupply}`
-      )
-    );
-  }
+    if (supply != null) {
+      wrapper.append(
+        make(
+          "p",
+          "",
+          claimed != null
+            ? `${claimed} / ${supply} CLAIMED`
+            : `TOTAL SUPPLY: ${supply}`
+        )
+      );
+    }
 
-  if (index === 0 && isTicket) {
-    const snapshot = SETTINGS.hokkaido?.snapshotDate;
+    const snapshot =
+      getPrefectureSettings(index).snapshotDate;
 
-    wrapper.append(
-      make(
-        "p",
-        "",
-        snapshot
-          ? `SNAPSHOT: ${formatDate(snapshot)}`
-          : translate(
-              "Snapshot date to be announced.",
-              "スナップショット日は後日発表します。"
-            )
-      )
-    );
-  }
+    if (snapshot) {
+      wrapper.append(
+        make(
+          "p",
+          "",
+          `SNAPSHOT: ${formatDate(snapshot)}`
+        )
+      );
+    }
+  } else {
+    const extra = getPrefectureSettings(index);
 
-  if (index === 0 && !isTicket) {
-    const h = SETTINGS.hokkaido || {};
+    if (extra.mintDate) {
+      wrapper.append(
+        make(
+          "p",
+          "",
+          `MINT: ${formatDate(extra.mintDate)}`
+        )
+      );
+    }
 
-    wrapper.append(
-      make(
-        "p",
-        "",
-        h.mintDate
-          ? `MINT: ${formatDate(h.mintDate)}`
-          : translate(
-              "Artwork mint date has not yet been announced.",
-              "NFTアートの販売日は後日発表します。"
-            )
-      )
-    );
+    const gallery = getGallery(index);
+
+    if (gallery.length) {
+      const galleryButton = make(
+        "button",
+        "action-link",
+        translate(
+          "VIEW ART GALLERY ↗",
+          "作品ギャラリーを見る ↗"
+        )
+      );
+
+      galleryButton.type = "button";
+
+      galleryButton.addEventListener("click", () => {
+        selectGalleryPrefecture(index);
+
+        const gallerySection =
+          $(".gallery-stage");
+
+        gallerySection?.scrollIntoView({
+          behavior: reducedMotion()
+            ? "auto"
+            : "smooth",
+          block: "center"
+        });
+      });
+
+      wrapper.append(galleryButton);
+    }
   }
 
   if (validUrl(url)) {
     const link = make(
       "a",
       "action-link",
-      "VIEW ON OPENSEA ↗"
+      translate(
+        "VIEW ON OPENSEA ↗",
+        "OPENSEAで見る ↗"
+      )
     );
 
     link.href = url;
@@ -488,12 +719,8 @@ function renderDetails() {
 }
 
 /* ==========================================
-   COLLECTION BOOK
-   OPENSEA LINKS BELOW EACH CARD
-
-   HOKKAIDO ART BOOK:
-   CONTRACT IMAGE
-   ========================================== */
+   TICKET BOOK / ART BOOK
+========================================== */
 
 function renderBook(type) {
   const isTicket = type === "ticket";
@@ -515,7 +742,9 @@ function renderBook(type) {
   let count = 0;
 
   PREFECTURES.forEach((p, index) => {
-    if (region !== "all" && p.region !== region) return;
+    if (region !== "all" && p.region !== region) {
+      return;
+    }
 
     if (
       search &&
@@ -537,6 +766,7 @@ function renderBook(type) {
     );
 
     button.type = "button";
+
     button.setAttribute(
       "aria-label",
       `${p.name} ${type}`
@@ -544,14 +774,13 @@ function renderBook(type) {
 
     const thumb = make("div", "thumb");
 
-    // Ticket Bookは従来の画像
-    // Art Bookの北海道のみコントラクト画像
     const imageUrl = isTicket
       ? p.ticketImage
       : getArtBookImage(p, index);
 
     if (validUrl(imageUrl)) {
       const image = make("img");
+
       image.src = imageUrl;
       image.alt = "";
       image.loading = "lazy";
@@ -568,11 +797,7 @@ function renderBook(type) {
       make(
         "span",
         "name",
-        `${pad(index + 1)} ${
-          state.lang === "ja" && p.nameJa
-            ? p.nameJa
-            : p.name
-        }`
+        `${pad(index + 1)} ${getPrefectureName(p)}`
       )
     );
 
@@ -581,6 +806,9 @@ function renderBook(type) {
         state.ticket = index;
       } else {
         state.art = index;
+
+        // 選んだ都道府県のギャラリーへ切り替え
+        selectGalleryPrefecture(index);
       }
 
       renderBook(type);
@@ -590,7 +818,7 @@ function renderBook(type) {
         isTicket ? "#ticketDetail" : "#artDetail"
       );
 
-      detail.scrollIntoView({
+      detail?.scrollIntoView({
         behavior: reducedMotion()
           ? "auto"
           : "smooth",
@@ -609,7 +837,10 @@ function renderBook(type) {
       const link = make(
         "a",
         "book-opensea",
-        "VIEW ON OPENSEA ↗"
+        translate(
+          "VIEW ON OPENSEA ↗",
+          "OPENSEAで見る ↗"
+        )
       );
 
       link.href = openSeaUrl;
@@ -631,23 +862,113 @@ function renderBook(type) {
   });
 
   if (isTicket) {
-    $("#ticketCount").textContent =
-      `${count} / 47 DESTINATIONS`;
+    setText(
+      "#ticketCount",
+      `${count} / 47 DESTINATIONS`
+    );
   }
 }
 
 /* ==========================================
    NFT ART GALLERY
-   ========================================== */
+   CURRENT STOP + HISTORICAL COLLECTIONS
+========================================== */
 
-function getGallery() {
-  return SETTINGS.hokkaido?.artGallery || [];
+function selectGalleryPrefecture(index) {
+  state.galleryPrefecture = index;
+  state.gallery = 0;
+
+  rebuildGallery();
+}
+
+function rebuildGallery() {
+  const index = state.galleryPrefecture;
+  const p = PREFECTURES[index];
+
+  currentGallery = getGallery(index);
+
+  const container = $("#galleryThumbs");
+  container.replaceChildren();
+
+  const stage = $(".gallery-stage");
+  const caption = $("#galleryCaption");
+
+  const heading = stage?.previousElementSibling;
+
+  if (heading && heading.tagName === "H3") {
+    heading.textContent =
+      `${p.name} ART GALLERY`;
+  }
+
+  if (!currentGallery.length) {
+    if (stage) stage.hidden = true;
+
+    setText(
+      "#galleryCaption",
+      translate(
+        `${p.name} ART GALLERY · COMING SOON`,
+        `${p.nameJa || p.name}の作品は近日公開`
+      )
+    );
+
+    return;
+  }
+
+  if (stage) stage.hidden = false;
+
+  currentGallery.forEach((src, galleryIndex) => {
+    const button = make("button");
+    button.type = "button";
+
+    button.setAttribute(
+      "aria-label",
+      `${p.name} artwork ${galleryIndex + 1}`
+    );
+
+    const image = make("img");
+
+    image.src = src;
+    image.alt = `${p.name} artwork ${galleryIndex + 1}`;
+    image.loading = "lazy";
+
+    button.append(image);
+
+    button.addEventListener("click", () => {
+      state.gallery = galleryIndex;
+      renderGallery();
+    });
+
+    container.append(button);
+  });
+
+  renderGallery();
 }
 
 function renderGallery() {
-  currentGallery = getGallery();
+  const index = state.galleryPrefecture;
+  const p = PREFECTURES[index];
 
-  if (!currentGallery.length) return;
+  if (!p) return;
+
+  currentGallery = getGallery(index);
+
+  if (!currentGallery.length) {
+    const stage = $(".gallery-stage");
+    if (stage) stage.hidden = true;
+
+    setText(
+      "#galleryCaption",
+      translate(
+        `${p.name} ART GALLERY · COMING SOON`,
+        `${p.nameJa || p.name}の作品は近日公開`
+      )
+    );
+
+    return;
+  }
+
+  const stage = $(".gallery-stage");
+  if (stage) stage.hidden = false;
 
   state.gallery = Math.max(
     0,
@@ -657,76 +978,41 @@ function renderGallery() {
     )
   );
 
-  const index = state.gallery;
-  const src = currentGallery[index];
+  const galleryIndex = state.gallery;
+  const src = currentGallery[galleryIndex];
 
-  if (validUrl(src)) {
-    $("#galleryImage").src = src;
-  }
+  setImage("#galleryImage", src);
 
   const isLast =
-    index === currentGallery.length - 1;
+    galleryIndex === currentGallery.length - 1;
 
-  $("#galleryCaption").textContent =
-    isLast
-      ? `HOKKAIDO LR EXCLUSIVE · ${
-          pad(index + 1)
-        } / ${pad(currentGallery.length)}`
-      : `HOKKAIDO ${
-          pad(index + 1)
-        } / ${pad(currentGallery.length)}`;
+  const suffix = isLast
+    ? " · FINAL ARTWORK"
+    : "";
+
+  setText(
+    "#galleryCaption",
+    `${getPrefectureName(p)} · ${
+      pad(galleryIndex + 1)
+    } / ${pad(currentGallery.length)}${suffix}`
+  );
 
   $$("#galleryThumbs button").forEach(
     (button, i) => {
       button.classList.toggle(
         "selected",
-        i === index
+        i === galleryIndex
       );
 
       button.setAttribute(
         "aria-pressed",
-        String(i === index)
+        String(i === galleryIndex)
       );
     }
   );
 }
 
 function initGallery() {
-  currentGallery = getGallery();
-
-  const container = $("#galleryThumbs");
-  container.replaceChildren();
-
-  currentGallery.forEach((src, index) => {
-    const button = make("button");
-    button.type = "button";
-
-    button.setAttribute(
-      "aria-label",
-      `Hokkaido artwork ${index + 1}`
-    );
-
-    const image = make("img");
-
-    if (validUrl(src)) {
-      image.src = src;
-    }
-
-    image.alt =
-      `Hokkaido artwork ${index + 1}`;
-
-    image.loading = "lazy";
-
-    button.append(image);
-
-    button.addEventListener("click", () => {
-      state.gallery = index;
-      renderGallery();
-    });
-
-    container.append(button);
-  });
-
   $("#prevArt").addEventListener("click", () => {
     if (!currentGallery.length) return;
 
@@ -749,15 +1035,17 @@ function initGallery() {
     renderGallery();
   });
 
-  renderGallery();
+  selectGalleryPrefecture(getCurrentIndex());
 }
 
 /* ==========================================
    RARITY
-   ========================================== */
+========================================== */
 
 function getRarities() {
-  return SETTINGS.rarities || [];
+  return Array.isArray(SETTINGS.rarities)
+    ? SETTINGS.rarities
+    : [];
 }
 
 function renderRarity() {
@@ -766,7 +1054,6 @@ function renderRarity() {
   if (!rarities.length) return;
 
   const rarity = rarities[state.rarity];
-
   if (!rarity) return;
 
   setImage("#rarityImage", rarity.frame);
@@ -774,18 +1061,25 @@ function renderRarity() {
   $("#rarityImage").alt =
     `${rarity.name} rarity frame`;
 
-  $("#rarityTitle").textContent =
-    `${rarity.name} · ${rarity.code}`;
+  setText(
+    "#rarityTitle",
+    `${rarity.name} · ${rarity.code}`
+  );
 
-  $("#rarityRate").textContent =
-    rarity.rate || "TBA";
+  setText(
+    "#rarityRate",
+    rarity.rate || "TBA"
+  );
 
-  $("#rarityCount").textContent =
+  const exampleSupply =
+    SETTINGS.rarityExampleSupply || 99;
+
+  setText(
+    "#rarityCount",
     rarity.count != null
-      ? `${rarity.count} / ${
-          SETTINGS.rarityExampleSupply || 99
-        } — EXAMPLE ONLY`
-      : "FINAL ALLOCATION TBA";
+      ? `${rarity.count} / ${exampleSupply} — EXAMPLE ONLY`
+      : "FINAL ALLOCATION TBA"
+  );
 
   $$("#rarityTabs button").forEach(
     (button, index) => {
@@ -801,42 +1095,39 @@ function renderRarity() {
     }
   );
 
-  const exampleSupply =
-    SETTINGS.rarityExampleSupply || 99;
+  setText(
+    "#rarityNoticeTitle",
+    `ILLUSTRATIVE EXAMPLE · ${exampleSupply} NFTs`
+  );
 
-  $("#rarityNoticeTitle").textContent =
-    `ILLUSTRATIVE EXAMPLE · ${
-      exampleSupply
-    } NFTs`;
-
-  $("#rarityBreakdown").textContent =
+  setText(
+    "#rarityBreakdown",
     rarities
       .map(r => `${r.code} ${r.count}`)
-      .join(" · ");
+      .join(" · ")
+  );
 }
 
 function initRarity() {
   const container = $("#rarityTabs");
   container.replaceChildren();
 
-  getRarities().forEach(
-    (rarity, index) => {
-      const button = make(
-        "button",
-        "",
-        rarity.code
-      );
+  getRarities().forEach((rarity, index) => {
+    const button = make(
+      "button",
+      "",
+      rarity.code
+    );
 
-      button.type = "button";
+    button.type = "button";
 
-      button.addEventListener("click", () => {
-        state.rarity = index;
-        renderRarity();
-      });
+    button.addEventListener("click", () => {
+      state.rarity = index;
+      renderRarity();
+    });
 
-      container.append(button);
-    }
-  );
+    container.append(button);
+  });
 
   renderRarity();
 }
@@ -844,10 +1135,9 @@ function initRarity() {
 /* ==========================================
    JOURNEY ROUTE
    6 STOPS PER ROW
-   ========================================== */
+========================================== */
 
-const svgNS =
-  "http://www.w3.org/2000/svg";
+const svgNS = "http://www.w3.org/2000/svg";
 
 function createCoordinates() {
   const columns = 6;
@@ -856,33 +1146,24 @@ function createCoordinates() {
   const startX = 75;
   const startY = 75;
 
-  coordinates = PREFECTURES.map(
-    (p, index) => {
-      const row =
-        Math.floor(index / columns);
+  coordinates = PREFECTURES.map((p, index) => {
+    const row = Math.floor(index / columns);
+    const column = index % columns;
 
-      const column =
-        index % columns;
+    const xColumn =
+      row % 2 === 0
+        ? column
+        : columns - 1 - column;
 
-      const xColumn =
-        row % 2 === 0
-          ? column
-          : columns - 1 - column;
-
-      return {
-        x: startX + xColumn * spacingX,
-        y: startY + row * spacingY
-      };
-    }
-  );
+    return {
+      x: startX + xColumn * spacingX,
+      y: startY + row * spacingY
+    };
+  });
 
   cumulative = [0];
 
-  for (
-    let i = 1;
-    i < coordinates.length;
-    i++
-  ) {
+  for (let i = 1; i < coordinates.length; i++) {
     const a = coordinates[i - 1];
     const b = coordinates[i];
 
@@ -897,23 +1178,19 @@ function createCoordinates() {
 }
 
 function renderMapLabels() {
-  $("#mapCounter").textContent =
-    `STOP ${pad(state.stop + 1)} / 47`;
-
-  $$(".route-node").forEach(
-    (node, index) => {
-      const p = PREFECTURES[index];
-
-      node.setAttribute(
-        "aria-label",
-        `${pad(index + 1)} ${
-          state.lang === "ja" && p.nameJa
-            ? p.nameJa
-            : p.name
-        }`
-      );
-    }
+  setText(
+    "#mapCounter",
+    `STOP ${pad(state.stop + 1)} / 47`
   );
+
+  $$(".route-node").forEach((node, index) => {
+    const p = PREFECTURES[index];
+
+    node.setAttribute(
+      "aria-label",
+      `${pad(index + 1)} ${getPrefectureName(p)}`
+    );
+  });
 }
 
 function positionTruck(distance) {
@@ -928,44 +1205,28 @@ function positionTruck(distance) {
     Math.min(total, distance)
   );
 
-  const point =
-    roadPath.getPointAtLength(d);
+  const point = roadPath.getPointAtLength(d);
 
-  const ahead =
-    roadPath.getPointAtLength(
-      Math.min(total, d + 3)
-    );
-
-  const behind =
-    roadPath.getPointAtLength(
-      Math.max(0, d - 3)
-    );
-
-  truck.setAttribute(
-    "x",
-    point.x - 32
+  const ahead = roadPath.getPointAtLength(
+    Math.min(total, d + 3)
   );
 
-  truck.setAttribute(
-    "y",
-    point.y - 48
+  const behind = roadPath.getPointAtLength(
+    Math.max(0, d - 3)
   );
+
+  truck.setAttribute("x", point.x - 32);
+  truck.setAttribute("y", point.y - 48);
 
   const images = SETTINGS.images || {};
 
-  const right = images.truckRight;
-  const left = images.truckLeft;
-
   const direction =
     ahead.x < behind.x
-      ? left
-      : right;
+      ? images.truckLeft
+      : images.truckRight;
 
   if (validUrl(direction)) {
-    truck.setAttribute(
-      "href",
-      direction
-    );
+    truck.setAttribute("href", direction);
   }
 
   progressPath.style.strokeDasharray =
@@ -975,27 +1236,22 @@ function positionTruck(distance) {
 function moveTo(index, animate = true) {
   state.stop = Math.max(
     0,
-    Math.min(
-      PREFECTURES.length - 1,
-      index
-    )
+    Math.min(PREFECTURES.length - 1, index)
   );
 
   renderMapLabels();
 
-  $$(".route-node").forEach(
-    (node, i) => {
-      node.classList.toggle(
-        "selected",
-        i === state.stop
-      );
+  $$(".route-node").forEach((node, i) => {
+    node.classList.toggle(
+      "selected",
+      i === state.stop
+    );
 
-      node.classList.toggle(
-        "visited",
-        i < state.stop
-      );
-    }
-  );
+    node.classList.toggle(
+      "visited",
+      i < state.stop
+    );
+  });
 
   renderDetails();
 
@@ -1026,8 +1282,7 @@ function moveTo(index, animate = true) {
       (now - begin) / duration
     );
 
-    const eased =
-      t * t * (3 - 2 * t);
+    const eased = t * t * (3 - 2 * t);
 
     truckDistance =
       start + (end - start) * eased;
@@ -1035,16 +1290,14 @@ function moveTo(index, animate = true) {
     positionTruck(truckDistance);
 
     if (t < 1) {
-      animationId =
-        requestAnimationFrame(frame);
+      animationId = requestAnimationFrame(frame);
     } else {
       truckDistance = end;
       animationId = null;
     }
   }
 
-  animationId =
-    requestAnimationFrame(frame);
+  animationId = requestAnimationFrame(frame);
 }
 
 function stopPlayback() {
@@ -1055,25 +1308,20 @@ function stopPlayback() {
     playTimer = null;
   }
 
-  $("#playRoute").textContent =
-    "▶ PLAY";
+  setText("#playRoute", "▶ PLAY");
 }
 
 function playNext() {
   if (!state.playing) return;
 
-  if (
-    state.stop >=
-    PREFECTURES.length - 1
-  ) {
+  if (state.stop >= PREFECTURES.length - 1) {
     stopPlayback();
     return;
   }
 
   moveTo(state.stop + 1);
 
-  playTimer =
-    setTimeout(playNext, 2700);
+  playTimer = setTimeout(playNext, 2700);
 }
 
 function initRoute() {
@@ -1085,139 +1333,90 @@ function initRoute() {
       .map(p => `${p.x} ${p.y}`)
       .join(" L ");
 
-  $("#roadOutline").setAttribute(
-    "d",
-    pathData
-  );
-
-  $("#road").setAttribute(
-    "d",
-    pathData
-  );
-
-  $("#routeProgress").setAttribute(
-    "d",
-    pathData
-  );
+  ["#roadOutline", "#road", "#routeProgress"]
+    .forEach(selector => {
+      $(selector).setAttribute("d", pathData);
+    });
 
   const nodes = $("#routeNodes");
   nodes.replaceChildren();
 
-  coordinates.forEach(
-    (point, index) => {
-      const group =
-        document.createElementNS(
-          svgNS,
-          "g"
-        );
+  coordinates.forEach((point, index) => {
+    const group = document.createElementNS(
+      svgNS,
+      "g"
+    );
 
-      group.setAttribute(
-        "class",
-        "route-node"
-      );
+    group.setAttribute("class", "route-node");
 
-      group.setAttribute(
-        "transform",
-        `translate(${point.x} ${point.y})`
-      );
+    group.setAttribute(
+      "transform",
+      `translate(${point.x} ${point.y})`
+    );
 
-      group.setAttribute(
-        "role",
-        "button"
-      );
+    group.setAttribute("role", "button");
+    group.setAttribute("tabindex", "0");
 
-      group.setAttribute(
-        "tabindex",
-        "0"
-      );
+    const circle = document.createElementNS(
+      svgNS,
+      "circle"
+    );
 
-      const circle =
-        document.createElementNS(
-          svgNS,
-          "circle"
-        );
+    circle.setAttribute("r", "26");
 
-      circle.setAttribute(
-        "r",
-        "26"
-      );
+    const label = document.createElementNS(
+      svgNS,
+      "text"
+    );
 
-      const label =
-        document.createElementNS(
-          svgNS,
-          "text"
-        );
+    label.textContent = pad(index + 1);
 
-      label.textContent =
-        pad(index + 1);
+    group.append(circle, label);
 
-      group.append(circle, label);
-
-      group.addEventListener(
-        "click",
-        () => {
-          stopPlayback();
-          moveTo(index);
-        }
-      );
-
-      group.addEventListener(
-        "keydown",
-        event => {
-          if (
-            event.key === "Enter" ||
-            event.key === " "
-          ) {
-            event.preventDefault();
-            stopPlayback();
-            moveTo(index);
-          }
-        }
-      );
-
-      nodes.append(group);
-    }
-  );
-
-  $("#prevStop").addEventListener(
-    "click",
-    () => {
+    group.addEventListener("click", () => {
       stopPlayback();
-      moveTo(state.stop - 1);
-    }
-  );
+      moveTo(index);
+    });
 
-  $("#nextStop").addEventListener(
-    "click",
-    () => {
-      stopPlayback();
-      moveTo(state.stop + 1);
-    }
-  );
-
-  $("#playRoute").addEventListener(
-    "click",
-    () => {
-      if (state.playing) {
-        stopPlayback();
-        return;
-      }
-
+    group.addEventListener("keydown", event => {
       if (
-        state.stop >=
-        PREFECTURES.length - 1
+        event.key === "Enter" ||
+        event.key === " "
       ) {
-        moveTo(0, false);
+        event.preventDefault();
+        stopPlayback();
+        moveTo(index);
       }
+    });
 
-      state.playing = true;
+    nodes.append(group);
+  });
 
-      $("#playRoute").textContent =
-        "■ STOP";
+  $("#prevStop").addEventListener("click", () => {
+    stopPlayback();
+    moveTo(state.stop - 1);
+  });
 
-      playNext();
+  $("#nextStop").addEventListener("click", () => {
+    stopPlayback();
+    moveTo(state.stop + 1);
+  });
+
+  $("#playRoute").addEventListener("click", () => {
+    if (state.playing) {
+      stopPlayback();
+      return;
     }
-  );
+
+    if (state.stop >= PREFECTURES.length - 1) {
+      moveTo(0, false);
+    }
+
+    state.playing = true;
+    setText("#playRoute", "■ STOP");
+
+    playNext();
+  });
 
   document.addEventListener(
     "visibilitychange",
@@ -1228,20 +1427,12 @@ function initRoute() {
     }
   );
 
-  const current = Math.max(
-    0,
-    Math.min(
-      46,
-      (Number(SETTINGS.currentStop) || 1) - 1
-    )
-  );
-
-  moveTo(current, false);
+  moveTo(getCurrentIndex(), false);
 }
 
 /* ==========================================
    INITIALIZATION
-   ========================================== */
+========================================== */
 
 async function init() {
   try {
@@ -1271,14 +1462,18 @@ async function init() {
       error
     );
 
-    $("#loading").hidden = true;
+    const loading = $("#loading");
+    if (loading) loading.hidden = true;
 
     const errorBox = $("#error");
-    errorBox.hidden = false;
 
-    errorBox.textContent =
-      "Unable to load the journey data. " +
-      "Please check prefectures.json and settings.json.";
+    if (errorBox) {
+      errorBox.hidden = false;
+
+      errorBox.textContent =
+        "Unable to load the journey data. " +
+        "Please check prefectures.json and settings.json.";
+    }
   }
 }
 
