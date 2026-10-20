@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+  <title>MY TRAVEL PASSPORT | Traveling Takoyaki</title>
+
+  <meta name="theme-color" content="#10233d">
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <a class="back-link" href="../../">
+      ← BACK TO JOURNEY
+    </a>
+
+    <div class="brand">TRAVELING TAKOYAKI</div>
+    <div class="subtitle">JAPAN 47 JOURNEY</div>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <div class="hero-icon">📖</div>
+      <div class="eyebrow">YOUR ADVENTURE RECORD</div>
+      <h1>MY TRAVEL PASSPORT</h1>
+      <p>
+        Collect Journey Tickets and NFTs
+        as you travel across all 47
+        prefectures of Japan!
+      </p>
+    </section>
+
+    <section class="wallet-panel">
+      <div class="panel-title">YOUR WALLET</div>
+
+      <button id="connectWallet" type="button">
+        CONNECT WALLET
+      </button>
+
+      <p id="walletStatus">
+        Connect your wallet to view your collection.
+      </p>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card">
+        <div class="stat-icon">🎟️</div>
+        <div class="stat-number" id="ticketCount">0 / 47</div>
+        <div class="stat-label">JOURNEY TICKETS</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">🖼️</div>
+        <div class="stat-number" id="nftCount">0 / 47</div>
+        <div class="stat-label">NFT COLLECTION</div>
+      </div>
+    </section>
+
+    <section class="progress-panel">
+      <div class="section-heading">
+        <h2>JAPAN JOURNEY</h2>
+        <span id="progressText">0 / 47</span>
+      </div>
+
+      <div class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+
+      <p>
+        Every destination brings you
+        one step closer to completing Japan!
+      </p>
+    </section>
+
+    <section class="destinations">
+      <h2>YOUR DESTINATIONS</h2>
+      <p class="section-description">
+        Discover and collect all 47 prefectures.
+      </p>
+
+      <div id="prefectureGrid" class="prefecture-grid"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    TRAVELING TAKOYAKI © 2026
+    <p>ONE TRUCK. 47 PREFECTURES.</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
