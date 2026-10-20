@@ -37,6 +37,21 @@
     ]
   },
 
+  "aomori": {
+    "ticketSupply": null,
+    "ticketClaimed": null,
+    "ticketStatus": "COMING SOON",
+    "ticketPrice": null,
+    "ticketMaxPerWallet": null,
+
+    "snapshotDate": null,
+    "mintDate": null,
+    "mintPrice": null,
+    "artSupply": null,
+
+    "artGallery": []
+  },
+
   "rarityExampleSupply": 99,
 
   "rarities": [
