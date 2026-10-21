@@ -4,431 +4,486 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>ALLOWLIST | TRAVELING TAKOYAKI</title>
-<meta name="description" content="Apply for priority NFT purchase eligibility in the TRAVELING TAKOYAKI Japan 47 Journey.">
-<link rel="icon" type="image/png" href="./traveling-takoyaki-icon.png">
+<meta name="theme-color" content="#0b1930">
+<meta name="description" content="Complete two missions and apply for priority NFT purchase access on the Traveling Takoyaki Japan 47 Journey.">
+<title>PRIORITY ACCESS MISSION | TRAVELING TAKOYAKI</title>
+<link rel="icon" href="./traveling-takoyaki-icon.png" type="image/png">
 
 <style>
 :root {
-  --navy:#10233d;
-  --panel:#1d3655;
-  --deep:#142b48;
-  --cream:#fff4d8;
-  --yellow:#ffc928;
-  --border:#4a607b;
-  --muted:#d7e2ee;
-  --green:#75e0b1;
-  --red:#ffb4ab;
+  --bg:#0b1930;
+  --navy:#112742;
+  --panel:#1a3654;
+  --line:#4b6980;
+  --gold:#ffcc37;
+  --white:#fff5d8;
+  --muted:#c5d6e4;
+  --green:#70e3af;
+  --red:#ffad9d;
 }
 
-* { box-sizing:border-box; }
-
-html { scroll-behavior:smooth; }
+* {
+  box-sizing:border-box;
+}
 
 body {
   margin:0;
-  background:var(--navy);
-  color:var(--cream);
+  background:var(--bg);
+  color:var(--white);
   font-family:Arial,"Noto Sans JP",sans-serif;
   line-height:1.5;
+  background-image:
+    linear-gradient(#ffffff05 1px,transparent 1px),
+    linear-gradient(90deg,#ffffff05 1px,transparent 1px);
+  background-size:26px 26px;
 }
 
-button,input { font:inherit; }
-a { color:inherit; }
+button,input {
+  font:inherit;
+}
 
-/* FIXED TOP LEFT NAVIGATION */
+a {
+  color:inherit;
+}
 
-.fixed-nav {
+.wrap {
+  width:min(850px,calc(100% - 28px));
+  margin:auto;
+}
+
+.pixel {
+  font-family:"Courier New",monospace;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+/* FIXED RETURN BUTTONS */
+
+.top-nav {
   position:fixed;
-  top:10px;
-  left:12px;
-  z-index:1000;
+  top:8px;
+  left:8px;
+  z-index:10;
   display:flex;
-  gap:7px;
+  gap:6px;
 }
 
-.nav-btn {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:9px 12px;
-  background:#203d5d;
-  border:1px solid #7086a0;
-  border-radius:7px;
-  color:#fff;
-  text-decoration:none;
+.top-nav a {
+  padding:8px 10px;
+  border:1px solid #66849c;
+  border-radius:5px;
+  background:#183450;
+  color:var(--white);
   font-size:11px;
+  text-decoration:none;
   font-weight:800;
-  box-shadow:0 3px 10px #0004;
-  white-space:nowrap;
+  box-shadow:3px 3px 0 #06101e;
 }
 
-.nav-btn:hover {
-  background:var(--yellow);
-  border-color:var(--yellow);
-  color:var(--navy);
+.top-nav a:nth-child(2) {
+  background:var(--gold);
+  color:var(--bg);
+  border-color:var(--gold);
 }
 
-.nav-btn.disabled {
-  opacity:.45;
+.top-nav a.off {
+  opacity:.5;
   pointer-events:none;
 }
 
 /* HEADER */
 
 header {
-  border-bottom:1px solid var(--border);
-  padding:64px 0 13px;
+  padding:60px 0 14px;
+  border-bottom:2px solid #36546a;
 }
 
-.container {
-  width:min(960px,calc(100% - 28px));
-  margin:auto;
-}
-
-.header-inner {
+.head {
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:12px;
+  align-items:center;
 }
 
 .brand {
-  font-family:"Courier New",monospace;
-  font-size:16px;
-  font-weight:900;
+  font-size:15px;
   line-height:1.15;
-  letter-spacing:1px;
   text-decoration:none;
 }
 
 #langSwitch {
-  background:transparent;
-  border:1px solid var(--border);
-  color:var(--cream);
-  padding:8px 13px;
-  border-radius:7px;
-  font-size:12px;
+  background:var(--navy);
+  color:var(--white);
+  border:1px solid var(--line);
+  border-radius:5px;
+  padding:9px 12px;
   font-weight:bold;
   cursor:pointer;
 }
 
-/* PAGE TITLE */
-
 main {
-  padding:25px 0 35px;
+  padding:20px 0 32px;
 }
 
+/* GAME TITLE SCREEN */
+
 .hero {
-  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+  border:2px solid #dcae30;
+  border-radius:9px;
+  padding:23px 20px 20px;
+  text-align:center;
+  background:radial-gradient(
+    circle at 50% 5%,
+    #315b78 0%,
+    #163451 45%,
+    #0e223c 100%
+  );
+  box-shadow:0 7px 0 #071423;
+}
+
+.hero:before,
+.hero:after {
+  content:"✦";
+  position:absolute;
+  color:var(--gold);
+  font-size:24px;
+  top:52px;
+}
+
+.hero:before {
+  left:7%;
+}
+
+.hero:after {
+  right:7%;
 }
 
 .eyebrow {
-  color:var(--yellow);
-  font-family:"Courier New",monospace;
+  color:var(--gold);
   font-size:11px;
-  font-weight:900;
-  letter-spacing:1.5px;
 }
 
-h1 {
-  font-family:"Courier New",monospace;
-  font-size:clamp(28px,4.5vw,42px);
-  line-height:1.1;
-  letter-spacing:-1px;
-  margin:7px 0 9px;
+.stop {
+  display:inline-block;
+  margin:12px 0 6px;
+  padding:5px 13px;
+  border:1px solid var(--gold);
+  font-size:11px;
+  color:var(--gold);
+  background:#0d2039;
 }
 
-.lead {
-  color:var(--muted);
-  font-size:13px;
-  margin:0;
-  max-width:680px;
-}
-
-/* MAIN GRID */
-
-.main-grid {
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:14px;
-  align-items:start;
-}
-
-.card {
-  min-width:0;
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:19px;
-}
-
-.card h2 {
-  font-size:17px;
-  margin:0 0 15px;
-  line-height:1.3;
-}
-
-.campaign-card {
-  grid-column:1 / -1;
-  padding:18px 20px;
-}
-
-.campaign-layout {
-  display:grid;
-  grid-template-columns:1.1fr 1fr;
-  gap:20px;
-  align-items:center;
-}
-
-.campaign-name {
-  color:var(--yellow);
-  font-size:21px;
-  font-weight:900;
-  margin:5px 0;
+.hero h1 {
+  margin:7px 0 0;
+  font-size:clamp(30px,7vw,58px);
+  line-height:1.08;
+  color:var(--white);
+  text-shadow:4px 4px 0 #071627;
   overflow-wrap:anywhere;
 }
 
-.campaign-info p {
+.hero h1.long {
+  font-size:clamp(23px,5vw,42px);
+}
+
+.hero h2 {
+  margin:8px 0 14px;
+  color:var(--gold);
+  font-size:clamp(14px,3vw,21px);
+}
+
+.hero p {
+  font-size:13px;
   color:var(--muted);
-  font-size:12px;
-  margin:5px 0;
+  margin:7px auto;
+  max-width:520px;
+}
+
+.truck {
+  font-size:34px;
+  letter-spacing:6px;
+  line-height:1.5;
 }
 
 .status {
-  padding:13px;
-  background:#304763;
-  border-left:3px solid var(--yellow);
-  border-radius:5px;
-  font-size:13px;
+  display:inline-block;
+  margin-top:13px;
+  padding:8px 15px;
+  background:#0b2137;
+  border:1px solid var(--green);
+  color:var(--green);
+  font-size:12px;
   font-weight:bold;
 }
 
-.status.open {
-  border-color:var(--green);
-}
-
 .status.closed {
+  color:var(--red);
   border-color:var(--red);
 }
 
-/* STEPS */
+/* CONTENT GRID */
 
-.steps {
+.content {
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
+  gap:14px;
+  margin-top:19px;
 }
 
-.task {
+.panel {
   min-width:0;
-  background:var(--deep);
-  border:1px solid var(--border);
-  border-radius:9px;
-  padding:13px;
+  padding:18px;
+  background:var(--navy);
+  border:1px solid var(--line);
+  border-radius:8px;
+  box-shadow:4px 4px 0 #071423;
 }
 
-.task.completed {
+.panel h3 {
+  margin:0 0 13px;
+  font-size:16px;
+}
+
+.panel .sub {
+  font-size:11px;
+  color:var(--gold);
+}
+
+/* MISSION PROGRESS */
+
+.progress-label {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:9px;
+}
+
+.progress-label strong {
+  color:var(--gold);
+}
+
+.progress-track {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  margin-bottom:14px;
+}
+
+.progress-track span {
+  height:12px;
+  background:#42596a;
+  border:1px solid #658197;
+}
+
+.progress-track span.done {
+  background:var(--green);
+  border-color:var(--green);
+  box-shadow:0 0 9px #70e3af66;
+}
+
+/* MISSION CARDS */
+
+.mission {
+  border:1px solid #46657b;
+  background:#102a43;
+  padding:12px;
+  margin:9px 0;
+  border-radius:5px;
+}
+
+.mission.done {
   border-color:var(--green);
 }
 
-.task-title {
+.mission-top {
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  align-items:center;
   font-size:12px;
-  font-weight:900;
-  min-height:37px;
-  margin-bottom:10px;
+  font-weight:bold;
 }
 
-.task.completed .task-title::after {
-  content:" ✓";
+.mission-state {
+  font-size:10px;
+  color:var(--gold);
+  white-space:nowrap;
+}
+
+.mission.done .mission-state {
   color:var(--green);
 }
 
-.task-link {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:40px;
-  padding:9px 7px;
-  background:var(--yellow);
-  border-radius:6px;
-  color:var(--navy);
-  text-decoration:none;
+.action {
+  display:block;
+  margin-top:10px;
+  padding:10px 9px;
+  background:var(--gold);
+  color:var(--bg);
+  border:0;
+  border-radius:4px;
   text-align:center;
-  font-size:11px;
+  text-decoration:none;
+  font-size:12px;
   font-weight:900;
+  box-shadow:0 3px 0 #b9871e;
 }
 
-.task-link:hover {
-  filter:brightness(1.08);
-}
-
-.task-link.disabled {
+.action.off {
   opacity:.4;
   pointer-events:none;
 }
 
-.checkbox-row {
+.check {
   display:flex;
   gap:8px;
   align-items:flex-start;
-  margin:12px 0 0;
+  margin-top:12px;
+  font-size:11px;
+  color:var(--muted);
 }
 
-.checkbox-row input {
+.check input {
+  flex:none;
   width:17px;
   height:17px;
-  margin:2px 0 0;
-  flex:none;
-  accent-color:var(--yellow);
-}
-
-.checkbox-row label {
-  font-size:11px;
-  line-height:1.45;
-  color:var(--muted);
-  cursor:pointer;
+  margin:0;
+  accent-color:var(--gold);
 }
 
 .help {
   font-size:11px;
-  line-height:1.5;
   color:var(--muted);
-  margin:12px 0 0;
+  margin:10px 0 0;
 }
 
-/* APPLICATION */
+/* REWARD UNLOCK */
 
-.field-label {
+.reward {
+  margin:12px 0 0;
+  padding:10px;
+  border:1px dashed var(--gold);
+  background:#2a3445;
+  font-size:12px;
+}
+
+.reward strong {
+  color:var(--gold);
+}
+
+/* APPLICATION FORM */
+
+.field {
   display:block;
   margin:12px 0 5px;
   font-size:12px;
   font-weight:800;
 }
 
-input[type="text"] {
-  display:block;
+.entry input[type=text] {
   width:100%;
-  min-width:0;
-  padding:11px 12px;
-  border:1px solid #a0afc0;
-  border-radius:6px;
-  background:var(--cream);
-  color:var(--navy);
+  padding:12px;
+  border:2px solid #829bab;
+  border-radius:4px;
+  background:#fff8e6;
+  color:#14233a;
   font-size:14px;
 }
 
-input[type="text"]:focus {
-  outline:2px solid var(--yellow);
-  outline-offset:1px;
-}
-
-#applicationForm .checkbox-row {
-  margin:15px 0 10px;
-}
-
-.error {
-  color:var(--red);
-  font-size:12px;
-  min-height:18px;
-  margin:6px 0;
+.entry input[type=text]:focus {
+  outline:2px solid var(--gold);
 }
 
 .submit {
   display:block;
   width:100%;
-  padding:13px;
+  margin-top:14px;
+  padding:14px 10px;
+  background:var(--gold);
+  color:var(--bg);
   border:0;
-  border-radius:7px;
-  background:var(--yellow);
-  color:var(--navy);
-  font-size:13px;
+  border-radius:4px;
+  font-size:14px;
   font-weight:900;
   cursor:pointer;
+  box-shadow:0 4px 0 #b9871e;
 }
 
 .submit:disabled {
-  opacity:.4;
+  background:#687b87;
+  box-shadow:none;
+  color:#d3dce2;
   cursor:not-allowed;
+}
+
+.error {
+  font-size:12px;
+  color:var(--red);
+  min-height:15px;
+  margin:7px 0;
 }
 
 .honeypot {
   position:absolute;
-  left:-10000px;
+  left:-9999px;
   width:1px;
   height:1px;
   overflow:hidden;
 }
 
-.notice {
-  margin:16px 0 0;
-  color:var(--muted);
+.note {
   font-size:11px;
-  line-height:1.6;
+  color:var(--muted);
+  margin:18px 0 0;
 }
 
 footer {
-  border-top:1px solid var(--border);
-  padding:18px 12px;
   text-align:center;
+  border-top:1px solid #36546a;
+  padding:16px;
   color:var(--muted);
   font-size:10px;
-  letter-spacing:.5px;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
-@media(max-width:700px) {
-  .main-grid {
+@media(max-width:650px) {
+  .content {
     grid-template-columns:1fr;
-    gap:12px;
-  }
-
-  .campaign-card {
-    grid-column:auto;
-  }
-
-  .campaign-layout {
-    grid-template-columns:1fr;
-    gap:10px;
-  }
-
-  main {
-    padding-top:20px;
-  }
-
-  .card {
-    padding:16px;
   }
 
   .hero {
-    margin-bottom:17px;
+    padding:23px 13px 19px;
+  }
+
+  .hero:before {
+    left:3%;
+  }
+
+  .hero:after {
+    right:3%;
+  }
+
+  .truck {
+    font-size:27px;
+  }
+
+  .panel {
+    padding:16px;
   }
 }
 
-@media(max-width:400px) {
-  .fixed-nav {
-    top:8px;
-    left:8px;
-    gap:5px;
-  }
-
-  .nav-btn {
+@media(max-width:380px) {
+  .top-nav a {
     font-size:10px;
-    padding:8px 9px;
+    padding:7px;
   }
 
-  .steps {
-    grid-template-columns:1fr;
-  }
-
-  .task-title {
-    min-height:auto;
-  }
-
-  .brand {
-    font-size:14px;
+  .hero h1 {
+    font-size:29px;
   }
 }
 </style>
@@ -438,179 +493,252 @@ footer {
 
 <!-- FIXED RETURN BUTTONS -->
 
-<nav class="fixed-nav" aria-label="Return navigation">
+<nav class="top-nav" aria-label="Navigation">
   <a
     href="https://japan47pixel.net/"
-    class="nav-btn"
-    id="homeReturn"
     data-en="← OFFICIAL SITE"
-    data-ja="← 公式サイトへ戻る"
+    data-ja="← 公式サイトへ"
   >← OFFICIAL SITE</a>
 
   <a
-    href="#"
-    class="nav-btn disabled"
     id="xReturn"
+    href="#"
+    class="off"
     target="_blank"
     rel="noopener noreferrer"
-    aria-disabled="true"
     data-en="𝕏 OFFICIAL X ↗"
-    data-ja="𝕏 公式Xへ戻る ↗"
+    data-ja="𝕏 公式Xへ ↗"
   >𝕏 OFFICIAL X ↗</a>
 </nav>
 
+<!-- HEADER -->
+
 <header>
-  <div class="container header-inner">
-    <a class="brand" href="https://japan47pixel.net/">
+  <div class="wrap head">
+    <a
+      href="https://japan47pixel.net/"
+      class="brand pixel"
+    >
       TRAVELING<br>TAKOYAKI
     </a>
 
-    <button type="button" id="langSwitch">
+    <button id="langSwitch" type="button">
       日本語
     </button>
   </div>
 </header>
 
-<main class="container">
+<main class="wrap">
 
-  <div class="hero">
-    <div class="eyebrow">
-      JAPAN 47 JOURNEY / ENTRY
+  <!-- GAME TITLE -->
+
+  <section class="hero">
+
+    <div class="eyebrow pixel">
+      ★ JAPAN 47 JOURNEY ★
     </div>
 
-    <h1>ALLOWLIST CAMPAIGN</h1>
+    <div id="stopNumber" class="stop pixel">
+      STOP 01 / 47
+    </div>
+
+    <div class="truck" aria-hidden="true">
+      🐙 🚚 ✦
+    </div>
+
+    <h1 id="destination" class="pixel">
+      HOKKAIDO
+    </h1>
+
+    <h2 class="pixel">
+      PRIORITY ACCESS MISSION
+    </h2>
 
     <p
-      class="lead"
-      data-en="Complete the X campaign steps and apply for priority NFT purchase eligibility."
-      data-ja="Xのキャンペーン条件を達成して、NFTの優先購入枠に応募しよう！"
+      data-en="Your journey begins here. Clear two missions to unlock your priority purchase application."
+      data-ja="旅の始まりはここから。2つのミッションを達成して、優先購入への応募を解放しよう！"
     >
-      Complete the X campaign steps and apply for priority NFT purchase eligibility.
+      Your journey begins here. Clear two missions to unlock your priority purchase application.
     </p>
-  </div>
 
-  <div class="main-grid">
+    <div id="campaignName" class="help">
+      Loading campaign...
+    </div>
 
-    <!-- CURRENT CAMPAIGN -->
+    <div id="campaignDeadline" class="help"></div>
+    <div id="purchaseLimit" class="help"></div>
 
-    <section class="card campaign-card">
-      <div class="campaign-layout">
+    <div
+      id="campaignStatus"
+      class="status"
+      role="status"
+    >
+      LOADING...
+    </div>
 
-        <div class="campaign-info">
-          <div class="eyebrow">CURRENT CAMPAIGN</div>
+  </section>
 
-          <div id="campaignName" class="campaign-name">
-            LOADING...
-          </div>
+  <!-- MAIN CONTENT -->
 
-          <p id="campaignDeadline"></p>
-          <p id="purchaseLimit"></p>
-        </div>
+  <div class="content">
 
-        <div
-          id="campaignStatus"
-          class="status"
-          role="status"
+    <!-- MISSIONS -->
+
+    <section class="panel" aria-labelledby="missionHeading">
+
+      <div class="sub pixel">QUEST BOARD</div>
+
+      <h3
+        id="missionHeading"
+        data-en="COMPLETE YOUR MISSIONS"
+        data-ja="ミッションをクリアしよう！"
+      >
+        COMPLETE YOUR MISSIONS
+      </h3>
+
+      <div class="progress-label">
+        <span
+          data-en="MISSION PROGRESS"
+          data-ja="ミッション進行度"
         >
-          Loading campaign information...
+          MISSION PROGRESS
+        </span>
+
+        <strong id="progressText">0 / 2</strong>
+      </div>
+
+      <div class="progress-track" aria-label="Mission progress">
+        <span id="bar1"></span>
+        <span id="bar2"></span>
+      </div>
+
+      <!-- MISSION 01 -->
+
+      <div class="mission" id="followTask">
+
+        <div class="mission-top">
+          <span
+            data-en="MISSION 01 · FOLLOW X"
+            data-ja="MISSION 01 · 公式Xをフォロー"
+          >
+            MISSION 01 · FOLLOW X
+          </span>
+
+          <span id="followState" class="mission-state">
+            NOT CLEARED
+          </span>
         </div>
+
+        <a
+          id="followLink"
+          href="#"
+          class="action off"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-en="OPEN OFFICIAL X ↗"
+          data-ja="公式Xを開く ↗"
+        >
+          OPEN OFFICIAL X ↗
+        </a>
+
+        <label class="check">
+          <input
+            id="followChecked"
+            type="checkbox"
+            disabled
+          >
+
+          <span
+            data-en="I followed the official X account."
+            data-ja="公式Xをフォローしました。"
+          >
+            I followed the official X account.
+          </span>
+        </label>
 
       </div>
-    </section>
 
-    <!-- CAMPAIGN STEPS -->
+      <!-- MISSION 02 -->
 
-    <section class="card">
+      <div class="mission" id="repostTask">
 
-      <h2
-        data-en="COMPLETE THE STEPS"
-        data-ja="応募条件を達成しよう！"
-      >COMPLETE THE STEPS</h2>
+        <div class="mission-top">
+          <span
+            data-en="MISSION 02 · LIKE & REPOST"
+            data-ja="MISSION 02 · いいね＆リポスト"
+          >
+            MISSION 02 · LIKE & REPOST
+          </span>
 
-      <div class="steps">
-
-        <div class="task" id="followTask">
-          <div
-            class="task-title"
-            data-en="STEP 1 — Follow official X"
-            data-ja="STEP 1 — 公式Xをフォロー"
-          >STEP 1 — Follow official X</div>
-
-          <a
-            id="followLink"
-            class="task-link disabled"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-en="OPEN OFFICIAL X ↗"
-            data-ja="公式Xを開く ↗"
-          >OPEN OFFICIAL X ↗</a>
-
-          <div class="checkbox-row">
-            <input
-              type="checkbox"
-              id="followChecked"
-              disabled
-            >
-            <label
-              for="followChecked"
-              data-en="I followed the official X account."
-              data-ja="公式Xをフォローしました。"
-            >I followed the official X account.</label>
-          </div>
+          <span id="repostState" class="mission-state">
+            NOT CLEARED
+          </span>
         </div>
 
-        <div class="task" id="repostTask">
-          <div
-            class="task-title"
-            data-en="STEP 2 — Like & Repost"
-            data-ja="STEP 2 — いいね＆リポスト"
-          >STEP 2 — Like & Repost</div>
+        <a
+          id="repostLink"
+          href="#"
+          class="action off"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-en="OPEN CAMPAIGN POST ↗"
+          data-ja="対象投稿を開く ↗"
+        >
+          OPEN CAMPAIGN POST ↗
+        </a>
 
-          <a
-            id="repostLink"
-            class="task-link disabled"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-en="OPEN CAMPAIGN POST ↗"
-            data-ja="対象投稿を開く ↗"
-          >OPEN CAMPAIGN POST ↗</a>
+        <label class="check">
+          <input
+            id="repostChecked"
+            type="checkbox"
+            disabled
+          >
 
-          <div class="checkbox-row">
-            <input
-              type="checkbox"
-              id="repostChecked"
-              disabled
-            >
-            <label
-              for="repostChecked"
-              data-en="I liked and reposted the campaign post."
-              data-ja="いいね＆リポストしました。"
-            >I liked and reposted the campaign post.</label>
-          </div>
+          <span
+            data-en="I liked and reposted the campaign post."
+            data-ja="対象投稿にいいね＆リポストしました。"
+          >
+            I liked and reposted the campaign post.
+          </span>
+        </label>
+
+      </div>
+
+      <!-- REWARD -->
+
+      <div id="reward" class="reward" role="status">
+        <strong id="rewardTitle">
+          🔒 APPLICATION LOCKED
+        </strong>
+
+        <div id="rewardText" class="help">
+          Complete both missions to unlock.
         </div>
-
       </div>
 
       <p
         class="help"
-        data-en="Open each X link, return here, and check the box. Completion is self-reported and may be reviewed."
-        data-ja="各Xリンクを開いたあと、このページに戻って完了チェックを入れてください。操作は自己申告となり、後日確認する場合があります。"
+        data-en="Open each X link, return and tick the box. Completion is self-reported and may be reviewed."
+        data-ja="各Xリンクを開いた後、戻ってチェックを入れてください。自己申告のため後日確認する場合があります。"
       >
-        Open each X link, return here, and check the box.
+        Open each X link, return and tick the box. Completion is self-reported and may be reviewed.
       </p>
 
     </section>
 
-    <!-- APPLICATION FORM -->
+    <!-- APPLICATION -->
 
-    <section class="card">
+    <section class="panel entry" aria-labelledby="entryHeading">
 
-      <h2
-        data-en="STEP 3 — APPLICATION"
-        data-ja="STEP 3 — 応募情報を登録"
-      >STEP 3 — APPLICATION</h2>
+      <div class="sub pixel">ACCESS TICKET</div>
+
+      <h3
+        id="entryHeading"
+        data-en="UNLOCK YOUR ENTRY"
+        data-ja="優先購入枠に応募する"
+      >
+        UNLOCK YOUR ENTRY
+      </h3>
 
       <form
         id="applicationForm"
@@ -620,48 +748,52 @@ footer {
       >
 
         <input
-          type="hidden"
           id="campaignId"
+          type="hidden"
           name="campaignId"
         >
 
         <input
-          type="hidden"
           id="confirmed"
+          type="hidden"
           name="confirmed"
           value="no"
         >
 
         <label
-          class="field-label"
+          class="field"
           for="xUsername"
-          data-en="X username"
+          data-en="X USERNAME"
           data-ja="Xユーザー名"
-        >X username</label>
+        >
+          X USERNAME
+        </label>
 
         <input
-          type="text"
           id="xUsername"
+          type="text"
           name="xUsername"
-          placeholder="@username"
           maxlength="16"
+          placeholder="@username"
           autocomplete="off"
           required
         >
 
         <label
-          class="field-label"
+          class="field"
           for="wallet"
-          data-en="Public EVM wallet address"
+          data-en="PUBLIC EVM WALLET ADDRESS"
           data-ja="公開EVMウォレットアドレス"
-        >Public EVM wallet address</label>
+        >
+          PUBLIC EVM WALLET ADDRESS
+        </label>
 
         <input
-          type="text"
           id="wallet"
+          type="text"
           name="wallet"
-          placeholder="0x..."
           maxlength="42"
+          placeholder="0x..."
           autocomplete="off"
           spellcheck="false"
           required
@@ -669,57 +801,55 @@ footer {
 
         <p
           class="help"
-          data-en="Public wallet address only. Never enter a private key or recovery phrase."
-          data-ja="公開ウォレットアドレスのみ入力してください。秘密鍵やリカバリーフレーズは絶対に入力しないでください。"
+          data-en="Public address only. Never share your private key or recovery phrase."
+          data-ja="公開アドレスのみ入力してください。秘密鍵やリカバリーフレーズは絶対に入力しないでください。"
         >
-          Public wallet address only. Never enter a private key or recovery phrase.
+          Public address only. Never share your private key or recovery phrase.
         </p>
 
         <!-- SPAM TRAP -->
 
         <div class="honeypot" aria-hidden="true">
           <label for="website">Leave empty</label>
+
           <input
-            type="text"
             id="website"
+            type="text"
             name="website"
             tabindex="-1"
             autocomplete="off"
           >
         </div>
 
-        <div class="checkbox-row">
+        <!-- CONSENT -->
+
+        <label class="check">
           <input
-            type="checkbox"
             id="consent"
+            type="checkbox"
             name="consent"
             value="yes"
           >
 
-          <label
-            for="consent"
+          <span
             data-en="I agree to the collection and storage of my X username and public wallet address for campaign administration and eligibility review."
             data-ja="応募管理・条件確認のため、Xユーザー名と公開ウォレットアドレスが収集・保存されることに同意します。"
           >
             I agree to the collection and storage of my X username and public wallet address for campaign administration and eligibility review.
-          </label>
-        </div>
+          </span>
+        </label>
 
-        <p
-          id="formError"
-          class="error"
-          role="alert"
-        ></p>
+        <p id="formError" class="error" role="alert"></p>
 
         <button
           id="submitButton"
+          class="submit pixel"
           type="submit"
-          class="submit"
           disabled
-          data-en="SUBMIT APPLICATION →"
-          data-ja="応募内容を送信 →"
+          data-en="🔒 COMPLETE MISSIONS FIRST"
+          data-ja="🔒 ミッション達成で解放"
         >
-          SUBMIT APPLICATION →
+          🔒 COMPLETE MISSIONS FIRST
         </button>
 
       </form>
@@ -728,17 +858,17 @@ footer {
   </div>
 
   <p
-    class="notice"
-    data-en="Submission does not guarantee allowlist selection or purchase. X activity may be reviewed separately. The submission result opens in a new tab."
-    data-ja="応募は優先購入枠への選出や購入を保証するものではありません。Xでの操作は別途確認する場合があります。送信結果は新しいタブに表示されます。"
+    class="note"
+    data-en="Submitting an application does not guarantee selection or purchase. X activity may be reviewed. The submission result opens in a new tab."
+    data-ja="応募は当選や購入を保証するものではありません。Xでの操作は別途確認する場合があります。送信結果は新しいタブに表示されます。"
   >
-    Submission does not guarantee allowlist selection or purchase. X activity may be reviewed separately.
+    Submitting an application does not guarantee selection or purchase. X activity may be reviewed. The submission result opens in a new tab.
   </p>
 
 </main>
 
-<footer>
-  © TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
+<footer class="pixel">
+  © TRAVELING TAKOYAKI · JAPAN 47 JOURNEY
 </footer>
 
 <script>
@@ -747,6 +877,8 @@ footer {
 // =====================================
 // STATE
 // =====================================
+
+const $ = id => document.getElementById(id);
 
 let language = "en";
 let config = null;
@@ -757,9 +889,7 @@ let repostVisited = false;
 let followConfirmed = false;
 let repostConfirmed = false;
 
-const $ = (id) => document.getElementById(id);
-
-const translate = (en, ja) =>
+const tr = (en, ja) =>
   language === "ja" ? ja : en;
 
 
@@ -775,11 +905,12 @@ function renderLanguage() {
 
   document
     .querySelectorAll("[data-en][data-ja]")
-    .forEach((element) => {
-      element.textContent = element.dataset[language];
+    .forEach(el => {
+      el.textContent = el.dataset[language];
     });
 
   renderCampaign();
+  renderProgress();
 }
 
 $("langSwitch").addEventListener("click", () => {
@@ -795,107 +926,108 @@ $("langSwitch").addEventListener("click", () => {
 function renderCampaign() {
   if (!config) return;
 
-  $("campaignName").textContent =
-    translate(config.titleEn, config.titleJa);
+  $("campaignName").textContent = tr(
+    config.titleEn || config.campaignId,
+    config.titleJa || config.titleEn || config.campaignId
+  );
 
   $("campaignDeadline").textContent =
     config.applicationDeadline
-      ? translate(
+      ? tr(
           "Deadline: " + config.applicationDeadline,
           "応募締切：" + config.applicationDeadline
         )
       : "";
 
-  $("purchaseLimit").textContent =
-    translate(
-      "Priority purchase limit: up to " +
-        config.maxPurchasePerWallet +
-        " NFTs per wallet (if selected).",
-      "優先購入上限：当選した場合、1ウォレットにつき最大" +
-        config.maxPurchasePerWallet +
-        "枚（予定）。"
-    );
+  $("purchaseLimit").textContent = tr(
+    "Priority purchase: up to " +
+      config.maxPurchasePerWallet +
+      " NFTs per wallet (if selected).",
+    "優先購入上限：当選した場合、1ウォレットにつき最大" +
+      config.maxPurchasePerWallet +
+      "枚（予定）。"
+  );
 
-  const status = $("campaignStatus");
+  $("campaignStatus").textContent =
+    config.enabled
+      ? tr(
+          "● APPLICATIONS OPEN",
+          "● 応募受付中"
+        )
+      : tr(
+          "APPLICATIONS CLOSED",
+          "応募受付停止中"
+        );
 
-  status.classList.toggle("open", config.enabled === true);
-  status.classList.toggle("closed", config.enabled !== true);
-
-  status.textContent = config.enabled
-    ? translate(
-        "● Applications are open.",
-        "● 応募受付中です。"
-      )
-    : translate(
-        "Applications are currently closed.",
-        "現在、応募受付は停止しています。"
-      );
+  $("campaignStatus").classList.toggle(
+    "closed",
+    !config.enabled
+  );
 
   updateSubmitState();
 }
 
 
 // =====================================
-// LINK VISIT TRACKING
+// MISSION PROGRESS
 // =====================================
 
-function unlockFollow() {
-  if (!config || !config.enabled) return;
+function renderProgress() {
+  const count =
+    Number(followConfirmed) +
+    Number(repostConfirmed);
 
-  followVisited = true;
-  $("followChecked").disabled = false;
-}
+  $("progressText").textContent = count + " / 2";
 
-function unlockRepost() {
-  if (!config || !config.enabled) return;
-
-  repostVisited = true;
-  $("repostChecked").disabled = false;
-}
-
-$("followLink").addEventListener("click", () => {
-  if (!config || !config.enabled) return;
-  unlockFollow();
-});
-
-$("repostLink").addEventListener("click", () => {
-  if (!config || !config.enabled) return;
-  unlockRepost();
-});
-
-
-// =====================================
-// CHECKBOXES
-// =====================================
-
-$("followChecked").addEventListener("change", () => {
-  followConfirmed =
-    followVisited && $("followChecked").checked;
-
-  $("followTask").classList.toggle(
-    "completed",
+  $("bar1").classList.toggle(
+    "done",
     followConfirmed
   );
 
-  updateSubmitState();
-});
-
-$("repostChecked").addEventListener("change", () => {
-  repostConfirmed =
-    repostVisited && $("repostChecked").checked;
-
-  $("repostTask").classList.toggle(
-    "completed",
+  $("bar2").classList.toggle(
+    "done",
     repostConfirmed
   );
 
-  updateSubmitState();
-});
+  for (const [name, done] of [
+    ["follow", followConfirmed],
+    ["repost", repostConfirmed]
+  ]) {
+    $(name + "Task").classList.toggle(
+      "done",
+      done
+    );
 
-$("consent").addEventListener(
-  "change",
-  updateSubmitState
-);
+    $(name + "State").textContent =
+      done
+        ? tr("✓ CLEARED", "✓ 達成！")
+        : tr("NOT CLEARED", "未達成");
+  }
+
+  $("rewardTitle").textContent =
+    count === 2
+      ? tr(
+          "🏆 MISSIONS CLEARED!",
+          "🏆 ミッション達成！"
+        )
+      : tr(
+          "🔒 APPLICATION LOCKED",
+          "🔒 応募はロック中"
+        );
+
+  $("rewardText").textContent =
+    count === 2
+      ? tr(
+          "Your application is unlocked. Enter your details and agree to the terms.",
+          "応募が解放されました！情報を入力して同意にチェックしてください。"
+        )
+      : tr(
+          "Clear both missions to unlock your application.",
+          "2つのミッションを達成すると応募できます。"
+        );
+
+  updateSubmitState();
+}
 
 
 // =====================================
@@ -903,15 +1035,26 @@ $("consent").addEventListener(
 // =====================================
 
 function updateSubmitState() {
-  const open = !!(config && config.enabled === true);
-
-  const ready =
-    open &&
+  const ready = !!(
+    config &&
+    config.enabled &&
     followConfirmed &&
     repostConfirmed &&
-    $("consent").checked;
+    $("consent").checked
+  );
 
   $("submitButton").disabled = !ready;
+
+  $("submitButton").textContent =
+    ready
+      ? tr(
+          "★ SUBMIT APPLICATION →",
+          "★ 応募内容を送信 →"
+        )
+      : tr(
+          "🔒 COMPLETE MISSIONS FIRST",
+          "🔒 ミッション達成で解放"
+        );
 
   $("confirmed").value =
     followConfirmed && repostConfirmed
@@ -921,18 +1064,56 @@ function updateSubmitState() {
 
 
 // =====================================
-// CONFIGURATION
+// X LINKS
+// =====================================
+
+$("followLink").addEventListener("click", () => {
+  if (config && config.enabled) {
+    followVisited = true;
+    $("followChecked").disabled = false;
+  }
+});
+
+$("repostLink").addEventListener("click", () => {
+  if (config && config.enabled) {
+    repostVisited = true;
+    $("repostChecked").disabled = false;
+  }
+});
+
+$("followChecked").addEventListener("change", () => {
+  followConfirmed =
+    followVisited && $("followChecked").checked;
+
+  renderProgress();
+});
+
+$("repostChecked").addEventListener("change", () => {
+  repostConfirmed =
+    repostVisited && $("repostChecked").checked;
+
+  renderProgress();
+});
+
+$("consent").addEventListener(
+  "change",
+  updateSubmitState
+);
+
+
+// =====================================
+// LOAD CAMPAIGN CONFIG
 // =====================================
 
 async function loadConfig() {
   try {
     const response = await fetch(
       "./allowlist-config.json",
-      { cache: "no-store" }
+      { cache:"no-store" }
     );
 
     if (!response.ok) {
-      throw new Error("Campaign configuration unavailable");
+      throw Error("Configuration unavailable");
     }
 
     const data = await response.json();
@@ -944,57 +1125,76 @@ async function loadConfig() {
       !data.officialX ||
       !data.postUrl
     ) {
-      throw new Error("Incomplete campaign configuration");
+      throw Error("Incomplete configuration");
     }
 
-    const officialXUrl = new URL(data.officialX);
+    const xUrl = new URL(data.officialX);
     const postUrl = new URL(data.postUrl);
 
-    const isXHost = (hostname) =>
-      hostname === "x.com" ||
-      hostname === "www.x.com" ||
-      hostname === "twitter.com" ||
-      hostname === "www.twitter.com";
+    const isX = host =>
+      [
+        "x.com",
+        "www.x.com",
+        "twitter.com",
+        "www.twitter.com"
+      ].includes(host);
 
     if (
-      officialXUrl.protocol !== "https:" ||
+      xUrl.protocol !== "https:" ||
       postUrl.protocol !== "https:" ||
-      !isXHost(officialXUrl.hostname) ||
-      !isXHost(postUrl.hostname)
+      !isX(xUrl.hostname) ||
+      !isX(postUrl.hostname)
     ) {
-      throw new Error("Invalid X campaign links");
+      throw Error("Invalid X links");
     }
 
     config = data;
 
-    $("campaignId").value = config.campaignId;
-
-    $("followLink").href = officialXUrl.href;
+    $("campaignId").value = data.campaignId;
+    $("followLink").href = xUrl.href;
     $("repostLink").href = postUrl.href;
 
     // FIXED OFFICIAL X RETURN BUTTON
 
-    $("xReturn").href = officialXUrl.href;
-    $("xReturn").classList.remove("disabled");
-    $("xReturn").removeAttribute("aria-disabled");
+    $("xReturn").href = xUrl.href;
+    $("xReturn").classList.remove("off");
 
-    if (config.enabled === true) {
-      $("followLink").classList.remove("disabled");
-      $("repostLink").classList.remove("disabled");
+    if (data.enabled) {
+      $("followLink").classList.remove("off");
+      $("repostLink").classList.remove("off");
     }
+
+    // DESTINATION DISPLAY
+
+    const prefecture = String(data.prefecture).trim();
+
+    const names = {
+      hokkaido:["HOKKAIDO","北海道"],
+      aomori:["AOMORI","青森"]
+    };
+
+    const n = names[prefecture.toLowerCase()];
+
+    $("destination").textContent =
+      n ? tr(n[0], n[1]) : prefecture.toUpperCase();
+
+    $("destination").classList.toggle(
+      "long",
+      prefecture.length > 12
+    );
 
     renderCampaign();
 
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    console.error(e);
 
-    $("campaignStatus").textContent =
-      translate(
-        "Campaign information is unavailable.",
-        "キャンペーン情報を読み込めませんでした。"
-      );
+    $("campaignStatus").textContent = tr(
+      "Campaign information unavailable.",
+      "キャンペーン情報を読み込めませんでした。"
+    );
 
-    $("submitButton").disabled = true;
+    $("campaignStatus").classList.add("closed");
+    updateSubmitState();
   }
 }
 
@@ -1005,13 +1205,14 @@ async function loadConfig() {
 
 $("applicationForm").addEventListener(
   "submit",
-  (event) => {
-    $("formError").textContent = "";
+  event => {
 
     const fail = (en, ja) => {
       event.preventDefault();
-      $("formError").textContent = translate(en, ja);
+      $("formError").textContent = tr(en, ja);
     };
+
+    $("formError").textContent = "";
 
     if (!config || !config.enabled) {
       return fail(
@@ -1022,37 +1223,33 @@ $("applicationForm").addEventListener(
 
     if (!followConfirmed || !repostConfirmed) {
       return fail(
-        "Complete both X campaign steps.",
-        "Xの応募条件を2つとも確認してください。"
+        "Complete both missions.",
+        "2つのミッションを達成してください。"
       );
     }
 
     if (!$("consent").checked) {
       return fail(
-        "Please agree to the data collection terms.",
-        "情報の取扱いについて同意してください。"
+        "Please agree to the terms.",
+        "情報の取扱いに同意してください。"
       );
     }
 
     if (
-      !config.scriptUrl.startsWith(
-        "https://script.google.com/macros/s/"
+      !/^https:\/\/script\.google\.com\/macros\/s\//.test(
+        config.scriptUrl
       )
     ) {
       return fail(
-        "The application form is not ready.",
+        "Application form not ready.",
         "応募フォームは準備中です。"
       );
     }
 
     const username = $("xUsername")
-      .value
-      .trim()
-      .replace(/^@/, "");
+      .value.trim().replace(/^@/, "");
 
-    const wallet = $("wallet")
-      .value
-      .trim();
+    const wallet = $("wallet").value.trim();
 
     if (!/^[A-Za-z0-9_]{1,15}$/.test(username)) {
       return fail(
@@ -1068,9 +1265,9 @@ $("applicationForm").addEventListener(
       );
     }
 
-    if ($("website").value.trim() !== "") {
+    if ($("website").value.trim()) {
       return fail(
-        "Submission could not be completed.",
+        "Submission failed.",
         "送信できませんでした。"
       );
     }
