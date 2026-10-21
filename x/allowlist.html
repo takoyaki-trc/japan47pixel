@@ -1,455 +1,616 @@
 
 <!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1"
-  >
+<title>ALLOWLIST | TRAVELING TAKOYAKI</title>
+<meta name="description" content="Apply for priority NFT purchase eligibility in the TRAVELING TAKOYAKI Japan 47 Journey.">
+<link rel="icon" type="image/png" href="./traveling-takoyaki-icon.png">
 
-  <title>
-    ALLOWLIST | TRAVELING TAKOYAKI
-  </title>
+<style>
+:root {
+  --navy:#10233d;
+  --panel:#1d3655;
+  --deep:#142b48;
+  --cream:#fff4d8;
+  --yellow:#ffc928;
+  --border:#4a607b;
+  --muted:#d7e2ee;
+  --green:#75e0b1;
+  --red:#ffb4ab;
+}
 
-  <meta
-    name="description"
-    content="Apply for priority NFT purchase eligibility in the TRAVELING TAKOYAKI Japan 47 Journey."
-  >
+* { box-sizing:border-box; }
 
-  <link
-    rel="icon"
-    type="image/png"
-    href="./traveling-takoyaki-icon.png"
-  >
+html { scroll-behavior:smooth; }
 
-  <style>
-    :root {
-      --navy: #10233d;
-      --panel: #1d3655;
-      --cream: #fff4d8;
-      --yellow: #ffc928;
-      --border: #4a607b;
-      --muted: #d7e2ee;
-      --green: #75e0b1;
-    }
+body {
+  margin:0;
+  background:var(--navy);
+  color:var(--cream);
+  font-family:Arial,"Noto Sans JP",sans-serif;
+  line-height:1.5;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+button,input { font:inherit; }
+a { color:inherit; }
 
-    body {
-      margin: 0;
-      background: var(--navy);
-      color: var(--cream);
-      font-family: Arial, "Noto Sans JP", sans-serif;
-      line-height: 1.65;
-    }
+/* FIXED TOP LEFT NAVIGATION */
 
-    a {
-      color: inherit;
-    }
+.fixed-nav {
+  position:fixed;
+  top:10px;
+  left:12px;
+  z-index:1000;
+  display:flex;
+  gap:7px;
+}
 
-    button,
-    input {
-      font: inherit;
-    }
+.nav-btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:9px 12px;
+  background:#203d5d;
+  border:1px solid #7086a0;
+  border-radius:7px;
+  color:#fff;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:800;
+  box-shadow:0 3px 10px #0004;
+  white-space:nowrap;
+}
 
-    .container {
-      width: min(720px, calc(100% - 32px));
-      margin: 0 auto;
-    }
+.nav-btn:hover {
+  background:var(--yellow);
+  border-color:var(--yellow);
+  color:var(--navy);
+}
 
-    header {
-      border-bottom: 2px solid var(--border);
-      padding: 20px 0;
-    }
+.nav-btn.disabled {
+  opacity:.45;
+  pointer-events:none;
+}
 
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-    }
+/* HEADER */
 
-    .brand {
-      font-family: "Courier New", monospace;
-      font-weight: 900;
-      text-decoration: none;
-      line-height: 1.3;
-    }
+header {
+  border-bottom:1px solid var(--border);
+  padding:64px 0 13px;
+}
 
-    #langSwitch {
-      padding: 8px 13px;
-      border: 1px solid var(--cream);
-      border-radius: 8px;
-      background: transparent;
-      color: var(--cream);
-      cursor: pointer;
-    }
+.container {
+  width:min(960px,calc(100% - 28px));
+  margin:auto;
+}
 
-    main {
-      padding: 42px 0 65px;
-    }
+.header-inner {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
 
-    .eyebrow {
-      color: var(--yellow);
-      font-family: "Courier New", monospace;
-      font-size: 13px;
-      font-weight: bold;
-    }
+.brand {
+  font-family:"Courier New",monospace;
+  font-size:16px;
+  font-weight:900;
+  line-height:1.15;
+  letter-spacing:1px;
+  text-decoration:none;
+}
 
-    h1 {
-      font-family: "Courier New", monospace;
-      font-size: clamp(29px, 7vw, 48px);
-      line-height: 1.15;
-      margin: 14px 0;
-    }
+#langSwitch {
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--cream);
+  padding:8px 13px;
+  border-radius:7px;
+  font-size:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    .lead {
-      color: var(--muted);
-    }
+/* PAGE TITLE */
 
-    .card {
-      margin: 24px 0;
-      padding: clamp(18px, 4vw, 30px);
-      border: 2px solid var(--border);
-      border-radius: 15px;
-      background: var(--panel);
-    }
+main {
+  padding:25px 0 35px;
+}
 
-    h2 {
-      margin: 0 0 18px;
-      font-size: 19px;
-    }
+.hero {
+  margin-bottom:20px;
+}
 
-    .campaign-name {
-      color: var(--yellow);
-      font-weight: 900;
-      font-size: 21px;
-    }
+.eyebrow {
+  color:var(--yellow);
+  font-family:"Courier New",monospace;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
 
-    .status {
-      margin: 20px 0;
-      padding: 13px;
-      border-radius: 8px;
-      background: #304763;
-    }
+h1 {
+  font-family:"Courier New",monospace;
+  font-size:clamp(28px,4.5vw,42px);
+  line-height:1.1;
+  letter-spacing:-1px;
+  margin:7px 0 9px;
+}
 
-    .task {
-      margin: 18px 0;
-      padding: 18px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #142b48;
-    }
+.lead {
+  color:var(--muted);
+  font-size:13px;
+  margin:0;
+  max-width:680px;
+}
 
-    .task-title {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+/* MAIN GRID */
 
-    .task-link {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      background: var(--yellow);
-      color: var(--navy);
-      text-decoration: none;
-      text-align: center;
-      font-weight: 900;
-    }
+.main-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:14px;
+  align-items:start;
+}
 
-    .task-link.disabled {
-      opacity: 0.45;
-      pointer-events: none;
-    }
+.card {
+  min-width:0;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:19px;
+}
 
-    .checkbox-row {
-      display: flex;
-      gap: 10px;
-      margin: 18px 0;
-      align-items: flex-start;
-    }
+.card h2 {
+  font-size:17px;
+  margin:0 0 15px;
+  line-height:1.3;
+}
 
-    .checkbox-row input {
-      margin-top: 6px;
-      width: 19px;
-      height: 19px;
-      flex: none;
-      accent-color: var(--yellow);
-    }
+.campaign-card {
+  grid-column:1 / -1;
+  padding:18px 20px;
+}
 
-    .checkbox-row input:disabled {
-      opacity: 0.4;
-    }
+.campaign-layout {
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:20px;
+  align-items:center;
+}
 
-    .task.completed {
-      border-color: var(--green);
-    }
+.campaign-name {
+  color:var(--yellow);
+  font-size:21px;
+  font-weight:900;
+  margin:5px 0;
+  overflow-wrap:anywhere;
+}
 
-    .task.completed .task-title::after {
-      content: " ✓";
-      color: var(--green);
-    }
+.campaign-info p {
+  color:var(--muted);
+  font-size:12px;
+  margin:5px 0;
+}
 
-    .field-label {
-      display: block;
-      margin: 18px 0 7px;
-      font-weight: bold;
-    }
+.status {
+  padding:13px;
+  background:#304763;
+  border-left:3px solid var(--yellow);
+  border-radius:5px;
+  font-size:13px;
+  font-weight:bold;
+}
 
-    input[type="text"] {
-      width: 100%;
-      padding: 14px;
-      border: 2px solid #a0afc0;
-      border-radius: 8px;
-      background: var(--cream);
-      color: var(--navy);
-      font-size: 16px;
-    }
+.status.open {
+  border-color:var(--green);
+}
 
-    .help,
-    .notice {
-      font-size: 13px;
-      color: var(--muted);
-    }
+.status.closed {
+  border-color:var(--red);
+}
 
-    .error {
-      color: #ffb4ab;
-      min-height: 24px;
-    }
+/* STEPS */
 
-    .submit {
-      width: 100%;
-      padding: 15px;
-      background: var(--yellow);
-      color: var(--navy);
-      border: none;
-      border-radius: 8px;
-      font-weight: 900;
-      cursor: pointer;
-    }
+.steps {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
 
-    .submit:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
+.task {
+  min-width:0;
+  background:var(--deep);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:13px;
+}
 
-    .honeypot {
-      position: absolute;
-      left: -10000px;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    }
+.task.completed {
+  border-color:var(--green);
+}
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 25px;
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-    }
+.task-title {
+  font-size:12px;
+  font-weight:900;
+  min-height:37px;
+  margin-bottom:10px;
+}
 
-    @media (max-width: 480px) {
-      .task {
-        padding: 14px;
-      }
-    }
-  </style>
+.task.completed .task-title::after {
+  content:" ✓";
+  color:var(--green);
+}
+
+.task-link {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:40px;
+  padding:9px 7px;
+  background:var(--yellow);
+  border-radius:6px;
+  color:var(--navy);
+  text-decoration:none;
+  text-align:center;
+  font-size:11px;
+  font-weight:900;
+}
+
+.task-link:hover {
+  filter:brightness(1.08);
+}
+
+.task-link.disabled {
+  opacity:.4;
+  pointer-events:none;
+}
+
+.checkbox-row {
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  margin:12px 0 0;
+}
+
+.checkbox-row input {
+  width:17px;
+  height:17px;
+  margin:2px 0 0;
+  flex:none;
+  accent-color:var(--yellow);
+}
+
+.checkbox-row label {
+  font-size:11px;
+  line-height:1.45;
+  color:var(--muted);
+  cursor:pointer;
+}
+
+.help {
+  font-size:11px;
+  line-height:1.5;
+  color:var(--muted);
+  margin:12px 0 0;
+}
+
+/* APPLICATION */
+
+.field-label {
+  display:block;
+  margin:12px 0 5px;
+  font-size:12px;
+  font-weight:800;
+}
+
+input[type="text"] {
+  display:block;
+  width:100%;
+  min-width:0;
+  padding:11px 12px;
+  border:1px solid #a0afc0;
+  border-radius:6px;
+  background:var(--cream);
+  color:var(--navy);
+  font-size:14px;
+}
+
+input[type="text"]:focus {
+  outline:2px solid var(--yellow);
+  outline-offset:1px;
+}
+
+#applicationForm .checkbox-row {
+  margin:15px 0 10px;
+}
+
+.error {
+  color:var(--red);
+  font-size:12px;
+  min-height:18px;
+  margin:6px 0;
+}
+
+.submit {
+  display:block;
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:7px;
+  background:var(--yellow);
+  color:var(--navy);
+  font-size:13px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.submit:disabled {
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.honeypot {
+  position:absolute;
+  left:-10000px;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+.notice {
+  margin:16px 0 0;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.6;
+}
+
+footer {
+  border-top:1px solid var(--border);
+  padding:18px 12px;
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.5px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px) {
+  .main-grid {
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .campaign-card {
+    grid-column:auto;
+  }
+
+  .campaign-layout {
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  main {
+    padding-top:20px;
+  }
+
+  .card {
+    padding:16px;
+  }
+
+  .hero {
+    margin-bottom:17px;
+  }
+}
+
+@media(max-width:400px) {
+  .fixed-nav {
+    top:8px;
+    left:8px;
+    gap:5px;
+  }
+
+  .nav-btn {
+    font-size:10px;
+    padding:8px 9px;
+  }
+
+  .steps {
+    grid-template-columns:1fr;
+  }
+
+  .task-title {
+    min-height:auto;
+  }
+
+  .brand {
+    font-size:14px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="container header-inner">
+<!-- FIXED RETURN BUTTONS -->
 
-      <a href="./index.html" class="brand">
-        TRAVELING<br>TAKOYAKI
-      </a>
+<nav class="fixed-nav" aria-label="Return navigation">
+  <a
+    href="https://japan47pixel.net/"
+    class="nav-btn"
+    id="homeReturn"
+    data-en="← OFFICIAL SITE"
+    data-ja="← 公式サイトへ戻る"
+  >← OFFICIAL SITE</a>
 
-      <button
-        type="button"
-        id="langSwitch"
-      >
-        日本語
-      </button>
+  <a
+    href="#"
+    class="nav-btn disabled"
+    id="xReturn"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-disabled="true"
+    data-en="𝕏 OFFICIAL X ↗"
+    data-ja="𝕏 公式Xへ戻る ↗"
+  >𝕏 OFFICIAL X ↗</a>
+</nav>
 
+<header>
+  <div class="container header-inner">
+    <a class="brand" href="https://japan47pixel.net/">
+      TRAVELING<br>TAKOYAKI
+    </a>
+
+    <button type="button" id="langSwitch">
+      日本語
+    </button>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="hero">
+    <div class="eyebrow">
+      JAPAN 47 JOURNEY / ENTRY
     </div>
-  </header>
 
-  <main class="container">
-
-    <span class="eyebrow">
-      JAPAN 47 JOURNEY
-    </span>
-
-    <h1>
-      ALLOWLIST<br>CAMPAIGN
-    </h1>
+    <h1>ALLOWLIST CAMPAIGN</h1>
 
     <p
       class="lead"
       data-en="Complete the X campaign steps and apply for priority NFT purchase eligibility."
       data-ja="Xのキャンペーン条件を達成して、NFTの優先購入枠に応募しよう！"
     >
-      Complete the X campaign steps and apply
-      for priority NFT purchase eligibility.
+      Complete the X campaign steps and apply for priority NFT purchase eligibility.
     </p>
+  </div>
+
+  <div class="main-grid">
 
     <!-- CURRENT CAMPAIGN -->
 
-    <section class="card">
+    <section class="card campaign-card">
+      <div class="campaign-layout">
 
-      <div class="eyebrow">
-        CURRENT CAMPAIGN
+        <div class="campaign-info">
+          <div class="eyebrow">CURRENT CAMPAIGN</div>
+
+          <div id="campaignName" class="campaign-name">
+            LOADING...
+          </div>
+
+          <p id="campaignDeadline"></p>
+          <p id="purchaseLimit"></p>
+        </div>
+
+        <div
+          id="campaignStatus"
+          class="status"
+          role="status"
+        >
+          Loading campaign information...
+        </div>
+
       </div>
-
-      <div
-        id="campaignName"
-        class="campaign-name"
-      >
-        LOADING...
-      </div>
-
-      <p id="campaignDeadline"></p>
-
-      <p id="purchaseLimit"></p>
-
-      <div
-        id="campaignStatus"
-        class="status"
-        role="status"
-      >
-        Loading campaign information...
-      </div>
-
     </section>
 
-    <!-- X CAMPAIGN TASKS -->
+    <!-- CAMPAIGN STEPS -->
 
     <section class="card">
 
       <h2
         data-en="COMPLETE THE STEPS"
         data-ja="応募条件を達成しよう！"
-      >
-        COMPLETE THE STEPS
-      </h2>
+      >COMPLETE THE STEPS</h2>
 
-      <!-- FOLLOW -->
+      <div class="steps">
 
-      <div class="task" id="followTask">
+        <div class="task" id="followTask">
+          <div
+            class="task-title"
+            data-en="STEP 1 — Follow official X"
+            data-ja="STEP 1 — 公式Xをフォロー"
+          >STEP 1 — Follow official X</div>
 
-        <div
-          class="task-title"
-          data-en="STEP 1 — Follow our official X"
-          data-ja="STEP 1 — 公式Xをフォロー"
-        >
-          STEP 1 — Follow our official X
+          <a
+            id="followLink"
+            class="task-link disabled"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-en="OPEN OFFICIAL X ↗"
+            data-ja="公式Xを開く ↗"
+          >OPEN OFFICIAL X ↗</a>
+
+          <div class="checkbox-row">
+            <input
+              type="checkbox"
+              id="followChecked"
+              disabled
+            >
+            <label
+              for="followChecked"
+              data-en="I followed the official X account."
+              data-ja="公式Xをフォローしました。"
+            >I followed the official X account.</label>
+          </div>
         </div>
 
-        <a
-          id="followLink"
-          class="task-link disabled"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-en="OPEN OFFICIAL X ↗"
-          data-ja="公式Xを開く ↗"
-        >
-          OPEN OFFICIAL X ↗
-        </a>
+        <div class="task" id="repostTask">
+          <div
+            class="task-title"
+            data-en="STEP 2 — Like & Repost"
+            data-ja="STEP 2 — いいね＆リポスト"
+          >STEP 2 — Like & Repost</div>
 
-        <div class="checkbox-row">
+          <a
+            id="repostLink"
+            class="task-link disabled"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-en="OPEN CAMPAIGN POST ↗"
+            data-ja="対象投稿を開く ↗"
+          >OPEN CAMPAIGN POST ↗</a>
 
-          <input
-            type="checkbox"
-            id="followChecked"
-            disabled
-          >
-
-          <label
-            for="followChecked"
-            data-en="I have followed the official X account."
-            data-ja="公式Xをフォローしました。"
-          >
-            I have followed the official X account.
-          </label>
-
-        </div>
-
-      </div>
-
-      <!-- LIKE AND REPOST -->
-
-      <div class="task" id="repostTask">
-
-        <div
-          class="task-title"
-          data-en="STEP 2 — Like ♥ and Repost"
-          data-ja="STEP 2 — ♥いいね＆リポスト"
-        >
-          STEP 2 — Like ♥ and Repost
-        </div>
-
-        <a
-          id="repostLink"
-          class="task-link disabled"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-en="OPEN CAMPAIGN POST ↗"
-          data-ja="対象投稿を開く ↗"
-        >
-          OPEN CAMPAIGN POST ↗
-        </a>
-
-        <div class="checkbox-row">
-
-          <input
-            type="checkbox"
-            id="repostChecked"
-            disabled
-          >
-
-          <label
-            for="repostChecked"
-            data-en="I have liked and reposted the campaign post."
-            data-ja="対象投稿にいいね＆リポストしました。"
-          >
-            I have liked and reposted the campaign post.
-          </label>
-
+          <div class="checkbox-row">
+            <input
+              type="checkbox"
+              id="repostChecked"
+              disabled
+            >
+            <label
+              for="repostChecked"
+              data-en="I liked and reposted the campaign post."
+              data-ja="いいね＆リポストしました。"
+            >I liked and reposted the campaign post.</label>
+          </div>
         </div>
 
       </div>
 
       <p
         class="help"
-        data-en="After opening each X link, return here and check the box to confirm completion. These actions are self-reported and may be reviewed."
-        data-ja="それぞれのXリンクを開いたあと、このページに戻って完了チェックを入れてください。操作は自己申告となり、後日確認する場合があります。"
+        data-en="Open each X link, return here, and check the box. Completion is self-reported and may be reviewed."
+        data-ja="各Xリンクを開いたあと、このページに戻って完了チェックを入れてください。操作は自己申告となり、後日確認する場合があります。"
       >
-        After opening each X link, return here
-        and check the box to confirm completion.
+        Open each X link, return here, and check the box.
       </p>
 
     </section>
 
-    <!-- APPLICATION -->
+    <!-- APPLICATION FORM -->
 
     <section class="card">
 
       <h2
         data-en="STEP 3 — APPLICATION"
         data-ja="STEP 3 — 応募情報を登録"
-      >
-        STEP 3 — APPLICATION
-      </h2>
+      >STEP 3 — APPLICATION</h2>
 
       <form
         id="applicationForm"
@@ -476,9 +637,7 @@
           for="xUsername"
           data-en="X username"
           data-ja="Xユーザー名"
-        >
-          X username
-        </label>
+        >X username</label>
 
         <input
           type="text"
@@ -495,9 +654,7 @@
           for="wallet"
           data-en="Public EVM wallet address"
           data-ja="公開EVMウォレットアドレス"
-        >
-          Public EVM wallet address
-        </label>
+        >Public EVM wallet address</label>
 
         <input
           type="text"
@@ -512,20 +669,16 @@
 
         <p
           class="help"
-          data-en="Enter only your public wallet address. Never share your private key or recovery phrase."
+          data-en="Public wallet address only. Never enter a private key or recovery phrase."
           data-ja="公開ウォレットアドレスのみ入力してください。秘密鍵やリカバリーフレーズは絶対に入力しないでください。"
         >
-          Enter only your public wallet address.
-          Never share your private key or recovery phrase.
+          Public wallet address only. Never enter a private key or recovery phrase.
         </p>
 
         <!-- SPAM TRAP -->
 
         <div class="honeypot" aria-hidden="true">
-          <label for="website">
-            Leave this field empty
-          </label>
-
+          <label for="website">Leave empty</label>
           <input
             type="text"
             id="website"
@@ -535,10 +688,7 @@
           >
         </div>
 
-        <!-- CONSENT -->
-
         <div class="checkbox-row">
-
           <input
             type="checkbox"
             id="consent"
@@ -551,11 +701,8 @@
             data-en="I agree to the collection and storage of my X username and public wallet address for campaign administration and eligibility review."
             data-ja="応募管理・条件確認のため、Xユーザー名と公開ウォレットアドレスが収集・保存されることに同意します。"
           >
-            I agree to the collection and storage
-            of my X username and public wallet address
-            for campaign administration.
+            I agree to the collection and storage of my X username and public wallet address for campaign administration and eligibility review.
           </label>
-
         </div>
 
         <p
@@ -576,435 +723,373 @@
         </button>
 
       </form>
-
     </section>
 
-    <p
-      class="notice"
-      data-en="Submission does not guarantee allowlist selection or purchase. X activity may be reviewed separately. The submission result opens in a new tab."
-      data-ja="応募は優先購入枠への選出や購入を保証するものではありません。Xでの操作は別途確認する場合があります。送信結果は新しいタブに表示されます。"
-    >
-      Submission does not guarantee allowlist
-      selection or purchase.
-    </p>
+  </div>
 
-  </main>
+  <p
+    class="notice"
+    data-en="Submission does not guarantee allowlist selection or purchase. X activity may be reviewed separately. The submission result opens in a new tab."
+    data-ja="応募は優先購入枠への選出や購入を保証するものではありません。Xでの操作は別途確認する場合があります。送信結果は新しいタブに表示されます。"
+  >
+    Submission does not guarantee allowlist selection or purchase. X activity may be reviewed separately.
+  </p>
 
-  <footer>
-    © TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
-  </footer>
+</main>
 
-  <script>
-    "use strict";
+<footer>
+  © TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
+</footer>
 
-    // =====================================
-    // STATE
-    // =====================================
+<script>
+"use strict";
 
-    let language = "en";
-    let config = null;
+// =====================================
+// STATE
+// =====================================
 
-    let followVisited = false;
-    let repostVisited = false;
+let language = "en";
+let config = null;
 
-    let followConfirmed = false;
-    let repostConfirmed = false;
+let followVisited = false;
+let repostVisited = false;
 
-    const $ = (id) =>
-      document.getElementById(id);
+let followConfirmed = false;
+let repostConfirmed = false;
 
-    const translate = (en, ja) =>
-      language === "ja" ? ja : en;
+const $ = (id) => document.getElementById(id);
+
+const translate = (en, ja) =>
+  language === "ja" ? ja : en;
 
 
-    // =====================================
-    // LANGUAGE
-    // =====================================
+// =====================================
+// LANGUAGE
+// =====================================
 
-    function renderLanguage() {
+function renderLanguage() {
+  document.documentElement.lang = language;
 
-      document.documentElement.lang =
-        language;
+  $("langSwitch").textContent =
+    language === "en" ? "日本語" : "ENGLISH";
 
-      $("langSwitch").textContent =
-        language === "en"
-          ? "日本語"
-          : "ENGLISH";
+  document
+    .querySelectorAll("[data-en][data-ja]")
+    .forEach((element) => {
+      element.textContent = element.dataset[language];
+    });
 
-      document
-        .querySelectorAll("[data-en][data-ja]")
-        .forEach((element) => {
+  renderCampaign();
+}
 
-          element.textContent =
-            element.dataset[language];
+$("langSwitch").addEventListener("click", () => {
+  language = language === "en" ? "ja" : "en";
+  renderLanguage();
+});
 
-        });
 
-      renderCampaign();
+// =====================================
+// CAMPAIGN INFORMATION
+// =====================================
+
+function renderCampaign() {
+  if (!config) return;
+
+  $("campaignName").textContent =
+    translate(config.titleEn, config.titleJa);
+
+  $("campaignDeadline").textContent =
+    config.applicationDeadline
+      ? translate(
+          "Deadline: " + config.applicationDeadline,
+          "応募締切：" + config.applicationDeadline
+        )
+      : "";
+
+  $("purchaseLimit").textContent =
+    translate(
+      "Priority purchase limit: up to " +
+        config.maxPurchasePerWallet +
+        " NFTs per wallet (if selected).",
+      "優先購入上限：当選した場合、1ウォレットにつき最大" +
+        config.maxPurchasePerWallet +
+        "枚（予定）。"
+    );
+
+  const status = $("campaignStatus");
+
+  status.classList.toggle("open", config.enabled === true);
+  status.classList.toggle("closed", config.enabled !== true);
+
+  status.textContent = config.enabled
+    ? translate(
+        "● Applications are open.",
+        "● 応募受付中です。"
+      )
+    : translate(
+        "Applications are currently closed.",
+        "現在、応募受付は停止しています。"
+      );
+
+  updateSubmitState();
+}
+
+
+// =====================================
+// LINK VISIT TRACKING
+// =====================================
+
+function unlockFollow() {
+  if (!config || !config.enabled) return;
+
+  followVisited = true;
+  $("followChecked").disabled = false;
+}
+
+function unlockRepost() {
+  if (!config || !config.enabled) return;
+
+  repostVisited = true;
+  $("repostChecked").disabled = false;
+}
+
+$("followLink").addEventListener("click", () => {
+  if (!config || !config.enabled) return;
+  unlockFollow();
+});
+
+$("repostLink").addEventListener("click", () => {
+  if (!config || !config.enabled) return;
+  unlockRepost();
+});
+
+
+// =====================================
+// CHECKBOXES
+// =====================================
+
+$("followChecked").addEventListener("change", () => {
+  followConfirmed =
+    followVisited && $("followChecked").checked;
+
+  $("followTask").classList.toggle(
+    "completed",
+    followConfirmed
+  );
+
+  updateSubmitState();
+});
+
+$("repostChecked").addEventListener("change", () => {
+  repostConfirmed =
+    repostVisited && $("repostChecked").checked;
+
+  $("repostTask").classList.toggle(
+    "completed",
+    repostConfirmed
+  );
+
+  updateSubmitState();
+});
+
+$("consent").addEventListener(
+  "change",
+  updateSubmitState
+);
+
+
+// =====================================
+// SUBMIT STATE
+// =====================================
+
+function updateSubmitState() {
+  const open = !!(config && config.enabled === true);
+
+  const ready =
+    open &&
+    followConfirmed &&
+    repostConfirmed &&
+    $("consent").checked;
+
+  $("submitButton").disabled = !ready;
+
+  $("confirmed").value =
+    followConfirmed && repostConfirmed
+      ? "yes"
+      : "no";
+}
+
+
+// =====================================
+// CONFIGURATION
+// =====================================
+
+async function loadConfig() {
+  try {
+    const response = await fetch(
+      "./allowlist-config.json",
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error("Campaign configuration unavailable");
     }
 
-    $("langSwitch").addEventListener(
-      "click",
-      () => {
+    const data = await response.json();
 
-        language =
-          language === "en"
-            ? "ja"
-            : "en";
-
-        renderLanguage();
-      }
-    );
-
-
-    // =====================================
-    // CAMPAIGN INFORMATION
-    // =====================================
-
-    function renderCampaign() {
-
-      if (!config) return;
-
-      $("campaignName").textContent =
-        translate(
-          config.titleEn,
-          config.titleJa
-        );
-
-      $("campaignDeadline").textContent =
-        config.applicationDeadline
-          ? translate(
-              "Deadline: " +
-                config.applicationDeadline,
-              "応募締切：" +
-                config.applicationDeadline
-            )
-          : "";
-
-      $("purchaseLimit").textContent =
-        translate(
-          "Priority purchase limit: up to " +
-            config.maxPurchasePerWallet +
-            " NFTs per wallet (if selected).",
-          "優先購入上限：当選した場合、" +
-            "1ウォレットにつき最大" +
-            config.maxPurchasePerWallet +
-            "枚（予定）。"
-        );
-
-      $("campaignStatus").textContent =
-        config.enabled
-          ? translate(
-              "Applications are open.",
-              "応募受付中です。"
-            )
-          : translate(
-              "Applications are currently closed.",
-              "現在、応募受付は停止しています。"
-            );
-
-      updateSubmitState();
+    if (
+      !data.campaignId ||
+      !data.prefecture ||
+      !data.scriptUrl ||
+      !data.officialX ||
+      !data.postUrl
+    ) {
+      throw new Error("Incomplete campaign configuration");
     }
 
+    const officialXUrl = new URL(data.officialX);
+    const postUrl = new URL(data.postUrl);
 
-    // =====================================
-    // VISIT TRACKING
-    // =====================================
+    const isXHost = (hostname) =>
+      hostname === "x.com" ||
+      hostname === "www.x.com" ||
+      hostname === "twitter.com" ||
+      hostname === "www.twitter.com";
 
-    function unlockFollow() {
-
-      if (!config || !config.enabled) return;
-
-      followVisited = true;
-
-      $("followChecked").disabled = false;
+    if (
+      officialXUrl.protocol !== "https:" ||
+      postUrl.protocol !== "https:" ||
+      !isXHost(officialXUrl.hostname) ||
+      !isXHost(postUrl.hostname)
+    ) {
+      throw new Error("Invalid X campaign links");
     }
 
-    function unlockRepost() {
+    config = data;
 
-      if (!config || !config.enabled) return;
+    $("campaignId").value = config.campaignId;
 
-      repostVisited = true;
+    $("followLink").href = officialXUrl.href;
+    $("repostLink").href = postUrl.href;
 
-      $("repostChecked").disabled = false;
+    // FIXED OFFICIAL X RETURN BUTTON
+
+    $("xReturn").href = officialXUrl.href;
+    $("xReturn").classList.remove("disabled");
+    $("xReturn").removeAttribute("aria-disabled");
+
+    if (config.enabled === true) {
+      $("followLink").classList.remove("disabled");
+      $("repostLink").classList.remove("disabled");
     }
 
-    $("followLink").addEventListener(
-      "click",
-      () => {
+    renderCampaign();
 
-        if (!config || !config.enabled) return;
+  } catch (error) {
+    console.error(error);
 
-        unlockFollow();
-      }
-    );
+    $("campaignStatus").textContent =
+      translate(
+        "Campaign information is unavailable.",
+        "キャンペーン情報を読み込めませんでした。"
+      );
 
-    $("repostLink").addEventListener(
-      "click",
-      () => {
-
-        if (!config || !config.enabled) return;
-
-        unlockRepost();
-      }
-    );
+    $("submitButton").disabled = true;
+  }
+}
 
 
-    // =====================================
-    // CHECKBOXES
-    // =====================================
+// =====================================
+// VALIDATE AND SUBMIT
+// =====================================
 
-    $("followChecked").addEventListener(
-      "change",
-      () => {
+$("applicationForm").addEventListener(
+  "submit",
+  (event) => {
+    $("formError").textContent = "";
 
-        followConfirmed =
-          followVisited &&
-          $("followChecked").checked;
+    const fail = (en, ja) => {
+      event.preventDefault();
+      $("formError").textContent = translate(en, ja);
+    };
 
-        $("followTask").classList.toggle(
-          "completed",
-          followConfirmed
-        );
-
-        updateSubmitState();
-      }
-    );
-
-    $("repostChecked").addEventListener(
-      "change",
-      () => {
-
-        repostConfirmed =
-          repostVisited &&
-          $("repostChecked").checked;
-
-        $("repostTask").classList.toggle(
-          "completed",
-          repostConfirmed
-        );
-
-        updateSubmitState();
-      }
-    );
-
-
-    // =====================================
-    // SUBMIT BUTTON STATE
-    // =====================================
-
-    function updateSubmitState() {
-
-      const open =
-        config &&
-        config.enabled === true;
-
-      const ready =
-        open &&
-        followConfirmed &&
-        repostConfirmed &&
-        $("consent").checked;
-
-      $("submitButton").disabled =
-        !ready;
-
-      $("confirmed").value =
-        followConfirmed && repostConfirmed
-          ? "yes"
-          : "no";
+    if (!config || !config.enabled) {
+      return fail(
+        "Applications are closed.",
+        "現在は応募できません。"
+      );
     }
 
-    $("consent").addEventListener(
-      "change",
-      updateSubmitState
-    );
-
-
-    // =====================================
-    // LOAD CAMPAIGN CONFIGURATION
-    // =====================================
-
-    async function loadConfig() {
-
-      try {
-
-        const response = await fetch(
-          "./allowlist-config.json",
-          {
-            cache: "no-store"
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(
-            "Campaign configuration unavailable"
-          );
-        }
-
-        const data =
-          await response.json();
-
-        if (
-          !data.campaignId ||
-          !data.prefecture ||
-          !data.scriptUrl ||
-          !data.officialX ||
-          !data.postUrl
-        ) {
-          throw new Error(
-            "Incomplete campaign configuration"
-          );
-        }
-
-        config = data;
-
-        $("campaignId").value =
-          config.campaignId;
-
-        $("followLink").href =
-          config.officialX;
-
-        $("repostLink").href =
-          config.postUrl;
-
-        if (config.enabled) {
-
-          $("followLink").classList.remove(
-            "disabled"
-          );
-
-          $("repostLink").classList.remove(
-            "disabled"
-          );
-
-        }
-
-        renderCampaign();
-
-      } catch (error) {
-
-        console.error(error);
-
-        $("campaignStatus").textContent =
-          "Campaign information is unavailable.";
-
-        $("submitButton").disabled = true;
-      }
+    if (!followConfirmed || !repostConfirmed) {
+      return fail(
+        "Complete both X campaign steps.",
+        "Xの応募条件を2つとも確認してください。"
+      );
     }
 
+    if (!$("consent").checked) {
+      return fail(
+        "Please agree to the data collection terms.",
+        "情報の取扱いについて同意してください。"
+      );
+    }
 
-    // =====================================
-    // VALIDATE AND SUBMIT
-    // =====================================
+    if (
+      !config.scriptUrl.startsWith(
+        "https://script.google.com/macros/s/"
+      )
+    ) {
+      return fail(
+        "The application form is not ready.",
+        "応募フォームは準備中です。"
+      );
+    }
 
-    $("applicationForm").addEventListener(
-      "submit",
-      (event) => {
+    const username = $("xUsername")
+      .value
+      .trim()
+      .replace(/^@/, "");
 
-        $("formError").textContent = "";
+    const wallet = $("wallet")
+      .value
+      .trim();
 
-        const fail = (en, ja) => {
+    if (!/^[A-Za-z0-9_]{1,15}$/.test(username)) {
+      return fail(
+        "Enter a valid X username.",
+        "正しいXユーザー名を入力してください。"
+      );
+    }
 
-          event.preventDefault();
+    if (!/^0x[a-fA-F0-9]{40}$/.test(wallet)) {
+      return fail(
+        "Enter a valid EVM wallet address.",
+        "正しいEVMウォレットアドレスを入力してください。"
+      );
+    }
 
-          $("formError").textContent =
-            translate(en, ja);
-        };
+    if ($("website").value.trim() !== "") {
+      return fail(
+        "Submission could not be completed.",
+        "送信できませんでした。"
+      );
+    }
 
-        if (!config || !config.enabled) {
+    $("xUsername").value = username;
+    $("wallet").value = wallet;
 
-          return fail(
-            "Applications are closed.",
-            "現在は応募できません。"
-          );
-        }
-
-        if (
-          !followConfirmed ||
-          !repostConfirmed
-        ) {
-
-          return fail(
-            "Complete both X campaign steps.",
-            "Xの応募条件を2つとも確認してください。"
-          );
-        }
-
-        if (!$("consent").checked) {
-
-          return fail(
-            "Please agree to the data collection terms.",
-            "情報の取扱いについて同意してください。"
-          );
-        }
-
-        if (
-          !config.scriptUrl.startsWith(
-            "https://script.google.com/macros/s/"
-          )
-        ) {
-
-          return fail(
-            "The application form is not ready.",
-            "応募フォームは準備中です。"
-          );
-        }
-
-        const username =
-          $("xUsername")
-            .value
-            .trim()
-            .replace(/^@/, "");
-
-        const wallet =
-          $("wallet")
-            .value
-            .trim();
-
-        if (
-          !/^[A-Za-z0-9_]{1,15}$/.test(
-            username
-          )
-        ) {
-
-          return fail(
-            "Enter a valid X username.",
-            "正しいXユーザー名を入力してください。"
-          );
-        }
-
-        if (
-          !/^0x[a-fA-F0-9]{40}$/.test(
-            wallet
-          )
-        ) {
-
-          return fail(
-            "Enter a valid EVM wallet address.",
-            "正しいEVMウォレットアドレスを入力してください。"
-          );
-        }
-
-        $("xUsername").value =
-          username;
-
-        $("wallet").value =
-          wallet;
-
-        $("applicationForm").action =
-          config.scriptUrl;
-      }
-    );
+    $("applicationForm").action = config.scriptUrl;
+  }
+);
 
 
-    // =====================================
-    // INITIALIZE
-    // =====================================
+// =====================================
+// INITIALIZE
+// =====================================
 
-    renderLanguage();
-    loadConfig();
+renderLanguage();
+loadConfig();
 
-  </script>
-
+</script>
 </body>
 </html>
