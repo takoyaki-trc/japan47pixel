@@ -1,0 +1,1010 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    ALLOWLIST | TRAVELING TAKOYAKI
+  </title>
+
+  <meta
+    name="description"
+    content="Apply for priority NFT purchase eligibility in the TRAVELING TAKOYAKI Japan 47 Journey."
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="./traveling-takoyaki-icon.png"
+  >
+
+  <style>
+    :root {
+      --navy: #10233d;
+      --panel: #1d3655;
+      --cream: #fff4d8;
+      --yellow: #ffc928;
+      --border: #4a607b;
+      --muted: #d7e2ee;
+      --green: #75e0b1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--navy);
+      color: var(--cream);
+      font-family: Arial, "Noto Sans JP", sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .container {
+      width: min(720px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 2px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .brand {
+      font-family: "Courier New", monospace;
+      font-weight: 900;
+      text-decoration: none;
+      line-height: 1.3;
+    }
+
+    #langSwitch {
+      padding: 8px 13px;
+      border: 1px solid var(--cream);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--cream);
+      cursor: pointer;
+    }
+
+    main {
+      padding: 42px 0 65px;
+    }
+
+    .eyebrow {
+      color: var(--yellow);
+      font-family: "Courier New", monospace;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-family: "Courier New", monospace;
+      font-size: clamp(29px, 7vw, 48px);
+      line-height: 1.15;
+      margin: 14px 0;
+    }
+
+    .lead {
+      color: var(--muted);
+    }
+
+    .card {
+      margin: 24px 0;
+      padding: clamp(18px, 4vw, 30px);
+      border: 2px solid var(--border);
+      border-radius: 15px;
+      background: var(--panel);
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 19px;
+    }
+
+    .campaign-name {
+      color: var(--yellow);
+      font-weight: 900;
+      font-size: 21px;
+    }
+
+    .status {
+      margin: 20px 0;
+      padding: 13px;
+      border-radius: 8px;
+      background: #304763;
+    }
+
+    .task {
+      margin: 18px 0;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #142b48;
+    }
+
+    .task-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .task-link {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      background: var(--yellow);
+      color: var(--navy);
+      text-decoration: none;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .task-link.disabled {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .checkbox-row {
+      display: flex;
+      gap: 10px;
+      margin: 18px 0;
+      align-items: flex-start;
+    }
+
+    .checkbox-row input {
+      margin-top: 6px;
+      width: 19px;
+      height: 19px;
+      flex: none;
+      accent-color: var(--yellow);
+    }
+
+    .checkbox-row input:disabled {
+      opacity: 0.4;
+    }
+
+    .task.completed {
+      border-color: var(--green);
+    }
+
+    .task.completed .task-title::after {
+      content: " ✓";
+      color: var(--green);
+    }
+
+    .field-label {
+      display: block;
+      margin: 18px 0 7px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #a0afc0;
+      border-radius: 8px;
+      background: var(--cream);
+      color: var(--navy);
+      font-size: 16px;
+    }
+
+    .help,
+    .notice {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .error {
+      color: #ffb4ab;
+      min-height: 24px;
+    }
+
+    .submit {
+      width: 100%;
+      padding: 15px;
+      background: var(--yellow);
+      color: var(--navy);
+      border: none;
+      border-radius: 8px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .submit:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .honeypot {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      .task {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container header-inner">
+
+      <a href="./index.html" class="brand">
+        TRAVELING<br>TAKOYAKI
+      </a>
+
+      <button
+        type="button"
+        id="langSwitch"
+      >
+        日本語
+      </button>
+
+    </div>
+  </header>
+
+  <main class="container">
+
+    <span class="eyebrow">
+      JAPAN 47 JOURNEY
+    </span>
+
+    <h1>
+      ALLOWLIST<br>CAMPAIGN
+    </h1>
+
+    <p
+      class="lead"
+      data-en="Complete the X campaign steps and apply for priority NFT purchase eligibility."
+      data-ja="Xのキャンペーン条件を達成して、NFTの優先購入枠に応募しよう！"
+    >
+      Complete the X campaign steps and apply
+      for priority NFT purchase eligibility.
+    </p>
+
+    <!-- CURRENT CAMPAIGN -->
+
+    <section class="card">
+
+      <div class="eyebrow">
+        CURRENT CAMPAIGN
+      </div>
+
+      <div
+        id="campaignName"
+        class="campaign-name"
+      >
+        LOADING...
+      </div>
+
+      <p id="campaignDeadline"></p>
+
+      <p id="purchaseLimit"></p>
+
+      <div
+        id="campaignStatus"
+        class="status"
+        role="status"
+      >
+        Loading campaign information...
+      </div>
+
+    </section>
+
+    <!-- X CAMPAIGN TASKS -->
+
+    <section class="card">
+
+      <h2
+        data-en="COMPLETE THE STEPS"
+        data-ja="応募条件を達成しよう！"
+      >
+        COMPLETE THE STEPS
+      </h2>
+
+      <!-- FOLLOW -->
+
+      <div class="task" id="followTask">
+
+        <div
+          class="task-title"
+          data-en="STEP 1 — Follow our official X"
+          data-ja="STEP 1 — 公式Xをフォロー"
+        >
+          STEP 1 — Follow our official X
+        </div>
+
+        <a
+          id="followLink"
+          class="task-link disabled"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-en="OPEN OFFICIAL X ↗"
+          data-ja="公式Xを開く ↗"
+        >
+          OPEN OFFICIAL X ↗
+        </a>
+
+        <div class="checkbox-row">
+
+          <input
+            type="checkbox"
+            id="followChecked"
+            disabled
+          >
+
+          <label
+            for="followChecked"
+            data-en="I have followed the official X account."
+            data-ja="公式Xをフォローしました。"
+          >
+            I have followed the official X account.
+          </label>
+
+        </div>
+
+      </div>
+
+      <!-- LIKE AND REPOST -->
+
+      <div class="task" id="repostTask">
+
+        <div
+          class="task-title"
+          data-en="STEP 2 — Like ♥ and Repost"
+          data-ja="STEP 2 — ♥いいね＆リポスト"
+        >
+          STEP 2 — Like ♥ and Repost
+        </div>
+
+        <a
+          id="repostLink"
+          class="task-link disabled"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-en="OPEN CAMPAIGN POST ↗"
+          data-ja="対象投稿を開く ↗"
+        >
+          OPEN CAMPAIGN POST ↗
+        </a>
+
+        <div class="checkbox-row">
+
+          <input
+            type="checkbox"
+            id="repostChecked"
+            disabled
+          >
+
+          <label
+            for="repostChecked"
+            data-en="I have liked and reposted the campaign post."
+            data-ja="対象投稿にいいね＆リポストしました。"
+          >
+            I have liked and reposted the campaign post.
+          </label>
+
+        </div>
+
+      </div>
+
+      <p
+        class="help"
+        data-en="After opening each X link, return here and check the box to confirm completion. These actions are self-reported and may be reviewed."
+        data-ja="それぞれのXリンクを開いたあと、このページに戻って完了チェックを入れてください。操作は自己申告となり、後日確認する場合があります。"
+      >
+        After opening each X link, return here
+        and check the box to confirm completion.
+      </p>
+
+    </section>
+
+    <!-- APPLICATION -->
+
+    <section class="card">
+
+      <h2
+        data-en="STEP 3 — APPLICATION"
+        data-ja="STEP 3 — 応募情報を登録"
+      >
+        STEP 3 — APPLICATION
+      </h2>
+
+      <form
+        id="applicationForm"
+        method="POST"
+        target="_blank"
+        novalidate
+      >
+
+        <input
+          type="hidden"
+          id="campaignId"
+          name="campaignId"
+        >
+
+        <input
+          type="hidden"
+          id="confirmed"
+          name="confirmed"
+          value="no"
+        >
+
+        <label
+          class="field-label"
+          for="xUsername"
+          data-en="X username"
+          data-ja="Xユーザー名"
+        >
+          X username
+        </label>
+
+        <input
+          type="text"
+          id="xUsername"
+          name="xUsername"
+          placeholder="@username"
+          maxlength="16"
+          autocomplete="off"
+          required
+        >
+
+        <label
+          class="field-label"
+          for="wallet"
+          data-en="Public EVM wallet address"
+          data-ja="公開EVMウォレットアドレス"
+        >
+          Public EVM wallet address
+        </label>
+
+        <input
+          type="text"
+          id="wallet"
+          name="wallet"
+          placeholder="0x..."
+          maxlength="42"
+          autocomplete="off"
+          spellcheck="false"
+          required
+        >
+
+        <p
+          class="help"
+          data-en="Enter only your public wallet address. Never share your private key or recovery phrase."
+          data-ja="公開ウォレットアドレスのみ入力してください。秘密鍵やリカバリーフレーズは絶対に入力しないでください。"
+        >
+          Enter only your public wallet address.
+          Never share your private key or recovery phrase.
+        </p>
+
+        <!-- SPAM TRAP -->
+
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">
+            Leave this field empty
+          </label>
+
+          <input
+            type="text"
+            id="website"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+          >
+        </div>
+
+        <!-- CONSENT -->
+
+        <div class="checkbox-row">
+
+          <input
+            type="checkbox"
+            id="consent"
+            name="consent"
+            value="yes"
+          >
+
+          <label
+            for="consent"
+            data-en="I agree to the collection and storage of my X username and public wallet address for campaign administration and eligibility review."
+            data-ja="応募管理・条件確認のため、Xユーザー名と公開ウォレットアドレスが収集・保存されることに同意します。"
+          >
+            I agree to the collection and storage
+            of my X username and public wallet address
+            for campaign administration.
+          </label>
+
+        </div>
+
+        <p
+          id="formError"
+          class="error"
+          role="alert"
+        ></p>
+
+        <button
+          id="submitButton"
+          type="submit"
+          class="submit"
+          disabled
+          data-en="SUBMIT APPLICATION →"
+          data-ja="応募内容を送信 →"
+        >
+          SUBMIT APPLICATION →
+        </button>
+
+      </form>
+
+    </section>
+
+    <p
+      class="notice"
+      data-en="Submission does not guarantee allowlist selection or purchase. X activity may be reviewed separately. The submission result opens in a new tab."
+      data-ja="応募は優先購入枠への選出や購入を保証するものではありません。Xでの操作は別途確認する場合があります。送信結果は新しいタブに表示されます。"
+    >
+      Submission does not guarantee allowlist
+      selection or purchase.
+    </p>
+
+  </main>
+
+  <footer>
+    © TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
+  </footer>
+
+  <script>
+    "use strict";
+
+    // =====================================
+    // STATE
+    // =====================================
+
+    let language = "en";
+    let config = null;
+
+    let followVisited = false;
+    let repostVisited = false;
+
+    let followConfirmed = false;
+    let repostConfirmed = false;
+
+    const $ = (id) =>
+      document.getElementById(id);
+
+    const translate = (en, ja) =>
+      language === "ja" ? ja : en;
+
+
+    // =====================================
+    // LANGUAGE
+    // =====================================
+
+    function renderLanguage() {
+
+      document.documentElement.lang =
+        language;
+
+      $("langSwitch").textContent =
+        language === "en"
+          ? "日本語"
+          : "ENGLISH";
+
+      document
+        .querySelectorAll("[data-en][data-ja]")
+        .forEach((element) => {
+
+          element.textContent =
+            element.dataset[language];
+
+        });
+
+      renderCampaign();
+    }
+
+    $("langSwitch").addEventListener(
+      "click",
+      () => {
+
+        language =
+          language === "en"
+            ? "ja"
+            : "en";
+
+        renderLanguage();
+      }
+    );
+
+
+    // =====================================
+    // CAMPAIGN INFORMATION
+    // =====================================
+
+    function renderCampaign() {
+
+      if (!config) return;
+
+      $("campaignName").textContent =
+        translate(
+          config.titleEn,
+          config.titleJa
+        );
+
+      $("campaignDeadline").textContent =
+        config.applicationDeadline
+          ? translate(
+              "Deadline: " +
+                config.applicationDeadline,
+              "応募締切：" +
+                config.applicationDeadline
+            )
+          : "";
+
+      $("purchaseLimit").textContent =
+        translate(
+          "Priority purchase limit: up to " +
+            config.maxPurchasePerWallet +
+            " NFTs per wallet (if selected).",
+          "優先購入上限：当選した場合、" +
+            "1ウォレットにつき最大" +
+            config.maxPurchasePerWallet +
+            "枚（予定）。"
+        );
+
+      $("campaignStatus").textContent =
+        config.enabled
+          ? translate(
+              "Applications are open.",
+              "応募受付中です。"
+            )
+          : translate(
+              "Applications are currently closed.",
+              "現在、応募受付は停止しています。"
+            );
+
+      updateSubmitState();
+    }
+
+
+    // =====================================
+    // VISIT TRACKING
+    // =====================================
+
+    function unlockFollow() {
+
+      if (!config || !config.enabled) return;
+
+      followVisited = true;
+
+      $("followChecked").disabled = false;
+    }
+
+    function unlockRepost() {
+
+      if (!config || !config.enabled) return;
+
+      repostVisited = true;
+
+      $("repostChecked").disabled = false;
+    }
+
+    $("followLink").addEventListener(
+      "click",
+      () => {
+
+        if (!config || !config.enabled) return;
+
+        unlockFollow();
+      }
+    );
+
+    $("repostLink").addEventListener(
+      "click",
+      () => {
+
+        if (!config || !config.enabled) return;
+
+        unlockRepost();
+      }
+    );
+
+
+    // =====================================
+    // CHECKBOXES
+    // =====================================
+
+    $("followChecked").addEventListener(
+      "change",
+      () => {
+
+        followConfirmed =
+          followVisited &&
+          $("followChecked").checked;
+
+        $("followTask").classList.toggle(
+          "completed",
+          followConfirmed
+        );
+
+        updateSubmitState();
+      }
+    );
+
+    $("repostChecked").addEventListener(
+      "change",
+      () => {
+
+        repostConfirmed =
+          repostVisited &&
+          $("repostChecked").checked;
+
+        $("repostTask").classList.toggle(
+          "completed",
+          repostConfirmed
+        );
+
+        updateSubmitState();
+      }
+    );
+
+
+    // =====================================
+    // SUBMIT BUTTON STATE
+    // =====================================
+
+    function updateSubmitState() {
+
+      const open =
+        config &&
+        config.enabled === true;
+
+      const ready =
+        open &&
+        followConfirmed &&
+        repostConfirmed &&
+        $("consent").checked;
+
+      $("submitButton").disabled =
+        !ready;
+
+      $("confirmed").value =
+        followConfirmed && repostConfirmed
+          ? "yes"
+          : "no";
+    }
+
+    $("consent").addEventListener(
+      "change",
+      updateSubmitState
+    );
+
+
+    // =====================================
+    // LOAD CAMPAIGN CONFIGURATION
+    // =====================================
+
+    async function loadConfig() {
+
+      try {
+
+        const response = await fetch(
+          "./allowlist-config.json",
+          {
+            cache: "no-store"
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            "Campaign configuration unavailable"
+          );
+        }
+
+        const data =
+          await response.json();
+
+        if (
+          !data.campaignId ||
+          !data.prefecture ||
+          !data.scriptUrl ||
+          !data.officialX ||
+          !data.postUrl
+        ) {
+          throw new Error(
+            "Incomplete campaign configuration"
+          );
+        }
+
+        config = data;
+
+        $("campaignId").value =
+          config.campaignId;
+
+        $("followLink").href =
+          config.officialX;
+
+        $("repostLink").href =
+          config.postUrl;
+
+        if (config.enabled) {
+
+          $("followLink").classList.remove(
+            "disabled"
+          );
+
+          $("repostLink").classList.remove(
+            "disabled"
+          );
+
+        }
+
+        renderCampaign();
+
+      } catch (error) {
+
+        console.error(error);
+
+        $("campaignStatus").textContent =
+          "Campaign information is unavailable.";
+
+        $("submitButton").disabled = true;
+      }
+    }
+
+
+    // =====================================
+    // VALIDATE AND SUBMIT
+    // =====================================
+
+    $("applicationForm").addEventListener(
+      "submit",
+      (event) => {
+
+        $("formError").textContent = "";
+
+        const fail = (en, ja) => {
+
+          event.preventDefault();
+
+          $("formError").textContent =
+            translate(en, ja);
+        };
+
+        if (!config || !config.enabled) {
+
+          return fail(
+            "Applications are closed.",
+            "現在は応募できません。"
+          );
+        }
+
+        if (
+          !followConfirmed ||
+          !repostConfirmed
+        ) {
+
+          return fail(
+            "Complete both X campaign steps.",
+            "Xの応募条件を2つとも確認してください。"
+          );
+        }
+
+        if (!$("consent").checked) {
+
+          return fail(
+            "Please agree to the data collection terms.",
+            "情報の取扱いについて同意してください。"
+          );
+        }
+
+        if (
+          !config.scriptUrl.startsWith(
+            "https://script.google.com/macros/s/"
+          )
+        ) {
+
+          return fail(
+            "The application form is not ready.",
+            "応募フォームは準備中です。"
+          );
+        }
+
+        const username =
+          $("xUsername")
+            .value
+            .trim()
+            .replace(/^@/, "");
+
+        const wallet =
+          $("wallet")
+            .value
+            .trim();
+
+        if (
+          !/^[A-Za-z0-9_]{1,15}$/.test(
+            username
+          )
+        ) {
+
+          return fail(
+            "Enter a valid X username.",
+            "正しいXユーザー名を入力してください。"
+          );
+        }
+
+        if (
+          !/^0x[a-fA-F0-9]{40}$/.test(
+            wallet
+          )
+        ) {
+
+          return fail(
+            "Enter a valid EVM wallet address.",
+            "正しいEVMウォレットアドレスを入力してください。"
+          );
+        }
+
+        $("xUsername").value =
+          username;
+
+        $("wallet").value =
+          wallet;
+
+        $("applicationForm").action =
+          config.scriptUrl;
+      }
+    );
+
+
+    // =====================================
+    // INITIALIZE
+    // =====================================
+
+    renderLanguage();
+    loadConfig();
+
+  </script>
+
+</body>
+</html>
