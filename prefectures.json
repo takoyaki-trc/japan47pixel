@@ -1,21 +1,19 @@
 
 [
-  
-{
-  "name": "HOKKAIDO",
-  "nameJa": "北海道",
-  "region": "HOKKAIDO",
-  "ticketImage": "https://ul.h3z.jp/JdJ1ZSjj.png",
-  "artImage": "https://ul.h3z.jp/oHLrQFcg.png",
-  "artBookImage": "https://ul.h3z.jp/oyLZXgar.png",
-  "ticketUrl": "https://opensea.io/collection/traveling-takoyaki/overview",
-  "artUrl": "https://opensea.io/collection/traveling-takoyaki-hokkaido",
-  "ticketStatus": "SOLD OUT",
-  "artStatus": "MINTING SOON",
-  "ticketSupply": 333,
-  "ticketClaimed": 333
-}
-
+  {
+    "name": "HOKKAIDO",
+    "nameJa": "北海道",
+    "region": "HOKKAIDO",
+    "ticketImage": "https://ul.h3z.jp/JdJ1ZSjj.png",
+    "artImage": "https://ul.h3z.jp/oHLrQFcg.png",
+    "artBookImage": "https://ul.h3z.jp/oyLZXgar.png",
+    "ticketUrl": "https://opensea.io/collection/traveling-takoyaki/overview",
+    "artUrl": "https://opensea.io/collection/traveling-takoyaki-hokkaido",
+    "ticketStatus": "SOLD OUT",
+    "artStatus": "MINTING SOON",
+    "ticketSupply": 333,
+    "ticketClaimed": 333
+  },
   {
     "name": "AOMORI",
     "nameJa": "青森県",
