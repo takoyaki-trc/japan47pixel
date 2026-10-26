@@ -980,3 +980,20 @@ footer small {
     height: 44px;
   }
 }
+
+
+/* ======================================
+   COLLECTION DETAILS - BUTTON SPACING
+   ====================================== */
+
+/* 詳細画面のボタン同士に余白を追加 */
+.detail .action-link + .action-link {
+  margin-left: 14px;
+}
+
+/* スマホでも適切な余白を確保 */
+@media (max-width: 600px) {
+  .detail .action-link + .action-link {
+    margin-left: 12px;
+  }
+}
