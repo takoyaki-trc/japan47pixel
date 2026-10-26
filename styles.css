@@ -983,29 +983,34 @@ footer small {
 
 
 
+
 /* ======================================
-   NFT ART BUTTONS - MOBILE FIX
+   NFT ART BUTTON LAYOUT - FINAL FIX
    ====================================== */
 
 .detail .action-link {
   margin: 10px 0;
 }
 
-/* 2つのボタンを横並びにする */
-.detail .action-link + .action-link {
-  margin-left: 12px;
+/* ART詳細内の2つのリンクを横並びに */
+#artDetail .art-link-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-top: 18px;
 }
 
-@media (max-width: 600px) {
-  .detail .action-link {
-    padding: 13px 8px;
-    font-size: 10px;
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  .detail .action-link + .action-link {
-    margin-left: 8px;
-  }
+#artDetail .art-link-actions .action-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 13px 6px;
+  text-align: center;
+  font-size: clamp(8px, 2.1vw, 12px);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
 }
-
