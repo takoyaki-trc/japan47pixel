@@ -982,18 +982,30 @@ footer small {
 }
 
 
+
 /* ======================================
-   COLLECTION DETAILS - BUTTON SPACING
+   NFT ART BUTTONS - MOBILE FIX
    ====================================== */
 
-/* 詳細画面のボタン同士に余白を追加 */
-.detail .action-link + .action-link {
-  margin-left: 14px;
+.detail .action-link {
+  margin: 10px 0;
 }
 
-/* スマホでも適切な余白を確保 */
+/* 2つのボタンを横並びにする */
+.detail .action-link + .action-link {
+  margin-left: 12px;
+}
+
 @media (max-width: 600px) {
+  .detail .action-link {
+    padding: 13px 8px;
+    font-size: 10px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
   .detail .action-link + .action-link {
-    margin-left: 12px;
+    margin-left: 8px;
   }
 }
+
