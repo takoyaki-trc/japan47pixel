@@ -5,6 +5,7 @@
    TRAVELING TAKOYAKI
    JAPAN 47 JOURNEY
    LONG-TERM VERSION
+   BUTTON LAYOUT FIX
 ========================================== */
 
 const $ = selector => document.querySelector(selector);
@@ -146,6 +147,7 @@ function statusText(status) {
     "LIVE": ["LIVE NOW", "販売中"],
     "ON SALE": ["ON SALE", "販売中"],
     "COMING SOON": ["COMING SOON", "近日公開"],
+    "MINTING SOON": ["MINTING SOON", "ミント開始間近"],
     "UPCOMING": ["UPCOMING", "公開予定"],
     "ENDED": ["ENDED", "販売終了"]
   };
@@ -423,11 +425,6 @@ function renderFeature(index) {
       ".eyebrow"
     );
 
-    setText(
-      eyebrow ? "#featureTicketTitle" : null,
-      ticketTitle
-    );
-
     if (eyebrow) {
       eyebrow.textContent =
         `${stopNumber(index)} · ${p.name}`;
@@ -552,6 +549,7 @@ function initFilters() {
 
 /* ==========================================
    PREFECTURE DETAILS
+   FIXED TWO-BUTTON LAYOUT
 ========================================== */
 
 function createDetail(index, type) {
@@ -639,7 +637,16 @@ function createDetail(index, type) {
         )
       );
     }
+  }
 
+  /* ======================================
+     ACTION BUTTON CONTAINER
+     Gallery and OpenSea side by side
+  ====================================== */
+
+  const actions = make("div", "art-link-actions");
+
+  if (!isTicket) {
     const gallery = getGallery(index);
 
     if (gallery.length) {
@@ -657,8 +664,7 @@ function createDetail(index, type) {
       galleryButton.addEventListener("click", () => {
         selectGalleryPrefecture(index);
 
-        const gallerySection =
-          $(".gallery-stage");
+        const gallerySection = $(".gallery-stage");
 
         gallerySection?.scrollIntoView({
           behavior: reducedMotion()
@@ -668,7 +674,7 @@ function createDetail(index, type) {
         });
       });
 
-      wrapper.append(galleryButton);
+      actions.append(galleryButton);
     }
   }
 
@@ -686,9 +692,9 @@ function createDetail(index, type) {
     link.target = "_blank";
     link.rel = "noopener noreferrer";
 
-    wrapper.append(link);
+    actions.append(link);
   } else {
-    wrapper.append(
+    actions.append(
       make(
         "span",
         "unavailable",
@@ -699,6 +705,8 @@ function createDetail(index, type) {
       )
     );
   }
+
+  wrapper.append(actions);
 
   return wrapper;
 }
@@ -806,8 +814,6 @@ function renderBook(type) {
         state.ticket = index;
       } else {
         state.art = index;
-
-        // 選んだ都道府県のギャラリーへ切り替え
         selectGalleryPrefecture(index);
       }
 
@@ -871,7 +877,6 @@ function renderBook(type) {
 
 /* ==========================================
    NFT ART GALLERY
-   CURRENT STOP + HISTORICAL COLLECTIONS
 ========================================== */
 
 function selectGalleryPrefecture(index) {
@@ -891,13 +896,11 @@ function rebuildGallery() {
   container.replaceChildren();
 
   const stage = $(".gallery-stage");
-  const caption = $("#galleryCaption");
 
   const heading = stage?.previousElementSibling;
 
   if (heading && heading.tagName === "H3") {
-    heading.textContent =
-      `${p.name} ART GALLERY`;
+    heading.textContent = `${p.name} ART GALLERY`;
   }
 
   if (!currentGallery.length) {
