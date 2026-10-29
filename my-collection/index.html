@@ -3,1422 +3,398 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#16314d">
+<meta name="theme-color" content="#091626">
 <title>MY COLLECTION | TRAVELING TAKOYAKI</title>
+<!-- V5: 47マスを蛇行する丸いすごろくに変更。チケットとNFTは正方形3列。 -->
 <style>
-:root{
-  --bg1:#17324d;
-  --bg2:#10253d;
-  --bg3:#0c1c2e;
-  --panel:#18344f;
-  --panel2:#1d3a57;
-  --panel3:#12273d;
-  --line:#45627d;
-  --line2:#5a7a96;
-  --text:#f5f7fb;
-  --sub:#c4d2df;
-  --muted:#9db1c5;
-  --mint:#74e4d1;
-  --mint2:#49cbb3;
-  --gold:#ffd98c;
-  --gold2:#e7be64;
-  --danger:#ffb7b2;
-  --shadow:0 8px 22px rgba(0,0,0,.18);
-  --radius:16px;
-}
-
+:root{--bg:#091626;--card:#11283f;--line:#38516b;--mint:#70e4d0;--gold:#ffda91;--text:#f5f2e9;--sub:#aabbcd}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;
-  color:var(--text);
-  font-family:system-ui,"Noto Sans JP",sans-serif;
-  background:
-    linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 42%,var(--bg3) 100%);
-}
-button,input{font:inherit}
-button{cursor:pointer}
-a{color:inherit}
-button:focus-visible,input:focus-visible,a:focus-visible{
-  outline:3px solid var(--mint);
-  outline-offset:3px;
-}
-img{max-width:100%;display:block}
-
-.wrap{
-  width:min(1100px,calc(100% - 24px));
-  margin:0 auto;
-}
-
-header{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(11,26,42,.88);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(116,228,209,.18);
-}
-.head{
-  min-height:72px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-.brand{
-  min-width:0;
-}
-.brand strong{
-  display:block;
-  font-size:clamp(15px,4vw,19px);
-  font-weight:900;
-  letter-spacing:.06em;
-  line-height:1.15;
-}
-.brand small{
-  display:block;
-  margin-top:4px;
-  color:var(--sub);
-  font-size:11px;
-  letter-spacing:.03em;
-}
-.wallet-btn{
-  border:0;
-  border-radius:14px;
-  padding:12px 16px;
-  background:var(--mint);
-  color:#082032;
-  font-weight:900;
-  min-width:145px;
-  max-width:180px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  box-shadow:var(--shadow);
-}
-
-.hero{
-  padding:24px 0 12px;
-}
-.hero-box{
-  background:linear-gradient(180deg,rgba(28,58,90,.92),rgba(18,39,61,.92));
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:22px;
-  padding:22px 18px;
-  box-shadow:var(--shadow);
-}
-.eyebrow{
-  color:var(--mint);
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.20em;
-}
-.hero h1{
-  margin:8px 0 10px;
-  font-size:clamp(34px,9vw,62px);
-  line-height:1.0;
-  letter-spacing:-.04em;
-}
-.hero h1 em{
-  font-style:normal;
-  color:var(--gold);
-}
-.hero p{
-  margin:0;
-  color:var(--sub);
-  font-size:15px;
-  line-height:1.7;
-}
-.jump{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:16px;
-}
-.jump a{
-  text-decoration:none;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.10);
-  color:var(--text);
-  padding:11px 14px;
-  border-radius:14px;
-  font-weight:800;
-  box-shadow:0 4px 12px rgba(0,0,0,.10);
-}
-
-.card{
-  margin-top:18px;
-  background:linear-gradient(180deg,rgba(28,57,87,.96),rgba(18,38,59,.96));
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:22px;
-  padding:16px;
-  box-shadow:var(--shadow);
-}
-.card-head{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  align-items:flex-start;
-  justify-content:space-between;
-}
-.card-title{
-  margin:4px 0 0;
-  font-size:clamp(26px,7vw,42px);
-  line-height:1.08;
-  letter-spacing:-.03em;
-}
-.card-sub{
-  margin:8px 0 0;
-  color:var(--sub);
-  font-size:14px;
-  line-height:1.6;
-}
-
-.navbuttons{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.small-btn{
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.05);
-  color:var(--text);
-  padding:11px 14px;
-  border-radius:14px;
-  font-weight:800;
-  min-width:58px;
-}
-
-.road-wrap{
-  margin-top:14px;
-  padding:14px 12px 14px;
-  background:#0c1f31;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:18px;
-}
-.road-scroll{
-  overflow-x:auto;
-  padding-top:52px;
-}
-.road{
-  display:flex;
-  gap:8px;
-  width:max-content;
-  align-items:flex-start;
-}
-.stop{
-  position:relative;
-  width:92px;
-  flex:none;
-  border:0;
-  padding:0;
-  background:none;
-  color:var(--text);
-  text-align:center;
-}
-.square{
-  height:92px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  font:900 25px/1 monospace;
-  border:2px solid #5a7894;
-  background:#213d58;
-  box-shadow:inset 0 -10px 0 rgba(0,0,0,.16);
-}
-.stop.past .square{
-  border-color:#67cfbd;
-  background:#1f4a52;
-}
-.stop.current .square{
-  border-color:#fff2c6;
-  background:#e6c170;
-  color:#0d2034;
-  box-shadow:0 0 0 3px rgba(255,255,255,.10), inset 0 -10px 0 rgba(0,0,0,.12);
-}
-.stop.selected .square{
-  outline:3px solid rgba(255,255,255,.95);
-  outline-offset:3px;
-}
-.stop .pref{
-  display:block;
-  margin-top:8px;
-  font-size:12px;
-  font-weight:900;
-}
-.stop .english{
-  display:block;
-  margin-top:2px;
-  font-size:10px;
-  color:var(--muted);
-}
-.truck{
-  position:absolute;
-  left:-6px;
-  bottom:108px;
-  width:80px;
-  height:66px;
-  object-fit:contain;
-  image-rendering:pixelated;
-  filter:drop-shadow(2px 4px 0 rgba(0,0,0,.35));
-  animation:truck-bob 1.4s steps(2,end) infinite;
-}
-@keyframes truck-bob{
-  50%{transform:translateY(-4px)}
-}
-.road-footer{
-  margin-top:12px;
-  display:flex;
-  gap:10px;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-}
-.selected{
-  font-size:14px;
-  color:var(--sub);
-}
-.selected a{
-  color:var(--text);
-}
-.progress{
-  margin-top:12px;
-  height:10px;
-  border-radius:999px;
-  overflow:hidden;
-  background:#081523;
-}
-.progress > div{
-  height:100%;
-  background:linear-gradient(90deg,var(--mint),var(--gold));
-  width:0;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:10px;
-  margin-top:18px;
-}
-.stat{
-  background:linear-gradient(180deg,rgba(28,57,87,.96),rgba(18,38,59,.96));
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;
-  padding:14px;
-  box-shadow:var(--shadow);
-}
-.stat small{
-  display:block;
-  color:var(--sub);
-  font-size:12px;
-  font-weight:700;
-}
-.stat strong{
-  display:block;
-  margin-top:8px;
-  color:var(--gold);
-  font-size:clamp(28px,7vw,40px);
-  line-height:1;
-  letter-spacing:-.03em;
-}
-
-.notice{
-  margin-top:16px;
-  padding:15px 16px;
-  border-radius:18px;
-  background:rgba(116,228,209,.13);
-  border:1px solid rgba(116,228,209,.38);
-  color:var(--text);
-  font-size:15px;
-  line-height:1.6;
-}
-.notice.err{
-  background:rgba(255,120,120,.10);
-  border-color:rgba(255,150,150,.35);
-  color:var(--danger);
-}
-
-.section{
-  margin-top:28px;
-  scroll-margin-top:88px;
-}
-.section-eyebrow{
-  color:var(--mint);
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.18em;
-}
-.section-title{
-  margin:7px 0 10px;
-  font-size:clamp(28px,8vw,46px);
-  letter-spacing:-.03em;
-  line-height:1.08;
-}
-.section-desc{
-  margin:0 0 16px;
-  color:var(--sub);
-  font-size:15px;
-  line-height:1.7;
-}
-
-.filters{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin:12px 0 14px;
-}
-.filter{
-  border:1px solid rgba(255,255,255,.11);
-  background:rgba(255,255,255,.05);
-  color:var(--text);
-  padding:11px 14px;
-  border-radius:14px;
-  font-weight:800;
-}
-.filter.active{
-  background:var(--mint);
-  color:#072232;
-  border-color:transparent;
-}
-.search{
-  width:100%;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.05);
-  color:var(--text);
-  border-radius:16px;
-  padding:14px 15px;
-  font-size:16px;
-}
-.search::placeholder{color:#a8b8c8}
-
-.pulse{
-  margin:0 0 14px;
-  padding:15px 16px;
-  border-left:6px solid var(--mint);
-  background:rgba(116,228,209,.12);
-  border-radius:18px;
-  color:var(--gold);
-  font-weight:900;
-  font-size:15px;
-}
-.galleryNote{
-  margin:0 0 18px;
-  color:var(--sub);
-  font-size:14px;
-  line-height:1.7;
-}
-
-.rarity{
-  margin-top:26px;
-}
-.rarityHead{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:12px;
-  padding-bottom:10px;
-  border-bottom:1px solid rgba(255,255,255,.10);
-}
-.rarityName{
-  font-size:32px;
-  font-weight:900;
-  letter-spacing:-.03em;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.rarityName b{
-  display:inline-grid;
-  place-items:center;
-  width:48px;
-  height:48px;
-  border-radius:12px;
-  background:#284965;
-  color:var(--gold);
-  font-size:24px;
-}
-.rarityCount{
-  font-size:14px;
-  color:var(--sub);
-  font-weight:700;
-  white-space:nowrap;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
-}
-
-.tile{
-  width:100%;
-  min-width:0;
-  text-align:left;
-  color:var(--text);
-  border:1px solid rgba(255,255,255,.08);
-  background:linear-gradient(180deg,#1c3754,#17314c);
-  border-radius:18px;
-  padding:10px;
-  box-shadow:0 6px 16px rgba(0,0,0,.14);
-}
-.tile.owned{
-  border-color:rgba(116,228,209,.55);
-  box-shadow:0 0 0 1px rgba(116,228,209,.14), 0 6px 16px rgba(0,0,0,.16);
-}
-.tile .image{
-  width:100%;
-  aspect-ratio:1 / 1;
-  border-radius:14px;
-  overflow:hidden;
-  background:
-    linear-gradient(180deg,#0c1c2c,#12273a);
-  display:grid;
-  place-items:center;
-  position:relative;
-  border:1px solid rgba(255,255,255,.06);
-}
-.tile img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  image-rendering:pixelated;
-  background:#081523;
-}
-.question{
-  font:900 clamp(46px,12vw,78px)/1 monospace;
-  color:#c7d5e4;
-  text-shadow:4px 5px 0 rgba(0,0,0,.25);
-}
-.qty{
-  position:absolute;
-  right:8px;
-  bottom:8px;
-  min-width:42px;
-  text-align:center;
-  padding:5px 7px;
-  border-radius:10px;
-  background:rgba(7,20,35,.92);
-  color:var(--gold);
-  font-weight:900;
-  font-size:clamp(12px,3vw,15px);
-  border:1px solid rgba(255,255,255,.08);
-}
-.tile .title{
-  margin-top:10px;
-  font-size:clamp(16px,3.8vw,20px);
-  font-weight:900;
-  line-height:1.2;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.tile .subtitle{
-  margin-top:4px;
-  font-size:clamp(12px,3vw,14px);
-  color:var(--sub);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.tile .status{
-  display:inline-block;
-  margin-top:8px;
-  font-size:12px;
-  color:var(--muted);
-  font-weight:700;
-}
-.tile.owned .status{
-  color:var(--mint);
-}
-
-.empty{
-  margin:0;
-  padding:16px;
-  border-radius:16px;
-  background:rgba(255,255,255,.05);
-  color:var(--sub);
-  font-size:14px;
-}
-
-footer{
-  padding:34px 0 46px;
-  text-align:center;
-  color:var(--sub);
-  font-size:13px;
-  line-height:1.7;
-}
-footer a{
-  display:inline-block;
-  margin-top:6px;
-  color:var(--text);
-}
-
-dialog{
-  width:min(430px,calc(100% - 24px));
-  max-height:92vh;
-  overflow:auto;
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:22px;
-  background:linear-gradient(180deg,#1d3955,#13283e);
-  color:var(--text);
-  padding:20px;
-}
-dialog::backdrop{
-  background:rgba(0,0,0,.55);
-}
-dialog .close{
-  float:right;
-  border:0;
-  background:none;
-  color:var(--text);
-  font-size:28px;
-}
-dialog h2{
-  margin:6px 0 12px;
-  font-size:28px;
-}
-dialog p{
-  color:var(--sub);
-  line-height:1.7;
-}
-dialog input{
-  width:100%;
-  display:block;
-  margin:12px 0;
-  padding:13px 14px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.06);
-  color:var(--text);
-}
-dialog .btn{
-  width:100%;
-  display:block;
-  border:0;
-  border-radius:14px;
-  padding:13px 14px;
-  font-weight:900;
-  margin-top:10px;
-  background:var(--mint);
-  color:#062031;
-}
-dialog .btn.dark{
-  background:rgba(255,255,255,.07);
-  color:var(--text);
-  border:1px solid rgba(255,255,255,.10);
-}
-#detailImage{
-  width:100%;
-  max-height:340px;
-  object-fit:contain;
-  border-radius:16px;
-  background:#0a1624;
-  margin:10px 0 12px;
-  border:1px solid rgba(255,255,255,.08);
-}
+body{margin:0;background:radial-gradient(ellipse at top,#19334b 0,#091626 58%);color:var(--text);font-family:system-ui,"Noto Sans JP",sans-serif}
+button,input{font:inherit}button{cursor:pointer}a{color:inherit}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+.wrap{max-width:1060px;margin:auto;padding:0 15px}
+header{position:sticky;top:0;z-index:10;background:#071423ed;border-bottom:1px solid #2b4963;backdrop-filter:blur(8px)}
+.head{display:flex;align-items:center;justify-content:space-between;gap:9px;min-height:65px}
+.brand{font-size:clamp(12px,3.5vw,18px);font-weight:900;letter-spacing:.065em;line-height:1.3}
+.brand small{display:block;color:var(--sub);font-size:10px;font-weight:500;letter-spacing:.025em}
+.btn{background:var(--mint);color:#061a24;border:0;border-radius:9px;font-weight:850;padding:11px 14px}
+.btn.dark{background:#203b57;color:#e8f1f7;border:1px solid #385674}
+#connect{max-width:155px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.hero{padding:27px 0 7px}
+.eyebrow{color:var(--mint);letter-spacing:.16em;font-size:11px;font-weight:900}
+h1{font-size:clamp(30px,6vw,52px);margin:6px 0;letter-spacing:-.045em;line-height:1.06}
+h1 em{font-style:normal;color:var(--gold)}
+.desc,.muted{font-size:12px;color:var(--sub);line-height:1.65}
+.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.jump a{font-size:12px;text-decoration:none;background:#1b334b;border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.box{background:linear-gradient(130deg,#152e47,#11253a);border:1px solid var(--line);border-radius:13px;padding:15px;margin-top:22px}
+.flex{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+h2{font-size:20px;margin:4px 0 7px}.soft{color:var(--sub);font-size:11px}
+.navbuttons{display:flex;gap:7px}
+.navbuttons button{font-size:12px;padding:8px 12px}
+.road-scroll{margin:17px 0 12px;padding:53px 8px 15px;overflow-x:auto;scrollbar-color:var(--gold) #132b40;border-radius:8px;background:#0b1a2a}
+.road{display:flex;width:max-content;gap:5px}
+.stop{position:relative;width:73px;flex:none;padding:0;border:0;background:none;text-align:center;color:var(--text)}
+.square{display:grid;place-items:center;height:61px;border-radius:5px;border:2px solid #57738b;background:#1c354b;box-shadow:inset 0 -6px #102236;font:900 22px/1 monospace}
+.stop.past .square{background:#1a484d;border-color:var(--mint)}
+.stop.current .square{background:#f1c775;color:#122138;border-color:#ffedc1;box-shadow:0 0 17px #ffda9166}
+.stop.selected .square{outline:2px solid white;outline-offset:2px}
+.stop .pref{display:block;font-size:11px;font-weight:850;margin-top:9px}
+.stop .english{display:block;font-size:8px;color:#9cb1c7;margin-top:3px}
+.truck{width:75px;height:60px;position:absolute;left:-1px;bottom:93px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(2px 4px 1px #0008);animation:bop 1.4s steps(2,end) infinite}
+@keyframes bop{50%{transform:translateY(-4px)}}
+.progress{height:6px;background:#071522;border-radius:8px;overflow:hidden;margin-top:13px}.progress>div{height:100%;background:var(--mint)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0}
+.stat{border:1px solid #314f66;border-radius:10px;padding:12px;background:#112339}
+.stat small{display:block;font-size:10px;color:var(--sub);font-weight:750}
+.stat strong{display:block;margin-top:5px;font-size:clamp(17px,4vw,27px);color:var(--gold)}
+.notice{border:1px solid #326b72;background:#163447;border-radius:9px;padding:12px;font-size:12px;line-height:1.6;margin:15px 0}
+.notice.err{border-color:#a65b5b;color:#ffc2bf}
+section.collection{padding-top:24px;scroll-margin-top:75px}
+.section-name{font-size:clamp(20px,5vw,26px);font-weight:900;margin:5px 0 8px}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:15px 0 12px}
+.filter{color:#cad8e4;background:#20384f;border:1px solid #36516a;padding:8px 11px;border-radius:8px;font-size:12px;font-weight:750}
+.filter.active{background:var(--mint);color:#062232;border-color:var(--mint)}
+.search{width:100%;background:#14273c;color:white;border:1px solid var(--line);padding:10px;border-radius:8px;margin-bottom:13px}
+/* チケット・アートともに常に横3列 */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:790px}
+.tile{min-width:0;overflow:hidden;text-align:left;color:var(--text);border:1px solid #37536d;background:#11283f;border-radius:8px;padding:5px}
+.tile.owned{border-color:#5fcbb1}
+.tile .image{width:100%;position:relative;border-radius:5px;overflow:hidden;background:repeating-linear-gradient(45deg,#1c344c,#1c344c 9px,#25415c 9px,#25415c 18px);display:grid;place-items:center}
+.tile.ticket .image{aspect-ratio:1 / 1;background:#0b1e2f}
+.tile.art .image{aspect-ratio:1 / 1}
+.tile img{display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
+.question{font:900 clamp(28px,8vw,64px)/1 monospace;color:#c0cfe3;text-shadow:3px 4px #091522}
+.qty{position:absolute;bottom:3px;right:3px;background:#061521e8;color:var(--gold);border-radius:4px;font-weight:900;padding:2px 4px;font-size:clamp(10px,2.5vw,13px)}
+.tile .title{font-size:clamp(10px,2.65vw,13px);font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:6px 2px 0}
+.tile .subtitle{font-size:clamp(8px,2vw,11px);color:#adbed0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:3px 2px}
+.tile .status{display:inline-block;font-size:9px;color:#aebed0;margin:2px 2px 3px}
+.tile.owned .status{color:var(--mint)}
+.rarity{margin-top:23px}.rarityHead{border-bottom:1px solid #38516b;display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;padding-bottom:9px;gap:5px}
+.rarityName{font-size:17px;font-weight:900}.rarityName b{background:#23415e;color:var(--gold);padding:5px 8px;border-radius:5px;margin-right:7px}
+.rarityCount{font-size:11px;color:var(--sub);white-space:nowrap}
+.pulse{border-left:5px solid var(--mint);padding:12px;background:#17394c;border-radius:8px;color:var(--gold);font-weight:850;margin:14px 0}
+.galleryNote{color:var(--sub);font-size:11px;line-height:1.75;margin-bottom:15px}
+.empty{padding:18px;background:#11253a;border-radius:8px;color:var(--sub);font-size:12px}
+footer{text-align:center;font-size:11px;color:var(--sub);padding:35px 8px}
+dialog{width:min(430px,calc(100% - 22px));max-height:90vh;overflow:auto;background:#13263e;color:white;border:1px solid #50718a;border-radius:13px;padding:20px}
+dialog::backdrop{background:#000c}
+dialog .close{float:right;border:0;background:none;color:white;font-size:25px}
+dialog input{display:block;width:100%;margin:10px 0;padding:11px;background:#0c1c2e;border:1px solid #45627c;border-radius:7px;color:white}
+dialog .btn{display:block;width:100%;margin:9px 0}
+#detailImage{display:block;width:100%;max-height:330px;object-fit:contain;border-radius:7px}
 .hidden{display:none!important}
+@media(max-width:600px){.wrap{padding:0 11px}.head{min-height:60px}.box{padding:11px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{padding:4px}.grid{gap:6px}.tile .status{font-size:8px}.tile .title{padding-top:5px}}
+@media(max-width:370px){.brand{font-size:11px}#connect{max-width:120px;font-size:11px;padding:8px}.tile .status{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.truck{animation:none}}
 
-@media (max-width:900px){
-  .stats{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
+/* V5: 写真2を参考にした、小さな丸マスの折り返し式すごろく */
+.route-board{
+  margin:14px 0 12px;
+  background:#b5d9ca;
+  border:3px solid #101e28;
+  border-radius:4px;
+  padding:12px 11px 13px;
+  box-shadow:5px 5px 0 #f1cf75;
+  color:#132129;
 }
-
-@media (max-width:640px){
-  .wrap{
-    width:calc(100% - 16px);
-  }
-  .head{
-    min-height:66px;
-  }
-  .wallet-btn{
-    min-width:132px;
-    padding:11px 14px;
-  }
-  .hero-box{
-    padding:18px 14px;
-  }
-  .card{
-    padding:14px;
-  }
-  .grid{
-    gap:10px;
-  }
-  .tile{
-    padding:8px;
-    border-radius:16px;
-  }
-  .tile .image{
-    border-radius:12px;
-  }
-  .tile .title{
-    font-size:clamp(13px,4.2vw,18px);
-  }
-  .tile .subtitle{
-    font-size:clamp(11px,3.2vw,13px);
-  }
-  .tile .status{
-    font-size:11px;
-  }
-  .stop{
-    width:86px;
-  }
-  .square{
-    height:86px;
-  }
+.route-board-head{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  font-weight:900;font-size:13px;margin:1px 0 5px;
 }
-
-@media (max-width:420px){
-  .brand strong{
-    font-size:14px;
-  }
-  .brand small{
-    font-size:10px;
-  }
-  .wallet-btn{
-    max-width:158px;
-    min-width:128px;
-    font-size:13px;
-  }
-  .grid{
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:8px;
-  }
-  .tile{
-    padding:7px;
-    border-radius:15px;
-  }
-  .tile .title{
-    font-size:12px;
-  }
-  .tile .subtitle{
-    font-size:10px;
-  }
-  .tile .status{
-    font-size:10px;
-  }
-  .qty{
-    font-size:12px;
-    right:6px;
-    bottom:6px;
-    min-width:36px;
-    padding:4px 6px;
-  }
-  .section-desc,.galleryNote,.card-sub,.hero p,.notice{
-    font-size:14px;
-  }
-  .rarityName{
-    font-size:26px;
-  }
-  .rarityName b{
-    width:42px;
-    height:42px;
-    font-size:21px;
-  }
+.route-board-head small{font-size:11px;letter-spacing:.12em}
+.route-map{position:relative;width:100%;aspect-ratio:600 / 770}
+.route-map svg{display:block;width:100%;height:100%;overflow:visible}
+.track-outline{fill:none;stroke:#131d22;stroke-width:15;stroke-linejoin:round;stroke-linecap:round}
+.track-inner{fill:none;stroke:#fff3d8;stroke-width:9;stroke-linejoin:round;stroke-linecap:round}
+.track-traveled{fill:none;stroke:#eb674d;stroke-width:9;stroke-linejoin:round;stroke-linecap:round}
+.map-stop{cursor:pointer;outline:none}
+.map-stop .node{fill:#fff4db;stroke:#131d22;stroke-width:5;transition:fill .16s}
+.map-stop.past .node{fill:#f2c76f}
+.map-stop.current .node{fill:#eb6550;stroke:white;stroke-width:6}
+.map-stop.selected .node{stroke:#fafbff;stroke-width:7;filter:drop-shadow(0 0 3px #193c37)}
+.map-stop .node-label{font:700 22px/1 monospace;fill:#192b32;pointer-events:none;text-anchor:middle;dominant-baseline:central}
+.map-stop.current .node-label{fill:#fff}
+.map-stop .hit-area{fill:transparent;stroke:transparent;stroke-width:0}
+.map-stop:focus-visible .node{stroke:#08755a;stroke-width:8}
+.map-truck{
+  position:absolute;width:10.5%;height:auto;max-width:64px;
+  transform:translate(-48%,-89%);
+  image-rendering:pixelated;
+  filter:drop-shadow(2px 3px 0 #fff6e8);
+  pointer-events:none;
+  animation:truck-hop 1.6s steps(2,end) infinite;
 }
-@media (prefers-reduced-motion:reduce){
-  .truck{animation:none}
+@keyframes truck-hop{50%{transform:translate(-48%,-96%)}}
+.map-explain{font-size:12px;line-height:1.5;color:#b9cddd;margin:10px 0 2px}
+.sugoroku-options{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.sugoroku-options .btn{font-size:12px;padding:8px 10px}
+#selectedLabel{font-size:13px}
+@media(max-width:600px){
+  .route-board{padding:9px 8px 10px;margin:12px 0 10px}
+  .route-board-head{font-size:12px}
+  .route-board-head small{font-size:10px}
+  .box{padding:12px}
+  .box h2{font-size:19px}
+  .navbuttons button{padding:7px 11px}
+  .map-explain{font-size:11px}
 }
+@media(prefers-reduced-motion:reduce){.map-truck{animation:none}}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="wrap head">
-    <div class="brand">
-      <strong>🐙 TRAVELING TAKOYAKI</strong>
-      <small>JAPAN 47 JOURNEY / MY COLLECTION</small>
-    </div>
-    <button id="connect" class="wallet-btn">CONNECT WALLET</button>
-  </div>
-</header>
-
+<header><div class="wrap head"><div class="brand">🐙 TRAVELING TAKOYAKI<small>JAPAN 47 JOURNEY / MY COLLECTION</small></div><button class="btn" id="connect">CONNECT WALLET</button></div></header>
 <main class="wrap">
-
-  <section class="hero">
-    <div class="hero-box">
-      <div class="eyebrow">ONE TRUCK · FORTY-SEVEN STOPS</div>
-      <h1>MY <em>COLLECTION</em></h1>
-      <p>自分のウォレットにあるNFTを、47都道府県の図鑑で確認しよう。未収集は「？」表示。</p>
-      <div class="jump">
-        <a href="#tickets">🎫 TICKETS</a>
-        <a href="#gallery">🎨 ARTWORK</a>
-        <a href="#roadScroll">🚚 ROAD TRIP</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="card" aria-label="47都道府県すごろく">
-    <div class="card-head">
+  <div class="hero"><div class="eyebrow">ONE TRUCK · FORTY-SEVEN STOPS</div><h1>MY <em>COLLECTION</em></h1><p class="desc">自分のウォレットにあるNFTを、47都道府県の図鑑で確認しよう。未収集は「？」表示。</p><div class="jump"><a href="#tickets">🎫 TICKETS</a><a href="#gallery">🎨 ARTWORK</a><a href="#roadScroll">🚚 ROAD TRIP</a></div></div>
+  <section class="box" aria-label="47都道府県すごろく">
+    <div class="flex">
       <div>
         <div class="eyebrow">JAPAN 47 ROAD TRIP</div>
-        <h2 class="card-title">すごろくロード <span id="stopLabel">01 / 47</span></h2>
-        <p class="card-sub">県名を押すと、その県の図鑑に切り替わります。</p>
+        <h2>日本47の旅 <span id="stopLabel">01 / 47</span></h2>
+        <div class="soft">丸いマスをタップすると、その県の図鑑へ移動します。</div>
       </div>
       <div class="navbuttons">
-        <button id="prev" class="small-btn">◀</button>
-        <button id="now" class="small-btn">現在地</button>
-        <button id="next" class="small-btn">▶</button>
+        <button class="btn dark" id="prev" aria-label="ひとつ前の県を選択">◀</button>
+        <button class="btn dark" id="now">現在地</button>
+        <button class="btn dark" id="next" aria-label="次の県を選択">▶</button>
       </div>
     </div>
-
-    <div class="road-wrap">
-      <div id="roadScroll" class="road-scroll">
-        <div id="road" class="road"></div>
+    <div class="route-board" id="roadScroll">
+      <div class="route-board-head">
+        <span>旅するたこ焼き 🚚</span>
+        <small>停留所 <span id="mapStopLabel">01 / 47</span></small>
       </div>
-      <div class="road-footer">
-        <div id="selectedLabel" class="selected"></div>
-        <a href="#gallery" class="selected">アート図鑑を見る ↓</a>
+      <div class="route-map" id="mapStage">
+        <svg id="road" viewBox="0 0 600 770" role="group" aria-label="47都道府県のすごろく。丸いマスを押して県を選択"></svg>
+        <img class="map-truck" id="mapTruck" src="https://ul.h3z.jp/Lu7ch0Ne.png" alt="" aria-hidden="true">
       </div>
-      <div class="progress"><div id="progressBar"></div></div>
     </div>
+    <div class="flex">
+      <span class="soft" id="selectedLabel"></span>
+      <a class="soft" href="#gallery">アート図鑑を見る ↓</a>
+    </div>
+    <div class="progress"><div id="progressBar"></div></div>
   </section>
-
-  <section class="stats">
-    <div class="stat">
-      <small>選択県 ART / 種類</small>
-      <strong id="artTypes">—</strong>
-    </div>
-    <div class="stat">
-      <small>ART NFT / 合計枚数</small>
-      <strong id="artQty">—</strong>
-    </div>
-    <div class="stat">
-      <small>TICKET / 保有県数</small>
-      <strong id="ticketTypes">—</strong>
-    </div>
-    <div class="stat">
-      <small>TICKET / 合計枚数</small>
-      <strong id="ticketQty">—</strong>
-    </div>
-  </section>
-
-  <div id="message" class="notice">図鑑を読み込み中…</div>
-
-  <section id="tickets" class="section">
-    <div class="section-eyebrow">JOURNEY TICKET / 47 PREFECTURES</div>
-    <h2 class="section-title">🎫 Journey Ticket 図鑑</h2>
-    <p class="section-desc">Ticket画像も本編NFTと同じく正方形で表示。未所持は「？」、所持枚数は画像右下に表示します。</p>
-
-    <div class="filters">
-      <button class="filter active" data-kind="ticket" data-filter="all">すべて</button>
-      <button class="filter" data-kind="ticket" data-filter="owned">保有済み</button>
-      <button class="filter" data-kind="ticket" data-filter="missing">未所持・未公開</button>
-    </div>
-
-    <input id="ticketSearch" class="search" type="search" placeholder="都道府県名で探す">
-
-    <div id="ticketGrid" class="grid"></div>
-  </section>
-
-  <section id="gallery" class="section">
-    <div class="section-eyebrow">DISCOVER & UNLOCK</div>
-    <h2 id="galleryTitle" class="section-title">🎨 NFTアート図鑑</h2>
-    <p class="section-desc">本編NFTも正方形表示。N・R・SR・URは各7種、LRは1種で3列表示します。</p>
-
-    <div class="filters">
-      <button class="filter active" data-kind="art" data-filter="all">すべて</button>
-      <button class="filter" data-kind="art" data-filter="owned">保有済み</button>
-      <button class="filter" data-kind="art" data-filter="missing">未収集 ？</button>
-      <button id="refresh" class="filter">↻ 所持状況を更新</button>
-    </div>
-
-    <div id="collectionPulse" class="pulse"></div>
-    <p id="galleryNote" class="galleryNote"></p>
-
-    <div id="rarityGroups"></div>
-  </section>
-
-  <footer>
-    TRAVELING TAKOYAKI · 47 JOURNEY<br>
-    ウォレットの秘密鍵やシードフレーズは使用しません。<br>
-    <a href="https://japan47pixel.net/">公式サイトへ戻る</a>
-  </footer>
+  <div class="stats"><div class="stat"><small>選択県 ART / 種類</small><strong id="artTypes">—</strong></div><div class="stat"><small>ART NFT / 合計枚数</small><strong id="artQty">—</strong></div><div class="stat"><small>TICKET / 保有県数</small><strong id="ticketTypes">—</strong></div><div class="stat"><small>TICKET / 合計枚数</small><strong id="ticketQty">—</strong></div></div>
+  <div id="message" class="notice" role="status">図鑑を読み込み中…</div>
+  <section id="tickets" class="collection"><div class="eyebrow">JOURNEY TICKET / 47 PREFECTURES</div><div class="section-name">🎫 Journey Ticket 図鑑</div><div class="muted">すべての都道府県を横3列で表示。未所持は「？」、所持数は画像右下。</div><div class="filters"><button class="filter active" data-kind="ticket" data-filter="all">すべて</button><button class="filter" data-kind="ticket" data-filter="owned">保有済み</button><button class="filter" data-kind="ticket" data-filter="missing">未所持・未公開</button></div><input id="ticketSearch" class="search" type="search" placeholder="都道府県名で探す"><div id="ticketGrid" class="grid"></div></section>
+  <section id="gallery" class="collection"><div class="eyebrow">DISCOVER & UNLOCK</div><div class="section-name" id="galleryTitle">🎨 NFTアート図鑑</div><div class="muted">N・R・SR・UR 各7種、LR 1種。すべて横3列で表示。</div><div class="filters"><button class="filter active" data-kind="art" data-filter="all">すべて</button><button class="filter" data-kind="art" data-filter="owned">保有済み</button><button class="filter" data-kind="art" data-filter="missing">未収集 ？</button><button class="btn dark" id="refresh">↻ 所持状況を更新</button></div><div class="pulse" id="collectionPulse"></div><div class="galleryNote" id="galleryNote"></div><div id="rarityGroups"></div></section>
+  <footer>TRAVELING TAKOYAKI · 47 JOURNEY<br>ウォレットの秘密鍵やシードフレーズは使用しません。<br><a href="https://japan47pixel.net/">公式サイトへ戻る</a></footer>
 </main>
-
-<dialog id="walletDialog">
-  <button id="closeWallet" class="close" aria-label="閉じる">×</button>
-  <h2>CONNECT WALLET</h2>
-  <p>ウォレット接続、または公開アドレスを入力してNFTを照会できます。送金承認は不要です。</p>
-
-  <button id="walletButton" class="btn">ウォレットアプリで接続</button>
-
-  <p>または、公開アドレスから照会：</p>
-  <input id="address" placeholder="0x..." autocomplete="off" spellcheck="false">
-
-  <button id="addressButton" class="btn dark">アドレスで照会</button>
-  <button id="demoButton" class="btn dark">デモを見る</button>
-</dialog>
-
-<dialog id="detailDialog">
-  <button id="closeDetail" class="close" aria-label="閉じる">×</button>
-  <h2 id="detailTitle"></h2>
-  <img id="detailImage" class="hidden" alt="作品画像">
-  <p id="detailText"></p>
-</dialog>
-
+<dialog id="walletDialog"><button class="close" id="closeWallet" aria-label="閉じる">×</button><h2>CONNECT WALLET</h2><p class="muted">ウォレット接続、または公開アドレスを入力してNFTを照会できます。送金承認は不要です。</p><button class="btn" id="walletButton">ウォレットアプリで接続</button><p class="muted">または、公開アドレスから照会：</p><input id="address" placeholder="0x..." autocomplete="off" spellcheck="false"><button class="btn dark" id="addressButton">アドレスで照会</button><button class="btn dark" id="demoButton">デモを見る</button></dialog>
+<dialog id="detailDialog"><button class="close" id="closeDetail" aria-label="閉じる">×</button><h2 id="detailTitle"></h2><img id="detailImage" class="hidden" alt="作品画像"><p id="detailText"></p></dialog>
 <script>
 'use strict';
-
-const $ = id => document.getElementById(id);
-
-const RARITIES = [
-  ['N','NORMAL'],
-  ['R','RARE'],
-  ['SR','SUPER RARE'],
-  ['UR','ULTRA RARE'],
-  ['LR','LEGENDARY'],
-  ['?','確認待ち']
-];
-
-const state = {
-  catalog:null,
-  selected:'HOKKAIDO',
-  mode:'unknown',
-  wallet:'',
-  art:[],
-  tickets:[],
-  ticketFilter:'all',
-  artFilter:'all',
-  search:'',
-  error:''
-};
-
-const create = (tag, cls='', text='') => {
-  const el = document.createElement(tag);
-  el.className = cls;
-  el.textContent = text;
-  return el;
-};
-
-const amount = item => {
-  const n = Number(item.quantity_string ?? item.quantity ?? 1);
-  return Number.isFinite(n) && n >= 0 ? n : 1;
-};
-
-const total = list => list.reduce((sum, x) => sum + amount(x), 0);
-
-const valid = () => state.mode === 'live' || state.mode === 'demo';
-
-const displayQty = n => valid() ? n.toLocaleString('ja-JP') : '—';
-
-const current = () => state.catalog.stops.find(x => x.code === state.selected);
-
-const normalize = s => String(s || '').trim().toLowerCase();
-
-function safeImage(url){
-  if(typeof url !== 'string' || !url) return '';
-  if(url.startsWith('ipfs://')) url = 'https://ipfs.io/ipfs/' + url.slice(7);
-  try{
-    const u = new URL(url);
-    return u.protocol === 'https:' ? u.href : '';
-  }catch{
-    return '';
-  }
-}
-
-function matches(record, target){
-  if(!record || !target) return false;
-  return (
-    (record.contract && normalize(record.contract) === normalize(target.contract)) ||
-    (record.collection && normalize(record.collection) === normalize(target.collection))
-  );
-}
-
-function ticketRecords(pref){
-  if(state.mode === 'demo'){
-    return pref.code === 'HOKKAIDO'
-      ? [{ identifier:'DEMO', quantity:7, image_url:pref.ticket?.image || '' }]
-      : [];
-  }
-  if(state.mode !== 'live') return [];
-  return state.tickets.filter(item =>
-    item.prefecture === pref.code || matches(item, pref.ticket)
-  );
-}
-
-function artRecords(pref){
-  if(state.mode === 'demo') return [];
-  if(state.mode !== 'live') return [];
-  return state.art.filter(item =>
-    item.prefecture === pref.code || matches(item, pref.art)
-  );
-}
-
-function artworkSlots(pref){
-  const art = pref.art || {};
-  const counts = art.rarityCounts || {};
-  const slots = [];
-
+const $=id=>document.getElementById(id);
+const RARITIES=[['N','NORMAL'],['R','RARE'],['SR','SUPER RARE'],['UR','ULTRA RARE'],['LR','LEGENDARY'],['?','確認待ち']];
+const state={catalog:null,selected:'HOKKAIDO',mode:'unknown',wallet:'',art:[],tickets:[],ticketFilter:'all',artFilter:'all',search:'',error:''};
+const create=(tag,cls='',text='')=>{const x=document.createElement(tag);x.className=cls;x.textContent=text;return x};
+const total=a=>a.reduce((s,n)=>s+amount(n),0);
+const amount=n=>{const x=Number(n.quantity_string??n.quantity??1);return Number.isSafeInteger(x)&&x>=0?x:1};
+const valid=()=>state.mode==='live'||state.mode==='demo';
+const displayQty=n=>valid()?n.toLocaleString('ja-JP'):'—';
+const current=()=>state.catalog.stops.find(x=>x.code===state.selected);
+const safeImage=u=>{if(typeof u!=='string'||!u)return '';if(u.startsWith('ipfs://'))u='https://ipfs.io/ipfs/'+u.slice(7);try{const x=new URL(u);return x.protocol==='https:'?x.href:''}catch{return ''}};
+const normalize=s=>String(s||'').trim().toLowerCase();
+const matches=(n,record)=>!!record&&((record.contract&&normalize(n.contract)===normalize(record.contract))||(record.collection&&normalize(n.collection)===normalize(record.collection)));
+function ticketRecords(p){if(state.mode==='demo')return p.code==='HOKKAIDO'?[{identifier:'DEMO',quantity:3,image_url:p.ticket?.image||''}]:[];if(state.mode!=='live')return [];return state.tickets.filter(n=>n.prefecture===p.code||matches(n,p.ticket));}
+function artRecords(p){if(state.mode==='demo')return [];if(state.mode!=='live')return [];return state.art.filter(n=>n.prefecture===p.code||matches(n,p.art));}
+// 各県の rarityCounts からN/R/SR/UR/LRの全枠を自動生成。
+// cards を登録すると、その id に正確な tokenIds や画像を紐付けられます。
+function artworkSlots(p){
+  const art=p.art||{},counts=art.rarityCounts||{};
+  const slots=[];
   for(const [rarity] of RARITIES.slice(0,5)){
-    for(let i = 1; i <= Number(counts[rarity] || 0); i++){
-      const generatedId = `${pref.code}-${rarity}-${String(i).padStart(2,'0')}`;
-      const override = (art.cards || []).find(c =>
-        c.id === generatedId ||
-        (c.rarity === rarity && Number(c.variant) === i)
-      ) || {};
-
-      slots.push({
-        id: generatedId,
-        rarity,
-        variant: i,
-        image: '',
-        tokenIds: [],
-        quantity: 0,
-        records: [],
-        ...override
-      });
+    for(let i=1;i<=Number(counts[rarity]||0);i++){
+      const id=`${p.code}-${rarity}-${String(i).padStart(2,'0')}`;
+      const override=(art.cards||[]).find(c=>c.id===id||c.rarity===rarity&&Number(c.variant)===i)||{};
+      slots.push({id,rarity,variant:i,image:'',tokenIds:[],...override,quantity:0,records:[]});
     }
   }
-
-  const unknown = [];
-
-  for(const nft of artRecords(pref)){
-    const token = String(nft.identifier ?? '');
-    let found = slots.find(slot =>
-      Array.isArray(slot.tokenIds) &&
-      slot.tokenIds.map(String).includes(token)
-    );
-
+  // 不明なNFTは適当な枠に混ぜず、別枠に残して情報確認可能にする。
+  const unknown=[];
+  for(const n of artRecords(p)){
+    const token=String(n.identifier??'');
+    let found=slots.find(s=>Array.isArray(s.tokenIds)&&s.tokenIds.map(String).includes(token));
     if(!found){
-      const traits = Array.isArray(nft.traits) ? nft.traits : [];
-      const trait = key => traits.find(t => normalize(t.trait_type) === key)?.value;
-      const rarity = String(trait('rarity') || '').toUpperCase();
-      const variant = Number(
-        trait('artwork') ?? trait('variant') ?? trait('design') ?? trait('number')
-      );
-
-      if(rarity && Number.isFinite(variant) && variant > 0){
-        found = slots.find(slot => slot.rarity === rarity && slot.variant === variant);
-      }
+      const traits=Array.isArray(n.traits)?n.traits:[];
+      const trait=key=>traits.find(t=>normalize(t.trait_type)===key)?.value;
+      const rarity=String(trait('rarity')||'').toUpperCase();
+      const variant=Number(trait('artwork')??trait('variant')??trait('design'));
+      if(rarity&&Number.isSafeInteger(variant)&&variant>0)found=slots.find(s=>s.rarity===rarity&&s.variant===variant);
     }
-
-    if(found){
-      found.records.push(nft);
-      found.quantity += amount(nft);
-    }else{
-      unknown.push({
-        ...nft,
-        id: `UNMATCHED-${token || crypto.randomUUID?.() || Math.random()}`,
-        rarity: '?',
-        variant: token || '?',
-        quantity: amount(nft),
-        records: [nft]
-      });
-    }
+    if(found){found.records.push(n);found.quantity+=amount(n)}
+    else unknown.push({...n,id:`UNMATCHED-${token}`,rarity:'?',variant:token||'?',quantity:amount(n),records:[n]});
   }
-
-  return [...slots, ...unknown];
+  return [...slots,...unknown];
 }
-
-function showDetail(title, description, image){
-  $('detailTitle').textContent = title;
-  $('detailText').textContent = description;
-
-  const src = safeImage(image);
-  $('detailImage').classList.toggle('hidden', !src);
-
-  if(src){
-    $('detailImage').src = src;
-  }else{
-    $('detailImage').removeAttribute('src');
-  }
-
-  $('detailDialog').showModal();
+function showDetail(title,description,image){$('detailTitle').textContent=title;$('detailText').textContent=description;const src=safeImage(image);$('detailImage').classList.toggle('hidden',!src);if(src)$('detailImage').src=src;else $('detailImage').removeAttribute('src');$('detailDialog').showModal()}
+function makeTile({type,title,subtitle,status,count,image,owned,info}){
+  const b=create('button',`tile ${type}${owned?' owned':''}`);b.type='button';
+  const media=create('div','image');const src=owned?safeImage(image):'';
+  if(src){const img=create('img');img.src=src;img.alt=title;img.loading='lazy';media.append(img)}else media.append(create('span','question','?'));
+  media.append(create('span','qty','× '+displayQty(count)));
+  b.append(media,create('div','title',title),create('div','subtitle',subtitle),create('span','status',status));
+  b.addEventListener('click',()=>showDetail(title,info||status,src));return b;
 }
-
-function makeTile({ title, subtitle, status, count, image, owned, info }){
-  const button = create('button', `tile ${owned ? 'owned' : ''}`);
-  button.type = 'button';
-
-  const media = create('div', 'image');
-  const src = owned ? safeImage(image) : '';
-
-  if(src){
-    const img = create('img');
-    img.src = src;
-    img.alt = title;
-    img.loading = 'lazy';
-    media.append(img);
-  }else{
-    media.append(create('span', 'question', '?'));
-  }
-
-  media.append(create('span', 'qty', `×${displayQty(count)}`));
-
-  button.append(
-    media,
-    create('div', 'title', title),
-    create('div', 'subtitle', subtitle),
-    create('span', 'status', status)
-  );
-
-  button.addEventListener('click', () => {
-    showDetail(title, info || status, src);
-  });
-
-  return button;
+const SVG_NS='http://www.w3.org/2000/svg';
+const ROAD_X0=55, ROAD_DX=98, ROAD_Y0=106, ROAD_DY=88;
+function svgNode(tag,attrs={}){
+  const node=document.createElementNS(SVG_NS,tag);
+  Object.entries(attrs).forEach(([key,value])=>node.setAttribute(key,String(value)));
+  return node;
 }
-
+function roadPoint(stop){
+  const i=stop-1, row=Math.floor(i/6), col=i%6;
+  return {
+    x:ROAD_X0+(row%2===0?col:5-col)*ROAD_DX,
+    y:ROAD_Y0+row*ROAD_DY
+  };
+}
+function selectRoadStop(number,jump=false){
+  if(!state.catalog)return;
+  const next=state.catalog.stops[number-1];
+  if(!next)return;
+  state.selected=next.code;
+  drawRoad();drawAll();
+  if(jump)$('gallery').scrollIntoView({behavior:'smooth'});
+}
 function drawRoad(){
-  $('road').replaceChildren();
-
-  const curStop = state.catalog.currentStop;
-
-  for(const pref of state.catalog.stops){
-    const phase =
-      pref.stop === curStop ? 'current' :
-      pref.stop < curStop ? 'past' : 'future';
-
-    const btn = create(
-      'button',
-      `stop ${phase}${pref.code === state.selected ? ' selected' : ''}`
-    );
-    btn.type = 'button';
-    btn.dataset.stop = pref.stop;
-
-    if(phase === 'current'){
-      const truck = create('img', 'truck');
-      truck.src = 'https://ul.h3z.jp/Lu7ch0Ne.png';
-      truck.alt = 'たこ焼きカー';
-      btn.append(truck);
-    }
-
-    btn.append(
-      create('span', 'square', String(pref.stop).padStart(2, '0')),
-      create('span', 'pref', pref.name),
-      create('span', 'english', pref.code)
-    );
-
-    btn.onclick = () => {
-      state.selected = pref.code;
-      drawRoad();
-      drawAll();
-      $('gallery').scrollIntoView({ behavior:'smooth' });
-    };
-
-    $('road').append(btn);
-  }
-
-  $('stopLabel').textContent = `${String(curStop).padStart(2,'0')} / 47`;
-  $('selectedLabel').textContent = `選択中：${current().name}`;
-  $('progressBar').style.width = `${(curStop / 47) * 100}%`;
-}
-
-function drawTickets(){
-  const grid = $('ticketGrid');
-  grid.replaceChildren();
-
-  for(const pref of state.catalog.stops){
-    const records = ticketRecords(pref);
-    const qty = total(records);
-    const owned = valid() && qty > 0;
-    const released = pref.ticket?.status === 'released';
-
-    if(state.ticketFilter === 'owned' && !owned) continue;
-    if(state.ticketFilter === 'missing' && owned) continue;
-
-    if(state.search){
-      const source = `${pref.name} ${pref.code} ${pref.stop}`.toLowerCase();
-      if(!source.includes(state.search)) continue;
-    }
-
-    const status = !released
-      ? '未公開'
-      : !valid()
-        ? '未確認'
-        : owned
-          ? 'COLLECTED'
-          : '未所持';
-
-    const image =
-      records[0]?.image_url ||
-      pref.ticket?.image ||
-      '';
-
-    grid.append(
-      makeTile({
-        title: `${String(pref.stop).padStart(2,'0')} ${pref.name}`,
-        subtitle: pref.code,
-        status,
-        count: qty,
-        image,
-        owned,
-        info: `${pref.name} / Journey Ticket / 所持枚数：${displayQty(qty)}`
-      })
-    );
-  }
-
-  if(!grid.children.length){
-    grid.append(create('p', 'empty', '表示するJourney Ticketがありません。'));
-  }
-}
-
-function drawArtwork(pref, slots, targetCount, ownedCount){
-  $('galleryTitle').textContent = `🎨 NFTアート図鑑 — ${pref.name}`;
-  $('collectionPulse').textContent = `${pref.name} ${displayQty(ownedCount)} / ${targetCount} 種 ・ ${pref.art?.status === 'released' ? '公開中' : '公開準備中'}`;
-  $('galleryNote').textContent = '未所持作品は「？」、保有作品のみ画像を表示します。正式なtokenId対応が分かったら journey.json に追加してください。';
-
-  const root = $('rarityGroups');
-  root.replaceChildren();
-
-  if(!targetCount && !slots.length){
-    root.append(create('p', 'empty', 'この県のアート図鑑はまだ準備中です。'));
-    return;
-  }
-
-  for(const [rarity, label] of RARITIES){
-    const items = slots.filter(slot => slot.rarity === rarity);
-    if(!items.length) continue;
-
-    const shown = items.filter(slot => {
-      if(state.artFilter === 'all') return true;
-      if(state.artFilter === 'owned') return slot.quantity > 0;
-      return slot.quantity === 0;
+  const road=$('road');
+  road.replaceChildren();
+  const stops=state.catalog.stops;
+  const cur=state.catalog.currentStop;
+  const points=stops.map(p=>roadPoint(p.stop));
+  const allPoints=points.map(pt=>`${pt.x},${pt.y}`).join(' ');
+  const traveled=points.slice(0,cur).map(pt=>`${pt.x},${pt.y}`).join(' ');
+  road.append(
+    svgNode('polyline',{points:allPoints,class:'track-outline'}),
+    svgNode('polyline',{points:allPoints,class:'track-inner'})
+  );
+  if(cur>1)road.append(svgNode('polyline',{points:traveled,class:'track-traveled'}));
+  for(const p of stops){
+    const pt=roadPoint(p.stop);
+    const phase=p.stop===cur?'current':p.stop<cur?'past':'future';
+    const selected=p.code===state.selected?' selected':'';
+    const g=svgNode('g',{
+      class:`map-stop ${phase}${selected}`,
+      role:'button',tabindex:0,
+      'aria-label':`${p.stop}番 ${p.name}の図鑑を表示`
     });
-
-    if(!shown.length) continue;
-
-    const section = create('div', 'rarity');
-    const head = create('div', 'rarityHead');
-    const name = create('div', 'rarityName');
-    const badge = create('b', '', rarity);
-
-    name.append(
-      badge,
-      document.createTextNode(label)
-    );
-
-    head.append(
-      name,
-      create('span', 'rarityCount', `${items.filter(x => x.quantity > 0).length} / ${items.length} 種`)
-    );
-
-    const grid = create('div', 'grid');
-
-    for(const slot of shown){
-      const owned = valid() && slot.quantity > 0;
-      const nft = slot.records[0];
-
-      const title = slot.rarity === '?'
-        ? '確認待ち NFT'
-        : `${rarity} ${String(slot.variant).padStart(2,'0')}`;
-
-      const status = owned
-        ? 'COLLECTED'
-        : !valid()
-          ? '未確認'
-          : pref.art?.status === 'released'
-            ? '未収集'
-            : '公開予定';
-
-      grid.append(
-        makeTile({
-          title,
-          subtitle: slot.id,
-          status,
-          count: slot.quantity,
-          image: nft?.image_url || slot.image || '',
-          owned,
-          info: `${pref.name} / ${title} / 所持枚数：${displayQty(slot.quantity)}`
-        })
-      );
-    }
-
-    section.append(head, grid);
-    root.append(section);
+    const title=svgNode('title');
+    title.textContent=`${p.stop} ${p.name} / ${p.code}`;
+    const circle=svgNode('circle',{cx:pt.x,cy:pt.y,r:25,class:'node'});
+    const label=svgNode('text',{x:pt.x,y:pt.y+1,class:'node-label'});
+    label.textContent=String(p.stop).padStart(2,'0');
+    const hit=svgNode('circle',{cx:pt.x,cy:pt.y,r:40,class:'hit-area'});
+    g.append(title,circle,label,hit);
+    g.addEventListener('click',()=>selectRoadStop(p.stop,true));
+    g.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();selectRoadStop(p.stop,true);}
+    });
+    road.append(g);
   }
-
-  if(!root.children.length){
-    root.append(create('p', 'empty', 'この絞り込みに該当するNFTはありません。'));
-  }
+  const truckPosition=roadPoint(cur);
+  const truck=$('mapTruck');
+  truck.style.left=`${truckPosition.x/600*100}%`;
+  truck.style.top=`${truckPosition.y/770*100}%`;
+  $('stopLabel').textContent=String(cur).padStart(2,'0')+' / 47';
+  $('mapStopLabel').textContent=String(cur).padStart(2,'0')+' / 47';
+  $('progressBar').style.width=(cur/47*100)+'%';
+  $('selectedLabel').textContent='選択中：'+current().name+'（'+current().stop+' / 47）';
 }
-
 function drawAll(){
-  if(!state.catalog) return;
-
-  const pref = current();
-  const slots = artworkSlots(pref);
-
-  const ownedTypes = slots.filter(slot => slot.rarity !== '?' && slot.quantity > 0).length;
-  const totalArt = state.catalog.stops.reduce((sum, p) => sum + total(artRecords(p)), 0);
-  const heldTicketTypes = state.catalog.stops.filter(p => total(ticketRecords(p)) > 0).length;
-  const heldTickets = state.catalog.stops.reduce((sum, p) => sum + total(ticketRecords(p)), 0);
-  const targetCount = slots.filter(slot => slot.rarity !== '?').length;
-
-  $('artTypes').textContent = `${displayQty(ownedTypes)} / ${targetCount}`;
-  $('artQty').textContent = displayQty(totalArt);
-  $('ticketTypes').textContent = `${displayQty(heldTicketTypes)} / 47`;
-  $('ticketQty').textContent = displayQty(heldTickets);
-
-  $('connect').textContent = state.wallet
-    ? `${state.wallet.slice(0,6)}…${state.wallet.slice(-4)}`
-    : 'CONNECT WALLET';
-
-  $('message').className = `notice${state.error ? ' err' : ''}`;
-  $('message').textContent = state.error || ({
-    unknown: 'ウォレット未接続。所持枚数「—」は未確認です。',
-    demo: 'デモ表示中です。実際の保有情報ではありません。',
-    live: `ウォレット ${state.wallet.slice(0,8)}…${state.wallet.slice(-6)} の保有情報を表示中。`
-  }[state.mode] || 'ウォレット未接続。');
-
-  drawTickets();
-  drawArtwork(pref, slots, targetCount, ownedTypes);
+  if(!state.catalog)return;
+  const p=current(),slots=artworkSlots(p),ticketList=state.catalog.stops;
+  const ownedTypes=slots.filter(s=>s.quantity>0&&s.rarity!=='?').length;
+  const allArts=state.catalog.stops.reduce((n,x)=>n+total(artRecords(x)),0);
+  const heldTicketTypes=ticketList.filter(x=>total(ticketRecords(x))>0).length;
+  const heldTickets=ticketList.reduce((n,x)=>n+total(ticketRecords(x)),0);
+  const targetCount=slots.filter(s=>s.rarity!=='?').length;
+  $('artTypes').textContent=displayQty(ownedTypes)+' / '+targetCount;
+  $('artQty').textContent=displayQty(allArts);$('ticketTypes').textContent=displayQty(heldTicketTypes)+' / 47';$('ticketQty').textContent=displayQty(heldTickets);
+  $('connect').textContent=state.wallet?state.wallet.slice(0,6)+'…'+state.wallet.slice(-4):'CONNECT WALLET';
+  $('message').className='notice'+(state.error?' err':'');
+  $('message').textContent=state.error||({unknown:'ウォレット未接続。所持枚数「—」は未確認です。',demo:'デモ表示です。実際の保有情報ではありません。',live:'ウォレット '+state.wallet.slice(0,8)+'…'+state.wallet.slice(-6)+' の保有情報を表示中。'}[state.mode]);
+  drawTickets();drawArtwork(p,slots,targetCount,ownedTypes);
 }
-
-async function loadWallet(address){
-  if(!/^0x[0-9a-fA-F]{40}$/.test(address)){
-    state.error = '公開ウォレットアドレスの形式が正しくありません。';
-    drawAll();
-    return;
+function drawTickets(){
+  const grid=$('ticketGrid');grid.replaceChildren();
+  for(const p of state.catalog.stops){
+    const rec=ticketRecords(p),count=total(rec),owned=valid()&&count>0;
+    if(state.ticketFilter==='owned'&&!owned||state.ticketFilter==='missing'&&owned)continue;
+    if(state.search&&!`${p.name} ${p.code} ${p.stop}`.toLowerCase().includes(state.search))continue;
+    const released=p.ticket?.status==='released';const status=!released?'未公開':!valid()?'未確認':owned?'COLLECTED':'未所持';
+    const image=rec[0]?.image_url||p.ticket?.image||'';
+    grid.append(makeTile({type:'ticket',title:String(p.stop).padStart(2,'0')+' '+p.name,subtitle:p.code,status,count,image,owned,info:`${status} / 所持枚数：${displayQty(count)}`}));
   }
-
-  state.wallet = address;
-  state.mode = 'unknown';
-  state.art = [];
-  state.tickets = [];
-  state.error = '';
-
-  $('walletDialog').close();
-
-  const base = state.catalog.settings?.apiBase || '';
-  if(!base){
-    state.error = 'API接続先が未設定です。journey.json の settings.apiBase を確認してください。';
-    drawAll();
-    return;
-  }
-
-  $('message').textContent = 'OpenSeaから保有NFTを確認中…';
-
-  try{
-    const response = await fetch(
-      base.replace(/\/$/, '') + '/api/owned?address=' + encodeURIComponent(address),
-      { cache:'no-store' }
-    );
-
-    const data = await response.json();
-
-    if(
-      !response.ok ||
-      data.ok !== true ||
-      !Array.isArray(data.art) ||
-      !Array.isArray(data.tickets)
-    ){
-      throw new Error(data.error || 'API error');
+  if(!grid.children.length)grid.append(create('p','empty','表示するチケットがありません。'));
+}
+function drawArtwork(p,slots,count,ownedCount){
+  $('galleryTitle').textContent='🎨 NFTアート図鑑 — '+p.name;
+  $('collectionPulse').textContent=`${p.name} ${displayQty(ownedCount)} / ${count} 種 · ${p.art?.status==='released'?'公開中':'公開準備中'}`;
+  $('galleryNote').textContent='保有しているNFTだけアート画像を表示。未収集は「？」。作品別のtokenIdsは正式な発行情報が確定したらJSONに登録します。';
+  const root=$('rarityGroups');root.replaceChildren();
+  if(!count&&!slots.length){root.append(create('p','empty','この県のアート図鑑はまだ準備中です。'));return}
+  for(const [rarity,label] of RARITIES){
+    const items=slots.filter(s=>s.rarity===rarity);if(!items.length)continue;
+    const shown=items.filter(s=>state.artFilter==='all'||(state.artFilter==='owned'?s.quantity>0:s.quantity===0));
+    if(!shown.length)continue;
+    const sec=create('div','rarity'),head=create('div','rarityHead'),name=create('div','rarityName');
+    const badge=create('b','',rarity);name.append(badge,document.createTextNode(label));
+    head.append(name,create('span','rarityCount',`${items.filter(s=>s.quantity>0).length} / ${items.length} 種`));
+    const grid=create('div','grid');
+    for(const slot of shown){
+      const owned=valid()&&slot.quantity>0,n=slot.records[0];
+      const title=slot.rarity==='?'?'確認待ち NFT':`${rarity} ${String(slot.variant).padStart(2,'0')}`;
+      grid.append(makeTile({type:'art',title,subtitle:slot.id,status:owned?'COLLECTED':!valid()?'未確認':p.art?.status==='released'?'未収集':'公開予定',count:slot.quantity,image:n?.image_url||slot.image||'',owned,info:`${p.name} / ${rarity} / 所持枚数：${displayQty(slot.quantity)}`}));
     }
-
-    state.art = data.art;
-    state.tickets = data.tickets;
-    state.mode = 'live';
-  }catch(error){
-    state.error = `NFTの取得に失敗しました：${error.message}`;
+    sec.append(head,grid);root.append(sec);
   }
-
+  if(!root.children.length)root.append(create('p','empty','この絞り込みに該当するNFTはありません。'));
+}
+async function loadWallet(address){
+  if(!/^0x[0-9a-fA-F]{40}$/.test(address)){state.error='公開ウォレットアドレスの形式が正しくありません。';drawAll();return}
+  state.wallet=address;state.mode='unknown';state.art=[];state.tickets=[];state.error='';$('walletDialog').close();
+  const base=state.catalog.settings?.apiBase||'';
+  if(!base){state.error='API接続先が未設定です。journey.jsonのsettings.apiBaseを確認してください。';drawAll();return}
+  $('message').textContent='OpenSeaから保有NFTを確認中…';
+  try{
+    const r=await fetch(base.replace(/\/$/,'')+'/api/owned?address='+encodeURIComponent(address),{cache:'no-store'});
+    const d=await r.json();
+    if(!r.ok||d.ok!==true||!Array.isArray(d.art)||!Array.isArray(d.tickets))throw Error(d.error||'API error');
+    state.art=d.art;state.tickets=d.tickets;state.mode='live';
+  }catch(e){state.error='NFTの取得に失敗しました：'+e.message+'。未取得のNFTを0枚として扱いません。'}
   drawAll();
 }
-
-function scrollStop(n, smooth = true){
-  document.querySelector(`.stop[data-stop="${n}"]`)?.scrollIntoView({
-    inline:'center',
-    block:'nearest',
-    behavior: smooth ? 'smooth' : 'auto'
-  });
-}
-
 async function init(){
   try{
-    const response = await fetch('./data/journey.json', { cache:'no-store' });
-    if(!response.ok) throw new Error('HTTP ' + response.status);
-
-    const data = await response.json();
-
-    if(
-      !Array.isArray(data.stops) ||
-      data.stops.length !== 47 ||
-      data.stops.some((p, i) => p.stop !== i + 1) ||
-      !Number.isInteger(data.currentStop) ||
-      data.currentStop < 1 ||
-      data.currentStop > 47
-    ){
-      throw new Error('47県の順番または currentStop が正しくありません');
-    }
-
-    state.catalog = data;
-    state.selected = data.stops[data.currentStop - 1].code;
-
-    drawRoad();
-    drawAll();
-
-    requestAnimationFrame(() => scrollStop(data.currentStop, false));
-  }catch(error){
-    $('message').className = 'notice err';
-    $('message').textContent = 'journey.json を読み込めません：' + error.message;
-  }
+    const r=await fetch('./data/journey.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);
+    const data=await r.json();
+    if(!Array.isArray(data.stops)||data.stops.length!==47||data.stops.some((p,i)=>p.stop!==i+1)||!Number.isInteger(data.currentStop)||data.currentStop<1||data.currentStop>47)throw Error('47県の順番またはcurrentStopが正しくありません');
+    state.catalog=data;state.selected=data.stops[data.currentStop-1].code;drawRoad();drawAll();
+    requestAnimationFrame(()=>scrollStop(data.currentStop,false));
+  }catch(e){$('message').className='notice err';$('message').textContent='journey.jsonを読み込めません：'+e.message}
 }
-
-$('prev').onclick = () => $('roadScroll').scrollBy({ left:-360, behavior:'smooth' });
-$('next').onclick = () => $('roadScroll').scrollBy({ left:360, behavior:'smooth' });
-$('now').onclick = () => state.catalog && scrollStop(state.catalog.currentStop);
-
-$('connect').onclick = () => $('walletDialog').showModal();
-$('refresh').onclick = () => state.wallet ? loadWallet(state.wallet) : $('walletDialog').showModal();
-
-$('closeWallet').onclick = () => $('walletDialog').close();
-$('closeDetail').onclick = () => $('detailDialog').close();
-
-$('addressButton').onclick = () => loadWallet($('address').value.trim());
-$('address').onkeydown = e => {
-  if(e.key === 'Enter') loadWallet(e.target.value.trim());
-};
-
-$('walletButton').onclick = async () => {
-  try{
-    if(!window.ethereum?.request){
-      throw new Error('ウォレットアプリが見つかりません。公開アドレス入力をお試しください。');
-    }
-    const addresses = await window.ethereum.request({ method:'eth_requestAccounts' });
-    if(addresses?.[0]) await loadWallet(addresses[0]);
-  }catch(error){
-    state.error = error.message;
-    $('walletDialog').close();
-    drawAll();
-  }
-};
-
-$('demoButton').onclick = () => {
-  state.mode = 'demo';
-  state.wallet = '';
-  state.error = '';
-  state.art = [];
-  state.tickets = [];
-  $('walletDialog').close();
-  drawAll();
-};
-
-$('ticketSearch').oninput = e => {
-  state.search = e.target.value.trim().toLowerCase();
-  drawAll();
-};
-
-document.querySelectorAll('.filter').forEach(button => {
-  button.onclick = () => {
-    state[button.dataset.kind + 'Filter'] = button.dataset.filter;
-
-    document.querySelectorAll(`.filter[data-kind="${button.dataset.kind}"]`).forEach(x => {
-      x.classList.toggle('active', x === button);
-    });
-
-    drawAll();
-  };
-});
-
-document.querySelectorAll('dialog').forEach(dialog => {
-  dialog.addEventListener('click', e => {
-    if(e.target === dialog) dialog.close();
-  });
-});
-
+function scrollStop(n,smooth=true){
+  if(!state.catalog)return;
+  if(smooth)selectRoadStop(n,false);
+}
+$('prev').onclick=()=>selectRoadStop(Math.max(1,current().stop-1));
+$('next').onclick=()=>selectRoadStop(Math.min(47,current().stop+1));
+$('now').onclick=()=>selectRoadStop(state.catalog.currentStop);
+$('connect').onclick=()=>$('walletDialog').showModal();
+$('refresh').onclick=()=>state.wallet?loadWallet(state.wallet):$('walletDialog').showModal();
+$('closeWallet').onclick=()=>$('walletDialog').close();
+$('closeDetail').onclick=()=>$('detailDialog').close();
+$('addressButton').onclick=()=>loadWallet($('address').value.trim());
+$('address').onkeydown=e=>{if(e.key==='Enter')loadWallet(e.target.value.trim())};
+$('walletButton').onclick=async()=>{try{if(!window.ethereum?.request)throw Error('ウォレットアプリが見つかりません。公開アドレス入力をお試しください。');const addresses=await window.ethereum.request({method:'eth_requestAccounts'});if(addresses[0])await loadWallet(addresses[0])}catch(e){state.error=e.message;$('walletDialog').close();drawAll()}};
+$('demoButton').onclick=()=>{state.mode='demo';state.wallet='';state.error='';state.art=[];state.tickets=[];$('walletDialog').close();drawAll()};
+$('ticketSearch').oninput=e=>{state.search=e.target.value.trim().toLowerCase();drawAll()};
+document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{state[b.dataset.kind+'Filter']=b.dataset.filter;document.querySelectorAll(`.filter[data-kind="${b.dataset.kind}"]`).forEach(x=>x.classList.toggle('active',x===b));drawAll()});
+document.querySelectorAll('dialog').forEach(d=>d.onclick=e=>{if(e.target===d)d.close()});
 init();
 </script>
 </body>
