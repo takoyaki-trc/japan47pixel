@@ -1,0 +1,133 @@
+
+{
+  "schemaVersion": 1,
+  "project": "TRAVELING TAKOYAKI — Japan 47 Journey",
+  "currentStop": 1,
+  "settings": {
+    "apiBase": "",
+    "openSeaChain": "robinhood",
+    "officialSite": "https://japan47pixel.net/"
+  },
+  "stops": [
+    {
+      "stop": 1,
+      "code": "HOKKAIDO",
+      "name": "北海道",
+      "ticket": {
+        "status": "released",
+        "image": "https://ul.h3z.jp/JdJ1ZSjj.png",
+        "collection": "traveling-takoyaki",
+        "contract": "0xb00bc4887f01f3ef12b21cf805703f8cd49329d4"
+      },
+      "art": {
+        "status": "preview",
+        "collection": "traveling-takoyaki-hokkaido",
+        "contract": "",
+        "cards": [
+          {
+            "id": "HK-01",
+            "number": 1,
+            "rarity": "N",
+            "image": "https://ul.h3z.jp/oHLrQFcg.png",
+            "tokenIds": []
+          },
+          {
+            "id": "HK-02",
+            "number": 2,
+            "rarity": "N",
+            "image": "",
+            "tokenIds": []
+          },
+          {
+            "id": "HK-03",
+            "number": 3,
+            "rarity": "N",
+            "image": "",
+            "tokenIds": []
+          },
+          {
+            "id": "HK-04",
+            "number": 4,
+            "rarity": "R",
+            "image": "",
+            "tokenIds": []
+          },
+          {
+            "id": "HK-05",
+            "number": 5,
+            "rarity": "R",
+            "image": "",
+            "tokenIds": []
+          },
+          {
+            "id": "HK-06",
+            "number": 6,
+            "rarity": "SR",
+            "image": "",
+            "tokenIds": []
+          },
+          {
+            "id": "HK-07",
+            "number": 7,
+            "rarity": "UR",
+            "image": "",
+            "tokenIds": []
+          },
+          {
+            "id": "HK-08",
+            "number": 8,
+            "rarity": "LR",
+            "image": "",
+            "tokenIds": []
+          }
+        ]
+      }
+    },
+    {"stop":2,"code":"AOMORI","name":"青森"},
+    {"stop":3,"code":"AKITA","name":"秋田"},
+    {"stop":4,"code":"IWATE","name":"岩手"},
+    {"stop":5,"code":"YAMAGATA","name":"山形"},
+    {"stop":6,"code":"FUKUSHIMA","name":"福島"},
+    {"stop":7,"code":"MIYAGI","name":"宮城"},
+    {"stop":8,"code":"IBARAKI","name":"茨城"},
+    {"stop":9,"code":"TOCHIGI","name":"栃木"},
+    {"stop":10,"code":"GUNMA","name":"群馬"},
+    {"stop":11,"code":"SAITAMA","name":"埼玉"},
+    {"stop":12,"code":"CHIBA","name":"千葉"},
+    {"stop":13,"code":"TOKYO","name":"東京"},
+    {"stop":14,"code":"KANAGAWA","name":"神奈川"},
+    {"stop":15,"code":"NIIGATA","name":"新潟"},
+    {"stop":16,"code":"TOYAMA","name":"富山"},
+    {"stop":17,"code":"ISHIKAWA","name":"石川"},
+    {"stop":18,"code":"FUKUI","name":"福井"},
+    {"stop":19,"code":"YAMANASHI","name":"山梨"},
+    {"stop":20,"code":"NAGANO","name":"長野"},
+    {"stop":21,"code":"GIFU","name":"岐阜"},
+    {"stop":22,"code":"SHIZUOKA","name":"静岡"},
+    {"stop":23,"code":"AICHI","name":"愛知"},
+    {"stop":24,"code":"MIE","name":"三重"},
+    {"stop":25,"code":"SHIGA","name":"滋賀"},
+    {"stop":26,"code":"KYOTO","name":"京都"},
+    {"stop":27,"code":"OSAKA","name":"大阪"},
+    {"stop":28,"code":"HYOGO","name":"兵庫"},
+    {"stop":29,"code":"NARA","name":"奈良"},
+    {"stop":30,"code":"WAKAYAMA","name":"和歌山"},
+    {"stop":31,"code":"TOTTORI","name":"鳥取"},
+    {"stop":32,"code":"SHIMANE","name":"島根"},
+    {"stop":33,"code":"OKAYAMA","name":"岡山"},
+    {"stop":34,"code":"HIROSHIMA","name":"広島"},
+    {"stop":35,"code":"YAMAGUCHI","name":"山口"},
+    {"stop":36,"code":"TOKUSHIMA","name":"徳島"},
+    {"stop":37,"code":"KAGAWA","name":"香川"},
+    {"stop":38,"code":"EHIME","name":"愛媛"},
+    {"stop":39,"code":"KOCHI","name":"高知"},
+    {"stop":40,"code":"FUKUOKA","name":"福岡"},
+    {"stop":41,"code":"SAGA","name":"佐賀"},
+    {"stop":42,"code":"NAGASAKI","name":"長崎"},
+    {"stop":43,"code":"KUMAMOTO","name":"熊本"},
+    {"stop":44,"code":"OITA","name":"大分"},
+    {"stop":45,"code":"MIYAZAKI","name":"宮崎"},
+    {"stop":46,"code":"KAGOSHIMA","name":"鹿児島"},
+    {"stop":47,"code":"OKINAWA","name":"沖縄"}
+  ]
+}
