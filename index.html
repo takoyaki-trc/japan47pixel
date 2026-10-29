@@ -40,22 +40,27 @@
     content="#10233d"
   >
 
+  <!-- STYLESHEET -->
+
   <link
     rel="stylesheet"
-    href="./styles.css?v=5"
+    href="./styles.css?v=6"
   >
 
+  <!-- JAVASCRIPT -->
+
   <script
-    src="./script.js?v=5"
+    src="./script.js?v=6"
     defer
   ></script>
+
 </head>
 
 <body>
 
-  <!-- =========================
+  <!-- ======================================
        HEADER
-  ========================== -->
+  ====================================== -->
 
   <header class="site-header" id="home">
 
@@ -84,9 +89,9 @@
   </header>
 
 
-  <!-- =========================
+  <!-- ======================================
        HERO
-  ========================== -->
+  ====================================== -->
 
   <section class="hero">
 
@@ -121,48 +126,66 @@
   </section>
 
 
-  <!-- =========================
+  <!-- ======================================
        STATISTICS
-  ========================== -->
+  ====================================== -->
 
-  <section class="stats" aria-label="Journey statistics">
+  <section
+    class="stats"
+    aria-label="Journey statistics"
+  >
 
     <div>
-      <strong id="currentStopStat">01 / 47</strong>
+
+      <strong id="currentStopStat">
+        01 / 47
+      </strong>
+
       <small
         data-en="CURRENT STOP"
         data-ja="現在の旅の地点"
       >
         CURRENT STOP
       </small>
+
     </div>
 
     <div>
-      <strong id="ticketStat">333 / 333</strong>
+
+      <strong id="ticketStat">
+        333 / 333
+      </strong>
+
       <small
         data-en="HOKKAIDO TICKETS"
         data-ja="北海道チケット"
       >
         HOKKAIDO TICKETS
       </small>
+
     </div>
 
     <div>
-      <strong id="rarityStat">5</strong>
+
+      <strong id="rarityStat">
+        5
+      </strong>
+
       <small
         data-en="RARITIES"
         data-ja="レアリティ"
       >
         RARITIES
       </small>
+
     </div>
 
   </section>
 
 
-  <!-- =========================
+  <!-- ======================================
        SECTION NAVIGATION
-  ========================== -->
+  ====================================== -->
 
   <nav
     class="section-tabs"
@@ -221,9 +244,9 @@
   </nav>
 
 
-  <!-- =========================
+  <!-- ======================================
        LOADING / ERROR
-  ========================== -->
+  ====================================== -->
 
   <div
     id="loading"
@@ -241,11 +264,16 @@
   ></div>
 
 
-  <!-- =========================
-       TICKET BOOK
-  ========================== -->
+  <!-- ======================================
+       MAIN CONTENT
+  ====================================== -->
 
   <main>
+
+
+    <!-- ====================================
+         TICKET BOOK
+    ==================================== -->
 
     <section
       class="page"
@@ -326,12 +354,17 @@
           id="ticketRegion"
           aria-label="Filter ticket region"
         >
+
           <option value="all">
             ALL REGIONS
           </option>
+
         </select>
 
       </div>
+
+
+      <!-- TICKET COUNT -->
 
       <div
         class="result-count"
@@ -368,9 +401,10 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- ====================================
          NFT ART BOOK
-    ========================== -->
+    ==================================== -->
 
     <section
       class="page"
@@ -409,16 +443,16 @@
           </span>
 
           <h3 id="featureArtTitle">
-            HOKKAIDO · 8 ARTWORKS
+            HOKKAIDO · MINTING SOON
           </h3>
 
           <p>
-            Explore eight pixel-art artworks
-            from Hokkaido.
+            Discover the Hokkaido pixel-art
+            NFT collection.
           </p>
 
           <span class="stamp">
-            COMING SOON
+            MINTING SOON
           </span>
 
         </div>
@@ -432,7 +466,10 @@
       </div>
 
 
-      <!-- ART GALLERY -->
+      <!-- ==================================
+           NFT ART AUTO GALLERY
+           自動再生ギャラリー
+      ================================== -->
 
       <h3
         class="subheading"
@@ -443,15 +480,22 @@
       </h3>
 
       <p
-        data-en="Select an artwork to view it. Choosing a prefecture from the Art Book also switches the gallery."
-        data-ja="作品を選んで拡大表示できます。アート図鑑で都道府県を選ぶと、その地域のギャラリーに切り替わります。"
+        data-en="Explore the artwork gallery. Use the controls to play, pause or browse. Selecting a prefecture switches the gallery."
+        data-ja="作品ギャラリーを楽しもう！再生・一時停止・前後移動ができます。都道府県を選ぶと作品が切り替わります。"
       >
-        Select an artwork to view it.
-        Choosing a prefecture from the Art Book
-        also switches the gallery.
+        Explore the artwork gallery.
+        Use the controls to play, pause or browse.
+        Selecting a prefecture switches the gallery.
       </p>
 
-      <div class="gallery-stage">
+
+      <!-- MAIN GALLERY IMAGE -->
+
+      <div
+        class="gallery-stage"
+        id="galleryStage"
+        aria-label="NFT artwork slideshow"
+      >
 
         <button
           type="button"
@@ -465,6 +509,7 @@
           id="galleryImage"
           src="https://ul.h3z.jp/oHLrQFcg.png"
           alt="Selected NFT artwork"
+          draggable="false"
         >
 
         <button
@@ -477,21 +522,51 @@
 
       </div>
 
+
+      <!-- GALLERY CAPTION -->
+
       <p
         class="gallery-caption"
         id="galleryCaption"
         aria-live="polite"
       >
-        HOKKAIDO · 01 / 08
+        HOKKAIDO · COMING SOON
       </p>
+
+
+      <!-- AUTO PLAY / PAUSE -->
+
+      <div
+        class="gallery-controls"
+        id="galleryControls"
+      >
+
+        <button
+          type="button"
+          id="toggleGalleryPlay"
+          aria-label="Pause automatic slideshow"
+          aria-pressed="false"
+          data-en="⏸ PAUSE"
+          data-ja="⏸ 一時停止"
+        >
+          ⏸ PAUSE
+        </button>
+
+      </div>
+
+
+      <!-- HORIZONTAL THUMBNAILS -->
 
       <div
         class="gallery-thumbs"
         id="galleryThumbs"
+        aria-label="Artwork thumbnails"
       ></div>
 
 
-      <!-- ART BOOK FILTER -->
+      <!-- ==================================
+           ART BOOK FILTER
+      ================================== -->
 
       <h3
         class="subheading"
@@ -507,9 +582,11 @@
           id="artRegion"
           aria-label="Filter art region"
         >
+
           <option value="all">
             ALL REGIONS
           </option>
+
         </select>
 
       </div>
@@ -542,9 +619,10 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- ====================================
          RARITY
-    ========================== -->
+    ==================================== -->
 
     <section
       class="page dark-page"
@@ -596,9 +674,11 @@
       ></div>
 
       <div class="time-labels">
+
         <span>DAY</span>
         <span>EVENING</span>
         <span>NIGHT</span>
+
       </div>
 
 
@@ -678,9 +758,10 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- ====================================
          JOURNEY MAP
-    ========================== -->
+    ==================================== -->
 
     <section
       class="page"
@@ -725,6 +806,9 @@
 
         </div>
 
+
+        <!-- MAP SCROLL -->
+
         <div class="map-scroll">
 
           <div class="map-canvas">
@@ -750,6 +834,7 @@
                 stroke-linejoin="round"
               ></path>
 
+
               <!-- ROUTE -->
 
               <path
@@ -761,6 +846,7 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               ></path>
+
 
               <!-- COMPLETED ROUTE -->
 
@@ -774,9 +860,11 @@
                 stroke-linejoin="round"
               ></path>
 
+
               <!-- ALL 47 NODES -->
 
               <g id="routeNodes"></g>
+
 
               <!-- TAKOYAKI TRUCK -->
 
@@ -847,12 +935,112 @@
         class="detail"
       ></div>
 
+
+      <!-- ==================================
+           JOURNEY ART GALLERY
+           選択中の都道府県の作品
+      ================================== -->
+
+      <section
+        id="journeyArtGallery"
+        class="journey-art-gallery"
+        hidden
+      >
+
+        <h3
+          class="subheading"
+          id="journeyGalleryTitle"
+        >
+          HOKKAIDO ART GALLERY
+        </h3>
+
+        <p
+          data-en="Explore the artworks from the selected destination."
+          data-ja="選択中の都道府県の作品をチェックしよう！"
+        >
+          Explore the artworks from the
+          selected destination.
+        </p>
+
+
+        <!-- JOURNEY GALLERY IMAGE -->
+
+        <div
+          class="gallery-stage"
+          id="journeyGalleryStage"
+          aria-label="Selected destination artwork slideshow"
+        >
+
+          <button
+            type="button"
+            id="journeyPrevArt"
+            aria-label="Previous destination artwork"
+          >
+            ◀
+          </button>
+
+          <img
+            id="journeyGalleryImage"
+            alt="Selected destination NFT artwork"
+            draggable="false"
+          >
+
+          <button
+            type="button"
+            id="journeyNextArt"
+            aria-label="Next destination artwork"
+          >
+            ▶
+          </button>
+
+        </div>
+
+
+        <!-- JOURNEY GALLERY CAPTION -->
+
+        <p
+          class="gallery-caption"
+          id="journeyGalleryCaption"
+          aria-live="polite"
+        ></p>
+
+
+        <!-- JOURNEY PLAY / PAUSE -->
+
+        <div
+          class="gallery-controls"
+          id="journeyGalleryControls"
+        >
+
+          <button
+            type="button"
+            id="toggleJourneyGalleryPlay"
+            aria-label="Pause destination slideshow"
+            aria-pressed="false"
+          >
+            ⏸ PAUSE
+          </button>
+
+        </div>
+
+
+        <!-- JOURNEY THUMBNAILS -->
+
+        <div
+          class="gallery-thumbs"
+          id="journeyGalleryThumbs"
+          aria-label="Destination artwork thumbnails"
+        ></div>
+
+      </section>
+
     </section>
 
 
-    <!-- =========================
+
+    <!-- ====================================
          FAQ
-    ========================== -->
+    ==================================== -->
 
     <section
       class="page dark-page"
@@ -872,7 +1060,10 @@
       </h2>
 
 
+      <!-- FAQ 01 -->
+
       <details>
+
         <summary
           data-en="What is TRAVELING TAKOYAKI?"
           data-ja="TRAVELING TAKOYAKIとは？"
@@ -889,10 +1080,14 @@
           a takoyaki truck across all 47 prefectures
           of Japan.
         </p>
+
       </details>
 
 
+      <!-- FAQ 02 -->
+
       <details>
+
         <summary
           data-en="What is a Journey Ticket?"
           data-ja="Journey Ticketとは？"
@@ -907,10 +1102,14 @@
           A Journey Ticket is a collectible NFT
           associated with a specific prefecture.
         </p>
+
       </details>
 
 
+      <!-- FAQ 03 -->
+
       <details>
+
         <summary
           data-en="Are Journey Tickets free?"
           data-ja="Journey Ticketは無料ですか？"
@@ -926,10 +1125,14 @@
           Some releases may be free to mint,
           while network fees may still apply.
         </p>
+
       </details>
 
 
+      <!-- FAQ 04 -->
+
       <details>
+
         <summary
           data-en="Does a Journey Ticket guarantee an NFT artwork?"
           data-ja="チケットがあればNFTアートを必ず購入できますか？"
@@ -944,10 +1147,14 @@
           No. A Journey Ticket does not guarantee
           an artwork or a successful purchase.
         </p>
+
       </details>
 
 
+      <!-- FAQ 05 -->
+
       <details>
+
         <summary
           data-en="When will new destinations and NFTs be released?"
           data-ja="次の都道府県やNFTの発売はいつですか？"
@@ -963,10 +1170,14 @@
           through official social media channels
           and OpenSea.
         </p>
+
       </details>
 
 
+      <!-- FAQ 06 -->
+
       <details>
+
         <summary
           data-en="What are the five rarity tiers?"
           data-ja="5種類のレアリティとは？"
@@ -981,10 +1192,14 @@
           The five tiers are Normal, Rare,
           Super Rare, Ultra Rare, and Legendary.
         </p>
+
       </details>
 
 
+      <!-- FAQ 07 -->
+
       <details>
+
         <summary
           data-en="Where can I find the official OpenSea collection?"
           data-ja="公式OpenSeaコレクションはどこですか？"
@@ -999,10 +1214,14 @@
           Use the official OpenSea link at
           the bottom of this website.
         </p>
+
       </details>
 
 
+      <!-- FAQ 08 -->
+
       <details>
+
         <summary
           data-en="Can I join the journey later?"
           data-ja="途中から旅に参加できますか？"
@@ -1017,10 +1236,14 @@
           Yes. You can follow the project
           at any stage.
         </p>
+
       </details>
 
 
+      <!-- FAQ 09 -->
+
       <details>
+
         <summary
           data-en="How can I stay safe?"
           data-ja="安全に参加するには？"
@@ -1036,6 +1259,7 @@
           Never share your wallet's seed phrase
           or private keys.
         </p>
+
       </details>
 
     </section>
@@ -1043,96 +1267,142 @@
   </main>
 
 
-  <!-- =========================
+
+  <!-- ======================================
        FOOTER
-  ========================== -->
+  ====================================== -->
 
+  <footer>
 
-<footer>
+    <strong>
+      TRAVELING TAKOYAKI
+    </strong>
 
-  <strong>
-    TRAVELING TAKOYAKI
-  </strong>
+    <p>
+      JAPAN 47 JOURNEY
+    </p>
 
-  <p>
-    JAPAN 47 JOURNEY
-  </p>
-
-  <p
-    data-en="One truck. 47 prefectures. A journey worth collecting."
-    data-ja="一台のたこ焼きカーと47都道府県。集めながら楽しむ日本一周の旅。"
-  >
-    One truck. 47 prefectures.
-    A journey worth collecting.
-  </p>
-
- 
-<nav class="footer-icons" aria-label="Official links">
-
-  <a
-    href="https://opensea.io/collection/traveling-takoyaki/overview"
-    id="officialLink"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="OpenSea"
-    title="OpenSea"
-  >
-    <span class="footer-icon-symbol">🌊</span>
-  </a>
-
-  <a
-    href="https://japan47pixel.net/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Official Website"
-    title="Official Website"
-  >
-    <span class="footer-icon-symbol">🌐</span>
-  </a>
-
-  <a
-    href="https://x.com/JAPAN47PIXEL"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Official X"
-    title="X"
-  >
-    <span class="footer-icon-symbol footer-x">𝕏</span>
-  </a>
-
-  <a
-    href="https://www.instagram.com/japan47pixel?vrfl=MTVvZjlnNXAzMmU1aA=="
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Official Instagram"
-    title="Instagram"
-  >
-    <svg
-      viewBox="0 0 24 24"
-      width="25"
-      height="25"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
+    <p
+      data-en="One truck. 47 prefectures. A journey worth collecting."
+      data-ja="一台のたこ焼きカーと47都道府県。集めながら楽しむ日本一周の旅。"
     >
-      <rect x="2" y="2" width="20" height="20" rx="5"/>
-      <circle cx="12" cy="12" r="4"/>
-      <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/>
-    </svg>
-  </a>
-
-</nav>
+      One truck. 47 prefectures.
+      A journey worth collecting.
+    </p>
 
 
-  <small>
-    © TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
-  </small>
+    <!-- OFFICIAL SOCIAL LINKS -->
 
-</footer>
+    <nav
+      class="footer-icons"
+      aria-label="Official links"
+    >
 
+
+      <!-- OPENSEA -->
+
+      <a
+        href="https://opensea.io/collection/traveling-takoyaki/overview"
+        id="officialLink"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="OpenSea"
+        title="OpenSea"
+      >
+        <span class="footer-icon-symbol">
+          🌊
+        </span>
+      </a>
+
+
+      <!-- OFFICIAL WEBSITE -->
+
+      <a
+        href="https://japan47pixel.net/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Official Website"
+        title="Official Website"
+      >
+        <span class="footer-icon-symbol">
+          🌐
+        </span>
+      </a>
+
+
+      <!-- X -->
+
+      <a
+        href="https://x.com/JAPAN47PIXEL"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Official X"
+        title="X"
+      >
+        <span class="footer-icon-symbol footer-x">
+          𝕏
+        </span>
+      </a>
+
+
+      <!-- INSTAGRAM -->
+
+      <a
+        href="https://www.instagram.com/japan47pixel?vrfl=MTVvZjlnNXAzMmU1aA=="
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Official Instagram"
+        title="Instagram"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          width="25"
+          height="25"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="2"
+            y="2"
+            width="20"
+            height="20"
+            rx="5"
+          ></rect>
+
+          <circle
+            cx="12"
+            cy="12"
+            r="4"
+          ></circle>
+
+          <circle
+            cx="18"
+            cy="6"
+            r="1"
+            fill="currentColor"
+            stroke="none"
+          ></circle>
+
+        </svg>
+
+      </a>
+
+    </nav>
+
+
+    <!-- COPYRIGHT -->
+
+    <small>
+      © TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
+    </small>
+
+  </footer>
 
 </body>
 </html>
