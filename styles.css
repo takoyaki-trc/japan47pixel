@@ -1024,3 +1024,239 @@ footer small {
     font-size: 9px;
   }
 }
+
+
+/* ==========================================
+   TRAVELING TAKOYAKI
+   NFT ART AUTO CAROUSEL
+   ADD BELOW EXISTING CSS
+========================================== */
+
+/* ------------------------------------------
+   GALLERY CONTAINER
+------------------------------------------ */
+
+.gallery-stage {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--navy);
+  border: 3px solid var(--ink);
+  padding: 16px 10px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) 38px;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ------------------------------------------
+   MAIN IMAGE
+------------------------------------------ */
+
+.gallery-stage img {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  max-height: 420px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  image-rendering: pixelated;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ------------------------------------------
+   PREVIOUS / NEXT BUTTONS
+------------------------------------------ */
+
+.gallery-stage button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  padding: 8px 3px;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.gallery-stage button:hover {
+  background: var(--red);
+  color: white;
+}
+
+.gallery-stage button:active {
+  transform: translateY(2px);
+}
+
+/* ------------------------------------------
+   IMAGE CAPTION
+------------------------------------------ */
+
+.gallery-caption {
+  margin: 14px 0;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+/* ------------------------------------------
+   AUTOPLAY CONTROL PANEL
+------------------------------------------ */
+
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px auto 20px;
+}
+
+.gallery-controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 2px solid var(--ink);
+  background: var(--yellow);
+  color: var(--ink);
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 900;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.gallery-controls button:hover {
+  background: var(--red);
+  color: white;
+}
+
+.gallery-controls button:active {
+  box-shadow: 1px 1px 0 var(--ink);
+  transform: translate(2px, 2px);
+}
+
+.gallery-controls button.is-paused {
+  background: var(--navy);
+  color: white;
+}
+
+/* ------------------------------------------
+   HORIZONTAL THUMBNAIL SCROLLER
+------------------------------------------ */
+
+.gallery-thumbs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 6px 4px 14px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) var(--cream);
+}
+
+.gallery-thumbs button {
+  display: block;
+  flex: 0 0 105px;
+  width: 105px;
+  min-width: 0;
+  padding: 4px;
+  background: var(--navy);
+  border: 3px solid var(--ink);
+  scroll-snap-align: center;
+  cursor: pointer;
+}
+
+.gallery-thumbs button.selected {
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px var(--yellow);
+}
+
+.gallery-thumbs img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  height: auto;
+  object-fit: contain;
+  background: var(--navy);
+  image-rendering: pixelated;
+}
+
+/* ------------------------------------------
+   SWIPE SUPPORT
+------------------------------------------ */
+
+.gallery-stage {
+  touch-action: pan-y;
+}
+
+.gallery-stage img {
+  pointer-events: none;
+}
+
+/* ------------------------------------------
+   MOBILE
+------------------------------------------ */
+
+@media (max-width: 600px) {
+  .gallery-stage {
+    grid-template-columns: 32px minmax(0, 1fr) 32px;
+    gap: 5px;
+    padding: 12px 5px;
+  }
+
+  .gallery-stage button {
+    min-height: 42px;
+    padding: 7px 2px;
+    font-size: 13px;
+  }
+
+  .gallery-stage img {
+    max-height: 320px;
+  }
+
+  .gallery-controls {
+    gap: 8px;
+  }
+
+  .gallery-controls button {
+    min-width: 100px;
+    font-size: 11px;
+    padding: 10px 8px;
+  }
+
+  .gallery-thumbs {
+    gap: 8px;
+  }
+
+  .gallery-thumbs button {
+    flex-basis: 85px;
+    width: 85px;
+  }
+}
+
+/* ------------------------------------------
+   REDUCED MOTION
+------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-thumbs {
+    scroll-behavior: auto;
+  }
+}
