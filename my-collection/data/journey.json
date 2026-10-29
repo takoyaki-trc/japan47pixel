@@ -1,6 +1,6 @@
 
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "project": "TRAVELING TAKOYAKI — Japan 47 Journey",
   "currentStop": 1,
   "settings": {
@@ -23,74 +23,15 @@
         "status": "preview",
         "collection": "traveling-takoyaki-hokkaido",
         "contract": "",
-        "cards": [
-          {
-            "id": "HK-01",
-            "number": 1,
-            "rarity": "N",
-            "image": "https://ul.h3z.jp/oHLrQFcg.png",
-            "tokenIds": [],
-            "rarityVerified": false
-          },
-          {
-            "id": "HK-02",
-            "number": 2,
-            "rarity": "N",
-            "image": "https://ul.h3z.jp/aOR8jMRq.png",
-            "tokenIds": [],
-            "rarityVerified": false
-          },
-          {
-            "id": "HK-03",
-            "number": 3,
-            "rarity": "N",
-            "image": "https://ul.h3z.jp/0vloKjXW.png",
-            "tokenIds": [],
-            "rarityVerified": false
-          },
-          {
-            "id": "HK-04",
-            "number": 4,
-            "rarity": "R",
-            "image": "https://ul.h3z.jp/7WDVfZlJ.png",
-            "tokenIds": [],
-            "rarityVerified": false
-          },
-          {
-            "id": "HK-05",
-            "number": 5,
-            "rarity": "R",
-            "image": "https://ul.h3z.jp/18GboHdY.png",
-            "tokenIds": [],
-            "rarityVerified": false
-          },
-          {
-            "id": "HK-06",
-            "number": 6,
-            "rarity": "SR",
-            "image": "https://ul.h3z.jp/KerclwaE.png",
-            "tokenIds": [],
-            "rarityVerified": false
-          },
-          {
-            "id": "HK-07",
-            "number": 7,
-            "rarity": "UR",
-            "image": "https://ul.h3z.jp/jQah92SE.png",
-            "tokenIds": [],
-            "rarityVerified": false
-          },
-          {
-            "id": "HK-08",
-            "number": 8,
-            "rarity": "LR",
-            "image": "https://ul.h3z.jp/kATTRB7n.png",
-            "tokenIds": [],
-            "rarityVerified": false
-          }
-        ],
-        "rarityStatus": "provisional",
-        "note": "画像8作品は公式サイトのギャラリーを参照。各作品のレアリティは仮設定。tokenIdsはNFT発行後の確定情報を登録する。"
+        "rarityCounts": {
+          "N": 7,
+          "R": 7,
+          "SR": 7,
+          "UR": 7,
+          "LR": 1
+        },
+        "cards": [],
+        "note": "種類数は指定値。NFT発行後に正式なtokenIdsと作品画像の対応を登録する。"
       }
     },
     {
