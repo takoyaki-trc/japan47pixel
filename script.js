@@ -5,7 +5,11 @@
    TRAVELING TAKOYAKI
    JAPAN 47 JOURNEY
    LONG-TERM VERSION
-   BUTTON LAYOUT FIX
+
+   IMAGE REVEAL CONTROL
+   ticketRevealed / artRevealed
+
+   BUTTON LAYOUT FIX PRESERVED
 ========================================== */
 
 const $ = selector => document.querySelector(selector);
@@ -159,7 +163,66 @@ function statusText(status) {
     : status || translate("COMING SOON", "近日公開");
 }
 
+/* ==========================================
+   IMAGE REVEAL CONTROL
+
+   true  = image is public
+   false = show lock
+
+   IMPORTANT:
+   This controls website display only.
+   Image URLs in public JSON are not secret.
+========================================== */
+
+function isRevealed(index, type) {
+  const key = type === "ticket"
+    ? "ticketRevealed"
+    : "artRevealed";
+
+  const value = getField(index, key);
+
+  /*
+    Backward compatibility:
+    If the flag is missing, only Hokkaido
+    is revealed by default.
+  */
+
+  if (value === null) {
+    return index === 0;
+  }
+
+  return value === true;
+}
+
+function getVisibleImage(index, type) {
+  if (!isRevealed(index, type)) {
+    return null;
+  }
+
+  const p = PREFECTURES[index] || {};
+
+  return type === "ticket"
+    ? p.ticketImage
+    : p.artImage;
+}
+
+function getVisibleUrl(index, type) {
+  if (!isRevealed(index, type)) {
+    return null;
+  }
+
+  const p = PREFECTURES[index] || {};
+
+  return type === "ticket"
+    ? p.ticketUrl
+    : p.artUrl;
+}
+
 function getArtBookImage(p, index) {
+  if (!isRevealed(index, "art")) {
+    return null;
+  }
+
   if (validUrl(p.artBookImage)) {
     return p.artBookImage;
   }
@@ -177,6 +240,10 @@ function getArtBookImage(p, index) {
 }
 
 function getGallery(index) {
+  if (!isRevealed(index, "art")) {
+    return [];
+  }
+
   const p = PREFECTURES[index] || {};
   const extra = getPrefectureSettings(index);
 
@@ -187,6 +254,26 @@ function getGallery(index) {
       : [];
 
   return gallery.filter(validUrl);
+}
+
+function appendLockedImage(container, className = "") {
+  const locked = make(
+    "div",
+    className,
+    "🔒"
+  );
+
+  locked.setAttribute(
+    "aria-label",
+    translate(
+      "Artwork locked until reveal",
+      "公開までロックされています"
+    )
+  );
+
+  container.append(locked);
+
+  return locked;
 }
 
 function setText(selector, value) {
@@ -287,7 +374,7 @@ function renderLanguage() {
   renderBook("ticket");
   renderBook("art");
   renderDetails();
-  renderGallery();
+  rebuildGallery();
   renderRarity();
   renderMapLabels();
   renderRegionLabels();
@@ -411,8 +498,15 @@ function renderFeature(index) {
 
   setText("#featureArtTitle", artTitle);
 
-  setImage("#featureTicketImage", p.ticketImage);
-  setImage("#featureArtImage", p.artImage);
+  setImage(
+    "#featureTicketImage",
+    getVisibleImage(index, "ticket")
+  );
+
+  setImage(
+    "#featureArtImage",
+    getVisibleImage(index, "art")
+  );
 
   const ticketFeature = $("#featureTicketTitle")
     ?.closest(".feature");
@@ -555,12 +649,10 @@ function initFilters() {
 function createDetail(index, type) {
   const p = PREFECTURES[index];
   const isTicket = type === "ticket";
+  const revealed = isRevealed(index, type);
 
-  const url = isTicket ? p.ticketUrl : p.artUrl;
-
-  const imageUrl = isTicket
-    ? p.ticketImage
-    : p.artImage;
+  const url = getVisibleUrl(index, type);
+  const imageUrl = getVisibleImage(index, type);
 
   const status = isTicket
     ? p.ticketStatus
@@ -591,10 +683,32 @@ function createDetail(index, type) {
     image.loading = "lazy";
 
     wrapper.append(image);
+  } else if (!revealed) {
+    const locked = make(
+      "div",
+      "detail-locked-image"
+    );
+
+    locked.style.display = "flex";
+    locked.style.alignItems = "center";
+    locked.style.justifyContent = "center";
+    locked.style.minHeight = "180px";
+    locked.style.background = "#e9e2d1";
+    locked.style.fontSize = "52px";
+    locked.style.border = "2px solid #172033";
+    locked.style.margin = "16px 0";
+
+    locked.textContent = "🔒";
+
+    wrapper.append(locked);
   }
 
   wrapper.append(
-    make("p", "status", statusText(status))
+    make(
+      "p",
+      "status",
+      statusText(status)
+    )
   );
 
   if (isTicket) {
@@ -616,7 +730,7 @@ function createDetail(index, type) {
     const snapshot =
       getPrefectureSettings(index).snapshotDate;
 
-    if (snapshot) {
+    if (snapshot && revealed) {
       wrapper.append(
         make(
           "p",
@@ -628,7 +742,7 @@ function createDetail(index, type) {
   } else {
     const extra = getPrefectureSettings(index);
 
-    if (extra.mintDate) {
+    if (extra.mintDate && revealed) {
       wrapper.append(
         make(
           "p",
@@ -639,14 +753,9 @@ function createDetail(index, type) {
     }
   }
 
-  /* ======================================
-     ACTION BUTTON CONTAINER
-     Gallery and OpenSea side by side
-  ====================================== */
-
   const actions = make("div", "art-link-actions");
 
-  if (!isTicket) {
+  if (!isTicket && revealed) {
     const gallery = getGallery(index);
 
     if (gallery.length) {
@@ -783,7 +892,7 @@ function renderBook(type) {
     const thumb = make("div", "thumb");
 
     const imageUrl = isTicket
-      ? p.ticketImage
+      ? getVisibleImage(index, "ticket")
       : getArtBookImage(p, index);
 
     if (validUrl(imageUrl)) {
@@ -835,9 +944,7 @@ function renderBook(type) {
     const entry = make("div", "book-entry");
     entry.append(button);
 
-    const openSeaUrl = isTicket
-      ? p.ticketUrl
-      : p.artUrl;
+    const openSeaUrl = getVisibleUrl(index, type);
 
     if (validUrl(openSeaUrl)) {
       const link = make(
@@ -914,6 +1021,8 @@ function rebuildGallery() {
       )
     );
 
+    setImage("#galleryImage", null);
+
     return;
   }
 
@@ -958,6 +1067,8 @@ function renderGallery() {
   if (!currentGallery.length) {
     const stage = $(".gallery-stage");
     if (stage) stage.hidden = true;
+
+    setImage("#galleryImage", null);
 
     setText(
       "#galleryCaption",
