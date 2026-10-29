@@ -1,0 +1,11 @@
+
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "traveling-takoyaki-collection-api",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "vars": {
+    "ALLOWED_ORIGINS": "https://japan47pixel.net,https://www.japan47pixel.net",
+    "CATALOG_URL": "https://japan47pixel.net/my-collection/data/journey.json"
+  }
+}
