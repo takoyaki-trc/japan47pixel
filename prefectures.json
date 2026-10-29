@@ -1,660 +1,1036 @@
 
 [
   {
+    "_memo": "========== 01 北海道 / HOKKAIDO ==========",
     "name": "HOKKAIDO",
     "nameJa": "北海道",
     "region": "HOKKAIDO",
+
     "ticketImage": "https://ul.h3z.jp/JdJ1ZSjj.png",
     "artImage": "https://ul.h3z.jp/oHLrQFcg.png",
     "artBookImage": "https://ul.h3z.jp/oyLZXgar.png",
+
+    "ticketRevealed": true,
+    "artRevealed": true,
+
     "ticketUrl": "https://opensea.io/collection/traveling-takoyaki/overview",
     "artUrl": "https://opensea.io/collection/traveling-takoyaki-hokkaido",
+
     "ticketStatus": "SOLD OUT",
     "artStatus": "MINTING SOON",
+
     "ticketSupply": 333,
     "ticketClaimed": 333
   },
   {
+    "_memo": "========== 02 青森県 / AOMORI ==========",
     "name": "AOMORI",
     "nameJa": "青森県",
     "region": "TOHOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 03 秋田県 / AKITA ==========",
     "name": "AKITA",
     "nameJa": "秋田県",
     "region": "TOHOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 04 岩手県 / IWATE ==========",
     "name": "IWATE",
     "nameJa": "岩手県",
     "region": "TOHOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 05 山形県 / YAMAGATA ==========",
     "name": "YAMAGATA",
     "nameJa": "山形県",
     "region": "TOHOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 06 福島県 / FUKUSHIMA ==========",
     "name": "FUKUSHIMA",
     "nameJa": "福島県",
     "region": "TOHOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 07 宮城県 / MIYAGI ==========",
     "name": "MIYAGI",
     "nameJa": "宮城県",
     "region": "TOHOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 08 茨城県 / IBARAKI ==========",
     "name": "IBARAKI",
     "nameJa": "茨城県",
     "region": "KANTO",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 09 栃木県 / TOCHIGI ==========",
     "name": "TOCHIGI",
     "nameJa": "栃木県",
     "region": "KANTO",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 10 群馬県 / GUNMA ==========",
     "name": "GUNMA",
     "nameJa": "群馬県",
     "region": "KANTO",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 11 埼玉県 / SAITAMA ==========",
     "name": "SAITAMA",
     "nameJa": "埼玉県",
     "region": "KANTO",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 12 千葉県 / CHIBA ==========",
     "name": "CHIBA",
     "nameJa": "千葉県",
     "region": "KANTO",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 13 東京都 / TOKYO ==========",
     "name": "TOKYO",
     "nameJa": "東京都",
     "region": "KANTO",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 14 神奈川県 / KANAGAWA ==========",
     "name": "KANAGAWA",
     "nameJa": "神奈川県",
     "region": "KANTO",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 15 新潟県 / NIIGATA ==========",
     "name": "NIIGATA",
     "nameJa": "新潟県",
     "region": "CHUBU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 16 富山県 / TOYAMA ==========",
     "name": "TOYAMA",
     "nameJa": "富山県",
     "region": "CHUBU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 17 石川県 / ISHIKAWA ==========",
     "name": "ISHIKAWA",
     "nameJa": "石川県",
     "region": "CHUBU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 18 福井県 / FUKUI ==========",
     "name": "FUKUI",
     "nameJa": "福井県",
     "region": "CHUBU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 19 山梨県 / YAMANASHI ==========",
     "name": "YAMANASHI",
     "nameJa": "山梨県",
     "region": "CHUBU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 20 長野県 / NAGANO ==========",
     "name": "NAGANO",
     "nameJa": "長野県",
     "region": "CHUBU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 21 岐阜県 / GIFU ==========",
     "name": "GIFU",
     "nameJa": "岐阜県",
     "region": "CHUBU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 22 静岡県 / SHIZUOKA ==========",
     "name": "SHIZUOKA",
     "nameJa": "静岡県",
     "region": "CHUBU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 23 愛知県 / AICHI ==========",
     "name": "AICHI",
     "nameJa": "愛知県",
     "region": "CHUBU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 24 三重県 / MIE ==========",
     "name": "MIE",
     "nameJa": "三重県",
     "region": "KANSAI",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 25 滋賀県 / SHIGA ==========",
     "name": "SHIGA",
     "nameJa": "滋賀県",
     "region": "KANSAI",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 26 京都府 / KYOTO ==========",
     "name": "KYOTO",
     "nameJa": "京都府",
     "region": "KANSAI",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 27 大阪府 / OSAKA ==========",
     "name": "OSAKA",
     "nameJa": "大阪府",
     "region": "KANSAI",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 28 兵庫県 / HYOGO ==========",
     "name": "HYOGO",
     "nameJa": "兵庫県",
     "region": "KANSAI",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 29 奈良県 / NARA ==========",
     "name": "NARA",
     "nameJa": "奈良県",
     "region": "KANSAI",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 30 和歌山県 / WAKAYAMA ==========",
     "name": "WAKAYAMA",
     "nameJa": "和歌山県",
     "region": "KANSAI",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 31 鳥取県 / TOTTORI ==========",
     "name": "TOTTORI",
     "nameJa": "鳥取県",
     "region": "CHUGOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 32 島根県 / SHIMANE ==========",
     "name": "SHIMANE",
     "nameJa": "島根県",
     "region": "CHUGOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 33 岡山県 / OKAYAMA ==========",
     "name": "OKAYAMA",
     "nameJa": "岡山県",
     "region": "CHUGOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 34 広島県 / HIROSHIMA ==========",
     "name": "HIROSHIMA",
     "nameJa": "広島県",
     "region": "CHUGOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 35 山口県 / YAMAGUCHI ==========",
     "name": "YAMAGUCHI",
     "nameJa": "山口県",
     "region": "CHUGOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 36 徳島県 / TOKUSHIMA ==========",
     "name": "TOKUSHIMA",
     "nameJa": "徳島県",
     "region": "SHIKOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 37 香川県 / KAGAWA ==========",
     "name": "KAGAWA",
     "nameJa": "香川県",
     "region": "SHIKOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 38 愛媛県 / EHIME ==========",
     "name": "EHIME",
     "nameJa": "愛媛県",
     "region": "SHIKOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 39 高知県 / KOCHI ==========",
     "name": "KOCHI",
     "nameJa": "高知県",
     "region": "SHIKOKU",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 40 福岡県 / FUKUOKA ==========",
     "name": "FUKUOKA",
     "nameJa": "福岡県",
     "region": "KYUSHU & OKINAWA",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 41 佐賀県 / SAGA ==========",
     "name": "SAGA",
     "nameJa": "佐賀県",
     "region": "KYUSHU & OKINAWA",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 42 長崎県 / NAGASAKI ==========",
     "name": "NAGASAKI",
     "nameJa": "長崎県",
     "region": "KYUSHU & OKINAWA",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 43 熊本県 / KUMAMOTO ==========",
     "name": "KUMAMOTO",
     "nameJa": "熊本県",
     "region": "KYUSHU & OKINAWA",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 44 大分県 / OITA ==========",
     "name": "OITA",
     "nameJa": "大分県",
     "region": "KYUSHU & OKINAWA",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 45 宮崎県 / MIYAZAKI ==========",
     "name": "MIYAZAKI",
     "nameJa": "宮崎県",
     "region": "KYUSHU & OKINAWA",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 46 鹿児島県 / KAGOSHIMA ==========",
     "name": "KAGOSHIMA",
     "nameJa": "鹿児島県",
     "region": "KYUSHU & OKINAWA",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   },
   {
+    "_memo": "========== 47 沖縄県 / OKINAWA ==========",
     "name": "OKINAWA",
     "nameJa": "沖縄県",
     "region": "KYUSHU & OKINAWA",
+
     "ticketImage": null,
     "artImage": null,
     "artBookImage": null,
+
+    "ticketRevealed": false,
+    "artRevealed": false,
+
     "ticketUrl": null,
     "artUrl": null,
+
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
+
     "ticketSupply": null,
     "ticketClaimed": null
   }
