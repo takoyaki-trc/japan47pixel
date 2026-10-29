@@ -4,7 +4,7 @@
   "project": "TRAVELING TAKOYAKI — Japan 47 Journey",
   "currentStop": 1,
   "settings": {
-    "apiBase": "",
+    "apiBase": "https://traveling-takoyaki-apigentle-art-710b.japan47pixel.workers.dev",
     "openSeaChain": "robinhood",
     "officialSite": "https://japan47pixel.net/"
   },
