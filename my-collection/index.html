@@ -3,449 +3,901 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#091626">
+<meta name="theme-color" content="#0b1220">
 <title>MY COLLECTION | TRAVELING TAKOYAKI</title>
-<!-- V5: 47マスを蛇行する丸いすごろくに変更。チケットとNFTは正方形3列。 -->
 <style>
-:root{--bg:#091626;--card:#11283f;--line:#38516b;--mint:#70e4d0;--gold:#ffda91;--text:#f5f2e9;--sub:#aabbcd}
+:root{
+  --bg:#f6efdc;
+  --bg-dot:#e7dcc0;
+  --ink:#111111;
+  --paper:#fffaf0;
+  --paper-2:#f2ebdd;
+  --navy:#07121d;
+  --navy-2:#12243b;
+  --navy-3:#203b57;
+  --yellow:#f3c430;
+  --yellow-2:#ffd969;
+  --red:#ef4a3b;
+  --mint:#77e0cf;
+  --line:#101010;
+  --muted:#5a5a5a;
+  --shadow:4px 4px 0 #111111;
+  --shadow-soft:3px 3px 0 #1e1e1e;
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(ellipse at top,#19334b 0,#091626 58%);color:var(--text);font-family:system-ui,"Noto Sans JP",sans-serif}
-button,input{font:inherit}button{cursor:pointer}a{color:inherit}
-button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
-.wrap{max-width:1060px;margin:auto;padding:0 15px}
-header{position:sticky;top:0;z-index:10;background:#071423ed;border-bottom:1px solid #2b4963;backdrop-filter:blur(8px)}
-.head{display:flex;align-items:center;justify-content:space-between;gap:9px;min-height:65px}
-.brand{font-size:clamp(12px,3.5vw,18px);font-weight:900;letter-spacing:.065em;line-height:1.3}
-.brand small{display:block;color:var(--sub);font-size:10px;font-weight:500;letter-spacing:.025em}
-.btn{background:var(--mint);color:#061a24;border:0;border-radius:9px;font-weight:850;padding:11px 14px}
-.btn.dark{background:#203b57;color:#e8f1f7;border:1px solid #385674}
-#connect{max-width:155px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
-.hero{padding:27px 0 7px}
-.eyebrow{color:var(--mint);letter-spacing:.16em;font-size:11px;font-weight:900}
-h1{font-size:clamp(30px,6vw,52px);margin:6px 0;letter-spacing:-.045em;line-height:1.06}
-h1 em{font-style:normal;color:var(--gold)}
-.desc,.muted{font-size:12px;color:var(--sub);line-height:1.65}
-.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
-.jump a{font-size:12px;text-decoration:none;background:#1b334b;border:1px solid var(--line);border-radius:8px;padding:8px 10px}
-.box{background:linear-gradient(130deg,#152e47,#11253a);border:1px solid var(--line);border-radius:13px;padding:15px;margin-top:22px}
-.flex{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-h2{font-size:20px;margin:4px 0 7px}.soft{color:var(--sub);font-size:11px}
-.navbuttons{display:flex;gap:7px}
-.navbuttons button{font-size:12px;padding:8px 12px}
-.road-scroll{margin:17px 0 12px;padding:53px 8px 15px;overflow-x:auto;scrollbar-color:var(--gold) #132b40;border-radius:8px;background:#0b1a2a}
-.road{display:flex;width:max-content;gap:5px}
-.stop{position:relative;width:73px;flex:none;padding:0;border:0;background:none;text-align:center;color:var(--text)}
-.square{display:grid;place-items:center;height:61px;border-radius:5px;border:2px solid #57738b;background:#1c354b;box-shadow:inset 0 -6px #102236;font:900 22px/1 monospace}
-.stop.past .square{background:#1a484d;border-color:var(--mint)}
-.stop.current .square{background:#f1c775;color:#122138;border-color:#ffedc1;box-shadow:0 0 17px #ffda9166}
-.stop.selected .square{outline:2px solid white;outline-offset:2px}
-.stop .pref{display:block;font-size:11px;font-weight:850;margin-top:9px}
-.stop .english{display:block;font-size:8px;color:#9cb1c7;margin-top:3px}
-.truck{width:75px;height:60px;position:absolute;left:-1px;bottom:93px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(2px 4px 1px #0008);animation:bop 1.4s steps(2,end) infinite}
-@keyframes bop{50%{transform:translateY(-4px)}}
-.progress{height:6px;background:#071522;border-radius:8px;overflow:hidden;margin-top:13px}.progress>div{height:100%;background:var(--mint)}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0}
-.stat{border:1px solid #314f66;border-radius:10px;padding:12px;background:#112339}
-.stat small{display:block;font-size:10px;color:var(--sub);font-weight:750}
-.stat strong{display:block;margin-top:5px;font-size:clamp(17px,4vw,27px);color:var(--gold)}
-.notice{border:1px solid #326b72;background:#163447;border-radius:9px;padding:12px;font-size:12px;line-height:1.6;margin:15px 0}
-.notice.err{border-color:#a65b5b;color:#ffc2bf}
-section.collection{padding-top:24px;scroll-margin-top:75px}
-.section-name{font-size:clamp(20px,5vw,26px);font-weight:900;margin:5px 0 8px}
-.filters{display:flex;flex-wrap:wrap;gap:6px;margin:15px 0 12px}
-.filter{color:#cad8e4;background:#20384f;border:1px solid #36516a;padding:8px 11px;border-radius:8px;font-size:12px;font-weight:750}
-.filter.active{background:var(--mint);color:#062232;border-color:var(--mint)}
-.search{width:100%;background:#14273c;color:white;border:1px solid var(--line);padding:10px;border-radius:8px;margin-bottom:13px}
-/* チケット・アートともに常に横3列 */
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:790px}
-.tile{min-width:0;overflow:hidden;text-align:left;color:var(--text);border:1px solid #37536d;background:#11283f;border-radius:8px;padding:5px}
-.tile.owned{border-color:#5fcbb1}
-.tile .image{width:100%;position:relative;border-radius:5px;overflow:hidden;background:repeating-linear-gradient(45deg,#1c344c,#1c344c 9px,#25415c 9px,#25415c 18px);display:grid;place-items:center}
-.tile.ticket .image{aspect-ratio:1 / 1;background:#0b1e2f}
-.tile.art .image{aspect-ratio:1 / 1}
-.tile img{display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
-.question{font:900 clamp(28px,8vw,64px)/1 monospace;color:#c0cfe3;text-shadow:3px 4px #091522}
-.qty{position:absolute;bottom:3px;right:3px;background:#061521e8;color:var(--gold);border-radius:4px;font-weight:900;padding:2px 4px;font-size:clamp(10px,2.5vw,13px)}
-.tile .title{font-size:clamp(10px,2.65vw,13px);font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:6px 2px 0}
-.tile .subtitle{font-size:clamp(8px,2vw,11px);color:#adbed0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:3px 2px}
-.tile .status{display:inline-block;font-size:9px;color:#aebed0;margin:2px 2px 3px}
-.tile.owned .status{color:var(--mint)}
-.rarity{margin-top:23px}.rarityHead{border-bottom:1px solid #38516b;display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;padding-bottom:9px;gap:5px}
-.rarityName{font-size:17px;font-weight:900}.rarityName b{background:#23415e;color:var(--gold);padding:5px 8px;border-radius:5px;margin-right:7px}
-.rarityCount{font-size:11px;color:var(--sub);white-space:nowrap}
-.pulse{border-left:5px solid var(--mint);padding:12px;background:#17394c;border-radius:8px;color:var(--gold);font-weight:850;margin:14px 0}
-.galleryNote{color:var(--sub);font-size:11px;line-height:1.75;margin-bottom:15px}
-.empty{padding:18px;background:#11253a;border-radius:8px;color:var(--sub);font-size:12px}
-footer{text-align:center;font-size:11px;color:var(--sub);padding:35px 8px}
-dialog{width:min(430px,calc(100% - 22px));max-height:90vh;overflow:auto;background:#13263e;color:white;border:1px solid #50718a;border-radius:13px;padding:20px}
-dialog::backdrop{background:#000c}
-dialog .close{float:right;border:0;background:none;color:white;font-size:25px}
-dialog input{display:block;width:100%;margin:10px 0;padding:11px;background:#0c1c2e;border:1px solid #45627c;border-radius:7px;color:white}
-dialog .btn{display:block;width:100%;margin:9px 0}
-#detailImage{display:block;width:100%;max-height:330px;object-fit:contain;border-radius:7px}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
+  background:
+    radial-gradient(circle at 1px 1px,var(--bg-dot) 1.2px,transparent 1.3px),
+    var(--bg);
+  background-size:18px 18px;
+}
+a{color:inherit}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #2d76ff;outline-offset:2px}
 .hidden{display:none!important}
-@media(max-width:600px){.wrap{padding:0 11px}.head{min-height:60px}.box{padding:11px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{padding:4px}.grid{gap:6px}.tile .status{font-size:8px}.tile .title{padding-top:5px}}
-@media(max-width:370px){.brand{font-size:11px}#connect{max-width:120px;font-size:11px;padding:8px}.tile .status{font-size:7px}}
-@media(prefers-reduced-motion:reduce){.truck{animation:none}}
+.wrap{max-width:1120px;margin:0 auto;padding:0 14px}
 
-/* V6：前版の青い背景・明るいカードのトーンを保持 */
-body{background:linear-gradient(180deg,#17324d 0%,#112940 52%,#0c1d31 100%)}
-header{background:#10253dec;border-color:#38556c}
-.box{background:linear-gradient(180deg,#1c3957,#142d46);border-color:#405c76;border-radius:17px}
-.stat{background:linear-gradient(180deg,#1c3957,#142c45);border-color:#46617b;border-radius:14px}
-.notice{background:#214959;border-color:#43867c}
-.tile{background:linear-gradient(180deg,#1c3956,#17314d);border-color:#45637b}
-.hero .desc{color:#d0dfeb}
-.road-stop .truck-fallback{
-  display:block;position:absolute;top:-33px;left:12px;
-  font-size:29px;line-height:33px;pointer-events:none;
+header{
+  position:sticky;top:0;z-index:30;
+  background:var(--navy);
+  color:#fff8ea;
+  border-bottom:4px solid var(--yellow);
+  box-shadow:0 2px 0 #00000022;
 }
-/* V6 : 横一列に小さな丸マスが続くスライド式すごろく */
+.head{
+  min-height:84px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand-main{font-size:clamp(19px,4.8vw,42px);font-weight:900;line-height:1;letter-spacing:.03em}
+.brand-sub{font-size:clamp(10px,2.6vw,15px);opacity:.85;font-weight:700;letter-spacing:.04em}
+.head-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.lang-switch{display:flex;gap:8px}
+.lang-btn,.connect-btn,.nav-btn,.cta,.filter,.modal-btn,.ghost-btn{
+  border:3px solid var(--line);
+  border-radius:0;
+  box-shadow:var(--shadow-soft);
+  font-weight:900;
+}
+.lang-btn{
+  background:#fffef8;color:var(--ink);
+  min-width:84px;padding:10px 14px;
+}
+.lang-btn.active{background:var(--yellow);}
+.connect-btn{
+  background:var(--mint);color:#07202a;
+  padding:12px 18px;max-width:210px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+.hero{
+  padding:22px 0 16px;
+}
+.hero-card{
+  background:linear-gradient(180deg,#0a1623 0%,#11243b 100%);
+  color:#fff8eb;
+  border:4px solid var(--line);
+  box-shadow:var(--shadow);
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-card::after{
+  content:'';position:absolute;inset:auto -40px -40px auto;width:180px;height:180px;border-radius:50%;
+  background:rgba(255,255,255,.04);
+}
+.eyebrow{font-size:12px;letter-spacing:.22em;font-weight:900;color:#ffd969;text-transform:uppercase}
+.hero-title{font-size:clamp(34px,8vw,66px);line-height:.98;margin:10px 0 12px;font-weight:1000;letter-spacing:-.04em}
+.hero-title em{font-style:normal;color:var(--yellow)}
+.hero-desc{max-width:840px;font-size:clamp(14px,3.4vw,22px);line-height:1.75;color:#f2ead7;font-weight:700;margin:0}
+.jump{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;
+}
+.jump a,.cta,.nav-btn,.filter,.ghost-btn,.modal-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  text-decoration:none;min-height:52px;padding:10px 16px;
+  background:#fffdf8;color:var(--ink);
+}
+.jump a{min-width:165px}
+.jump a.active,.cta.active,.filter.active{background:var(--red);color:#fff}
+.jump a.alt,.ghost-btn{background:var(--paper-2)}
+
+.stats{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0 14px;
+}
+.stat{
+  background:var(--yellow);
+  border:4px solid var(--line);box-shadow:var(--shadow);
+  padding:14px 14px 12px;
+}
+.stat small{display:block;font-size:12px;font-weight:900;letter-spacing:.03em}
+.stat strong{display:block;margin-top:8px;font-size:clamp(28px,6vw,48px);line-height:1;font-weight:1000}
+
+.notice{
+  margin:16px 0 22px;
+  background:#fff8ef;border:4px solid var(--line);box-shadow:var(--shadow);
+  padding:14px 16px;font-size:14px;font-weight:700;line-height:1.7;
+}
+.notice.err{background:#ffe1dd;color:#7d1208}
+
+.panel{
+  margin:22px 0;
+  background:var(--paper);
+  border:4px solid var(--line);
+  box-shadow:var(--shadow);
+  padding:18px 16px;
+}
+.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.panel-title{font-size:clamp(30px,7vw,52px);line-height:1.02;margin:6px 0 8px;font-weight:1000;letter-spacing:-.04em}
+.panel-sub{font-size:16px;line-height:1.8;color:#343434;font-weight:700;margin:0;max-width:780px}
+.navbuttons{display:flex;gap:8px;flex-wrap:wrap}
+.nav-btn{min-width:92px;background:var(--paper-2)}
+.nav-btn.primary{background:var(--yellow)}
+
 .route-board{
-  margin:13px 0 12px;
-  padding:12px 12px 10px;
-  border:2px solid #182c31;
-  border-radius:11px;
-  color:#142936;
-  background:#add8c8;
-  box-shadow:3px 4px 0 #f7d48d;
+  margin-top:18px;
+  background:#bcdacb;
+  border:4px solid var(--line);
+  box-shadow:var(--shadow-soft);
+  padding:12px;
 }
-.route-board-head{
-  display:flex;align-items:center;justify-content:space-between;gap:8px;
-  font-size:12px;font-weight:900;margin-bottom:5px;
-}
-.route-board-head small{font-size:10px;letter-spacing:.11em;color:#345650}
+.route-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.route-head strong{font-size:18px}
+.route-head small{font-size:13px;font-weight:900}
 .road-slider{
   overflow-x:auto;overflow-y:hidden;
-  scroll-behavior:smooth;
-  overscroll-behavior-x:contain;
   -webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;
   touch-action:pan-x pan-y;
-  scrollbar-width:thin;
-  scrollbar-color:#5c897d #cbe3d6;
-  padding:41px 6px 8px;
-  scroll-padding-inline:32px;
+  padding:36px 4px 8px;
 }
-.road-slider::-webkit-scrollbar{height:5px}
-.road-slider::-webkit-scrollbar-thumb{background:#63958b;border-radius:9px}
-.road{
-  display:flex;align-items:flex-start;gap:8px;
-  position:relative;width:max-content;
-  min-height:89px;padding:1px 7px 0;
-}
-.road-stop{
-  position:relative;flex:0 0 54px;width:54px;
-  border:0;padding:0;background:transparent;
-  text-align:center;color:#172b35;z-index:0;
-}
+.road{display:flex;align-items:flex-start;gap:10px;position:relative;width:max-content;min-height:96px;padding:0 6px}
+.road-stop{position:relative;flex:0 0 60px;width:60px;background:transparent;border:0;padding:0;text-align:center;color:#162028}
 .road-stop::after{
-  content:'';position:absolute;
-  top:19px;left:calc(50% + 18px);
-  width:calc(100% - 17px);height:8px;
-  background:#fff3d7;
-  border-top:2px solid #16252b;border-bottom:2px solid #16252b;
-  box-sizing:border-box;z-index:-1;
+  content:'';position:absolute;left:calc(50% + 18px);top:18px;width:calc(100% - 14px);height:10px;
+  background:#fbf5e4;border-top:3px solid var(--line);border-bottom:3px solid var(--line);z-index:0;
 }
-.road-stop.past::after{background:#ec7057}
 .road-stop:last-child::after{display:none}
+.road-stop.past::after{background:var(--red)}
 .road-dot{
-  display:grid;place-items:center;
-  width:42px;height:42px;margin:0 auto;
-  border-radius:50%;border:3px solid #19262c;
-  background:#fff4df;color:#1c2a31;
-  font:800 13px/1 monospace;
-  box-shadow:0 2px 0 #20362c28;
+  width:40px;height:40px;margin:0 auto;display:grid;place-items:center;position:relative;z-index:1;
+  border-radius:999px;border:3px solid var(--line);background:#fff8e6;font:900 13px/1 monospace;
 }
-.road-stop.past .road-dot{background:#f4cf83}
-.road-stop.current .road-dot{
-  background:#ed755f;
-  border-color:#fffaf0;
-  color:#fff;
-  outline:2px solid #243b41;
+.road-stop.past .road-dot{background:#f5d067}
+.road-stop.current .road-dot{background:var(--red);color:#fff;border-color:#fff;box-shadow:0 0 0 3px var(--line)}
+.road-stop.selected .road-dot{outline:3px solid #2152a3;outline-offset:2px}
+.road-stop .pref{display:block;margin-top:7px;font-size:12px;font-weight:900;white-space:nowrap}
+.road-stop .english{display:block;margin-top:1px;font-size:9px;font-weight:800;color:#42545d;white-space:nowrap}
+.road-stop .truck{position:absolute;top:-34px;left:3px;width:50px;height:35px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(1px 2px 0 #fff6db);pointer-events:none}
+.route-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.route-foot p{margin:0;font-weight:800}
+.route-link{text-decoration:underline;font-weight:900}
+.progress{height:10px;background:#efe4c2;border:3px solid var(--line);margin-top:10px;overflow:hidden}
+.progress>div{height:100%;background:linear-gradient(90deg,var(--yellow),var(--red))}
+.route-hint{margin-top:8px;font-size:12px;font-weight:800;color:#42545d;text-align:center}
+
+.section-eyebrow{font-size:13px;letter-spacing:.18em;color:#b03b2e;font-weight:900;text-transform:uppercase}
+.section-title{font-size:clamp(28px,6vw,46px);margin:8px 0 8px;font-weight:1000;line-height:1.05}
+.section-desc{font-size:15px;line-height:1.8;color:#333;font-weight:700;margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 14px}
+.filter{background:#fffef8;padding:10px 16px;min-width:126px}
+.search{
+  width:100%;max-width:700px;margin-bottom:14px;
+  background:#fffdf7;border:4px solid var(--line);box-shadow:var(--shadow-soft);padding:14px 16px;color:var(--ink);
 }
-.road-stop.selected .road-dot{box-shadow:0 0 0 3px #257d6e,0 1px 0 #0002}
-.road-stop:focus-visible .road-dot{outline:3px solid #096552;outline-offset:3px}
-.road-stop .pref{
-  display:block;margin-top:7px;
-  font-size:10px;font-weight:850;
-  white-space:nowrap;
+.pulse{
+  background:#163147;color:#fff6e6;border:4px solid var(--line);box-shadow:var(--shadow-soft);padding:14px 16px;margin:14px 0 12px;font-weight:900;font-size:19px
 }
-.road-stop .english{display:none}
-.road-stop .truck{
-  position:absolute;
-  width:53px;height:39px;
-  top:-37px;left:1px;
-  object-fit:contain;image-rendering:pixelated;
-  filter:drop-shadow(1px 2px 0 #fff9e5);
-  pointer-events:none;
-  animation:truck-bob 1.6s steps(2,end) infinite;
+.galleryNote,.muted{font-size:14px;color:#444;line-height:1.8;font-weight:700}
+.empty{padding:18px;background:#fff8ef;border:4px solid var(--line);font-size:14px;font-weight:800}
+
+.rarity{margin-top:22px}
+.rarityHead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 0 10px;margin:0 0 12px;border-bottom:4px solid var(--line)}
+.rarityName{font-size:clamp(26px,5vw,34px);font-weight:1000;display:flex;align-items:center;gap:10px}
+.rarityName b{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 10px;background:var(--yellow);border:4px solid var(--line);box-shadow:var(--shadow-soft);font-size:24px}
+.rarityCount{font-size:16px;font-weight:900}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tile{
+  min-width:0;overflow:hidden;text-align:left;color:var(--ink);
+  background:#fffdf8;border:4px solid var(--line);box-shadow:var(--shadow-soft);padding:8px;
 }
-@keyframes truck-bob{50%{transform:translateY(-3px)}}
-.road-hint{font-size:10px;color:#335d54;text-align:center;margin-top:3px}
-.road-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.road-footer .soft{font-size:12px}
-.sugoroku-options{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
-.sugoroku-options .btn{padding:7px 11px;font-size:12px}
-/* 旧版の巨大なSVGマップ用のスタイルは無効化 */
-@media(max-width:600px){
-  .box{padding:12px}
-  .box h2{font-size:19px}
-  .box .soft{font-size:11px}
-  .navbuttons{gap:5px}
-  .navbuttons button{padding:7px 10px;font-size:12px}
-  .route-board{padding:10px 8px 8px;margin:11px 0}
-  .road-stop{flex-basis:50px;width:50px}
-  .road{gap:7px}
-  .road-stop::after{width:calc(100% - 15px)}
-  .road-dot{width:39px;height:39px;font-size:12px}
-  .road-stop .pref{font-size:10px}
-  .road-stop .truck{width:51px;height:38px;top:-37px;left:0}
+.tile.owned{background:#fff8e9}
+.tile .image{
+  position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;
+  background:#08131f;display:grid;place-items:center;border:3px solid var(--line);
 }
-@media(prefers-reduced-motion:reduce){
-  .road-stop .truck{animation:none}
+.tile img{display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated;background:#08131f}
+.question{font:900 clamp(44px,10vw,80px)/1 monospace;color:#d8dde4;text-shadow:4px 4px 0 #223648}
+.qty{
+  position:absolute;right:6px;bottom:6px;background:#07121d;color:#ffd969;border:3px solid var(--line);
+  padding:3px 7px;font-size:14px;font-weight:1000;line-height:1;
+}
+.tile .title{font-size:clamp(14px,3vw,20px);font-weight:1000;line-height:1.25;padding-top:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .subtitle{font-size:12px;color:#4d4d4d;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-top:4px}
+.tile .status{display:inline-block;margin-top:8px;padding:5px 8px;background:#f3ede2;border:3px solid var(--line);font-size:12px;font-weight:900}
+.tile.owned .status{background:var(--red);color:#fff}
+
+footer{
+  margin-top:30px;padding:26px 0 48px;background:var(--navy);color:#fff7e7;border-top:4px solid var(--yellow);text-align:center;
+}
+footer .wrap{font-size:14px;line-height:1.8;font-weight:700}
+
+.dialog-card{
+  width:min(460px,calc(100% - 18px));max-height:90vh;overflow:auto;
+  background:var(--paper);color:var(--ink);border:4px solid var(--line);box-shadow:6px 6px 0 #111;border-radius:0;padding:18px;
+}
+dialog::backdrop{background:#0008}
+.dialog-close{float:right;border:0;background:none;font-size:34px;line-height:1;color:var(--ink);font-weight:900}
+.dialog-title{font-size:28px;font-weight:1000;margin:0 0 8px}
+.dialog-text{font-size:14px;line-height:1.8;font-weight:700;color:#3d3d3d}
+.dialog-card input{
+  display:block;width:100%;margin:12px 0;padding:14px;background:#fffdf7;border:4px solid var(--line);color:var(--ink)
+}
+.modal-btn{width:100%;margin:8px 0;background:var(--yellow)}
+.modal-btn.alt{background:#fffdf7}
+.detail-image{display:block;width:100%;max-height:360px;object-fit:contain;background:#08131f;border:4px solid var(--line);margin:10px 0}
+
+@media (max-width:860px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .wrap{padding:0 10px}
+  .head{align-items:flex-start;padding:10px 0;min-height:auto}
+  .head-right{width:100%;justify-content:space-between}
+  .lang-switch{order:1}
+  .connect-btn{order:2;max-width:170px;padding:10px 12px}
+  .hero{padding:14px 0 10px}
+  .hero-card{padding:14px}
+  .panel,.route-board,.stat,.notice,.tile,.search{box-shadow:3px 3px 0 #111}
+  .panel{padding:14px 12px}
+  .jump a,.filter,.nav-btn,.lang-btn,.connect-btn,.modal-btn,.ghost-btn{min-height:48px}
+  .jump a{min-width:unset;flex:1 1 140px}
+  .grid{gap:8px}
+  .tile{padding:6px}
+  .tile .title{font-size:12px}
+  .tile .subtitle{font-size:10px}
+  .tile .status{font-size:10px;padding:4px 6px}
+  .qty{font-size:12px;padding:3px 6px}
+  .road{gap:8px}
+  .road-stop{flex-basis:56px;width:56px}
+  .road-stop .pref{font-size:11px}
+  .road-stop .english{font-size:8px}
+}
+@media (max-width:390px){
+  .brand-main{font-size:17px}
+  .brand-sub{font-size:10px}
+  .lang-btn{min-width:74px;padding:9px 10px}
+  .connect-btn{max-width:150px;font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){
   .road-slider{scroll-behavior:auto}
 }
 </style>
 </head>
 <body>
-<header><div class="wrap head"><div class="brand">🐙 TRAVELING TAKOYAKI<small>JAPAN 47 JOURNEY / MY COLLECTION</small></div><button class="btn" id="connect">CONNECT WALLET</button></div></header>
+<header>
+  <div class="wrap head">
+    <div class="brand">
+      <div class="brand-main" id="brandMain">旅するたこ焼き</div>
+      <div class="brand-sub" id="brandSub">TRAVELING TAKOYAKI / MY COLLECTION</div>
+    </div>
+    <div class="head-right">
+      <div class="lang-switch" aria-label="language switch">
+        <button class="lang-btn active" id="langJa" type="button">日本語</button>
+        <button class="lang-btn" id="langEn" type="button">ENGLISH</button>
+      </div>
+      <button class="connect-btn" id="connect" type="button">CONNECT WALLET</button>
+    </div>
+  </div>
+</header>
+
 <main class="wrap">
-  <div class="hero"><div class="eyebrow">ONE TRUCK · FORTY-SEVEN STOPS</div><h1>MY <em>COLLECTION</em></h1><p class="desc">自分のウォレットにあるNFTを、47都道府県の図鑑で確認しよう。未収集は「？」表示。</p><div class="jump"><a href="#tickets">🎫 TICKETS</a><a href="#gallery">🎨 ARTWORK</a><a href="#roadScroll">🚚 ROAD TRIP</a></div></div>
-  <section class="box" aria-label="47都道府県すごろく">
-    <div class="flex">
+  <section class="hero">
+    <div class="hero-card">
+      <div class="eyebrow" id="heroEyebrow">JAPAN 47 JOURNEY</div>
+      <h1 class="hero-title" id="heroTitle">MY <em>COLLECTION</em></h1>
+      <p class="hero-desc" id="heroDesc">自分のウォレットにあるNFTを、47都道府県の図鑑で確認しよう。未収集は「？」表示。</p>
+      <div class="jump">
+        <a href="#tickets" id="jumpTickets">🎫 チケットブック</a>
+        <a href="#gallery" id="jumpGallery">🎨 NFTアートブック</a>
+        <a href="#roadSection" class="alt" id="jumpRoad">🗺️ 旅程マップ</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="roadSection">
+    <div class="panel-head">
       <div>
-        <div class="eyebrow">JAPAN 47 ROAD TRIP</div>
-        <h2>すごろくロード <span id="stopLabel">01 / 47</span></h2>
-        <div class="soft">丸いマスをタップして県を選択。横にスライドして先へ進めます。</div>
+        <div class="section-eyebrow" id="roadEyebrow">JAPAN 47 ROAD TRIP</div>
+        <div class="panel-title"><span id="roadTitleMain">すごろくロード</span> <span id="stopLabel">01 / 47</span></div>
+        <p class="panel-sub" id="roadDesc">県名を押すと、その県の図鑑に切り替わります。横1列をスライドしながら進んでいく旅マップです。</p>
       </div>
       <div class="navbuttons">
-        <button class="btn dark" id="prev" aria-label="ひとつ前の県を選択">◀</button>
-        <button class="btn dark" id="now">現在地</button>
-        <button class="btn dark" id="next" aria-label="次の県を選択">▶</button>
+        <button class="nav-btn" id="prev" type="button">◀</button>
+        <button class="nav-btn primary" id="now" type="button">現在地</button>
+        <button class="nav-btn" id="next" type="button">▶</button>
       </div>
     </div>
+
     <div class="route-board">
-      <div class="route-board-head">
-        <span>旅するたこ焼き</span>
-        <small>停留所 <span id="mapStopLabel">01 / 47</span></small>
+      <div class="route-head">
+        <strong id="routeLabel">旅するたこ焼き</strong>
+        <small id="mapStopLabelWrap">停留所 <span id="mapStopLabel">01 / 47</span></small>
       </div>
-      <div class="road-slider" id="roadScroll" aria-label="47都道府県の横一列すごろく。左右にスワイプして進む">
+      <div class="road-slider" id="roadScroll" aria-label="road trip slider">
         <div id="road" class="road"></div>
       </div>
-      <div class="road-hint">◀ 左右にスワイプして47都道府県を進もう ▶</div>
+      <div class="route-foot">
+        <p id="selectedLabel">選択中：北海道（01 / 47）</p>
+        <a href="#gallery" class="route-link" id="viewGalleryLink">アート図鑑を見る ↓</a>
+      </div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="route-hint" id="roadHint">◀ 左右にスワイプして47都道府県を進もう ▶</div>
     </div>
-    <div class="flex">
-      <span class="soft" id="selectedLabel"></span>
-      <a class="soft" href="#gallery">アート図鑑を見る ↓</a>
-    </div>
-    <div class="progress"><div id="progressBar"></div></div>
   </section>
-  <div class="stats"><div class="stat"><small>選択県 ART / 種類</small><strong id="artTypes">—</strong></div><div class="stat"><small>ART NFT / 合計枚数</small><strong id="artQty">—</strong></div><div class="stat"><small>TICKET / 保有県数</small><strong id="ticketTypes">—</strong></div><div class="stat"><small>TICKET / 合計枚数</small><strong id="ticketQty">—</strong></div></div>
+
+  <div class="stats">
+    <div class="stat"><small id="statArtTypesLabel">選択県 ART / 種類</small><strong id="artTypes">—</strong></div>
+    <div class="stat"><small id="statArtQtyLabel">ART NFT / 合計枚数</small><strong id="artQty">—</strong></div>
+    <div class="stat"><small id="statTicketTypesLabel">TICKET / 保有県数</small><strong id="ticketTypes">—</strong></div>
+    <div class="stat"><small id="statTicketQtyLabel">TICKET / 合計枚数</small><strong id="ticketQty">—</strong></div>
+  </div>
+
   <div id="message" class="notice" role="status">図鑑を読み込み中…</div>
-  <section id="tickets" class="collection"><div class="eyebrow">JOURNEY TICKET / 47 PREFECTURES</div><div class="section-name">🎫 Journey Ticket 図鑑</div><div class="muted">すべての都道府県を横3列で表示。未所持は「？」、所持数は画像右下。</div><div class="filters"><button class="filter active" data-kind="ticket" data-filter="all">すべて</button><button class="filter" data-kind="ticket" data-filter="owned">保有済み</button><button class="filter" data-kind="ticket" data-filter="missing">未所持・未公開</button></div><input id="ticketSearch" class="search" type="search" placeholder="都道府県名で探す"><div id="ticketGrid" class="grid"></div></section>
-  <section id="gallery" class="collection"><div class="eyebrow">DISCOVER & UNLOCK</div><div class="section-name" id="galleryTitle">🎨 NFTアート図鑑</div><div class="muted">N・R・SR・UR 各7種、LR 1種。すべて横3列で表示。</div><div class="filters"><button class="filter active" data-kind="art" data-filter="all">すべて</button><button class="filter" data-kind="art" data-filter="owned">保有済み</button><button class="filter" data-kind="art" data-filter="missing">未収集 ？</button><button class="btn dark" id="refresh">↻ 所持状況を更新</button></div><div class="pulse" id="collectionPulse"></div><div class="galleryNote" id="galleryNote"></div><div id="rarityGroups"></div></section>
-  <footer>TRAVELING TAKOYAKI · 47 JOURNEY<br>ウォレットの秘密鍵やシードフレーズは使用しません。<br><a href="https://japan47pixel.net/">公式サイトへ戻る</a></footer>
+
+  <section id="tickets" class="panel">
+    <div class="section-eyebrow" id="ticketsEyebrow">JOURNEY TICKET / 47 PREFECTURES</div>
+    <div class="section-title" id="ticketsTitle">Journey Ticket 図鑑</div>
+    <p class="section-desc" id="ticketsDesc">すべての都道府県を3列で表示。未所持は「？」、所持数は画像右下に表示します。</p>
+    <div class="filters">
+      <button class="filter active" type="button" data-kind="ticket" data-filter="all" id="ticketFilterAll">すべて</button>
+      <button class="filter" type="button" data-kind="ticket" data-filter="owned" id="ticketFilterOwned">保有済み</button>
+      <button class="filter" type="button" data-kind="ticket" data-filter="missing" id="ticketFilterMissing">未所持・未公開</button>
+    </div>
+    <input id="ticketSearch" class="search" type="search" placeholder="都道府県名で探す">
+    <div id="ticketGrid" class="grid"></div>
+  </section>
+
+  <section id="gallery" class="panel">
+    <div class="section-eyebrow" id="galleryEyebrow">DISCOVER &amp; UNLOCK</div>
+    <div class="section-title" id="galleryTitle">NFTアート図鑑</div>
+    <p class="section-desc" id="galleryDesc">N・R・SR・UR 各7種、LR 1種。画像は正方形で3列表示。未収集は「？」で表示します。</p>
+    <div class="filters">
+      <button class="filter active" type="button" data-kind="art" data-filter="all" id="artFilterAll">すべて</button>
+      <button class="filter" type="button" data-kind="art" data-filter="owned" id="artFilterOwned">保有済み</button>
+      <button class="filter" type="button" data-kind="art" data-filter="missing" id="artFilterMissing">未収集 ？</button>
+      <button class="ghost-btn" type="button" id="refresh">↻ 所持状況を更新</button>
+    </div>
+    <div class="pulse" id="collectionPulse"></div>
+    <div class="galleryNote" id="galleryNote"></div>
+    <div id="rarityGroups"></div>
+  </section>
 </main>
-<dialog id="walletDialog"><button class="close" id="closeWallet" aria-label="閉じる">×</button><h2>CONNECT WALLET</h2><p class="muted">ウォレット接続、または公開アドレスを入力してNFTを照会できます。送金承認は不要です。</p><button class="btn" id="walletButton">ウォレットアプリで接続</button><p class="muted">または、公開アドレスから照会：</p><input id="address" placeholder="0x..." autocomplete="off" spellcheck="false"><button class="btn dark" id="addressButton">アドレスで照会</button><button class="btn dark" id="demoButton">デモを見る</button></dialog>
-<dialog id="detailDialog"><button class="close" id="closeDetail" aria-label="閉じる">×</button><h2 id="detailTitle"></h2><img id="detailImage" class="hidden" alt="作品画像"><p id="detailText"></p></dialog>
+
+<footer>
+  <div class="wrap">
+    <div id="footerLine1">TRAVELING TAKOYAKI · JAPAN 47 JOURNEY</div>
+    <div id="footerLine2">ウォレットの秘密鍵やシードフレーズは使用しません。</div>
+    <div><a href="https://japan47pixel.net/" id="footerBack">公式サイトへ戻る</a></div>
+  </div>
+</footer>
+
+<dialog id="walletDialog" class="dialog-card">
+  <button class="dialog-close" id="closeWallet" aria-label="close">×</button>
+  <h2 class="dialog-title" id="walletDialogTitle">CONNECT WALLET</h2>
+  <p class="dialog-text" id="walletDialogText">ウォレット接続、または公開アドレスを入力してNFTを照会できます。送金承認は不要です。</p>
+  <button class="modal-btn" id="walletButton" type="button">ウォレットアプリで接続</button>
+  <p class="dialog-text" id="walletDialogOr">または、公開アドレスから照会：</p>
+  <input id="address" placeholder="0x..." autocomplete="off" spellcheck="false">
+  <button class="modal-btn alt" id="addressButton" type="button">アドレスで照会</button>
+  <button class="modal-btn alt" id="demoButton" type="button">デモを見る</button>
+</dialog>
+
+<dialog id="detailDialog" class="dialog-card">
+  <button class="dialog-close" id="closeDetail" aria-label="close">×</button>
+  <h2 class="dialog-title" id="detailTitle"></h2>
+  <img id="detailImage" class="detail-image hidden" alt="art image">
+  <p class="dialog-text" id="detailText"></p>
+</dialog>
+
 <script>
 'use strict';
-const $=id=>document.getElementById(id);
-const RARITIES=[['N','NORMAL'],['R','RARE'],['SR','SUPER RARE'],['UR','ULTRA RARE'],['LR','LEGENDARY'],['?','確認待ち']];
-const state={catalog:null,selected:'HOKKAIDO',mode:'unknown',wallet:'',art:[],tickets:[],ticketFilter:'all',artFilter:'all',search:'',error:''};
-const create=(tag,cls='',text='')=>{const x=document.createElement(tag);x.className=cls;x.textContent=text;return x};
-const total=a=>a.reduce((s,n)=>s+amount(n),0);
-const amount=n=>{const x=Number(n.quantity_string??n.quantity??1);return Number.isSafeInteger(x)&&x>=0?x:1};
-const valid=()=>state.mode==='live'||state.mode==='demo';
-const displayQty=n=>valid()?n.toLocaleString('ja-JP'):'—';
-const current=()=>state.catalog.stops.find(x=>x.code===state.selected);
-const safeImage=u=>{if(typeof u!=='string'||!u)return '';if(u.startsWith('ipfs://'))u='https://ipfs.io/ipfs/'+u.slice(7);try{const x=new URL(u);return x.protocol==='https:'?x.href:''}catch{return ''}};
-const normalize=s=>String(s||'').trim().toLowerCase();
-const matches=(n,record)=>!!record&&((record.contract&&normalize(n.contract)===normalize(record.contract))||(record.collection&&normalize(n.collection)===normalize(record.collection)));
-function ticketRecords(p){if(state.mode==='demo')return p.code==='HOKKAIDO'?[{identifier:'DEMO',quantity:3,image_url:p.ticket?.image||''}]:[];if(state.mode!=='live')return [];return state.tickets.filter(n=>n.prefecture===p.code||matches(n,p.ticket));}
-function artRecords(p){if(state.mode==='demo')return [];if(state.mode!=='live')return [];return state.art.filter(n=>n.prefecture===p.code||matches(n,p.art));}
-// 各県の rarityCounts からN/R/SR/UR/LRの全枠を自動生成。
-// cards を登録すると、その id に正確な tokenIds や画像を紐付けられます。
+const $ = id => document.getElementById(id);
+const RARITIES = [['N','NORMAL'],['R','RARE'],['SR','SUPER RARE'],['UR','ULTRA RARE'],['LR','LEGENDARY'],['?','UNMATCHED']];
+const state = {
+  catalog:null, selected:'HOKKAIDO', mode:'unknown', wallet:'', art:[], tickets:[],
+  ticketFilter:'all', artFilter:'all', search:'', error:'', lang: localStorage.getItem('tt_lang') || 'ja'
+};
+const create = (tag, cls='', text='') => { const x=document.createElement(tag); if(cls) x.className=cls; if(text!==undefined) x.textContent=text; return x; };
+const total = arr => arr.reduce((s,n)=>s+amount(n),0);
+const amount = n => { const x = Number(n.quantity_string ?? n.quantity ?? 1); return Number.isFinite(x) && x >= 0 ? x : 1; };
+const valid = () => state.mode === 'live' || state.mode === 'demo';
+const current = () => state.catalog?.stops.find(x => x.code === state.selected);
+const displayQty = n => valid() ? n.toLocaleString(state.lang==='ja' ? 'ja-JP' : 'en-US') : '—';
+const safeImage = u => {
+  if(typeof u !== 'string' || !u) return '';
+  if(u.startsWith('ipfs://')) u = 'https://ipfs.io/ipfs/' + u.slice(7);
+  try { const x = new URL(u); return x.protocol === 'https:' ? x.href : ''; } catch { return ''; }
+};
+const normalize = s => String(s || '').trim().toLowerCase();
+const matches = (n, record) => !!record && ((record.contract && normalize(n.contract) === normalize(record.contract)) || (record.collection && normalize(n.collection) === normalize(record.collection)));
+const prefMain = p => state.lang === 'ja' ? p.name : p.code.replace(/_/g,' ');
+const prefSub = p => state.lang === 'ja' ? p.code.replace(/_/g,' ') : p.name;
+const stopText = n => String(n).padStart(2,'0');
+
+const I18N = {
+  ja: {
+    brandMain:'旅するたこ焼き',
+    brandSub:'TRAVELING TAKOYAKI / MY COLLECTION',
+    heroEyebrow:'JAPAN 47 JOURNEY',
+    heroTitle:'MY <em>COLLECTION</em>',
+    heroDesc:'自分のウォレットにあるNFTを、47都道府県の図鑑で確認しよう。未収集は「？」表示。',
+    jumpTickets:'🎫 チケットブック',
+    jumpGallery:'🎨 NFTアートブック',
+    jumpRoad:'🗺️ 旅程マップ',
+    roadEyebrow:'JAPAN 47 ROAD TRIP',
+    roadTitleMain:'すごろくロード',
+    roadDesc:'県名を押すと、その県の図鑑に切り替わります。横1列をスライドしながら進んでいく旅マップです。',
+    now:'現在地',
+    routeLabel:'旅するたこ焼き',
+    mapStopWrap:'停留所',
+    viewGallery:'アート図鑑を見る ↓',
+    roadHint:'◀ 左右にスワイプして47都道府県を進もう ▶',
+    statArtTypes:'選択県 ART / 種類',
+    statArtQty:'ART NFT / 合計枚数',
+    statTicketTypes:'TICKET / 保有県数',
+    statTicketQty:'TICKET / 合計枚数',
+    loading:'図鑑を読み込み中…',
+    ticketsEyebrow:'JOURNEY TICKET / 47 PREFECTURES',
+    ticketsTitle:'Journey Ticket 図鑑',
+    ticketsDesc:'すべての都道府県を3列で表示。未所持は「？」、所持数は画像右下に表示します。',
+    galleryEyebrow:'DISCOVER & UNLOCK',
+    galleryTitle:'NFTアート図鑑',
+    galleryDesc:'N・R・SR・UR 各7種、LR 1種。画像は正方形で3列表示。未収集は「？」で表示します。',
+    all:'すべて', owned:'保有済み', missingTicket:'未所持・未公開', missingArt:'未収集 ？',
+    refresh:'↻ 所持状況を更新',
+    searchPlaceholder:'都道府県名で探す',
+    footer1:'TRAVELING TAKOYAKI · JAPAN 47 JOURNEY',
+    footer2:'ウォレットの秘密鍵やシードフレーズは使用しません。',
+    footerBack:'公式サイトへ戻る',
+    connect:'ウォレット接続',
+    walletDialogTitle:'ウォレット接続',
+    walletDialogText:'ウォレット接続、または公開アドレスを入力してNFTを照会できます。送金承認は不要です。',
+    walletButton:'ウォレットアプリで接続',
+    walletOr:'または、公開アドレスから照会：',
+    addressButton:'アドレスで照会',
+    demoButton:'デモを見る',
+    selected:p=>`選択中：${p.name}（${stopText(p.stop)} / 47）`,
+    status:{
+      unreleased:'未公開', unchecked:'未確認', collected:'所持中', missing:'未所持', preview:'公開予定',
+      missingOrUnreleased:'未所持・未公開', unmatched:'確認待ち NFT'
+    },
+    message:{
+      unknown:'ウォレット未接続。所持枚数「—」は未確認です。',
+      demo:'デモ表示です。実際の保有情報ではありません。',
+      live:wallet=>`ウォレット ${wallet.slice(0,8)}…${wallet.slice(-6)} の保有情報を表示中。`,
+      invalid:'公開ウォレットアドレスの形式が正しくありません。',
+      noApi:'API接続先が未設定です。journey.json の settings.apiBase を確認してください。',
+      loadingOwned:'OpenSeaから保有NFTを確認中…',
+      fetchFail:e=>`NFTの取得に失敗しました：${e}。未取得のNFTを0枚として扱いません。`,
+      journeyFail:e=>`journey.jsonを読み込めません：${e}`
+    },
+    pulse:(name,owned,count,released)=>`${name} ${displayQty(owned)} / ${count} 種 ・ ${released ? '公開中' : '公開準備中'}`,
+    galleryNote:'所持しているNFTだけアート画像を表示。未収集は「？」で表示します。tokenId と作品画像の紐づけは、journey.json に追記すると正確に反映されます。',
+    ticketInfo:(status,count)=>`${status} / 所持枚数：${displayQty(count)}`,
+    artInfo:(name,rarity,count)=>`${name} / ${rarity} / 所持枚数：${displayQty(count)}`,
+    emptyTickets:'表示するチケットがありません。',
+    emptyArt:'この絞り込みに該当するNFTはありません。',
+    emptyPreparing:'この県のアート図鑑はまだ準備中です。',
+    rarityCount:(owned,total)=>`${owned} / ${total} 種`,
+    ticketTitle:p=>`${stopText(p.stop)} ${p.name}`,
+    artSlotTitle:(slot,p)=> slot.label || `${prefMain(p)} ${String(slot.variant).padStart(2,'0')}`,
+    artSubtitle:slot => `${slot.rarity} · ${slot.id.replace(slot.code ? slot.code + '-' : '', '')}`,
+    roadAria:p=>`${p.stop}番 ${p.name}。図鑑を表示`,
+    detailFallback:'詳細情報',
+    language:'ja'
+  },
+  en: {
+    brandMain:'TRAVELING TAKOYAKI',
+    brandSub:'JAPAN 47 JOURNEY / MY COLLECTION',
+    heroEyebrow:'JAPAN 47 JOURNEY',
+    heroTitle:'MY <em>COLLECTION</em>',
+    heroDesc:'Check the NFTs in your wallet through a collectible 47-prefecture album. Unowned items are shown as “?”.',
+    jumpTickets:'🎫 TICKET BOOK',
+    jumpGallery:'🎨 ART BOOK',
+    jumpRoad:'🗺️ ROAD MAP',
+    roadEyebrow:'JAPAN 47 ROAD TRIP',
+    roadTitleMain:'ROAD TRIP',
+    roadDesc:'Tap a prefecture to switch the album. This is a single-row sliding route map that moves across Japan.',
+    now:'CURRENT',
+    routeLabel:'TRAVELING TAKOYAKI',
+    mapStopWrap:'STOP',
+    viewGallery:'VIEW ART BOOK ↓',
+    roadHint:'◀ SWIPE LEFT OR RIGHT TO TRAVEL THROUGH 47 PREFECTURES ▶',
+    statArtTypes:'SELECTED ART / TYPES',
+    statArtQty:'ART NFT / TOTAL',
+    statTicketTypes:'TICKET / PREFECTURES OWNED',
+    statTicketQty:'TICKET / TOTAL OWNED',
+    loading:'Loading collection data…',
+    ticketsEyebrow:'JOURNEY TICKET / 47 PREFECTURES',
+    ticketsTitle:'Journey Ticket Album',
+    ticketsDesc:'All 47 prefectures appear in a 3-column grid. Unowned items show “?” and quantities appear at the bottom-right.',
+    galleryEyebrow:'DISCOVER & UNLOCK',
+    galleryTitle:'NFT Art Album',
+    galleryDesc:'N / R / SR / UR have 7 designs each, and LR has 1 design. Square images are displayed in 3 columns.',
+    all:'ALL', owned:'OWNED', missingTicket:'MISSING / HIDDEN', missingArt:'MISSING ?',
+    refresh:'↻ REFRESH HOLDINGS',
+    searchPlaceholder:'Search by prefecture…',
+    footer1:'TRAVELING TAKOYAKI · JAPAN 47 JOURNEY',
+    footer2:'This page never uses your private key or seed phrase.',
+    footerBack:'Back to official site',
+    connect:'CONNECT WALLET',
+    walletDialogTitle:'CONNECT WALLET',
+    walletDialogText:'Connect your wallet or enter a public address to check NFT ownership. No transaction approval is required.',
+    walletButton:'Connect with wallet app',
+    walletOr:'Or check by public address:',
+    addressButton:'Check address',
+    demoButton:'View demo',
+    selected:p=>`Selected: ${p.code.replace(/_/g,' ')} (${stopText(p.stop)} / 47)`,
+    status:{
+      unreleased:'COMING SOON', unchecked:'UNCHECKED', collected:'COLLECTED', missing:'MISSING', preview:'PREVIEW',
+      missingOrUnreleased:'MISSING / HIDDEN', unmatched:'UNMATCHED NFT'
+    },
+    message:{
+      unknown:'Wallet not connected. Quantities shown as “—” are not checked yet.',
+      demo:'Demo mode is on. These are not your actual holdings.',
+      live:wallet=>`Showing holdings for wallet ${wallet.slice(0,8)}…${wallet.slice(-6)}.`,
+      invalid:'The public wallet address format is invalid.',
+      noApi:'API endpoint is not configured. Please check settings.apiBase in journey.json.',
+      loadingOwned:'Checking owned NFTs from OpenSea…',
+      fetchFail:e=>`Failed to fetch NFTs: ${e}. Missing NFTs are not treated as zero.`,
+      journeyFail:e=>`Could not load journey.json: ${e}`
+    },
+    pulse:(name,owned,count,released)=>`${name} ${displayQty(owned)} / ${count} types ・ ${released ? 'LIVE' : 'PREPARING'}`,
+    galleryNote:'Only owned NFTs display artwork images. Missing items display “?”. For exact tokenId-to-art mapping, add the details to journey.json.',
+    ticketInfo:(status,count)=>`${status} / Qty: ${displayQty(count)}`,
+    artInfo:(name,rarity,count)=>`${name} / ${rarity} / Qty: ${displayQty(count)}`,
+    emptyTickets:'No ticket items match this filter.',
+    emptyArt:'No artwork items match this filter.',
+    emptyPreparing:'Artwork for this prefecture is still being prepared.',
+    rarityCount:(owned,total)=>`${owned} / ${total} types`,
+    ticketTitle:p=>`${stopText(p.stop)} ${p.code.replace(/_/g,' ')}`,
+    artSlotTitle:(slot,p)=> slot.label || `${p.code.replace(/_/g,' ')} ${String(slot.variant).padStart(2,'0')}`,
+    artSubtitle:slot => `${slot.rarity} · ${slot.id}`,
+    roadAria:p=>`Stop ${p.stop} ${p.code.replace(/_/g,' ')}. Open album`,
+    detailFallback:'Detail',
+    language:'en'
+  }
+};
+const t = () => I18N[state.lang];
+
+function setLang(lang){
+  state.lang = lang === 'en' ? 'en' : 'ja';
+  localStorage.setItem('tt_lang', state.lang);
+  document.documentElement.lang = t().language;
+  updateLangButtons();
+  renderStaticTexts();
+  if(state.catalog){ drawRoad(); drawAll(); }
+}
+function updateLangButtons(){
+  $('langJa').classList.toggle('active', state.lang==='ja');
+  $('langEn').classList.toggle('active', state.lang==='en');
+}
+function renderStaticTexts(){
+  $('brandMain').textContent = t().brandMain;
+  $('brandSub').textContent = t().brandSub;
+  $('heroEyebrow').textContent = t().heroEyebrow;
+  $('heroTitle').innerHTML = t().heroTitle;
+  $('heroDesc').textContent = t().heroDesc;
+  $('jumpTickets').textContent = t().jumpTickets;
+  $('jumpGallery').textContent = t().jumpGallery;
+  $('jumpRoad').textContent = t().jumpRoad;
+  $('roadEyebrow').textContent = t().roadEyebrow;
+  $('roadTitleMain').textContent = t().roadTitleMain;
+  $('roadDesc').textContent = t().roadDesc;
+  $('now').textContent = t().now;
+  $('routeLabel').textContent = t().routeLabel;
+  $('mapStopLabelWrap').childNodes[0].nodeValue = t().mapStopWrap + ' ';
+  $('viewGalleryLink').textContent = t().viewGallery;
+  $('roadHint').textContent = t().roadHint;
+  $('statArtTypesLabel').textContent = t().statArtTypes;
+  $('statArtQtyLabel').textContent = t().statArtQty;
+  $('statTicketTypesLabel').textContent = t().statTicketTypes;
+  $('statTicketQtyLabel').textContent = t().statTicketQty;
+  $('ticketsEyebrow').textContent = t().ticketsEyebrow;
+  $('ticketsTitle').textContent = t().ticketsTitle;
+  $('ticketsDesc').textContent = t().ticketsDesc;
+  $('galleryEyebrow').textContent = t().galleryEyebrow;
+  $('galleryDesc').textContent = t().galleryDesc;
+  $('ticketFilterAll').textContent = t().all;
+  $('ticketFilterOwned').textContent = t().owned;
+  $('ticketFilterMissing').textContent = t().missingTicket;
+  $('artFilterAll').textContent = t().all;
+  $('artFilterOwned').textContent = t().owned;
+  $('artFilterMissing').textContent = t().missingArt;
+  $('refresh').textContent = t().refresh;
+  $('ticketSearch').placeholder = t().searchPlaceholder;
+  $('footerLine1').textContent = t().footer1;
+  $('footerLine2').textContent = t().footer2;
+  $('footerBack').textContent = t().footerBack;
+  $('walletDialogTitle').textContent = t().walletDialogTitle;
+  $('walletDialogText').textContent = t().walletDialogText;
+  $('walletButton').textContent = t().walletButton;
+  $('walletDialogOr').textContent = t().walletOr;
+  $('addressButton').textContent = t().addressButton;
+  $('demoButton').textContent = t().demoButton;
+  if(!state.wallet) $('connect').textContent = t().connect;
+  if(!state.catalog) $('message').textContent = t().loading;
+}
+
+function ticketRecords(p){
+  if(state.mode === 'demo') return p.code === 'HOKKAIDO' ? [{identifier:'DEMO',quantity:7,image_url:p.ticket?.image||''}] : [];
+  if(state.mode !== 'live') return [];
+  return state.tickets.filter(n => n.prefecture === p.code || matches(n, p.ticket));
+}
+function artRecords(p){
+  if(state.mode === 'demo') return [];
+  if(state.mode !== 'live') return [];
+  return state.art.filter(n => n.prefecture === p.code || matches(n, p.art));
+}
 function artworkSlots(p){
-  const art=p.art||{},counts=art.rarityCounts||{};
-  const slots=[];
+  const art = p.art || {}, counts = art.rarityCounts || {};
+  const slots = [];
   for(const [rarity] of RARITIES.slice(0,5)){
     for(let i=1;i<=Number(counts[rarity]||0);i++){
-      const id=`${p.code}-${rarity}-${String(i).padStart(2,'0')}`;
-      const override=(art.cards||[]).find(c=>c.id===id||c.rarity===rarity&&Number(c.variant)===i)||{};
-      slots.push({id,rarity,variant:i,image:'',tokenIds:[],...override,quantity:0,records:[]});
+      const id = `${p.code}-${rarity}-${String(i).padStart(2,'0')}`;
+      const override = (art.cards || []).find(c => c.id === id || (c.rarity === rarity && Number(c.variant) === i)) || {};
+      slots.push({id, rarity, variant:i, image:'', tokenIds:[], quantity:0, records:[], ...override});
     }
   }
-  // 不明なNFTは適当な枠に混ぜず、別枠に残して情報確認可能にする。
-  const unknown=[];
+  const unknown = [];
   for(const n of artRecords(p)){
-    const token=String(n.identifier??'');
-    let found=slots.find(s=>Array.isArray(s.tokenIds)&&s.tokenIds.map(String).includes(token));
+    const token = String(n.identifier ?? '');
+    let found = slots.find(s => Array.isArray(s.tokenIds) && s.tokenIds.map(String).includes(token));
     if(!found){
-      const traits=Array.isArray(n.traits)?n.traits:[];
-      const trait=key=>traits.find(t=>normalize(t.trait_type)===key)?.value;
-      const rarity=String(trait('rarity')||'').toUpperCase();
-      const variant=Number(trait('artwork')??trait('variant')??trait('design'));
-      if(rarity&&Number.isSafeInteger(variant)&&variant>0)found=slots.find(s=>s.rarity===rarity&&s.variant===variant);
+      const traits = Array.isArray(n.traits) ? n.traits : [];
+      const trait = key => traits.find(t => normalize(t.trait_type) === key)?.value;
+      const rarity = String(trait('rarity') || '').toUpperCase();
+      const variant = Number(trait('artwork') ?? trait('variant') ?? trait('design'));
+      if(rarity && Number.isSafeInteger(variant) && variant > 0) found = slots.find(s => s.rarity === rarity && s.variant === variant);
     }
-    if(found){found.records.push(n);found.quantity+=amount(n)}
+    if(found){ found.records.push(n); found.quantity += amount(n); }
     else unknown.push({...n,id:`UNMATCHED-${token}`,rarity:'?',variant:token||'?',quantity:amount(n),records:[n]});
   }
-  return [...slots,...unknown];
+  return [...slots, ...unknown];
 }
-function showDetail(title,description,image){$('detailTitle').textContent=title;$('detailText').textContent=description;const src=safeImage(image);$('detailImage').classList.toggle('hidden',!src);if(src)$('detailImage').src=src;else $('detailImage').removeAttribute('src');$('detailDialog').showModal()}
+function showDetail(title, description, image){
+  $('detailTitle').textContent = title || t().detailFallback;
+  $('detailText').textContent = description || '';
+  const src = safeImage(image);
+  $('detailImage').classList.toggle('hidden', !src);
+  if(src) $('detailImage').src = src; else $('detailImage').removeAttribute('src');
+  $('detailDialog').showModal();
+}
 function makeTile({type,title,subtitle,status,count,image,owned,info}){
-  const b=create('button',`tile ${type}${owned?' owned':''}`);b.type='button';
-  const media=create('div','image');const src=owned?safeImage(image):'';
-  if(src){const img=create('img');img.src=src;img.alt=title;img.loading='lazy';media.append(img)}else media.append(create('span','question','?'));
-  media.append(create('span','qty','× '+displayQty(count)));
-  b.append(media,create('div','title',title),create('div','subtitle',subtitle),create('span','status',status));
-  b.addEventListener('click',()=>showDetail(title,info||status,src));return b;
-}
-function selectRoadStop(number,jump=false){
-  if(!state.catalog)return;
-  const next=state.catalog.stops[number-1];
-  if(!next)return;
-  state.selected=next.code;
-  document.querySelectorAll('.road-stop').forEach(el=>{
-    const chosen=Number(el.dataset.stop)===number;
-    el.classList.toggle('selected',chosen);
-    el.setAttribute('aria-pressed',String(chosen));
-  });
-  drawAll();
-  $('selectedLabel').textContent='選択中：'+next.name+'（'+next.stop+' / 47）';
-  scrollStop(number,true);
-  if(jump)$('gallery').scrollIntoView({behavior:'smooth'});
+  const b = create('button', `tile ${type}${owned ? ' owned' : ''}`);
+  b.type = 'button';
+  const media = create('div','image');
+  const src = owned ? safeImage(image) : '';
+  if(src){
+    const img = create('img');
+    img.src = src;
+    img.alt = title;
+    img.loading = 'lazy';
+    media.append(img);
+  }else{
+    media.append(create('span','question','?'));
+  }
+  media.append(create('span','qty','× ' + displayQty(count)));
+  b.append(media, create('div','title',title), create('div','subtitle',subtitle), create('span','status',status));
+  b.addEventListener('click',()=>showDetail(title, info || status, src));
+  return b;
 }
 function drawRoad(){
-  const road=$('road');
+  const road = $('road');
   road.replaceChildren();
-  const cur=state.catalog.currentStop;
+  const cur = state.catalog.currentStop;
   for(const p of state.catalog.stops){
-    const phase=p.stop===cur?'current':p.stop<cur?'past':'future';
-    const selected=p.code===state.selected;
-    const btn=create('button',`road-stop ${phase}${selected?' selected':''}`);
-    btn.type='button';
-    btn.dataset.stop=p.stop;
-    btn.setAttribute('aria-pressed',String(selected));
-    btn.setAttribute('aria-label',`${p.stop}番 ${p.name}。図鑑を表示`);
-    if(phase==='current'){
-      const car=create('img','truck');
-      car.src='https://ul.h3z.jp/Lu7ch0Ne.png';
-      car.alt='';
+    const phase = p.stop === cur ? 'current' : (p.stop < cur ? 'past' : 'future');
+    const selected = p.code === state.selected;
+    const btn = create('button', `road-stop ${phase}${selected ? ' selected' : ''}`);
+    btn.type = 'button';
+    btn.dataset.stop = p.stop;
+    btn.setAttribute('aria-pressed', String(selected));
+    btn.setAttribute('aria-label', t().roadAria(p));
+    if(phase === 'current'){
+      const car = create('img','truck');
+      car.src = 'https://ul.h3z.jp/Lu7ch0Ne.png';
+      car.alt = '';
       car.setAttribute('aria-hidden','true');
-      car.addEventListener('error',()=>{
-        if(car.isConnected)car.replaceWith(create('span','truck-fallback','🚚'));
-      },{once:true});
+      car.addEventListener('error',()=>{ if(car.isConnected) car.remove(); }, {once:true});
       btn.append(car);
     }
     btn.append(
-      create('span','road-dot',String(p.stop).padStart(2,'0')),
-      create('span','pref',p.name)
+      create('span','road-dot', stopText(p.stop)),
+      create('span','pref', prefMain(p)),
+      create('span','english', prefSub(p))
     );
     btn.addEventListener('click',()=>selectRoadStop(p.stop,false));
     road.append(btn);
   }
-  $('stopLabel').textContent=String(cur).padStart(2,'0')+' / 47';
-  $('mapStopLabel').textContent=String(cur).padStart(2,'0')+' / 47';
-  $('progressBar').style.width=(cur/47*100)+'%';
-  $('selectedLabel').textContent='選択中：'+current().name+'（'+current().stop+' / 47）';
+  $('stopLabel').textContent = stopText(cur) + ' / 47';
+  $('mapStopLabel').textContent = stopText(cur) + ' / 47';
+  $('progressBar').style.width = (cur/47*100) + '%';
+  $('selectedLabel').textContent = t().selected(current());
 }
-function drawAll(){
-  if(!state.catalog)return;
-  const p=current(),slots=artworkSlots(p),ticketList=state.catalog.stops;
-  const ownedTypes=slots.filter(s=>s.quantity>0&&s.rarity!=='?').length;
-  const allArts=state.catalog.stops.reduce((n,x)=>n+total(artRecords(x)),0);
-  const heldTicketTypes=ticketList.filter(x=>total(ticketRecords(x))>0).length;
-  const heldTickets=ticketList.reduce((n,x)=>n+total(ticketRecords(x)),0);
-  const targetCount=slots.filter(s=>s.rarity!=='?').length;
-  $('artTypes').textContent=displayQty(ownedTypes)+' / '+targetCount;
-  $('artQty').textContent=displayQty(allArts);$('ticketTypes').textContent=displayQty(heldTicketTypes)+' / 47';$('ticketQty').textContent=displayQty(heldTickets);
-  $('connect').textContent=state.wallet?state.wallet.slice(0,6)+'…'+state.wallet.slice(-4):'CONNECT WALLET';
-  $('message').className='notice'+(state.error?' err':'');
-  $('message').textContent=state.error||({unknown:'ウォレット未接続。所持枚数「—」は未確認です。',demo:'デモ表示です。実際の保有情報ではありません。',live:'ウォレット '+state.wallet.slice(0,8)+'…'+state.wallet.slice(-6)+' の保有情報を表示中。'}[state.mode]);
-  drawTickets();drawArtwork(p,slots,targetCount,ownedTypes);
+function selectRoadStop(number, jump=false){
+  if(!state.catalog) return;
+  const next = state.catalog.stops[number-1];
+  if(!next) return;
+  state.selected = next.code;
+  document.querySelectorAll('.road-stop').forEach(el => {
+    const chosen = Number(el.dataset.stop) === number;
+    el.classList.toggle('selected', chosen);
+    el.setAttribute('aria-pressed', String(chosen));
+  });
+  drawAll();
+  $('selectedLabel').textContent = t().selected(next);
+  scrollStop(number, true);
+  if(jump) $('gallery').scrollIntoView({behavior:'smooth'});
 }
 function drawTickets(){
-  const grid=$('ticketGrid');grid.replaceChildren();
+  const grid = $('ticketGrid');
+  grid.replaceChildren();
   for(const p of state.catalog.stops){
-    const rec=ticketRecords(p),count=total(rec),owned=valid()&&count>0;
-    if(state.ticketFilter==='owned'&&!owned||state.ticketFilter==='missing'&&owned)continue;
-    if(state.search&&!`${p.name} ${p.code} ${p.stop}`.toLowerCase().includes(state.search))continue;
-    const released=p.ticket?.status==='released';const status=!released?'未公開':!valid()?'未確認':owned?'COLLECTED':'未所持';
-    const image=rec[0]?.image_url||p.ticket?.image||'';
-    grid.append(makeTile({type:'ticket',title:String(p.stop).padStart(2,'0')+' '+p.name,subtitle:p.code,status,count,image,owned,info:`${status} / 所持枚数：${displayQty(count)}`}));
+    const rec = ticketRecords(p), count = total(rec), owned = valid() && count > 0;
+    if(state.ticketFilter === 'owned' && !owned) continue;
+    if(state.ticketFilter === 'missing' && owned) continue;
+    if(state.search && !`${p.name} ${p.code} ${p.stop}`.toLowerCase().includes(state.search)) continue;
+    const released = p.ticket?.status === 'released';
+    const status = !released ? t().status.unreleased : !valid() ? t().status.unchecked : owned ? t().status.collected : t().status.missing;
+    const image = rec[0]?.image_url || p.ticket?.image || '';
+    grid.append(makeTile({
+      type:'ticket',
+      title:t().ticketTitle(p),
+      subtitle:prefSub(p),
+      status,
+      count,
+      image,
+      owned,
+      info:t().ticketInfo(status, count)
+    }));
   }
-  if(!grid.children.length)grid.append(create('p','empty','表示するチケットがありません。'));
+  if(!grid.children.length) grid.append(create('p','empty',t().emptyTickets));
 }
-function drawArtwork(p,slots,count,ownedCount){
-  $('galleryTitle').textContent='🎨 NFTアート図鑑 — '+p.name;
-  $('collectionPulse').textContent=`${p.name} ${displayQty(ownedCount)} / ${count} 種 · ${p.art?.status==='released'?'公開中':'公開準備中'}`;
-  $('galleryNote').textContent='保有しているNFTだけアート画像を表示。未収集は「？」。作品別のtokenIdsは正式な発行情報が確定したらJSONに登録します。';
-  const root=$('rarityGroups');root.replaceChildren();
-  if(!count&&!slots.length){root.append(create('p','empty','この県のアート図鑑はまだ準備中です。'));return}
-  for(const [rarity,label] of RARITIES){
-    const items=slots.filter(s=>s.rarity===rarity);if(!items.length)continue;
-    const shown=items.filter(s=>state.artFilter==='all'||(state.artFilter==='owned'?s.quantity>0:s.quantity===0));
-    if(!shown.length)continue;
-    const sec=create('div','rarity'),head=create('div','rarityHead'),name=create('div','rarityName');
-    const badge=create('b','',rarity);name.append(badge,document.createTextNode(label));
-    head.append(name,create('span','rarityCount',`${items.filter(s=>s.quantity>0).length} / ${items.length} 種`));
-    const grid=create('div','grid');
+function drawArtwork(p, slots, count, ownedCount){
+  $('galleryTitle').textContent = `${t().galleryTitle} — ${prefMain(p)}`;
+  $('collectionPulse').textContent = t().pulse(prefMain(p), ownedCount, count, p.art?.status === 'released');
+  $('galleryNote').textContent = t().galleryNote;
+  const root = $('rarityGroups');
+  root.replaceChildren();
+  if(!count && !slots.length){ root.append(create('p','empty',t().emptyPreparing)); return; }
+  for(const [rarity, labelEn] of RARITIES){
+    const items = slots.filter(s => s.rarity === rarity);
+    if(!items.length) continue;
+    const shown = items.filter(s => state.artFilter === 'all' || (state.artFilter === 'owned' ? s.quantity > 0 : s.quantity === 0));
+    if(!shown.length) continue;
+    const sec = create('div','rarity');
+    const head = create('div','rarityHead');
+    const name = create('div','rarityName');
+    const badge = create('b','',rarity);
+    const label = state.lang === 'ja' ? (rarity === '?' ? '確認待ち' : labelEn) : labelEn;
+    name.append(badge, document.createTextNode(label));
+    head.append(name, create('span','rarityCount', t().rarityCount(items.filter(s=>s.quantity>0).length, items.length)));
+    const grid = create('div','grid');
     for(const slot of shown){
-      const owned=valid()&&slot.quantity>0,n=slot.records[0];
-      const title=slot.rarity==='?'?'確認待ち NFT':`${rarity} ${String(slot.variant).padStart(2,'0')}`;
-      grid.append(makeTile({type:'art',title,subtitle:slot.id,status:owned?'COLLECTED':!valid()?'未確認':p.art?.status==='released'?'未収集':'公開予定',count:slot.quantity,image:n?.image_url||slot.image||'',owned,info:`${p.name} / ${rarity} / 所持枚数：${displayQty(slot.quantity)}`}));
+      const owned = valid() && slot.quantity > 0;
+      const n = slot.records[0];
+      const title = slot.rarity === '?' ? t().status.unmatched : t().artSlotTitle(slot,p);
+      const subtitle = slot.rarity === '?' ? slot.id : t().artSubtitle(slot);
+      const status = owned ? t().status.collected : !valid() ? t().status.unchecked : (p.art?.status === 'released' ? t().status.missing : t().status.preview);
+      grid.append(makeTile({
+        type:'art', title, subtitle, status, count:slot.quantity, image:n?.image_url || slot.image || '', owned,
+        info:t().artInfo(prefMain(p), slot.rarity, slot.quantity)
+      }));
     }
-    sec.append(head,grid);root.append(sec);
+    sec.append(head, grid);
+    root.append(sec);
   }
-  if(!root.children.length)root.append(create('p','empty','この絞り込みに該当するNFTはありません。'));
+  if(!root.children.length) root.append(create('p','empty', t().emptyArt));
+}
+function drawAll(){
+  if(!state.catalog) return;
+  const p = current();
+  const slots = artworkSlots(p);
+  const ticketList = state.catalog.stops;
+  const ownedTypes = slots.filter(s => s.quantity > 0 && s.rarity !== '?').length;
+  const allArts = state.catalog.stops.reduce((n,x)=>n + total(artRecords(x)),0);
+  const heldTicketTypes = ticketList.filter(x => total(ticketRecords(x)) > 0).length;
+  const heldTickets = ticketList.reduce((n,x)=>n + total(ticketRecords(x)),0);
+  const targetCount = slots.filter(s => s.rarity !== '?').length;
+  $('artTypes').textContent = `${displayQty(ownedTypes)} / ${targetCount}`;
+  $('artQty').textContent = displayQty(allArts);
+  $('ticketTypes').textContent = `${displayQty(heldTicketTypes)} / 47`;
+  $('ticketQty').textContent = displayQty(heldTickets);
+  $('connect').textContent = state.wallet ? `${state.wallet.slice(0,6)}…${state.wallet.slice(-4)}` : t().connect;
+  $('message').className = 'notice' + (state.error ? ' err' : '');
+  $('message').textContent = state.error || ({unknown:t().message.unknown, demo:t().message.demo, live:t().message.live(state.wallet)})[state.mode] || t().loading;
+  drawTickets();
+  drawArtwork(p, slots, targetCount, ownedTypes);
 }
 async function loadWallet(address){
-  if(!/^0x[0-9a-fA-F]{40}$/.test(address)){state.error='公開ウォレットアドレスの形式が正しくありません。';drawAll();return}
-  state.wallet=address;state.mode='unknown';state.art=[];state.tickets=[];state.error='';$('walletDialog').close();
-  const base=state.catalog.settings?.apiBase||'';
-  if(!base){state.error='API接続先が未設定です。journey.jsonのsettings.apiBaseを確認してください。';drawAll();return}
-  $('message').textContent='OpenSeaから保有NFTを確認中…';
+  if(!/^0x[0-9a-fA-F]{40}$/.test(address)){
+    state.error = t().message.invalid; drawAll(); return;
+  }
+  state.wallet = address; state.mode = 'unknown'; state.art = []; state.tickets = []; state.error = ''; $('walletDialog').close();
+  const base = state.catalog?.settings?.apiBase || '';
+  if(!base){ state.error = t().message.noApi; drawAll(); return; }
+  $('message').textContent = t().message.loadingOwned;
   try{
-    const r=await fetch(base.replace(/\/$/,'')+'/api/owned?address='+encodeURIComponent(address),{cache:'no-store'});
-    const d=await r.json();
-    if(!r.ok||d.ok!==true||!Array.isArray(d.art)||!Array.isArray(d.tickets))throw Error(d.error||'API error');
-    state.art=d.art;state.tickets=d.tickets;state.mode='live';
-  }catch(e){state.error='NFTの取得に失敗しました：'+e.message+'。未取得のNFTを0枚として扱いません。'}
+    const r = await fetch(base.replace(/\/$/,'') + '/api/owned?address=' + encodeURIComponent(address), {cache:'no-store'});
+    const d = await r.json();
+    if(!r.ok || d.ok !== true || !Array.isArray(d.art) || !Array.isArray(d.tickets)) throw Error(d.error || 'API error');
+    state.art = d.art; state.tickets = d.tickets; state.mode = 'live';
+  }catch(e){
+    state.error = t().message.fetchFail(e.message);
+  }
   drawAll();
 }
 async function init(){
+  renderStaticTexts();
+  updateLangButtons();
+  document.documentElement.lang = t().language;
   try{
-    const r=await fetch('./data/journey.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);
-    const data=await r.json();
-    if(!Array.isArray(data.stops)||data.stops.length!==47||data.stops.some((p,i)=>p.stop!==i+1)||!Number.isInteger(data.currentStop)||data.currentStop<1||data.currentStop>47)throw Error('47県の順番またはcurrentStopが正しくありません');
-    state.catalog=data;state.selected=data.stops[data.currentStop-1].code;drawRoad();drawAll();
-    requestAnimationFrame(()=>scrollStop(data.currentStop,false));
-  }catch(e){$('message').className='notice err';$('message').textContent='journey.jsonを読み込めません：'+e.message}
+    const r = await fetch('./data/journey.json', {cache:'no-store'});
+    if(!r.ok) throw Error('HTTP ' + r.status);
+    const data = await r.json();
+    if(!Array.isArray(data.stops) || data.stops.length !== 47 || data.stops.some((p,i)=>p.stop !== i+1) || !Number.isInteger(data.currentStop) || data.currentStop < 1 || data.currentStop > 47) throw Error('47 prefecture order or currentStop is invalid');
+    state.catalog = data;
+    state.selected = data.stops[data.currentStop - 1].code;
+    drawRoad();
+    drawAll();
+    requestAnimationFrame(()=>scrollStop(data.currentStop, false));
+  }catch(e){
+    $('message').className = 'notice err';
+    $('message').textContent = t().message.journeyFail(e.message);
+  }
 }
-function scrollStop(n,smooth=true){
-  const rail=$('roadScroll');
-  const cell=rail.querySelector(`.road-stop[data-stop="${n}"]`);
-  if(!cell)return;
-  const center=cell.offsetLeft+cell.offsetWidth/2-rail.clientWidth/2;
-  rail.scrollTo({left:Math.max(0,center),behavior:smooth?'smooth':'instant'});
+function scrollStop(n, smooth=true){
+  const rail = $('roadScroll');
+  const cell = rail.querySelector(`.road-stop[data-stop="${n}"]`);
+  if(!cell) return;
+  const center = cell.offsetLeft + cell.offsetWidth/2 - rail.clientWidth/2;
+  rail.scrollTo({left:Math.max(0,center), behavior:smooth ? 'smooth' : 'auto'});
 }
-$('prev').onclick=()=>selectRoadStop(Math.max(1,current().stop-1));
-$('next').onclick=()=>selectRoadStop(Math.min(47,current().stop+1));
-$('now').onclick=()=>selectRoadStop(state.catalog.currentStop);
-$('connect').onclick=()=>$('walletDialog').showModal();
-$('refresh').onclick=()=>state.wallet?loadWallet(state.wallet):$('walletDialog').showModal();
-$('closeWallet').onclick=()=>$('walletDialog').close();
-$('closeDetail').onclick=()=>$('detailDialog').close();
-$('addressButton').onclick=()=>loadWallet($('address').value.trim());
-$('address').onkeydown=e=>{if(e.key==='Enter')loadWallet(e.target.value.trim())};
-$('walletButton').onclick=async()=>{try{if(!window.ethereum?.request)throw Error('ウォレットアプリが見つかりません。公開アドレス入力をお試しください。');const addresses=await window.ethereum.request({method:'eth_requestAccounts'});if(addresses[0])await loadWallet(addresses[0])}catch(e){state.error=e.message;$('walletDialog').close();drawAll()}};
-$('demoButton').onclick=()=>{state.mode='demo';state.wallet='';state.error='';state.art=[];state.tickets=[];$('walletDialog').close();drawAll()};
-$('ticketSearch').oninput=e=>{state.search=e.target.value.trim().toLowerCase();drawAll()};
-document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{state[b.dataset.kind+'Filter']=b.dataset.filter;document.querySelectorAll(`.filter[data-kind="${b.dataset.kind}"]`).forEach(x=>x.classList.toggle('active',x===b));drawAll()});
-document.querySelectorAll('dialog').forEach(d=>d.onclick=e=>{if(e.target===d)d.close()});
+$('prev').onclick = () => selectRoadStop(Math.max(1, current().stop - 1));
+$('next').onclick = () => selectRoadStop(Math.min(47, current().stop + 1));
+$('now').onclick = () => selectRoadStop(state.catalog.currentStop);
+$('connect').onclick = () => $('walletDialog').showModal();
+$('refresh').onclick = () => state.wallet ? loadWallet(state.wallet) : $('walletDialog').showModal();
+$('closeWallet').onclick = () => $('walletDialog').close();
+$('closeDetail').onclick = () => $('detailDialog').close();
+$('addressButton').onclick = () => loadWallet($('address').value.trim());
+$('address').onkeydown = e => { if(e.key === 'Enter') loadWallet(e.target.value.trim()); };
+$('walletButton').onclick = async () => {
+  try{
+    if(!window.ethereum?.request) throw Error(state.lang === 'ja' ? 'ウォレットアプリが見つかりません。公開アドレス入力をお試しください。' : 'No wallet app was found. Please try the public address field.');
+    const addresses = await window.ethereum.request({method:'eth_requestAccounts'});
+    if(addresses[0]) await loadWallet(addresses[0]);
+  }catch(e){
+    state.error = e.message; $('walletDialog').close(); drawAll();
+  }
+};
+$('demoButton').onclick = () => { state.mode='demo'; state.wallet=''; state.error=''; state.art=[]; state.tickets=[]; $('walletDialog').close(); drawAll(); };
+$('ticketSearch').oninput = e => { state.search = e.target.value.trim().toLowerCase(); drawAll(); };
+document.querySelectorAll('.filter').forEach(b => b.onclick = () => {
+  state[b.dataset.kind + 'Filter'] = b.dataset.filter;
+  document.querySelectorAll(`.filter[data-kind="${b.dataset.kind}"]`).forEach(x => x.classList.toggle('active', x === b));
+  drawAll();
+});
+$('langJa').onclick = () => setLang('ja');
+$('langEn').onclick = () => setLang('en');
+document.querySelectorAll('dialog').forEach(d => d.onclick = e => { if(e.target === d) d.close(); });
 init();
 </script>
 </body>
