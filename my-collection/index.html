@@ -89,58 +89,123 @@ dialog .btn{display:block;width:100%;margin:9px 0}
 @media(max-width:370px){.brand{font-size:11px}#connect{max-width:120px;font-size:11px;padding:8px}.tile .status{font-size:7px}}
 @media(prefers-reduced-motion:reduce){.truck{animation:none}}
 
-/* V5: 写真2を参考にした、小さな丸マスの折り返し式すごろく */
+/* V6：前版の青い背景・明るいカードのトーンを保持 */
+body{background:linear-gradient(180deg,#17324d 0%,#112940 52%,#0c1d31 100%)}
+header{background:#10253dec;border-color:#38556c}
+.box{background:linear-gradient(180deg,#1c3957,#142d46);border-color:#405c76;border-radius:17px}
+.stat{background:linear-gradient(180deg,#1c3957,#142c45);border-color:#46617b;border-radius:14px}
+.notice{background:#214959;border-color:#43867c}
+.tile{background:linear-gradient(180deg,#1c3956,#17314d);border-color:#45637b}
+.hero .desc{color:#d0dfeb}
+.road-stop .truck-fallback{
+  display:block;position:absolute;top:-33px;left:12px;
+  font-size:29px;line-height:33px;pointer-events:none;
+}
+/* V6 : 横一列に小さな丸マスが続くスライド式すごろく */
 .route-board{
-  margin:14px 0 12px;
-  background:#b5d9ca;
-  border:3px solid #101e28;
-  border-radius:4px;
-  padding:12px 11px 13px;
-  box-shadow:5px 5px 0 #f1cf75;
-  color:#132129;
+  margin:13px 0 12px;
+  padding:12px 12px 10px;
+  border:2px solid #182c31;
+  border-radius:11px;
+  color:#142936;
+  background:#add8c8;
+  box-shadow:3px 4px 0 #f7d48d;
 }
 .route-board-head{
   display:flex;align-items:center;justify-content:space-between;gap:8px;
-  font-weight:900;font-size:13px;margin:1px 0 5px;
+  font-size:12px;font-weight:900;margin-bottom:5px;
 }
-.route-board-head small{font-size:11px;letter-spacing:.12em}
-.route-map{position:relative;width:100%;aspect-ratio:600 / 770}
-.route-map svg{display:block;width:100%;height:100%;overflow:visible}
-.track-outline{fill:none;stroke:#131d22;stroke-width:15;stroke-linejoin:round;stroke-linecap:round}
-.track-inner{fill:none;stroke:#fff3d8;stroke-width:9;stroke-linejoin:round;stroke-linecap:round}
-.track-traveled{fill:none;stroke:#eb674d;stroke-width:9;stroke-linejoin:round;stroke-linecap:round}
-.map-stop{cursor:pointer;outline:none}
-.map-stop .node{fill:#fff4db;stroke:#131d22;stroke-width:5;transition:fill .16s}
-.map-stop.past .node{fill:#f2c76f}
-.map-stop.current .node{fill:#eb6550;stroke:white;stroke-width:6}
-.map-stop.selected .node{stroke:#fafbff;stroke-width:7;filter:drop-shadow(0 0 3px #193c37)}
-.map-stop .node-label{font:700 22px/1 monospace;fill:#192b32;pointer-events:none;text-anchor:middle;dominant-baseline:central}
-.map-stop.current .node-label{fill:#fff}
-.map-stop .hit-area{fill:transparent;stroke:transparent;stroke-width:0}
-.map-stop:focus-visible .node{stroke:#08755a;stroke-width:8}
-.map-truck{
-  position:absolute;width:10.5%;height:auto;max-width:64px;
-  transform:translate(-48%,-89%);
-  image-rendering:pixelated;
-  filter:drop-shadow(2px 3px 0 #fff6e8);
+.route-board-head small{font-size:10px;letter-spacing:.11em;color:#345650}
+.road-slider{
+  overflow-x:auto;overflow-y:hidden;
+  scroll-behavior:smooth;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-x pan-y;
+  scrollbar-width:thin;
+  scrollbar-color:#5c897d #cbe3d6;
+  padding:41px 6px 8px;
+  scroll-padding-inline:32px;
+}
+.road-slider::-webkit-scrollbar{height:5px}
+.road-slider::-webkit-scrollbar-thumb{background:#63958b;border-radius:9px}
+.road{
+  display:flex;align-items:flex-start;gap:8px;
+  position:relative;width:max-content;
+  min-height:89px;padding:1px 7px 0;
+}
+.road-stop{
+  position:relative;flex:0 0 54px;width:54px;
+  border:0;padding:0;background:transparent;
+  text-align:center;color:#172b35;z-index:0;
+}
+.road-stop::after{
+  content:'';position:absolute;
+  top:19px;left:calc(50% + 18px);
+  width:calc(100% - 17px);height:8px;
+  background:#fff3d7;
+  border-top:2px solid #16252b;border-bottom:2px solid #16252b;
+  box-sizing:border-box;z-index:-1;
+}
+.road-stop.past::after{background:#ec7057}
+.road-stop:last-child::after{display:none}
+.road-dot{
+  display:grid;place-items:center;
+  width:42px;height:42px;margin:0 auto;
+  border-radius:50%;border:3px solid #19262c;
+  background:#fff4df;color:#1c2a31;
+  font:800 13px/1 monospace;
+  box-shadow:0 2px 0 #20362c28;
+}
+.road-stop.past .road-dot{background:#f4cf83}
+.road-stop.current .road-dot{
+  background:#ed755f;
+  border-color:#fffaf0;
+  color:#fff;
+  outline:2px solid #243b41;
+}
+.road-stop.selected .road-dot{box-shadow:0 0 0 3px #257d6e,0 1px 0 #0002}
+.road-stop:focus-visible .road-dot{outline:3px solid #096552;outline-offset:3px}
+.road-stop .pref{
+  display:block;margin-top:7px;
+  font-size:10px;font-weight:850;
+  white-space:nowrap;
+}
+.road-stop .english{display:none}
+.road-stop .truck{
+  position:absolute;
+  width:53px;height:39px;
+  top:-37px;left:1px;
+  object-fit:contain;image-rendering:pixelated;
+  filter:drop-shadow(1px 2px 0 #fff9e5);
   pointer-events:none;
-  animation:truck-hop 1.6s steps(2,end) infinite;
+  animation:truck-bob 1.6s steps(2,end) infinite;
 }
-@keyframes truck-hop{50%{transform:translate(-48%,-96%)}}
-.map-explain{font-size:12px;line-height:1.5;color:#b9cddd;margin:10px 0 2px}
-.sugoroku-options{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
-.sugoroku-options .btn{font-size:12px;padding:8px 10px}
-#selectedLabel{font-size:13px}
+@keyframes truck-bob{50%{transform:translateY(-3px)}}
+.road-hint{font-size:10px;color:#335d54;text-align:center;margin-top:3px}
+.road-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.road-footer .soft{font-size:12px}
+.sugoroku-options{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.sugoroku-options .btn{padding:7px 11px;font-size:12px}
+/* 旧版の巨大なSVGマップ用のスタイルは無効化 */
 @media(max-width:600px){
-  .route-board{padding:9px 8px 10px;margin:12px 0 10px}
-  .route-board-head{font-size:12px}
-  .route-board-head small{font-size:10px}
   .box{padding:12px}
   .box h2{font-size:19px}
-  .navbuttons button{padding:7px 11px}
-  .map-explain{font-size:11px}
+  .box .soft{font-size:11px}
+  .navbuttons{gap:5px}
+  .navbuttons button{padding:7px 10px;font-size:12px}
+  .route-board{padding:10px 8px 8px;margin:11px 0}
+  .road-stop{flex-basis:50px;width:50px}
+  .road{gap:7px}
+  .road-stop::after{width:calc(100% - 15px)}
+  .road-dot{width:39px;height:39px;font-size:12px}
+  .road-stop .pref{font-size:10px}
+  .road-stop .truck{width:51px;height:38px;top:-37px;left:0}
 }
-@media(prefers-reduced-motion:reduce){.map-truck{animation:none}}
+@media(prefers-reduced-motion:reduce){
+  .road-stop .truck{animation:none}
+  .road-slider{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
@@ -151,8 +216,8 @@ dialog .btn{display:block;width:100%;margin:9px 0}
     <div class="flex">
       <div>
         <div class="eyebrow">JAPAN 47 ROAD TRIP</div>
-        <h2>日本47の旅 <span id="stopLabel">01 / 47</span></h2>
-        <div class="soft">丸いマスをタップすると、その県の図鑑へ移動します。</div>
+        <h2>すごろくロード <span id="stopLabel">01 / 47</span></h2>
+        <div class="soft">丸いマスをタップして県を選択。横にスライドして先へ進めます。</div>
       </div>
       <div class="navbuttons">
         <button class="btn dark" id="prev" aria-label="ひとつ前の県を選択">◀</button>
@@ -160,15 +225,15 @@ dialog .btn{display:block;width:100%;margin:9px 0}
         <button class="btn dark" id="next" aria-label="次の県を選択">▶</button>
       </div>
     </div>
-    <div class="route-board" id="roadScroll">
+    <div class="route-board">
       <div class="route-board-head">
-        <span>旅するたこ焼き 🚚</span>
+        <span>旅するたこ焼き</span>
         <small>停留所 <span id="mapStopLabel">01 / 47</span></small>
       </div>
-      <div class="route-map" id="mapStage">
-        <svg id="road" viewBox="0 0 600 770" role="group" aria-label="47都道府県のすごろく。丸いマスを押して県を選択"></svg>
-        <img class="map-truck" id="mapTruck" src="https://ul.h3z.jp/Lu7ch0Ne.png" alt="" aria-hidden="true">
+      <div class="road-slider" id="roadScroll" aria-label="47都道府県の横一列すごろく。左右にスワイプして進む">
+        <div id="road" class="road"></div>
       </div>
+      <div class="road-hint">◀ 左右にスワイプして47都道府県を進もう ▶</div>
     </div>
     <div class="flex">
       <span class="soft" id="selectedLabel"></span>
@@ -238,67 +303,50 @@ function makeTile({type,title,subtitle,status,count,image,owned,info}){
   b.append(media,create('div','title',title),create('div','subtitle',subtitle),create('span','status',status));
   b.addEventListener('click',()=>showDetail(title,info||status,src));return b;
 }
-const SVG_NS='http://www.w3.org/2000/svg';
-const ROAD_X0=55, ROAD_DX=98, ROAD_Y0=106, ROAD_DY=88;
-function svgNode(tag,attrs={}){
-  const node=document.createElementNS(SVG_NS,tag);
-  Object.entries(attrs).forEach(([key,value])=>node.setAttribute(key,String(value)));
-  return node;
-}
-function roadPoint(stop){
-  const i=stop-1, row=Math.floor(i/6), col=i%6;
-  return {
-    x:ROAD_X0+(row%2===0?col:5-col)*ROAD_DX,
-    y:ROAD_Y0+row*ROAD_DY
-  };
-}
 function selectRoadStop(number,jump=false){
   if(!state.catalog)return;
   const next=state.catalog.stops[number-1];
   if(!next)return;
   state.selected=next.code;
-  drawRoad();drawAll();
+  document.querySelectorAll('.road-stop').forEach(el=>{
+    const chosen=Number(el.dataset.stop)===number;
+    el.classList.toggle('selected',chosen);
+    el.setAttribute('aria-pressed',String(chosen));
+  });
+  drawAll();
+  $('selectedLabel').textContent='選択中：'+next.name+'（'+next.stop+' / 47）';
+  scrollStop(number,true);
   if(jump)$('gallery').scrollIntoView({behavior:'smooth'});
 }
 function drawRoad(){
   const road=$('road');
   road.replaceChildren();
-  const stops=state.catalog.stops;
   const cur=state.catalog.currentStop;
-  const points=stops.map(p=>roadPoint(p.stop));
-  const allPoints=points.map(pt=>`${pt.x},${pt.y}`).join(' ');
-  const traveled=points.slice(0,cur).map(pt=>`${pt.x},${pt.y}`).join(' ');
-  road.append(
-    svgNode('polyline',{points:allPoints,class:'track-outline'}),
-    svgNode('polyline',{points:allPoints,class:'track-inner'})
-  );
-  if(cur>1)road.append(svgNode('polyline',{points:traveled,class:'track-traveled'}));
-  for(const p of stops){
-    const pt=roadPoint(p.stop);
+  for(const p of state.catalog.stops){
     const phase=p.stop===cur?'current':p.stop<cur?'past':'future';
-    const selected=p.code===state.selected?' selected':'';
-    const g=svgNode('g',{
-      class:`map-stop ${phase}${selected}`,
-      role:'button',tabindex:0,
-      'aria-label':`${p.stop}番 ${p.name}の図鑑を表示`
-    });
-    const title=svgNode('title');
-    title.textContent=`${p.stop} ${p.name} / ${p.code}`;
-    const circle=svgNode('circle',{cx:pt.x,cy:pt.y,r:25,class:'node'});
-    const label=svgNode('text',{x:pt.x,y:pt.y+1,class:'node-label'});
-    label.textContent=String(p.stop).padStart(2,'0');
-    const hit=svgNode('circle',{cx:pt.x,cy:pt.y,r:40,class:'hit-area'});
-    g.append(title,circle,label,hit);
-    g.addEventListener('click',()=>selectRoadStop(p.stop,true));
-    g.addEventListener('keydown',e=>{
-      if(e.key==='Enter'||e.key===' '){e.preventDefault();selectRoadStop(p.stop,true);}
-    });
-    road.append(g);
+    const selected=p.code===state.selected;
+    const btn=create('button',`road-stop ${phase}${selected?' selected':''}`);
+    btn.type='button';
+    btn.dataset.stop=p.stop;
+    btn.setAttribute('aria-pressed',String(selected));
+    btn.setAttribute('aria-label',`${p.stop}番 ${p.name}。図鑑を表示`);
+    if(phase==='current'){
+      const car=create('img','truck');
+      car.src='https://ul.h3z.jp/Lu7ch0Ne.png';
+      car.alt='';
+      car.setAttribute('aria-hidden','true');
+      car.addEventListener('error',()=>{
+        if(car.isConnected)car.replaceWith(create('span','truck-fallback','🚚'));
+      },{once:true});
+      btn.append(car);
+    }
+    btn.append(
+      create('span','road-dot',String(p.stop).padStart(2,'0')),
+      create('span','pref',p.name)
+    );
+    btn.addEventListener('click',()=>selectRoadStop(p.stop,false));
+    road.append(btn);
   }
-  const truckPosition=roadPoint(cur);
-  const truck=$('mapTruck');
-  truck.style.left=`${truckPosition.x/600*100}%`;
-  truck.style.top=`${truckPosition.y/770*100}%`;
   $('stopLabel').textContent=String(cur).padStart(2,'0')+' / 47';
   $('mapStopLabel').textContent=String(cur).padStart(2,'0')+' / 47';
   $('progressBar').style.width=(cur/47*100)+'%';
@@ -378,8 +426,11 @@ async function init(){
   }catch(e){$('message').className='notice err';$('message').textContent='journey.jsonを読み込めません：'+e.message}
 }
 function scrollStop(n,smooth=true){
-  if(!state.catalog)return;
-  if(smooth)selectRoadStop(n,false);
+  const rail=$('roadScroll');
+  const cell=rail.querySelector(`.road-stop[data-stop="${n}"]`);
+  if(!cell)return;
+  const center=cell.offsetLeft+cell.offsetWidth/2-rail.clientWidth/2;
+  rail.scrollTo({left:Math.max(0,center),behavior:smooth?'smooth':'instant'});
 }
 $('prev').onclick=()=>selectRoadStop(Math.max(1,current().stop-1));
 $('next').onclick=()=>selectRoadStop(Math.min(47,current().stop+1));
