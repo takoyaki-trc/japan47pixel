@@ -1,1322 +1,146 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10233d">
-<title>TRAVELING TAKOYAKI — Japan 47 Journey</title>
-<meta name="description" content="A pixel-art NFT journey across Japan's 47 prefectures.">
-
-<style>
-:root{
-  --ink:#11131a;
-  --navy:#10233d;
-  --cream:#fff4d8;
-  --paper:#fffdf5;
-  --red:#f04438;
-  --yellow:#ffc928;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--cream);
-  color:var(--ink);
-  font-family:"Courier New",monospace;
-}
-button,input,select{font:inherit}
-button{cursor:pointer}
-button:focus-visible,a:focus-visible{
-  outline:3px solid #149cff;
-  outline-offset:3px;
-}
-img{max-width:100%}
-h1,h2,h3{
-  font-weight:900;
-  line-height:1.12;
-}
-h1{font-size:clamp(30px,6vw,58px)}
-h2{font-size:clamp(23px,4vw,36px)}
-p{
-  font-family:Arial,sans-serif;
-  font-size:14px;
-  line-height:1.7;
-}
-a{color:inherit}
-[hidden]{display:none!important}
-.eyebrow{
-  color:var(--red);
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-.site-header{
-  background:var(--ink);
-  color:white;
-  border-bottom:5px solid var(--yellow);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:15px 18px;
-  gap:12px;
-}
-.brand{
-  color:white;
-  text-decoration:none;
-  font-size:17px;
-  font-weight:900;
-  line-height:1.05;
-}
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.header-kicker{
-  font-size:10px;
-  color:var(--yellow);
-}
-.lang-switch{
-  border:2px solid white;
-  background:transparent;
-  color:white;
-  padding:7px 10px;
-  font-size:11px;
-}
-.hero{
-  background:#149cff;
-  border-bottom:4px solid var(--ink);
-}
-.hero-image{
-  display:block;
-  width:100%;
-  max-height:360px;
-  object-fit:cover;
-  image-rendering:pixelated;
-}
-.hero-copy{
-  background-color:var(--cream);
-  background-image:radial-gradient(#c9b88c 1px,transparent 1px);
-  background-size:18px 18px;
-  text-align:center;
-  padding:30px 16px;
-}
-.hero-copy h1{margin:12px 0}
-.hero-copy p{max-width:550px;margin:auto}
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  background:var(--yellow);
-  border-bottom:4px solid var(--ink);
-}
-.stats>div{
-  text-align:center;
-  padding:14px 5px;
-  border-right:2px solid var(--ink);
-}
-.stats>div:last-child{border:0}
-.stats strong{
-  display:block;
-  font-size:clamp(17px,3vw,26px);
-}
-.stats small{
-  display:block;
-  font-size:9px;
-  font-weight:900;
-}
-.section-tabs{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:8px;
-  padding:15px;
-  max-width:1100px;
-  margin:auto;
-}
-.section-tabs button{
-  border:3px solid var(--ink);
-  background:var(--paper);
-  box-shadow:3px 3px 0 var(--ink);
-  padding:13px 5px;
-  font-size:11px;
-  font-weight:900;
-}
-.section-tabs button.active{
-  background:var(--red);
-  color:white;
-}
-.page{
-  max-width:1100px;
-  margin:auto;
-  padding:22px 15px 38px;
-}
-.page>h2{margin:10px 0 12px}
-.feature{
-  background:var(--red);
-  color:white;
-  border:3px solid var(--ink);
-  box-shadow:5px 5px 0 var(--ink);
-  padding:17px;
-  margin:20px 0;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 110px;
-  gap:12px;
-  align-items:center;
-}
-.feature .eyebrow{color:#ffe59e}
-.feature h3{font-size:22px;margin:10px 0}
-.feature img{
-  width:100%;
-  image-rendering:pixelated;
-}
-.stamp{
-  display:inline-block;
-  border:2px solid currentColor;
-  padding:5px 7px;
-  font-size:10px;
-  font-weight:900;
-  margin:4px 3px 0 0;
-}
-.filters{
-  display:grid;
-  gap:9px;
-  margin:20px 0 12px;
-}
-.filters input,.filters select{
-  width:100%;
-  min-width:0;
-  padding:12px;
-  border:2px solid var(--ink);
-  background:white;
-  font-size:12px;
-}
-.result-count{
-  font-size:11px;
-  font-weight:bold;
-}
-.book-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:8px;
-  margin:15px 0;
-}
-.book-tile{
-  min-width:0;
-  padding:4px;
-  background:var(--paper);
-  border:2px solid var(--ink);
-  box-shadow:2px 2px 0 var(--ink);
-  text-align:center;
-  color:var(--ink);
-}
-.book-tile.selected{
-  border-color:var(--red);
-  box-shadow:2px 2px 0 var(--red);
-}
-.book-tile .thumb{
-  width:100%;
-  aspect-ratio:1;
-  display:grid;
-  place-items:center;
-  background:#e8dfcd;
-  overflow:hidden;
-}
-.book-tile .thumb img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  background:var(--navy);
-  image-rendering:pixelated;
-}
-.book-tile .lock{
-  color:#978971;
-  font-size:24px;
-}
-.book-tile .name{
-  display:block;
-  margin:5px 0 2px;
-  font-size:clamp(8px,2.2vw,11px);
-  font-weight:900;
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-}
-.detail{
-  border:3px solid var(--ink);
-  background:var(--paper);
-  padding:18px;
-  margin:20px 0;
-  overflow-wrap:anywhere;
-}
-.detail h3{font-size:19px}
-.detail img{
-  display:block;
-  max-width:270px;
-  max-height:260px;
-  width:100%;
-  object-fit:contain;
-  background:var(--navy);
-  margin:15px auto;
-  image-rendering:pixelated;
-}
-.status{
-  color:#bf3228;
-  font-weight:900;
-}
-.action-link{
-  display:inline-block;
-  padding:13px 16px;
-  background:var(--navy);
-  color:white;
-  text-decoration:none;
-  font-size:12px;
-  font-weight:900;
-  border:2px solid var(--ink);
-  margin:10px 0;
-}
-.unavailable{
-  display:inline-block;
-  background:#e9e0cf;
-  border:2px solid #a99d89;
-  padding:12px;
-  color:#625a50;
-  font-size:11px;
-  font-weight:900;
-}
-.subheading{margin-top:30px}
-.gallery-stage{
-  background:var(--navy);
-  border:3px solid var(--ink);
-  padding:14px 8px;
-  display:grid;
-  grid-template-columns:35px minmax(0,1fr) 35px;
-  align-items:center;
-  gap:6px;
-}
-.gallery-stage button{
-  border:2px solid var(--ink);
-  background:var(--yellow);
-  padding:12px 3px;
-}
-.gallery-stage img{
-  display:block;
-  max-width:100%;
-  max-height:340px;
-  object-fit:contain;
-  margin:auto;
-  image-rendering:pixelated;
-}
-.gallery-caption{
-  text-align:center;
-  font-weight:bold;
-}
-.gallery-thumbs{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:7px;
-}
-.gallery-thumbs button{
-  padding:3px;
-  background:var(--navy);
-  border:2px solid var(--ink);
-}
-.gallery-thumbs button.selected{
-  border:3px solid var(--red);
-}
-.gallery-thumbs img{
-  display:block;
-  width:100%;
-  aspect-ratio:1;
-  object-fit:cover;
-  image-rendering:pixelated;
-}
-.dark-page{
-  background:var(--navy);
-  color:white;
-  border:3px solid var(--ink);
-}
-.dark-page .eyebrow{color:var(--yellow)}
-.time-track{
-  height:34px;
-  background:linear-gradient(
-    90deg,
-    #b5e5f5 0%,
-    #ffe38c 25%,
-    #f9a46f 50%,
-    #62558b 75%,
-    #0a1535 100%
-  );
-  border:3px solid var(--ink);
-  margin:20px 0;
-}
-.time-labels{
-  display:flex;
-  justify-content:space-between;
-  font-size:11px;
-  font-weight:900;
-}
-.rarity-tabs{
-  display:grid;
-  grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:6px;
-  margin:20px 0;
-}
-.rarity-tabs button{
-  background:white;
-  color:var(--ink);
-  border:2px solid var(--ink);
-  padding:12px 2px;
-  font-weight:900;
-}
-.rarity-tabs button.active{background:var(--yellow)}
-.rarity-card{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:15px;
-  align-items:center;
-  text-align:center;
-  background:var(--paper);
-  color:var(--ink);
-  border:3px solid var(--ink);
-  padding:20px;
-}
-.rarity-card img{
-  width:100%;
-  max-width:230px;
-  max-height:310px;
-  object-fit:contain;
-  margin:auto;
-  image-rendering:pixelated;
-}
-.rarity-card strong{font-size:27px}
-.notice{
-  margin:22px 0 0;
-  padding:15px;
-  border:2px solid var(--yellow);
-  background:#182f50;
-  color:white;
-}
-.notice p{font-size:12px}
-.map-panel{
-  background:#d7f0e3;
-  border:3px solid var(--ink);
-  box-shadow:5px 5px 0 var(--ink);
-  padding:10px;
-  margin:20px 0;
-}
-.map-head{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  font-size:11px;
-  font-weight:900;
-  padding:8px 4px;
-}
-.map-scroll{
-  width:100%;
-  overflow-x:auto;
-  background:#a6d5c5;
-  border:2px solid var(--ink);
-}
-.map-canvas{
-  width:100%;
-  min-width:460px;
-}
-#routeSvg{
-  display:block;
-  width:100%;
-  height:auto;
-}
-.route-node{
-  cursor:pointer;
-  outline:none;
-}
-.route-node circle{
-  fill:#fff9dc;
-  stroke:#11131a;
-  stroke-width:4;
-}
-.route-node.visited circle{fill:#f7ca58}
-.route-node.selected circle{
-  fill:#f04438;
-  stroke:#fff;
-  stroke-width:5;
-}
-.route-node text{
-  font-size:15px;
-  font-family:monospace;
-  font-weight:900;
-  text-anchor:middle;
-  dominant-baseline:middle;
-  fill:#11131a;
-  pointer-events:none;
-}
-.route-node.selected text{fill:white}
-.map-actions{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:6px;
-  margin-top:12px;
-}
-.map-actions button{
-  padding:12px 3px;
-  border:2px solid var(--ink);
-  background:var(--yellow);
-  font-size:10px;
-  font-weight:900;
-}
-.map-actions button:nth-child(2){
-  background:var(--red);
-  color:white;
-}
-#journeyDetail{
-  display:grid;
-  gap:15px;
-}
-#journeyDetail>div{
-  min-width:0;
-}
-#faq details{
-  border-bottom:1px solid #ffffff55;
-  padding:16px 0;
-}
-#faq summary{
-  cursor:pointer;
-  font-size:13px;
-  font-weight:900;
-}
-#faq details p{color:#e2eaf5}
-footer{
-  background:var(--ink);
-  color:white;
-  text-align:center;
-  padding:26px 15px;
-}
-footer strong{font-size:19px}
-footer p{font-size:12px}
-footer a{
-  display:inline-block;
-  color:var(--yellow);
-  margin:10px;
-  font-size:12px;
-}
-footer small{display:block;margin-top:15px}
-@media(min-width:650px){
-  .section-tabs{
-    grid-template-columns:repeat(5,minmax(0,1fr));
-    padding:18px;
-  }
-  .page{padding:35px 28px 50px}
-  .book-grid{
-    grid-template-columns:repeat(6,minmax(0,1fr));
-    gap:12px;
-  }
-  .filters{grid-template-columns:1fr 1fr}
-  .feature{
-    grid-template-columns:1fr 180px;
-    padding:23px;
-  }
-  .gallery-thumbs{grid-template-columns:repeat(8,minmax(0,1fr))}
-  .rarity-card{
-    grid-template-columns:1fr 1fr;
-    text-align:left;
-  }
-  #journeyDetail{grid-template-columns:1fr 1fr}
-}
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRAVELING TAKOYAKI — Japan 47 Journey</title>
+  <meta name="description" content="One takoyaki truck. 47 prefectures. Collect Journey Tickets and discover pixel-art NFT chapters across Japan.">
+  <link rel="icon" type="image/png" href="./traveling-takoyaki-icon.png">
+  <link rel="apple-touch-icon" href="./traveling-takoyaki-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <meta name="theme-color" content="#10233d">
+  <link rel="stylesheet" href="./styles.css?v=6">
+  <script src="./script.js?v=6" defer></script>
 </head>
-
 <body>
-
-<header class="site-header">
-  <a class="brand" href="#home">
-    TRAVELING<br>TAKOYAKI 🐙🚚
-  </a>
-  <div class="header-right">
-    <span class="header-kicker">JAPAN 47 JOURNEY</span>
-    <button id="langSwitch" class="lang-switch" type="button">日本語</button>
-  </div>
-</header>
-
-<main id="home">
-
-<section class="hero">
-  <img
-    class="hero-image"
-    src="https://ul.h3z.jp/nz0rNaws.gif"
-    alt="Traveling Takoyaki animated hero"
-  >
-  <div class="hero-copy">
-    <span class="eyebrow">A PIXEL JOURNEY ACROSS JAPAN</span>
-    <h1>47 PREFECTURES.<br>ONE TAKOYAKI.</h1>
-    <p data-en="One tiny takoyaki truck. Forty-seven destinations. Collect the journey, one stop at a time."
-       data-ja="一台のたこ焼きカーが、日本全国47都道府県を旅する。ひとつずつ旅の記録を集めよう。">
-       One tiny takoyaki truck. Forty-seven destinations. Collect the journey, one stop at a time.
-    </p>
-  </div>
-</section>
-
-<div class="stats">
-  <div><strong>01 / 47</strong><small>CURRENT STOP</small></div>
-  <div><strong>333 / 333</strong><small>HOKKAIDO TICKETS</small></div>
-  <div><strong>5</strong><small>RARITIES</small></div>
-</div>
-
-<nav class="section-tabs" aria-label="Website sections">
-  <button type="button" data-tab="tickets" class="active">🎟️ TICKET BOOK</button>
-  <button type="button" data-tab="art">🖼️ NFT ART BOOK</button>
-  <button type="button" data-tab="rarity">💎 RARITY</button>
-  <button type="button" data-tab="journey">🚚 JOURNEY</button>
-  <button type="button" data-tab="faq">❔ FAQ</button>
-</nav>
-
-<!-- TICKET COLLECTION -->
-<section class="page" id="tickets">
-  <span class="eyebrow">47 DESTINATIONS · 47 TICKETS</span>
-  <h2>JOURNEY TICKET BOOK</h2>
-  <p data-en="Choose a prefecture to view its Journey Ticket and official OpenSea collection."
-     data-ja="都道府県を選ぶと、Journey Ticketの詳細と専用OpenSeaリンクを確認できます。">
-     Choose a prefecture to view its Journey Ticket and official OpenSea collection.
-  </p>
-
-  <div class="feature">
-    <div>
-      <span class="eyebrow">STOP 01 · HOKKAIDO</span>
-      <h3>333 / 333 CLAIMED!</h3>
-      <p>All Hokkaido Journey Tickets have been claimed. Eligible holders may receive priority access to the upcoming artwork sale after the announced snapshot.</p>
-      <span class="stamp">SOLD OUT</span>
-      <span class="stamp">1 PER WALLET</span>
+  <!-- HEADER -->
+  <header class="site-header" id="home">
+    <a class="brand" href="#home">TRAVELING<br>TAKOYAKI</a>
+    <div class="header-right"><span class="header-kicker">JAPAN 47 JOURNEY</span><button type="button" class="lang-switch" id="langSwitch" aria-label="Switch language">日本語</button></div>
+  </header>
+  <!-- HERO -->
+  <section class="hero">
+    <img id="heroImage" class="hero-image" src="https://ul.h3z.jp/nz0rNaws.gif" alt="TRAVELING TAKOYAKI pixel-art journey">
+    <div class="hero-copy">
+      <span class="eyebrow">47 TICKETS · 47 STOPS</span>
+      <h1>TRAVELING<br>TAKOYAKI</h1>
+      <p data-en="One takoyaki truck. Forty-seven prefectures. A pixel-art journey across Japan." data-ja="一台のたこ焼きカーで、日本全国47都道府県を巡るピクセルアートの旅。">One takoyaki truck. Forty-seven prefectures. A pixel-art journey across Japan.</p>
     </div>
-    <img src="https://ul.h3z.jp/JdJ1ZSjj.png" alt="Hokkaido Journey Ticket">
-  </div>
-
-  <div class="filters">
-    <input id="ticketSearch" type="search" placeholder="SEARCH PREFECTURE..." aria-label="Search prefecture">
-    <select id="ticketRegion" aria-label="Ticket region"></select>
-  </div>
-  <p id="ticketCount" class="result-count"></p>
-  <div id="ticketGrid" class="book-grid"></div>
-  <div id="ticketDetail" class="detail" aria-live="polite"></div>
-</section>
-
-<!-- ART COLLECTION -->
-<section class="page" id="art" hidden>
-  <span class="eyebrow">47 DESTINATIONS · 47 ART CHAPTERS</span>
-  <h2>NFT ART COLLECTION BOOK</h2>
-  <p>Every prefecture has its own artwork NFT collection, separate from the Journey Ticket.</p>
-
-  <div class="feature">
-    <div>
-      <span class="eyebrow">CHAPTER 01 · HOKKAIDO</span>
-      <h3>7 + 1 ARTWORKS</h3>
-      <p>Seven Hokkaido-inspired designs plus one LR-exclusive artwork. Five rarities with different time-of-day backgrounds.</p>
-      <span class="stamp">ART DROP COMING SOON</span>
-    </div>
-    <img src="https://ul.h3z.jp/oHLrQFcg.png" alt="Hokkaido NFT artwork">
-  </div>
-
-  <h3 class="subheading">HOKKAIDO ART GALLERY</h3>
-  <div class="gallery-stage">
-    <button id="prevArt" type="button" aria-label="Previous artwork">◀</button>
-    <img id="galleryImage" src="https://ul.h3z.jp/oHLrQFcg.png" alt="Hokkaido artwork">
-    <button id="nextArt" type="button" aria-label="Next artwork">▶</button>
-  </div>
-  <p id="galleryCaption" class="gallery-caption">HOKKAIDO 01 / 08</p>
-  <div id="galleryThumbs" class="gallery-thumbs"></div>
-
-  <h3 class="subheading">47 ART CHAPTERS</h3>
-  <div class="filters">
-    <select id="artRegion" aria-label="Artwork region"></select>
-  </div>
-  <div id="artGrid" class="book-grid"></div>
-  <div id="artDetail" class="detail" aria-live="polite"></div>
-</section>
-
-<!-- RARITY -->
-<section class="page dark-page" id="rarity" hidden>
-  <span class="eyebrow">HOKKAIDO · CHAPTER 01</span>
-  <h2>FIVE RARITIES.<br>ONE JOURNEY.</h2>
-  <p>Each rarity has its own frame and a background atmosphere connected to the passage from morning to night.</p>
-
-  <div class="time-track" aria-label="Background atmosphere from morning to night"></div>
-  <div class="time-labels"><span>☀ MORNING</span><span>🌙 NIGHT</span></div>
-
-  <div id="rarityTabs" class="rarity-tabs"></div>
-  <div class="rarity-card">
-    <img id="rarityImage" src="https://ul.h3z.jp/mpichzx4.png" alt="Rarity frame">
-    <div>
-      <span class="eyebrow">RARITY FRAME</span>
-      <h3 id="rarityTitle">NORMAL · N</h3>
-      <strong id="rarityRate">49.49%</strong>
-      <p id="rarityCount">49 / 99 — EXAMPLE ONLY</p>
-    </div>
-  </div>
-
-  <div class="notice">
-    <strong>ILLUSTRATIVE EXAMPLE · 99 NFTs</strong>
-    <p>N 49 · R 28 · SR 14 · UR 7 · LR 1</p>
-    <p>These are example rarity proportions for a 99-NFT supply, not final mint odds. Final supply and rarity allocation will be announced before the art sale. The exact background-to-rarity mapping is not yet shown here.</p>
-  </div>
-</section>
-
-<!-- JOURNEY MAP -->
-<section class="page" id="journey" hidden>
-  <span class="eyebrow">47 STOPS · ONE LONG ROAD</span>
-  <h2>THE JAPAN 47 JOURNEY</h2>
-  <p>Follow the takoyaki truck along the winding route. Tap a stop to explore its ticket and artwork collections.</p>
-
-  <div class="map-panel">
-    <div class="map-head">
-      <span>JAPAN 47 ROUTE</span>
-      <span id="mapCounter">STOP 01 / 47</span>
-    </div>
-    <div class="map-scroll">
-      <div class="map-canvas">
-        <svg id="routeSvg" viewBox="0 0 960 800" aria-label="47-stop journey route">
-          <path id="roadOutline" fill="none" stroke="#11131a" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"></path>
-          <path id="road" fill="none" stroke="#f6c95b" stroke-width="19" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 10"></path>
-          <path id="routeProgress" fill="none" stroke="#f04438" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path>
-          <g id="routeNodes"></g>
-          <image
-            id="truckSprite"
-            href="https://ul.h3z.jp/Lu7ch0Ne.png"
-            width="64"
-            height="64"
-            x="-32"
-            y="-48"
-            style="image-rendering:pixelated"
-          ></image>
-        </svg>
+  </section>
+  <!-- STATISTICS -->
+  <section class="stats" aria-label="Journey statistics">
+    <div><strong id="currentStopStat">01 / 47</strong><small data-en="CURRENT STOP" data-ja="現在の旅の地点">CURRENT STOP</small></div>
+    <div><strong id="ticketStat">333 / 333</strong><small data-en="HOKKAIDO TICKETS" data-ja="北海道チケット">HOKKAIDO TICKETS</small></div>
+    <div><strong id="rarityStat">5</strong><small data-en="RARITIES" data-ja="レアリティ">RARITIES</small></div>
+  </section>
+  <!-- TABS -->
+  <nav class="section-tabs" aria-label="Main sections">
+    <button type="button" data-tab="tickets" class="active" aria-selected="true" data-en="TICKET BOOK" data-ja="チケット図鑑">TICKET BOOK</button>
+    <button type="button" data-tab="art" aria-selected="false" data-en="NFT ART BOOK" data-ja="NFTアート図鑑">NFT ART BOOK</button>
+    <button type="button" data-tab="rarity" aria-selected="false" data-en="RARITY" data-ja="レアリティ">RARITY</button>
+    <button type="button" data-tab="journey" aria-selected="false" data-en="JOURNEY MAP" data-ja="旅のマップ">JOURNEY MAP</button>
+    <button type="button" data-tab="faq" aria-selected="false">FAQ</button>
+  </nav>
+  <div id="loading" class="loading" role="status">LOADING JAPAN 47 JOURNEY...</div>
+  <div id="error" class="detail" role="alert" hidden></div>
+  <main>
+    <!-- TICKET BOOK -->
+    <section class="page" id="tickets">
+      <span class="eyebrow">47 JOURNEY TICKETS</span>
+      <h2 data-en="THE TICKET BOOK" data-ja="チケット図鑑">THE TICKET BOOK</h2>
+      <p data-en="Explore the Journey Tickets from all 47 prefectures. Each destination has its own chapter." data-ja="47都道府県のJourney Ticketを集める旅。各地のチケットをチェックしよう！">Explore the Journey Tickets from all 47 prefectures. Each destination has its own chapter.</p>
+      <div class="feature">
+        <div><span class="eyebrow">STOP 01 · HOKKAIDO</span><h3 id="featureTicketTitle">333 / 333 CLAIMED</h3><p>All 333 Hokkaido Journey Tickets have been claimed.</p><span class="stamp">SOLD OUT</span><span class="stamp">1 PER WALLET</span></div>
+        <img id="featureTicketImage" src="https://ul.h3z.jp/JdJ1ZSjj.png" alt="Current Journey Ticket">
       </div>
-    </div>
-    <div class="map-actions">
-      <button id="prevStop" type="button">◀ PREV</button>
-      <button id="playRoute" type="button">▶ PLAY</button>
-      <button id="nextStop" type="button">NEXT ▶</button>
-    </div>
-  </div>
-  <div id="journeyDetail" class="detail"></div>
-</section>
-
-<!-- FAQ -->
-<section class="page dark-page" id="faq" hidden>
-  <span class="eyebrow">QUESTIONS BEFORE DEPARTURE</span>
-  <h2>FAQ & SAFETY</h2>
-
-  <details open>
-    <summary>What is TRAVELING TAKOYAKI?</summary>
-    <p>A pixel-art NFT journey across all 47 prefectures of Japan. Each stop has a Journey Ticket and a separately released artwork NFT collection.</p>
-  </details>
-  <details>
-    <summary>What is a Journey Ticket?</summary>
-    <p>A prefecture-specific NFT. Holding an eligible ticket at an announced snapshot may provide priority access to purchase artwork NFTs for that prefecture.</p>
-  </details>
-  <details>
-    <summary>Are all Journey Tickets free?</summary>
-    <p>Hokkaido's ticket was free to mint, apart from possible network fees. Future destinations may have different terms and prices.</p>
-  </details>
-  <details>
-    <summary>Does a ticket guarantee an artwork NFT?</summary>
-    <p>No. Art NFTs are purchased separately and are subject to eligibility, supply, availability, and per-wallet limits.</p>
-  </details>
-  <details>
-    <summary>When is the Hokkaido art mint?</summary>
-    <p>The artwork sale date, price, final supply and ticket-holder snapshot date have not yet been announced.</p>
-  </details>
-  <details>
-    <summary>What are the five rarities?</summary>
-    <p>N, R, SR, UR and LR. Each has its own frame and time-of-day background atmosphere. The example distribution is not the final mint distribution.</p>
-  </details>
-  <details>
-    <summary>Where are the official OpenSea pages?</summary>
-    <p>Select a prefecture in the Ticket Book or NFT Art Book. Each collection has its own OpenSea URL when released.</p>
-  </details>
-  <details>
-    <summary>Can I join at a later stop?</summary>
-    <p>Yes. Future ticket eligibility and release conditions will be announced for each stop.</p>
-  </details>
-
-  <div class="notice">
-    <strong>STAY SAFE</strong>
-    <p>Never share your seed phrase or private key. Check URLs carefully and use only official project links.</p>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <strong>TRAVELING TAKOYAKI</strong>
-  <p>47 PREFECTURES · 47 STOPS · ONE PIXEL JOURNEY</p>
-  <a href="https://opensea.io/collection/traveling-takoyaki/overview" target="_blank" rel="noopener noreferrer">OFFICIAL OPENSEA ↗</a>
-  <small>© JAPAN47PIXEL</small>
-</footer>
-
-<script>
-"use strict";
-
-/* ======================================
-   DATA: 47 PREFECTURES
-   ====================================== */
-
-const PREFECTURE_NAMES = [
-  "HOKKAIDO","AOMORI","IWATE","MIYAGI","AKITA",
-  "YAMAGATA","FUKUSHIMA","IBARAKI","TOCHIGI","GUNMA",
-  "SAITAMA","CHIBA","TOKYO","KANAGAWA","NIIGATA",
-  "TOYAMA","ISHIKAWA","FUKUI","YAMANASHI","NAGANO",
-  "GIFU","SHIZUOKA","AICHI","MIE","SHIGA",
-  "KYOTO","OSAKA","HYOGO","NARA","WAKAYAMA",
-  "TOTTORI","SHIMANE","OKAYAMA","HIROSHIMA","YAMAGUCHI",
-  "TOKUSHIMA","KAGAWA","EHIME","KOCHI","FUKUOKA",
-  "SAGA","NAGASAKI","KUMAMOTO","OITA","MIYAZAKI",
-  "KAGOSHIMA","OKINAWA"
-];
-
-const REGIONS = [
-  "HOKKAIDO","TOHOKU","KANTO","CHUBU",
-  "KANSAI","CHUGOKU","SHIKOKU","KYUSHU & OKINAWA"
-];
-
-function regionFor(i){
-  if(i===0)return REGIONS[0];
-  if(i<7)return REGIONS[1];
-  if(i<14)return REGIONS[2];
-  if(i<23)return REGIONS[3];
-  if(i<30)return REGIONS[4];
-  if(i<35)return REGIONS[5];
-  if(i<39)return REGIONS[6];
-  return REGIONS[7];
-}
-
-/*
-  IMPORTANT:
-  Each prefecture has TWO separate OpenSea URLs.
-
-  ticketUrl = Journey Ticket collection
-  artUrl    = Artwork NFT collection
-
-  Leave null until the official collection exists.
-*/
-
-const PREFECTURES = PREFECTURE_NAMES.map((name,i)=>({
-  number:i+1,
-  name:name,
-  region:regionFor(i),
-  ticketImage:i===0
-    ?"https://ul.h3z.jp/JdJ1ZSjj.png"
-    :null,
-  artImage:i===0
-    ?"https://ul.h3z.jp/oHLrQFcg.png"
-    :null,
-  ticketUrl:i===0
-    ?"https://opensea.io/collection/traveling-takoyaki/overview"
-    :null,
-  artUrl:null,
-  ticketStatus:i===0?"SOLD OUT":"COMING SOON",
-  artStatus:"COMING SOON",
-  ticketSupply:i===0?333:null
-}));
-
-/*
-  Example of adding a future prefecture:
-
-  PREFECTURES[1].ticketImage = "IMAGE_URL";
-  PREFECTURES[1].ticketUrl = "TICKET_OPENSEA_URL";
-  PREFECTURES[1].ticketStatus = "AVAILABLE";
-
-  PREFECTURES[1].artImage = "ART_IMAGE_URL";
-  PREFECTURES[1].artUrl = "ART_OPENSEA_URL";
-  PREFECTURES[1].artStatus = "AVAILABLE";
-*/
-
-const HOKKAIDO_ART = [
-  "https://ul.h3z.jp/oHLrQFcg.png",
-  "https://ul.h3z.jp/aOR8jMRq.png",
-  "https://ul.h3z.jp/0vloKjXW.png",
-  "https://ul.h3z.jp/7WDVfZlJ.png",
-  "https://ul.h3z.jp/18GboHdY.png",
-  "https://ul.h3z.jp/KerclwaE.png",
-  "https://ul.h3z.jp/jQah92SE.png",
-  "https://ul.h3z.jp/kATTRB7n.png"
-];
-
-const RARITIES = [
-  {name:"NORMAL",code:"N",count:49,rate:"49.49%",frame:"https://ul.h3z.jp/mpichzx4.png"},
-  {name:"RARE",code:"R",count:28,rate:"28.28%",frame:"https://ul.h3z.jp/M1jWTHjc.png"},
-  {name:"SUPER RARE",code:"SR",count:14,rate:"14.14%",frame:"https://ul.h3z.jp/YhFxUQNZ.png"},
-  {name:"ULTRA RARE",code:"UR",count:7,rate:"7.07%",frame:"https://ul.h3z.jp/13BzTuwg.png"},
-  {name:"LEGENDARY",code:"LR",count:1,rate:"1.01%",frame:"https://ul.h3z.jp/K2TJtpe6.png"}
-];
-
-const TRUCK_RIGHT="https://ul.h3z.jp/Lu7ch0Ne.png";
-const TRUCK_LEFT="https://ul.h3z.jp/DWCD23BJ.png";
-
-/* ======================================
-   WEBSITE INTERACTIONS
-   ====================================== */
-
-const $=s=>document.querySelector(s);
-const pad=n=>String(n).padStart(2,"0");
-
-const state={
-  ticket:0,
-  art:0,
-  rarity:0,
-  gallery:0,
-  stop:0,
-  playing:false,
-  lang:"en"
-};
-
-function make(tag,className,text){
-  const node=document.createElement(tag);
-  if(className)node.className=className;
-  if(text!==undefined)node.textContent=text;
-  return node;
-}
-
-/* LANGUAGE */
-
-$("#langSwitch").addEventListener("click",()=>{
-  state.lang=state.lang==="en"?"ja":"en";
-  document.documentElement.lang=state.lang;
-  $("#langSwitch").textContent=state.lang==="en"?"日本語":"ENGLISH";
-
-  document.querySelectorAll("[data-en][data-ja]").forEach(node=>{
-    node.textContent=node.dataset[state.lang];
-  });
-
-  $("#ticketSearch").placeholder=
-    state.lang==="ja"?"都道府県を検索…":"SEARCH PREFECTURE...";
-});
-
-/* MAIN NAVIGATION */
-
-function showTab(name){
-  document.querySelectorAll("[data-tab]").forEach(button=>{
-    const active=button.dataset.tab===name;
-    button.classList.toggle("active",active);
-    button.setAttribute("aria-selected",String(active));
-  });
-
-  document.querySelectorAll(".page").forEach(page=>{
-    page.hidden=page.id!==name;
-  });
-}
-
-document.querySelectorAll("[data-tab]").forEach(button=>{
-  button.addEventListener("click",()=>showTab(button.dataset.tab));
-});
-
-/* REGIONAL FILTERS */
-
-function fillRegions(select){
-  select.add(new Option("ALL REGIONS · 47 PREFECTURES","all"));
-  REGIONS.forEach(region=>select.add(new Option(region,region)));
-}
-
-fillRegions($("#ticketRegion"));
-fillRegions($("#artRegion"));
-
-/* PREFECTURE DETAILS */
-
-function createDetail(index,type){
-  const p=PREFECTURES[index];
-  const isTicket=type==="ticket";
-  const url=isTicket?p.ticketUrl:p.artUrl;
-  const imageUrl=isTicket?p.ticketImage:p.artImage;
-  const status=isTicket?p.ticketStatus:p.artStatus;
-
-  const wrapper=make("div");
-  wrapper.append(
-    make("span","eyebrow",`STOP ${pad(index+1)} · ${p.region}`),
-    make("h3","",`${p.name} · ${isTicket?"JOURNEY TICKET":"NFT ART"}`)
-  );
-
-  if(imageUrl){
-    const img=make("img");
-    img.src=imageUrl;
-    img.alt=`${p.name} ${type}`;
-    wrapper.append(img);
-  }
-
-  wrapper.append(make("p","status",status));
-
-  if(isTicket&&index===0){
-    wrapper.append(make("p","",
-      "333 / 333 CLAIMED. Snapshot date to be announced."
-    ));
-  }
-
-  if(!isTicket&&index===0){
-    wrapper.append(make("p","",
-      "Artwork mint date, price and final supply are not yet announced."
-    ));
-  }
-
-  if(url){
-    const link=make("a","action-link","VIEW ON OPENSEA ↗");
-    link.href=url;
-    link.target="_blank";
-    link.rel="noopener noreferrer";
-    wrapper.append(link);
-  }else{
-    wrapper.append(
-      make("span","unavailable","OPENSEA LINK — COMING SOON")
-    );
-  }
-
-  return wrapper;
-}
-
-function renderDetails(){
-  $("#ticketDetail").replaceChildren(createDetail(state.ticket,"ticket"));
-  $("#artDetail").replaceChildren(createDetail(state.art,"art"));
-
-  $("#journeyDetail").replaceChildren(
-    createDetail(state.stop,"ticket"),
-    createDetail(state.stop,"art")
-  );
-}
-
-/* COMPACT COLLECTION BOOK */
-
-function renderBook(type){
-  const isTicket=type==="ticket";
-  const grid=$(isTicket?"#ticketGrid":"#artGrid");
-  const region=$(isTicket?"#ticketRegion":"#artRegion").value;
-  const search=isTicket
-    ?$("#ticketSearch").value.trim().toLowerCase()
-    :"";
-
-  grid.replaceChildren();
-  let count=0;
-
-  PREFECTURES.forEach((p,index)=>{
-    if(region!=="all"&&p.region!==region)return;
-    if(search&&!p.name.toLowerCase().includes(search)&&!pad(index+1).includes(search))return;
-
-    count++;
-
-    const selected=(isTicket?state.ticket:state.art)===index;
-    const button=make("button","book-tile"+(selected?" selected":""));
-    button.type="button";
-    button.setAttribute("aria-label",`${p.name} ${type}`);
-
-    const thumb=make("div","thumb");
-    const imageUrl=isTicket?p.ticketImage:p.artImage;
-
-    if(imageUrl){
-      const image=make("img");
-      image.src=imageUrl;
-      image.alt="";
-      image.loading="lazy";
-      thumb.append(image);
-    }else{
-      thumb.append(make("span","lock","🔒"));
-    }
-
-    button.append(
-      thumb,
-      make("span","name",`${pad(index+1)} ${p.name}`)
-    );
-
-    button.addEventListener("click",()=>{
-      if(isTicket)state.ticket=index;
-      else state.art=index;
-
-      renderBook(type);
-      renderDetails();
-
-      const detail=$(isTicket?"#ticketDetail":"#artDetail");
-      detail.scrollIntoView({
-        behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",
-        block:"nearest"
-      });
-    });
-
-    grid.append(button);
-  });
-
-  if(isTicket){
-    $("#ticketCount").textContent=`${count} / 47 DESTINATIONS`;
-  }
-}
-
-$("#ticketSearch").addEventListener("input",()=>renderBook("ticket"));
-$("#ticketRegion").addEventListener("change",()=>renderBook("ticket"));
-$("#artRegion").addEventListener("change",()=>renderBook("art"));
-
-/* HOKKAIDO ART GALLERY */
-
-function renderGallery(){
-  const index=state.gallery;
-  $("#galleryImage").src=HOKKAIDO_ART[index];
-  $("#galleryCaption").textContent=index===7
-    ?"HOKKAIDO LR EXCLUSIVE · 08 / 08"
-    :`HOKKAIDO ${pad(index+1)} / 08`;
-
-  document.querySelectorAll(".gallery-thumbs button").forEach((button,i)=>{
-    button.classList.toggle("selected",i===index);
-  });
-}
-
-HOKKAIDO_ART.forEach((src,index)=>{
-  const button=make("button");
-  button.type="button";
-  button.setAttribute("aria-label",`Hokkaido artwork ${index+1}`);
-
-  const img=make("img");
-  img.src=src;
-  img.alt=`Hokkaido artwork ${index+1}`;
-  img.loading="lazy";
-
-  button.append(img);
-  button.addEventListener("click",()=>{
-    state.gallery=index;
-    renderGallery();
-  });
-
-  $("#galleryThumbs").append(button);
-});
-
-$("#prevArt").addEventListener("click",()=>{
-  state.gallery=(state.gallery+7)%8;
-  renderGallery();
-});
-
-$("#nextArt").addEventListener("click",()=>{
-  state.gallery=(state.gallery+1)%8;
-  renderGallery();
-});
-
-/* RARITY FRAME SELECTOR */
-
-function renderRarity(){
-  const rarity=RARITIES[state.rarity];
-
-  $("#rarityImage").src=rarity.frame;
-  $("#rarityImage").alt=rarity.name+" rarity frame";
-  $("#rarityTitle").textContent=rarity.name+" · "+rarity.code;
-  $("#rarityRate").textContent=rarity.rate;
-  $("#rarityCount").textContent=
-    `${rarity.count} / 99 — EXAMPLE ONLY`;
-
-  document.querySelectorAll("#rarityTabs button").forEach((button,index)=>{
-    button.classList.toggle("active",index===state.rarity);
-  });
-}
-
-RARITIES.forEach((rarity,index)=>{
-  const button=make("button","",rarity.code);
-  button.type="button";
-  button.addEventListener("click",()=>{
-    state.rarity=index;
-    renderRarity();
-  });
-  $("#rarityTabs").append(button);
-});
-
-/* ======================================
-   47-STOP ANIMATED ROUTE
-   ====================================== */
-
-/*
-  Serpentine route:
-  Seven columns, seven rows.
-  The truck travels left-to-right, then
-  right-to-left on the next row.
-*/
-
-const coordinates=PREFECTURES.map((p,index)=>{
-  const row=Math.floor(index/7);
-  const column=index%7;
-  const xColumn=row%2===0?column:6-column;
-
-  return {
-    x:90+xColumn*130,
-    y:90+row*105
-  };
-});
-
-const pathData="M "+coordinates.map(p=>`${p.x} ${p.y}`).join(" L ");
-
-$("#roadOutline").setAttribute("d",pathData);
-$("#road").setAttribute("d",pathData);
-$("#routeProgress").setAttribute("d",pathData);
-
-const svgNS="http://www.w3.org/2000/svg";
-
-coordinates.forEach((point,index)=>{
-  const group=document.createElementNS(svgNS,"g");
-  group.setAttribute("class","route-node");
-  group.setAttribute("transform",`translate(${point.x} ${point.y})`);
-  group.setAttribute("role","button");
-  group.setAttribute("tabindex","0");
-  group.setAttribute("aria-label",`${pad(index+1)} ${PREFECTURES[index].name}`);
-
-  const circle=document.createElementNS(svgNS,"circle");
-  circle.setAttribute("r","21");
-
-  const text=document.createElementNS(svgNS,"text");
-  text.textContent=pad(index+1);
-
-  group.append(circle,text);
-
-  group.addEventListener("click",()=>moveTo(index));
-  group.addEventListener("keydown",event=>{
-    if(event.key==="Enter"||event.key===" "){
-      event.preventDefault();
-      moveTo(index);
-    }
-  });
-
-  $("#routeNodes").append(group);
-});
-
-const truck=$("#truckSprite");
-const roadPath=$("#roadOutline");
-const progressPath=$("#routeProgress");
-
-const cumulative=[0];
-
-for(let i=1;i<coordinates.length;i++){
-  const a=coordinates[i-1];
-  const b=coordinates[i];
-
-  cumulative.push(
-    cumulative[i-1]+Math.hypot(b.x-a.x,b.y-a.y)
-  );
-}
-
-let animationId=null;
-let truckDistance=0;
-let playTimer=null;
-
-function positionTruck(distance){
-  const total=roadPath.getTotalLength();
-  const d=Math.max(0,Math.min(total,distance));
-
-  const point=roadPath.getPointAtLength(d);
-  const ahead=roadPath.getPointAtLength(Math.min(total,d+3));
-  const behind=roadPath.getPointAtLength(Math.max(0,d-3));
-
-  truck.setAttribute("x",point.x-32);
-  truck.setAttribute("y",point.y-48);
-  truck.setAttribute(
-    "href",
-    ahead.x<behind.x?TRUCK_LEFT:TRUCK_RIGHT
-  );
-
-  progressPath.style.strokeDasharray=`${d} ${total+2}`;
-}
-
-function moveTo(index,animate=true){
-  state.stop=Math.max(0,Math.min(46,index));
-
-  $("#mapCounter").textContent=
-    `STOP ${pad(state.stop+1)} / 47`;
-
-  document.querySelectorAll(".route-node").forEach((node,i)=>{
-    node.classList.toggle("selected",i===state.stop);
-    node.classList.toggle("visited",i<state.stop);
-  });
-
-  renderDetails();
-
-  if(animationId!==null){
-    cancelAnimationFrame(animationId);
-    animationId=null;
-  }
-
-  const start=truckDistance;
-  const end=cumulative[state.stop];
-
-  if(!animate||window.matchMedia("(prefers-reduced-motion: reduce)").matches){
-    truckDistance=end;
-    positionTruck(end);
-    return;
-  }
-
-  const begin=performance.now();
-  const duration=Math.min(2500,500+Math.abs(end-start)*2);
-
-  function frame(now){
-    const t=Math.min(1,(now-begin)/duration);
-    const eased=t*t*(3-2*t);
-    truckDistance=start+(end-start)*eased;
-    positionTruck(truckDistance);
-
-    if(t<1){
-      animationId=requestAnimationFrame(frame);
-    }else{
-      truckDistance=end;
-      animationId=null;
-    }
-  }
-
-  animationId=requestAnimationFrame(frame);
-}
-
-$("#prevStop").addEventListener("click",()=>{
-  stopPlayback();
-  moveTo(state.stop-1);
-});
-
-$("#nextStop").addEventListener("click",()=>{
-  stopPlayback();
-  moveTo(state.stop+1);
-});
-
-function stopPlayback(){
-  state.playing=false;
-  if(playTimer!==null){
-    clearTimeout(playTimer);
-    playTimer=null;
-  }
-  $("#playRoute").textContent="▶ PLAY";
-}
-
-function playNext(){
-  if(!state.playing)return;
-
-  if(state.stop>=46){
-    stopPlayback();
-    return;
-  }
-
-  moveTo(state.stop+1);
-  playTimer=setTimeout(playNext,1500);
-}
-
-$("#playRoute").addEventListener("click",()=>{
-  if(state.playing){
-    stopPlayback();
-    return;
-  }
-
-  if(state.stop>=46)moveTo(0,false);
-
-  state.playing=true;
-  $("#playRoute").textContent="■ STOP";
-  playNext();
-});
-
-document.addEventListener("visibilitychange",()=>{
-  if(document.hidden)stopPlayback();
-});
-
-/* INITIAL RENDER */
-
-renderBook("ticket");
-renderBook("art");
-renderDetails();
-renderGallery();
-renderRarity();
-moveTo(0,false);
-
-</script>
+      <div class="filters"><input type="search" id="ticketSearch" placeholder="SEARCH PREFECTURE..." aria-label="Search prefectures"><select id="ticketRegion" aria-label="Filter ticket region"><option value="all">ALL REGIONS</option></select></div>
+      <div class="result-count" id="ticketCount" aria-live="polite">47 / 47 DESTINATIONS</div>
+      <div id="ticketGrid" class="book-grid"></div>
+      <h3 class="subheading" data-en="TICKET DETAILS" data-ja="チケット詳細">TICKET DETAILS</h3>
+      <div id="ticketDetail" class="detail"></div>
+    </section>
+    <!-- NFT ART BOOK: ORIGINAL 4 x 2 THUMBNAIL GALLERY UNCHANGED -->
+    <section class="page" id="art" hidden>
+      <span class="eyebrow">47 ART CHAPTERS</span>
+      <h2 data-en="THE NFT ART BOOK" data-ja="NFTアート図鑑">THE NFT ART BOOK</h2>
+      <p data-en="Discover pixel-art NFT chapters inspired by the 47 prefectures of Japan." data-ja="日本全国47都道府県をテーマにした、ピクセルアートNFTのコレクション。">Discover pixel-art NFT chapters inspired by the 47 prefectures of Japan.</p>
+      <div class="feature">
+        <div><span class="eyebrow">CHAPTER 01 · HOKKAIDO</span><h3 id="featureArtTitle">HOKKAIDO · 8 ARTWORKS</h3><p>Explore eight pixel-art artworks from Hokkaido.</p><span class="stamp">COMING SOON</span></div>
+        <img id="featureArtImage" src="https://ul.h3z.jp/oHLrQFcg.png" alt="Current NFT art chapter">
+      </div>
+      <h3 class="subheading" data-en="PIXEL ART GALLERY" data-ja="ピクセルアートギャラリー">PIXEL ART GALLERY</h3>
+      <p data-en="Select an artwork to view it. Choosing a prefecture from the Art Book also switches the gallery." data-ja="作品を選んで拡大表示できます。アート図鑑で都道府県を選ぶと、その地域のギャラリーに切り替わります。">Select an artwork to view it. Choosing a prefecture from the Art Book also switches the gallery.</p>
+      <div class="gallery-stage"><button type="button" id="prevArt" aria-label="Previous artwork">◀</button><img id="galleryImage" src="https://ul.h3z.jp/oHLrQFcg.png" alt="Selected NFT artwork"><button type="button" id="nextArt" aria-label="Next artwork">▶</button></div>
+      <p class="gallery-caption" id="galleryCaption" aria-live="polite">HOKKAIDO · 01 / 08</p>
+      <div class="gallery-thumbs" id="galleryThumbs"></div>
+      <h3 class="subheading" data-en="47 ART CHAPTERS" data-ja="47都道府県のアート図鑑">47 ART CHAPTERS</h3>
+      <div class="filters"><select id="artRegion" aria-label="Filter art region"><option value="all">ALL REGIONS</option></select></div>
+      <div id="artGrid" class="book-grid" data-hokkaido-art-image="https://ul.h3z.jp/oyLZXgar.png"></div>
+      <h3 class="subheading" data-en="ART CHAPTER DETAILS" data-ja="アート作品の詳細">ART CHAPTER DETAILS</h3>
+      <!-- Only this bottom detail gets the automatic slideshow. -->
+      <div id="artDetail" class="detail"></div>
+    </section>
+    <!-- RARITY -->
+    <section class="page dark-page" id="rarity" hidden>
+      <span class="eyebrow">FIVE RARITIES</span>
+      <h2 data-en="THE RARITY SYSTEM" data-ja="レアリティシステム">THE RARITY SYSTEM</h2>
+      <p data-en="Each NFT chapter features five rarity tiers, from Normal to Legendary." data-ja="NFTアートにはNORMALからLEGENDARYまで、5段階のレアリティがあります。">Each NFT chapter features five rarity tiers, from Normal to Legendary.</p>
+      <h3 class="subheading" data-en="THE PASSAGE OF TIME" data-ja="時間とともに変わる背景">THE PASSAGE OF TIME</h3>
+      <p data-en="The pixel-art journey explores different moods and times of day." data-ja="時間帯によって表情を変える、ピクセルアートの世界。">The pixel-art journey explores different moods and times of day.</p>
+      <div class="time-track" aria-hidden="true"></div><div class="time-labels"><span>DAY</span><span>EVENING</span><span>NIGHT</span></div>
+      <h3 class="subheading" data-en="EXPLORE THE RARITIES" data-ja="レアリティをチェック">EXPLORE THE RARITIES</h3>
+      <div class="rarity-tabs" id="rarityTabs"></div>
+      <div class="rarity-card"><img id="rarityImage" src="https://ul.h3z.jp/mpichzx4.png" alt="Rarity frame"><div><span class="eyebrow">NFT RARITY</span><h3 id="rarityTitle">NORMAL · N</h3><strong id="rarityRate">49.49%</strong><p id="rarityCount">49 / 99 — EXAMPLE ONLY</p></div></div>
+      <div class="notice"><strong id="rarityNoticeTitle">ILLUSTRATIVE EXAMPLE · 99 NFTs</strong><p id="rarityBreakdown">N 49 · R 28 · SR 14 · UR 7 · LR 1</p><p data-en="This is an illustrative example only. Actual supply, allocation and rarity rates may vary by chapter and will be announced separately." data-ja="これは99枚発行した場合の参考例です。実際の発行枚数・レアリティ配分・出現率は各章で異なる場合があり、別途発表します。">This is an illustrative example only. Actual supply, allocation and rarity rates may vary by chapter and will be announced separately.</p></div>
+    </section>
+    <!-- JOURNEY MAP: ORIGINAL INTERACTIVE SVG ROUTE PRESERVED -->
+    <section class="page" id="journey" hidden>
+      <span class="eyebrow">47 STOPS · ONE JOURNEY</span>
+      <h2 data-en="THE JAPAN 47 JOURNEY" data-ja="日本全国47都道府県の旅">THE JAPAN 47 JOURNEY</h2>
+      <p data-en="Follow the takoyaki truck through all 47 prefectures. Select a stop to explore its Ticket and NFT Art chapter." data-ja="たこ焼きカーと一緒に47都道府県を巡ろう！各地点を選ぶと、チケットとNFTアートの情報を見ることができます。">Follow the takoyaki truck through all 47 prefectures. Select a stop to explore its Ticket and NFT Art chapter.</p>
+      <div class="map-panel">
+        <div class="map-head"><span>TRAVELING TAKOYAKI</span><span id="mapCounter">STOP 01 / 47</span></div>
+        <div class="map-scroll"><div class="map-canvas">
+          <svg id="routeSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 1020" role="img" aria-label="Interactive route through 47 Japanese prefectures" preserveAspectRatio="xMidYMid meet">
+            <path id="roadOutline" d="" fill="none" stroke="#11131a" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path id="road" d="" fill="none" stroke="#fff5d8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path id="routeProgress" d="" fill="none" stroke="#f04438" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path>
+            <g id="routeNodes"></g>
+            <image id="truckSprite" href="https://ul.h3z.jp/Lu7ch0Ne.png" x="43" y="27" width="64" height="64" preserveAspectRatio="xMidYMid meet" style="pointer-events:none"></image>
+          </svg>
+        </div></div>
+        <div class="map-actions"><button type="button" id="prevStop" data-en="◀ PREV" data-ja="◀ 前へ">◀ PREV</button><button type="button" id="playRoute">▶ PLAY</button><button type="button" id="nextStop" data-en="NEXT ▶" data-ja="次へ ▶">NEXT ▶</button></div>
+      </div>
+      <h3 class="subheading" data-en="SELECTED DESTINATION" data-ja="選択中の都道府県">SELECTED DESTINATION</h3>
+      <!-- Ticket stays static; NFT art gets the same automatic slideshow. -->
+      <div id="journeyDetail" class="detail"></div>
+    </section>
+    <!-- FAQ -->
+    <section class="page dark-page" id="faq" hidden>
+      <span class="eyebrow">QUESTIONS &amp; ANSWERS</span>
+      <h2 data-en="FREQUENTLY ASKED QUESTIONS" data-ja="よくある質問">FREQUENTLY ASKED QUESTIONS</h2>
+      <details><summary data-en="What is TRAVELING TAKOYAKI?" data-ja="TRAVELING TAKOYAKIとは？">What is TRAVELING TAKOYAKI?</summary><p data-en="TRAVELING TAKOYAKI — Japan 47 Journey is a pixel-art NFT project that follows a takoyaki truck across all 47 prefectures of Japan. Each destination has its own Journey Ticket and NFT art chapter." data-ja="たこ焼きカーが日本全国47都道府県を巡るピクセルアートNFTプロジェクトです。各都道府県にJourney TicketとNFTアートの章があります。">TRAVELING TAKOYAKI is a pixel-art NFT journey across all 47 prefectures of Japan.</p></details>
+      <details><summary data-en="What is a Journey Ticket?" data-ja="Journey Ticketとは？">What is a Journey Ticket?</summary><p data-en="A Journey Ticket is a collectible NFT associated with a specific prefecture. Ticket holders may receive access to announced benefits, including eligibility for priority purchase opportunities, subject to the conditions of each chapter." data-ja="各都道府県に対応したコレクションNFTです。チケット保有者は、各章で発表される条件に応じて、NFTアートの優先購入などの特典の対象となる場合があります。">A Journey Ticket is a collectible NFT associated with a specific prefecture.</p></details>
+      <details><summary data-en="Are Journey Tickets free?" data-ja="Journey Ticketは無料ですか？">Are Journey Tickets free?</summary><p data-en="Ticket prices may vary by destination. Some releases may be free to mint, while network fees may still apply. Always check the official release details." data-ja="チケットの価格は都道府県によって異なる場合があります。無料ミントでもネットワーク手数料が発生することがあります。各回の公式案内をご確認ください。">Ticket prices may vary by destination. Network fees may apply.</p></details>
+      <details><summary data-en="Does a Journey Ticket guarantee an NFT artwork?" data-ja="チケットがあればNFTアートを必ず購入できますか？">Does a Journey Ticket guarantee an NFT artwork?</summary><p data-en="No. A Journey Ticket does not guarantee an artwork or a successful purchase. Eligibility, snapshots, wallet limits and supply are determined by each chapter's announced rules." data-ja="いいえ。チケットはNFTアートの取得や購入成功を保証するものではありません。スナップショット、購入上限、発行枚数などは各章の発表条件に従います。">No. A Journey Ticket does not guarantee an artwork or a successful purchase.</p></details>
+      <details><summary data-en="When will new destinations and NFTs be released?" data-ja="次の都道府県やNFTの発売はいつですか？">When will new destinations and NFTs be released?</summary><p data-en="Release schedules will be announced through official social media channels and OpenSea. Please check the latest announcements for confirmed dates." data-ja="公開日や販売日は、公式SNSとOpenSeaで順次お知らせします。確定した日程は最新の公式発表をご確認ください。">Release schedules will be announced through official social media channels and OpenSea.</p></details>
+      <details><summary data-en="What are the five rarity tiers?" data-ja="5種類のレアリティとは？">What are the five rarity tiers?</summary><p data-en="The five tiers are Normal (N), Rare (R), Super Rare (SR), Ultra Rare (UR), and Legendary (LR). Any percentages shown as examples are illustrative and are not confirmed allocations for future chapters." data-ja="NORMAL（N）、RARE（R）、SUPER RARE（SR）、ULTRA RARE（UR）、LEGENDARY（LR）の5種類です。参考例の確率は、今後の章の確定配分を示すものではありません。">The five tiers are Normal, Rare, Super Rare, Ultra Rare, and Legendary.</p></details>
+      <details><summary data-en="Where can I find the official OpenSea collection?" data-ja="公式OpenSeaコレクションはどこですか？">Where can I find the official OpenSea collection?</summary><p data-en="Use the official OpenSea link at the bottom of this website. Individual destination links will also appear in the Ticket Book and NFT Art Book when available." data-ja="このサイト下部の公式OpenSeaリンクをご利用ください。各都道府県の公開後は、チケット図鑑やNFTアート図鑑にもリンクが表示されます。">Use the official OpenSea link at the bottom of this website.</p></details>
+      <details><summary data-en="Can I join the journey later?" data-ja="途中から旅に参加できますか？">Can I join the journey later?</summary><p data-en="Yes. You can follow the project at any stage. Availability of past Tickets and NFT artworks depends on their release status and secondary-market listings." data-ja="はい。途中からでも参加できます。ただし、過去のチケットやNFTアートを入手できるかどうかは、配布状況や二次流通での出品状況によります。">Yes. You can follow the project at any stage.</p></details>
+      <details><summary data-en="How can I stay safe?" data-ja="安全に参加するには？">How can I stay safe?</summary><p data-en="Always verify official links. Never share your wallet's seed phrase or private keys. Be cautious of impersonators and unsolicited direct messages." data-ja="必ず公式リンクを確認してください。ウォレットのシードフレーズや秘密鍵は絶対に他人に教えないでください。なりすましや不審なDMにもご注意ください。">Always verify official links. Never share your wallet's seed phrase or private keys.</p></details>
+    </section>
+  </main>
+  <!-- FOOTER -->
+  <footer>
+    <strong>TRAVELING TAKOYAKI</strong><p>JAPAN 47 JOURNEY</p>
+    <p data-en="One truck. 47 prefectures. A journey worth collecting." data-ja="一台のたこ焼きカーと47都道府県。集めながら楽しむ日本一周の旅。">One truck. 47 prefectures. A journey worth collecting.</p>
+    <nav class="footer-icons" aria-label="Official links">
+      <a href="https://opensea.io/collection/traveling-takoyaki/overview" id="officialLink" target="_blank" rel="noopener noreferrer" aria-label="OpenSea" title="OpenSea"><span class="footer-icon-symbol">🌊</span></a>
+      <a href="https://japan47pixel.net/" target="_blank" rel="noopener noreferrer" aria-label="Official Website" title="Official Website"><span class="footer-icon-symbol">🌐</span></a>
+      <a href="https://x.com/JAPAN47PIXEL" target="_blank" rel="noopener noreferrer" aria-label="Official X" title="X"><span class="footer-icon-symbol footer-x">𝕏</span></a>
+      <a href="https://www.instagram.com/japan47pixel?vrfl=MTVvZjlnNXAzMmU1aA==" target="_blank" rel="noopener noreferrer" aria-label="Official Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg></a>
+    </nav>
+    <small>© TRAVELING TAKOYAKI — JAPAN 47 JOURNEY</small>
+  </footer>
 </body>
 </html>
