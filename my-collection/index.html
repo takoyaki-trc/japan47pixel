@@ -20,9 +20,8 @@
   --muted:#69716d;
 }
 
-* { box-sizing:border-box; }
-
-html { scroll-behavior:smooth; }
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
 
 body {
   margin:0;
@@ -31,8 +30,8 @@ body {
   font:14px system-ui,-apple-system,"Noto Sans JP",sans-serif;
 }
 
-button,input { font:inherit; }
-button { cursor:pointer; }
+button,input {font:inherit}
+button {cursor:pointer}
 
 button:focus-visible,
 input:focus-visible,
@@ -125,28 +124,37 @@ a:focus-visible {
   color:var(--ink);
 }
 
+/* COMPACT WALLET LOOKUP */
 .microbar {
   background:#243239;
   color:#dfe9e5;
   display:flex;
-  justify-content:space-between;
+  justify-content:flex-end;
   align-items:center;
-  gap:8px;
-  padding:8px 22px;
-  font-size:10px;
-  letter-spacing:.08em;
+  padding:6px 22px;
+  min-height:42px;
 }
 
-.microbar strong { color:#fcebbd; }
-
 .microbar button {
-  color:inherit;
-  background:transparent;
-  border:0;
-  font-size:10px;
-  font-weight:850;
-  letter-spacing:.06em;
-  cursor:pointer;
+  max-width:100%;
+  border:1px solid #cfb24d;
+  background:var(--yellow);
+  color:#192126;
+  border-radius:2px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:0;
+  padding:7px 12px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.wallet-tip {
+  font-size:11px;
+  color:#647066;
+  line-height:1.6;
+  margin:9px 0 0;
 }
 
 /* HERO */
@@ -226,8 +234,10 @@ h1 em {
   border-color:#caa33f;
 }
 
-/* ROAD TRIP */
-.stickyish { padding:16px 22px 0; }
+/* ROAD */
+.stickyish {
+  padding:16px 22px 0;
+}
 
 .sectionhead {
   display:flex;
@@ -266,7 +276,9 @@ h1 em {
   letter-spacing:.06em;
 }
 
-.roadtop strong { font-size:13px; }
+.roadtop strong {
+  font-size:13px;
+}
 
 .roadscroll {
   overflow-x:auto;
@@ -309,9 +321,13 @@ h1 em {
   z-index:0;
 }
 
-.station:last-child:after { display:none; }
+.station:last-child:after {
+  display:none;
+}
 
-.station.travelled:after { background:var(--red); }
+.station.travelled:after {
+  background:var(--red);
+}
 
 .dot {
   position:relative;
@@ -356,7 +372,7 @@ h1 em {
   margin-top:2px;
 }
 
-/* TAKOYAKI TRUCK */
+/* TAKOYAKI CAR */
 .car-holder {
   position:absolute;
   top:-34px;
@@ -368,7 +384,9 @@ h1 em {
   transition:left .64s cubic-bezier(.22,.70,.24,1);
 }
 
-.car-holder.no-motion { transition:none; }
+.car-holder.no-motion {
+  transition:none;
+}
 
 .car-holder img {
   display:block;
@@ -387,7 +405,9 @@ h1 em {
   font-size:25px;
 }
 
-.car-holder.loaded .fallback { display:none; }
+.car-holder.loaded .fallback {
+  display:none;
+}
 
 @keyframes idle {
   0%,100% {
@@ -426,7 +446,9 @@ h1 em {
   min-width:34px;
 }
 
-.roadcontrols .home { background:#e8f0df; }
+.roadcontrols .home {
+  background:#e8f0df;
+}
 
 .roadfoot {
   display:flex;
@@ -450,7 +472,7 @@ h1 em {
   width:2.1%;
 }
 
-/* COLLECTION STATISTICS */
+/* NATIONAL STATISTICS */
 .scope-head {
   display:flex;
   justify-content:space-between;
@@ -581,9 +603,11 @@ h1 em {
   color:#53675c;
 }
 
-.yes { color:#b84134; }
+.yes {
+  color:#b84134;
+}
 
-/* COLLECTION ALBUM */
+/* COLLECTION GRID */
 .collection {
   padding:27px 22px 0;
 }
@@ -664,9 +688,13 @@ h1 em {
   transition:transform .15s;
 }
 
-.collectcard:hover { transform:translateY(-2px); }
+.collectcard:hover {
+  transform:translateY(-2px);
+}
 
-.collectcard.owned { border-color:#c7a06d; }
+.collectcard.owned {
+  border-color:#c7a06d;
+}
 
 .frameimage {
   width:100%;
@@ -678,7 +706,9 @@ h1 em {
   overflow:hidden;
 }
 
-.frameimage.ownedimage { background:#071625; }
+.frameimage.ownedimage {
+  background:#071625;
+}
 
 .frameimage img {
   width:100%;
@@ -766,7 +796,9 @@ h1 em {
   margin-top:7px;
 }
 
-.collectcard.owned .cardstatus { color:#a73e31; }
+.collectcard.owned .cardstatus {
+  color:#a73e31;
+}
 
 .more {
   width:100%;
@@ -785,7 +817,7 @@ h1 em {
   margin-top:8px;
 }
 
-/* ART COLLECTION */
+/* ART BOOK */
 .artsection {
   background:#f3ecdc;
   border-top:1px solid #e1d8c6;
@@ -862,10 +894,14 @@ h1 em {
   font-weight:850;
 }
 
-.footer a { color:#f4ca54; }
+.footer a {
+  color:#f4ca54;
+}
 
-/* POPUP MODALS */
-[hidden] { display:none!important; }
+/* MODALS */
+[hidden] {
+  display:none!important;
+}
 
 .overlay {
   position:fixed;
@@ -931,9 +967,7 @@ h1 em {
   padding:11px;
 }
 
-.modal .action.alt { background:#f4f1e7; }
-
-/* Small square image popup */
+/* SMALL SQUARE IMAGE POPUP */
 .modal #modalImage {
   width:min(100%,260px);
   aspect-ratio:1;
@@ -952,7 +986,9 @@ h1 em {
   image-rendering:pixelated;
 }
 
-.modal #modalImage .missingprint { font-size:80px; }
+.modal #modalImage .missingprint {
+  font-size:80px;
+}
 
 .modal #modalText {
   font-size:13px;
@@ -966,49 +1002,45 @@ h1 em {
   .artgrid {
     grid-template-columns:repeat(5,minmax(0,1fr));
   }
-
-  .search { width:190px; }
+  .search {width:190px}
 }
 
 @media(max-width:410px) {
-  .header { padding:11px 12px; }
-  .brand-title { font-size:11px;letter-spacing:.09em; }
-  .brand-sub { font-size:8px; }
-  .logo { width:32px;height:32px; }
-  .language button { font-size:9px;padding:7px 8px; }
-  .microbar { padding:8px 12px; }
-  .hero { padding:25px 14px 18px; }
-  .stickyish { padding:16px 14px 0; }
-  .stat { padding:12px 11px; }
-  .stat .num { font-size:22px; }
-  .stat .num small { font-size:11px; }
-  .collection,
-  .artsection {
+  .header {padding:11px 12px}
+  .brand-title {font-size:11px;letter-spacing:.09em}
+  .brand-sub {font-size:8px}
+  .logo {width:32px;height:32px}
+  .language button {font-size:9px;padding:7px 8px}
+  .microbar {padding:6px 12px}
+  .hero {padding:25px 14px 18px}
+  .stickyish {padding:16px 14px 0}
+  .stat {padding:12px 11px}
+  .stat .num {font-size:22px}
+  .stat .num small {font-size:11px}
+  .collection,.artsection {
     padding-left:14px;
     padding-right:14px;
   }
-  .ticketgrid,
-  .artgrid { gap:7px; }
-  .collectcard { padding:5px 5px 8px; }
-  .cardname { font-size:11px; }
-  .cardsub { font-size:9px; }
-  .tabs button { padding:8px 9px; }
-  .search { width:95px; }
-  .sectionhead h2 { font-size:22px; }
-  .footer { padding-left:14px;padding-right:14px; }
-  .scope-head { padding:17px 14px 7px; }
-  .scope-note { padding-left:14px;padding-right:14px; }
-  .local-summary { margin:12px 14px 2px;padding:12px; }
-  .local-metric strong { font-size:15px; }
+  .ticketgrid,.artgrid {gap:7px}
+  .collectcard {padding:5px 5px 8px}
+  .cardname {font-size:11px}
+  .cardsub {font-size:9px}
+  .tabs button {padding:8px 9px}
+  .search {width:95px}
+  .sectionhead h2 {font-size:22px}
+  .footer {padding-left:14px;padding-right:14px}
+  .scope-head {padding:17px 14px 7px}
+  .scope-note {padding-left:14px;padding-right:14px}
+  .local-summary {margin:12px 14px 2px;padding:12px}
+  .local-metric strong {font-size:15px}
 }
 
 @media(prefers-reduced-motion:reduce) {
-  .car-holder,
-  .roadscroll {
+  .car-holder,.roadscroll {
     transition:none;
     scroll-behavior:auto;
   }
-  .car-holder img { animation:none; }
+  .car-holder img {animation:none}
 }
 </style>
 </head>
@@ -1034,12 +1066,11 @@ h1 em {
     </div>
   </header>
 
+  <!-- WALLET LOOKUP ONLY -->
   <div class="microbar">
-    <span>
-      COLLECTION PASSPORT
-      <strong id="topCounter">01 / 47</strong>
-    </span>
-    <button id="walletButton">● CONNECT WALLET</button>
+    <button id="walletButton" type="button">
+      ⌕ ウォレット照会
+    </button>
   </div>
 
   <section class="hero">
@@ -1194,10 +1225,13 @@ h1 em {
   </footer>
 </div>
 
-<!-- WALLET -->
+<!-- WALLET ADDRESS LOOKUP -->
 <div class="overlay" id="walletWrap" hidden>
   <div class="modal" role="dialog" aria-modal="true">
-    <button class="close" id="walletClose" aria-label="Close">×</button>
+    <button class="close" id="walletClose" aria-label="Close">
+      ×
+    </button>
+
     <div class="overline">WALLET VIEWER</div>
     <h3 id="walletTitle"></h3>
     <p id="walletDesc"></p>
@@ -1210,13 +1244,18 @@ h1 em {
       spellcheck="false"
     >
 
-    <button class="action" id="addressConnect"></button>
-    <button class="action alt" id="providerConnect"></button>
-    <p id="walletError"></p>
+    <button
+      class="action"
+      id="addressConnect"
+      type="button">
+    </button>
+
+    <p id="walletTip" class="wallet-tip"></p>
+    <p id="walletError" role="alert"></p>
   </div>
 </div>
 
-<!-- NFT DETAIL -->
+<!-- NFT IMAGE DETAIL -->
 <div class="overlay" id="modalWrap" hidden>
   <div class="modal" role="dialog" aria-modal="true">
     <button class="close" id="modalClose" aria-label="Close">×</button>
@@ -1283,7 +1322,7 @@ const PREFECTURES = [
   ['沖縄','OKINAWA']
 ];
 
-/* SHARED NFT TEMPLATE */
+/* COMMON ART RARITY SETTINGS */
 const ART_TEMPLATE = {
   N:7,
   R:7,
@@ -1309,7 +1348,11 @@ const TICKET_IMAGE =
 const CAR_IMAGE =
   'https://ul.h3z.jp/Lu7ch0Ne.png';
 
-/* Header logo: compact image data */
+/*
+  HEADER LOGO:
+  以前使用していたたこ焼きカーの
+  64x64 PNGデータをそのまま使用します。
+*/
 const LOGO_IMAGE =
 'data:image/png;base64,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';
 
@@ -1321,20 +1364,25 @@ const FALLBACK = {
     stop:i+1,
     name,
     code,
-    ticket:i===0?{
-      status:'released',
-      image:TICKET_IMAGE,
-      collection:'traveling-takoyaki',
-      contract:'0xb00bc4887f01f3ef12b21cf805703f8cd49329d4'
-    }:{status:'coming_soon'},
-    art:i===0?{
-      status:'preview',
-      collection:'traveling-takoyaki-hokkaido',
-      cards:[]
-    }:{status:'coming_soon'}
+    ticket:i===0
+      ? {
+          status:'released',
+          image:TICKET_IMAGE,
+          collection:'traveling-takoyaki',
+          contract:'0xb00bc4887f01f3ef12b21cf805703f8cd49329d4'
+        }
+      : {status:'coming_soon'},
+    art:i===0
+      ? {
+          status:'preview',
+          collection:'traveling-takoyaki-hokkaido',
+          cards:[]
+        }
+      : {status:'coming_soon'}
   }))
 };
 
+/* STATE */
 const state = {
   catalog:null,
   lang:'ja',
@@ -1389,16 +1437,19 @@ const M = {
     unchecked:'未確認',
     count:'所持数',
     unmatched:'未分類',
-    connect:'● WALLETを照会',
-    walletTitle:'ウォレットを照会',
-    walletDesc:'公開アドレスのみ使用し、秘密鍵や送金承認は不要です。',
+
+    connect:'⌕ ウォレット照会',
+    walletTitle:'ウォレット照会',
+    walletDesc:'公開ウォレットアドレスを入力すると、保有しているチケットとNFTを表示します。',
     walletLabel:'公開ウォレットアドレス',
-    connectAddress:'このアドレスを照会',
-    connectProvider:'ウォレットアプリで接続',
+    connectAddress:'保有状況を表示',
+    walletTip:'アドレスはこの端末に保存され、次回の照会に利用されます。秘密鍵や署名は不要です。',
+
     notReleased:'この県のアートは発売準備中です。',
     loading:'保有情報を取得中...',
     fetchError:'取得に失敗しました。未確認を0枚として表示しません。'
   },
+
   en:{
     title:'YOUR JAPAN, <em>COLLECTED.</em>',
     desc:'Your ticket and NFT art collection, all in one album. A 47-prefecture journey, one stop at a time.',
@@ -1436,12 +1487,14 @@ const M = {
     unchecked:'NOT CHECKED',
     count:'Quantity',
     unmatched:'UNMATCHED',
-    connect:'● CHECK WALLET',
-    walletTitle:'Check your wallet',
-    walletDesc:'Only your public address is used. No private keys or transaction signatures are required.',
+
+    connect:'⌕ CHECK WALLET',
+    walletTitle:'Check Wallet',
+    walletDesc:'Enter a public wallet address to view your tickets and NFTs.',
     walletLabel:'Public wallet address',
-    connectAddress:'Check this address',
-    connectProvider:'Connect wallet app',
+    connectAddress:'VIEW COLLECTION',
+    walletTip:'This public address is saved on this device for your next visit. No private key or signature is needed.',
+
     notReleased:'Artwork for this prefecture has not been released.',
     loading:'Loading holdings...',
     fetchError:'Failed to load NFTs. Missing data is not treated as zero.'
@@ -1450,25 +1503,30 @@ const M = {
 
 const t = () => M[state.lang];
 const pad = n => String(n).padStart(2,'0');
-const current = () => state.catalog.stops[state.stop];
+
+const current = () =>
+  state.catalog.stops[state.stop];
 
 const nameFor = i =>
   state.lang==='ja'
-  ? state.catalog.stops[i].name
-  : state.catalog.stops[i].code;
+    ? state.catalog.stops[i].name
+    : state.catalog.stops[i].code;
 
 const valid = () => state.mode==='live';
 const disp = n => valid()?String(n):'—';
 
 const amount = n => {
-  const v = Number(n?.quantity_string??n?.quantity??1);
+  const v=Number(n?.quantity_string??n?.quantity??1);
   return Number.isFinite(v)&&v>=0?v:1;
 };
 
-const sum = a => a.reduce((v,n)=>v+amount(n),0);
-const norm = s => String(s||'').trim().toLowerCase();
+const sum = a =>
+  a.reduce((v,n)=>v+amount(n),0);
 
-/* IMAGES */
+const norm = s =>
+  String(s||'').trim().toLowerCase();
+
+/* IMAGE URL */
 function safeImage(url) {
   if(typeof url!=='string'||!url) return '';
 
@@ -1484,7 +1542,7 @@ function safeImage(url) {
   }
 }
 
-/* WALLET NFT MATCHING */
+/* NFT OWNERSHIP MATCHING */
 function belongs(n,c) {
   if(!c) return false;
 
@@ -1518,7 +1576,7 @@ function rarityCounts(p) {
          ART_TEMPLATE;
 }
 
-/* 29 ART SLOTS PER PREFECTURE */
+/* CREATE 29 ART SLOTS */
 function artSlots(p) {
   const base=[];
 
@@ -1528,7 +1586,7 @@ function artSlots(p) {
 
       const custom=(p.art?.cards||[]).find(
         c=>c.id===id ||
-        (c.rarity===r&&Number(c.variant)===i)
+          (c.rarity===r&&Number(c.variant)===i)
       )||{};
 
       base.push({
@@ -1551,7 +1609,7 @@ function artSlots(p) {
 
     let match=base.find(
       s=>Array.isArray(s.tokenIds) &&
-      s.tokenIds.map(String).includes(id)
+         s.tokenIds.map(String).includes(id)
     );
 
     if(!match) {
@@ -1560,11 +1618,13 @@ function artSlots(p) {
       const trait=k=>
         traits.find(x=>norm(x.trait_type)===k)?.value;
 
-      const rarity=String(trait('rarity')||'').toUpperCase();
+      const rarity=String(
+        trait('rarity')||''
+      ).toUpperCase();
 
       const variant=Number(
-        trait('artwork')??
-        trait('variant')??
+        trait('artwork') ??
+        trait('variant') ??
         trait('design')
       );
 
@@ -1574,7 +1634,8 @@ function artSlots(p) {
         variant>0
       ) {
         match=base.find(
-          s=>s.rarity===rarity&&s.variant===variant
+          s=>s.rarity===rarity &&
+            s.variant===variant
         );
       }
     }
@@ -1596,17 +1657,20 @@ function artSlots(p) {
   return {base,unknown};
 }
 
-/* COLLECTION STATISTICS */
+/* STATISTICS */
 function rate(n) {
-  return Number.isInteger(n)?String(n):n.toFixed(2);
+  return Number.isInteger(n)
+    ? String(n)
+    : n.toFixed(2);
 }
 
 function stat(id,n,suffix) {
-  $(id).replaceChildren(document.createTextNode(n));
+  $(id).replaceChildren(
+    document.createTextNode(n)
+  );
 
   const sm=document.createElement('small');
   sm.textContent=suffix;
-
   $(id).append(sm);
 }
 
@@ -1614,7 +1678,10 @@ function drawStats() {
   const p=current();
   const local=artSlots(p).base;
 
-  const localOwned=local.filter(s=>s.quantity>0).length;
+  const localOwned=local.filter(
+    s=>s.quantity>0
+  ).length;
+
   const localTotal=local.length;
 
   const nationalTotal=state.catalog.stops.reduce(
@@ -1626,15 +1693,26 @@ function drawStats() {
 
   const nationalOwned=state.catalog.stops.reduce(
     (v,p)=>
-      v+artSlots(p).base.filter(s=>s.quantity>0).length,0
+      v+artSlots(p).base.filter(
+        s=>s.quantity>0
+      ).length,0
   );
 
   const ticketTypes=state.catalog.stops.filter(
     p=>sum(ticketList(p))>0
   ).length;
 
-  stat('ticketStatValue',disp(ticketTypes),'/47');
-  stat('artStatValue',disp(nationalOwned),'/'+nationalTotal);
+  stat(
+    'ticketStatValue',
+    disp(ticketTypes),
+    '/47'
+  );
+
+  stat(
+    'artStatValue',
+    disp(nationalOwned),
+    '/'+nationalTotal
+  );
 
   stat(
     'completionStatValue',
@@ -1648,17 +1726,12 @@ function drawStats() {
     '%'
   );
 
-  $('topCounter').textContent =
-    (valid()?pad(ticketTypes):'—')+' / 47';
-
   $('ticketCounter').textContent=disp(ticketTypes);
-
   $('artCounter').textContent=disp(localOwned);
   $('artOutOf').textContent='/ '+localTotal;
-
   $('localPref').textContent=nameFor(state.stop);
 
-  $('localTicket').textContent =
+  $('localTicket').textContent=
     !valid()
       ? '—'
       : sum(ticketList(p))>0
@@ -1672,14 +1745,16 @@ function drawStats() {
     valid()&&sum(ticketList(p))>0
   );
 
-  $('localArt').innerHTML =
+  $('localArt').innerHTML=
     `${disp(localOwned)}<span>/${localTotal}</span>`;
 
-  $('localRate').textContent =
+  $('localRate').textContent=
     valid()
-      ? (localTotal
-          ? rate(localOwned/localTotal*100)+'%'
-          : '—')
+      ? (
+          localTotal
+            ? rate(localOwned/localTotal*100)+'%'
+            : '—'
+        )
       : '—';
 }
 
@@ -1708,6 +1783,7 @@ function drawRoad() {
 
   state.catalog.stops.forEach((p,i)=>{
     const b=document.createElement('button');
+
     b.type='button';
     b.className='station';
 
@@ -1717,10 +1793,10 @@ function drawRoad() {
       <span class="ename"></span>
     `;
 
-    b.querySelector('.jname').textContent =
+    b.querySelector('.jname').textContent=
       state.lang==='ja'?p.name:p.code;
 
-    b.querySelector('.ename').textContent =
+    b.querySelector('.ename').textContent=
       state.lang==='ja'?p.code:p.name;
 
     b.setAttribute(
@@ -1729,13 +1805,14 @@ function drawRoad() {
     );
 
     b.onclick=()=>selectStop(i);
-
     root.append(b);
   });
 
   updateRoad();
 
-  requestAnimationFrame(()=>moveCar(false));
+  requestAnimationFrame(
+    ()=>moveCar(false)
+  );
 
   const n=state.catalog.currentStop||1;
 
@@ -1745,8 +1822,9 @@ function drawRoad() {
 }
 
 function updateRoad() {
-  $('roadLine').querySelectorAll('.station').forEach(
-    (b,i)=>{
+  $('roadLine')
+    .querySelectorAll('.station')
+    .forEach((b,i)=>{
       b.classList.toggle(
         'travelled',
         i<=state.stop
@@ -1761,14 +1839,13 @@ function updateRoad() {
         'aria-pressed',
         String(i===state.stop)
       );
-    }
-  );
+    });
 
-  $('selectedStop').textContent =
+  $('selectedStop').textContent=
     `${t().here}: ${nameFor(state.stop)} `+
     `(${pad(state.stop+1)} / 47)`;
 
-  $('roadNumber').textContent =
+  $('roadNumber').textContent=
     `STOP ${pad(state.stop+1)} / 47`;
 }
 
@@ -1785,8 +1862,9 @@ function moveCar(animated=true) {
     !animated
   );
 
-  car.style.left =
-    (target.offsetLeft+(target.offsetWidth-50)/2)+'px';
+  car.style.left=
+    (target.offsetLeft+
+    (target.offsetWidth-50)/2)+'px';
 
   if(!animated) {
     requestAnimationFrame(
@@ -1818,7 +1896,7 @@ function selectStop(i) {
   drawArt();
 }
 
-/* SQUARE IMAGE POPUP */
+/* SMALL SQUARE MODAL */
 function openModal({
   title,
   source,
@@ -1843,13 +1921,13 @@ function openModal({
     box.append(q);
   }
 
-  $('modalText').textContent =
+  $('modalText').textContent=
     `${status} / ${t().count}: ${disp(quantity)}`;
 
   $('modalWrap').hidden=false;
 }
 
-/* NFT CARDS */
+/* COLLECTION CARD */
 function makeCard({
   number,
   title,
@@ -1866,7 +1944,7 @@ function makeCard({
   b.className='collectcard'+(owned?' owned':'');
 
   const picture=document.createElement('span');
-  picture.className =
+  picture.className=
     'frameimage'+(owned?' ownedimage':'');
 
   const source=owned
@@ -1891,12 +1969,12 @@ function makeCard({
 
   const tag=document.createElement('span');
   tag.className='tag'+(owned?' ownedtag':'');
-  tag.textContent =
+  tag.textContent=
     owned?'✓ OWNED':art?rarity:pad(number);
 
   const qty=document.createElement('span');
   qty.className='qty';
-  qty.textContent =
+  qty.textContent=
     '×'+(valid()?pad(quantity):'—');
 
   picture.append(tag,qty);
@@ -1999,23 +2077,23 @@ function drawTickets() {
     root.append(el);
   }
 
-  $('moreTickets').hidden =
+  $('moreTickets').hidden=
     state.filter!=='all'||!!state.search;
 
-  $('moreTickets').textContent =
+  $('moreTickets').textContent=
     state.showAll?t().less:t().more;
 }
 
-/* ART BOOK */
+/* NFT ART BOOK */
 function drawArt() {
   const p=current();
   const slots=artSlots(p);
   const root=$('artGridRoot');
 
-  $('artTitle').textContent =
+  $('artTitle').textContent=
     t().artTitle+' — '+nameFor(state.stop);
 
-  $('artNote').textContent =
+  $('artNote').textContent=
     (
       p.art?.status==='released'
         ? ''
@@ -2028,7 +2106,8 @@ function drawArt() {
   for(const [r] of RARITIES) {
     const b=document.createElement('button');
     b.textContent=r;
-    b.className =
+
+    b.className=
       state.rarity===r?'active':'';
 
     b.onclick=()=>{
@@ -2053,13 +2132,14 @@ function drawArt() {
   glyph.textContent=state.rarity;
 
   const heading=document.createElement('strong');
-  heading.textContent =
+  heading.textContent=
     RARITIES.find(
       r=>r[0]===state.rarity
     )[1];
 
   const total=document.createElement('small');
-  total.textContent =
+
+  total.textContent=
     `${selected.filter(s=>s.quantity>0).length} / `+
     `${selected.length} `+
     (state.lang==='ja'?'種':'TYPES');
@@ -2106,7 +2186,8 @@ function drawArt() {
     bar.className='raritybar';
 
     const h=document.createElement('strong');
-    h.textContent =
+
+    h.textContent=
       `${t().unmatched} — ${slots.unknown.length}`;
 
     bar.append(h);
@@ -2164,9 +2245,15 @@ function setLanguage(lang) {
   $('scopeNote').textContent=t().scopeNote;
 
   $('localHeading').textContent=t().localHeading;
-  $('localTicketLabel').textContent=t().localTicketLabel;
-  $('localArtLabel').textContent=t().localArtLabel;
-  $('localRateLabel').textContent=t().localRateLabel;
+
+  $('localTicketLabel').textContent=
+    t().localTicketLabel;
+
+  $('localArtLabel').textContent=
+    t().localArtLabel;
+
+  $('localRateLabel').textContent=
+    t().localRateLabel;
 
   $('ticketTitle').textContent=t().ticketTitle;
 
@@ -2179,20 +2266,31 @@ function setLanguage(lang) {
 
   $('walletTitle').textContent=t().walletTitle;
   $('walletDesc').textContent=t().walletDesc;
-  $('walletAddressLabel').textContent=t().walletLabel;
-  $('addressConnect').textContent=t().connectAddress;
-  $('providerConnect').textContent=t().connectProvider;
 
-  $('walletButton').textContent =
-    state.wallet
-      ? state.wallet.slice(0,6)+'…'+state.wallet.slice(-4)
-      : t().connect;
+  $('walletAddressLabel').textContent=
+    t().walletLabel;
 
-  $('ticketInfo').textContent =
+  $('addressConnect').textContent=
+    t().connectAddress;
+
+  $('walletTip').textContent=t().walletTip;
+
+  $('walletButton').textContent=
+    t().connect+
+    (
+      state.wallet
+        ? ' · '+state.wallet.slice(0,6)+
+          '…'+state.wallet.slice(-4)
+        : ''
+    );
+
+  $('ticketInfo').textContent=
     state.error ||
-    (!valid()
-      ? 'Wallet not connected / ウォレット未接続'
-      : '');
+    (
+      !valid()
+        ? 'Wallet not connected / ウォレット未接続'
+        : ''
+    );
 
   drawRoad();
   drawStats();
@@ -2200,10 +2298,10 @@ function setLanguage(lang) {
   drawArt();
 }
 
-/* WALLET CONNECTION */
+/* PUBLIC ADDRESS LOOKUP */
 async function loadWallet(address) {
   if(!/^0x[0-9A-Fa-f]{40}$/.test(address)) {
-    $('walletError').textContent =
+    $('walletError').textContent=
       'Invalid address / アドレスが正しくありません';
     return;
   }
@@ -2219,7 +2317,7 @@ async function loadWallet(address) {
   $('ticketInfo').textContent=t().loading;
 
   try {
-    const base =
+    const base=
       state.catalog.settings?.apiBase ||
       API_BASE;
 
@@ -2247,8 +2345,16 @@ async function loadWallet(address) {
     state.art=data.art;
     state.mode='live';
 
+    /* SAVE PUBLIC ADDRESS */
+    try {
+      localStorage.setItem(
+        'tt_public_wallet',
+        address
+      );
+    } catch (_) {}
+
   } catch(e) {
-    state.error =
+    state.error=
       t().fetchError+' ('+e.message+')';
   }
 
@@ -2274,9 +2380,7 @@ async function initialize() {
     if(
       !Array.isArray(data.stops) ||
       data.stops.length!==47 ||
-      data.stops.some(
-        (p,i)=>p.stop!==i+1
-      )
+      data.stops.some((p,i)=>p.stop!==i+1)
     ) {
       throw Error('Invalid 47 stops');
     }
@@ -2285,8 +2389,7 @@ async function initialize() {
 
   } catch(e) {
     state.catalog=FALLBACK;
-    state.error=
-      'journey.json: '+e.message;
+    state.error='journey.json: '+e.message;
   }
 
   state.stop=Math.max(
@@ -2298,6 +2401,17 @@ async function initialize() {
   );
 
   setLanguage('ja');
+
+  /* RESTORE SAVED PUBLIC ADDRESS */
+  try {
+    const saved=
+      localStorage.getItem('tt_public_wallet')||'';
+
+    if(/^0x[0-9a-fA-F]{40}$/.test(saved)) {
+      $('walletAddress').value=saved;
+      await loadWallet(saved);
+    }
+  } catch (_) {}
 }
 
 /* BUTTON EVENTS */
@@ -2355,6 +2469,7 @@ $('modalWrap').onclick=e=>{
   }
 };
 
+/* WALLET LOOKUP BUTTON */
 $('walletButton').onclick=()=>{
   $('walletWrap').hidden=false;
   $('walletError').textContent='';
@@ -2371,31 +2486,14 @@ $('walletWrap').onclick=e=>{
 };
 
 $('addressConnect').onclick=()=>{
-  loadWallet($('walletAddress').value.trim());
+  loadWallet(
+    $('walletAddress').value.trim()
+  );
 };
 
 $('walletAddress').onkeydown=e=>{
   if(e.key==='Enter') {
     loadWallet(e.target.value.trim());
-  }
-};
-
-$('providerConnect').onclick=async()=>{
-  try {
-    if(!window.ethereum?.request) {
-      throw Error('Wallet provider unavailable');
-    }
-
-    const xs=await window.ethereum.request({
-      method:'eth_requestAccounts'
-    });
-
-    if(xs[0]) {
-      await loadWallet(xs[0]);
-    }
-
-  } catch(e) {
-    $('walletError').textContent=e.message;
   }
 };
 
