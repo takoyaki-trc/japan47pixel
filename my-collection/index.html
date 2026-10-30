@@ -1,904 +1,2415 @@
+
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#131a1d">
 <title>MY COLLECTION | TRAVELING TAKOYAKI</title>
+
 <style>
-:root{
-  --bg:#f6efdc;
-  --bg-dot:#e7dcc0;
-  --ink:#111111;
-  --paper:#fffaf0;
-  --paper-2:#f2ebdd;
-  --navy:#07121d;
-  --navy-2:#12243b;
-  --navy-3:#203b57;
-  --yellow:#f3c430;
-  --yellow-2:#ffd969;
-  --red:#ef4a3b;
-  --mint:#77e0cf;
-  --line:#101010;
-  --muted:#5a5a5a;
-  --shadow:4px 4px 0 #111111;
-  --shadow-soft:3px 3px 0 #1e1e1e;
+:root {
+  --ink:#192126;
+  --paper:#fbf7eb;
+  --cream:#f3ecda;
+  --line:#d9d0bb;
+  --red:#e44738;
+  --yellow:#f2c948;
+  --mint:#c8e2d5;
+  --forest:#22483c;
+  --muted:#69716d;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
+
+* { box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
   margin:0;
+  background:var(--cream);
   color:var(--ink);
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
-  background:
-    radial-gradient(circle at 1px 1px,var(--bg-dot) 1.2px,transparent 1.3px),
-    var(--bg);
-  background-size:18px 18px;
-}
-a{color:inherit}
-button,input{font:inherit}
-button{cursor:pointer}
-button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #2d76ff;outline-offset:2px}
-.hidden{display:none!important}
-.wrap{max-width:1120px;margin:0 auto;padding:0 14px}
-
-header{
-  position:sticky;top:0;z-index:30;
-  background:var(--navy);
-  color:#fff8ea;
-  border-bottom:4px solid var(--yellow);
-  box-shadow:0 2px 0 #00000022;
-}
-.head{
-  min-height:84px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-}
-.brand{display:flex;flex-direction:column;gap:2px}
-.brand-main{font-size:clamp(19px,4.8vw,42px);font-weight:900;line-height:1;letter-spacing:.03em}
-.brand-sub{font-size:clamp(10px,2.6vw,15px);opacity:.85;font-weight:700;letter-spacing:.04em}
-.head-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-.lang-switch{display:flex;gap:8px}
-.lang-btn,.connect-btn,.nav-btn,.cta,.filter,.modal-btn,.ghost-btn{
-  border:3px solid var(--line);
-  border-radius:0;
-  box-shadow:var(--shadow-soft);
-  font-weight:900;
-}
-.lang-btn{
-  background:#fffef8;color:var(--ink);
-  min-width:84px;padding:10px 14px;
-}
-.lang-btn.active{background:var(--yellow);}
-.connect-btn{
-  background:var(--mint);color:#07202a;
-  padding:12px 18px;max-width:210px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font:14px system-ui,-apple-system,"Noto Sans JP",sans-serif;
 }
 
-.hero{
-  padding:22px 0 16px;
+button,input { font:inherit; }
+button { cursor:pointer; }
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline:3px solid #3979c9;
+  outline-offset:3px;
 }
-.hero-card{
-  background:linear-gradient(180deg,#0a1623 0%,#11243b 100%);
-  color:#fff8eb;
-  border:4px solid var(--line);
-  box-shadow:var(--shadow);
-  padding:18px;
-  position:relative;
+
+.frame {
+  max-width:930px;
+  margin:auto;
+  background:var(--paper);
+  min-height:100vh;
+}
+
+.top {
+  height:4px;
+  background:var(--yellow);
+}
+
+/* HEADER */
+.header {
+  background:#131a1d;
+  color:#fff;
+  padding:13px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.logo {
+  width:40px;
+  height:40px;
+  border:2px solid #fff4e6;
+  box-shadow:2px 2px 0 #927b54;
+  flex-shrink:0;
   overflow:hidden;
 }
-.hero-card::after{
-  content:'';position:absolute;inset:auto -40px -40px auto;width:180px;height:180px;border-radius:50%;
-  background:rgba(255,255,255,.04);
-}
-.eyebrow{font-size:12px;letter-spacing:.22em;font-weight:900;color:#ffd969;text-transform:uppercase}
-.hero-title{font-size:clamp(34px,8vw,66px);line-height:.98;margin:10px 0 12px;font-weight:1000;letter-spacing:-.04em}
-.hero-title em{font-style:normal;color:var(--yellow)}
-.hero-desc{max-width:840px;font-size:clamp(14px,3.4vw,22px);line-height:1.75;color:#f2ead7;font-weight:700;margin:0}
-.jump{
-  display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;
-}
-.jump a,.cta,.nav-btn,.filter,.ghost-btn,.modal-btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  text-decoration:none;min-height:52px;padding:10px 16px;
-  background:#fffdf8;color:var(--ink);
-}
-.jump a{min-width:165px}
-.jump a.active,.cta.active,.filter.active{background:var(--red);color:#fff}
-.jump a.alt,.ghost-btn{background:var(--paper-2)}
 
-.stats{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0 14px;
+.logo img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  image-rendering:pixelated;
 }
-.stat{
+
+.brand-title {
+  font-size:13px;
+  line-height:1.1;
+  font-weight:950;
+  letter-spacing:.12em;
+  white-space:nowrap;
+}
+
+.brand-sub {
+  font-size:9px;
+  font-weight:800;
+  color:#c6c7bf;
+  letter-spacing:.12em;
+  margin-top:5px;
+}
+
+.language {
+  display:flex;
+  background:#303838;
+  padding:3px;
+  gap:2px;
+  flex-shrink:0;
+}
+
+.language button {
+  border:0;
+  background:transparent;
+  color:#cfceca;
+  font-size:10px;
+  font-weight:900;
+  padding:8px 11px;
+}
+
+.language button.active {
   background:var(--yellow);
-  border:4px solid var(--line);box-shadow:var(--shadow);
-  padding:14px 14px 12px;
+  color:var(--ink);
 }
-.stat small{display:block;font-size:12px;font-weight:900;letter-spacing:.03em}
-.stat strong{display:block;margin-top:8px;font-size:clamp(28px,6vw,48px);line-height:1;font-weight:1000}
 
-.notice{
-  margin:16px 0 22px;
-  background:#fff8ef;border:4px solid var(--line);box-shadow:var(--shadow);
-  padding:14px 16px;font-size:14px;font-weight:700;line-height:1.7;
+.microbar {
+  background:#243239;
+  color:#dfe9e5;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  padding:8px 22px;
+  font-size:10px;
+  letter-spacing:.08em;
 }
-.notice.err{background:#ffe1dd;color:#7d1208}
 
-.panel{
-  margin:22px 0;
-  background:var(--paper);
-  border:4px solid var(--line);
-  box-shadow:var(--shadow);
-  padding:18px 16px;
+.microbar strong { color:#fcebbd; }
+
+.microbar button {
+  color:inherit;
+  background:transparent;
+  border:0;
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:.06em;
+  cursor:pointer;
 }
-.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-.panel-title{font-size:clamp(30px,7vw,52px);line-height:1.02;margin:6px 0 8px;font-weight:1000;letter-spacing:-.04em}
-.panel-sub{font-size:16px;line-height:1.8;color:#343434;font-weight:700;margin:0;max-width:780px}
-.navbuttons{display:flex;gap:8px;flex-wrap:wrap}
-.nav-btn{min-width:92px;background:var(--paper-2)}
-.nav-btn.primary{background:var(--yellow)}
 
-.route-board{
+/* HERO */
+.hero {
+  position:relative;
+  overflow:hidden;
+  padding:31px 22px 22px;
+  border-bottom:1px solid var(--line);
+}
+
+.hero:after {
+  content:'';
+  position:absolute;
+  right:-25px;
+  top:10px;
+  width:135px;
+  height:135px;
+  border:2px dashed #c7d0bf;
+  border-radius:50%;
+  opacity:.7;
+}
+
+.overline {
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.19em;
+  color:var(--red);
+}
+
+h1 {
+  font-size:clamp(29px,5vw,43px);
+  letter-spacing:-.06em;
+  line-height:1.16;
+  margin:9px 0 8px;
+  font-weight:950;
+  position:relative;
+  z-index:1;
+}
+
+h1 em {
+  font-style:normal;
+  color:var(--red);
+}
+
+.intro {
+  font-size:12px;
+  line-height:1.7;
+  color:#515a54;
+  max-width:560px;
+  margin:0;
+  position:relative;
+  z-index:1;
+}
+
+.hero-links {
+  display:flex;
+  gap:6px;
   margin-top:18px;
-  background:#bcdacb;
-  border:4px solid var(--line);
-  box-shadow:var(--shadow-soft);
-  padding:12px;
+  position:relative;
+  z-index:1;
 }
-.route-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
-.route-head strong{font-size:18px}
-.route-head small{font-size:13px;font-weight:900}
-.road-slider{
-  overflow-x:auto;overflow-y:hidden;
-  -webkit-overflow-scrolling:touch;
+
+.hero-links a {
+  flex:1;
+  text-align:center;
+  text-decoration:none;
+  color:#232c29;
+  border:1px solid #cfc4ad;
+  background:#fffdfa;
+  font-size:11px;
+  font-weight:850;
+  padding:11px 4px;
+}
+
+.hero-links a:first-child {
+  background:var(--yellow);
+  border-color:#caa33f;
+}
+
+/* ROAD TRIP */
+.stickyish { padding:16px 22px 0; }
+
+.sectionhead {
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.sectionhead h2 {
+  font-size:24px;
+  letter-spacing:-.04em;
+  line-height:1.12;
+  margin:5px 0 2px;
+}
+
+.smallhint {
+  font-size:10px;
+  color:var(--muted);
+  font-weight:750;
+}
+
+.roadbox {
+  background:var(--mint);
+  border:1px solid #9dbbab;
+  margin-top:12px;
+  padding:14px 12px 11px;
+}
+
+.roadtop {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.06em;
+}
+
+.roadtop strong { font-size:13px; }
+
+.roadscroll {
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+  scrollbar-color:#8eaca0 transparent;
+  padding:43px 4px 6px;
   scroll-behavior:smooth;
   touch-action:pan-x pan-y;
-  padding:36px 4px 8px;
 }
-.road{display:flex;align-items:flex-start;gap:10px;position:relative;width:max-content;min-height:96px;padding:0 6px}
-.road-stop{position:relative;flex:0 0 60px;width:60px;background:transparent;border:0;padding:0;text-align:center;color:#162028}
-.road-stop::after{
-  content:'';position:absolute;left:calc(50% + 18px);top:18px;width:calc(100% - 14px);height:10px;
-  background:#fbf5e4;border-top:3px solid var(--line);border-bottom:3px solid var(--line);z-index:0;
-}
-.road-stop:last-child::after{display:none}
-.road-stop.past::after{background:var(--red)}
-.road-dot{
-  width:40px;height:40px;margin:0 auto;display:grid;place-items:center;position:relative;z-index:1;
-  border-radius:999px;border:3px solid var(--line);background:#fff8e6;font:900 13px/1 monospace;
-}
-.road-stop.past .road-dot{background:#f5d067}
-.road-stop.current .road-dot{background:var(--red);color:#fff;border-color:#fff;box-shadow:0 0 0 3px var(--line)}
-.road-stop.selected .road-dot{outline:3px solid #2152a3;outline-offset:2px}
-.road-stop .pref{display:block;margin-top:7px;font-size:12px;font-weight:900;white-space:nowrap}
-.road-stop .english{display:block;margin-top:1px;font-size:9px;font-weight:800;color:#42545d;white-space:nowrap}
-.road-stop .truck{position:absolute;top:-34px;left:3px;width:50px;height:35px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(1px 2px 0 #fff6db);pointer-events:none}
-.route-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
-.route-foot p{margin:0;font-weight:800}
-.route-link{text-decoration:underline;font-weight:900}
-.progress{height:10px;background:#efe4c2;border:3px solid var(--line);margin-top:10px;overflow:hidden}
-.progress>div{height:100%;background:linear-gradient(90deg,var(--yellow),var(--red))}
-.route-hint{margin-top:8px;font-size:12px;font-weight:800;color:#42545d;text-align:center}
 
-.section-eyebrow{font-size:13px;letter-spacing:.18em;color:#b03b2e;font-weight:900;text-transform:uppercase}
-.section-title{font-size:clamp(28px,6vw,46px);margin:8px 0 8px;font-weight:1000;line-height:1.05}
-.section-desc{font-size:15px;line-height:1.8;color:#333;font-weight:700;margin:0}
-.filters{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 14px}
-.filter{background:#fffef8;padding:10px 16px;min-width:126px}
-.search{
-  width:100%;max-width:700px;margin-bottom:14px;
-  background:#fffdf7;border:4px solid var(--line);box-shadow:var(--shadow-soft);padding:14px 16px;color:var(--ink);
+.roadline {
+  position:relative;
+  display:flex;
+  width:max-content;
+  gap:14px;
+  padding:0 5px;
 }
-.pulse{
-  background:#163147;color:#fff6e6;border:4px solid var(--line);box-shadow:var(--shadow-soft);padding:14px 16px;margin:14px 0 12px;font-weight:900;font-size:19px
-}
-.galleryNote,.muted{font-size:14px;color:#444;line-height:1.8;font-weight:700}
-.empty{padding:18px;background:#fff8ef;border:4px solid var(--line);font-size:14px;font-weight:800}
 
-.rarity{margin-top:22px}
-.rarityHead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 0 10px;margin:0 0 12px;border-bottom:4px solid var(--line)}
-.rarityName{font-size:clamp(26px,5vw,34px);font-weight:1000;display:flex;align-items:center;gap:10px}
-.rarityName b{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 10px;background:var(--yellow);border:4px solid var(--line);box-shadow:var(--shadow-soft);font-size:24px}
-.rarityCount{font-size:16px;font-weight:900}
+.station {
+  border:0;
+  background:transparent;
+  padding:0;
+  flex:0 0 58px;
+  width:58px;
+  position:relative;
+  text-align:center;
+  color:var(--ink);
+}
 
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.tile{
-  min-width:0;overflow:hidden;text-align:left;color:var(--ink);
-  background:#fffdf8;border:4px solid var(--line);box-shadow:var(--shadow-soft);padding:8px;
+.station:after {
+  content:'';
+  position:absolute;
+  left:calc(50% + 20px);
+  top:18px;
+  width:calc(100% - 9px);
+  height:5px;
+  background:#fdf5da;
+  outline:2px solid #26332a;
+  z-index:0;
 }
-.tile.owned{background:#fff8e9}
-.tile .image{
-  position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;
-  background:#08131f;display:grid;place-items:center;border:3px solid var(--line);
-}
-.tile img{display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated;background:#08131f}
-.question{font:900 clamp(44px,10vw,80px)/1 monospace;color:#d8dde4;text-shadow:4px 4px 0 #223648}
-.qty{
-  position:absolute;right:6px;bottom:6px;background:#07121d;color:#ffd969;border:3px solid var(--line);
-  padding:3px 7px;font-size:14px;font-weight:1000;line-height:1;
-}
-.tile .title{font-size:clamp(14px,3vw,20px);font-weight:1000;line-height:1.25;padding-top:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tile .subtitle{font-size:12px;color:#4d4d4d;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-top:4px}
-.tile .status{display:inline-block;margin-top:8px;padding:5px 8px;background:#f3ede2;border:3px solid var(--line);font-size:12px;font-weight:900}
-.tile.owned .status{background:var(--red);color:#fff}
 
-footer{
-  margin-top:30px;padding:26px 0 48px;background:var(--navy);color:#fff7e7;border-top:4px solid var(--yellow);text-align:center;
-}
-footer .wrap{font-size:14px;line-height:1.8;font-weight:700}
+.station:last-child:after { display:none; }
 
-.dialog-card{
-  width:min(460px,calc(100% - 18px));max-height:90vh;overflow:auto;
-  background:var(--paper);color:var(--ink);border:4px solid var(--line);box-shadow:6px 6px 0 #111;border-radius:0;padding:18px;
-}
-dialog::backdrop{background:#0008}
-.dialog-close{float:right;border:0;background:none;font-size:34px;line-height:1;color:var(--ink);font-weight:900}
-.dialog-title{font-size:28px;font-weight:1000;margin:0 0 8px}
-.dialog-text{font-size:14px;line-height:1.8;font-weight:700;color:#3d3d3d}
-.dialog-card input{
-  display:block;width:100%;margin:12px 0;padding:14px;background:#fffdf7;border:4px solid var(--line);color:var(--ink)
-}
-.modal-btn{width:100%;margin:8px 0;background:var(--yellow)}
-.modal-btn.alt{background:#fffdf7}
-.detail-image{display:block;width:100%;max-height:360px;object-fit:contain;background:#08131f;border:4px solid var(--line);margin:10px 0}
+.station.travelled:after { background:var(--red); }
 
-@media (max-width:860px){
-  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.dot {
+  position:relative;
+  display:grid;
+  place-items:center;
+  margin:auto;
+  width:39px;
+  height:39px;
+  border:2.5px solid #26332a;
+  background:#fff8e6;
+  border-radius:50%;
+  font-size:12px;
+  font-weight:900;
+  z-index:2;
 }
-@media (max-width:640px){
-  .wrap{padding:0 10px}
-  .head{align-items:flex-start;padding:10px 0;min-height:auto}
-  .head-right{width:100%;justify-content:space-between}
-  .lang-switch{order:1}
-  .connect-btn{order:2;max-width:170px;padding:10px 12px}
-  .hero{padding:14px 0 10px}
-  .hero-card{padding:14px}
-  .panel,.route-board,.stat,.notice,.tile,.search{box-shadow:3px 3px 0 #111}
-  .panel{padding:14px 12px}
-  .jump a,.filter,.nav-btn,.lang-btn,.connect-btn,.modal-btn,.ghost-btn{min-height:48px}
-  .jump a{min-width:unset;flex:1 1 140px}
-  .grid{gap:8px}
-  .tile{padding:6px}
-  .tile .title{font-size:12px}
-  .tile .subtitle{font-size:10px}
-  .tile .status{font-size:10px;padding:4px 6px}
-  .qty{font-size:12px;padding:3px 6px}
-  .road{gap:8px}
-  .road-stop{flex-basis:56px;width:56px}
-  .road-stop .pref{font-size:11px}
-  .road-stop .english{font-size:8px}
+
+.station.travelled .dot {
+  background:var(--red);
+  color:#fff;
 }
-@media (max-width:390px){
-  .brand-main{font-size:17px}
-  .brand-sub{font-size:10px}
-  .lang-btn{min-width:74px;padding:9px 10px}
-  .connect-btn{max-width:150px;font-size:12px}
+
+.station.active .dot {
+  border-color:#fff;
+  box-shadow:0 0 0 2px #26332a;
+  outline:2px solid #1b7961;
+  outline-offset:4px;
 }
-@media (prefers-reduced-motion:reduce){
-  .road-slider{scroll-behavior:auto}
+
+.station .jname {
+  display:block;
+  font-size:10px;
+  font-weight:900;
+  margin-top:8px;
+  white-space:nowrap;
+}
+
+.station .ename {
+  display:block;
+  font-size:8px;
+  color:#54675b;
+  font-weight:700;
+  margin-top:2px;
+}
+
+/* TAKOYAKI TRUCK */
+.car-holder {
+  position:absolute;
+  top:-34px;
+  left:9px;
+  width:50px;
+  height:32px;
+  z-index:6;
+  pointer-events:none;
+  transition:left .64s cubic-bezier(.22,.70,.24,1);
+}
+
+.car-holder.no-motion { transition:none; }
+
+.car-holder img {
+  display:block;
+  width:50px;
+  height:32px;
+  object-fit:contain;
+  image-rendering:pixelated;
+  animation:idle 1.05s steps(2,end) infinite;
+  filter:drop-shadow(1px 2px 0 #fbf7eb);
+}
+
+.car-holder .fallback {
+  position:absolute;
+  left:12px;
+  top:0;
+  font-size:25px;
+}
+
+.car-holder.loaded .fallback { display:none; }
+
+@keyframes idle {
+  0%,100% {
+    transform:translateY(0) rotate(-.35deg);
+  }
+  50% {
+    transform:translateY(-2px) rotate(.35deg);
+  }
+}
+
+.roadbottom {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:7px;
+  margin-top:7px;
+}
+
+.roadselected {
+  font-size:11px;
+  font-weight:750;
+}
+
+.roadcontrols {
+  display:flex;
+  gap:5px;
+}
+
+.roadcontrols button {
+  border:1px solid #8caa9d;
+  background:#f5fbf5;
+  color:#193e30;
+  font-size:11px;
+  font-weight:800;
+  padding:6px 10px;
+  min-width:34px;
+}
+
+.roadcontrols .home { background:#e8f0df; }
+
+.roadfoot {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  font-size:10px;
+  color:#4a6a60;
+}
+
+.track {
+  height:4px;
+  flex:1;
+  background:#91b8a7;
+}
+
+.track i {
+  height:100%;
+  background:var(--red);
+  display:block;
+  width:2.1%;
+}
+
+/* COLLECTION STATISTICS */
+.scope-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:10px;
+  padding:20px 22px 8px;
+}
+
+.scope-head .scope-label {
+  font-size:11px;
+  color:var(--red);
+  font-weight:950;
+  letter-spacing:.15em;
+}
+
+.scope-head .scope-sub {
+  font-size:10px;
+  font-weight:750;
+  color:var(--muted);
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1px;
+  background:#dcd2ba;
+  border-block:1px solid #dcd2ba;
+}
+
+.stat {
+  background:#f7f0db;
+  padding:13px 22px;
+}
+
+.stat .num {
+  font-size:26px;
+  font-weight:950;
+  letter-spacing:-.05em;
+  line-height:1;
+}
+
+.stat .num small {
+  font-size:13px;
+  color:#8a8e81;
+  font-weight:650;
+}
+
+.stat .label {
+  font-size:9px;
+  line-height:1.45;
+  color:#626960;
+  font-weight:900;
+  margin-top:6px;
+}
+
+.scope-note {
+  font-size:10px;
+  line-height:1.6;
+  color:#747a72;
+  padding:9px 22px 2px;
+}
+
+/* SELECTED PREFECTURE */
+.local-summary {
+  margin:14px 22px 6px;
+  padding:13px 15px 15px;
+  background:#eaf3eb;
+  border:1px solid #c6d8c9;
+}
+
+.local-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding-bottom:9px;
+  border-bottom:1px solid #c4d3c5;
+}
+
+.local-caption {
+  font-size:10px;
+  color:#2e6153;
+  font-weight:950;
+  letter-spacing:.12em;
+}
+
+.local-title {
+  font-size:15px;
+  font-weight:950;
+}
+
+.local-metrics {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  padding-top:12px;
+}
+
+.local-metric {
+  min-width:0;
+  padding-right:8px;
+  border-right:1px solid #c5d5c8;
+}
+
+.local-metric:last-child {
+  border-right:0;
+  padding-right:0;
+}
+
+.local-metric small {
+  display:block;
+  color:#68746b;
+  font-size:9px;
+  font-weight:850;
+  line-height:1.4;
+  margin-bottom:5px;
+}
+
+.local-metric strong {
+  font-size:17px;
+  font-weight:950;
+  letter-spacing:-.02em;
+  white-space:nowrap;
+}
+
+.local-metric strong span {
+  font-size:10px;
+  color:#53675c;
+}
+
+.yes { color:#b84134; }
+
+/* COLLECTION ALBUM */
+.collection {
+  padding:27px 22px 0;
+}
+
+.collection .sectionhead,
+.artsection .sectionhead {
+  border-bottom:1px solid #d5ccb9;
+  padding-bottom:15px;
+}
+
+.counter {
+  font-size:11px;
+  color:var(--forest);
+  font-weight:850;
+  white-space:nowrap;
+}
+
+.counter strong {
+  font-size:20px;
+  color:#151d20;
+  margin-right:3px;
+}
+
+.toolbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin:17px 0 16px;
+}
+
+.tabs {
+  display:flex;
+  gap:3px;
+  background:#ede7da;
+  padding:3px;
+}
+
+.tabs button {
+  padding:8px 10px;
+  border:0;
+  background:transparent;
+  font-size:11px;
+  font-weight:850;
+  color:#747970;
+}
+
+.tabs button.active {
+  color:#fff;
+  background:#202b2b;
+}
+
+.search {
+  min-width:0;
+  width:105px;
+  background:#fffdf7;
+  border:1px solid #d4cab8;
+  padding:9px 8px;
+  font-size:11px;
+}
+
+.ticketgrid,
+.artgrid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+
+.collectcard {
+  display:block;
+  border:1px solid #ded6c8;
+  background:#fffdfa;
+  text-align:left;
+  padding:7px 7px 9px;
+  min-width:0;
+  color:inherit;
+  box-shadow:0 2px 0 #e9e1d3;
+  transition:transform .15s;
+}
+
+.collectcard:hover { transform:translateY(-2px); }
+
+.collectcard.owned { border-color:#c7a06d; }
+
+.frameimage {
+  width:100%;
+  aspect-ratio:1;
+  background:#e9e8de;
+  position:relative;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+
+.frameimage.ownedimage { background:#071625; }
+
+.frameimage img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  image-rendering:pixelated;
+}
+
+.missingprint {
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(
+      circle at 50% 43%,
+      #f8f5ed 0 25%,
+      transparent 26%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      #e9e9e1,
+      #e9e9e1 7px,
+      #e5e6df 7px,
+      #e5e6df 13px
+    );
+  color:#a4ada8;
+  font:900 clamp(38px,10vw,68px)/1 monospace;
+}
+
+.tag {
+  position:absolute;
+  top:5px;
+  left:5px;
+  background:#fffdf6ed;
+  color:#333;
+  font-size:9px;
+  font-weight:950;
+  padding:3px 5px;
+}
+
+.tag.ownedtag {
+  background:var(--red);
+  color:#fff;
+}
+
+.qty {
+  position:absolute;
+  right:5px;
+  bottom:5px;
+  background:#142128ea;
+  color:#f9e1a5;
+  font-size:10px;
+  font-weight:950;
+  padding:4px 6px;
+}
+
+.cardname {
+  display:block;
+  font-size:12px;
+  line-height:1.25;
+  font-weight:900;
+  margin-top:8px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.cardsub {
+  display:block;
+  font-size:9px;
+  color:#7b817c;
+  font-weight:750;
+  margin-top:3px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.cardstatus {
+  display:block;
+  font-size:9px;
+  font-weight:850;
+  color:#a1a69d;
+  margin-top:7px;
+}
+
+.collectcard.owned .cardstatus { color:#a73e31; }
+
+.more {
+  width:100%;
+  border:1px solid #cbbca4;
+  padding:13px;
+  background:#f6f0e4;
+  font-size:12px;
+  font-weight:850;
+  margin-top:14px;
+}
+
+.info {
+  font-size:10px;
+  color:#867d6e;
+  line-height:1.65;
+  margin-top:8px;
+}
+
+/* ART COLLECTION */
+.artsection {
+  background:#f3ecdc;
+  border-top:1px solid #e1d8c6;
+  margin-top:30px;
+  padding:29px 22px 38px;
+}
+
+.raritynav {
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin:17px 0;
+}
+
+.raritynav button {
+  border:1px solid #cfc2ad;
+  background:#fffdfa;
+  padding:8px 12px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.raritynav button.active {
+  background:#c94936;
+  border-color:#c94936;
+  color:white;
+}
+
+.raritybar {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:20px 0 12px;
+}
+
+.rarityglyph {
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  background:#252c2e;
+  color:#fff;
+  font-size:12px;
+  font-weight:950;
+}
+
+.raritybar strong {
+  font-size:14px;
+  font-weight:950;
+}
+
+.raritybar small {
+  margin-left:auto;
+  color:#6d736e;
+  font-size:11px;
+  font-weight:850;
+}
+
+.note {
+  font-size:11px;
+  line-height:1.6;
+  color:#7a7a70;
+  margin-top:15px;
+}
+
+.footer {
+  padding:26px 22px 30px;
+  background:#151e22;
+  color:#ddd9ce;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  font-size:10px;
+  font-weight:850;
+}
+
+.footer a { color:#f4ca54; }
+
+/* POPUP MODALS */
+[hidden] { display:none!important; }
+
+.overlay {
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  padding:14px;
+}
+
+.modal {
+  background:#fffaf0;
+  border:1px solid #d2c7b0;
+  box-shadow:0 15px 60px #0004;
+  max-width:380px;
+  width:100%;
+  padding:18px;
+  position:relative;
+}
+
+.modal h3 {
+  margin:0 28px 9px 0;
+  font-size:18px;
+}
+
+.modal .close {
+  position:absolute;
+  right:10px;
+  top:7px;
+  border:0;
+  background:transparent;
+  font-size:23px;
+}
+
+.modal p {
+  font-size:12px;
+  line-height:1.8;
+  color:#5d655c;
+}
+
+.modal label {
+  display:block;
+  font-size:11px;
+  font-weight:850;
+  margin:12px 0 6px;
+}
+
+.modal input {
+  width:100%;
+  padding:11px 12px;
+  background:#fffdf7;
+  border:1px solid #c9bea8;
+}
+
+.modal .action {
+  width:100%;
+  border:1px solid #beaa80;
+  background:var(--yellow);
+  font-size:12px;
+  font-weight:900;
+  margin-top:10px;
+  padding:11px;
+}
+
+.modal .action.alt { background:#f4f1e7; }
+
+/* Small square image popup */
+.modal #modalImage {
+  width:min(100%,260px);
+  aspect-ratio:1;
+  background:#071625;
+  margin:14px auto 12px;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+}
+
+.modal #modalImage img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  image-rendering:pixelated;
+}
+
+.modal #modalImage .missingprint { font-size:80px; }
+
+.modal #modalText {
+  font-size:13px;
+  font-weight:800;
+  margin:10px 0 0;
+}
+
+/* RESPONSIVE */
+@media(min-width:650px) {
+  .ticketgrid,
+  .artgrid {
+    grid-template-columns:repeat(5,minmax(0,1fr));
+  }
+
+  .search { width:190px; }
+}
+
+@media(max-width:410px) {
+  .header { padding:11px 12px; }
+  .brand-title { font-size:11px;letter-spacing:.09em; }
+  .brand-sub { font-size:8px; }
+  .logo { width:32px;height:32px; }
+  .language button { font-size:9px;padding:7px 8px; }
+  .microbar { padding:8px 12px; }
+  .hero { padding:25px 14px 18px; }
+  .stickyish { padding:16px 14px 0; }
+  .stat { padding:12px 11px; }
+  .stat .num { font-size:22px; }
+  .stat .num small { font-size:11px; }
+  .collection,
+  .artsection {
+    padding-left:14px;
+    padding-right:14px;
+  }
+  .ticketgrid,
+  .artgrid { gap:7px; }
+  .collectcard { padding:5px 5px 8px; }
+  .cardname { font-size:11px; }
+  .cardsub { font-size:9px; }
+  .tabs button { padding:8px 9px; }
+  .search { width:95px; }
+  .sectionhead h2 { font-size:22px; }
+  .footer { padding-left:14px;padding-right:14px; }
+  .scope-head { padding:17px 14px 7px; }
+  .scope-note { padding-left:14px;padding-right:14px; }
+  .local-summary { margin:12px 14px 2px;padding:12px; }
+  .local-metric strong { font-size:15px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .car-holder,
+  .roadscroll {
+    transition:none;
+    scroll-behavior:auto;
+  }
+  .car-holder img { animation:none; }
 }
 </style>
 </head>
+
 <body>
-<header>
-  <div class="wrap head">
+<div class="frame">
+  <div class="top"></div>
+
+  <header class="header">
     <div class="brand">
-      <div class="brand-main" id="brandMain">旅するたこ焼き</div>
-      <div class="brand-sub" id="brandSub">TRAVELING TAKOYAKI / MY COLLECTION</div>
-    </div>
-    <div class="head-right">
-      <div class="lang-switch" aria-label="language switch">
-        <button class="lang-btn active" id="langJa" type="button">日本語</button>
-        <button class="lang-btn" id="langEn" type="button">ENGLISH</button>
-      </div>
-      <button class="connect-btn" id="connect" type="button">CONNECT WALLET</button>
-    </div>
-  </div>
-</header>
-
-<main class="wrap">
-  <section class="hero">
-    <div class="hero-card">
-      <div class="eyebrow" id="heroEyebrow">JAPAN 47 JOURNEY</div>
-      <h1 class="hero-title" id="heroTitle">MY <em>COLLECTION</em></h1>
-      <p class="hero-desc" id="heroDesc">自分のウォレットにあるNFTを、47都道府県の図鑑で確認しよう。未収集は「？」表示。</p>
-      <div class="jump">
-        <a href="#tickets" id="jumpTickets">🎫 チケットブック</a>
-        <a href="#gallery" id="jumpGallery">🎨 NFTアートブック</a>
-        <a href="#roadSection" class="alt" id="jumpRoad">🗺️ 旅程マップ</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel" id="roadSection">
-    <div class="panel-head">
+      <span class="logo">
+        <img id="brandLogo" alt="Takoyaki truck">
+      </span>
       <div>
-        <div class="section-eyebrow" id="roadEyebrow">JAPAN 47 ROAD TRIP</div>
-        <div class="panel-title"><span id="roadTitleMain">すごろくロード</span> <span id="stopLabel">01 / 47</span></div>
-        <p class="panel-sub" id="roadDesc">県名を押すと、その県の図鑑に切り替わります。横1列をスライドしながら進んでいく旅マップです。</p>
-      </div>
-      <div class="navbuttons">
-        <button class="nav-btn" id="prev" type="button">◀</button>
-        <button class="nav-btn primary" id="now" type="button">現在地</button>
-        <button class="nav-btn" id="next" type="button">▶</button>
+        <div class="brand-title">TRAVELING TAKOYAKI</div>
+        <div class="brand-sub">JAPAN 47 · MY COLLECTION</div>
       </div>
     </div>
 
-    <div class="route-board">
-      <div class="route-head">
-        <strong id="routeLabel">旅するたこ焼き</strong>
-        <small id="mapStopLabelWrap">停留所 <span id="mapStopLabel">01 / 47</span></small>
-      </div>
-      <div class="road-slider" id="roadScroll" aria-label="road trip slider">
-        <div id="road" class="road"></div>
-      </div>
-      <div class="route-foot">
-        <p id="selectedLabel">選択中：北海道（01 / 47）</p>
-        <a href="#gallery" class="route-link" id="viewGalleryLink">アート図鑑を見る ↓</a>
-      </div>
-      <div class="progress"><div id="progressBar"></div></div>
-      <div class="route-hint" id="roadHint">◀ 左右にスワイプして47都道府県を進もう ▶</div>
+    <div class="language" aria-label="Language">
+      <button id="langJA" class="active">JP</button>
+      <button id="langEN">EN</button>
     </div>
-  </section>
+  </header>
 
-  <div class="stats">
-    <div class="stat"><small id="statArtTypesLabel">選択県 ART / 種類</small><strong id="artTypes">—</strong></div>
-    <div class="stat"><small id="statArtQtyLabel">ART NFT / 合計枚数</small><strong id="artQty">—</strong></div>
-    <div class="stat"><small id="statTicketTypesLabel">TICKET / 保有県数</small><strong id="ticketTypes">—</strong></div>
-    <div class="stat"><small id="statTicketQtyLabel">TICKET / 合計枚数</small><strong id="ticketQty">—</strong></div>
+  <div class="microbar">
+    <span>
+      COLLECTION PASSPORT
+      <strong id="topCounter">01 / 47</strong>
+    </span>
+    <button id="walletButton">● CONNECT WALLET</button>
   </div>
 
-  <div id="message" class="notice" role="status">図鑑を読み込み中…</div>
+  <section class="hero">
+    <div class="overline">THE JAPAN 47 COLLECTION</div>
+    <h1 id="heroTitle"></h1>
+    <p class="intro" id="heroDesc"></p>
 
-  <section id="tickets" class="panel">
-    <div class="section-eyebrow" id="ticketsEyebrow">JOURNEY TICKET / 47 PREFECTURES</div>
-    <div class="section-title" id="ticketsTitle">Journey Ticket 図鑑</div>
-    <p class="section-desc" id="ticketsDesc">すべての都道府県を3列で表示。未所持は「？」、所持数は画像右下に表示します。</p>
-    <div class="filters">
-      <button class="filter active" type="button" data-kind="ticket" data-filter="all" id="ticketFilterAll">すべて</button>
-      <button class="filter" type="button" data-kind="ticket" data-filter="owned" id="ticketFilterOwned">保有済み</button>
-      <button class="filter" type="button" data-kind="ticket" data-filter="missing" id="ticketFilterMissing">未所持・未公開</button>
-    </div>
-    <input id="ticketSearch" class="search" type="search" placeholder="都道府県名で探す">
-    <div id="ticketGrid" class="grid"></div>
+    <nav class="hero-links">
+      <a href="#tickets">TICKET BOOK</a>
+      <a href="#art">ART COLLECTION</a>
+      <a href="#journey">JOURNEY MAP</a>
+    </nav>
   </section>
 
-  <section id="gallery" class="panel">
-    <div class="section-eyebrow" id="galleryEyebrow">DISCOVER &amp; UNLOCK</div>
-    <div class="section-title" id="galleryTitle">NFTアート図鑑</div>
-    <p class="section-desc" id="galleryDesc">N・R・SR・UR 各7種、LR 1種。画像は正方形で3列表示。未収集は「？」で表示します。</p>
-    <div class="filters">
-      <button class="filter active" type="button" data-kind="art" data-filter="all" id="artFilterAll">すべて</button>
-      <button class="filter" type="button" data-kind="art" data-filter="owned" id="artFilterOwned">保有済み</button>
-      <button class="filter" type="button" data-kind="art" data-filter="missing" id="artFilterMissing">未収集 ？</button>
-      <button class="ghost-btn" type="button" id="refresh">↻ 所持状況を更新</button>
+  <section class="stickyish" id="journey">
+    <div class="sectionhead">
+      <div>
+        <div class="overline">YOUR ROAD TRIP</div>
+        <h2 id="roadTitle"></h2>
+      </div>
+      <div class="smallhint">SWIPE TO TRAVEL →</div>
     </div>
-    <div class="pulse" id="collectionPulse"></div>
-    <div class="galleryNote" id="galleryNote"></div>
-    <div id="rarityGroups"></div>
-  </section>
-</main>
 
-<footer>
-  <div class="wrap">
-    <div id="footerLine1">TRAVELING TAKOYAKI · JAPAN 47 JOURNEY</div>
-    <div id="footerLine2">ウォレットの秘密鍵やシードフレーズは使用しません。</div>
-    <div><a href="https://japan47pixel.net/" id="footerBack">公式サイトへ戻る</a></div>
+    <div class="roadbox">
+      <div class="roadtop">
+        <strong id="roadName"></strong>
+        <span id="roadNumber">STOP 01 / 47</span>
+      </div>
+
+      <div class="roadscroll" id="scrollRoad">
+        <div class="roadline" id="roadLine"></div>
+      </div>
+
+      <div class="roadbottom">
+        <span class="roadselected" id="selectedStop"></span>
+        <div class="roadcontrols">
+          <button id="prevStop" aria-label="Previous">‹</button>
+          <button class="home" id="currentStop">01</button>
+          <button id="nextStop" aria-label="Next">›</button>
+        </div>
+      </div>
+
+      <div class="roadfoot">
+        <span>JOURNEY PROGRESS</span>
+        <span class="track"><i id="journeyBar"></i></span>
+        <strong id="officialProgress">01/47</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="nationwide">
+    <div class="scope-head">
+      <span class="scope-label" id="scopeTitle"></span>
+      <span class="scope-sub" id="scopeSub"></span>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num" id="ticketStatValue">—</div>
+        <div class="label" id="statOne"></div>
+      </div>
+
+      <div class="stat">
+        <div class="num" id="artStatValue">—</div>
+        <div class="label" id="statTwo"></div>
+      </div>
+
+      <div class="stat">
+        <div class="num" id="completionStatValue">—</div>
+        <div class="label" id="statThree"></div>
+      </div>
+    </div>
+
+    <div class="scope-note" id="scopeNote"></div>
+  </section>
+
+  <section class="local-summary">
+    <div class="local-head">
+      <span class="local-caption" id="localHeading"></span>
+      <strong class="local-title" id="localPref"></strong>
+    </div>
+
+    <div class="local-metrics">
+      <div class="local-metric">
+        <small id="localTicketLabel"></small>
+        <strong id="localTicket"></strong>
+      </div>
+
+      <div class="local-metric">
+        <small id="localArtLabel"></small>
+        <strong id="localArt"></strong>
+      </div>
+
+      <div class="local-metric">
+        <small id="localRateLabel"></small>
+        <strong id="localRate"></strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="collection" id="tickets">
+    <div class="sectionhead">
+      <div>
+        <div class="overline">VOL. 01 — TICKET BOOK</div>
+        <h2 id="ticketTitle"></h2>
+      </div>
+      <div class="counter">
+        <strong id="ticketCounter">—</strong> / 47
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="tabs" id="ticketTabs">
+        <button data-filter="all" class="active" id="allBtn"></button>
+        <button data-filter="owned" id="ownedBtn"></button>
+        <button data-filter="missing" id="missingBtn"></button>
+      </div>
+      <input
+        class="search"
+        id="searchInput"
+        aria-label="Search prefectures"
+      >
+    </div>
+
+    <div class="ticketgrid" id="ticketGrid"></div>
+    <button class="more" id="moreTickets"></button>
+    <p class="info" id="ticketInfo"></p>
+  </section>
+
+  <section class="artsection" id="art">
+    <div class="sectionhead">
+      <div>
+        <div class="overline">VOL. 02 — ART BOOK</div>
+        <h2 id="artTitle"></h2>
+      </div>
+      <div class="counter">
+        <strong id="artCounter">—</strong>
+        <span id="artOutOf">/ 29</span>
+      </div>
+    </div>
+
+    <div class="raritynav" id="rarityNav"></div>
+    <div id="artGridRoot"></div>
+    <p class="note" id="artNote"></p>
+  </section>
+
+  <footer class="footer">
+    <span>TRAVELING TAKOYAKI © JAPAN 47</span>
+    <a href="https://japan47pixel.net/" id="backSite">
+      OFFICIAL SITE ↗
+    </a>
+  </footer>
+</div>
+
+<!-- WALLET -->
+<div class="overlay" id="walletWrap" hidden>
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="close" id="walletClose" aria-label="Close">×</button>
+    <div class="overline">WALLET VIEWER</div>
+    <h3 id="walletTitle"></h3>
+    <p id="walletDesc"></p>
+
+    <label id="walletAddressLabel" for="walletAddress"></label>
+    <input
+      id="walletAddress"
+      placeholder="0x..."
+      autocomplete="off"
+      spellcheck="false"
+    >
+
+    <button class="action" id="addressConnect"></button>
+    <button class="action alt" id="providerConnect"></button>
+    <p id="walletError"></p>
   </div>
-</footer>
+</div>
 
-<dialog id="walletDialog" class="dialog-card">
-  <button class="dialog-close" id="closeWallet" aria-label="close">×</button>
-  <h2 class="dialog-title" id="walletDialogTitle">CONNECT WALLET</h2>
-  <p class="dialog-text" id="walletDialogText">ウォレット接続、または公開アドレスを入力してNFTを照会できます。送金承認は不要です。</p>
-  <button class="modal-btn" id="walletButton" type="button">ウォレットアプリで接続</button>
-  <p class="dialog-text" id="walletDialogOr">または、公開アドレスから照会：</p>
-  <input id="address" placeholder="0x..." autocomplete="off" spellcheck="false">
-  <button class="modal-btn alt" id="addressButton" type="button">アドレスで照会</button>
-  <button class="modal-btn alt" id="demoButton" type="button">デモを見る</button>
-</dialog>
-
-<dialog id="detailDialog" class="dialog-card">
-  <button class="dialog-close" id="closeDetail" aria-label="close">×</button>
-  <h2 class="dialog-title" id="detailTitle"></h2>
-  <img id="detailImage" class="detail-image hidden" alt="art image">
-  <p class="dialog-text" id="detailText"></p>
-</dialog>
+<!-- NFT DETAIL -->
+<div class="overlay" id="modalWrap" hidden>
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="close" id="modalClose" aria-label="Close">×</button>
+    <div class="overline">MY COLLECTION</div>
+    <h3 id="modalTitle"></h3>
+    <div id="modalImage"></div>
+    <p id="modalText"></p>
+  </div>
+</div>
 
 <script>
 'use strict';
+
 const $ = id => document.getElementById(id);
-const RARITIES = [['N','NORMAL'],['R','RARE'],['SR','SUPER RARE'],['UR','ULTRA RARE'],['LR','LEGENDARY'],['?','UNMATCHED']];
+
+/* 47 PREFECTURES */
+const PREFECTURES = [
+  ['北海道','HOKKAIDO'],
+  ['青森','AOMORI'],
+  ['秋田','AKITA'],
+  ['岩手','IWATE'],
+  ['山形','YAMAGATA'],
+  ['福島','FUKUSHIMA'],
+  ['宮城','MIYAGI'],
+  ['茨城','IBARAKI'],
+  ['栃木','TOCHIGI'],
+  ['群馬','GUNMA'],
+  ['埼玉','SAITAMA'],
+  ['千葉','CHIBA'],
+  ['東京','TOKYO'],
+  ['神奈川','KANAGAWA'],
+  ['新潟','NIIGATA'],
+  ['富山','TOYAMA'],
+  ['石川','ISHIKAWA'],
+  ['福井','FUKUI'],
+  ['山梨','YAMANASHI'],
+  ['長野','NAGANO'],
+  ['岐阜','GIFU'],
+  ['静岡','SHIZUOKA'],
+  ['愛知','AICHI'],
+  ['三重','MIE'],
+  ['滋賀','SHIGA'],
+  ['京都','KYOTO'],
+  ['大阪','OSAKA'],
+  ['兵庫','HYOGO'],
+  ['奈良','NARA'],
+  ['和歌山','WAKAYAMA'],
+  ['鳥取','TOTTORI'],
+  ['島根','SHIMANE'],
+  ['岡山','OKAYAMA'],
+  ['広島','HIROSHIMA'],
+  ['山口','YAMAGUCHI'],
+  ['徳島','TOKUSHIMA'],
+  ['香川','KAGAWA'],
+  ['愛媛','EHIME'],
+  ['高知','KOCHI'],
+  ['福岡','FUKUOKA'],
+  ['佐賀','SAGA'],
+  ['長崎','NAGASAKI'],
+  ['熊本','KUMAMOTO'],
+  ['大分','OITA'],
+  ['宮崎','MIYAZAKI'],
+  ['鹿児島','KAGOSHIMA'],
+  ['沖縄','OKINAWA']
+];
+
+/* SHARED NFT TEMPLATE */
+const ART_TEMPLATE = {
+  N:7,
+  R:7,
+  SR:7,
+  UR:7,
+  LR:1
+};
+
+const RARITIES = [
+  ['N','NORMAL'],
+  ['R','RARE'],
+  ['SR','SUPER RARE'],
+  ['UR','ULTRA RARE'],
+  ['LR','LEGENDARY']
+];
+
+const API_BASE =
+  'https://traveling-takoyaki-apigentle-art-710b.japan47pixel.workers.dev';
+
+const TICKET_IMAGE =
+  'https://ul.h3z.jp/JdJ1ZSjj.png';
+
+const CAR_IMAGE =
+  'https://ul.h3z.jp/Lu7ch0Ne.png';
+
+/* Header logo: compact image data */
+const LOGO_IMAGE =
+'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAkFBMVEX98+L39vLS9GDK9C+y9EW59DjF9DG/9DTn9h/k9SPe9SfZ9SnT9CvR9CzM9C2a80ye9ESo9D+i9EGM81GS9EuD81l882Bz82dp825g8nZY8n5O8ohG8pBD8pVA85fz79zq286h3LBU8ITUnWtpj5+GRysiOkr3ERv3DRj3DBfVCxWLBA47EwIUEREJDxUDAwNYPqbTAAAFsElEQVR42o2XiVrbOhCF5VBK4aZQljYLFElYkjeN9f5vd89Isi2bfG0nxITY/5lVshHfSruF3d3d/Qfb77/D7q+urr7CbqJdz/bI9vT09OOH2PB3n/hFYI0nvhS4Xfzv9yxwv+KvP/HAHx7EJ/93k//If73a8qX7lcCWzwJb/kvhH/yLuMjvi/qt838sA3hYBG639b//C5/9vzyLC3ys3/2l+k/enzK+EigbeJl/3NSP+UWg8H8fE2D8WrFt3bPAQ+ajwKX4QSsZgve+DiGoL+vwp/ifn3+Kkt+XvGTa4RV/dhs++/8JgSL/fdGAXfC19dkckSqbN/uHwCf+e8xfEoM1vPMHvIN8zMkTFXwUuCsT+B4TUPDvJv/Q4Si+RJ7Iul3EI/9LTPx+KQAEtPcx/ngwkCBPMsZPdGu90SrzWWDL36CAFThfKT5IHKSnlL/xgW735FzkIbCuXxoARQi78l55ZfBbRaWgo4Cz1LYQsdZZDYG1/zz/WlnlbaWRgeQsOBqIxQagJV3btl3nyXp9ENP87MsFpOG29tZwDSTXUHtrteL+Ket8W4kGGv2ossAqf55/riFPga25AXyw+IsFHtReD11TVU3b9frX4SC29UsCAWhdxwN40NbaoNB/dMG1rWoq1XRBHwqB+0kgLr9gI5xEbLI4P5ooIIAG1hH4o5gXUNxAdzuXLPjF4lBSwLf6WVrTt3UjwHcmCUz+mVeGXBWtqS7YMErFAm2L020nwR/FiqdKJGvEbFLK+XNvMMhd29TcxyDBR4GpgTI0k3Uzzk2nRQCbA2DFfQzMQ2AewF1Q2kTT9SQgOd62HfKfyljyqCFyaFvN/EksA6y0GCPvnJoEiK/E22SB4Glo4xR1UeDEApnfUWUzXwg0TrWGJgEdvOYKKkh4mQXu8xZGlXFJwEwCysseE9fUAxZCioACO+cqEuMQmHjpdE7AzAKm802qQd/HGBQRNXVTK3znIn8WUwFCNZoxJlDUAOuGrRlSAIhAkxKSp6B3p0kg7iCkNMYv83MEfef7HqvGTxFY1WOOJQtIxs8QSDuIFRjVMca/CEhSfes615IhmWvQN6quqho1nAW4AF4oNY4ksy1d6LXrhW7mNgZeiTUGIST+Q8QCkFK1qms1GQYpCgmJjJUUiscZbxUGVKRGEENI/IeI9yB0ZWjjPoWdyth+GNByExwWl7YUlMNbO5IqpMlsukEm/hUCO8x31w1dy68WWx2xgAgC90RwimSQ/FFCAJvpwDtiG+R5FlC1rLsUQbaOBUggMUNID6TDZ+II5EEZXk+EpjnwELiZBLpSYFnCpfWBF5CWxqNZetSvWWBnIdAhcDauxIDRKyydwHe4Qx7T/JCpKsUK4uZmh3sEBPohRBswvQMnGn86HKcTbUeDSrwijR3KOP0GAaxRz055kkY3BsApjoSDx7c4E4aeOhXbL8dK6wovwwJO8e7bB1wUcG0IfTfkkkKAA3PxBKSxteoTD4hOm2QUuHY9/OA6N0ps+tFTv9Rg6HFC0ShHjs2MaKvGfMA9cHp9E9ezwKjJGh1w3drwDRlDxCfQzhEkFi7Hb1/ffkNARsJDIKAquHwxikc3CbCSi74dFLDA3n6zwPVOs4URQ0N2TAJ5VcXP46jGgLWGzWBkzyzwwchbFkhPcLhihJsxyPnxBYabjwz5hD5hnRHmRxMG4I0tCeQnODOyBfmy5g8HE+IJzcvnrJXEEE44CywPgHFL/MwfjzLeLE5p+WD+k/vf0cTq8b14fCv44zHP74pPAu+i4F8W/tfEHy/xr7P/FMH0+PwyP/6t+dPEn2d8K/BjHf8FPm8fr2UB3nMK/85/rPn39yiw8EX/D//Cs8S7iPi2fodZYMu/FQ2IJi7x6/i37nP93heB5b+Hgj9cql9Z/1ng4SK/at/Htv4TzQLzfx8X4z+f/8K/i5eHP43vn/Nn+x+87oXYytLV2gAAAABJRU5ErkJggg==';
+
+/* FALLBACK CATALOG */
+const FALLBACK = {
+  currentStop:1,
+  settings:{apiBase:API_BASE},
+  stops:PREFECTURES.map(([name,code],i)=>({
+    stop:i+1,
+    name,
+    code,
+    ticket:i===0?{
+      status:'released',
+      image:TICKET_IMAGE,
+      collection:'traveling-takoyaki',
+      contract:'0xb00bc4887f01f3ef12b21cf805703f8cd49329d4'
+    }:{status:'coming_soon'},
+    art:i===0?{
+      status:'preview',
+      collection:'traveling-takoyaki-hokkaido',
+      cards:[]
+    }:{status:'coming_soon'}
+  }))
+};
+
 const state = {
-  catalog:null, selected:'HOKKAIDO', mode:'unknown', wallet:'', art:[], tickets:[],
-  ticketFilter:'all', artFilter:'all', search:'', error:'', lang: localStorage.getItem('tt_lang') || 'ja'
+  catalog:null,
+  lang:'ja',
+  stop:0,
+  filter:'all',
+  search:'',
+  showAll:false,
+  rarity:'N',
+  mode:'unknown',
+  wallet:'',
+  tickets:[],
+  art:[],
+  error:''
 };
-const create = (tag, cls='', text='') => { const x=document.createElement(tag); if(cls) x.className=cls; if(text!==undefined) x.textContent=text; return x; };
-const total = arr => arr.reduce((s,n)=>s+amount(n),0);
-const amount = n => { const x = Number(n.quantity_string ?? n.quantity ?? 1); return Number.isFinite(x) && x >= 0 ? x : 1; };
-const valid = () => state.mode === 'live' || state.mode === 'demo';
-const current = () => state.catalog?.stops.find(x => x.code === state.selected);
-const displayQty = n => valid() ? n.toLocaleString(state.lang==='ja' ? 'ja-JP' : 'en-US') : '—';
-const safeImage = u => {
-  if(typeof u !== 'string' || !u) return '';
-  if(u.startsWith('ipfs://')) u = 'https://ipfs.io/ipfs/' + u.slice(7);
-  try { const x = new URL(u); return x.protocol === 'https:' ? x.href : ''; } catch { return ''; }
-};
-const normalize = s => String(s || '').trim().toLowerCase();
-const matches = (n, record) => !!record && ((record.contract && normalize(n.contract) === normalize(record.contract)) || (record.collection && normalize(n.collection) === normalize(record.collection)));
-const prefMain = p => state.lang === 'ja' ? p.name : p.code.replace(/_/g,' ');
-const prefSub = p => state.lang === 'ja' ? p.code.replace(/_/g,' ') : p.name;
-const stopText = n => String(n).padStart(2,'0');
 
-const I18N = {
-  ja: {
-    brandMain:'旅するたこ焼き',
-    brandSub:'TRAVELING TAKOYAKI / MY COLLECTION',
-    heroEyebrow:'JAPAN 47 JOURNEY',
-    heroTitle:'MY <em>COLLECTION</em>',
-    heroDesc:'自分のウォレットにあるNFTを、47都道府県の図鑑で確認しよう。未収集は「？」表示。',
-    jumpTickets:'🎫 チケットブック',
-    jumpGallery:'🎨 NFTアートブック',
-    jumpRoad:'🗺️ 旅程マップ',
-    roadEyebrow:'JAPAN 47 ROAD TRIP',
-    roadTitleMain:'すごろくロード',
-    roadDesc:'県名を押すと、その県の図鑑に切り替わります。横1列をスライドしながら進んでいく旅マップです。',
-    now:'現在地',
-    routeLabel:'旅するたこ焼き',
-    mapStopWrap:'停留所',
-    viewGallery:'アート図鑑を見る ↓',
-    roadHint:'◀ 左右にスワイプして47都道府県を進もう ▶',
-    statArtTypes:'選択県 ART / 種類',
-    statArtQty:'ART NFT / 合計枚数',
-    statTicketTypes:'TICKET / 保有県数',
-    statTicketQty:'TICKET / 合計枚数',
-    loading:'図鑑を読み込み中…',
-    ticketsEyebrow:'JOURNEY TICKET / 47 PREFECTURES',
-    ticketsTitle:'Journey Ticket 図鑑',
-    ticketsDesc:'すべての都道府県を3列で表示。未所持は「？」、所持数は画像右下に表示します。',
-    galleryEyebrow:'DISCOVER & UNLOCK',
-    galleryTitle:'NFTアート図鑑',
-    galleryDesc:'N・R・SR・UR 各7種、LR 1種。画像は正方形で3列表示。未収集は「？」で表示します。',
-    all:'すべて', owned:'保有済み', missingTicket:'未所持・未公開', missingArt:'未収集 ？',
-    refresh:'↻ 所持状況を更新',
-    searchPlaceholder:'都道府県名で探す',
-    footer1:'TRAVELING TAKOYAKI · JAPAN 47 JOURNEY',
-    footer2:'ウォレットの秘密鍵やシードフレーズは使用しません。',
-    footerBack:'公式サイトへ戻る',
-    connect:'ウォレット接続',
-    walletDialogTitle:'ウォレット接続',
-    walletDialogText:'ウォレット接続、または公開アドレスを入力してNFTを照会できます。送金承認は不要です。',
-    walletButton:'ウォレットアプリで接続',
-    walletOr:'または、公開アドレスから照会：',
-    addressButton:'アドレスで照会',
-    demoButton:'デモを見る',
-    selected:p=>`選択中：${p.name}（${stopText(p.stop)} / 47）`,
-    status:{
-      unreleased:'未公開', unchecked:'未確認', collected:'所持中', missing:'未所持', preview:'公開予定',
-      missingOrUnreleased:'未所持・未公開', unmatched:'確認待ち NFT'
-    },
-    message:{
-      unknown:'ウォレット未接続。所持枚数「—」は未確認です。',
-      demo:'デモ表示です。実際の保有情報ではありません。',
-      live:wallet=>`ウォレット ${wallet.slice(0,8)}…${wallet.slice(-6)} の保有情報を表示中。`,
-      invalid:'公開ウォレットアドレスの形式が正しくありません。',
-      noApi:'API接続先が未設定です。journey.json の settings.apiBase を確認してください。',
-      loadingOwned:'OpenSeaから保有NFTを確認中…',
-      fetchFail:e=>`NFTの取得に失敗しました：${e}。未取得のNFTを0枚として扱いません。`,
-      journeyFail:e=>`journey.jsonを読み込めません：${e}`
-    },
-    pulse:(name,owned,count,released)=>`${name} ${displayQty(owned)} / ${count} 種 ・ ${released ? '公開中' : '公開準備中'}`,
-    galleryNote:'所持しているNFTだけアート画像を表示。未収集は「？」で表示します。tokenId と作品画像の紐づけは、journey.json に追記すると正確に反映されます。',
-    ticketInfo:(status,count)=>`${status} / 所持枚数：${displayQty(count)}`,
-    artInfo:(name,rarity,count)=>`${name} / ${rarity} / 所持枚数：${displayQty(count)}`,
-    emptyTickets:'表示するチケットがありません。',
-    emptyArt:'この絞り込みに該当するNFTはありません。',
-    emptyPreparing:'この県のアート図鑑はまだ準備中です。',
-    rarityCount:(owned,total)=>`${owned} / ${total} 種`,
-    ticketTitle:p=>`${stopText(p.stop)} ${p.name}`,
-    artSlotTitle:(slot,p)=> slot.label || `${prefMain(p)} ${String(slot.variant).padStart(2,'0')}`,
-    artSubtitle:slot => `${slot.rarity} · ${slot.id.replace(slot.code ? slot.code + '-' : '', '')}`,
-    roadAria:p=>`${p.stop}番 ${p.name}。図鑑を表示`,
-    detailFallback:'詳細情報',
-    language:'ja'
+/* TRANSLATIONS */
+const M = {
+  ja:{
+    title:'集めた日本が、<em>ここに。</em>',
+    desc:'あなたが旅して集めたチケットとNFTアート。47都道府県の記録を、ひとつのアルバムに。',
+    roadTitle:'47の旅を、少しずつ。',
+    roadName:'旅するたこ焼き',
+    here:'選択中',
+    statOne:'保有チケット県数',
+    statTwo:'全国の保有アート種類',
+    statThree:'全国アート達成率',
+    scopeTitle:'JAPAN 47 · 全国の収集状況',
+    scopeSub:'全47都道府県',
+    scopeNote:'※ 全国アートは47県×29種類＝1,363種類の予定総数（未公開も含む）。',
+    localHeading:'選択中の県',
+    localTicketLabel:'チケット',
+    localArtLabel:'アート収集',
+    localRateLabel:'県コンプ率',
+    localOwned:'✓ 所持済み',
+    localMissing:'未所持',
+    localUnreleased:'未公開',
+    ticketTitle:'旅のチケット図鑑',
+    artTitle:'NFTアート図鑑',
+    all:'すべて',
+    owned:'保有',
+    missing:'未所持',
+    search:'県名を検索',
+    more:'残りのチケットをすべて見る ↓',
+    less:'最初の12県だけ表示 ↑',
+    noResults:'条件に合うチケットはありません',
+    note:'未所持のアートは「？」。所持NFTはトークンIDまたは作品属性で照合し、正しい図鑑枠に表示します。',
+    back:'公式サイト ↗',
+    ownedStatus:'所持済み',
+    locked:'未公開',
+    artMissing:'未収集',
+    artPreview:'公開予定',
+    unchecked:'未確認',
+    count:'所持数',
+    unmatched:'未分類',
+    connect:'● WALLETを照会',
+    walletTitle:'ウォレットを照会',
+    walletDesc:'公開アドレスのみ使用し、秘密鍵や送金承認は不要です。',
+    walletLabel:'公開ウォレットアドレス',
+    connectAddress:'このアドレスを照会',
+    connectProvider:'ウォレットアプリで接続',
+    notReleased:'この県のアートは発売準備中です。',
+    loading:'保有情報を取得中...',
+    fetchError:'取得に失敗しました。未確認を0枚として表示しません。'
   },
-  en: {
-    brandMain:'TRAVELING TAKOYAKI',
-    brandSub:'JAPAN 47 JOURNEY / MY COLLECTION',
-    heroEyebrow:'JAPAN 47 JOURNEY',
-    heroTitle:'MY <em>COLLECTION</em>',
-    heroDesc:'Check the NFTs in your wallet through a collectible 47-prefecture album. Unowned items are shown as “?”.',
-    jumpTickets:'🎫 TICKET BOOK',
-    jumpGallery:'🎨 ART BOOK',
-    jumpRoad:'🗺️ ROAD MAP',
-    roadEyebrow:'JAPAN 47 ROAD TRIP',
-    roadTitleMain:'ROAD TRIP',
-    roadDesc:'Tap a prefecture to switch the album. This is a single-row sliding route map that moves across Japan.',
-    now:'CURRENT',
-    routeLabel:'TRAVELING TAKOYAKI',
-    mapStopWrap:'STOP',
-    viewGallery:'VIEW ART BOOK ↓',
-    roadHint:'◀ SWIPE LEFT OR RIGHT TO TRAVEL THROUGH 47 PREFECTURES ▶',
-    statArtTypes:'SELECTED ART / TYPES',
-    statArtQty:'ART NFT / TOTAL',
-    statTicketTypes:'TICKET / PREFECTURES OWNED',
-    statTicketQty:'TICKET / TOTAL OWNED',
-    loading:'Loading collection data…',
-    ticketsEyebrow:'JOURNEY TICKET / 47 PREFECTURES',
-    ticketsTitle:'Journey Ticket Album',
-    ticketsDesc:'All 47 prefectures appear in a 3-column grid. Unowned items show “?” and quantities appear at the bottom-right.',
-    galleryEyebrow:'DISCOVER & UNLOCK',
-    galleryTitle:'NFT Art Album',
-    galleryDesc:'N / R / SR / UR have 7 designs each, and LR has 1 design. Square images are displayed in 3 columns.',
-    all:'ALL', owned:'OWNED', missingTicket:'MISSING / HIDDEN', missingArt:'MISSING ?',
-    refresh:'↻ REFRESH HOLDINGS',
-    searchPlaceholder:'Search by prefecture…',
-    footer1:'TRAVELING TAKOYAKI · JAPAN 47 JOURNEY',
-    footer2:'This page never uses your private key or seed phrase.',
-    footerBack:'Back to official site',
-    connect:'CONNECT WALLET',
-    walletDialogTitle:'CONNECT WALLET',
-    walletDialogText:'Connect your wallet or enter a public address to check NFT ownership. No transaction approval is required.',
-    walletButton:'Connect with wallet app',
-    walletOr:'Or check by public address:',
-    addressButton:'Check address',
-    demoButton:'View demo',
-    selected:p=>`Selected: ${p.code.replace(/_/g,' ')} (${stopText(p.stop)} / 47)`,
-    status:{
-      unreleased:'COMING SOON', unchecked:'UNCHECKED', collected:'COLLECTED', missing:'MISSING', preview:'PREVIEW',
-      missingOrUnreleased:'MISSING / HIDDEN', unmatched:'UNMATCHED NFT'
-    },
-    message:{
-      unknown:'Wallet not connected. Quantities shown as “—” are not checked yet.',
-      demo:'Demo mode is on. These are not your actual holdings.',
-      live:wallet=>`Showing holdings for wallet ${wallet.slice(0,8)}…${wallet.slice(-6)}.`,
-      invalid:'The public wallet address format is invalid.',
-      noApi:'API endpoint is not configured. Please check settings.apiBase in journey.json.',
-      loadingOwned:'Checking owned NFTs from OpenSea…',
-      fetchFail:e=>`Failed to fetch NFTs: ${e}. Missing NFTs are not treated as zero.`,
-      journeyFail:e=>`Could not load journey.json: ${e}`
-    },
-    pulse:(name,owned,count,released)=>`${name} ${displayQty(owned)} / ${count} types ・ ${released ? 'LIVE' : 'PREPARING'}`,
-    galleryNote:'Only owned NFTs display artwork images. Missing items display “?”. For exact tokenId-to-art mapping, add the details to journey.json.',
-    ticketInfo:(status,count)=>`${status} / Qty: ${displayQty(count)}`,
-    artInfo:(name,rarity,count)=>`${name} / ${rarity} / Qty: ${displayQty(count)}`,
-    emptyTickets:'No ticket items match this filter.',
-    emptyArt:'No artwork items match this filter.',
-    emptyPreparing:'Artwork for this prefecture is still being prepared.',
-    rarityCount:(owned,total)=>`${owned} / ${total} types`,
-    ticketTitle:p=>`${stopText(p.stop)} ${p.code.replace(/_/g,' ')}`,
-    artSlotTitle:(slot,p)=> slot.label || `${p.code.replace(/_/g,' ')} ${String(slot.variant).padStart(2,'0')}`,
-    artSubtitle:slot => `${slot.rarity} · ${slot.id}`,
-    roadAria:p=>`Stop ${p.stop} ${p.code.replace(/_/g,' ')}. Open album`,
-    detailFallback:'Detail',
-    language:'en'
+  en:{
+    title:'YOUR JAPAN, <em>COLLECTED.</em>',
+    desc:'Your ticket and NFT art collection, all in one album. A 47-prefecture journey, one stop at a time.',
+    roadTitle:'47 stops. One journey.',
+    roadName:'TRAVELING TAKOYAKI',
+    here:'Selected',
+    statOne:'TICKET PREFECTURES',
+    statTwo:'ART TYPES / ALL JAPAN',
+    statThree:'JAPAN ART COMPLETION',
+    scopeTitle:'JAPAN 47 · ALL JAPAN',
+    scopeSub:'ALL 47 PREFECTURES',
+    scopeNote:'* Planned total: 47 prefectures × 29 artworks = 1,363 designs (including future releases).',
+    localHeading:'SELECTED PREFECTURE',
+    localTicketLabel:'TICKET',
+    localArtLabel:'ART COLLECTED',
+    localRateLabel:'LOCAL COMPLETION',
+    localOwned:'✓ OWNED',
+    localMissing:'NOT OWNED',
+    localUnreleased:'UNRELEASED',
+    ticketTitle:'Journey Ticket Album',
+    artTitle:'NFT Art Collection',
+    all:'ALL',
+    owned:'OWNED',
+    missing:'MISSING',
+    search:'Search places',
+    more:'VIEW ALL 47 TICKETS ↓',
+    less:'SHOW FIRST 12 ↑',
+    noResults:'No matching tickets',
+    note:'Missing artworks display “?”. Owned NFTs are matched to their correct album slots by token ID or artwork traits.',
+    back:'OFFICIAL SITE ↗',
+    ownedStatus:'COLLECTED',
+    locked:'COMING SOON',
+    artMissing:'MISSING',
+    artPreview:'PREVIEW',
+    unchecked:'NOT CHECKED',
+    count:'Quantity',
+    unmatched:'UNMATCHED',
+    connect:'● CHECK WALLET',
+    walletTitle:'Check your wallet',
+    walletDesc:'Only your public address is used. No private keys or transaction signatures are required.',
+    walletLabel:'Public wallet address',
+    connectAddress:'Check this address',
+    connectProvider:'Connect wallet app',
+    notReleased:'Artwork for this prefecture has not been released.',
+    loading:'Loading holdings...',
+    fetchError:'Failed to load NFTs. Missing data is not treated as zero.'
   }
 };
-const t = () => I18N[state.lang];
 
-function setLang(lang){
-  state.lang = lang === 'en' ? 'en' : 'ja';
-  localStorage.setItem('tt_lang', state.lang);
-  document.documentElement.lang = t().language;
-  updateLangButtons();
-  renderStaticTexts();
-  if(state.catalog){ drawRoad(); drawAll(); }
-}
-function updateLangButtons(){
-  $('langJa').classList.toggle('active', state.lang==='ja');
-  $('langEn').classList.toggle('active', state.lang==='en');
-}
-function renderStaticTexts(){
-  $('brandMain').textContent = t().brandMain;
-  $('brandSub').textContent = t().brandSub;
-  $('heroEyebrow').textContent = t().heroEyebrow;
-  $('heroTitle').innerHTML = t().heroTitle;
-  $('heroDesc').textContent = t().heroDesc;
-  $('jumpTickets').textContent = t().jumpTickets;
-  $('jumpGallery').textContent = t().jumpGallery;
-  $('jumpRoad').textContent = t().jumpRoad;
-  $('roadEyebrow').textContent = t().roadEyebrow;
-  $('roadTitleMain').textContent = t().roadTitleMain;
-  $('roadDesc').textContent = t().roadDesc;
-  $('now').textContent = t().now;
-  $('routeLabel').textContent = t().routeLabel;
-  $('mapStopLabelWrap').childNodes[0].nodeValue = t().mapStopWrap + ' ';
-  $('viewGalleryLink').textContent = t().viewGallery;
-  $('roadHint').textContent = t().roadHint;
-  $('statArtTypesLabel').textContent = t().statArtTypes;
-  $('statArtQtyLabel').textContent = t().statArtQty;
-  $('statTicketTypesLabel').textContent = t().statTicketTypes;
-  $('statTicketQtyLabel').textContent = t().statTicketQty;
-  $('ticketsEyebrow').textContent = t().ticketsEyebrow;
-  $('ticketsTitle').textContent = t().ticketsTitle;
-  $('ticketsDesc').textContent = t().ticketsDesc;
-  $('galleryEyebrow').textContent = t().galleryEyebrow;
-  $('galleryDesc').textContent = t().galleryDesc;
-  $('ticketFilterAll').textContent = t().all;
-  $('ticketFilterOwned').textContent = t().owned;
-  $('ticketFilterMissing').textContent = t().missingTicket;
-  $('artFilterAll').textContent = t().all;
-  $('artFilterOwned').textContent = t().owned;
-  $('artFilterMissing').textContent = t().missingArt;
-  $('refresh').textContent = t().refresh;
-  $('ticketSearch').placeholder = t().searchPlaceholder;
-  $('footerLine1').textContent = t().footer1;
-  $('footerLine2').textContent = t().footer2;
-  $('footerBack').textContent = t().footerBack;
-  $('walletDialogTitle').textContent = t().walletDialogTitle;
-  $('walletDialogText').textContent = t().walletDialogText;
-  $('walletButton').textContent = t().walletButton;
-  $('walletDialogOr').textContent = t().walletOr;
-  $('addressButton').textContent = t().addressButton;
-  $('demoButton').textContent = t().demoButton;
-  if(!state.wallet) $('connect').textContent = t().connect;
-  if(!state.catalog) $('message').textContent = t().loading;
+const t = () => M[state.lang];
+const pad = n => String(n).padStart(2,'0');
+const current = () => state.catalog.stops[state.stop];
+
+const nameFor = i =>
+  state.lang==='ja'
+  ? state.catalog.stops[i].name
+  : state.catalog.stops[i].code;
+
+const valid = () => state.mode==='live';
+const disp = n => valid()?String(n):'—';
+
+const amount = n => {
+  const v = Number(n?.quantity_string??n?.quantity??1);
+  return Number.isFinite(v)&&v>=0?v:1;
+};
+
+const sum = a => a.reduce((v,n)=>v+amount(n),0);
+const norm = s => String(s||'').trim().toLowerCase();
+
+/* IMAGES */
+function safeImage(url) {
+  if(typeof url!=='string'||!url) return '';
+
+  if(url.startsWith('ipfs://')) {
+    url='https://ipfs.io/ipfs/'+url.slice(7);
+  }
+
+  try {
+    const a=new URL(url);
+    return a.protocol==='https:'?a.href:'';
+  } catch {
+    return '';
+  }
 }
 
-function ticketRecords(p){
-  if(state.mode === 'demo') return p.code === 'HOKKAIDO' ? [{identifier:'DEMO',quantity:7,image_url:p.ticket?.image||''}] : [];
-  if(state.mode !== 'live') return [];
-  return state.tickets.filter(n => n.prefecture === p.code || matches(n, p.ticket));
+/* WALLET NFT MATCHING */
+function belongs(n,c) {
+  if(!c) return false;
+
+  if(c.contract) {
+    return norm(n.contract)===norm(c.contract);
+  }
+
+  return !!c.collection &&
+    norm(n.collection)===norm(c.collection);
 }
-function artRecords(p){
-  if(state.mode === 'demo') return [];
-  if(state.mode !== 'live') return [];
-  return state.art.filter(n => n.prefecture === p.code || matches(n, p.art));
+
+function ticketList(p) {
+  return valid()
+    ? state.tickets.filter(
+        n=>n.prefecture===p.code||belongs(n,p.ticket)
+      )
+    : [];
 }
-function artworkSlots(p){
-  const art = p.art || {}, counts = art.rarityCounts || {};
-  const slots = [];
-  for(const [rarity] of RARITIES.slice(0,5)){
-    for(let i=1;i<=Number(counts[rarity]||0);i++){
-      const id = `${p.code}-${rarity}-${String(i).padStart(2,'0')}`;
-      const override = (art.cards || []).find(c => c.id === id || (c.rarity === rarity && Number(c.variant) === i)) || {};
-      slots.push({id, rarity, variant:i, image:'', tokenIds:[], quantity:0, records:[], ...override});
+
+function artList(p) {
+  return valid()
+    ? state.art.filter(
+        n=>n.prefecture===p.code||belongs(n,p.art)
+      )
+    : [];
+}
+
+function rarityCounts(p) {
+  return p.art?.rarityCounts ||
+         state.catalog.artTemplate?.rarityCounts ||
+         ART_TEMPLATE;
+}
+
+/* 29 ART SLOTS PER PREFECTURE */
+function artSlots(p) {
+  const base=[];
+
+  for(const [r] of RARITIES) {
+    for(let i=1;i<=Number(rarityCounts(p)[r]||0);i++) {
+      const id=`${p.code}-${r}-${pad(i)}`;
+
+      const custom=(p.art?.cards||[]).find(
+        c=>c.id===id ||
+        (c.rarity===r&&Number(c.variant)===i)
+      )||{};
+
+      base.push({
+        id,
+        rarity:r,
+        variant:i,
+        image:'',
+        tokenIds:[],
+        ...custom,
+        records:[],
+        quantity:0
+      });
     }
   }
-  const unknown = [];
-  for(const n of artRecords(p)){
-    const token = String(n.identifier ?? '');
-    let found = slots.find(s => Array.isArray(s.tokenIds) && s.tokenIds.map(String).includes(token));
-    if(!found){
-      const traits = Array.isArray(n.traits) ? n.traits : [];
-      const trait = key => traits.find(t => normalize(t.trait_type) === key)?.value;
-      const rarity = String(trait('rarity') || '').toUpperCase();
-      const variant = Number(trait('artwork') ?? trait('variant') ?? trait('design'));
-      if(rarity && Number.isSafeInteger(variant) && variant > 0) found = slots.find(s => s.rarity === rarity && s.variant === variant);
+
+  const unknown=[];
+
+  for(const nft of artList(p)) {
+    const id=String(nft.identifier??'');
+
+    let match=base.find(
+      s=>Array.isArray(s.tokenIds) &&
+      s.tokenIds.map(String).includes(id)
+    );
+
+    if(!match) {
+      const traits=Array.isArray(nft.traits)?nft.traits:[];
+
+      const trait=k=>
+        traits.find(x=>norm(x.trait_type)===k)?.value;
+
+      const rarity=String(trait('rarity')||'').toUpperCase();
+
+      const variant=Number(
+        trait('artwork')??
+        trait('variant')??
+        trait('design')
+      );
+
+      if(
+        rarity &&
+        Number.isSafeInteger(variant) &&
+        variant>0
+      ) {
+        match=base.find(
+          s=>s.rarity===rarity&&s.variant===variant
+        );
+      }
     }
-    if(found){ found.records.push(n); found.quantity += amount(n); }
-    else unknown.push({...n,id:`UNMATCHED-${token}`,rarity:'?',variant:token||'?',quantity:amount(n),records:[n]});
+
+    if(match) {
+      match.records.push(nft);
+      match.quantity+=amount(nft);
+    } else {
+      unknown.push({
+        id:'UNKNOWN-'+id,
+        rarity:'?',
+        variant:id,
+        quantity:amount(nft),
+        records:[nft]
+      });
+    }
   }
-  return [...slots, ...unknown];
+
+  return {base,unknown};
 }
-function showDetail(title, description, image){
-  $('detailTitle').textContent = title || t().detailFallback;
-  $('detailText').textContent = description || '';
-  const src = safeImage(image);
-  $('detailImage').classList.toggle('hidden', !src);
-  if(src) $('detailImage').src = src; else $('detailImage').removeAttribute('src');
-  $('detailDialog').showModal();
+
+/* COLLECTION STATISTICS */
+function rate(n) {
+  return Number.isInteger(n)?String(n):n.toFixed(2);
 }
-function makeTile({type,title,subtitle,status,count,image,owned,info}){
-  const b = create('button', `tile ${type}${owned ? ' owned' : ''}`);
-  b.type = 'button';
-  const media = create('div','image');
-  const src = owned ? safeImage(image) : '';
-  if(src){
-    const img = create('img');
-    img.src = src;
-    img.alt = title;
-    img.loading = 'lazy';
-    media.append(img);
-  }else{
-    media.append(create('span','question','?'));
+
+function stat(id,n,suffix) {
+  $(id).replaceChildren(document.createTextNode(n));
+
+  const sm=document.createElement('small');
+  sm.textContent=suffix;
+
+  $(id).append(sm);
+}
+
+function drawStats() {
+  const p=current();
+  const local=artSlots(p).base;
+
+  const localOwned=local.filter(s=>s.quantity>0).length;
+  const localTotal=local.length;
+
+  const nationalTotal=state.catalog.stops.reduce(
+    (v,p)=>
+      v+Object.values(rarityCounts(p)).reduce(
+        (a,b)=>a+Number(b||0),0
+      ),0
+  );
+
+  const nationalOwned=state.catalog.stops.reduce(
+    (v,p)=>
+      v+artSlots(p).base.filter(s=>s.quantity>0).length,0
+  );
+
+  const ticketTypes=state.catalog.stops.filter(
+    p=>sum(ticketList(p))>0
+  ).length;
+
+  stat('ticketStatValue',disp(ticketTypes),'/47');
+  stat('artStatValue',disp(nationalOwned),'/'+nationalTotal);
+
+  stat(
+    'completionStatValue',
+    valid()
+      ? rate(
+          nationalTotal
+            ? 100*nationalOwned/nationalTotal
+            : 0
+        )
+      : '—',
+    '%'
+  );
+
+  $('topCounter').textContent =
+    (valid()?pad(ticketTypes):'—')+' / 47';
+
+  $('ticketCounter').textContent=disp(ticketTypes);
+
+  $('artCounter').textContent=disp(localOwned);
+  $('artOutOf').textContent='/ '+localTotal;
+
+  $('localPref').textContent=nameFor(state.stop);
+
+  $('localTicket').textContent =
+    !valid()
+      ? '—'
+      : sum(ticketList(p))>0
+        ? t().localOwned
+        : p.ticket?.status==='released'
+          ? t().localMissing
+          : t().localUnreleased;
+
+  $('localTicket').classList.toggle(
+    'yes',
+    valid()&&sum(ticketList(p))>0
+  );
+
+  $('localArt').innerHTML =
+    `${disp(localOwned)}<span>/${localTotal}</span>`;
+
+  $('localRate').textContent =
+    valid()
+      ? (localTotal
+          ? rate(localOwned/localTotal*100)+'%'
+          : '—')
+      : '—';
+}
+
+/* ROAD MAP */
+function drawRoad() {
+  const root=$('roadLine');
+  root.replaceChildren();
+
+  const holder=document.createElement('span');
+  holder.className='car-holder no-motion';
+  holder.id='movingCar';
+
+  const fallback=document.createElement('span');
+  fallback.className='fallback';
+  fallback.textContent='🚚';
+
+  const img=document.createElement('img');
+  img.src=CAR_IMAGE;
+  img.alt='';
+
+  img.onload=()=>holder.classList.add('loaded');
+  img.onerror=()=>img.remove();
+
+  holder.append(fallback,img);
+  root.append(holder);
+
+  state.catalog.stops.forEach((p,i)=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='station';
+
+    b.innerHTML=`
+      <span class="dot">${pad(i+1)}</span>
+      <span class="jname"></span>
+      <span class="ename"></span>
+    `;
+
+    b.querySelector('.jname').textContent =
+      state.lang==='ja'?p.name:p.code;
+
+    b.querySelector('.ename').textContent =
+      state.lang==='ja'?p.code:p.name;
+
+    b.setAttribute(
+      'aria-label',
+      `${pad(i+1)} ${p.name}`
+    );
+
+    b.onclick=()=>selectStop(i);
+
+    root.append(b);
+  });
+
+  updateRoad();
+
+  requestAnimationFrame(()=>moveCar(false));
+
+  const n=state.catalog.currentStop||1;
+
+  $('journeyBar').style.width=(n/47*100)+'%';
+  $('officialProgress').textContent=pad(n)+'/47';
+  $('currentStop').textContent=pad(n);
+}
+
+function updateRoad() {
+  $('roadLine').querySelectorAll('.station').forEach(
+    (b,i)=>{
+      b.classList.toggle(
+        'travelled',
+        i<=state.stop
+      );
+
+      b.classList.toggle(
+        'active',
+        i===state.stop
+      );
+
+      b.setAttribute(
+        'aria-pressed',
+        String(i===state.stop)
+      );
+    }
+  );
+
+  $('selectedStop').textContent =
+    `${t().here}: ${nameFor(state.stop)} `+
+    `(${pad(state.stop+1)} / 47)`;
+
+  $('roadNumber').textContent =
+    `STOP ${pad(state.stop+1)} / 47`;
+}
+
+function moveCar(animated=true) {
+  const car=$('movingCar');
+
+  const target=$('roadLine')
+    .querySelectorAll('.station')[state.stop];
+
+  if(!car||!target) return;
+
+  car.classList.toggle(
+    'no-motion',
+    !animated
+  );
+
+  car.style.left =
+    (target.offsetLeft+(target.offsetWidth-50)/2)+'px';
+
+  if(!animated) {
+    requestAnimationFrame(
+      ()=>requestAnimationFrame(
+        ()=>car.classList.remove('no-motion')
+      )
+    );
   }
-  media.append(create('span','qty','× ' + displayQty(count)));
-  b.append(media, create('div','title',title), create('div','subtitle',subtitle), create('span','status',status));
-  b.addEventListener('click',()=>showDetail(title, info || status, src));
+
+  const sc=$('scrollRoad');
+
+  sc.scrollTo({
+    left:Math.max(
+      0,
+      target.offsetLeft+
+      target.offsetWidth/2-
+      sc.clientWidth/2
+    ),
+    behavior:animated?'smooth':'auto'
+  });
+}
+
+function selectStop(i) {
+  state.stop=Math.max(0,Math.min(46,i));
+
+  updateRoad();
+  moveCar();
+  drawStats();
+  drawArt();
+}
+
+/* SQUARE IMAGE POPUP */
+function openModal({
+  title,
+  source,
+  owned,
+  quantity,
+  status
+}) {
+  $('modalTitle').textContent=title;
+
+  const box=$('modalImage');
+  box.replaceChildren();
+
+  if(owned&&source) {
+    const img=document.createElement('img');
+    img.src=source;
+    img.alt=title;
+    box.append(img);
+  } else {
+    const q=document.createElement('div');
+    q.className='missingprint';
+    q.textContent='?';
+    box.append(q);
+  }
+
+  $('modalText').textContent =
+    `${status} / ${t().count}: ${disp(quantity)}`;
+
+  $('modalWrap').hidden=false;
+}
+
+/* NFT CARDS */
+function makeCard({
+  number,
+  title,
+  subtitle,
+  owned=false,
+  image='',
+  quantity=0,
+  rarity='',
+  status='',
+  art=false
+}) {
+  const b=document.createElement('button');
+  b.type='button';
+  b.className='collectcard'+(owned?' owned':'');
+
+  const picture=document.createElement('span');
+  picture.className =
+    'frameimage'+(owned?' ownedimage':'');
+
+  const source=owned
+    ? (
+        safeImage(image) ||
+        (!art?TICKET_IMAGE:'')
+      )
+    : '';
+
+  if(source) {
+    const img=document.createElement('img');
+    img.src=source;
+    img.alt=title;
+    img.loading='lazy';
+    picture.append(img);
+  } else {
+    const q=document.createElement('span');
+    q.className='missingprint';
+    q.textContent='?';
+    picture.append(q);
+  }
+
+  const tag=document.createElement('span');
+  tag.className='tag'+(owned?' ownedtag':'');
+  tag.textContent =
+    owned?'✓ OWNED':art?rarity:pad(number);
+
+  const qty=document.createElement('span');
+  qty.className='qty';
+  qty.textContent =
+    '×'+(valid()?pad(quantity):'—');
+
+  picture.append(tag,qty);
+
+  const titleEl=document.createElement('span');
+  titleEl.className='cardname';
+  titleEl.textContent=title;
+
+  const sub=document.createElement('span');
+  sub.className='cardsub';
+  sub.textContent=subtitle;
+
+  const st=document.createElement('span');
+  st.className='cardstatus';
+  st.textContent=status;
+
+  b.append(
+    picture,
+    titleEl,
+    sub,
+    st
+  );
+
+  b.onclick=()=>openModal({
+    title,
+    source,
+    owned,
+    quantity,
+    status
+  });
+
   return b;
 }
-function drawRoad(){
-  const road = $('road');
-  road.replaceChildren();
-  const cur = state.catalog.currentStop;
-  for(const p of state.catalog.stops){
-    const phase = p.stop === cur ? 'current' : (p.stop < cur ? 'past' : 'future');
-    const selected = p.code === state.selected;
-    const btn = create('button', `road-stop ${phase}${selected ? ' selected' : ''}`);
-    btn.type = 'button';
-    btn.dataset.stop = p.stop;
-    btn.setAttribute('aria-pressed', String(selected));
-    btn.setAttribute('aria-label', t().roadAria(p));
-    if(phase === 'current'){
-      const car = create('img','truck');
-      car.src = 'https://ul.h3z.jp/Lu7ch0Ne.png';
-      car.alt = '';
-      car.setAttribute('aria-hidden','true');
-      car.addEventListener('error',()=>{ if(car.isConnected) car.remove(); }, {once:true});
-      btn.append(car);
-    }
-    btn.append(
-      create('span','road-dot', stopText(p.stop)),
-      create('span','pref', prefMain(p)),
-      create('span','english', prefSub(p))
-    );
-    btn.addEventListener('click',()=>selectRoadStop(p.stop,false));
-    road.append(btn);
-  }
-  $('stopLabel').textContent = stopText(cur) + ' / 47';
-  $('mapStopLabel').textContent = stopText(cur) + ' / 47';
-  $('progressBar').style.width = (cur/47*100) + '%';
-  $('selectedLabel').textContent = t().selected(current());
-}
-function selectRoadStop(number, jump=false){
-  if(!state.catalog) return;
-  const next = state.catalog.stops[number-1];
-  if(!next) return;
-  state.selected = next.code;
-  document.querySelectorAll('.road-stop').forEach(el => {
-    const chosen = Number(el.dataset.stop) === number;
-    el.classList.toggle('selected', chosen);
-    el.setAttribute('aria-pressed', String(chosen));
-  });
-  drawAll();
-  $('selectedLabel').textContent = t().selected(next);
-  scrollStop(number, true);
-  if(jump) $('gallery').scrollIntoView({behavior:'smooth'});
-}
-function drawTickets(){
-  const grid = $('ticketGrid');
-  grid.replaceChildren();
-  for(const p of state.catalog.stops){
-    const rec = ticketRecords(p), count = total(rec), owned = valid() && count > 0;
-    if(state.ticketFilter === 'owned' && !owned) continue;
-    if(state.ticketFilter === 'missing' && owned) continue;
-    if(state.search && !`${p.name} ${p.code} ${p.stop}`.toLowerCase().includes(state.search)) continue;
-    const released = p.ticket?.status === 'released';
-    const status = !released ? t().status.unreleased : !valid() ? t().status.unchecked : owned ? t().status.collected : t().status.missing;
-    const image = rec[0]?.image_url || p.ticket?.image || '';
-    grid.append(makeTile({
-      type:'ticket',
-      title:t().ticketTitle(p),
-      subtitle:prefSub(p),
-      status,
-      count,
-      image,
-      owned,
-      info:t().ticketInfo(status, count)
-    }));
-  }
-  if(!grid.children.length) grid.append(create('p','empty',t().emptyTickets));
-}
-function drawArtwork(p, slots, count, ownedCount){
-  $('galleryTitle').textContent = `${t().galleryTitle} — ${prefMain(p)}`;
-  $('collectionPulse').textContent = t().pulse(prefMain(p), ownedCount, count, p.art?.status === 'released');
-  $('galleryNote').textContent = t().galleryNote;
-  const root = $('rarityGroups');
+
+/* TICKET BOOK */
+function drawTickets() {
+  const root=$('ticketGrid');
   root.replaceChildren();
-  if(!count && !slots.length){ root.append(create('p','empty',t().emptyPreparing)); return; }
-  for(const [rarity, labelEn] of RARITIES){
-    const items = slots.filter(s => s.rarity === rarity);
-    if(!items.length) continue;
-    const shown = items.filter(s => state.artFilter === 'all' || (state.artFilter === 'owned' ? s.quantity > 0 : s.quantity === 0));
-    if(!shown.length) continue;
-    const sec = create('div','rarity');
-    const head = create('div','rarityHead');
-    const name = create('div','rarityName');
-    const badge = create('b','',rarity);
-    const label = state.lang === 'ja' ? (rarity === '?' ? '確認待ち' : labelEn) : labelEn;
-    name.append(badge, document.createTextNode(label));
-    head.append(name, create('span','rarityCount', t().rarityCount(items.filter(s=>s.quantity>0).length, items.length)));
-    const grid = create('div','grid');
-    for(const slot of shown){
-      const owned = valid() && slot.quantity > 0;
-      const n = slot.records[0];
-      const title = slot.rarity === '?' ? t().status.unmatched : t().artSlotTitle(slot,p);
-      const subtitle = slot.rarity === '?' ? slot.id : t().artSubtitle(slot);
-      const status = owned ? t().status.collected : !valid() ? t().status.unchecked : (p.art?.status === 'released' ? t().status.missing : t().status.preview);
-      grid.append(makeTile({
-        type:'art', title, subtitle, status, count:slot.quantity, image:n?.image_url || slot.image || '', owned,
-        info:t().artInfo(prefMain(p), slot.rarity, slot.quantity)
-      }));
+
+  let list=state.catalog.stops
+    .map((p,i)=>({p,i}))
+    .filter(({p})=>{
+      const owned=sum(ticketList(p))>0;
+
+      return (
+        state.filter==='all' ||
+        (
+          state.filter==='owned'
+            ? owned
+            : !owned
+        )
+      );
+    })
+    .filter(({p,i})=>
+      !state.search ||
+      `${p.name} ${p.code} ${i+1}`
+        .toLowerCase()
+        .includes(state.search.toLowerCase())
+    );
+
+  if(
+    !state.showAll &&
+    !state.search &&
+    state.filter==='all'
+  ) {
+    list=list.slice(0,12);
+  }
+
+  for(const {p,i} of list) {
+    const quantity=sum(ticketList(p));
+    const owned=valid()&&quantity>0;
+
+    const status=owned
+      ? t().ownedStatus
+      : p.ticket?.status==='released'
+        ? (valid()?t().artMissing:t().unchecked)
+        : t().locked;
+
+    root.append(
+      makeCard({
+        number:i+1,
+        title:nameFor(i),
+        subtitle:
+          state.lang==='ja'?p.code:p.name,
+        owned,
+        image:
+          ticketList(p)[0]?.image_url ||
+          p.ticket?.image ||
+          '',
+        quantity,
+        status
+      })
+    );
+  }
+
+  if(!root.children.length) {
+    const el=document.createElement('p');
+    el.style.gridColumn='1/-1';
+    el.textContent=t().noResults;
+    root.append(el);
+  }
+
+  $('moreTickets').hidden =
+    state.filter!=='all'||!!state.search;
+
+  $('moreTickets').textContent =
+    state.showAll?t().less:t().more;
+}
+
+/* ART BOOK */
+function drawArt() {
+  const p=current();
+  const slots=artSlots(p);
+  const root=$('artGridRoot');
+
+  $('artTitle').textContent =
+    t().artTitle+' — '+nameFor(state.stop);
+
+  $('artNote').textContent =
+    (
+      p.art?.status==='released'
+        ? ''
+        : t().notReleased+' '
+    )+t().note;
+
+  const nav=$('rarityNav');
+  nav.replaceChildren();
+
+  for(const [r] of RARITIES) {
+    const b=document.createElement('button');
+    b.textContent=r;
+    b.className =
+      state.rarity===r?'active':'';
+
+    b.onclick=()=>{
+      state.rarity=r;
+      drawArt();
+    };
+
+    nav.append(b);
+  }
+
+  root.replaceChildren();
+
+  const selected=slots.base.filter(
+    s=>s.rarity===state.rarity
+  );
+
+  const bar=document.createElement('div');
+  bar.className='raritybar';
+
+  const glyph=document.createElement('span');
+  glyph.className='rarityglyph';
+  glyph.textContent=state.rarity;
+
+  const heading=document.createElement('strong');
+  heading.textContent =
+    RARITIES.find(
+      r=>r[0]===state.rarity
+    )[1];
+
+  const total=document.createElement('small');
+  total.textContent =
+    `${selected.filter(s=>s.quantity>0).length} / `+
+    `${selected.length} `+
+    (state.lang==='ja'?'種':'TYPES');
+
+  bar.append(
+    glyph,
+    heading,
+    total
+  );
+
+  root.append(bar);
+
+  const grid=document.createElement('div');
+  grid.className='artgrid';
+
+  for(const s of selected) {
+    const owned=valid()&&s.quantity>0;
+
+    grid.append(
+      makeCard({
+        number:s.variant,
+        title:`${s.rarity} — ${pad(s.variant)}`,
+        subtitle:`${p.code} · ${s.rarity}`,
+        owned,
+        image:
+          s.records[0]?.image_url ||
+          s.image,
+        quantity:s.quantity,
+        art:true,
+        rarity:s.rarity,
+        status:owned
+          ? t().ownedStatus
+          : p.art?.status==='released'
+            ? t().artMissing
+            : t().artPreview
+      })
+    );
+  }
+
+  root.append(grid);
+
+  if(slots.unknown.length) {
+    const bar=document.createElement('div');
+    bar.className='raritybar';
+
+    const h=document.createElement('strong');
+    h.textContent =
+      `${t().unmatched} — ${slots.unknown.length}`;
+
+    bar.append(h);
+    root.append(bar);
+
+    const more=document.createElement('div');
+    more.className='artgrid';
+
+    for(const s of slots.unknown) {
+      more.append(
+        makeCard({
+          title:s.id,
+          subtitle:p.code,
+          owned:true,
+          image:s.records[0]?.image_url,
+          quantity:s.quantity,
+          art:true,
+          rarity:'?',
+          status:t().unmatched
+        })
+      );
     }
-    sec.append(head, grid);
-    root.append(sec);
+
+    root.append(more);
   }
-  if(!root.children.length) root.append(create('p','empty', t().emptyArt));
 }
-function drawAll(){
-  if(!state.catalog) return;
-  const p = current();
-  const slots = artworkSlots(p);
-  const ticketList = state.catalog.stops;
-  const ownedTypes = slots.filter(s => s.quantity > 0 && s.rarity !== '?').length;
-  const allArts = state.catalog.stops.reduce((n,x)=>n + total(artRecords(x)),0);
-  const heldTicketTypes = ticketList.filter(x => total(ticketRecords(x)) > 0).length;
-  const heldTickets = ticketList.reduce((n,x)=>n + total(ticketRecords(x)),0);
-  const targetCount = slots.filter(s => s.rarity !== '?').length;
-  $('artTypes').textContent = `${displayQty(ownedTypes)} / ${targetCount}`;
-  $('artQty').textContent = displayQty(allArts);
-  $('ticketTypes').textContent = `${displayQty(heldTicketTypes)} / 47`;
-  $('ticketQty').textContent = displayQty(heldTickets);
-  $('connect').textContent = state.wallet ? `${state.wallet.slice(0,6)}…${state.wallet.slice(-4)}` : t().connect;
-  $('message').className = 'notice' + (state.error ? ' err' : '');
-  $('message').textContent = state.error || ({unknown:t().message.unknown, demo:t().message.demo, live:t().message.live(state.wallet)})[state.mode] || t().loading;
+
+/* LANGUAGE SWITCH */
+function setLanguage(lang) {
+  state.lang=lang;
+  document.documentElement.lang=lang;
+
+  $('langJA').classList.toggle(
+    'active',
+    lang==='ja'
+  );
+
+  $('langEN').classList.toggle(
+    'active',
+    lang==='en'
+  );
+
+  $('heroTitle').innerHTML=t().title;
+  $('heroDesc').textContent=t().desc;
+
+  $('roadTitle').textContent=t().roadTitle;
+  $('roadName').textContent=t().roadName;
+
+  $('statOne').textContent=t().statOne;
+  $('statTwo').textContent=t().statTwo;
+  $('statThree').textContent=t().statThree;
+
+  $('scopeTitle').textContent=t().scopeTitle;
+  $('scopeSub').textContent=t().scopeSub;
+  $('scopeNote').textContent=t().scopeNote;
+
+  $('localHeading').textContent=t().localHeading;
+  $('localTicketLabel').textContent=t().localTicketLabel;
+  $('localArtLabel').textContent=t().localArtLabel;
+  $('localRateLabel').textContent=t().localRateLabel;
+
+  $('ticketTitle').textContent=t().ticketTitle;
+
+  $('allBtn').textContent=t().all;
+  $('ownedBtn').textContent=t().owned;
+  $('missingBtn').textContent=t().missing;
+
+  $('searchInput').placeholder=t().search;
+  $('backSite').textContent=t().back;
+
+  $('walletTitle').textContent=t().walletTitle;
+  $('walletDesc').textContent=t().walletDesc;
+  $('walletAddressLabel').textContent=t().walletLabel;
+  $('addressConnect').textContent=t().connectAddress;
+  $('providerConnect').textContent=t().connectProvider;
+
+  $('walletButton').textContent =
+    state.wallet
+      ? state.wallet.slice(0,6)+'…'+state.wallet.slice(-4)
+      : t().connect;
+
+  $('ticketInfo').textContent =
+    state.error ||
+    (!valid()
+      ? 'Wallet not connected / ウォレット未接続'
+      : '');
+
+  drawRoad();
+  drawStats();
   drawTickets();
-  drawArtwork(p, slots, targetCount, ownedTypes);
+  drawArt();
 }
-async function loadWallet(address){
-  if(!/^0x[0-9a-fA-F]{40}$/.test(address)){
-    state.error = t().message.invalid; drawAll(); return;
+
+/* WALLET CONNECTION */
+async function loadWallet(address) {
+  if(!/^0x[0-9A-Fa-f]{40}$/.test(address)) {
+    $('walletError').textContent =
+      'Invalid address / アドレスが正しくありません';
+    return;
   }
-  state.wallet = address; state.mode = 'unknown'; state.art = []; state.tickets = []; state.error = ''; $('walletDialog').close();
-  const base = state.catalog?.settings?.apiBase || '';
-  if(!base){ state.error = t().message.noApi; drawAll(); return; }
-  $('message').textContent = t().message.loadingOwned;
-  try{
-    const r = await fetch(base.replace(/\/$/,'') + '/api/owned?address=' + encodeURIComponent(address), {cache:'no-store'});
-    const d = await r.json();
-    if(!r.ok || d.ok !== true || !Array.isArray(d.art) || !Array.isArray(d.tickets)) throw Error(d.error || 'API error');
-    state.art = d.art; state.tickets = d.tickets; state.mode = 'live';
-  }catch(e){
-    state.error = t().message.fetchFail(e.message);
+
+  $('walletWrap').hidden=true;
+
+  state.wallet=address;
+  state.mode='unknown';
+  state.tickets=[];
+  state.art=[];
+  state.error='';
+
+  $('ticketInfo').textContent=t().loading;
+
+  try {
+    const base =
+      state.catalog.settings?.apiBase ||
+      API_BASE;
+
+    const res=await fetch(
+      base.replace(/\/$/,'')+
+      '/api/owned?address='+
+      encodeURIComponent(address),
+      {cache:'no-store'}
+    );
+
+    const data=await res.json();
+
+    if(
+      !res.ok ||
+      data.ok!==true ||
+      !Array.isArray(data.tickets) ||
+      !Array.isArray(data.art)
+    ) {
+      throw Error(
+        data.error||'Invalid API response'
+      );
+    }
+
+    state.tickets=data.tickets;
+    state.art=data.art;
+    state.mode='live';
+
+  } catch(e) {
+    state.error =
+      t().fetchError+' ('+e.message+')';
   }
-  drawAll();
+
+  setLanguage(state.lang);
 }
-async function init(){
-  renderStaticTexts();
-  updateLangButtons();
-  document.documentElement.lang = t().language;
-  try{
-    const r = await fetch('./data/journey.json', {cache:'no-store'});
-    if(!r.ok) throw Error('HTTP ' + r.status);
-    const data = await r.json();
-    if(!Array.isArray(data.stops) || data.stops.length !== 47 || data.stops.some((p,i)=>p.stop !== i+1) || !Number.isInteger(data.currentStop) || data.currentStop < 1 || data.currentStop > 47) throw Error('47 prefecture order or currentStop is invalid');
-    state.catalog = data;
-    state.selected = data.stops[data.currentStop - 1].code;
-    drawRoad();
-    drawAll();
-    requestAnimationFrame(()=>scrollStop(data.currentStop, false));
-  }catch(e){
-    $('message').className = 'notice err';
-    $('message').textContent = t().message.journeyFail(e.message);
+
+/* INITIALIZE */
+async function initialize() {
+  $('brandLogo').src=LOGO_IMAGE;
+
+  try {
+    const res=await fetch(
+      './data/journey.json',
+      {cache:'no-store'}
+    );
+
+    if(!res.ok) {
+      throw Error('HTTP '+res.status);
+    }
+
+    const data=await res.json();
+
+    if(
+      !Array.isArray(data.stops) ||
+      data.stops.length!==47 ||
+      data.stops.some(
+        (p,i)=>p.stop!==i+1
+      )
+    ) {
+      throw Error('Invalid 47 stops');
+    }
+
+    state.catalog=data;
+
+  } catch(e) {
+    state.catalog=FALLBACK;
+    state.error=
+      'journey.json: '+e.message;
   }
+
+  state.stop=Math.max(
+    0,
+    Math.min(
+      46,
+      (state.catalog.currentStop||1)-1
+    )
+  );
+
+  setLanguage('ja');
 }
-function scrollStop(n, smooth=true){
-  const rail = $('roadScroll');
-  const cell = rail.querySelector(`.road-stop[data-stop="${n}"]`);
-  if(!cell) return;
-  const center = cell.offsetLeft + cell.offsetWidth/2 - rail.clientWidth/2;
-  rail.scrollTo({left:Math.max(0,center), behavior:smooth ? 'smooth' : 'auto'});
-}
-$('prev').onclick = () => selectRoadStop(Math.max(1, current().stop - 1));
-$('next').onclick = () => selectRoadStop(Math.min(47, current().stop + 1));
-$('now').onclick = () => selectRoadStop(state.catalog.currentStop);
-$('connect').onclick = () => $('walletDialog').showModal();
-$('refresh').onclick = () => state.wallet ? loadWallet(state.wallet) : $('walletDialog').showModal();
-$('closeWallet').onclick = () => $('walletDialog').close();
-$('closeDetail').onclick = () => $('detailDialog').close();
-$('addressButton').onclick = () => loadWallet($('address').value.trim());
-$('address').onkeydown = e => { if(e.key === 'Enter') loadWallet(e.target.value.trim()); };
-$('walletButton').onclick = async () => {
-  try{
-    if(!window.ethereum?.request) throw Error(state.lang === 'ja' ? 'ウォレットアプリが見つかりません。公開アドレス入力をお試しください。' : 'No wallet app was found. Please try the public address field.');
-    const addresses = await window.ethereum.request({method:'eth_requestAccounts'});
-    if(addresses[0]) await loadWallet(addresses[0]);
-  }catch(e){
-    state.error = e.message; $('walletDialog').close(); drawAll();
+
+/* BUTTON EVENTS */
+$('langJA').onclick=()=>setLanguage('ja');
+$('langEN').onclick=()=>setLanguage('en');
+
+$('prevStop').onclick=()=>
+  selectStop(state.stop-1);
+
+$('nextStop').onclick=()=>
+  selectStop(state.stop+1);
+
+$('currentStop').onclick=()=>
+  selectStop((state.catalog.currentStop||1)-1);
+
+$('ticketTabs').onclick=e=>{
+  const b=e.target.closest(
+    'button[data-filter]'
+  );
+
+  if(!b) return;
+
+  state.filter=b.dataset.filter;
+
+  for(
+    const tab of
+    $('ticketTabs').querySelectorAll('button')
+  ) {
+    tab.classList.toggle(
+      'active',
+      tab===b
+    );
+  }
+
+  drawTickets();
+};
+
+$('searchInput').oninput=e=>{
+  state.search=e.target.value;
+  drawTickets();
+};
+
+$('moreTickets').onclick=()=>{
+  state.showAll=!state.showAll;
+  drawTickets();
+};
+
+$('modalClose').onclick=()=>{
+  $('modalWrap').hidden=true;
+};
+
+$('modalWrap').onclick=e=>{
+  if(e.target===$('modalWrap')) {
+    $('modalWrap').hidden=true;
   }
 };
-$('demoButton').onclick = () => { state.mode='demo'; state.wallet=''; state.error=''; state.art=[]; state.tickets=[]; $('walletDialog').close(); drawAll(); };
-$('ticketSearch').oninput = e => { state.search = e.target.value.trim().toLowerCase(); drawAll(); };
-document.querySelectorAll('.filter').forEach(b => b.onclick = () => {
-  state[b.dataset.kind + 'Filter'] = b.dataset.filter;
-  document.querySelectorAll(`.filter[data-kind="${b.dataset.kind}"]`).forEach(x => x.classList.toggle('active', x === b));
-  drawAll();
-});
-$('langJa').onclick = () => setLang('ja');
-$('langEn').onclick = () => setLang('en');
-document.querySelectorAll('dialog').forEach(d => d.onclick = e => { if(e.target === d) d.close(); });
-init();
+
+$('walletButton').onclick=()=>{
+  $('walletWrap').hidden=false;
+  $('walletError').textContent='';
+};
+
+$('walletClose').onclick=()=>{
+  $('walletWrap').hidden=true;
+};
+
+$('walletWrap').onclick=e=>{
+  if(e.target===$('walletWrap')) {
+    $('walletWrap').hidden=true;
+  }
+};
+
+$('addressConnect').onclick=()=>{
+  loadWallet($('walletAddress').value.trim());
+};
+
+$('walletAddress').onkeydown=e=>{
+  if(e.key==='Enter') {
+    loadWallet(e.target.value.trim());
+  }
+};
+
+$('providerConnect').onclick=async()=>{
+  try {
+    if(!window.ethereum?.request) {
+      throw Error('Wallet provider unavailable');
+    }
+
+    const xs=await window.ethereum.request({
+      method:'eth_requestAccounts'
+    });
+
+    if(xs[0]) {
+      await loadWallet(xs[0]);
+    }
+
+  } catch(e) {
+    $('walletError').textContent=e.message;
+  }
+};
+
+document.addEventListener(
+  'keydown',
+  e=>{
+    if(e.key==='Escape') {
+      $('modalWrap').hidden=true;
+      $('walletWrap').hidden=true;
+    }
+  }
+);
+
+initialize();
 </script>
 </body>
 </html>
