@@ -2366,16 +2366,47 @@ async function initialize() {
   $('brandLogo').src=LOGO_IMAGE;
 
   try {
-    const res=await fetch(
-      './data/journey.json',
-      {cache:'no-store'}
-    );
+    
+    // Googleスプレッドシートの公開情報を優先
+    // 取得できない場合は従来のJSONを使用
+    let data;
 
-    if(!res.ok) {
-      throw Error('HTTP '+res.status);
+    try {
+      const online = await fetch(
+        API_BASE + '/api/catalog',
+        {cache:'no-store'}
+      );
+
+      if(!online.ok) {
+        throw Error('HTTP '+online.status);
+      }
+
+      data=await online.json();
+
+      if(
+        data.ok!==true ||
+        !Array.isArray(data.stops) ||
+        data.stops.length!==47 ||
+        data.stops.some((p,i)=>p.stop!==i+1)
+      ) {
+        throw Error('Invalid online catalog');
+      }
+
+    } catch(error) {
+      console.warn('Using backup catalog:',error);
+
+      const local=await fetch(
+        './data/journey.json',
+        {cache:'no-store'}
+      );
+
+      if(!local.ok) {
+        throw Error('HTTP '+local.status);
+      }
+
+      data=await local.json();
     }
 
-    const data=await res.json();
 
     if(
       !Array.isArray(data.stops) ||
