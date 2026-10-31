@@ -1,1 +1,1950 @@
-てす
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102333">
+<meta name="description" content="TRAVELING TAKOYAKI — A pixel-art journey across Japan's 47 prefectures.">
+<title>TAKOYAKI TRAVEL DIARY</title>
+
+<style>
+:root {
+  --dark: #102638;
+  --cream: #fff9eb;
+  --ink: #382a20;
+  --muted: #80654a;
+  --line: #d9c39e;
+  --red: #bc4939;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 50% 0,
+    #30526a, #102638 65%, #071620);
+  font-family: system-ui, -apple-system,
+    "Noto Sans JP", sans-serif;
+  color: var(--ink);
+}
+
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled { opacity: .46; cursor: not-allowed; }
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #f4b932;
+  outline-offset: 2px;
+}
+
+/* 上部ナビゲーション */
+
+.sitehead {
+  max-width: 1100px;
+  margin: auto;
+  padding: 13px 15px;
+  display: flex;
+  gap: 7px;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.sitename {
+  font-size: clamp(12px, 2.5vw, 17px);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.topbtn {
+  height: 38px;
+  background: #fff;
+  color: #20252d;
+  border: 1px solid #111;
+  box-shadow: 2px 2px 0 #06121c;
+  border-radius: 0;
+  padding: 0 10px;
+  font-size: 12px;
+  font-family: Georgia, serif;
+  font-weight: 700;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.topbtn.home {
+  min-width: 38px;
+  font-size: 20px;
+}
+
+.topbtn.lang { min-width: 70px; }
+.topbtn:hover { background: #fff0cd; }
+
+/* タイトル画像 */
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 12px;
+}
+
+.banner {
+  border: 4px solid #dbba6d;
+  box-shadow: 4px 5px 0 #071521;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+/* ノート本体 */
+
+.book {
+  margin-top: 20px;
+  border: 7px solid #7c4e2d;
+  border-radius: 14px;
+  padding: 17px 17px 17px 30px;
+  background: #d3a56c;
+  position: relative;
+  box-shadow:
+    0 12px 30px #0008,
+    inset 0 0 0 3px #edcd93;
+}
+
+.book::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 13px;
+  top: 19px;
+  bottom: 19px;
+  width: 9px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #61452d 0 4px,
+    #f4d59c 4px 9px,
+    transparent 9px 27px
+  );
+}
+
+.pages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 580px;
+}
+
+.pages.flip { animation: flip .36s ease-out; }
+
+@keyframes flip {
+  from {
+    transform: perspective(1400px) rotateY(-6deg);
+    opacity: .55;
+  }
+  to {
+    transform: perspective(1400px) rotateY(0);
+    opacity: 1;
+  }
+}
+
+/* クラフト紙の表紙 */
+
+.kraft {
+  grid-column: 1 / -1;
+  min-height: 580px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 55px 28px 45px;
+  overflow: hidden;
+  color: #342719;
+  background-color: #cba573;
+  background-image:
+    radial-gradient(#7a502d26 1px, transparent 1px),
+    radial-gradient(#fff2d537 1px, transparent 2px),
+    repeating-linear-gradient(
+      10deg,
+      transparent 0 9px,
+      #7344210c 10px 11px,
+      transparent 12px 21px
+    ),
+    linear-gradient(
+      145deg,
+      #e1c59b 0%,
+      #cbaa77 50%,
+      #bb9366 100%
+    );
+  background-size: 18px 21px, 29px 33px, auto, auto;
+}
+
+.kraft::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 22px;
+  border: 3px double #6e4d31;
+}
+
+.kraft > * { position: relative; }
+
+.kraft .minilabel {
+  font-size: 12px;
+  letter-spacing: .2em;
+  font-weight: 900;
+}
+
+.kraft .stamp {
+  border: 2px solid #a44b34;
+  color: #a44b34;
+  padding: 7px 16px;
+  font-weight: 900;
+  letter-spacing: .17em;
+  transform: rotate(-5deg);
+  margin: 28px 0 17px;
+}
+
+.kraft h1 {
+  font-size: clamp(34px, 6vw, 70px);
+  line-height: 1.07;
+  margin: 10px 0 20px;
+  letter-spacing: -.045em;
+  text-shadow: 2px 2px #f0d7ad;
+}
+
+.kraft .subtitle {
+  font-size: 20px;
+  font-weight: 900;
+  color: #88412c;
+}
+
+.kraft p {
+  max-width: 520px;
+  line-height: 1.9;
+  font-size: 15px;
+}
+
+.primary {
+  border: 2px solid #371d19;
+  background: #c24835;
+  color: white;
+  font-weight: 900;
+  padding: 12px 25px;
+  box-shadow: 4px 4px 0 #5a3d2c;
+  margin-top: 17px;
+}
+
+.kraft .smallnote {
+  font-size: 12px;
+  color: #60442e;
+  margin-top: 20px;
+}
+
+/* 左側の画像ページ */
+
+.artpage {
+  background: #eee1c7;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  gap: 14px;
+  min-width: 0;
+  border-right: 1px solid #bda985;
+  box-shadow: inset -8px 0 14px #53422818;
+}
+
+.kicker, .meta {
+  font-size: 11px;
+  letter-spacing: .1em;
+  font-weight: 900;
+  color: #86684c;
+}
+
+.polaroid {
+  background: #fffaef;
+  padding: 10px 10px 25px;
+  box-shadow: 2px 6px 15px #3c32284b;
+  transform: rotate(-1deg);
+  max-width: 460px;
+  width: 95%;
+  margin: auto;
+  position: relative;
+}
+
+.polaroid::before {
+  content: "";
+  position: absolute;
+  background: #c5a46c8c;
+  top: -10px;
+  left: calc(50% - 36px);
+  width: 72px;
+  height: 19px;
+  transform: rotate(3deg);
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+.polaroid figcaption {
+  text-align: center;
+  font-size: 12px;
+  color: #806244;
+  padding-top: 12px;
+}
+
+/* 右側の本文ページ */
+
+.textpage {
+  position: relative;
+  background: repeating-linear-gradient(
+    to bottom,
+    #fffaf0 0 30px,
+    #b2a48f88 31px,
+    #fffaf0 32px
+  );
+  padding: 29px 33px 55px 35px;
+  min-width: 0;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  letter-spacing: .03em;
+}
+
+.textpage h2 {
+  font-size: clamp(23px, 3vw, 33px);
+  line-height: 1.3;
+  margin: 20px 0 12px;
+}
+
+.redline {
+  width: 58px;
+  height: 5px;
+  background: var(--red);
+  margin-bottom: 18px;
+}
+
+.story {
+  font-size: 14px;
+  line-height: 2.08;
+  overflow-wrap: anywhere;
+}
+
+.story p { margin: 0 0 9px; }
+
+.story p:last-child {
+  font-weight: 900;
+  color: #a43d2d;
+}
+
+.pagefoot {
+  border-top: 1px solid #b7a58b;
+  padding-top: 8px;
+  position: absolute;
+  left: 35px;
+  right: 33px;
+  bottom: 13px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #7b674e;
+  font-family: monospace;
+}
+
+/* ページ移動 */
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 16px 0;
+  color: #f5e3c4;
+}
+
+.navbtn {
+  border: 2px solid #d0ae7c;
+  border-radius: 4px;
+  background: #f8e6c6;
+  color: #34271b;
+  padding: 12px 11px;
+  min-width: 110px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.progress {
+  text-align: center;
+  min-width: 0;
+  font-size: 12px;
+}
+
+.progress small {
+  display: block;
+  margin-top: 5px;
+  color: #d6bc98;
+  font-size: 11px;
+}
+
+/* リアクション・コメント */
+
+.community {
+  background: #f7ebd4;
+  border: 5px solid #986f46;
+  border-radius: 9px;
+  padding: 18px;
+  margin: 0 0 20px;
+}
+
+.community h3 {
+  margin: 0 0 15px;
+  font-size: 16px;
+}
+
+.reactrow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+}
+
+.reactbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid #cfb38d;
+  background: #fffaf0;
+  border-radius: 7px;
+  padding: 11px 5px;
+  color: #47392c;
+  font-size: 19px;
+}
+
+.reactbtn span {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.reactbtn.selected {
+  outline: 2px solid #be5d45;
+  background: #ffe7db;
+}
+
+.community hr {
+  border: 0;
+  border-top: 1px solid #cead83;
+  margin: 19px 0;
+}
+
+.status {
+  font-size: 12px;
+  color: #82624b;
+  margin: 9px 0;
+  min-height: 1.4em;
+}
+
+.comments { display: grid; gap: 8px; }
+
+.comment {
+  background: #fffaf0;
+  border: 1px solid #dac49e;
+  border-radius: 6px;
+  padding: 11px;
+}
+
+.comment strong { font-size: 13px; }
+
+.comment p {
+  margin: 5px 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.65;
+  font-size: 13px;
+}
+
+.comment time {
+  font-size: 10px;
+  color: #8a7257;
+}
+
+.formgrid {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.formgrid label {
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.formgrid input, .formgrid textarea {
+  width: 100%;
+  border: 1px solid #b79c77;
+  background: #fffdf6;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.formgrid textarea {
+  min-height: 86px;
+  resize: vertical;
+}
+
+.formgrid button {
+  background: #214860;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  padding: 12px;
+  font-weight: 900;
+}
+
+.formgrid button:disabled { background: #877c6e; }
+
+.muted {
+  font-size: 11px;
+  color: #7c634e;
+  line-height: 1.65;
+}
+
+.footer {
+  text-align: center;
+  color: #d8c7ae;
+  font-size: 11px;
+  padding: 12px 5px 28px;
+}
+
+/* 目次 */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #08131de2;
+  z-index: 50;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.modal.open { display: flex; }
+
+.toc {
+  background: #faedd4;
+  border: 6px solid #895d38;
+  border-radius: 8px;
+  width: min(720px, 100%);
+  max-height: 90dvh;
+  overflow: auto;
+  padding: 15px;
+}
+
+.tochead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #b99c72;
+  padding-bottom: 8px;
+}
+
+.tochead h2 { margin: 0; font-size: 20px; }
+
+.tocclose {
+  border: 0;
+  background: #bd4937;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 900;
+  padding: 7px 12px;
+}
+
+.tocitems {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tocitem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fffbf0;
+  border: 1px solid #d4bd97;
+  color: #3d2c22;
+  text-align: left;
+  padding: 8px;
+  min-width: 0;
+}
+
+.tocitem img, .tocitem .lock {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+.tocitem .lock {
+  display: grid;
+  place-items: center;
+  background: #d8cab3;
+  font-size: 23px;
+}
+
+.tocitem strong {
+  display: block;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.tocitem small {
+  font-size: 10px;
+  color: #8d6f52;
+}
+
+/* スマートフォン */
+
+@media(max-width:690px) {
+  .sitehead { padding: 10px 9px; }
+  .sitename { font-size: 12px; }
+  .controls { gap: 4px; }
+  .topbtn {
+    padding: 0 6px;
+    height: 36px;
+    font-size: 10px;
+  }
+  .topbtn.lang { min-width: 62px; }
+  .topbtn.home { min-width: 34px; }
+  .container { padding: 0 8px; }
+  .banner { border-width: 3px; }
+  .book {
+    margin-top: 15px;
+    padding: 11px 10px 11px 23px;
+    border-width: 5px;
+  }
+  .book::before {
+    left: 7px;
+    top: 11px;
+    bottom: 11px;
+  }
+  .pages { display: block; min-height: 0; }
+  .kraft { min-height: 485px; padding: 47px 20px; }
+  .kraft::before { inset: 12px; }
+  .kraft h1 { font-size: clamp(32px,9vw,55px); }
+  .kraft p { font-size: 14px; }
+  .artpage { border: 0; padding: 15px; }
+  .polaroid { width: min(88%,400px); }
+  .textpage {
+    padding: 23px 20px 54px;
+    min-height: 390px;
+  }
+  .textpage h2 { font-size: 25px; }
+  .pagefoot { left: 20px; right: 20px; }
+  .navigation { gap: 5px; }
+  .navbtn {
+    min-width: 95px;
+    font-size: 11px;
+    padding: 11px 6px;
+  }
+  .progress { font-size: 11px; }
+  .progress small { font-size: 10px; }
+  .tocitems { grid-template-columns: 1fr; }
+  .community { padding: 13px; }
+  .reactbtn { gap: 4px; padding: 9px 3px; }
+}
+
+@media(max-width:360px) {
+  .sitename { font-size: 11px; }
+  .topbtn.lang { min-width: 56px; }
+  .navbtn { min-width: 88px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .pages.flip { animation: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="sitehead">
+  <div class="sitename">TRAVEL DIARY</div>
+  <nav class="controls" aria-label="Diary controls">
+    <button class="topbtn" id="tocButton" type="button">
+      INDEX
+    </button>
+    <button class="topbtn lang" id="languageButton"
+      type="button" aria-label="Change language">
+      日本語
+    </button>
+    <a class="topbtn home"
+      href="https://japan47pixel.net/"
+      title="Official site"
+      aria-label="Official site">⌂</a>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="banner">
+    <img src="assets/cover.png"
+      alt="TRAVELING TAKOYAKI Japan 47 Collection">
+  </div>
+
+  <div class="book" id="book">
+    <div id="pages" class="pages"></div>
+  </div>
+
+  <div class="navigation">
+    <button type="button" class="navbtn" id="previous">
+      ← PREVIOUS
+    </button>
+    <div class="progress">
+      <div id="pageNumber">COVER</div>
+      <small id="nextRelease"></small>
+    </div>
+    <button type="button" class="navbtn" id="following">
+      NEXT →
+    </button>
+  </div>
+
+  <section class="community" id="community"
+    hidden aria-label="Reactions and comments"></section>
+</main>
+
+<footer class="footer">
+  © TRAVELING TAKOYAKI
+</footer>
+
+<div class="modal" id="tocModal" role="dialog"
+  aria-modal="true" aria-labelledby="tocHeading">
+  <div class="toc">
+    <div class="tochead">
+      <h2 id="tocHeading">INDEX</h2>
+      <button type="button" class="tocclose"
+        id="tocClose" aria-label="Close">×</button>
+    </div>
+    <div class="tocitems" id="tocItems"></div>
+  </div>
+</div>
+
+<script>
+/* ================================================
+   公開日時の設定
+   第1話：2026年11月1日 0:00 JST
+   第2話：2026年11月3日 10:00 JST
+   以降2日おき
+================================================ */
+
+const FIRST_AT = '2026-11-01T00:00:00+09:00';
+const CHAPTER_2_AT = '2026-11-03T10:00:00+09:00';
+const DAYS_BETWEEN = 2;
+
+/* ================================================
+   北海道編 全12話
+================================================ */
+
+const chapters = [
+  {
+    id: 1,
+    scene: "牧場",
+    sceneEn: "The Pasture",
+    title: "牛に人生相談をしてみた。",
+    titleEn: "A Serious Talk with a Cow",
+    image: "assets/hokkaido-01.png",
+    ja: [
+      "鉄板を飛び出して、はじめてたどり着いた場所は、どこまでも緑が続く牧場だった。",
+      "「毎日焼かれて食べられる人生が嫌で、逃げてきたんだ。」",
+      "牛はしばらく草を噛んでから言った。「わかるよ。僕も毎日、乳を搾られてる。」",
+      "ふたりは夕方まで、世の中の理不尽さについて語り合った。",
+      "帰り際、牛が聞いた。「ところで、車の免許は？」",
+      "「ない。」",
+      "牛は静かに三歩、後ずさりした。"
+    ],
+    en: [
+      "I escaped the griddle and found a pasture stretching all the way to the horizon.",
+      "“I got tired of being cooked and eaten every day,” I told a cow.",
+      "He chewed thoughtfully. “I get it. They take my milk every morning.”",
+      "We spent the afternoon discussing the unfairness of life.",
+      "Then he asked, “By the way, do you have a driver’s license?”",
+      "“No.”",
+      "The cow slowly backed away."
+    ]
+  },
+  {
+    id: 2,
+    scene: "じゃがいも畑",
+    sceneEn: "Potato Fields",
+    title: "逃げた先も食材だった。",
+    titleEn: "No Safe Place for Food",
+    image: "assets/hokkaido-02.png",
+    ja: [
+      "広い畑で、土まみれのじゃがいもたちを見つけた。",
+      "「いいなぁ。君たちは鉄板で焼かれなくて。」",
+      "「俺たち？　茹でられて、揚げられて、潰されるけど。」",
+      "「……大変だね。」",
+      "「しかも、ときどき皮をむかれる。」",
+      "たこ焼きは黙って車へ戻った。",
+      "この国に、食材の逃げ場はないらしい。"
+    ],
+    en: [
+      "In a vast field, I met a potato covered in dirt.",
+      "“Lucky you. Nobody puts you on a griddle.”",
+      "“No,” the potato said. “They boil us, fry us, and mash us.”",
+      "“Oh.”",
+      "“Sometimes they peel us first.”",
+      "I got back in my truck without another word.",
+      "Apparently there is no safe place for food in this country."
+    ]
+  },
+  {
+    id: 3,
+    scene: "ラベンダー畑",
+    sceneEn: "Lavender Fields",
+    title: "花になりたかった日。",
+    titleEn: "The Day I Wanted to Be a Flower",
+    image: "assets/hokkaido-03.png",
+    ja: [
+      "紫色の花が、風に揺れていた。きれいだ。しかも誰にも食べられていない。",
+      "「僕も花として生きていけないかな。」",
+      "花畑の真ん中で、じっとしてみた。",
+      "しばらくして、一匹のハチが近づいてきた。",
+      "「君、花粉はある？」",
+      "「青のりなら。」",
+      "ハチは何も言わずに飛び去った。",
+      "花になるのも、なかなか難しい。"
+    ],
+    en: [
+      "Purple flowers swayed in the breeze. Beautiful. And nobody was trying to eat them.",
+      "“Maybe I could live as a flower.”",
+      "I stood perfectly still in the lavender field.",
+      "Eventually, a bee approached.",
+      "“Got any pollen?”",
+      "“I have seaweed flakes.”",
+      "The bee left without saying a word.",
+      "Becoming a flower was harder than expected."
+    ]
+  },
+  {
+    id: 4,
+    scene: "エゾシカの森",
+    sceneEn: "Deer Country",
+    title: "シカに道を聞いてはいけない。",
+    titleEn: "Never Ask a Deer for Directions",
+    image: "assets/hokkaido-04.png",
+    ja: [
+      "森のそばで、大きな角を持つシカに出会った。",
+      "「すみません。自由になれる場所は、どっちですか？」",
+      "シカは黙って山の向こうを見た。",
+      "「あっち？」",
+      "シカは草を食べ始めた。",
+      "「……聞いてます？」",
+      "三十分後、たこ焼きは気づいた。",
+      "ナビより役に立たない相手に、人生相談をしていた。"
+    ],
+    en: [
+      "Near the forest, I met a deer with impressive antlers.",
+      "“Excuse me. Which way is freedom?”",
+      "He stared at the mountains.",
+      "“That way?”",
+      "He started eating grass.",
+      "“Are you even listening?”",
+      "Thirty minutes later, I realized I had asked an animal for philosophical directions.",
+      "My GPS was more emotionally available."
+    ]
+  },
+  {
+    id: 5,
+    scene: "紅葉の湖",
+    sceneEn: "Autumn Lake",
+    title: "湖に映った正体。",
+    titleEn: "The Truth in the Lake",
+    image: "assets/hokkaido-05.png",
+    ja: [
+      "山も木々も、湖にきれいに映っていた。",
+      "水面をのぞくと、ひとつだけ丸いものが映った。",
+      "自由な旅人になったつもりだった。だけど、そこにいたのは、どう見てもたこ焼きだった。",
+      "「どこへ行っても、自分は自分か。」",
+      "少しだけ、胸が熱くなった。",
+      "……いや、さっきから車の暖房が強すぎる。"
+    ],
+    en: [
+      "The mountains and autumn trees were perfectly reflected in the lake.",
+      "I looked into the water. One round shape looked back.",
+      "I had imagined myself as a fearless traveler. But my reflection was, unmistakably, a takoyaki.",
+      "“I guess I’m still me, wherever I go.”",
+      "For a moment, I felt warm inside.",
+      "Actually, the truck heater was just set way too high."
+    ]
+  },
+  {
+    id: 6,
+    scene: "夕暮れの湿原",
+    sceneEn: "Sunset Wetlands",
+    title: "飛べると思った日。",
+    titleEn: "The Day I Tried to Fly",
+    image: "assets/hokkaido-06.png",
+    ja: [
+      "夕日に染まった湿原で、二羽のタンチョウが優雅に歩いていた。",
+      "「空を飛べるって、どんな気分？」",
+      "一羽が翼を広げた。「自由だよ。」",
+      "たこ焼きは目を閉じ、思い切りジャンプした。",
+      "地面に落ちた。",
+      "タンチョウが言った。「君は飛ぶより、転がるほうが向いてると思う。」",
+      "なぜだろう。言い返せなかった。"
+    ],
+    en: [
+      "At sunset, two cranes walked gracefully across the wetlands.",
+      "“What does flying feel like?” I asked.",
+      "One spread its wings. “Freedom.”",
+      "I closed my eyes, jumped as high as I could…",
+      "…and landed immediately.",
+      "“I think you’re better built for rolling,” said the crane.",
+      "I had no comeback."
+    ]
+  },
+  {
+    id: 7,
+    scene: "夕日の灯台",
+    sceneEn: "Coastal Lighthouse",
+    title: "灯台は道を教えてくれない。",
+    titleEn: "The Lighthouse Has No Answers",
+    image: "assets/hokkaido-07.png",
+    ja: [
+      "海辺の灯台に、夕日が沈んでいった。",
+      "「ねえ灯台さん。海の向こうには、何があるの？」",
+      "灯台は何も答えない。ただ、遠くを照らしていた。",
+      "「そうか。自分で確かめろってことだね。」",
+      "たこ焼きは決意して、車のエンジンをかけた。",
+      "三メートル進んで、行き止まりだった。",
+      "灯台は、最後まで何も教えてくれなかった。"
+    ],
+    en: [
+      "At the seaside, the sun sank behind a lighthouse.",
+      "“Hey, lighthouse. What’s waiting beyond the ocean?”",
+      "It said nothing. It simply shone into the distance.",
+      "“I understand. I have to find out for myself.”",
+      "I started the truck, full of courage.",
+      "Three meters later, I reached a dead end.",
+      "The lighthouse remained profoundly unhelpful."
+    ]
+  },
+  {
+    id: 8,
+    scene: "雪原とキタキツネ",
+    sceneEn: "Snowfield and Fox",
+    title: "親切なキツネには気をつけろ。",
+    titleEn: "Beware of Friendly Foxes",
+    image: "assets/hokkaido-08.png",
+    ja: [
+      "雪道で迷っていると、キタキツネが近づいてきた。",
+      "「寒そうだね。温めてあげようか？」",
+      "「え、本当に？　ありがとう！」",
+      "キツネはにっこり笑った。",
+      "「ソース、かけてもいい？」",
+      "たこ焼きはエンジン全開で逃げた。",
+      "親切と食欲は、紙一重である。"
+    ],
+    en: [
+      "I was lost on a snowy road when a fox approached.",
+      "“You look cold. Want me to warm you up?”",
+      "“Really? That’s so kind!”",
+      "The fox smiled.",
+      "“Would you like some sauce with that?”",
+      "I drove away at full speed.",
+      "There is a very thin line between kindness and appetite."
+    ]
+  },
+  {
+    id: 9,
+    scene: "雪の港町",
+    sceneEn: "Snowy Harbor",
+    title: "乗船券より先に必要なもの。",
+    titleEn: "Something More Important Than a Ticket",
+    image: "assets/hokkaido-09.png",
+    ja: [
+      "港には大きな船が停まっていた。ようやく海を渡れる！",
+      "窓口で元気よく言った。「青森まで、一台お願いします！」",
+      "係の人は首をかしげた。",
+      "「運転手さんは？」",
+      "「僕です。」",
+      "「……たこ焼きが？」",
+      "長い沈黙のあと、係の人は申込用紙を差し出した。",
+      "職業欄に何を書けばいいのか、分からなかった。"
+    ],
+    en: [
+      "At the harbor, I finally found a ship. A way across the sea!",
+      "“One vehicle to Aomori, please!” I told the ticket clerk.",
+      "He tilted his head. “Who’s driving?”",
+      "“Me.”",
+      "“…A takoyaki?”",
+      "After a very long silence, he handed me a form.",
+      "I stared at the box labeled OCCUPATION.",
+      "I had never been so unsure of my career."
+    ]
+  },
+  {
+    id: 10,
+    scene: "流氷とアザラシ",
+    sceneEn: "Drift Ice and Seals",
+    title: "海が道になった、と思った。",
+    titleEn: "When the Ocean Looked Like a Road",
+    image: "assets/hokkaido-10.png",
+    ja: [
+      "海に白い氷が浮かんでいた。",
+      "「これはすごい！　海が凍ってる！　もう船なんかいらない！」",
+      "たこ焼きは車を降り、氷に片足を乗せた。",
+      "アザラシがこちらを見た。",
+      "「それ、流氷だよ。動くよ。」",
+      "「え？」",
+      "氷はゆっくり沖へ流れていった。",
+      "自由って、たまに帰り道をなくすことらしい。"
+    ],
+    en: [
+      "White ice drifted across the sea.",
+      "“Amazing! The ocean has frozen! Who needs a boat?”",
+      "I stepped onto a piece of ice.",
+      "A seal looked up.",
+      "“That’s drift ice. It moves.”",
+      "“…Oh.”",
+      "The ice slowly carried me away from shore.",
+      "Freedom, apparently, sometimes means losing your ride home."
+    ]
+  },
+  {
+    id: 11,
+    scene: "函館の夜景",
+    sceneEn: "Night View of Hakodate",
+    title: "100万ドルの夜景、所持金0円。",
+    titleEn: "A Million-Dollar View, Zero Yen",
+    image: "assets/hokkaido-11.png",
+    ja: [
+      "夜の街が、宝石のように光っていた。",
+      "鉄板の上にいたころは、こんな景色があることすら知らなかった。",
+      "「旅に出て、よかったな。」",
+      "少しだけ涙が出そうになった。",
+      "自由は、思ったよりずっと美しい。",
+      "そこで気づいた。",
+      "「……そういえば、財布を持っていない。」",
+      "100万ドルの夜景を眺める、所持金0円のたこ焼き。"
+    ],
+    en: [
+      "The city glittered like a box of jewels.",
+      "Back on the griddle, I never knew a view like this existed.",
+      "“I’m glad I ran away.”",
+      "For a moment, I nearly cried.",
+      "Freedom was more beautiful than I had imagined.",
+      "Then it hit me.",
+      "“…I don’t actually have a wallet.”",
+      "A million-dollar view. Zero yen in my pocket."
+    ]
+  },
+  {
+    id: 12,
+    scene: "オーロラの夜",
+    sceneEn: "Aurora Night",
+    title: "それでも、旅は続く。",
+    titleEn: "And Still, the Journey Goes On",
+    image: "assets/hokkaido-12.png",
+    ja: [
+      "夜空いっぱいに、光のカーテンが広がっていた。",
+      "食べられたくなくて飛び出した、あの日の鉄板。",
+      "牛にも、じゃがいもにも、キツネにも会った。",
+      "自由になれたのかどうか、まだ分からない。",
+      "でも、ひとつだけ確かなことがある。",
+      "明日も、まだ見たことのない景色を見たい。",
+      "たこ焼きは車へ戻り、次の目的地をナビに入力した。",
+      "「青森県」",
+      "ナビが答えた。「海を渡ってください。」",
+      "「……また海か。」",
+      "旅は、まだ始まったばかりだ。"
+    ],
+    en: [
+      "Curtains of light stretched across the night sky.",
+      "I remembered the griddle I escaped, and everyone I had met since: a cow, a potato, a fox.",
+      "I still wasn’t sure what freedom meant.",
+      "But I knew one thing: I wanted to see another place tomorrow.",
+      "I climbed back into the truck and entered my next destination: AOMORI.",
+      "The GPS replied, “Please cross the ocean.”",
+      "“…The ocean. Again.”",
+      "My journey was only just beginning."
+    ]
+  }
+];
+
+chapters.forEach((ch, i) => {
+  ch.release = i === 0
+    ? FIRST_AT
+    : new Date(
+        Date.parse(CHAPTER_2_AT) +
+        (i - 1) * DAYS_BETWEEN * 86400000
+      ).toISOString();
+
+  ch.key = 'hokkaido-' +
+    String(ch.id).padStart(2, '0');
+});
+
+/* プロローグ */
+
+const prologue = {
+  ja: [
+    "毎日、鉄板の上で焼かれる。",
+    "くるくるひっくり返され、ソースを塗られて、最後は誰かのお腹の中へ。",
+    "それが、たこ焼きの人生だった。",
+    "しかしある日、一つのたこ焼きが思った。",
+    "「もっと広い世界を旅したい。」",
+    "そして次の瞬間——ぽーーーーん！",
+    "鉄板から飛び出した。自由だ！",
+    "……着地した先は、たこ焼きカーの屋根だった。",
+    "「結局、たこ焼き屋からは逃げられないのか。」",
+    "それでも、エンジンは動き出した。",
+    "最初の目的地は、北海道。"
+  ],
+  en: [
+    "Every day, the same hot griddle.",
+    "Flip. Sauce. Seaweed flakes. Then straight into somebody’s stomach.",
+    "That was the entire life of a takoyaki.",
+    "Until one day, a single takoyaki had a thought.",
+    "“I want to see the world beyond this griddle.”",
+    "And then—BOING!",
+    "It launched itself into freedom.",
+    "…And landed on top of a takoyaki truck.",
+    "“So much for escaping the food industry.”",
+    "Still, the engine started.",
+    "First destination: HOKKAIDO."
+  ]
+};
+
+/* 表示言語 */
+
+const words = {
+  en: {
+    open: 'OPEN DIARY',
+    about: 'A little takoyaki ran away from the griddle to discover the world.',
+    prev: '← PREVIOUS',
+    next: 'NEXT →',
+    cover: 'COVER',
+    intro: 'PROLOGUE',
+    nextAt: 'NEXT CHAPTER',
+    end: 'HOKKAIDO COMPLETE',
+    reactions: 'HOW DID YOU FEEL?',
+    comments: 'COMMENTS',
+    nickname: 'YOUR NICKNAME',
+    message: 'YOUR COMMENT',
+    submit: 'SUBMIT FOR APPROVAL',
+    pending: 'Your comment was submitted. It will appear after approval.',
+    empty: 'No approved comments yet.',
+    connection: 'Comments and reactions will be available after Firebase is connected.',
+    error: 'Could not connect. Please try again.',
+    loading: 'Loading…',
+    commentHint: 'Comments are published only after approval. Maximum 200 characters.'
+  },
+  ja: {
+    open: '日記を開く',
+    about: '毎日焼かれて食べられる人生を抜け出し、ひとつのたこ焼きが旅に出た。',
+    prev: '← 前のページ',
+    next: '次のページ →',
+    cover: '表紙',
+    intro: 'プロローグ',
+    nextAt: '次の公開',
+    end: '北海道編 完結',
+    reactions: 'このお話、どうだった？',
+    comments: 'コメント',
+    nickname: 'ニックネーム',
+    message: '感想を書く',
+    submit: '承認申請して投稿',
+    pending: 'コメントを受け付けました。運営が承認すると公開されます。',
+    empty: 'まだ承認済みのコメントはありません。',
+    connection: 'Firebase接続後にリアクション・コメントが使えます。',
+    error: '接続に失敗しました。もう一度お試しください。',
+    loading: '読み込み中…',
+    commentHint: 'コメントは承認後に公開されます。本文は200文字以内です。'
+  }
+};
+
+const $ = id => document.getElementById(id);
+
+const esc = s => String(s ?? '').replace(
+  /[&<>"']/g,
+  c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[c])
+);
+
+let lang = 'en';
+
+try {
+  lang = localStorage.getItem('tt-diary-lang') === 'ja'
+    ? 'ja' : 'en';
+} catch (_) {}
+
+let page = 0;
+let requestCycle = 0;
+
+const t = k => words[lang][k];
+
+const openChapters = () =>
+  chapters.filter(ch =>
+    Date.now() >= Date.parse(ch.release)
+  ).length;
+
+const maxPage = () => openChapters() + 1;
+
+function dateText(iso) {
+  return new Intl.DateTimeFormat(
+    lang === 'ja' ? 'ja-JP' : 'en-GB',
+    {
+      timeZone: 'Asia/Tokyo',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }
+  ).format(new Date(iso)) + ' JST';
+}
+
+function storyHTML(lines) {
+  return lines.map(p => `<p>${esc(p)}</p>`).join('');
+}
+
+/* ページ移動 */
+
+function go(to) {
+  if (to < 0 || to > maxPage()) return;
+
+  page = to;
+  render(true);
+
+  $('book').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+}
+
+/* ページ描画 */
+
+function render(animated = false) {
+  requestCycle++;
+
+  const pages = $('pages');
+  pages.classList.remove('flip');
+
+  if (animated) {
+    void pages.offsetWidth;
+    pages.classList.add('flip');
+  }
+
+  document.documentElement.lang = lang;
+
+  $('languageButton').textContent =
+    lang === 'en' ? '日本語' : 'ENGLISH';
+
+  $('previous').textContent = t('prev');
+  $('following').textContent = t('next');
+
+  $('previous').disabled = page === 0;
+  $('following').disabled = page >= maxPage();
+
+  $('community').hidden = true;
+  $('community').innerHTML = '';
+
+  if (page === 0) {
+    pages.innerHTML = `
+      <section class="kraft">
+        <div class="minilabel">
+          TRAVELING TAKOYAKI · JAPAN 47
+        </div>
+
+        <div class="stamp">
+          HOKKAIDO · 01 / 47
+        </div>
+
+        <h1>
+          TAKOYAKI<br>
+          TRAVEL DIARY
+        </h1>
+
+        <div class="subtitle">
+          ${lang === 'ja'
+            ? '鉄板の向こう側へ'
+            : 'BEYOND THE GRIDDLE'}
+        </div>
+
+        <p>${esc(t('about'))}</p>
+
+        <button type="button"
+          class="primary" id="openBook">
+          ${t('open')} →
+        </button>
+
+        <div class="smallnote">
+          HOKKAIDO · 12 CHAPTERS
+        </div>
+      </section>
+    `;
+
+    $('openBook').addEventListener(
+      'click', () => go(1)
+    );
+  } else {
+    const isIntro = page === 1;
+    const ch = isIntro ? null : chapters[page - 2];
+
+    if (ch && Date.now() < Date.parse(ch.release)) {
+      page = maxPage();
+      return render();
+    }
+
+    const title = isIntro
+      ? (lang === 'ja'
+          ? '鉄板の向こう側'
+          : 'Beyond the Griddle')
+      : (lang === 'ja' ? ch.title : ch.titleEn);
+
+    const scene = isIntro
+      ? 'BEFORE THE JOURNEY'
+      : (lang === 'ja' ? ch.scene : ch.sceneEn);
+
+    const photo = isIntro
+      ? 'assets/prologue.png'
+      : ch.image;
+
+    const lines = isIntro ? prologue[lang] : ch[lang];
+
+    const label = isIntro
+      ? 'PROLOGUE 00'
+      : 'CHAPTER ' +
+        String(ch.id).padStart(2, '0') + ' / 12';
+
+    pages.innerHTML = `
+      <section class="artpage">
+        <div class="kicker">${esc(label)}</div>
+
+        <figure class="polaroid">
+          <img src="${esc(photo)}"
+            alt="${esc(scene)}">
+          <figcaption>${esc(scene)}</figcaption>
+        </figure>
+      </section>
+
+      <section class="textpage">
+        <div class="meta">
+          <span>${esc(label)}</span>
+          <span>
+            ${isIntro
+              ? '01 / 47 · HOKKAIDO'
+              : esc(dateText(ch.release))}
+          </span>
+        </div>
+
+        <h2>${esc(title)}</h2>
+        <div class="redline"></div>
+
+        <div class="story">
+          ${storyHTML(lines)}
+        </div>
+
+        <div class="pagefoot">
+          <span>
+            ${ch?.id === 12
+              ? 'NEXT STOP — AOMORI'
+              : 'TRAVELING TAKOYAKI'}
+          </span>
+          <span>
+            ${isIntro
+              ? '00'
+              : String(ch.id).padStart(2, '0')}
+          </span>
+        </div>
+      </section>
+    `;
+
+    if (!isIntro) drawCommunity(ch);
+  }
+
+  $('pageNumber').textContent =
+    page === 0 ? t('cover')
+    : page === 1 ? t('intro')
+    : `CHAPTER ${String(page - 1).padStart(2,'0')} / 12`;
+
+  const count = openChapters();
+
+  $('nextRelease').textContent =
+    count < chapters.length
+      ? t('nextAt') + ': ' +
+        dateText(chapters[count].release)
+      : t('end');
+
+  history.replaceState(
+    null,
+    '',
+    location.pathname +
+    location.search +
+    (page ? '#page-' + page : '')
+  );
+}
+
+/* リアクションとコメント欄 */
+
+function drawCommunity(ch) {
+  const area = $('community');
+  area.hidden = false;
+
+  area.innerHTML = `
+    <h3>${esc(t('reactions'))}</h3>
+
+    <div class="reactrow">
+      ${[
+        ['heart', '❤️'],
+        ['laugh', '😂'],
+        ['cry', '😢']
+      ].map(([type, emoji]) => `
+        <button class="reactbtn"
+          type="button"
+          data-vote="${type}" disabled>
+          ${emoji}
+          <span data-count="${type}">—</span>
+        </button>
+      `).join('')}
+    </div>
+
+    <p class="status" id="socialStatus">
+      ${esc(window.diaryBackend?.ready
+        ? t('loading')
+        : t('connection'))}
+    </p>
+
+    <hr>
+
+    <h3>
+      ${esc(t('comments'))}
+      <span id="commentCount"></span>
+    </h3>
+
+    <div class="comments" id="commentList">
+      <p class="muted">${esc(t('loading'))}</p>
+    </div>
+
+    <form id="commentForm" class="formgrid">
+      <label for="nickname">
+        ${esc(t('nickname'))}
+      </label>
+
+      <input id="nickname"
+        maxlength="24"
+        autocomplete="nickname"
+        required
+        placeholder="TakoyakiFan"
+        disabled>
+
+      <label for="commentText">
+        ${esc(t('message'))}
+      </label>
+
+      <textarea id="commentText"
+        maxlength="200"
+        required
+        placeholder="..."
+        disabled></textarea>
+
+      <button type="submit" disabled>
+        ${esc(t('submit'))}
+      </button>
+
+      <div class="muted">
+        ${esc(t('commentHint'))}
+      </div>
+
+      <p class="status"
+        id="submitStatus"
+        role="status"></p>
+    </form>
+  `;
+
+  if (window.diaryBackend?.ready) {
+    window.diaryBackend.load(ch.key, requestCycle);
+  } else {
+    $('commentList').innerHTML =
+      '<p class="muted">' +
+      esc(t('connection')) +
+      '</p>';
+  }
+}
+
+/* 目次 */
+
+function showToc() {
+  $('tocHeading').textContent =
+    lang === 'ja' ? '旅の目次' : 'INDEX';
+
+  const items = [
+    {
+      page: 1,
+      title: lang === 'ja'
+        ? '鉄板の向こう側'
+        : 'Beyond the Griddle',
+      number: 'PROLOGUE',
+      image: 'assets/prologue.png',
+      open: true
+    },
+    ...chapters.map(ch => ({
+      page: ch.id + 1,
+      title: lang === 'ja' ? ch.title : ch.titleEn,
+      number: 'CHAPTER ' +
+        String(ch.id).padStart(2,'0'),
+      image: ch.image,
+      open: Date.now() >= Date.parse(ch.release),
+      release: ch.release
+    }))
+  ];
+
+  $('tocItems').innerHTML = items.map(x => `
+    <button type="button" class="tocitem"
+      data-page="${x.page}"
+      ${x.open ? '' : 'disabled'}>
+
+      ${x.open
+        ? `<img src="${esc(x.image)}" alt="">`
+        : '<span class="lock">🔒</span>'}
+
+      <span>
+        <small>${esc(x.number)}</small>
+        <strong>${esc(x.title)}</strong>
+
+        ${x.release
+          ? `<small>${esc(dateText(x.release))}</small>`
+          : ''}
+      </span>
+    </button>
+  `).join('');
+
+  $('tocItems')
+    .querySelectorAll('button[data-page]')
+    .forEach(b => b.addEventListener('click', () => {
+      closeToc();
+      go(Number(b.dataset.page));
+    }));
+
+  $('tocModal').classList.add('open');
+  $('tocClose').focus();
+}
+
+function closeToc() {
+  $('tocModal').classList.remove('open');
+  $('tocButton').focus();
+}
+
+/* ボタン操作 */
+
+$('tocButton').addEventListener('click', showToc);
+$('tocClose').addEventListener('click', closeToc);
+
+$('tocModal').addEventListener('click', e => {
+  if (e.target === $('tocModal')) closeToc();
+});
+
+$('previous').addEventListener(
+  'click', () => go(page - 1)
+);
+
+$('following').addEventListener(
+  'click', () => go(page + 1)
+);
+
+$('languageButton').addEventListener('click', () => {
+  lang = lang === 'en' ? 'ja' : 'en';
+
+  document.documentElement.lang = lang;
+
+  try {
+    localStorage.setItem('tt-diary-lang', lang);
+  } catch (_) {}
+
+  render();
+});
+
+document.addEventListener('keydown', e => {
+  if (
+    e.key === 'Escape' &&
+    $('tocModal').classList.contains('open')
+  ) {
+    closeToc();
+  } else if (
+    !$('tocModal').classList.contains('open') &&
+    e.key === 'ArrowRight'
+  ) {
+    go(page + 1);
+  } else if (
+    !$('tocModal').classList.contains('open') &&
+    e.key === 'ArrowLeft'
+  ) {
+    go(page - 1);
+  }
+});
+
+/* スマホのスワイプ */
+
+let touchStart = null;
+
+$('pages').addEventListener('touchstart', e => {
+  touchStart = e.touches[0].clientX;
+}, { passive: true });
+
+$('pages').addEventListener('touchend', e => {
+  if (touchStart === null) return;
+
+  const d = e.changedTouches[0].clientX - touchStart;
+  touchStart = null;
+
+  if (Math.abs(d) > 80) {
+    go(page + (d < 0 ? 1 : -1));
+  }
+}, { passive: true });
+
+/* 初期ページ */
+
+const h = location.hash.match(/^#page-(\d+)$/);
+
+page = Math.min(
+  h ? Number(h[1]) : 0,
+  maxPage()
+);
+
+render();
+
+/* 新しい話が公開された場合のみ再描画 */
+
+let lastUnlocked = openChapters();
+
+setInterval(() => {
+  const nowUnlocked = openChapters();
+
+  if (nowUnlocked !== lastUnlocked) {
+    lastUnlocked = nowUnlocked;
+    render();
+  }
+}, 60000);
+</script>
+
+<script type="module">
+/* ================================================
+   FIREBASE 設定
+   Firebaseを設定するまでは
+   日記だけが動き、リアクションは無効です。
+
+   Firebase ConsoleのWebアプリ設定から
+   自分の接続情報をコピーしてください。
+================================================ */
+
+const firebaseConfig = {
+  apiKey: 'PASTE_API_KEY',
+  authDomain: 'PASTE_PROJECT_ID.firebaseapp.com',
+  projectId: 'PASTE_PROJECT_ID',
+  appId: 'PASTE_APP_ID'
+};
+
+if (!firebaseConfig.apiKey.startsWith('PASTE_')) {
+  try {
+    const v = '13.1.0';
+
+    const [
+      { initializeApp },
+      { getAuth, signInAnonymously },
+      {
+        getFirestore,
+        doc,
+        getDoc,
+        collection,
+        query,
+        where,
+        getDocs,
+        getCountFromServer,
+        setDoc,
+        deleteDoc,
+        addDoc,
+        serverTimestamp,
+        limit
+      }
+    ] = await Promise.all([
+      import(`https://www.gstatic.com/firebasejs/${v}/firebase-app.js`),
+      import(`https://www.gstatic.com/firebasejs/${v}/firebase-auth.js`),
+      import(`https://www.gstatic.com/firebasejs/${v}/firebase-firestore.js`)
+    ]);
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    await auth.authStateReady();
+
+    if (!auth.currentUser) {
+      await signInAnonymously(auth);
+    }
+
+    let sequence = 0;
+
+    const allowed = ['heart', 'laugh', 'cry'];
+
+    const votes = chapter =>
+      collection(db, 'diaryChapters', chapter, 'votes');
+
+    const comments = chapter =>
+      collection(db, 'diaryChapters', chapter, 'comments');
+
+    const backend = {
+      ready: true,
+
+      async load(chapter, cycle) {
+        const seq = ++sequence;
+
+        const alive = () =>
+          seq === sequence &&
+          cycle === requestCycle &&
+          !$('community').hidden;
+
+        try {
+          const own = doc(
+            db,
+            'diaryChapters',
+            chapter,
+            'votes',
+            auth.currentUser.uid
+          );
+
+          /* 自分の投票と3種類の合計を取得 */
+
+          const [vote, ...totals] = await Promise.all([
+            getDoc(own),
+            ...allowed.map(type =>
+              getCountFromServer(
+                query(
+                  votes(chapter),
+                  where('type', '==', type)
+                )
+              )
+            )
+          ]);
+
+          if (!alive()) return;
+
+          const selected = vote.exists()
+            ? vote.data().type
+            : null;
+
+          allowed.forEach((type, i) => {
+            const btn = document.querySelector(
+              '[data-vote="' + type + '"]'
+            );
+
+            const span = document.querySelector(
+              '[data-count="' + type + '"]'
+            );
+
+            if (btn && span) {
+              span.textContent = totals[i].data().count;
+              btn.disabled = false;
+              btn.classList.toggle(
+                'selected',
+                type === selected
+              );
+            }
+          });
+
+          $('socialStatus').textContent = '';
+
+          /* 承認済みコメントのみ取得 */
+
+          const snap = await getDocs(
+            query(
+              comments(chapter),
+              where('status', '==', 'approved'),
+              limit(30)
+            )
+          );
+
+          if (!alive()) return;
+
+          const arr = snap.docs
+            .map(d => d.data())
+            .sort(
+              (a,b) =>
+                (b.createdAt?.seconds || 0) -
+                (a.createdAt?.seconds || 0)
+            );
+
+          $('commentCount').textContent =
+            '(' + arr.length + ')';
+
+          $('commentList').innerHTML = arr.length
+            ? arr.map(x => `
+                <article class="comment">
+                  <strong>${esc(x.nickname)}</strong>
+                  <p>${esc(x.body)}</p>
+                  <time>
+                    ${x.createdAt?.toDate?.()
+                      .toLocaleDateString(
+                        lang === 'ja' ? 'ja-JP' : 'en-GB'
+                      ) || ''}
+                  </time>
+                </article>
+              `).join('')
+            : `<p class="muted">${esc(t('empty'))}</p>`;
+
+          /* リアクション送信 */
+
+          document.querySelectorAll('[data-vote]')
+            .forEach(btn => {
+              btn.onclick = async () => {
+                if (btn.disabled) return;
+
+                document.querySelectorAll('[data-vote]')
+                  .forEach(b => b.disabled = true);
+
+                try {
+                  const type = btn.dataset.vote;
+
+                  if (selected === type) {
+                    await deleteDoc(own);
+                  } else {
+                    await setDoc(own, {
+                      type,
+                      updatedAt: serverTimestamp()
+                    });
+                  }
+
+                  await backend.load(chapter, cycle);
+
+                } catch (err) {
+                  console.error(err);
+
+                  if (alive()) {
+                    $('socialStatus').textContent =
+                      t('error');
+                  }
+                }
+              };
+            });
+
+          /* コメント投稿 */
+
+          const form = $('commentForm');
+
+          form.querySelectorAll('input,textarea,button')
+            .forEach(el => el.disabled = false);
+
+          form.onsubmit = async e => {
+            e.preventDefault();
+
+            const nickname =
+              $('nickname').value.trim();
+
+            const body =
+              $('commentText').value.trim();
+
+            if (
+              !nickname ||
+              nickname.length > 24 ||
+              !body ||
+              body.length > 200
+            ) return;
+
+            form.querySelector('button').disabled = true;
+
+            try {
+              await addDoc(comments(chapter), {
+                uid: auth.currentUser.uid,
+                nickname,
+                body,
+                status: 'pending',
+                createdAt: serverTimestamp()
+              });
+
+              if (alive()) {
+                $('commentText').value = '';
+                $('submitStatus').textContent =
+                  t('pending');
+              }
+
+            } catch (err) {
+              console.error(err);
+
+              if (alive()) {
+                $('submitStatus').textContent =
+                  t('error');
+              }
+
+            } finally {
+              if (alive()) {
+                form.querySelector('button').disabled =
+                  false;
+              }
+            }
+          };
+
+        } catch (err) {
+          console.error(err);
+
+          if (alive()) {
+            $('socialStatus').textContent = t('error');
+            $('commentList').innerHTML =
+              '<p class="muted">' +
+              esc(t('error')) +
+              '</p>';
+          }
+        }
+      }
+    };
+
+    window.diaryBackend = backend;
+
+    if (page >= 2) {
+      backend.load(
+        chapters[page - 2].key,
+        requestCycle
+      );
+    }
+
+  } catch (err) {
+    console.error('Firebase setup failed:', err);
+  }
+}
+</script>
+
+</body>
+</html>
