@@ -19,40 +19,29 @@
   --forest:#22483c;
   --muted:#69716d;
 }
-
 * {box-sizing:border-box}
 html {scroll-behavior:smooth}
-
 body {
   margin:0;
   background:var(--cream);
   color:var(--ink);
   font:14px system-ui,-apple-system,"Noto Sans JP",sans-serif;
 }
-
 button,input {font:inherit}
 button {cursor:pointer}
-
 button:focus-visible,
 input:focus-visible,
 a:focus-visible {
   outline:3px solid #3979c9;
   outline-offset:3px;
 }
-
 .frame {
   max-width:930px;
   margin:auto;
   background:var(--paper);
   min-height:100vh;
 }
-
-.top {
-  height:4px;
-  background:var(--yellow);
-}
-
-/* HEADER */
+.top {height:4px;background:var(--yellow)}
 .header {
   background:#131a1d;
   color:#fff;
@@ -62,14 +51,12 @@ a:focus-visible {
   align-items:center;
   gap:10px;
 }
-
 .brand {
   display:flex;
   align-items:center;
   gap:10px;
   min-width:0;
 }
-
 .logo {
   width:40px;
   height:40px;
@@ -78,14 +65,12 @@ a:focus-visible {
   flex-shrink:0;
   overflow:hidden;
 }
-
 .logo img {
   width:100%;
   height:100%;
   object-fit:cover;
   image-rendering:pixelated;
 }
-
 .brand-title {
   font-size:13px;
   line-height:1.1;
@@ -93,7 +78,6 @@ a:focus-visible {
   letter-spacing:.12em;
   white-space:nowrap;
 }
-
 .brand-sub {
   font-size:9px;
   font-weight:800;
@@ -101,7 +85,6 @@ a:focus-visible {
   letter-spacing:.12em;
   margin-top:5px;
 }
-
 .language {
   display:flex;
   background:#303838;
@@ -109,7 +92,6 @@ a:focus-visible {
   gap:2px;
   flex-shrink:0;
 }
-
 .language button {
   border:0;
   background:transparent;
@@ -118,13 +100,10 @@ a:focus-visible {
   font-weight:900;
   padding:8px 11px;
 }
-
 .language button.active {
   background:var(--yellow);
   color:var(--ink);
 }
-
-/* COMPACT WALLET LOOKUP */
 .microbar {
   background:#243239;
   color:#dfe9e5;
@@ -134,7 +113,6 @@ a:focus-visible {
   padding:6px 22px;
   min-height:42px;
 }
-
 .microbar button {
   max-width:100%;
   border:1px solid #cfb24d;
@@ -143,28 +121,23 @@ a:focus-visible {
   border-radius:2px;
   font-size:11px;
   font-weight:900;
-  letter-spacing:0;
   padding:7px 12px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
-
 .wallet-tip {
   font-size:11px;
   color:#647066;
   line-height:1.6;
   margin:9px 0 0;
 }
-
-/* HERO */
 .hero {
   position:relative;
   overflow:hidden;
   padding:31px 22px 22px;
   border-bottom:1px solid var(--line);
 }
-
 .hero:after {
   content:'';
   position:absolute;
@@ -176,14 +149,12 @@ a:focus-visible {
   border-radius:50%;
   opacity:.7;
 }
-
 .overline {
   font-size:10px;
   font-weight:900;
   letter-spacing:.19em;
   color:var(--red);
 }
-
 h1 {
   font-size:clamp(29px,5vw,43px);
   letter-spacing:-.06em;
@@ -193,12 +164,7 @@ h1 {
   position:relative;
   z-index:1;
 }
-
-h1 em {
-  font-style:normal;
-  color:var(--red);
-}
-
+h1 em {font-style:normal;color:var(--red)}
 .intro {
   font-size:12px;
   line-height:1.7;
@@ -208,7 +174,6 @@ h1 em {
   position:relative;
   z-index:1;
 }
-
 .hero-links {
   display:flex;
   gap:6px;
@@ -216,7 +181,6 @@ h1 em {
   position:relative;
   z-index:1;
 }
-
 .hero-links a {
   flex:1;
   text-align:center;
@@ -228,44 +192,34 @@ h1 em {
   font-weight:850;
   padding:11px 4px;
 }
-
 .hero-links a:first-child {
   background:var(--yellow);
   border-color:#caa33f;
 }
-
-/* ROAD */
-.stickyish {
-  padding:16px 22px 0;
-}
-
+.stickyish {padding:16px 22px 0}
 .sectionhead {
   display:flex;
   align-items:end;
   justify-content:space-between;
   gap:12px;
 }
-
 .sectionhead h2 {
   font-size:24px;
   letter-spacing:-.04em;
   line-height:1.12;
   margin:5px 0 2px;
 }
-
 .smallhint {
   font-size:10px;
   color:var(--muted);
   font-weight:750;
 }
-
 .roadbox {
   background:var(--mint);
   border:1px solid #9dbbab;
   margin-top:12px;
   padding:14px 12px 11px;
 }
-
 .roadtop {
   display:flex;
   justify-content:space-between;
@@ -275,11 +229,7 @@ h1 em {
   font-weight:900;
   letter-spacing:.06em;
 }
-
-.roadtop strong {
-  font-size:13px;
-}
-
+.roadtop strong {font-size:13px}
 .roadscroll {
   overflow-x:auto;
   overflow-y:hidden;
@@ -289,7 +239,6 @@ h1 em {
   scroll-behavior:smooth;
   touch-action:pan-x pan-y;
 }
-
 .roadline {
   position:relative;
   display:flex;
@@ -297,7 +246,6 @@ h1 em {
   gap:14px;
   padding:0 5px;
 }
-
 .station {
   border:0;
   background:transparent;
@@ -308,7 +256,6 @@ h1 em {
   text-align:center;
   color:var(--ink);
 }
-
 .station:after {
   content:'';
   position:absolute;
@@ -320,15 +267,8 @@ h1 em {
   outline:2px solid #26332a;
   z-index:0;
 }
-
-.station:last-child:after {
-  display:none;
-}
-
-.station.travelled:after {
-  background:var(--red);
-}
-
+.station:last-child:after {display:none}
+.station.travelled:after {background:var(--red)}
 .dot {
   position:relative;
   display:grid;
@@ -343,19 +283,16 @@ h1 em {
   font-weight:900;
   z-index:2;
 }
-
 .station.travelled .dot {
   background:var(--red);
   color:#fff;
 }
-
 .station.active .dot {
   border-color:#fff;
   box-shadow:0 0 0 2px #26332a;
   outline:2px solid #1b7961;
   outline-offset:4px;
 }
-
 .station .jname {
   display:block;
   font-size:10px;
@@ -363,7 +300,6 @@ h1 em {
   margin-top:8px;
   white-space:nowrap;
 }
-
 .station .ename {
   display:block;
   font-size:8px;
@@ -371,8 +307,6 @@ h1 em {
   font-weight:700;
   margin-top:2px;
 }
-
-/* TAKOYAKI CAR */
 .car-holder {
   position:absolute;
   top:-34px;
@@ -383,11 +317,7 @@ h1 em {
   pointer-events:none;
   transition:left .64s cubic-bezier(.22,.70,.24,1);
 }
-
-.car-holder.no-motion {
-  transition:none;
-}
-
+.car-holder.no-motion {transition:none}
 .car-holder img {
   display:block;
   width:50px;
@@ -397,27 +327,17 @@ h1 em {
   animation:idle 1.05s steps(2,end) infinite;
   filter:drop-shadow(1px 2px 0 #fbf7eb);
 }
-
 .car-holder .fallback {
   position:absolute;
   left:12px;
   top:0;
   font-size:25px;
 }
-
-.car-holder.loaded .fallback {
-  display:none;
-}
-
+.car-holder.loaded .fallback {display:none}
 @keyframes idle {
-  0%,100% {
-    transform:translateY(0) rotate(-.35deg);
-  }
-  50% {
-    transform:translateY(-2px) rotate(.35deg);
-  }
+  0%,100% {transform:translateY(0) rotate(-.35deg)}
+  50% {transform:translateY(-2px) rotate(.35deg)}
 }
-
 .roadbottom {
   display:flex;
   align-items:center;
@@ -425,17 +345,8 @@ h1 em {
   gap:7px;
   margin-top:7px;
 }
-
-.roadselected {
-  font-size:11px;
-  font-weight:750;
-}
-
-.roadcontrols {
-  display:flex;
-  gap:5px;
-}
-
+.roadselected {font-size:11px;font-weight:750}
+.roadcontrols {display:flex;gap:5px}
 .roadcontrols button {
   border:1px solid #8caa9d;
   background:#f5fbf5;
@@ -445,11 +356,7 @@ h1 em {
   padding:6px 10px;
   min-width:34px;
 }
-
-.roadcontrols .home {
-  background:#e8f0df;
-}
-
+.roadcontrols .home {background:#e8f0df}
 .roadfoot {
   display:flex;
   align-items:center;
@@ -458,21 +365,17 @@ h1 em {
   font-size:10px;
   color:#4a6a60;
 }
-
 .track {
   height:4px;
   flex:1;
   background:#91b8a7;
 }
-
 .track i {
   height:100%;
   background:var(--red);
   display:block;
   width:2.1%;
 }
-
-/* NATIONAL STATISTICS */
 .scope-head {
   display:flex;
   justify-content:space-between;
@@ -480,20 +383,17 @@ h1 em {
   gap:10px;
   padding:20px 22px 8px;
 }
-
 .scope-head .scope-label {
   font-size:11px;
   color:var(--red);
   font-weight:950;
   letter-spacing:.15em;
 }
-
 .scope-head .scope-sub {
   font-size:10px;
   font-weight:750;
   color:var(--muted);
 }
-
 .stats {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -501,25 +401,21 @@ h1 em {
   background:#dcd2ba;
   border-block:1px solid #dcd2ba;
 }
-
 .stat {
   background:#f7f0db;
   padding:13px 22px;
 }
-
 .stat .num {
   font-size:26px;
   font-weight:950;
   letter-spacing:-.05em;
   line-height:1;
 }
-
 .stat .num small {
   font-size:13px;
   color:#8a8e81;
   font-weight:650;
 }
-
 .stat .label {
   font-size:9px;
   line-height:1.45;
@@ -527,22 +423,18 @@ h1 em {
   font-weight:900;
   margin-top:6px;
 }
-
 .scope-note {
   font-size:10px;
   line-height:1.6;
   color:#747a72;
   padding:9px 22px 2px;
 }
-
-/* SELECTED PREFECTURE */
 .local-summary {
   margin:14px 22px 6px;
   padding:13px 15px 15px;
   background:#eaf3eb;
   border:1px solid #c6d8c9;
 }
-
 .local-head {
   display:flex;
   align-items:center;
@@ -551,37 +443,28 @@ h1 em {
   padding-bottom:9px;
   border-bottom:1px solid #c4d3c5;
 }
-
 .local-caption {
   font-size:10px;
   color:#2e6153;
   font-weight:950;
   letter-spacing:.12em;
 }
-
-.local-title {
-  font-size:15px;
-  font-weight:950;
-}
-
+.local-title {font-size:15px;font-weight:950}
 .local-metrics {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:10px;
   padding-top:12px;
 }
-
 .local-metric {
   min-width:0;
   padding-right:8px;
   border-right:1px solid #c5d5c8;
 }
-
 .local-metric:last-child {
   border-right:0;
   padding-right:0;
 }
-
 .local-metric small {
   display:block;
   color:#68746b;
@@ -590,47 +473,34 @@ h1 em {
   line-height:1.4;
   margin-bottom:5px;
 }
-
 .local-metric strong {
   font-size:17px;
   font-weight:950;
   letter-spacing:-.02em;
   white-space:nowrap;
 }
-
 .local-metric strong span {
   font-size:10px;
   color:#53675c;
 }
-
-.yes {
-  color:#b84134;
-}
-
-/* COLLECTION GRID */
-.collection {
-  padding:27px 22px 0;
-}
-
+.yes {color:#b84134}
+.collection {padding:27px 22px 0}
 .collection .sectionhead,
 .artsection .sectionhead {
   border-bottom:1px solid #d5ccb9;
   padding-bottom:15px;
 }
-
 .counter {
   font-size:11px;
   color:var(--forest);
   font-weight:850;
   white-space:nowrap;
 }
-
 .counter strong {
   font-size:20px;
   color:#151d20;
   margin-right:3px;
 }
-
 .toolbar {
   display:flex;
   justify-content:space-between;
@@ -638,14 +508,12 @@ h1 em {
   gap:8px;
   margin:17px 0 16px;
 }
-
 .tabs {
   display:flex;
   gap:3px;
   background:#ede7da;
   padding:3px;
 }
-
 .tabs button {
   padding:8px 10px;
   border:0;
@@ -654,12 +522,10 @@ h1 em {
   font-weight:850;
   color:#747970;
 }
-
 .tabs button.active {
   color:#fff;
   background:#202b2b;
 }
-
 .search {
   min-width:0;
   width:105px;
@@ -668,14 +534,11 @@ h1 em {
   padding:9px 8px;
   font-size:11px;
 }
-
-.ticketgrid,
-.artgrid {
+.ticketgrid,.artgrid {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:10px;
 }
-
 .collectcard {
   display:block;
   border:1px solid #ded6c8;
@@ -687,15 +550,8 @@ h1 em {
   box-shadow:0 2px 0 #e9e1d3;
   transition:transform .15s;
 }
-
-.collectcard:hover {
-  transform:translateY(-2px);
-}
-
-.collectcard.owned {
-  border-color:#c7a06d;
-}
-
+.collectcard:hover {transform:translateY(-2px)}
+.collectcard.owned {border-color:#c7a06d}
 .frameimage {
   width:100%;
   aspect-ratio:1;
@@ -705,18 +561,13 @@ h1 em {
   place-items:center;
   overflow:hidden;
 }
-
-.frameimage.ownedimage {
-  background:#071625;
-}
-
+.frameimage.ownedimage {background:#071625}
 .frameimage img {
   width:100%;
   height:100%;
   object-fit:contain;
   image-rendering:pixelated;
 }
-
 .missingprint {
   width:100%;
   height:100%;
@@ -738,7 +589,6 @@ h1 em {
   color:#a4ada8;
   font:900 clamp(38px,10vw,68px)/1 monospace;
 }
-
 .tag {
   position:absolute;
   top:5px;
@@ -749,12 +599,10 @@ h1 em {
   font-weight:950;
   padding:3px 5px;
 }
-
 .tag.ownedtag {
   background:var(--red);
   color:#fff;
 }
-
 .qty {
   position:absolute;
   right:5px;
@@ -765,7 +613,6 @@ h1 em {
   font-weight:950;
   padding:4px 6px;
 }
-
 .cardname {
   display:block;
   font-size:12px;
@@ -776,7 +623,6 @@ h1 em {
   text-overflow:ellipsis;
   white-space:nowrap;
 }
-
 .cardsub {
   display:block;
   font-size:9px;
@@ -787,7 +633,6 @@ h1 em {
   overflow:hidden;
   text-overflow:ellipsis;
 }
-
 .cardstatus {
   display:block;
   font-size:9px;
@@ -795,11 +640,7 @@ h1 em {
   color:#a1a69d;
   margin-top:7px;
 }
-
-.collectcard.owned .cardstatus {
-  color:#a73e31;
-}
-
+.collectcard.owned .cardstatus {color:#a73e31}
 .more {
   width:100%;
   border:1px solid #cbbca4;
@@ -809,29 +650,24 @@ h1 em {
   font-weight:850;
   margin-top:14px;
 }
-
 .info {
   font-size:10px;
   color:#867d6e;
   line-height:1.65;
   margin-top:8px;
 }
-
-/* ART BOOK */
 .artsection {
   background:#f3ecdc;
   border-top:1px solid #e1d8c6;
   margin-top:30px;
   padding:29px 22px 38px;
 }
-
 .raritynav {
   display:flex;
   gap:6px;
   flex-wrap:wrap;
   margin:17px 0;
 }
-
 .raritynav button {
   border:1px solid #cfc2ad;
   background:#fffdfa;
@@ -839,20 +675,17 @@ h1 em {
   font-size:11px;
   font-weight:900;
 }
-
 .raritynav button.active {
   background:#c94936;
   border-color:#c94936;
   color:white;
 }
-
 .raritybar {
   display:flex;
   align-items:center;
   gap:8px;
   margin:20px 0 12px;
 }
-
 .rarityglyph {
   display:grid;
   place-items:center;
@@ -863,26 +696,19 @@ h1 em {
   font-size:12px;
   font-weight:950;
 }
-
-.raritybar strong {
-  font-size:14px;
-  font-weight:950;
-}
-
+.raritybar strong {font-size:14px;font-weight:950}
 .raritybar small {
   margin-left:auto;
   color:#6d736e;
   font-size:11px;
   font-weight:850;
 }
-
 .note {
   font-size:11px;
   line-height:1.6;
   color:#7a7a70;
   margin-top:15px;
 }
-
 .footer {
   padding:26px 22px 30px;
   background:#151e22;
@@ -893,16 +719,8 @@ h1 em {
   font-size:10px;
   font-weight:850;
 }
-
-.footer a {
-  color:#f4ca54;
-}
-
-/* MODALS */
-[hidden] {
-  display:none!important;
-}
-
+.footer a {color:#f4ca54}
+[hidden] {display:none!important}
 .overlay {
   position:fixed;
   inset:0;
@@ -912,7 +730,6 @@ h1 em {
   place-items:center;
   padding:14px;
 }
-
 .modal {
   background:#fffaf0;
   border:1px solid #d2c7b0;
@@ -922,12 +739,7 @@ h1 em {
   padding:18px;
   position:relative;
 }
-
-.modal h3 {
-  margin:0 28px 9px 0;
-  font-size:18px;
-}
-
+.modal h3 {margin:0 28px 9px 0;font-size:18px}
 .modal .close {
   position:absolute;
   right:10px;
@@ -936,27 +748,23 @@ h1 em {
   background:transparent;
   font-size:23px;
 }
-
 .modal p {
   font-size:12px;
   line-height:1.8;
   color:#5d655c;
 }
-
 .modal label {
   display:block;
   font-size:11px;
   font-weight:850;
   margin:12px 0 6px;
 }
-
 .modal input {
   width:100%;
   padding:11px 12px;
   background:#fffdf7;
   border:1px solid #c9bea8;
 }
-
 .modal .action {
   width:100%;
   border:1px solid #beaa80;
@@ -966,8 +774,6 @@ h1 em {
   margin-top:10px;
   padding:11px;
 }
-
-/* SMALL SQUARE IMAGE POPUP */
 .modal #modalImage {
   width:min(100%,260px);
   aspect-ratio:1;
@@ -977,7 +783,6 @@ h1 em {
   display:grid;
   place-items:center;
 }
-
 .modal #modalImage img {
   display:block;
   width:100%;
@@ -985,26 +790,18 @@ h1 em {
   object-fit:contain;
   image-rendering:pixelated;
 }
-
-.modal #modalImage .missingprint {
-  font-size:80px;
-}
-
+.modal #modalImage .missingprint {font-size:80px}
 .modal #modalText {
   font-size:13px;
   font-weight:800;
   margin:10px 0 0;
 }
-
-/* RESPONSIVE */
 @media(min-width:650px) {
-  .ticketgrid,
-  .artgrid {
+  .ticketgrid,.artgrid {
     grid-template-columns:repeat(5,minmax(0,1fr));
   }
   .search {width:190px}
 }
-
 @media(max-width:410px) {
   .header {padding:11px 12px}
   .brand-title {font-size:11px;letter-spacing:.09em}
@@ -1034,7 +831,6 @@ h1 em {
   .local-summary {margin:12px 14px 2px;padding:12px}
   .local-metric strong {font-size:15px}
 }
-
 @media(prefers-reduced-motion:reduce) {
   .car-holder,.roadscroll {
     transition:none;
@@ -1059,14 +855,12 @@ h1 em {
         <div class="brand-sub">JAPAN 47 · MY COLLECTION</div>
       </div>
     </div>
-
     <div class="language" aria-label="Language">
       <button id="langJA" class="active">JP</button>
       <button id="langEN">EN</button>
     </div>
   </header>
 
-  <!-- WALLET LOOKUP ONLY -->
   <div class="microbar">
     <button id="walletButton" type="button">
       ⌕ ウォレット照会
@@ -1077,7 +871,6 @@ h1 em {
     <div class="overline">THE JAPAN 47 COLLECTION</div>
     <h1 id="heroTitle"></h1>
     <p class="intro" id="heroDesc"></p>
-
     <nav class="hero-links">
       <a href="#tickets">TICKET BOOK</a>
       <a href="#art">ART COLLECTION</a>
@@ -1099,11 +892,9 @@ h1 em {
         <strong id="roadName"></strong>
         <span id="roadNumber">STOP 01 / 47</span>
       </div>
-
       <div class="roadscroll" id="scrollRoad">
         <div class="roadline" id="roadLine"></div>
       </div>
-
       <div class="roadbottom">
         <span class="roadselected" id="selectedStop"></span>
         <div class="roadcontrols">
@@ -1112,7 +903,6 @@ h1 em {
           <button id="nextStop" aria-label="Next">›</button>
         </div>
       </div>
-
       <div class="roadfoot">
         <span>JOURNEY PROGRESS</span>
         <span class="track"><i id="journeyBar"></i></span>
@@ -1126,24 +916,20 @@ h1 em {
       <span class="scope-label" id="scopeTitle"></span>
       <span class="scope-sub" id="scopeSub"></span>
     </div>
-
     <div class="stats">
       <div class="stat">
         <div class="num" id="ticketStatValue">—</div>
         <div class="label" id="statOne"></div>
       </div>
-
       <div class="stat">
         <div class="num" id="artStatValue">—</div>
         <div class="label" id="statTwo"></div>
       </div>
-
       <div class="stat">
         <div class="num" id="completionStatValue">—</div>
         <div class="label" id="statThree"></div>
       </div>
     </div>
-
     <div class="scope-note" id="scopeNote"></div>
   </section>
 
@@ -1152,18 +938,15 @@ h1 em {
       <span class="local-caption" id="localHeading"></span>
       <strong class="local-title" id="localPref"></strong>
     </div>
-
     <div class="local-metrics">
       <div class="local-metric">
         <small id="localTicketLabel"></small>
         <strong id="localTicket"></strong>
       </div>
-
       <div class="local-metric">
         <small id="localArtLabel"></small>
         <strong id="localArt"></strong>
       </div>
-
       <div class="local-metric">
         <small id="localRateLabel"></small>
         <strong id="localRate"></strong>
@@ -1181,7 +964,6 @@ h1 em {
         <strong id="ticketCounter">—</strong> / 47
       </div>
     </div>
-
     <div class="toolbar">
       <div class="tabs" id="ticketTabs">
         <button data-filter="all" class="active" id="allBtn"></button>
@@ -1194,7 +976,6 @@ h1 em {
         aria-label="Search prefectures"
       >
     </div>
-
     <div class="ticketgrid" id="ticketGrid"></div>
     <button class="more" id="moreTickets"></button>
     <p class="info" id="ticketInfo"></p>
@@ -1211,7 +992,6 @@ h1 em {
         <span id="artOutOf">/ 29</span>
       </div>
     </div>
-
     <div class="raritynav" id="rarityNav"></div>
     <div id="artGridRoot"></div>
     <p class="note" id="artNote"></p>
@@ -1225,17 +1005,12 @@ h1 em {
   </footer>
 </div>
 
-<!-- WALLET ADDRESS LOOKUP -->
 <div class="overlay" id="walletWrap" hidden>
   <div class="modal" role="dialog" aria-modal="true">
-    <button class="close" id="walletClose" aria-label="Close">
-      ×
-    </button>
-
+    <button class="close" id="walletClose" aria-label="Close">×</button>
     <div class="overline">WALLET VIEWER</div>
     <h3 id="walletTitle"></h3>
     <p id="walletDesc"></p>
-
     <label id="walletAddressLabel" for="walletAddress"></label>
     <input
       id="walletAddress"
@@ -1243,19 +1018,12 @@ h1 em {
       autocomplete="off"
       spellcheck="false"
     >
-
-    <button
-      class="action"
-      id="addressConnect"
-      type="button">
-    </button>
-
+    <button class="action" id="addressConnect" type="button"></button>
     <p id="walletTip" class="wallet-tip"></p>
     <p id="walletError" role="alert"></p>
   </div>
 </div>
 
-<!-- NFT IMAGE DETAIL -->
 <div class="overlay" id="modalWrap" hidden>
   <div class="modal" role="dialog" aria-modal="true">
     <button class="close" id="modalClose" aria-label="Close">×</button>
@@ -1271,7 +1039,6 @@ h1 em {
 
 const $ = id => document.getElementById(id);
 
-/* 47 PREFECTURES */
 const PREFECTURES = [
   ['北海道','HOKKAIDO'],
   ['青森','AOMORI'],
@@ -1322,7 +1089,6 @@ const PREFECTURES = [
   ['沖縄','OKINAWA']
 ];
 
-/* COMMON ART RARITY SETTINGS */
 const ART_TEMPLATE = {
   N:7,
   R:7,
@@ -1349,14 +1115,12 @@ const CAR_IMAGE =
   'https://ul.h3z.jp/Lu7ch0Ne.png';
 
 /*
-  HEADER LOGO:
-  以前使用していたたこ焼きカーの
-  64x64 PNGデータをそのまま使用します。
+  既存の64x64ヘッダーロゴを維持するため、
+  ここは元の画像データをそのまま使用します。
 */
 const LOGO_IMAGE =
 'data:image/png;base64,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';
 
-/* FALLBACK CATALOG */
 const FALLBACK = {
   currentStop:1,
   settings:{apiBase:API_BASE},
@@ -1382,7 +1146,6 @@ const FALLBACK = {
   }))
 };
 
-/* STATE */
 const state = {
   catalog:null,
   lang:'ja',
@@ -1398,7 +1161,6 @@ const state = {
   error:''
 };
 
-/* TRANSLATIONS */
 const M = {
   ja:{
     title:'集めた日本が、<em>ここに。</em>',
@@ -1437,19 +1199,16 @@ const M = {
     unchecked:'未確認',
     count:'所持数',
     unmatched:'未分類',
-
     connect:'⌕ ウォレット照会',
     walletTitle:'ウォレット照会',
     walletDesc:'公開ウォレットアドレスを入力すると、保有しているチケットとNFTを表示します。',
     walletLabel:'公開ウォレットアドレス',
     connectAddress:'保有状況を表示',
     walletTip:'アドレスはこの端末に保存され、次回の照会に利用されます。秘密鍵や署名は不要です。',
-
     notReleased:'この県のアートは発売準備中です。',
     loading:'保有情報を取得中...',
     fetchError:'取得に失敗しました。未確認を0枚として表示しません。'
   },
-
   en:{
     title:'YOUR JAPAN, <em>COLLECTED.</em>',
     desc:'Your ticket and NFT art collection, all in one album. A 47-prefecture journey, one stop at a time.',
@@ -1487,14 +1246,12 @@ const M = {
     unchecked:'NOT CHECKED',
     count:'Quantity',
     unmatched:'UNMATCHED',
-
     connect:'⌕ CHECK WALLET',
     walletTitle:'Check Wallet',
     walletDesc:'Enter a public wallet address to view your tickets and NFTs.',
     walletLabel:'Public wallet address',
     connectAddress:'VIEW COLLECTION',
     walletTip:'This public address is saved on this device for your next visit. No private key or signature is needed.',
-
     notReleased:'Artwork for this prefecture has not been released.',
     loading:'Loading holdings...',
     fetchError:'Failed to load NFTs. Missing data is not treated as zero.'
@@ -1504,8 +1261,7 @@ const M = {
 const t = () => M[state.lang];
 const pad = n => String(n).padStart(2,'0');
 
-const current = () =>
-  state.catalog.stops[state.stop];
+const current = () => state.catalog.stops[state.stop];
 
 const nameFor = i =>
   state.lang==='ja'
@@ -1520,11 +1276,9 @@ const amount = n => {
   return Number.isFinite(v)&&v>=0?v:1;
 };
 
-const sum = a =>
-  a.reduce((v,n)=>v+amount(n),0);
+const sum = a => a.reduce((v,n)=>v+amount(n),0);
 
-const norm = s =>
-  String(s||'').trim().toLowerCase();
+const norm = s => String(s||'').trim().toLowerCase();
 
 /* IMAGE URL */
 function safeImage(url) {
@@ -1542,7 +1296,7 @@ function safeImage(url) {
   }
 }
 
-/* NFT OWNERSHIP MATCHING */
+/* OWNERSHIP MATCHING */
 function belongs(n,c) {
   if(!c) return false;
 
@@ -1576,26 +1330,162 @@ function rarityCounts(p) {
          ART_TEMPLATE;
 }
 
-/* CREATE 29 ART SLOTS */
+/*
+  Artwork 01 -> 1
+  Artwork 08 -> 8
+  "01"       -> 1
+  8          -> 8
+
+  Accept numeric and text-based OpenSea traits.
+*/
+function parseArtworkNumber(value) {
+  if(value===null||value===undefined) return NaN;
+
+  if(typeof value==='number') {
+    return Number.isSafeInteger(value)&&value>0
+      ? value
+      : NaN;
+  }
+
+  const text=String(value).trim();
+
+  if(!text) return NaN;
+
+  const match=text.match(
+    /^(?:(?:artwork|variant|design)\s*[-#:№]?\s*)?0*(\d+)$/i
+  );
+
+  if(!match) return NaN;
+
+  const number=Number(match[1]);
+
+  return Number.isSafeInteger(number)&&number>0
+    ? number
+    : NaN;
+}
+
+/*
+  Normalize rarity labels.
+*/
+function normalizeRarity(value) {
+  const text=String(value??'')
+    .trim()
+    .toUpperCase()
+    .replace(/[\s_-]+/g,'');
+
+  const aliases={
+    N:'N',
+    NORMAL:'N',
+    R:'R',
+    RARE:'R',
+    SR:'SR',
+    SUPERRARE:'SR',
+    UR:'UR',
+    ULTRARARE:'UR',
+    LR:'LR',
+    LEGENDARY:'LR',
+    LEGENDARYRARE:'LR'
+  };
+
+  return aliases[text]||text;
+}
+
+/*
+  The album contains one LR slot.
+
+  OpenSea:
+    Rarity LR
+    Artwork 08
+
+  Google Sheet:
+    rarity LR
+    variant 8
+
+  Album:
+    LR / Artwork 08
+
+  Also accepts old LR variant 1 catalog entries.
+*/
+function albumVariant(rarity,variant) {
+  if(rarity==='LR'&&(variant===8||variant===1)) {
+    return 8;
+  }
+
+  return variant;
+}
+
+function normalizeTokenIds(value) {
+  if(Array.isArray(value)) {
+    return value.map(String).map(s=>s.trim()).filter(Boolean);
+  }
+
+  if(typeof value==='string') {
+    return value.split(/[\s,;]+/)
+      .map(s=>s.trim())
+      .filter(Boolean);
+  }
+
+  return [];
+}
+
+/*
+  CREATE ART SLOTS
+
+  N:  01-07
+  R:  01-07
+  SR: 01-07
+  UR: 01-07
+  LR: 08
+
+  Total: 29 designs.
+*/
 function artSlots(p) {
   const base=[];
+  const counts=rarityCounts(p);
+  const cards=Array.isArray(p.art?.cards)
+    ? p.art.cards
+    : [];
 
   for(const [r] of RARITIES) {
-    for(let i=1;i<=Number(rarityCounts(p)[r]||0);i++) {
-      const id=`${p.code}-${r}-${pad(i)}`;
+    const count=Number(counts[r]||0);
 
-      const custom=(p.art?.cards||[]).find(
-        c=>c.id===id ||
-          (c.rarity===r&&Number(c.variant)===i)
-      )||{};
+    for(let i=1;i<=count;i++) {
+      const variant=r==='LR'?8:i;
+
+      const id=`${p.code}-${r}-${pad(variant)}`;
+
+      const custom=cards.find(c=>{
+        const customRarity=normalizeRarity(c.rarity);
+
+        const customVariant=albumVariant(
+          customRarity,
+          parseArtworkNumber(c.variant)
+        );
+
+        const normalizedId=String(c.id||'')
+          .trim()
+          .toUpperCase();
+
+        return (
+          normalizedId===id ||
+          (
+            r==='LR' &&
+            normalizedId===`${p.code}-LR-01`
+          ) ||
+          (
+            customRarity===r &&
+            customVariant===variant
+          )
+        );
+      })||{};
 
       base.push({
+        ...custom,
         id,
         rarity:r,
-        variant:i,
-        image:'',
-        tokenIds:[],
-        ...custom,
+        variant,
+        image:custom.image||custom.imageUrl||'',
+        tokenIds:normalizeTokenIds(custom.tokenIds),
         records:[],
         quantity:0
       });
@@ -1605,37 +1495,46 @@ function artSlots(p) {
   const unknown=[];
 
   for(const nft of artList(p)) {
-    const id=String(nft.identifier??'');
+    const tokenId=String(nft.identifier??'').trim();
 
     let match=base.find(
-      s=>Array.isArray(s.tokenIds) &&
-         s.tokenIds.map(String).includes(id)
+      s=>s.tokenIds.includes(tokenId)
     );
 
     if(!match) {
-      const traits=Array.isArray(nft.traits)?nft.traits:[];
+      const traits=Array.isArray(nft.traits)
+        ? nft.traits
+        : [];
 
-      const trait=k=>
-        traits.find(x=>norm(x.trait_type)===k)?.value;
+      const trait=key=>{
+        const found=traits.find(
+          x=>norm(x.trait_type)===key
+        );
 
-      const rarity=String(
-        trait('rarity')||''
-      ).toUpperCase();
+        return found?.value;
+      };
 
-      const variant=Number(
-        trait('artwork') ??
-        trait('variant') ??
-        trait('design')
+      const rarity=normalizeRarity(
+        trait('rarity')
+      );
+
+      const artwork=albumVariant(
+        rarity,
+        parseArtworkNumber(
+          trait('artwork') ??
+          trait('variant') ??
+          trait('design')
+        )
       );
 
       if(
         rarity &&
-        Number.isSafeInteger(variant) &&
-        variant>0
+        Number.isSafeInteger(artwork) &&
+        artwork>0
       ) {
         match=base.find(
           s=>s.rarity===rarity &&
-            s.variant===variant
+             s.variant===artwork
         );
       }
     }
@@ -1645,9 +1544,9 @@ function artSlots(p) {
       match.quantity+=amount(nft);
     } else {
       unknown.push({
-        id:'UNKNOWN-'+id,
+        id:'UNKNOWN-'+tokenId,
         rarity:'?',
-        variant:id,
+        variant:tokenId,
         quantity:amount(nft),
         records:[nft]
       });
@@ -1896,7 +1795,7 @@ function selectStop(i) {
   drawArt();
 }
 
-/* SMALL SQUARE MODAL */
+/* DETAIL MODAL */
 function openModal({
   title,
   source,
@@ -1991,12 +1890,7 @@ function makeCard({
   st.className='cardstatus';
   st.textContent=status;
 
-  b.append(
-    picture,
-    titleEl,
-    sub,
-    st
-  );
+  b.append(picture,titleEl,sub,st);
 
   b.onclick=()=>openModal({
     title,
@@ -2144,12 +2038,7 @@ function drawArt() {
     `${selected.length} `+
     (state.lang==='ja'?'種':'TYPES');
 
-  bar.append(
-    glyph,
-    heading,
-    total
-  );
-
+  bar.append(glyph,heading,total);
   root.append(bar);
 
   const grid=document.createElement('div');
@@ -2158,15 +2047,26 @@ function drawArt() {
   for(const s of selected) {
     const owned=valid()&&s.quantity>0;
 
+    /*
+      Image priority:
+      1. Spreadsheet image
+      2. OpenSea image
+
+      Images appear only for owned NFTs.
+    */
+    const image=
+      safeImage(s.image) ||
+      safeImage(s.imageUrl) ||
+      safeImage(s.records[0]?.image_url) ||
+      '';
+
     grid.append(
       makeCard({
         number:s.variant,
         title:`${s.rarity} — ${pad(s.variant)}`,
         subtitle:`${p.code} · ${s.rarity}`,
         owned,
-        image:
-          s.records[0]?.image_url ||
-          s.image,
+        image,
         quantity:s.quantity,
         art:true,
         rarity:s.rarity,
@@ -2186,7 +2086,6 @@ function drawArt() {
     bar.className='raritybar';
 
     const h=document.createElement('strong');
-
     h.textContent=
       `${t().unmatched} — ${slots.unknown.length}`;
 
@@ -2232,47 +2131,28 @@ function setLanguage(lang) {
 
   $('heroTitle').innerHTML=t().title;
   $('heroDesc').textContent=t().desc;
-
   $('roadTitle').textContent=t().roadTitle;
   $('roadName').textContent=t().roadName;
-
   $('statOne').textContent=t().statOne;
   $('statTwo').textContent=t().statTwo;
   $('statThree').textContent=t().statThree;
-
   $('scopeTitle').textContent=t().scopeTitle;
   $('scopeSub').textContent=t().scopeSub;
   $('scopeNote').textContent=t().scopeNote;
-
   $('localHeading').textContent=t().localHeading;
-
-  $('localTicketLabel').textContent=
-    t().localTicketLabel;
-
-  $('localArtLabel').textContent=
-    t().localArtLabel;
-
-  $('localRateLabel').textContent=
-    t().localRateLabel;
-
+  $('localTicketLabel').textContent=t().localTicketLabel;
+  $('localArtLabel').textContent=t().localArtLabel;
+  $('localRateLabel').textContent=t().localRateLabel;
   $('ticketTitle').textContent=t().ticketTitle;
-
   $('allBtn').textContent=t().all;
   $('ownedBtn').textContent=t().owned;
   $('missingBtn').textContent=t().missing;
-
   $('searchInput').placeholder=t().search;
   $('backSite').textContent=t().back;
-
   $('walletTitle').textContent=t().walletTitle;
   $('walletDesc').textContent=t().walletDesc;
-
-  $('walletAddressLabel').textContent=
-    t().walletLabel;
-
-  $('addressConnect').textContent=
-    t().connectAddress;
-
+  $('walletAddressLabel').textContent=t().walletLabel;
+  $('addressConnect').textContent=t().connectAddress;
   $('walletTip').textContent=t().walletTip;
 
   $('walletButton').textContent=
@@ -2298,7 +2178,7 @@ function setLanguage(lang) {
   drawArt();
 }
 
-/* PUBLIC ADDRESS LOOKUP */
+/* WALLET LOOKUP */
 async function loadWallet(address) {
   if(!/^0x[0-9A-Fa-f]{40}$/.test(address)) {
     $('walletError').textContent=
@@ -2345,7 +2225,6 @@ async function loadWallet(address) {
     state.art=data.art;
     state.mode='live';
 
-    /* SAVE PUBLIC ADDRESS */
     try {
       localStorage.setItem(
         'tt_public_wallet',
@@ -2366,14 +2245,11 @@ async function initialize() {
   $('brandLogo').src=LOGO_IMAGE;
 
   try {
-    
-    // Googleスプレッドシートの公開情報を優先
-    // 取得できない場合は従来のJSONを使用
     let data;
 
     try {
-      const online = await fetch(
-        API_BASE + '/api/catalog',
+      const online=await fetch(
+        API_BASE+'/api/catalog',
         {cache:'no-store'}
       );
 
@@ -2393,7 +2269,10 @@ async function initialize() {
       }
 
     } catch(error) {
-      console.warn('Using backup catalog:',error);
+      console.warn(
+        'Using backup catalog:',
+        error
+      );
 
       const local=await fetch(
         './data/journey.json',
@@ -2406,7 +2285,6 @@ async function initialize() {
 
       data=await local.json();
     }
-
 
     if(
       !Array.isArray(data.stops) ||
@@ -2433,7 +2311,6 @@ async function initialize() {
 
   setLanguage('ja');
 
-  /* RESTORE SAVED PUBLIC ADDRESS */
   try {
     const saved=
       localStorage.getItem('tt_public_wallet')||'';
@@ -2500,7 +2377,6 @@ $('modalWrap').onclick=e=>{
   }
 };
 
-/* WALLET LOOKUP BUTTON */
 $('walletButton').onclick=()=>{
   $('walletWrap').hidden=false;
   $('walletError').textContent='';
