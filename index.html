@@ -9,102 +9,346 @@
 
   <meta
     name="description"
-    content="One takoyaki truck. 47 prefectures. Collect Journey Tickets and discover pixel-art NFT chapters across Japan."
+    content="One takoyaki truck. 47 prefectures. Collect Journey Tickets, explore pixel-art NFT chapters and read the Takoyaki Travel Diary across Japan."
   >
 
   <meta name="theme-color" content="#10233d">
 
- 
-<link rel="stylesheet" href="./styles.css">
-<script src="./sheet-sync.js" defer></script>
-<script src="./script.js" defer></script>
+  <!-- EXISTING STYLES AND SCRIPTS -->
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./sheet-sync.js" defer></script>
+  <script src="./script.js" defer></script>
 
-
-  <!-- MY COLLECTION BETA / COMPACT NAVIGATION -->
+  <!-- CUSTOM PAGE STYLES -->
   <style>
+
+    /* =========================================
+       SECTION NAVIGATION
+       ========================================= */
+
     .section-tabs {
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      grid-auto-rows:44px;
-      gap:8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 44px;
+      gap: 8px;
     }
 
     .section-tabs button,
     .section-tabs .collection-beta-link {
-      box-sizing:border-box;
-      width:100%;
-      height:44px;
-      min-height:44px;
-      padding:5px 4px;
-      line-height:1.1;
+      box-sizing: border-box;
+      width: 100%;
+      height: 44px;
+      min-height: 44px;
+      padding: 5px 4px;
+      line-height: 1.1;
     }
 
     .section-tabs .collection-beta-link {
-      display:flex;
-      flex-direction:row;
-      align-items:center;
-      justify-content:center;
-      gap:5px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
 
-      border:3px solid var(--ink);
-      background:#c8e2d5;
-      color:#11131a;
+      border: 3px solid var(--ink, #11131a);
+      background: #c8e2d5;
+      color: #11131a;
 
-      box-shadow:3px 3px 0 var(--ink);
-      text-align:center;
-      text-decoration:none;
+      box-shadow: 3px 3px 0 var(--ink, #11131a);
+      text-align: center;
+      text-decoration: none;
 
-      font-size:11px;
-      font-weight:900;
-      white-space:nowrap;
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
 
-      transition:transform .15s ease;
+      transition: transform .15s ease;
     }
 
     .section-tabs .collection-beta-link small {
-      font-size:9px;
-      font-weight:900;
-      color:#356756;
-      letter-spacing:.02em;
+      font-size: 9px;
+      font-weight: 900;
+      color: #356756;
+      letter-spacing: .02em;
     }
 
     .section-tabs .collection-beta-link:hover {
-      transform:translateY(-2px);
+      transform: translateY(-2px);
     }
 
-    @media (min-width:650px) {
+    /* =========================================
+       NEW TRAVEL DIARY FEATURE
+       
+       PLACEMENT:
+       Immediately after statistics,
+       before the six navigation buttons.
+       ========================================= */
+
+    .diary-feature {
+      width: 100%;
+      padding: 15px 18px 7px;
+      background: #fff3d7;
+    }
+
+    .diary-feature-link {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 15px;
+
+      width: 100%;
+      min-height: 92px;
+      padding: 12px 16px;
+
+      border: 3px solid #11131a;
+      background: #fffaf0;
+      color: #11131a;
+
+      box-shadow: 4px 4px 0 #11131a;
+      text-decoration: none;
+
+      transition:
+        transform .15s ease,
+        box-shadow .15s ease;
+    }
+
+    .diary-feature-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 6px 0 #11131a;
+    }
+
+    .diary-feature-link:focus-visible {
+      outline: 3px solid #ee4837;
+      outline-offset: 5px;
+    }
+
+    /* PIXEL ART DIARY ICON */
+
+    .diary-feature-icon {
+      width: 64px;
+      height: 64px;
+      display: block;
+      object-fit: contain;
+      image-rendering: pixelated;
+      flex-shrink: 0;
+    }
+
+    /* FEATURE TEXT */
+
+    .diary-feature-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 3px;
+    }
+
+    .diary-feature-kicker {
+      display: inline-block;
+
+      color: #bc4234;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .09em;
+      line-height: 1.3;
+    }
+
+    .diary-feature-title {
+      margin: 0;
+
+      color: #11131a;
+      font-size: clamp(18px, 2.6vw, 25px);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+    }
+
+    .diary-feature-description {
+      margin: 2px 0 0;
+
+      color: #484139;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    /* RED CTA BUTTON */
+
+    .diary-feature-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 40px;
+      padding: 9px 15px;
+
+      border: 2px solid #11131a;
+      background: #ef4637;
+      color: #fff;
+
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.15;
+      text-align: center;
+      white-space: nowrap;
+
+      box-shadow: 3px 3px 0 #11131a;
+    }
+
+    .diary-feature-link:hover .diary-feature-cta {
+      background: #d73729;
+    }
+
+    /* =========================================
+       TABLET / DESKTOP
+       ========================================= */
+
+    @media (min-width: 650px) {
+
       .section-tabs {
-        grid-template-columns:repeat(3,minmax(0,1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .diary-feature {
+        padding: 18px 22px 10px;
+      }
+
+      .diary-feature-link {
+        min-height: 105px;
+        padding: 14px 22px;
+        grid-template-columns: 74px minmax(0, 1fr) auto;
+        gap: 20px;
+      }
+
+      .diary-feature-icon {
+        width: 74px;
+        height: 74px;
+      }
+
+      .diary-feature-cta {
+        min-height: 44px;
+        padding: 11px 20px;
+        font-size: 13px;
       }
     }
 
-    @media (max-width:380px) {
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 649px) {
+
+      .diary-feature {
+        padding: 13px 13px 7px;
+      }
+
+      .diary-feature-link {
+        grid-template-columns: 54px minmax(0, 1fr) auto;
+        gap: 10px;
+
+        min-height: 76px;
+        padding: 9px 10px;
+
+        box-shadow: 3px 3px 0 #11131a;
+      }
+
+      .diary-feature-icon {
+        width: 54px;
+        height: 54px;
+      }
+
+      .diary-feature-kicker {
+        font-size: 9px;
+      }
+
+      .diary-feature-title {
+        font-size: clamp(16px, 4.5vw, 20px);
+      }
+
+      .diary-feature-description {
+        display: none;
+      }
+
+      .diary-feature-cta {
+        padding: 9px 10px;
+        min-height: 37px;
+
+        font-size: 11px;
+        box-shadow: 2px 2px 0 #11131a;
+      }
+    }
+
+    /* SMALL MOBILE */
+
+    @media (max-width: 380px) {
+
       .section-tabs .collection-beta-link {
-        font-size:10px;
-        gap:3px;
+        font-size: 10px;
+        gap: 3px;
       }
 
       .section-tabs .collection-beta-link small {
-        font-size:9px;
+        font-size: 9px;
+      }
+
+      .diary-feature {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .diary-feature-link {
+        grid-template-columns: 45px minmax(0, 1fr) auto;
+        gap: 7px;
+        padding: 8px;
+      }
+
+      .diary-feature-icon {
+        width: 45px;
+        height: 45px;
+      }
+
+      .diary-feature-title {
+        font-size: 15px;
+      }
+
+      .diary-feature-kicker {
+        font-size: 8px;
+        letter-spacing: 0;
+      }
+
+      .diary-feature-cta {
+        font-size: 10px;
+        padding: 8px 6px;
       }
     }
 
-    @media (prefers-reduced-motion:reduce) {
-      .section-tabs .collection-beta-link {
-        transition:none;
+    /* REDUCED MOTION */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .section-tabs .collection-beta-link,
+      .diary-feature-link {
+        transition: none;
       }
     }
+
   </style>
 </head>
 
 <body id="home">
 
-  <!-- HEADER -->
+  <!-- =========================================
+       HEADER
+       ========================================= -->
+
   <header class="site-header">
+
     <a class="brand" href="#home">
       TRAVELING<br>TAKOYAKI
     </a>
 
     <div class="header-right">
+
       <span class="header-kicker">
         JAPAN 47 JOURNEY
       </span>
@@ -115,14 +359,19 @@
         id="langSwitch"
         aria-label="Switch language"
       >日本語</button>
+
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- =========================================
+       HERO
+       ========================================= -->
+
   <section
     class="hero"
     aria-label="TRAVELING TAKOYAKI introduction"
   >
+
     <img
       id="heroImage"
       class="hero-image"
@@ -131,9 +380,12 @@
     >
 
     <div class="hero-copy">
-      <span class="eyebrow">
-        47 TICKETS · 47 STOPS
-      </span>
+
+      <span
+        class="eyebrow"
+        data-en="47 TICKETS · 47 STOPS"
+        data-ja="47チケット · 47の旅の目的地"
+      >47 TICKETS · 47 STOPS</span>
 
       <h1>
         TRAVELING<br>TAKOYAKI
@@ -143,14 +395,19 @@
         data-en="One takoyaki truck. Forty-seven prefectures. A pixel-art journey across Japan."
         data-ja="一台のたこ焼きカーで、日本全国47都道府県を巡るピクセルアートの旅。"
       >One takoyaki truck. Forty-seven prefectures. A pixel-art journey across Japan.</p>
+
     </div>
   </section>
 
-  <!-- STATISTICS -->
+  <!-- =========================================
+       STATISTICS
+       ========================================= -->
+
   <section
     class="stats"
     aria-label="Journey statistics"
   >
+
     <div>
       <strong id="currentStopStat">
         01 / 47
@@ -174,16 +431,82 @@
     </div>
 
     <div>
-      <strong id="rarityStat">5</strong>
+      <strong id="rarityStat">
+        5
+      </strong>
 
       <small
         data-en="RARITIES"
         data-ja="レアリティ"
       >RARITIES</small>
     </div>
+
   </section>
 
-  <!-- NAVIGATION -->
+  <!-- =========================================
+       NEW TRAVEL DIARY FEATURE
+
+       IMAGE:
+       https://ul.h3z.jp/RypP3QnH.png
+
+       LINK:
+       https://japan47pixel.net/diary/
+       ========================================= -->
+
+  <section
+    class="diary-feature"
+    aria-label="Travel Diary"
+  >
+
+    <a
+      class="diary-feature-link"
+      href="./diary/"
+      title="TAKOYAKI TRAVEL DIARY"
+    >
+
+      <img
+        class="diary-feature-icon"
+        src="https://ul.h3z.jp/RypP3QnH.png"
+        alt="Takoyaki travel diary pixel-art notebook"
+        loading="lazy"
+      >
+
+      <div class="diary-feature-copy">
+
+        <span
+          class="diary-feature-kicker"
+          data-en="NEW · THE JOURNEY CONTINUES"
+          data-ja="NEW · たこ焼きの旅物語"
+        >NEW · THE JOURNEY CONTINUES</span>
+
+        <h2
+          class="diary-feature-title"
+          data-en="TRAVEL DIARY"
+          data-ja="たこ焼き旅日記"
+        >TRAVEL DIARY</h2>
+
+        <p
+          class="diary-feature-description"
+          data-en="A runaway takoyaki's adventure. A new story every two days."
+          data-ja="鉄板を飛び出したたこ焼きの冒険。2日おきに新しい物語を公開！"
+        >A runaway takoyaki's adventure. A new story every two days.</p>
+
+      </div>
+
+      <span
+        class="diary-feature-cta"
+        data-en="READ →"
+        data-ja="読む →"
+      >READ →</span>
+
+    </a>
+
+  </section>
+
+  <!-- =========================================
+       NAVIGATION
+       ========================================= -->
+
   <nav
     class="section-tabs"
     aria-label="Main sections"
@@ -191,6 +514,7 @@
   >
 
     <!-- 01 TICKET BOOK -->
+
     <button
       type="button"
       role="tab"
@@ -203,6 +527,7 @@
     >TICKET BOOK</button>
 
     <!-- 02 NFT ART BOOK -->
+
     <button
       type="button"
       role="tab"
@@ -214,6 +539,7 @@
     >NFT ART BOOK</button>
 
     <!-- 03 RARITY -->
+
     <button
       type="button"
       role="tab"
@@ -225,6 +551,7 @@
     >RARITY</button>
 
     <!-- 04 JOURNEY MAP -->
+
     <button
       type="button"
       role="tab"
@@ -236,19 +563,24 @@
     >JOURNEY MAP</button>
 
     <!-- 05 FAQ -->
+
     <button
       type="button"
       role="tab"
       data-tab="faq"
       aria-controls="faq"
       aria-selected="false"
+      data-en="FAQ"
+      data-ja="よくある質問"
     >FAQ</button>
 
     <!-- 06 MY COLLECTION BETA -->
+
     <a
       href="./my-collection/"
       class="collection-beta-link"
     >
+
       <span
         data-en="MY COLLECTION"
         data-ja="マイコレクション"
@@ -258,16 +590,22 @@
         data-en="BETA"
         data-ja="β"
       >BETA</small>
+
     </a>
 
   </nav>
 
-  <!-- LOADING -->
+  <!-- =========================================
+       LOADING / ERRORS
+       ========================================= -->
+
   <div
     class="loading"
     id="loading"
     role="status"
     aria-live="polite"
+    data-en="LOADING JAPAN 47 JOURNEY..."
+    data-ja="日本全国47都道府県の旅を読み込み中..."
   >LOADING JAPAN 47 JOURNEY...</div>
 
   <div
@@ -277,17 +615,27 @@
     hidden
   ></div>
 
+  <!-- =========================================
+       MAIN CONTENT
+       ========================================= -->
+
   <main id="mainContent">
 
-    <!-- TICKET BOOK -->
+    <!-- =====================================
+         TICKET BOOK
+         ===================================== -->
+
     <section
       class="page"
       id="tickets"
       role="tabpanel"
     >
-      <span class="eyebrow">
-        47 JOURNEY TICKETS
-      </span>
+
+      <span
+        class="eyebrow"
+        data-en="47 JOURNEY TICKETS"
+        data-ja="47都道府県の旅チケット"
+      >47 JOURNEY TICKETS</span>
 
       <h2
         data-en="THE TICKET BOOK"
@@ -300,26 +648,36 @@
       >Explore the Journey Tickets from all 47 prefectures. Each destination has its own chapter.</p>
 
       <div class="feature">
+
         <div>
-          <span class="eyebrow">
-            STOP 01 · HOKKAIDO
-          </span>
+
+          <span
+            class="eyebrow"
+            data-en="STOP 01 · HOKKAIDO"
+            data-ja="第1の目的地 · 北海道"
+          >STOP 01 · HOKKAIDO</span>
 
           <h3 id="featureTicketTitle">
             333 / 333 CLAIMED
           </h3>
 
-          <p>
-            All 333 Hokkaido Journey Tickets have been claimed.
-          </p>
+          <p
+            data-en="All 333 Hokkaido Journey Tickets have been claimed."
+            data-ja="北海道Journey Ticket全333枚の配布が終了しました。"
+          >All 333 Hokkaido Journey Tickets have been claimed.</p>
 
-          <span class="stamp">
-            SOLD OUT
-          </span>
+          <span
+            class="stamp"
+            data-en="SOLD OUT"
+            data-ja="完売"
+          >SOLD OUT</span>
 
-          <span class="stamp">
-            1 PER WALLET
-          </span>
+          <span
+            class="stamp"
+            data-en="1 PER WALLET"
+            data-ja="1ウォレット1枚"
+          >1 PER WALLET</span>
+
         </div>
 
         <img
@@ -327,10 +685,13 @@
           src="https://ul.h3z.jp/JdJ1ZSjj.png"
           alt="Current Journey Ticket"
         >
+
       </div>
 
       <!-- TICKET FILTERS -->
+
       <div class="filters">
+
         <input
           type="search"
           id="ticketSearch"
@@ -342,10 +703,13 @@
           id="ticketRegion"
           aria-label="Filter ticket region"
         >
+
           <option value="all">
             ALL REGIONS
           </option>
+
         </select>
+
       </div>
 
       <div
@@ -369,18 +733,25 @@
         id="ticketDetail"
         class="detail"
       ></div>
+
     </section>
 
-    <!-- NFT ART BOOK -->
+    <!-- =====================================
+         NFT ART BOOK
+         ===================================== -->
+
     <section
       class="page"
       id="art"
       role="tabpanel"
       hidden
     >
-      <span class="eyebrow">
-        47 ART CHAPTERS
-      </span>
+
+      <span
+        class="eyebrow"
+        data-en="47 ART CHAPTERS"
+        data-ja="47都道府県のアート作品"
+      >47 ART CHAPTERS</span>
 
       <h2
         data-en="THE NFT ART BOOK"
@@ -393,22 +764,30 @@
       >Discover pixel-art NFT chapters inspired by the 47 prefectures of Japan.</p>
 
       <div class="feature">
+
         <div>
-          <span class="eyebrow">
-            CHAPTER 01 · HOKKAIDO
-          </span>
+
+          <span
+            class="eyebrow"
+            data-en="CHAPTER 01 · HOKKAIDO"
+            data-ja="第1章 · 北海道"
+          >CHAPTER 01 · HOKKAIDO</span>
 
           <h3 id="featureArtTitle">
             HOKKAIDO · 8 ARTWORKS
           </h3>
 
-          <p>
-            Explore eight pixel-art artworks from Hokkaido.
-          </p>
+          <p
+            data-en="Explore eight pixel-art artworks from Hokkaido."
+            data-ja="北海道を舞台にした8種類のピクセルアート作品をチェック！"
+          >Explore eight pixel-art artworks from Hokkaido.</p>
 
-          <span class="stamp">
-            COMING SOON
-          </span>
+          <span
+            class="stamp"
+            data-en="COMING SOON"
+            data-ja="近日公開"
+          >COMING SOON</span>
+
         </div>
 
         <img
@@ -416,9 +795,11 @@
           src="https://ul.h3z.jp/oHLrQFcg.png"
           alt="Current NFT art chapter"
         >
+
       </div>
 
       <!-- ART GALLERY -->
+
       <h3
         class="subheading"
         id="galleryHeading"
@@ -432,6 +813,7 @@
       >Select an artwork to view it. Choosing a prefecture from the Art Book also switches the gallery.</p>
 
       <div class="gallery-stage">
+
         <button
           type="button"
           id="prevArt"
@@ -449,6 +831,7 @@
           id="nextArt"
           aria-label="Next artwork"
         >▶</button>
+
       </div>
 
       <p
@@ -463,6 +846,7 @@
       ></div>
 
       <!-- ART CHAPTERS -->
+
       <h3
         class="subheading"
         data-en="47 ART CHAPTERS"
@@ -470,14 +854,18 @@
       >47 ART CHAPTERS</h3>
 
       <div class="filters">
+
         <select
           id="artRegion"
           aria-label="Filter art region"
         >
+
           <option value="all">
             ALL REGIONS
           </option>
+
         </select>
+
       </div>
 
       <div
@@ -496,18 +884,25 @@
         id="artDetail"
         class="detail"
       ></div>
+
     </section>
 
-    <!-- RARITY -->
+    <!-- =====================================
+         RARITY
+         ===================================== -->
+
     <section
       class="page dark-page"
       id="rarity"
       role="tabpanel"
       hidden
     >
-      <span class="eyebrow">
-        FIVE RARITIES
-      </span>
+
+      <span
+        class="eyebrow"
+        data-en="FIVE RARITIES"
+        data-ja="5種類のレアリティ"
+      >FIVE RARITIES</span>
 
       <h2
         data-en="THE RARITY SYSTEM"
@@ -530,12 +925,28 @@
         data-ja="時間帯によって表情を変える、ピクセルアートの世界。"
       >The pixel-art journey explores different moods and times of day.</p>
 
-      <div class="time-track" aria-hidden="true"></div>
+      <div
+        class="time-track"
+        aria-hidden="true"
+      ></div>
 
       <div class="time-labels">
-        <span>DAY</span>
-        <span>EVENING</span>
-        <span>NIGHT</span>
+
+        <span
+          data-en="DAY"
+          data-ja="昼"
+        >DAY</span>
+
+        <span
+          data-en="EVENING"
+          data-ja="夕暮れ"
+        >EVENING</span>
+
+        <span
+          data-en="NIGHT"
+          data-ja="夜"
+        >NIGHT</span>
+
       </div>
 
       <h3
@@ -550,6 +961,7 @@
       ></div>
 
       <div class="rarity-card">
+
         <img
           id="rarityImage"
           src="https://ul.h3z.jp/mpichzx4.png"
@@ -557,9 +969,12 @@
         >
 
         <div>
-          <span class="eyebrow">
-            NFT RARITY
-          </span>
+
+          <span
+            class="eyebrow"
+            data-en="NFT RARITY"
+            data-ja="NFTレアリティ"
+          >NFT RARITY</span>
 
           <h3 id="rarityTitle">
             NORMAL · N
@@ -572,13 +987,17 @@
           <p id="rarityCount">
             49 / 99 — EXAMPLE ONLY
           </p>
+
         </div>
       </div>
 
       <div class="notice">
-        <strong id="rarityNoticeTitle">
-          ILLUSTRATIVE EXAMPLE · 99 NFTs
-        </strong>
+
+        <strong
+          id="rarityNoticeTitle"
+          data-en="ILLUSTRATIVE EXAMPLE · 99 NFTs"
+          data-ja="参考例 · NFT99枚の場合"
+        >ILLUSTRATIVE EXAMPLE · 99 NFTs</strong>
 
         <p id="rarityBreakdown">
           N 49 · R 28 · SR 14 · UR 7 · LR 1
@@ -588,19 +1007,27 @@
           data-en="This is an illustrative example only. Actual supply, allocation and rarity rates may vary by chapter and will be announced separately."
           data-ja="これは99枚発行した場合の参考例です。実際の発行枚数・レアリティ配分・出現率は各章で異なる場合があり、別途発表します。"
         >This is an illustrative example only. Actual supply, allocation and rarity rates may vary by chapter and will be announced separately.</p>
+
       </div>
+
     </section>
 
-    <!-- JOURNEY MAP -->
+    <!-- =====================================
+         JOURNEY MAP
+         ===================================== -->
+
     <section
       class="page"
       id="journey"
       role="tabpanel"
       hidden
     >
-      <span class="eyebrow">
-        47 STOPS · ONE JOURNEY
-      </span>
+
+      <span
+        class="eyebrow"
+        data-en="47 STOPS · ONE JOURNEY"
+        data-ja="47の目的地 · ひとつの旅"
+      >47 STOPS · ONE JOURNEY</span>
 
       <h2
         data-en="THE JAPAN 47 JOURNEY"
@@ -613,7 +1040,9 @@
       >Follow the takoyaki truck through all 47 prefectures. Select a stop to explore its Ticket and NFT Art chapter.</p>
 
       <div class="map-panel">
+
         <div class="map-head">
+
           <span>
             TRAVELING TAKOYAKI
           </span>
@@ -621,10 +1050,13 @@
           <span id="mapCounter">
             STOP 01 / 47
           </span>
+
         </div>
 
         <div class="map-scroll">
+
           <div class="map-canvas">
+
             <svg
               id="routeSvg"
               xmlns="http://www.w3.org/2000/svg"
@@ -633,6 +1065,7 @@
               aria-label="Interactive route through 47 Japanese prefectures"
               preserveAspectRatio="xMidYMid meet"
             >
+
               <path
                 id="roadOutline"
                 d=""
@@ -675,12 +1108,17 @@
                 preserveAspectRatio="xMidYMid meet"
                 style="pointer-events:none"
               ></image>
+
             </svg>
+
           </div>
+
         </div>
 
         <!-- MAP CONTROLS -->
+
         <div class="map-actions">
+
           <button
             type="button"
             id="prevStop"
@@ -699,7 +1137,9 @@
             data-en="NEXT ▶"
             data-ja="次へ ▶"
           >NEXT ▶</button>
+
         </div>
+
       </div>
 
       <h3
@@ -712,18 +1152,25 @@
         id="journeyDetail"
         class="detail"
       ></div>
+
     </section>
 
-    <!-- FAQ -->
+    <!-- =====================================
+         FAQ
+         ===================================== -->
+
     <section
       class="page dark-page"
       id="faq"
       role="tabpanel"
       hidden
     >
-      <span class="eyebrow">
-        QUESTIONS &amp; ANSWERS
-      </span>
+
+      <span
+        class="eyebrow"
+        data-en="QUESTIONS & ANSWERS"
+        data-ja="質問と回答"
+      >QUESTIONS &amp; ANSWERS</span>
 
       <h2
         data-en="FREQUENTLY ASKED QUESTIONS"
@@ -731,6 +1178,7 @@
       >FREQUENTLY ASKED QUESTIONS</h2>
 
       <details>
+
         <summary
           data-en="What is TRAVELING TAKOYAKI?"
           data-ja="TRAVELING TAKOYAKIとは？"
@@ -739,10 +1187,12 @@
         <p
           data-en="TRAVELING TAKOYAKI — Japan 47 Journey is a pixel-art NFT project that follows a takoyaki truck across all 47 prefectures of Japan. Each destination has its own Journey Ticket and NFT art chapter."
           data-ja="たこ焼きカーが日本全国47都道府県を巡るピクセルアートNFTプロジェクトです。各都道府県にJourney TicketとNFTアートの章があります。"
-        >TRAVELING TAKOYAKI — Japan 47 Journey is a pixel-art NFT project that follows a takoyaki truck across all 47 prefectures of Japan.</p>
+        >TRAVELING TAKOYAKI — Japan 47 Journey is a pixel-art NFT project that follows a takoyaki truck across all 47 prefectures of Japan. Each destination has its own Journey Ticket and NFT art chapter.</p>
+
       </details>
 
       <details>
+
         <summary
           data-en="What is a Journey Ticket?"
           data-ja="Journey Ticketとは？"
@@ -751,10 +1201,12 @@
         <p
           data-en="A Journey Ticket is a collectible NFT associated with a specific prefecture. Ticket holders may receive access to announced benefits, including eligibility for priority purchase opportunities, subject to the conditions of each chapter."
           data-ja="各都道府県に対応したコレクションNFTです。チケット保有者は、各章で発表される条件に応じて、NFTアートの優先購入などの特典の対象となる場合があります。"
-        >A Journey Ticket is a collectible NFT associated with a specific prefecture.</p>
+        >A Journey Ticket is a collectible NFT associated with a specific prefecture. Ticket holders may receive access to announced benefits, including eligibility for priority purchase opportunities, subject to the conditions of each chapter.</p>
+
       </details>
 
       <details>
+
         <summary
           data-en="Are Journey Tickets free?"
           data-ja="Journey Ticketは無料ですか？"
@@ -763,10 +1215,12 @@
         <p
           data-en="Ticket prices may vary by destination. Some releases may be free to mint, while network fees may still apply. Always check the official release details."
           data-ja="チケットの価格は都道府県によって異なる場合があります。無料ミントでもネットワーク手数料が発生することがあります。各回の公式案内をご確認ください。"
-        >Ticket prices may vary by destination. Some releases may be free to mint, while network fees may still apply.</p>
+        >Ticket prices may vary by destination. Some releases may be free to mint, while network fees may still apply. Always check the official release details.</p>
+
       </details>
 
       <details>
+
         <summary
           data-en="Does a Journey Ticket guarantee an NFT artwork?"
           data-ja="チケットがあればNFTアートを必ず購入できますか？"
@@ -775,10 +1229,12 @@
         <p
           data-en="No. A Journey Ticket does not guarantee an artwork or a successful purchase. Eligibility, snapshots, wallet limits and supply are determined by each chapter's announced rules."
           data-ja="いいえ。チケットはNFTアートの取得や購入成功を保証するものではありません。スナップショット、購入上限、発行枚数などは各章の発表条件に従います。"
-        >No. A Journey Ticket does not guarantee an artwork or a successful purchase.</p>
+        >No. A Journey Ticket does not guarantee an artwork or a successful purchase. Eligibility, snapshots, wallet limits and supply are determined by each chapter's announced rules.</p>
+
       </details>
 
       <details>
+
         <summary
           data-en="When will new destinations and NFTs be released?"
           data-ja="次の都道府県やNFTの発売はいつですか？"
@@ -787,10 +1243,12 @@
         <p
           data-en="Release schedules will be announced through official social media channels and OpenSea. Please check the latest announcements for confirmed dates."
           data-ja="公開日や販売日は、公式SNSとOpenSeaで順次お知らせします。確定した日程は最新の公式発表をご確認ください。"
-        >Release schedules will be announced through official social media channels and OpenSea.</p>
+        >Release schedules will be announced through official social media channels and OpenSea. Please check the latest announcements for confirmed dates.</p>
+
       </details>
 
       <details>
+
         <summary
           data-en="What are the five rarity tiers?"
           data-ja="5種類のレアリティとは？"
@@ -799,22 +1257,26 @@
         <p
           data-en="The five tiers are Normal (N), Rare (R), Super Rare (SR), Ultra Rare (UR), and Legendary (LR). Any percentages shown as examples are illustrative and are not confirmed allocations for future chapters."
           data-ja="NORMAL（N）、RARE（R）、SUPER RARE（SR）、ULTRA RARE（UR）、LEGENDARY（LR）の5種類です。参考例の確率は、今後の章の確定配分を示すものではありません。"
-        >The five tiers are Normal, Rare, Super Rare, Ultra Rare, and Legendary.</p>
+        >The five tiers are Normal (N), Rare (R), Super Rare (SR), Ultra Rare (UR), and Legendary (LR). Any percentages shown as examples are illustrative and are not confirmed allocations for future chapters.</p>
+
       </details>
 
       <details>
+
         <summary
           data-en="Where can I find the official OpenSea collection?"
           data-ja="公式OpenSeaコレクションはどこですか？"
         >Where can I find the official OpenSea collection?</summary>
 
         <p
-          data-en="Use the official OpenSea link at the bottom of this website. Individual destination links will also appear in the Ticket Book and NFT Art Book when available."
-          data-ja="このサイト下部の公式OpenSeaリンクをご利用ください。各都道府県の公開後は、チケット図鑑やNFTアート図鑑にもリンクが表示されます。"
-        >Use the official OpenSea link at the bottom of this website.</p>
+          data-en="Official collection links are provided in the Ticket Book and NFT Art Book when available. Please verify the destination before connecting your wallet."
+          data-ja="公式コレクションへのリンクは、公開状況に応じてチケット図鑑とNFTアート図鑑の詳細に表示されます。ウォレットを接続する前にリンク先をご確認ください。"
+        >Official collection links are provided in the Ticket Book and NFT Art Book when available. Please verify the destination before connecting your wallet.</p>
+
       </details>
 
       <details>
+
         <summary
           data-en="Can I join the journey later?"
           data-ja="途中から旅に参加できますか？"
@@ -823,10 +1285,12 @@
         <p
           data-en="Yes. You can follow the project at any stage. Availability of past Tickets and NFT artworks depends on their release status and secondary-market listings."
           data-ja="はい。途中からでも参加できます。ただし、過去のチケットやNFTアートを入手できるかどうかは、配布状況や二次流通での出品状況によります。"
-        >Yes. You can follow the project at any stage.</p>
+        >Yes. You can follow the project at any stage. Availability of past Tickets and NFT artworks depends on their release status and secondary-market listings.</p>
+
       </details>
 
       <details>
+
         <summary
           data-en="How can I stay safe?"
           data-ja="安全に参加するには？"
@@ -836,13 +1300,21 @@
           data-en="Always verify official links. Never share your wallet's seed phrase or private keys. Be cautious of impersonators and unsolicited direct messages."
           data-ja="必ず公式リンクを確認してください。ウォレットのシードフレーズや秘密鍵は絶対に他人に教えないでください。なりすましや不審なDMにもご注意ください。"
         >Always verify official links. Never share your wallet's seed phrase or private keys. Be cautious of impersonators and unsolicited direct messages.</p>
+
       </details>
+
     </section>
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- =========================================
+       FOOTER
+
+       OpenSea icon removed.
+       ========================================= -->
+
   <footer>
+
     <strong>
       TRAVELING TAKOYAKI
     </strong>
@@ -851,30 +1323,18 @@
       JAPAN 47 JOURNEY
     </p>
 
-    <p>
-      One truck. 47 prefectures. A journey worth collecting.
-    </p>
+    <p
+      data-en="One truck. 47 prefectures. A journey worth collecting."
+      data-ja="一台のたこ焼きカーで巡る、日本全国47都道府県の旅。"
+    >One truck. 47 prefectures. A journey worth collecting.</p>
 
     <div
       class="footer-icons"
       aria-label="Official links"
     >
 
-      <!-- OPENSEA -->
-      <a
-        href="https://opensea.io/collection/traveling-takoyaki/overview"
-        id="officialLink"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="OpenSea"
-        title="OpenSea"
-      >
-        <span class="footer-icon-symbol">
-          🌊
-        </span>
-      </a>
-
       <!-- OFFICIAL WEBSITE -->
+
       <a
         href="https://japan47pixel.net/"
         target="_blank"
@@ -882,12 +1342,15 @@
         aria-label="Official Website"
         title="Official Website"
       >
+
         <span class="footer-icon-symbol">
           🌐
         </span>
+
       </a>
 
       <!-- X -->
+
       <a
         href="https://x.com/JAPAN47PIXEL"
         target="_blank"
@@ -895,12 +1358,15 @@
         aria-label="Official X"
         title="X"
       >
+
         <span class="footer-icon-symbol footer-x">
           𝕏
         </span>
+
       </a>
 
       <!-- INSTAGRAM -->
+
       <a
         href="https://www.instagram.com/japan47pixel?vrfl=MTVvZjlnNXAzMmU1aA=="
         target="_blank"
@@ -908,6 +1374,7 @@
         aria-label="Official Instagram"
         title="Instagram"
       >
+
         <svg
           viewBox="0 0 24 24"
           width="25"
@@ -919,6 +1386,7 @@
           stroke-linejoin="round"
           aria-hidden="true"
         >
+
           <rect
             x="2"
             y="2"
@@ -940,14 +1408,97 @@
             fill="currentColor"
             stroke="none"
           ></circle>
+
         </svg>
+
       </a>
+
     </div>
 
     <small>
       © TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
     </small>
+
   </footer>
+
+  <!-- =========================================
+       LANGUAGE DISPLAY SUPPORT
+
+       Works alongside existing script.js.
+       Uses the current switch-button label:
+       "日本語" = English is displayed.
+       "ENGLISH" = Japanese is displayed.
+
+       This handles static bilingual text.
+       ========================================= -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const switchButton =
+        document.getElementById("langSwitch");
+
+      if (!switchButton) return;
+
+      function updateStaticLanguage() {
+
+        const buttonText =
+          switchButton.textContent.trim().toUpperCase();
+
+        const currentLanguage =
+          buttonText === "ENGLISH" ? "ja" : "en";
+
+        document.documentElement.lang = currentLanguage;
+
+        document.querySelectorAll(
+          "[data-en][data-ja]"
+        ).forEach(function (element) {
+
+          const translatedText =
+            currentLanguage === "ja"
+              ? element.getAttribute("data-ja")
+              : element.getAttribute("data-en");
+
+          if (translatedText !== null) {
+            element.textContent = translatedText;
+          }
+
+        });
+
+        const searchInput =
+          document.getElementById("ticketSearch");
+
+        if (searchInput) {
+
+          searchInput.placeholder =
+            currentLanguage === "ja"
+              ? "都道府県を検索..."
+              : "SEARCH PREFECTURE...";
+
+          searchInput.setAttribute(
+            "aria-label",
+            currentLanguage === "ja"
+              ? "都道府県を検索"
+              : "Search prefectures"
+          );
+        }
+
+      }
+
+      // Apply initial language after the existing scripts.
+      updateStaticLanguage();
+
+      // Allow script.js to change the language first.
+      switchButton.addEventListener("click", function () {
+
+        setTimeout(function () {
+          updateStaticLanguage();
+        }, 0);
+
+      });
+
+    });
+  </script>
 
 </body>
 </html>
