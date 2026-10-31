@@ -1,2320 +1,962 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#11283b">
-
-<title>TRAVEL DIARY | TRAVELING TAKOYAKI</title>
-
-<meta name="description"
-content="One takoyaki. Forty-seven prefectures. A pixel-art journey across Japan.">
-
-<!-- 丸みのある日本語・英語フォント -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-<style>
-
-/* =====================================
-   基本カラー・フォント
-===================================== */
-
-:root {
-  --navy: #11283b;
-  --ink: #35271d;
-  --brown: #795333;
-  --cream: #fff9ed;
-  --kraft: #d5ae7b;
-  --red: #bb4935;
-  --line: #d9cbb5;
-
-  --font-main:
-    "Zen Maru Gothic",
-    "Hiragino Maru Gothic ProN",
-    "Yu Gothic",
-    sans-serif;
-
-  --font-en:
-    "Fredoka",
-    "Zen Maru Gothic",
-    sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-
-  background:
-    radial-gradient(
-      ellipse at 50% 0%,
-      #2b4c64 0%,
-      #11283b 65%,
-      #071521 100%
-    );
-
-  color: var(--ink);
-  font-family: var(--font-main);
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
-}
-
-button:disabled {
-  opacity: .42;
-  cursor: not-allowed;
-}
-
-button:focus-visible,
-a:focus-visible {
-  outline: 3px solid #ffce69;
-  outline-offset: 3px;
-}
-
-[hidden] {
-  display: none !important;
-}
-
-/* =====================================
-   HEADER
-===================================== */
-
-.header {
-  width: min(1100px, 100%);
-  margin: 0 auto;
-  padding: 13px 12px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-}
-
-.site-title {
-  font-family: var(--font-en);
-  color: #fff3d9;
-  font-size: 17px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.header-buttons {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-}
-
-.header-button {
-  height: 40px;
-  min-width: 45px;
-  padding: 0 12px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #fffaf0;
-  color: #171717;
-
-  border: 2px solid #10151a;
-  border-radius: 0;
-  box-shadow: 4px 4px 0 #06131c;
-
-  text-decoration: none;
-  white-space: nowrap;
-
-  font-family: var(--font-main);
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.header-button:hover {
-  background: #ffeecb;
-}
-
-#languageBtn {
-  min-width: 82px;
-}
-
-.home-button {
-  font-size: 24px;
-}
-
-/* =====================================
-   MAIN / BANNER
-===================================== */
-
-.main {
-  width: min(1100px, 100%);
-  margin: 0 auto;
-  padding: 0 12px;
-}
-
-.banner {
-  border: 4px solid #e0b866;
-  border-radius: 7px;
-
-  overflow: hidden;
-  background: #4aa7d4;
-
-  box-shadow: 4px 5px 0 #061521;
-}
-
-.banner img {
-  display: block;
-  width: 100%;
-  height: auto;
-  image-rendering: pixelated;
-}
-
-.banner-fallback {
-  min-height: 155px;
-  padding: 20px;
-
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 8px;
-
-  background:
-    linear-gradient(
-      #61b8e7 0%,
-      #c6e9f5 60%,
-      #8aa567 61%,
-      #355b42 85%,
-      #394150 86%
-    );
-
-  text-align: center;
-}
-
-.banner-fallback strong {
-  font-family: var(--font-en);
-  font-size: clamp(25px, 5vw, 46px);
-  font-weight: 700;
-  color: #172e42;
-  text-shadow: 2px 2px #fff;
-}
-
-.banner-fallback span {
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .12em;
-}
-
-/* =====================================
-   リング穴付きノート
-===================================== */
-
-.notebook {
-  position: relative;
-
-  margin: 20px 0 16px;
-  padding: 13px 13px 13px 42px;
-
-  border: 7px solid #85532f;
-  border-radius: 18px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #e7c18a,
-      #c99965
-    );
-
-  box-shadow:
-    0 15px 35px #0006,
-    inset 0 0 0 4px #f2d4a3;
-}
-
-/* 左側の四角い穴 */
-
-.notebook::before {
-  content: "";
-  position: absolute;
-
-  top: 19px;
-  bottom: 19px;
-  left: 13px;
-  width: 17px;
-
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      #59402a 0 13px,
-      #e7c995 13px 36px
-    );
-
-  box-shadow:
-    inset 2px 1px 2px #26170d88,
-    1px 0 0 #f6dbae;
-}
-
-.page {
-  min-height: 560px;
-  background: var(--cream);
-  overflow: hidden;
-  border-radius: 2px;
-}
-
-.page.flipping {
-  animation: pageFlip .35s ease-out;
-}
-
-@keyframes pageFlip {
-  from {
-    opacity: .55;
-    transform:
-      perspective(1200px)
-      rotateY(-6deg);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      perspective(1200px)
-      rotateY(0);
-  }
-}
-
-/* =====================================
-   クラフト紙の表紙
-===================================== */
-
-.cover {
-  position: relative;
-
-  min-height: 590px;
-  padding: 44px 28px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  background-color: var(--kraft);
-
-  background-image:
-    radial-gradient(
-      #80593730 1px,
-      transparent 1px
-    ),
-    repeating-linear-gradient(
-      10deg,
-      transparent 0 12px,
-      #80563712 13px 14px,
-      transparent 15px 26px
-    ),
-    linear-gradient(
-      150deg,
-      #e7cca6,
-      #d3ad79 55%,
-      #c19666
-    );
-
-  background-size:
-    15px 17px,
-    auto,
-    auto;
-}
-
-.cover::before {
-  content: "";
-  position: absolute;
-  inset: 17px;
-  border: 3px double #725237;
-  pointer-events: none;
-}
-
-.cover-inner {
-  position: relative;
-  z-index: 1;
-
-  width: 100%;
-  max-width: 650px;
-}
-
-.cover-brand {
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .12em;
-  color: #4d3625;
-}
-
-.cover-decoration {
-  margin: 17px auto 25px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-
-  color: #6d5037;
-}
-
-.cover-decoration::before,
-.cover-decoration::after {
-  content: "";
-  width: 25%;
-  height: 1px;
-  background: #694c34;
-}
-
-.cover-stamp {
-  display: inline-block;
-
-  padding: 8px 18px;
-  margin-bottom: 25px;
-
-  border: 3px solid #a74130;
-
-  color: #a74130;
-  font-size: clamp(13px, 3.5vw, 22px);
-  font-weight: 900;
-  letter-spacing: .1em;
-
-  transform: rotate(-5deg);
-}
-
-.cover-title {
-  font-family: var(--font-main);
-
-  font-size: clamp(36px, 8vw, 76px);
-  font-weight: 900;
-  line-height: 1.13;
-  letter-spacing: -.045em;
-
-  color: #302216;
-
-  margin: 0;
-}
-
-.cover-title span {
-  display: block;
-}
-
-.cover-title.english {
-  font-family: var(--font-en);
-  letter-spacing: -.025em;
-}
-
-.cover-subtitle {
-  width: 88%;
-  margin: 24px auto 0;
-  padding-top: 15px;
-
-  border-top: 2px solid #866342;
-
-  color: #a73e2e;
-  font-size: clamp(17px, 3.5vw, 26px);
-  font-weight: 900;
-}
-
-.cover-description {
-  max-width: 510px;
-  margin: 23px auto;
-
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.65;
-}
-
-.cover-open {
-  margin-top: 19px;
-  padding: 13px 27px;
-
-  border: 3px solid #3c251d;
-
-  background: #c34835;
-  color: #fff;
-
-  font-size: 19px;
-  font-weight: 900;
-
-  box-shadow: 5px 5px 0 #5b3d2b;
-}
-
-.cover-open:hover {
-  background: #ab3828;
-}
-
-.cover-bottom {
-  margin-top: 31px;
-
-  color: #63482e;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-/* =====================================
-   各話のノートページ
-===================================== */
-
-.diary-spread {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 570px;
-}
-
-/* 画像側 */
-
-.image-side {
-  padding: 25px 22px;
-
-  min-width: 0;
-
-  background: #ecdec3;
-  border-right: 1px solid #baa17c;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.chapter-label {
-  font-family: var(--font-en);
-
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .08em;
-
-  color: #88684d;
-  margin-bottom: 22px;
-}
-
-.photo {
-  position: relative;
-
-  width: min(100%, 440px);
-  margin: auto;
-
-  padding: 12px 12px 24px;
-
-  background: #fffaf0;
-
-  box-shadow:
-    3px 8px 18px #4b382b50;
-
-  transform: rotate(-1deg);
-}
-
-.photo::before {
-  content: "";
-  position: absolute;
-
-  top: -12px;
-  left: calc(50% - 40px);
-
-  width: 80px;
-  height: 24px;
-
-  background: #c3a16a9c;
-  transform: rotate(3deg);
-  z-index: 2;
-}
-
-.photo img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-
-  image-rendering: pixelated;
-}
-
-.photo-placeholder {
-  display: none;
-
-  aspect-ratio: 1;
-  padding: 18px;
-
-  background:
-    linear-gradient(
-      160deg,
-      #a4d0d8,
-      #6f9b93 55%,
-      #527750
-    );
-
-  align-items: center;
-  justify-content: center;
-
-  color: #fff;
-  text-align: center;
-  font-weight: 900;
-}
-
-.photo figcaption {
-  margin-top: 13px;
-
-  color: #765d43;
-  text-align: center;
-
-  font-size: 12px;
-  font-weight: 700;
-}
-
-/* 本文側 */
-
-.text-side {
-  min-width: 0;
-
-  padding: 27px 30px 20px 35px;
-
-  display: flex;
-  flex-direction: column;
-
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      #fffaf0 0 31px,
-      #d8ccba 32px,
-      #fffaf0 33px
-    );
-}
-
-.page-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-
-  color: #856b50;
-
-  font-size: 11px;
-  font-weight: 900;
-}
-
-.diary-title {
-  margin: 22px 0 13px;
-
-  color: #35271d;
-
-  font-family: var(--font-main);
-  font-size: clamp(23px, 3vw, 35px);
-  font-weight: 900;
-
-  line-height: 1.28;
-  letter-spacing: -.02em;
-}
-
-.title-rule {
-  width: 65px;
-  height: 5px;
-  margin-bottom: 20px;
-  background: #c44a37;
-}
-
-/* ★ 行間・段落間隔の重要な修正 ★ */
-
-.diary-text {
-  font-family: var(--font-main);
-
-  font-size: 16px;
-  font-weight: 500;
-
-  /* 以前より行間を縮小 */
-  line-height: 1.72;
-
-  letter-spacing: .01em;
-  overflow-wrap: anywhere;
-}
-
-.diary-text p {
-  /* 段落間の余白を大幅に縮小 */
-  margin: 0 0 .34em;
-}
-
-.diary-text p:last-child {
-  color: #a54737;
-  font-weight: 900;
-}
-
-/* 最下部のページ番号 */
-
-.page-footer {
-  margin-top: auto;
-  padding-top: 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-
-  border-top: 1px solid #c1ad91;
-
-  color: #7b6852;
-
-  font-family: var(--font-en);
-  font-size: 11px;
-}
-
-/* =====================================
-   ページ移動ボタン
-===================================== */
-
-.page-navigation {
-  margin: 18px 0 25px;
-
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 10px;
-  align-items: center;
-}
-
-.page-nav-button {
-  min-height: 50px;
-  padding: 10px 14px;
-
-  background: #f5e5c9;
-  color: #36281b;
-
-  border: 2px solid #c0a57f;
-  border-radius: 5px;
-
-  box-shadow: 3px 3px 0 #071521;
-
-  font-size: 13px;
-  font-weight: 900;
-  white-space: nowrap;
-}
-
-.page-nav-button:last-child {
-  justify-self: end;
-}
-
-.page-progress {
-  color: #f5e6d0;
-  text-align: center;
-
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.5;
-}
-
-.next-release {
-  display: block;
-  margin-top: 5px;
-
-  color: #d4c2a6;
-  font-size: 10px;
-  font-weight: 500;
-}
-
-/* =====================================
-   目次
-===================================== */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-
-  padding: 16px;
-
-  display: none;
-  align-items: center;
-  justify-content: center;
-
-  background: #071521e8;
-}
-
-.modal.open {
-  display: flex;
-}
-
-.modal-panel {
-  width: min(760px, 100%);
-  max-height: 90vh;
-
-  padding: 18px;
-  overflow-y: auto;
-
-  background: #f9ecd4;
-
-  border: 6px solid #865b37;
-  border-radius: 8px;
-}
-
-.modal-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding-bottom: 12px;
-
-  border-bottom: 1px solid #c4a67f;
-}
-
-.modal-heading h2 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 900;
-}
-
-.close-button {
-  padding: 8px 13px;
-
-  background: #c44837;
-  color: white;
-
-  border: 0;
-  font-weight: 900;
-}
-
-.chapter-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 9px;
-  margin-top: 15px;
-}
-
-.chapter-item {
-  min-height: 75px;
-  padding: 11px;
-
-  background: #fffaf0;
-  color: #3c2b1e;
-
-  border: 1px solid #d1b592;
-  text-align: left;
-}
-
-.chapter-item strong {
-  display: block;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.chapter-item small {
-  display: block;
-  color: #896a50;
-  font-size: 11px;
-  margin-bottom: 4px;
-}
-
-.chapter-item.locked {
-  background: #e8dbc5;
-  opacity: .65;
-}
-
-/* =====================================
-   FOOTER
-===================================== */
-
-.footer {
-  padding: 7px 0 30px;
-
-  color: #d9c7ab;
-  text-align: center;
-
-  font-family: var(--font-en);
-  font-size: 12px;
-}
-
-/* =====================================
-   スマートフォン最適化
-===================================== */
-
-@media(max-width: 760px) {
-
-  .header {
-    padding: 11px 9px;
-  }
-
-  .site-title {
-    font-size: 13px;
-  }
-
-  .header-buttons {
-    gap: 5px;
-  }
-
-  .header-button {
-    height: 37px;
-    min-width: 38px;
-    padding: 0 8px;
-
-    font-size: 11px;
-    box-shadow: 3px 3px 0 #071420;
-  }
-
-  #languageBtn {
-    min-width: 70px;
-  }
-
-  .main {
-    padding: 0 9px;
-  }
-
-  .banner {
-    border-width: 3px;
-  }
-
-  .notebook {
-    margin-top: 17px;
-    padding: 10px 10px 10px 35px;
-    border-width: 6px;
-  }
-
-  .notebook::before {
-    left: 9px;
-    top: 17px;
-    bottom: 17px;
-    width: 14px;
-
-    background:
-      repeating-linear-gradient(
-        to bottom,
-        #59402a 0 12px,
-        #e7c995 12px 34px
-      );
-  }
-
-  .page {
-    min-height: 0;
-  }
-
-  .cover {
-    min-height: 530px;
-    padding: 42px 18px;
-  }
-
-  .cover::before {
-    inset: 12px;
-  }
-
-  .cover-brand {
-    font-size: 11px;
-  }
-
-  .cover-description {
-    font-size: 15px;
-    line-height: 1.65;
-  }
-
-  .diary-spread {
-    display: block;
-    min-height: 0;
-  }
-
-  .image-side {
-    border-right: 0;
-    padding: 18px 16px;
-  }
-
-  .chapter-label {
-    margin-bottom: 16px;
-  }
-
-  .photo {
-    width: min(88%, 420px);
-  }
-
-  .text-side {
-    min-height: 360px;
-    padding: 25px 20px 18px;
-  }
-
-  .diary-title {
-    font-size: 26px;
-    line-height: 1.3;
-  }
-
-  /* ★ スマホでの文字表示 ★ */
-
-  .diary-text {
-    font-size: 17px;
-    line-height: 1.72;
-    letter-spacing: .005em;
-  }
-
-  .diary-text p {
-    margin-bottom: .3em;
-  }
-
-  .page-nav-button {
-    min-height: 47px;
-    padding: 8px 9px;
-    font-size: 12px;
-  }
-
-  .page-progress {
-    font-size: 11px;
-  }
-
-  .next-release {
-    font-size: 10px;
-  }
-
-  .chapter-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media(max-width: 370px) {
-
-  .site-title {
-    font-size: 11px;
-  }
-
-  .header-button {
-    font-size: 10px;
-    padding: 0 6px;
-  }
-
-  #languageBtn {
-    min-width: 63px;
-  }
-
-  .notebook {
-    padding-left: 30px;
-  }
-
-  .cover-title {
-    font-size: 34px;
-  }
-
-  .page-navigation {
-    gap: 5px;
-  }
-
-  .page-nav-button {
-    font-size: 11px;
-  }
-
-  .diary-text {
-    font-size: 16px;
-  }
-}
-
-@media(prefers-reduced-motion: reduce) {
-  .page.flipping {
-    animation: none;
-  }
-
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traveling Takoyaki Diary</title>
+
+  <!-- 丸みのある文字 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#07203a;
+      --bg2:#143a5b;
+      --bg3:#0b2a47;
+
+      --ink:#3a271e;
+      --ink-soft:#725949;
+      --accent:#c54a38;
+      --accent-soft:#a66254;
+
+      --paper:#f6f1e6;
+      --paper-dark:#ece4d3;
+      --craft:#d6b07b;
+      --craft-deep:#ad7c46;
+      --cover:#d7c09a;
+
+      --shadow:0 10px 24px rgba(0,0,0,.24);
+      --line-step:42px;
+      --page-radius:22px;
+      --button-shadow:4px 4px 0 #141414;
+      --button-border:3px solid #141414;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{
+      margin:0;
+      padding:0;
+      background:
+        radial-gradient(circle at 50% 20%, #1f4a70 0%, #0d2c49 35%, #071c33 100%);
+      color:#fff;
+      font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .site{
+      width:min(100%, 760px);
+      margin:0 auto;
+      padding:18px 14px 30px;
+    }
+
+    /* ---------- header ---------- */
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:14px;
+    }
+
+    .topbar-title{
+      font-family:"Fredoka","Zen Maru Gothic",sans-serif;
+      font-size:clamp(24px, 3.6vw, 32px);
+      font-weight:700;
+      letter-spacing:.02em;
+      color:#fff2d8;
+      text-transform:uppercase;
+      text-shadow:0 2px 0 rgba(0,0,0,.15);
+    }
+
+    .topbar-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:nowrap;
+    }
+
+    .pixel-btn{
+      appearance:none;
+      border:var(--button-border);
+      background:#f6f2e5;
+      color:#222;
+      padding:0 12px;
+      min-width:76px;
+      height:62px;
+      font-family:"Zen Maru Gothic",sans-serif;
+      font-size:14px;
+      font-weight:800;
+      line-height:1.1;
+      box-shadow:var(--button-shadow);
+      cursor:pointer;
+      border-radius:0;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      white-space:nowrap;
+    }
+
+    .pixel-btn:active{
+      transform:translate(2px,2px);
+      box-shadow:2px 2px 0 #141414;
+    }
+
+    .pixel-btn.small-icon{
+      min-width:60px;
+      width:60px;
+      font-size:25px;
+      padding:0;
+    }
+
+    /* ---------- hero banner ---------- */
+    .hero-banner{
+      margin-bottom:16px;
+    }
+
+    .hero-banner img{
+      width:100%;
+      height:auto;
+      border-radius:12px;
+      object-fit:cover;
+      box-shadow:0 6px 16px rgba(0,0,0,.18);
+    }
+
+    /* ---------- notebook outer ---------- */
+    .notebook-shell{
+      display:flex;
+      align-items:stretch;
+      background:linear-gradient(180deg, #e1ba7f 0%, #c58f54 100%);
+      border-radius:26px;
+      padding:10px;
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .ring-column{
+      width:42px;
+      min-width:42px;
+      border-radius:18px 0 0 18px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.18) 0 26%, transparent 26% 100%),
+        linear-gradient(180deg, #e7c789 0%, #c79252 100%);
+      position:relative;
+      box-shadow:inset -2px 0 0 rgba(255,255,255,.28);
+    }
+
+    .ring-column::before{
+      content:"";
+      position:absolute;
+      top:12px;
+      bottom:12px;
+      left:10px;
+      width:20px;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          #4c3828 0 12px,
+          transparent 12px 44px
+        );
+      border-radius:8px;
+      opacity:.96;
+      box-shadow:
+        inset -1px 0 0 rgba(255,255,255,.1),
+        inset 1px 0 0 rgba(0,0,0,.12);
+    }
+
+    .page-area{
+      flex:1;
+      background:#f0e4ca;
+      padding:14px;
+      border-radius:0 18px 18px 0;
+      min-width:0;
+    }
+
+    .page-panel{
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.18) 0 1px, transparent 1px 100%),
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,.10) 0 1px, transparent 1px 100%),
+        linear-gradient(180deg, #deceb0 0%, #d8c7a7 100%);
+      background-size:18px 18px, 24px 24px, auto;
+      border:2px solid rgba(119,85,51,.22);
+      box-shadow:inset 0 0 0 2px rgba(255,255,255,.14);
+      min-height:300px;
+      color:var(--ink);
+      overflow:hidden;
+    }
+
+    /* ---------- cover page ---------- */
+    .cover-page{
+      padding:24px 22px 28px;
+      position:relative;
+      background:
+        linear-gradient(165deg, rgba(255,255,255,.07), rgba(0,0,0,0) 35%),
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.18) 0 1px, transparent 1px 100%),
+        radial-gradient(circle at 75% 30%, rgba(255,255,255,.10) 0 1px, transparent 1px 100%),
+        repeating-linear-gradient(
+          -18deg,
+          rgba(102,74,42,.045) 0 2px,
+          transparent 2px 22px
+        ),
+        linear-gradient(180deg, #d7c29d 0%, #d0b68b 100%);
+      background-size:auto, 18px 18px, 22px 22px, auto, auto;
+      min-height:640px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .cover-frame{
+      border:2px solid rgba(95,62,37,.30);
+      box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);
+      padding:34px 26px 26px;
+      min-height:590px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+    }
+
+    .cover-topline{
+      font-size:15px;
+      font-weight:900;
+      letter-spacing:.24em;
+      color:#473528;
+      opacity:.86;
+      text-transform:uppercase;
+      margin-bottom:32px;
+    }
+
+    .cover-stamp{
+      display:inline-block;
+      padding:8px 20px;
+      border:4px solid #a65545;
+      color:#a65545;
+      transform:rotate(-5deg);
+      font-size:19px;
+      font-weight:900;
+      letter-spacing:.16em;
+      background:rgba(255,255,255,.08);
+      margin-bottom:40px;
+    }
+
+    .cover-title{
+      font-size:clamp(40px, 7vw, 68px);
+      line-height:1.08;
+      font-weight:900;
+      color:#38261d;
+      margin:0;
+      letter-spacing:.02em;
+    }
+
+    .cover-subtitle{
+      margin-top:24px;
+      font-size:clamp(24px, 4.4vw, 36px);
+      line-height:1.25;
+      font-weight:900;
+      color:#8b4f43;
+    }
+
+    .cover-lead{
+      margin:34px auto 0;
+      max-width:540px;
+      font-size:clamp(17px, 3.2vw, 24px);
+      line-height:1.8;
+      font-weight:700;
+      color:#4c382a;
+    }
+
+    .cover-open{
+      margin-top:auto;
+      margin-bottom:20px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:260px;
+      padding:22px 26px;
+      background:#c94936;
+      color:#fff7ee;
+      border:4px solid #2b1b14;
+      box-shadow:5px 5px 0 rgba(0,0,0,.30);
+      font-size:clamp(22px, 4vw, 32px);
+      font-weight:900;
+      cursor:pointer;
+      font-family:"Zen Maru Gothic",sans-serif;
+    }
+
+    .cover-open:active{
+      transform:translate(2px,2px);
+      box-shadow:3px 3px 0 rgba(0,0,0,.30);
+    }
+
+    .cover-foot{
+      margin-top:10px;
+      color:#6d5647;
+      font-size:clamp(18px, 3.1vw, 24px);
+      font-weight:700;
+    }
+
+    /* ---------- story page ---------- */
+    .story-page{
+      background:linear-gradient(180deg, #e4d8bf 0%, #ddd1b8 100%);
+    }
+
+    .photo-wrap{
+      padding:28px 18px 10px;
+      display:flex;
+      justify-content:center;
+      background:#ddd1b8;
+    }
+
+    .photo-card{
+      width:min(100%, 460px);
+      background:#f7f4eb;
+      padding:14px 14px 18px;
+      box-shadow:0 12px 24px rgba(0,0,0,.15);
+      transform:rotate(-1.2deg);
+      position:relative;
+    }
+
+    .photo-card::before{
+      content:"";
+      position:absolute;
+      top:-16px;
+      left:50%;
+      transform:translateX(-50%);
+      width:140px;
+      height:24px;
+      background:rgba(206,182,142,.78);
+      box-shadow:0 2px 0 rgba(0,0,0,.05);
+    }
+
+    .photo-card img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      background:#ddd;
+    }
+
+    .photo-caption{
+      text-align:center;
+      color:#6b5546;
+      font-weight:800;
+      margin-top:12px;
+      font-size:clamp(18px, 3vw, 24px);
+    }
+
+    .story-body{
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0 calc(var(--line-step) - 1px),
+          rgba(115,96,77,.16) calc(var(--line-step) - 1px) var(--line-step)
+        ),
+        linear-gradient(180deg, #f7f3ea 0%, #f3efe5 100%);
+      padding:18px 18px 28px;
+      border-top:1px solid rgba(80,50,20,.08);
+    }
+
+    .story-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      color:#7b6551;
+      font-size:clamp(14px, 2.8vw, 20px);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+      margin-bottom:8px;
+    }
+
+    .story-title{
+      color:#37261d;
+      font-size:clamp(31px, 6vw, 52px);
+      font-weight:900;
+      line-height:1.2;
+      margin:10px 0 18px;
+      letter-spacing:.01em;
+    }
+
+    .story-accent{
+      width:116px;
+      height:8px;
+      background:#c44b38;
+      margin-bottom:14px;
+    }
+
+    .story-lines{
+      margin-top:0;
+    }
+
+    .text-line{
+      min-height:var(--line-step);
+      display:flex;
+      align-items:center;
+      color:#3d2b21;
+      font-size:clamp(18px, 3.65vw, 31px);
+      line-height:1;
+      font-weight:700;
+      white-space:normal;
+      word-break:keep-all;
+    }
+
+    .text-line.em{
+      color:#9e4f42;
+      font-weight:900;
+    }
+
+    .story-bottom-meta{
+      margin-top:8px;
+      padding-top:10px;
+      border-top:2px solid rgba(100,78,56,.22);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      color:#7f6a57;
+      font-size:clamp(13px, 2.7vw, 19px);
+      font-weight:800;
+    }
+
+    /* ---------- pager ---------- */
+    .pager{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:12px;
+    }
+
+    .pager-center{
+      text-align:center;
+      color:#f5e6c9;
+      font-weight:800;
+      font-size:14px;
+      line-height:1.45;
+    }
+
+    .nav-btn{
+      appearance:none;
+      border:3px solid #806342;
+      background:linear-gradient(180deg, #f3ead8 0%, #eaddc6 100%);
+      box-shadow:0 5px 14px rgba(0,0,0,.20), inset 0 0 0 2px rgba(255,255,255,.24);
+      color:#39281d;
+      border-radius:10px;
+      padding:18px 10px;
+      font-size:clamp(18px, 3.2vw, 22px);
+      font-weight:900;
+      font-family:"Zen Maru Gothic",sans-serif;
+      cursor:pointer;
+      min-height:76px;
+    }
+
+    .nav-btn:disabled{
+      opacity:.45;
+      cursor:default;
+    }
+
+    footer.site-foot{
+      margin-top:20px;
+      text-align:center;
+      color:#f7ead3;
+    }
+
+    .foot-main{
+      font-family:"Fredoka","Zen Maru Gothic",sans-serif;
+      font-weight:600;
+      font-size:clamp(18px, 3.2vw, 24px);
+      line-height:1.55;
+      text-transform:uppercase;
+      letter-spacing:.02em;
+      margin-bottom:10px;
+    }
+
+    .foot-sub{
+      font-size:clamp(14px, 2.8vw, 18px);
+      line-height:1.8;
+      color:#efe0c3;
+      opacity:.95;
+    }
+
+    /* ---------- TOC modal ---------- */
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:9999;
+    }
+
+    .modal.show{
+      display:flex;
+    }
+
+    .modal-card{
+      width:min(100%, 560px);
+      max-height:84vh;
+      overflow:auto;
+      background:#f6efdf;
+      color:#33241a;
+      border:4px solid #1d1d1d;
+      box-shadow:8px 8px 0 #111;
+      padding:18px;
+    }
+
+    .modal-title{
+      margin:0 0 14px;
+      font-size:26px;
+      font-weight:900;
+    }
+
+    .toc-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .toc-item{
+      width:100%;
+      text-align:left;
+      background:#fffaf1;
+      border:3px solid #241d18;
+      padding:14px 14px;
+      font-size:18px;
+      font-weight:800;
+      font-family:"Zen Maru Gothic",sans-serif;
+      cursor:pointer;
+    }
+
+    .toc-close{
+      margin-top:14px;
+      width:100%;
+    }
+
+    /* ---------- responsive ---------- */
+    @media (max-width:520px){
+      .site{padding:14px 12px 28px;}
+      .topbar{align-items:flex-start;}
+      .topbar-title{
+        font-size:18px;
+        line-height:1.2;
+        margin-top:10px;
+      }
+      .topbar-actions{
+        gap:6px;
+      }
+      .pixel-btn{
+        min-width:74px;
+        height:58px;
+        font-size:13px;
+        padding:0 10px;
+      }
+      .pixel-btn.small-icon{
+        width:56px;
+        min-width:56px;
+        font-size:24px;
+      }
+      .cover-frame{
+        min-height:540px;
+        padding:26px 18px 24px;
+      }
+      .cover-open{
+        min-width:210px;
+        padding:18px 18px;
+      }
+      .story-body{padding:16px 14px 24px;}
+      .story-title{margin-top:8px;}
+      .pager{
+        grid-template-columns:1fr 1fr;
+      }
+      .pager-center{
+        grid-column:1 / -1;
+        order:3;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="site">
+    <header class="topbar">
+      <div class="topbar-title" id="siteTitle">TRAVEL DIARY</div>
 
-<!-- =====================================
-     HEADER
-===================================== -->
+      <div class="topbar-actions">
+        <button class="pixel-btn" id="tocBtn">目次</button>
+        <button class="pixel-btn" id="langBtn">ENGLISH</button>
+        <a class="pixel-btn small-icon" href="https://japan47pixel.net/" aria-label="home">⌂</a>
+      </div>
+    </header>
 
-<header class="header">
+    <!-- カバー画像は横いっぱい、枠なし -->
+    <section class="hero-banner">
+      <img src="./images/diary-banner.png" alt="Traveling Takoyaki banner">
+    </section>
 
-  <div class="site-title">
-    TRAVEL DIARY
+    <main id="pageMount"></main>
+
+    <nav class="pager">
+      <button class="nav-btn" id="prevBtn">← 前へ</button>
+      <div class="pager-center" id="pageStatus"></div>
+      <button class="nav-btn" id="nextBtn">次へ →</button>
+    </nav>
+
+    <footer class="site-foot">
+      <div class="foot-main" id="footerMain">ONE TAKOYAKI. 47 PREFECTURES. AN IMPOSSIBLE ROAD TRIP. 🐙🚚</div>
+      <div class="foot-sub" id="footerSub">© TRAVELING TAKOYAKI · Fictional story · A new chapter every 2 days</div>
+    </footer>
   </div>
 
-  <nav class="header-buttons"
-       aria-label="Diary navigation">
-
-    <button
-      id="indexBtn"
-      class="header-button"
-      type="button">
-      INDEX
-    </button>
-
-    <button
-      id="languageBtn"
-      class="header-button"
-      type="button">
-      日本語
-    </button>
-
-    <a
-      class="header-button home-button"
-      href="https://japan47pixel.net/"
-      title="Official Site"
-      aria-label="Official Site">⌂</a>
-
-  </nav>
-
-</header>
-
-<!-- =====================================
-     MAIN
-===================================== -->
-
-<main class="main">
-
-  <!-- タイトル画像 -->
-
-  <section class="banner" id="banner">
-
-    <img
-      id="bannerImage"
-      src="./assets/cover.png"
-      alt="TRAVELING TAKOYAKI JAPAN 47 JOURNEY">
-
-    <div class="banner-fallback" id="bannerFallback">
-      <strong>TRAVELING TAKOYAKI</strong>
-      <span>JAPAN 47 JOURNEY</span>
+  <div class="modal" id="tocModal">
+    <div class="modal-card">
+      <h2 class="modal-title" id="tocTitle">目次</h2>
+      <div class="toc-list" id="tocList"></div>
+      <button class="pixel-btn toc-close" id="tocClose">CLOSE</button>
     </div>
-
-  </section>
-
-  <!-- リング穴付きノート -->
-
-  <section class="notebook" id="notebook">
-
-    <div class="page" id="diaryPage">
-
-      <article class="cover">
-        <div class="cover-inner">
-          <h1 class="cover-title english">
-            <span>TAKOYAKI</span>
-            <span>TRAVEL DIARY</span>
-          </h1>
-        </div>
-      </article>
-
-    </div>
-
-  </section>
-
-  <!-- ページ移動 -->
-
-  <nav class="page-navigation">
-
-    <button
-      id="prevBtn"
-      class="page-nav-button"
-      type="button">
-      ← PREVIOUS
-    </button>
-
-    <div class="page-progress">
-
-      <span id="pageIndicator">
-        COVER
-      </span>
-
-      <span id="nextRelease"
-            class="next-release"></span>
-
-    </div>
-
-    <button
-      id="nextBtn"
-      class="page-nav-button"
-      type="button">
-      NEXT →
-    </button>
-
-  </nav>
-
-</main>
-
-<footer class="footer">
-  © TRAVELING TAKOYAKI
-</footer>
-
-<!-- =====================================
-     目次
-===================================== -->
-
-<div
-  class="modal"
-  id="indexModal"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="indexTitle">
-
-  <div class="modal-panel">
-
-    <div class="modal-heading">
-
-      <h2 id="indexTitle">
-        INDEX
-      </h2>
-
-      <button
-        class="close-button"
-        id="closeIndex"
-        type="button">
-        ×
-      </button>
-
-    </div>
-
-    <div class="chapter-list"
-         id="chapterList"></div>
-
   </div>
 
-</div>
-
-<script>
-
-/* =====================================
-   TRAVELING TAKOYAKI
-   DIARY ENGINE
-
-   Firebase・リアクション・コメント不要
-===================================== */
-
-(function () {
-  "use strict";
-
-  /* =====================================
-     公開スケジュール
-  ===================================== */
-
-  // 第1話は公開済み
-  const FIRST_RELEASE =
-    "2026-11-01T00:00:00+09:00";
-
-  // 第2話は11月3日10時
-  const SECOND_RELEASE =
-    "2026-11-03T10:00:00+09:00";
-
-  // 2日ごとに公開
-  const INTERVAL_DAYS = 2;
-
-  /* =====================================
-     プロローグ
-  ===================================== */
-
-  const prologue = {
-
-    ja: [
-      "毎日、鉄板の上で焼かれる。",
-      "くるくるひっくり返されて、ソースを塗られて、最後は誰かのお腹の中へ。",
-      "それが、たこ焼きの人生だった。",
-      "でも、ある日、ひとつのたこ焼きが思った。",
-      "「もっと広い世界を旅したい。」",
-      "そして次の瞬間——ぽーーーーん！",
-      "鉄板から飛び出した。自由だ！",
-      "……着地した先は、たこ焼きカーの屋根だった。",
-      "「結局、たこ焼き屋からは逃げられないのか。」",
-      "それでもエンジンは動き出した。",
-      "最初の目的地は、北海道。"
-    ],
-
-    en: [
-      "Every day, the same hot griddle.",
-      "Flip. Sauce. Seaweed flakes. Then straight into somebody’s stomach.",
-      "That was the entire life of a takoyaki.",
-      "Until one day, a single takoyaki had a thought.",
-      "“I want to see the world beyond this griddle.”",
-      "And then—BOING!",
-      "It launched itself into freedom.",
-      "…And landed on top of a takoyaki truck.",
-      "“So much for escaping the food industry.”",
-      "Still, the engine started.",
-      "First destination: HOKKAIDO."
-    ]
-
-  };
-
-  /* =====================================
-     北海道編 全12話
-  ===================================== */
-
-  const chapters = [
-
-    {
-      id: 1,
-      jaTitle: "牛に人生相談をしてみた。",
-      enTitle: "A Serious Talk with a Cow",
-      jaPlace: "北海道・牧場",
-      enPlace: "Hokkaido Pasture",
-
-      ja: [
-        "鉄板を飛び出して、はじめてたどり着いた場所は、どこまでも緑が続く牧場だった。",
-        "「毎日焼かれて食べられる人生が嫌で、逃げてきたんだ。」",
-        "牛はしばらく草を噛んでから言った。「わかるよ。僕も毎日、乳を搾られてる。」",
-        "ふたりは夕方まで、世の中の理不尽さについて語り合った。",
-        "帰り際、牛が聞いた。「ところで、車の免許は？」",
-        "「ない。」",
-        "牛は静かに三歩、後ずさりした。"
-      ],
-
-      en: [
-        "I escaped the griddle and found a pasture stretching all the way to the horizon.",
-        "“I got tired of being cooked and eaten every day,” I told a cow.",
-        "He chewed thoughtfully. “I get it. They take my milk every morning.”",
-        "We spent the afternoon discussing the unfairness of life.",
-        "Then he asked, “By the way, do you have a driver’s license?”",
-        "“No.”",
-        "The cow slowly backed away."
-      ]
-    },
-
-    {
-      id: 2,
-      jaTitle: "逃げた先も食材だった。",
-      enTitle: "No Safe Place for Food",
-      jaPlace: "北海道・じゃがいも畑",
-      enPlace: "Potato Fields",
-
-      ja: [
-        "広い畑で、土まみれのじゃがいもたちを見つけた。",
-        "「いいなぁ。君たちは鉄板で焼かれなくて。」",
-        "「俺たち？　茹でられて、揚げられて、潰されるけど。」",
-        "「……大変だね。」",
-        "「しかも、ときどき皮をむかれる。」",
-        "たこ焼きは黙って車へ戻った。",
-        "この国に、食材の逃げ場はないらしい。"
-      ],
-
-      en: [
-        "In a vast field, I met a potato covered in dirt.",
-        "“Lucky you. Nobody puts you on a griddle.”",
-        "“No,” the potato said. “They boil us, fry us, and mash us.”",
-        "“Oh.”",
-        "“Sometimes they peel us first.”",
-        "I got back in my truck without another word.",
-        "Apparently there is no safe place for food in this country."
-      ]
-    },
-
-    {
-      id: 3,
-      jaTitle: "花になりたかった日。",
-      enTitle: "The Day I Wanted to Be a Flower",
-      jaPlace: "北海道・ラベンダー畑",
-      enPlace: "Lavender Fields",
-
-      ja: [
-        "紫色の花が、風に揺れていた。きれいだ。しかも誰にも食べられていない。",
-        "「僕も花として生きていけないかな。」",
-        "花畑の真ん中で、じっとしてみた。",
-        "しばらくして、一匹のハチが近づいてきた。",
-        "「君、花粉はある？」",
-        "「青のりなら。」",
-        "ハチは何も言わずに飛び去った。",
-        "花になるのも、なかなか難しい。"
-      ],
-
-      en: [
-        "Purple flowers swayed in the breeze. Beautiful. And nobody was trying to eat them.",
-        "“Maybe I could live as a flower.”",
-        "I stood perfectly still in the lavender field.",
-        "Eventually, a bee approached.",
-        "“Got any pollen?”",
-        "“I have seaweed flakes.”",
-        "The bee left without saying a word.",
-        "Becoming a flower was harder than expected."
-      ]
-    },
-
-    {
-      id: 4,
-      jaTitle: "シカに道を聞いてはいけない。",
-      enTitle: "Never Ask a Deer for Directions",
-      jaPlace: "北海道・エゾシカの森",
-      enPlace: "Deer Country",
-
-      ja: [
-        "森のそばで、大きな角を持つシカに出会った。",
-        "「すみません。自由になれる場所は、どっちですか？」",
-        "シカは黙って山の向こうを見た。",
-        "「あっち？」",
-        "シカは草を食べ始めた。",
-        "「……聞いてます？」",
-        "三十分後、たこ焼きは気づいた。",
-        "ナビより役に立たない相手に、人生相談をしていた。"
-      ],
-
-      en: [
-        "Near the forest, I met a deer with impressive antlers.",
-        "“Excuse me. Which way is freedom?”",
-        "He stared at the mountains.",
-        "“That way?”",
-        "He started eating grass.",
-        "“Are you even listening?”",
-        "Thirty minutes later, I realized I had asked an animal for philosophical directions.",
-        "My GPS was more emotionally available."
-      ]
-    },
-
-    {
-      id: 5,
-      jaTitle: "湖に映った正体。",
-      enTitle: "The Truth in the Lake",
-      jaPlace: "北海道・紅葉の湖",
-      enPlace: "Autumn Lake",
-
-      ja: [
-        "山も木々も、湖にきれいに映っていた。",
-        "水面をのぞくと、ひとつだけ丸いものが映った。",
-        "自由な旅人になったつもりだった。だけど、そこにいたのは、どう見てもたこ焼きだった。",
-        "「どこへ行っても、自分は自分か。」",
-        "少しだけ、胸が熱くなった。",
-        "……いや、さっきから車の暖房が強すぎる。"
-      ],
-
-      en: [
-        "The mountains and autumn trees were perfectly reflected in the lake.",
-        "I looked into the water. One round shape looked back.",
-        "I had imagined myself as a fearless traveler. But my reflection was, unmistakably, a takoyaki.",
-        "“I guess I’m still me, wherever I go.”",
-        "For a moment, I felt warm inside.",
-        "Actually, the truck heater was just set way too high."
-      ]
-    },
-
-    {
-      id: 6,
-      jaTitle: "飛べると思った日。",
-      enTitle: "The Day I Tried to Fly",
-      jaPlace: "北海道・夕暮れの湿原",
-      enPlace: "Sunset Wetlands",
-
-      ja: [
-        "夕日に染まった湿原で、二羽のタンチョウが優雅に歩いていた。",
-        "「空を飛べるって、どんな気分？」",
-        "一羽が翼を広げた。「自由だよ。」",
-        "たこ焼きは目を閉じ、思い切りジャンプした。",
-        "地面に落ちた。",
-        "タンチョウが言った。「君は飛ぶより、転がるほうが向いてると思う。」",
-        "なぜだろう。言い返せなかった。"
-      ],
-
-      en: [
-        "At sunset, two cranes walked gracefully across the wetlands.",
-        "“What does flying feel like?” I asked.",
-        "One spread its wings. “Freedom.”",
-        "I closed my eyes, jumped as high as I could…",
-        "…and landed immediately.",
-        "“I think you’re better built for rolling,” said the crane.",
-        "I had no comeback."
-      ]
-    },
-
-    {
-      id: 7,
-      jaTitle: "灯台は道を教えてくれない。",
-      enTitle: "The Lighthouse Has No Answers",
-      jaPlace: "北海道・夕日の灯台",
-      enPlace: "Coastal Lighthouse",
-
-      ja: [
-        "海辺の灯台に、夕日が沈んでいった。",
-        "「ねえ灯台さん。海の向こうには、何があるの？」",
-        "灯台は何も答えない。ただ、遠くを照らしていた。",
-        "「そうか。自分で確かめろってことだね。」",
-        "たこ焼きは決意して、車のエンジンをかけた。",
-        "三メートル進んで、行き止まりだった。",
-        "灯台は、最後まで何も教えてくれなかった。"
-      ],
-
-      en: [
-        "At the seaside, the sun sank behind a lighthouse.",
-        "“Hey, lighthouse. What’s waiting beyond the ocean?”",
-        "It said nothing. It simply shone into the distance.",
-        "“I understand. I have to find out for myself.”",
-        "I started the truck, full of courage.",
-        "Three meters later, I reached a dead end.",
-        "The lighthouse remained profoundly unhelpful."
-      ]
-    },
-
-    {
-      id: 8,
-      jaTitle: "親切なキツネには気をつけろ。",
-      enTitle: "Beware of Friendly Foxes",
-      jaPlace: "北海道・雪原とキタキツネ",
-      enPlace: "Snowfield and Fox",
-
-      ja: [
-        "雪道で迷っていると、キタキツネが近づいてきた。",
-        "「寒そうだね。温めてあげようか？」",
-        "「え、本当に？　ありがとう！」",
-        "キツネはにっこり笑った。",
-        "「ソース、かけてもいい？」",
-        "たこ焼きはエンジン全開で逃げた。",
-        "親切と食欲は、紙一重である。"
-      ],
-
-      en: [
-        "I was lost on a snowy road when a fox approached.",
-        "“You look cold. Want me to warm you up?”",
-        "“Really? That’s so kind!”",
-        "The fox smiled.",
-        "“Would you like some sauce with that?”",
-        "I drove away at full speed.",
-        "There is a very thin line between kindness and appetite."
-      ]
-    },
-
-    {
-      id: 9,
-      jaTitle: "乗船券より先に必要なもの。",
-      enTitle: "Something More Important Than a Ticket",
-      jaPlace: "北海道・雪の港町",
-      enPlace: "Snowy Harbor",
-
-      ja: [
-        "港には大きな船が停まっていた。ようやく海を渡れる！",
-        "窓口で元気よく言った。「青森まで、一台お願いします！」",
-        "係の人は首をかしげた。",
-        "「運転手さんは？」",
-        "「僕です。」",
-        "「……たこ焼きが？」",
-        "長い沈黙のあと、係の人は申込用紙を差し出した。",
-        "職業欄に何を書けばいいのか、分からなかった。"
-      ],
-
-      en: [
-        "At the harbor, I finally found a ship. A way across the sea!",
-        "“One vehicle to Aomori, please!” I told the ticket clerk.",
-        "He tilted his head. “Who’s driving?”",
-        "“Me.”",
-        "“…A takoyaki?”",
-        "After a very long silence, he handed me a form.",
-        "I stared at the box labeled OCCUPATION.",
-        "I had never been so unsure of my career."
-      ]
-    },
-
-    {
-      id: 10,
-      jaTitle: "海が道になった、と思った。",
-      enTitle: "When the Ocean Looked Like a Road",
-      jaPlace: "北海道・流氷とアザラシ",
-      enPlace: "Drift Ice and Seals",
-
-      ja: [
-        "海に白い氷が浮かんでいた。",
-        "「これはすごい！　海が凍ってる！　もう船なんかいらない！」",
-        "たこ焼きは車を降り、氷に片足を乗せた。",
-        "アザラシがこちらを見た。",
-        "「それ、流氷だよ。動くよ。」",
-        "「え？」",
-        "氷はゆっくり沖へ流れていった。",
-        "自由って、たまに帰り道をなくすことらしい。"
-      ],
-
-      en: [
-        "White ice drifted across the sea.",
-        "“Amazing! The ocean has frozen! Who needs a boat?”",
-        "I stepped onto a piece of ice.",
-        "A seal looked up.",
-        "“That’s drift ice. It moves.”",
-        "“…Oh.”",
-        "The ice slowly carried me away from shore.",
-        "Freedom, apparently, sometimes means losing your ride home."
-      ]
-    },
-
-    {
-      id: 11,
-      jaTitle: "100万ドルの夜景、所持金0円。",
-      enTitle: "A Million-Dollar View, Zero Yen",
-      jaPlace: "北海道・函館の夜景",
-      enPlace: "Night View of Hakodate",
-
-      ja: [
-        "夜の街が、宝石のように光っていた。",
-        "鉄板の上にいたころは、こんな景色があることすら知らなかった。",
-        "「旅に出て、よかったな。」",
-        "少しだけ涙が出そうになった。",
-        "自由は、思ったよりずっと美しい。",
-        "そこで気づいた。",
-        "「……そういえば、財布を持っていない。」",
-        "100万ドルの夜景を眺める、所持金0円のたこ焼き。"
-      ],
-
-      en: [
-        "The city glittered like a box of jewels.",
-        "Back on the griddle, I never knew a view like this existed.",
-        "“I’m glad I ran away.”",
-        "For a moment, I nearly cried.",
-        "Freedom was more beautiful than I had imagined.",
-        "Then it hit me.",
-        "“…I don’t actually have a wallet.”",
-        "A million-dollar view. Zero yen in my pocket."
-      ]
-    },
-
-    {
-      id: 12,
-      jaTitle: "それでも、旅は続く。",
-      enTitle: "And Still, the Journey Goes On",
-      jaPlace: "北海道・オーロラの夜",
-      enPlace: "Aurora Night",
-
-      ja: [
-        "夜空いっぱいに、光のカーテンが広がっていた。",
-        "食べられたくなくて飛び出した、あの日の鉄板。",
-        "牛にも、じゃがいもにも、キツネにも会った。",
-        "自由になれたのかどうか、まだ分からない。",
-        "でも、ひとつだけ確かなことがある。",
-        "明日も、まだ見たことのない景色を見たい。",
-        "たこ焼きは車へ戻り、次の目的地をナビに入力した。",
-        "「青森県」",
-        "ナビが答えた。「海を渡ってください。」",
-        "「……また海か。」",
-        "旅は、まだ始まったばかりだ。"
-      ],
-
-      en: [
-        "Curtains of light stretched across the night sky.",
-        "I remembered the griddle I escaped, and everyone I had met since: a cow, a potato, a fox.",
-        "I still wasn’t sure what freedom meant.",
-        "But I knew one thing: I wanted to see another place tomorrow.",
-        "I climbed back into the truck and entered my next destination: AOMORI.",
-        "The GPS replied, “Please cross the ocean.”",
-        "“…The ocean. Again.”",
-        "My journey was only just beginning."
-      ]
-    }
-
-  ];
-
-  /* =====================================
-     公開日時・画像パス
-  ===================================== */
-
-  const pad = number =>
-    String(number).padStart(2, "0");
-
-  chapters.forEach((chapter, index) => {
-
-    chapter.image =
-      "./assets/hokkaido-" + pad(chapter.id) + ".png";
-
-    chapter.release =
-      index === 0
-        ? FIRST_RELEASE
-        : new Date(
-            Date.parse(SECOND_RELEASE) +
-            (index - 1) *
-            INTERVAL_DAYS *
-            86400000
-          ).toISOString();
-
-  });
-
-  /* =====================================
-     状態管理
-  ===================================== */
-
-  const $ = id => document.getElementById(id);
-
-  let language = "en";
-  let currentPage = 0;
-
-  try {
-    language =
-      localStorage.getItem("travel-diary-language") === "ja"
-        ? "ja"
-        : "en";
-  } catch (error) {
-    language = "en";
-  }
-
-  function escapeHTML(text) {
-    return String(text ?? "").replace(
-      /[&<>"']/g,
-      character => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      }[character])
-    );
-  }
-
-  function isPublished(chapter) {
-    return Date.now() >= Date.parse(chapter.release);
-  }
-
-  function publishedCount() {
-    return chapters.filter(isPublished).length;
-  }
-
-  function maxPage() {
-    return publishedCount() + 1;
-  }
-
-  function formatDate(iso) {
-    return new Intl.DateTimeFormat(
-      language === "ja" ? "ja-JP" : "en-GB",
+  <script>
+    const diaryPages = [
       {
-        timeZone: "Asia/Tokyo",
-        month: "short",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-      }
-    ).format(new Date(iso)) + " JST";
-  }
-
-  function paragraphs(lines) {
-    return lines.map(line =>
-      "<p>" + escapeHTML(line) + "</p>"
-    ).join("");
-  }
-
-  function chapterTitle(chapter) {
-    return language === "ja"
-      ? chapter.jaTitle
-      : chapter.enTitle;
-  }
-
-  function chapterPlace(chapter) {
-    return language === "ja"
-      ? chapter.jaPlace
-      : chapter.enPlace;
-  }
-
-  /* =====================================
-     画像読み込み・代替表示
-  ===================================== */
-
-  function setupBanner() {
-
-    const image = $("bannerImage");
-    const fallback = $("bannerFallback");
-
-    function success() {
-      image.style.display = "block";
-      fallback.style.display = "none";
-    }
-
-    function failure() {
-      image.style.display = "none";
-      fallback.style.display = "flex";
-    }
-
-    image.addEventListener("load", success);
-    image.addEventListener("error", failure);
-
-    if (image.complete) {
-      if (image.naturalWidth > 0) {
-        success();
-      } else {
-        failure();
-      }
-    }
-  }
-
-  function setupStoryImage() {
-
-    const image = $("storyImage");
-    const placeholder = $("photoPlaceholder");
-
-    if (!image || !placeholder) return;
-
-    function success() {
-      image.style.display = "block";
-      placeholder.style.display = "none";
-    }
-
-    function failure() {
-      image.style.display = "none";
-      placeholder.style.display = "flex";
-    }
-
-    image.addEventListener("load", success);
-    image.addEventListener("error", failure);
-
-    if (image.complete) {
-      if (image.naturalWidth > 0) {
-        success();
-      } else {
-        failure();
-      }
-    }
-  }
-
-  /* =====================================
-     表紙描画
-  ===================================== */
-
-  function renderCover() {
-
-    const english = language === "en";
-
-    $("diaryPage").innerHTML = `
-      <article class="cover">
-
-        <div class="cover-inner">
-
-          <div class="cover-brand">
-            TRAVELING TAKOYAKI · JAPAN 47
-          </div>
-
-          <div class="cover-decoration">✦</div>
-
-          <div class="cover-stamp">
-            ${english
-              ? "HOKKAIDO · 01 / 47"
-              : "北海道 · 01 / 47"}
-          </div>
-
-          <h1 class="cover-title ${english ? "english" : ""}">
-            ${english
-              ? "<span>TAKOYAKI</span><span>TRAVEL DIARY</span>"
-              : "<span>たこ焼き</span><span>旅日記</span>"}
-          </h1>
-
-          <div class="cover-subtitle">
-            ${english
-              ? "BEYOND THE GRIDDLE"
-              : "鉄板の向こう側へ"}
-          </div>
-
-          <p class="cover-description">
-            ${english
-              ? "One takoyaki escaped the griddle to discover the world beyond the frying pan."
-              : "毎日焼かれて食べられる人生を抜け出し、ひとつのたこ焼きが旅に出た。"}
-          </p>
-
-          <button
-            class="cover-open"
-            id="openDiary"
-            type="button">
-            ${english
-              ? "OPEN DIARY"
-              : "日記を開く"} →
-          </button>
-
-          <div class="cover-bottom">
-            ${english
-              ? "HOKKAIDO · 12 CHAPTERS"
-              : "北海道編 · 全12話"}
-          </div>
-
-        </div>
-
-      </article>
-    `;
-
-    $("openDiary").addEventListener("click", () => {
-      goToPage(1);
-    });
-  }
-
-  /* =====================================
-     本文描画
-  ===================================== */
-
-  function renderStory() {
-
-    const isPrologue = currentPage === 1;
-
-    const chapter = isPrologue
-      ? null
-      : chapters[currentPage - 2];
-
-    if (chapter && !isPublished(chapter)) {
-      currentPage = maxPage();
-      render();
-      return;
-    }
-
-    const title = isPrologue
-      ? (language === "ja"
-          ? "鉄板の向こう側"
-          : "Beyond the Griddle")
-      : chapterTitle(chapter);
-
-    const place = isPrologue
-      ? (language === "ja"
-          ? "旅のはじまり"
-          : "Before the Journey")
-      : chapterPlace(chapter);
-
-    const label = isPrologue
-      ? "PROLOGUE 00"
-      : "CHAPTER " + pad(chapter.id) + " / 12";
-
-    const lines = isPrologue
-      ? prologue[language]
-      : chapter[language];
-
-    const imagePath = isPrologue
-      ? "./assets/prologue.png"
-      : chapter.image;
-
-    const number = isPrologue
-      ? "00"
-      : pad(chapter.id);
-
-    const date = isPrologue
-      ? "01 / 47 · HOKKAIDO"
-      : formatDate(chapter.release);
-
-    $("diaryPage").innerHTML = `
-      <article class="diary-spread">
-
-        <section class="image-side">
-
-          <div class="chapter-label">
-            ${escapeHTML(label)}
-          </div>
-
-          <figure class="photo">
-
-            <div
-              class="photo-placeholder"
-              id="photoPlaceholder">
-              ${escapeHTML(place)}
-            </div>
-
-            <img
-              id="storyImage"
-              src="${escapeHTML(imagePath)}"
-              alt="${escapeHTML(place)}">
-
-            <figcaption>
-              ${escapeHTML(place)}
-            </figcaption>
-
-          </figure>
-
-        </section>
-
-        <section class="text-side">
-
-          <div class="page-meta">
-
-            <span>
-              ${escapeHTML(label)}
-            </span>
-
-            <span>
-              ${escapeHTML(date)}
-            </span>
-
-          </div>
-
-          <h2 class="diary-title">
-            ${escapeHTML(title)}
-          </h2>
-
-          <div class="title-rule"></div>
-
-          <div class="diary-text">
-            ${paragraphs(lines)}
-          </div>
-
-          <div class="page-footer">
-
-            <span>
-              ${chapter?.id === 12
-                ? "NEXT STOP · AOMORI"
-                : "TRAVELING TAKOYAKI"}
-            </span>
-
-            <span>${number}</span>
-
-          </div>
-
-        </section>
-
-      </article>
-    `;
-
-    setupStoryImage();
-  }
-
-  /* =====================================
-     ページ全体の描画
-  ===================================== */
-
-  function render() {
-
-    document.documentElement.lang = language;
-
-    $("languageBtn").textContent =
-      language === "ja"
-        ? "ENGLISH"
-        : "日本語";
-
-    $("indexBtn").textContent =
-      language === "ja"
-        ? "目次"
-        : "INDEX";
-
-    $("prevBtn").textContent =
-      language === "ja"
-        ? "← 前へ"
-        : "← PREVIOUS";
-
-    $("nextBtn").textContent =
-      language === "ja"
-        ? "次へ →"
-        : "NEXT →";
-
-    $("prevBtn").disabled =
-      currentPage === 0;
-
-    $("nextBtn").disabled =
-      currentPage >= maxPage();
-
-    const element = $("diaryPage");
-
-    element.classList.remove("flipping");
-
-    void element.offsetWidth;
-
-    element.classList.add("flipping");
-
-    if (currentPage === 0) {
-      renderCover();
-    } else {
-      renderStory();
-    }
-
-    if (currentPage === 0) {
-
-      $("pageIndicator").textContent =
-        language === "ja"
-          ? "表紙"
-          : "COVER";
-
-    } else if (currentPage === 1) {
-
-      $("pageIndicator").textContent =
-        language === "ja"
-          ? "プロローグ"
-          : "PROLOGUE";
-
-    } else {
-
-      $("pageIndicator").textContent =
-        "CHAPTER " +
-        pad(currentPage - 1) +
-        " / 12";
-    }
-
-    const count = publishedCount();
-
-    if (count < chapters.length) {
-
-      $("nextRelease").textContent =
-        (language === "ja"
-          ? "次の公開："
-          : "NEXT: ") +
-        formatDate(chapters[count].release);
-
-    } else {
-
-      $("nextRelease").textContent =
-        language === "ja"
-          ? "北海道編 完結"
-          : "HOKKAIDO COMPLETE";
-    }
-
-    /* URLのページ番号 */
-
-    try {
-
-      const hash = currentPage === 0
-        ? ""
-        : "#page-" + currentPage;
-
-      history.replaceState(
-        null,
-        "",
-        location.pathname +
-        location.search +
-        hash
-      );
-
-    } catch (error) {
-      // ローカル表示でも動作を続ける
-    }
-  }
-
-  /* =====================================
-     ページ移動
-  ===================================== */
-
-  function goToPage(targetPage) {
-
-    if (
-      targetPage < 0 ||
-      targetPage > maxPage()
-    ) {
-      return;
-    }
-
-    currentPage = targetPage;
-
-    render();
-
-    $("notebook").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }
-
-  /* =====================================
-     目次
-  ===================================== */
-
-  function openIndex() {
-
-    const items = [
-      {
-        page: 1,
-
-        title: language === "ja"
-          ? "鉄板の向こう側"
-          : "Beyond the Griddle",
-
-        label: "PROLOGUE 00",
-        open: true,
-        release: null
+        id: "cover",
+        type: "cover",
+        labelJa: "カバー",
+        labelEn: "Cover",
+        topLineJa: "旅するたこ焼き・JAPAN 47",
+        topLineEn: "TRAVELING TAKOYAKI · JAPAN 47",
+        stampJa: "北海道・01 / 47",
+        stampEn: "HOKKAIDO · 01 / 47",
+        titleJa: "たこ焼き\n旅行記",
+        titleEn: "TAKOYAKI\nTRAVEL DIARY",
+        subtitleJa: "鉄板の向こう側へ",
+        subtitleEn: "Beyond the Iron Plate",
+        leadJa: "毎日焼かれて食べられる人生を抜け出し、ひとつのたこ焼きが旅に出た。",
+        leadEn: "Escaping a life of being cooked and eaten every day, one takoyaki begins a journey.",
+        openTextJa: "日記を開く →",
+        openTextEn: "OPEN DIARY →",
+        footJa: "北海道・全12章",
+        footEn: "Hokkaido · 12 chapters"
       },
-
-      ...chapters.map(chapter => ({
-        page: chapter.id + 1,
-        title: chapterTitle(chapter),
-        label: "CHAPTER " + pad(chapter.id),
-        open: isPublished(chapter),
-        release: chapter.release
-      }))
+      {
+        id: "prologue-00",
+        type: "story",
+        labelJa: "プロローグ",
+        labelEn: "Prologue",
+        chapterJa: "PROLOGUE 00",
+        chapterEn: "PROLOGUE 00",
+        metaRightJa: "01 / 47 ・ 北海道",
+        metaRightEn: "01 / 47 · HOKKAIDO",
+        titleJa: "鉄板の向こう側",
+        titleEn: "Beyond the Iron Plate",
+        image: "./images/prologue-takoyaki-griddle.png",
+        imageCaptionJa: "旅の前に",
+        imageCaptionEn: "Before the Journey",
+        linesJa: [
+          "毎日、鉄板の上で焼かれる。",
+          "くるくるひっくり返されて、ソースを塗られて、",
+          "最後は誰かのお腹の中へ。",
+          "それが、たこ焼きの人生だった。",
+          "でも、ある日、ひとつのたこ焼きが思った。",
+          "「もっと広い世界を旅したい。」",
+          "そして次の瞬間——ぽーーーーん！",
+          "鉄板から飛び出した。自由だ！",
+          "……着地した先は、たこ焼きカーの屋根だった。",
+          "「結局、たこ焼き屋からは逃げられないのか。」",
+          "それでもエンジンは動き出した。",
+          "最初の目的地は、北海道。"
+        ],
+        linesEn: [
+          "Every day, it was cooked on the iron plate.",
+          "Flipped and turned, brushed with sauce,",
+          "and finally sent into someone’s stomach.",
+          "That was the life of a takoyaki.",
+          "But one day, one takoyaki had a thought.",
+          "\"I want to see a bigger world.\"",
+          "Then, in the very next instant—boiiing!",
+          "It jumped off the iron plate. Freedom!",
+          "…and landed on the roof of the takoyaki truck.",
+          "\"So I still couldn't escape the takoyaki life?\"",
+          "Even so, the engine began to move.",
+          "The first destination: Hokkaido."
+        ],
+        emphasisJa: [11],
+        emphasisEn: [11],
+        footerLeftJa: "TRAVELING TAKOYAKI",
+        footerLeftEn: "TRAVELING TAKOYAKI",
+        footerRightJa: "00",
+        footerRightEn: "00"
+      },
+      {
+        id: "chapter-01",
+        type: "story",
+        labelJa: "第1話",
+        labelEn: "Chapter 01",
+        chapterJa: "CHAPTER 01 / 12",
+        chapterEn: "CHAPTER 01 / 12",
+        metaRightJa: "11月1日 00:00 JST",
+        metaRightEn: "Nov 1, 00:00 JST",
+        titleJa: "牛に人生相談をしてみた。",
+        titleEn: "I Asked a Cow for Life Advice.",
+        image: "./images/hokkaido-farm.png",
+        imageCaptionJa: "北海道・牧場",
+        imageCaptionEn: "Hokkaido · Farm",
+        linesJa: [
+          "鉄板を飛び出して、はじめてたどり着いたのは北海道。",
+          "空が広い。草も広い。牛も、やたら落ち着いている。",
+          "たこ焼きは思わず、近くの牛に話しかけた。",
+          "「はじめまして。旅をしているたこ焼きです。」",
+          "牛は、もぐもぐしながらこちらを見た。",
+          "「そう。」",
+          "会話が短い。でも、なんだか深い。",
+          "たこ焼きは続けた。",
+          "「ぼくは、これから47都道府県を旅します。」",
+          "「へえ。」",
+          "「どうしたら立派なたこ焼きになれますか？」",
+          "牛は少しだけ考えて、こう言った。",
+          "「急がないこと。」",
+          "たこ焼きは、そのひと言に妙に納得してしまった。"
+        ],
+        linesEn: [
+          "After leaping from the iron plate,",
+          "the first place it reached was Hokkaido.",
+          "The sky was wide. The grass was endless.",
+          "Even the cows looked incredibly calm.",
+          "So the takoyaki spoke to a nearby cow.",
+          "\"Hello. I'm a traveling takoyaki.\"",
+          "The cow kept chewing and looked over.",
+          "\"I see.\"",
+          "A short answer. Yet somehow profound.",
+          "The takoyaki continued,",
+          "\"I'm going to travel all 47 prefectures.\"",
+          "\"Hmm.\"",
+          "\"How can I become a great takoyaki?\"",
+          "The cow thought for a moment and said:",
+          "\"Don't rush.\""
+        ],
+        emphasisJa: [],
+        emphasisEn: [],
+        footerLeftJa: "TRAVELING TAKOYAKI",
+        footerLeftEn: "TRAVELING TAKOYAKI",
+        footerRightJa: "01",
+        footerRightEn: "01"
+      }
     ];
 
-    $("chapterList").innerHTML =
-      items.map(item => `
-        <button
-          class="chapter-item ${item.open ? "" : "locked"}"
-          type="button"
-          data-page="${item.page}"
-          ${item.open ? "" : "disabled"}>
+    let currentLang = "ja";
+    let currentIndex = 0;
 
-          <small>
-            ${item.open ? "📖" : "🔒"}
-            ${escapeHTML(item.label)}
-          </small>
+    const pageMount = document.getElementById("pageMount");
+    const siteTitle = document.getElementById("siteTitle");
+    const footerMain = document.getElementById("footerMain");
+    const footerSub = document.getElementById("footerSub");
+    const tocBtn = document.getElementById("tocBtn");
+    const langBtn = document.getElementById("langBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const pageStatus = document.getElementById("pageStatus");
 
-          <strong>
-            ${escapeHTML(item.title)}
-          </strong>
+    const tocModal = document.getElementById("tocModal");
+    const tocTitle = document.getElementById("tocTitle");
+    const tocList = document.getElementById("tocList");
+    const tocClose = document.getElementById("tocClose");
 
-          ${item.release
-            ? `<small>${escapeHTML(formatDate(item.release))}</small>`
-            : ""}
+    function t(ja, en){
+      return currentLang === "ja" ? ja : en;
+    }
 
+    function makeLineClass(index, emphasisList){
+      return emphasisList.includes(index) ? "text-line em" : "text-line";
+    }
+
+    function renderCover(page){
+      return `
+        <section class="notebook-shell">
+          <div class="ring-column"></div>
+          <div class="page-area">
+            <div class="page-panel cover-page">
+              <div class="cover-frame">
+                <div class="cover-topline">${currentLang === "ja" ? page.topLineJa : page.topLineEn}</div>
+                <div class="cover-stamp">${currentLang === "ja" ? page.stampJa : page.stampEn}</div>
+
+                <h1 class="cover-title">
+                  ${(currentLang === "ja" ? page.titleJa : page.titleEn).replace(/\n/g, "<br>")}
+                </h1>
+
+                <div class="cover-subtitle">${currentLang === "ja" ? page.subtitleJa : page.subtitleEn}</div>
+                <div class="cover-lead">${currentLang === "ja" ? page.leadJa : page.leadEn}</div>
+
+                <button class="cover-open" onclick="goToPage(1)">
+                  ${currentLang === "ja" ? page.openTextJa : page.openTextEn}
+                </button>
+
+                <div class="cover-foot">${currentLang === "ja" ? page.footJa : page.footEn}</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderStory(page){
+      const lines = currentLang === "ja" ? page.linesJa : page.linesEn;
+      const emphasis = currentLang === "ja" ? page.emphasisJa : page.emphasisEn;
+
+      return `
+        <section class="notebook-shell">
+          <div class="ring-column"></div>
+
+          <div class="page-area">
+            <div class="page-panel story-page">
+              <div class="photo-wrap">
+                <div class="photo-card">
+                  <img src="${page.image}" alt="${currentLang === "ja" ? page.imageCaptionJa : page.imageCaptionEn}">
+                  <div class="photo-caption">${currentLang === "ja" ? page.imageCaptionJa : page.imageCaptionEn}</div>
+                </div>
+              </div>
+
+              <div class="story-body">
+                <div class="story-head">
+                  <div>${currentLang === "ja" ? page.chapterJa : page.chapterEn}</div>
+                  <div>${currentLang === "ja" ? page.metaRightJa : page.metaRightEn}</div>
+                </div>
+
+                <div class="story-title">${currentLang === "ja" ? page.titleJa : page.titleEn}</div>
+                <div class="story-accent"></div>
+
+                <div class="story-lines">
+                  ${lines.map((line, i) => `
+                    <div class="${makeLineClass(i, emphasis)}">${line}</div>
+                  `).join("")}
+                </div>
+
+                <div class="story-bottom-meta">
+                  <div>${currentLang === "ja" ? page.footerLeftJa : page.footerLeftEn}</div>
+                  <div>${currentLang === "ja" ? page.footerRightJa : page.footerRightEn}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderPage(){
+      const page = diaryPages[currentIndex];
+
+      pageMount.innerHTML = page.type === "cover"
+        ? renderCover(page)
+        : renderStory(page);
+
+      siteTitle.textContent = currentLang === "ja" ? "旅行記" : "TRAVEL DIARY";
+      tocBtn.textContent = currentLang === "ja" ? "目次" : "TOC";
+      langBtn.textContent = currentLang === "ja" ? "ENGLISH" : "日本語";
+
+      prevBtn.textContent = currentLang === "ja" ? "← 前へ" : "← PREV";
+      nextBtn.textContent = currentLang === "ja" ? "次へ →" : "NEXT →";
+
+      footerMain.textContent = "ONE TAKOYAKI. 47 PREFECTURES. AN IMPOSSIBLE ROAD TRIP. 🐙🚚";
+      footerSub.textContent = currentLang === "ja"
+        ? "© TRAVELING TAKOYAKI ・ Fictional story ・ 2日おきに新しいページが開きます"
+        : "© TRAVELING TAKOYAKI · Fictional story · A new chapter opens every 2 days";
+
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === diaryPages.length - 1;
+
+      pageStatus.innerHTML = `
+        <div>${currentLang === "ja" ? diaryPages[currentIndex].labelJa : diaryPages[currentIndex].labelEn}</div>
+        <div style="opacity:.9;">
+          ${currentLang === "ja"
+            ? "北海道編・2日おき更新"
+            : "Hokkaido arc · Updates every 2 days"}
+        </div>
+      `;
+    }
+
+    function renderTOC(){
+      tocTitle.textContent = currentLang === "ja" ? "目次" : "Table of Contents";
+      tocClose.textContent = currentLang === "ja" ? "閉じる" : "CLOSE";
+
+      tocList.innerHTML = diaryPages.map((page, index) => `
+        <button class="toc-item" onclick="selectFromToc(${index})">
+          ${currentLang === "ja" ? page.labelJa : page.labelEn}
         </button>
       `).join("");
-
-    $("chapterList")
-      .querySelectorAll("[data-page]")
-      .forEach(button => {
-
-        button.addEventListener("click", () => {
-
-          closeIndex();
-
-          goToPage(
-            Number(button.dataset.page)
-          );
-        });
-
-      });
-
-    $("indexTitle").textContent =
-      language === "ja"
-        ? "旅の目次"
-        : "INDEX";
-
-    $("indexModal").classList.add("open");
-
-    $("closeIndex").focus();
-  }
-
-  function closeIndex() {
-    $("indexModal").classList.remove("open");
-  }
-
-  /* =====================================
-     ボタン操作
-  ===================================== */
-
-  $("prevBtn").addEventListener("click", () => {
-    goToPage(currentPage - 1);
-  });
-
-  $("nextBtn").addEventListener("click", () => {
-    goToPage(currentPage + 1);
-  });
-
-  $("indexBtn").addEventListener(
-    "click",
-    openIndex
-  );
-
-  $("closeIndex").addEventListener(
-    "click",
-    closeIndex
-  );
-
-  $("indexModal").addEventListener(
-    "click",
-    event => {
-
-      if (event.target === $("indexModal")) {
-        closeIndex();
-      }
-
-    }
-  );
-
-  /* =====================================
-     日本語 / 英語 切替
-  ===================================== */
-
-  $("languageBtn").addEventListener(
-    "click",
-    () => {
-
-      language =
-        language === "ja" ? "en" : "ja";
-
-      try {
-        localStorage.setItem(
-          "travel-diary-language",
-          language
-        );
-      } catch (error) {}
-
-      render();
-    }
-  );
-
-  /* =====================================
-     キーボード操作
-  ===================================== */
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if (event.key === "Escape") {
-        closeIndex();
-        return;
-      }
-
-      if (
-        $("indexModal").classList.contains("open")
-      ) {
-        return;
-      }
-
-      if (event.key === "ArrowRight") {
-        goToPage(currentPage + 1);
-      }
-
-      if (event.key === "ArrowLeft") {
-        goToPage(currentPage - 1);
-      }
-
-    }
-  );
-
-  /* =====================================
-     スマホのスワイプ
-  ===================================== */
-
-  let touchStartX = null;
-
-  $("diaryPage").addEventListener(
-    "touchstart",
-    event => {
-
-      touchStartX =
-        event.touches[0].clientX;
-
-    },
-    { passive: true }
-  );
-
-  $("diaryPage").addEventListener(
-    "touchend",
-    event => {
-
-      if (touchStartX === null) return;
-
-      const distance =
-        event.changedTouches[0].clientX -
-        touchStartX;
-
-      touchStartX = null;
-
-      if (Math.abs(distance) > 85) {
-        goToPage(
-          currentPage +
-          (distance < 0 ? 1 : -1)
-        );
-      }
-
-    },
-    { passive: true }
-  );
-
-  /* =====================================
-     初期化
-  ===================================== */
-
-  setupBanner();
-
-  const hashMatch =
-    location.hash.match(/^#page-(\d+)$/);
-
-  currentPage = Math.min(
-    hashMatch
-      ? Number(hashMatch[1])
-      : 0,
-    maxPage()
-  );
-
-  render();
-
-  /* =====================================
-     新しい話の公開チェック
-  ===================================== */
-
-  let lastPublished = publishedCount();
-
-  setInterval(() => {
-
-    const count = publishedCount();
-
-    if (count !== lastPublished) {
-
-      lastPublished = count;
-
-      render();
     }
 
-  }, 60000);
+    function goToPage(index){
+      currentIndex = index;
+      renderPage();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-})();
-</script>
+    function selectFromToc(index){
+      currentIndex = index;
+      tocModal.classList.remove("show");
+      renderPage();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
+    function toggleLang(){
+      currentLang = currentLang === "ja" ? "en" : "ja";
+      renderPage();
+      renderTOC();
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if(currentIndex > 0){
+        currentIndex--;
+        renderPage();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if(currentIndex < diaryPages.length - 1){
+        currentIndex++;
+        renderPage();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+
+    tocBtn.addEventListener("click", () => {
+      renderTOC();
+      tocModal.classList.add("show");
+    });
+
+    tocClose.addEventListener("click", () => {
+      tocModal.classList.remove("show");
+    });
+
+    tocModal.addEventListener("click", (e) => {
+      if(e.target === tocModal){
+        tocModal.classList.remove("show");
+      }
+    });
+
+    langBtn.addEventListener("click", toggleLang);
+
+    renderPage();
+    renderTOC();
+
+    // グローバル公開（インライン onclick 用）
+    window.goToPage = goToPage;
+    window.selectFromToc = selectFromToc;
+  </script>
 </body>
 </html>
