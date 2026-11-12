@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#11283b">
+<meta name="description" content="TRAVELING TAKOYAKI — One takoyaki, 47 prefectures, an impossible road trip.">
+
+<title>TRAVEL DIARY | TRAVELING TAKOYAKI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./travel-diary.css">
+<script src="./travel-diary.js" defer></script>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+
+<header class="header">
+  <div class="brand">TRAVEL DIARY</div>
+
+  <nav class="head-actions" aria-label="Diary navigation">
+    <button class="head-btn" id="tocBtn" type="button">
+      INDEX
+    </button>
+
+    <button class="head-btn" id="langBtn" type="button">
+      日本語
+    </button>
+
+    <a
+      class="head-btn home-btn"
+      href="https://japan47pixel.net/"
+      aria-label="Official site"
+    >⌂</a>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+
+<section class="hero" id="hero">
+  <img
+    src="./assets/cover.png"
+    id="heroImg"
+    alt="TRAVELING TAKOYAKI — JAPAN 47 JOURNEY"
+  >
+
+  <div class="hero-fallback" id="heroFallback">
+    TRAVELING TAKOYAKI · JAPAN 47
+  </div>
+</section>
+
+<!-- ===== NOTEBOOK ===== -->
+
+<main class="container">
+
+  <section
+    class="notebook"
+    id="notebook"
+    aria-label="Travel diary"
+  >
+
+    <!-- 右端の県別しおり -->
+    <nav
+      class="bookmark-tabs"
+      id="bookmarkTabs"
+      aria-label="Prefecture bookmarks"
+      hidden
+    ></nav>
+
+    <!-- ページ表示 -->
+    <div class="page" id="page">
+
+      <section class="cover">
+        <h1>TAKOYAKI TRAVEL DIARY</h1>
+      </section>
+
+    </div>
+
+  </section>
+
+  <!-- ===== PAGE NAVIGATION ===== -->
+
+  <nav class="pager" aria-label="Page navigation">
+
+    <button
+      class="navbtn"
+      id="prev"
+      type="button"
+    >
+      ← PREVIOUS
+    </button>
+
+    <div class="status">
+      <span id="pageNumber">COVER</span>
+      <small id="releaseInfo"></small>
+    </div>
+
+    <button
+      class="navbtn"
+      id="next"
+      type="button"
+    >
+      NEXT →
+    </button>
+
+  </nav>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+
+<footer class="footer">
+  © TRAVELING TAKOYAKI
+</footer>
+
+<!-- ===== CHAPTER INDEX MODAL ===== -->
+
+<div
+  class="overlay"
+  id="overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="tocTitle"
+  hidden
+>
+
+  <section class="toc">
+
+    <div class="toc-head">
+
+      <h2 id="tocTitle">INDEX</h2>
+
+      <button
+        id="tocClose"
+        type="button"
+        class="close"
+        aria-label="Close index"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="toc-items" id="tocItems"></div>
+
+  </section>
+
+</div>
+
+</body>
+</html>
