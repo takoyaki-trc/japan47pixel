@@ -1,8 +1,7 @@
 
 /* =====================================================
-   TRAVELING TAKOYAKI — TRAVEL DIARY
-   47 PREFECTURES EDITION
-   Vintage Travel Notebook Design
+   TRAVELING TAKOYAKI
+   TRAVEL DIARY — JAPAN 47 JOURNEY
    ===================================================== */
 
 :root {
@@ -11,14 +10,9 @@
   --paper:#fffaf0;
   --red:#b74432;
   --rule:#ddd0bb;
-  --craft:#d3ac7b;
-  --craft-dark:#895a37;
-  --muted:#806c51;
-
   --jp:'Zen Maru Gothic',
        'Hiragino Maru Gothic ProN',
        system-ui,sans-serif;
-
   --en:'Fredoka',
        'Zen Maru Gothic',
        system-ui,sans-serif;
@@ -72,12 +66,10 @@ a:focus-visible {
   width:min(1050px,100%);
   margin:auto;
   padding:13px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:7px;
-
   color:white;
 }
 
@@ -98,20 +90,15 @@ a:focus-visible {
   height:40px;
   min-width:42px;
   padding:0 11px;
-
   border:2px solid #0b1116;
   background:#fff9ed;
   color:#1d1a18;
-
   box-shadow:3px 3px 0 #07131c;
   border-radius:0;
-
   text-decoration:none;
-
   display:inline-flex;
   align-items:center;
   justify-content:center;
-
   font-size:12px;
   font-weight:900;
   white-space:nowrap;
@@ -149,14 +136,11 @@ a:focus-visible {
 .hero-fallback {
   display:none;
   min-height:145px;
-
   align-items:center;
   justify-content:center;
   text-align:center;
-
   padding:22px;
   color:white;
-
   font:700 clamp(23px,5vw,45px)/1.2 var(--en);
 }
 
@@ -172,42 +156,34 @@ a:focus-visible {
 
 .notebook {
   position:relative;
-
   margin:22px 0 15px;
   padding:13px 13px 13px 43px;
-
-  border:7px solid var(--craft-dark);
+  border:7px solid #895a37;
   border-radius:17px;
-
   background:linear-gradient(
     130deg,
     #e9c790,
     #c8955d
   );
-
   box-shadow:
     0 14px 33px #0006,
     inset 0 0 0 4px #f2d6a5;
 }
 
-/* 四角いリング穴 */
+/* Notebook binding */
 
 .notebook::before {
   content:'';
-
   position:absolute;
   top:18px;
   bottom:18px;
   left:14px;
-
   width:18px;
-
   background:repeating-linear-gradient(
     to bottom,
     #5c422b 0 14px,
     #f4d39c 14px 37px
   );
-
   box-shadow:
     inset 2px 2px 2px #25170c77,
     1px 0 #f7ddac;
@@ -238,22 +214,19 @@ a:focus-visible {
 }
 
 /* =====================================================
-   COVER
+   CRAFT PAPER COVER
    ===================================================== */
 
 .cover {
   position:relative;
   min-height:590px;
   padding:46px 22px;
-
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   text-align:center;
-
-  background-color:var(--craft);
-
+  background-color:#d3ac7b;
   background-image:
     radial-gradient(
       #815c3526 1px,
@@ -271,17 +244,14 @@ a:focus-visible {
       #d2ad7f 55%,
       #c29965
     );
-
   background-size:16px 19px,auto,auto;
 }
 
 .cover::before {
   content:'';
   pointer-events:none;
-
   position:absolute;
   inset:16px;
-
   border:3px double #795638;
 }
 
@@ -305,29 +275,21 @@ a:focus-visible {
 .stamp {
   border:3px solid #ab4534;
   color:#ab4534;
-
   padding:7px 15px;
-
   font-weight:900;
   letter-spacing:.08em;
-
   transform:rotate(-5deg);
-
   margin:6px 0 25px;
-
   font-size:clamp(15px,3vw,22px);
 }
 
 .cover h1 {
   margin:0;
-
   font-family:var(--jp);
   font-size:clamp(38px,7.8vw,75px);
   font-weight:900;
-
   line-height:1.12;
   letter-spacing:-.045em;
-
   color:#372719;
 }
 
@@ -344,11 +306,8 @@ a:focus-visible {
 .cover-subtitle {
   color:#9e4234;
   font-weight:900;
-
   font-size:clamp(18px,3.5vw,28px);
-
   margin-top:20px;
-
   border-top:1px solid #866343;
   padding-top:14px;
   width:86%;
@@ -357,7 +316,6 @@ a:focus-visible {
 .cover-description {
   max-width:480px;
   margin:23px 0 0;
-
   line-height:1.72;
   font-size:15px;
   font-weight:700;
@@ -365,21 +323,17 @@ a:focus-visible {
 
 .open-btn {
   margin-top:26px;
-
   background:#c44834;
   border:3px solid #3e241a;
   color:white;
-
   box-shadow:4px 4px 0 #593b29;
-
   font-weight:900;
   font-size:18px;
-
   padding:12px 24px;
 }
 
 .open-btn:hover {
-  background:#a93829;
+  background:#a93a29;
 }
 
 .cover-foot {
@@ -390,58 +344,59 @@ a:focus-visible {
 }
 
 /* =====================================================
-   47 PREFECTURES INDEX
+   JAPAN 47 INDEX
    ===================================================== */
 
 .journey-index {
-  min-height:590px;
-  padding:34px 32px 38px;
-
+  padding:37px 38px 45px;
+  min-height:570px;
   background:
     repeating-linear-gradient(
       0deg,
-      transparent 0 31px,
-      #e9ddc9 32px
+      transparent 0 30px,
+      #bda98a15 31px 32px
     ),
     #fffaf0;
 }
 
 .index-heading {
   text-align:center;
-  margin-bottom:25px;
 }
 
 .index-kicker {
   font:700 12px var(--en);
+  color:#97785a;
   letter-spacing:.13em;
-  color:#a44a37;
 }
 
 .index-heading h2 {
-  margin:8px 0 4px;
-
-  font-size:clamp(29px,5vw,43px);
-  font-weight:900;
-
-  color:#39291b;
+  margin:10px 0 3px;
+  font-family:var(--en);
+  font-size:clamp(28px,5vw,45px);
+  line-height:1.15;
+  color:#38291d;
 }
 
 .index-subtitle {
-  font:700 12px var(--en);
-  color:#92765b;
-  letter-spacing:.09em;
+  font:700 13px var(--en);
+  color:#aa4b3b;
+  letter-spacing:.13em;
 }
 
 .index-rule {
-  margin:20px auto;
-  width:70%;
-  height:2px;
-  background:#c7aa83;
+  height:3px;
+  width:100px;
+  background:#b74432;
+  margin:21px auto 27px;
 }
 
+/* Journey progress */
+
 .journey-progress {
-  max-width:510px;
-  margin:0 auto 25px;
+  padding:16px 19px;
+  border:1px solid #cdb99a;
+  background:#f3e7d1;
+  margin-bottom:31px;
 }
 
 .progress-label {
@@ -449,72 +404,61 @@ a:focus-visible {
   justify-content:space-between;
   align-items:center;
   gap:10px;
-
   font-size:12px;
   font-weight:900;
-
-  color:#765a40;
 }
 
 .progress-label strong {
-  color:#b74432;
-  font:700 17px var(--en);
+  font-family:var(--en);
+  font-size:17px;
+  color:#a84232;
 }
 
 .progress-track {
-  height:9px;
-  margin-top:9px;
-
-  background:#e4d4b9;
-  border:1px solid #c4a680;
-  border-radius:20px;
-
+  width:100%;
+  height:11px;
+  margin-top:10px;
+  border:1px solid #aa9272;
+  background:#e1d0b3;
   overflow:hidden;
 }
 
 .progress-fill {
-  width:0;
   height:100%;
-
-  background:repeating-linear-gradient(
-    45deg,
-    #b74432 0 8px,
-    #c85b46 8px 16px
-  );
-
-  transition:width .35s ease;
+  width:0;
+  background:#b74432;
+  transition:width .3s ease;
 }
 
-/* 地域見出し */
+/* Region groups */
 
 .region-group {
-  margin:26px 0 0;
+  margin-top:29px;
 }
 
 .region-heading {
   display:flex;
   align-items:center;
-  gap:10px;
-
-  margin-bottom:11px;
-}
-
-.region-heading h3 {
-  margin:0;
-
-  color:#684b32;
-  font-size:15px;
-  font-weight:900;
+  gap:12px;
+  margin-bottom:12px;
 }
 
 .region-heading::after {
   content:'';
-  flex:1;
   height:1px;
-  background:#cdb695;
+  background:#cbb899;
+  flex:1;
 }
 
-/* 都道府県一覧 */
+.region-heading h3 {
+  margin:0;
+  font-family:var(--en);
+  font-size:17px;
+  color:#785a3e;
+  letter-spacing:.04em;
+}
+
+/* Prefecture cards */
 
 .prefecture-grid {
   display:grid;
@@ -524,298 +468,266 @@ a:focus-visible {
 
 .prefecture-entry {
   position:relative;
-
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
   min-width:0;
-  min-height:90px;
-
-  padding:13px 11px;
-
+  min-height:108px;
+  padding:13px 12px;
   background:#fffdf7;
-  border:1px solid #cdb99b;
-
-  color:#38291d;
+  border:1px solid #c9ad85;
   text-align:left;
-
-  box-shadow:2px 3px 0 #c9b79c;
+  color:#392a1d;
+  box-shadow:2px 3px 0 #d8c4a5;
   transition:
-    transform .15s,
-    background .15s;
+    background .2s,
+    transform .2s;
 }
 
 .prefecture-entry:not(:disabled):hover {
-  background:#f6e7d1;
+  background:#f5e5c9;
   transform:translateY(-2px);
 }
 
-.prefecture-number {
-  display:block;
-  margin-bottom:5px;
+.prefecture-entry.locked {
+  background:#eae0d0;
+  color:#97866f;
+  opacity:.85;
+  box-shadow:none;
+}
 
+.prefecture-number {
   font:700 11px var(--en);
-  color:#a44b39;
+  color:#b34835;
+  margin-bottom:7px;
+}
+
+.prefecture-entry.locked .prefecture-number {
+  color:#9c8b78;
 }
 
 .prefecture-name {
-  display:block;
-
-  font-size:16px;
+  font-size:clamp(12px,1.7vw,16px);
   font-weight:900;
-  line-height:1.35;
-}
-
-.prefecture-en {
-  display:block;
-
-  margin-top:3px;
-
-  font:700 10px var(--en);
-  color:#90775c;
-
   overflow-wrap:anywhere;
 }
 
-.prefecture-entry.locked {
-  background:#eee6d8;
-  border-color:#d4c8b7;
-  box-shadow:none;
-
-  color:#9b8d7c;
-  opacity:.8;
-}
-
-.prefecture-entry.locked
-.prefecture-number,
-.prefecture-entry.locked
 .prefecture-en {
-  color:#aaa093;
+  margin-top:5px;
+  font:700 10px var(--en);
+  color:#92765a;
+  overflow-wrap:anywhere;
 }
-
-/* 訪問済みスタンプ */
 
 .visited-stamp {
-  position:absolute;
-  top:7px;
-  right:6px;
-
-  padding:2px 5px;
-
+  align-self:flex-end;
+  margin-top:8px;
   border:2px solid #b74432;
   color:#b74432;
-
+  padding:2px 5px;
   font:700 9px var(--en);
-  letter-spacing:.04em;
-
-  transform:rotate(-9deg);
-  opacity:.85;
-
-  pointer-events:none;
+  transform:rotate(-5deg);
 }
 
 .lock-mark {
   position:absolute;
-  top:8px;
-  right:8px;
-
+  top:10px;
+  right:10px;
   font-size:13px;
-  opacity:.6;
 }
 
 .index-bottom {
   text-align:center;
-  margin-top:32px;
-
-  font-size:12px;
+  margin-top:38px;
+  padding-top:20px;
+  border-top:1px solid #d4bea0;
+  font-size:13px;
   font-weight:700;
-  color:#80694f;
+  color:#846b50;
 }
 
 /* =====================================================
-   PREFECTURE INTRO / CHAPTER INDEX
+   PREFECTURE INTRO PAGE
    ===================================================== */
 
 .prefecture-cover {
+  position:relative;
   min-height:570px;
-  padding:40px 30px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
+  padding:47px 40px;
   text-align:center;
-
   background:
     radial-gradient(
-      #86603a20 1px,
+      #ad8c6620 1px,
       transparent 1px
     ),
-    linear-gradient(
-      145deg,
-      #fff8e9,
-      #ead5b1
-    );
+    #fff8e9;
+  background-size:17px 17px;
+}
 
-  background-size:18px 18px,auto;
+.prefecture-cover::before {
+  content:'';
+  position:absolute;
+  inset:16px;
+  border:2px solid #d2b894;
+  pointer-events:none;
+}
+
+.prefecture-cover > * {
+  position:relative;
 }
 
 .prefecture-stop {
-  font:700 14px var(--en);
+  display:inline-block;
+  border:2px solid #b74432;
+  padding:8px 17px;
   color:#b74432;
-  letter-spacing:.12em;
+  font:700 15px var(--en);
+  letter-spacing:.08em;
+  transform:rotate(-4deg);
+  margin:15px 0 26px;
 }
 
 .prefecture-cover h2 {
-  margin:14px 0 0;
-
-  font-size:clamp(43px,8vw,75px);
+  margin:0;
+  font-size:clamp(37px,7vw,65px);
   font-weight:900;
-
-  color:#3c2b1d;
+  line-height:1.2;
+  color:#38291d;
 }
 
 .prefecture-roman {
-  margin-top:6px;
-
-  font:700 clamp(20px,4vw,31px) var(--en);
-  color:#a44b37;
-
-  letter-spacing:.09em;
+  font:700 clamp(20px,4vw,32px) var(--en);
+  color:#a84836;
+  letter-spacing:.08em;
+  margin-top:12px;
 }
 
 .prefecture-description {
-  max-width:490px;
-
-  margin:22px auto;
-
-  font-size:14px;
+  max-width:550px;
+  margin:25px auto;
+  line-height:1.9;
+  font-size:15px;
   font-weight:700;
-  line-height:1.8;
-
-  color:#72583d;
 }
 
 .prefecture-chapters {
-  width:min(540px,100%);
-  margin:18px auto 0;
-
+  max-width:570px;
+  margin:35px auto 0;
   text-align:left;
+  border-top:2px solid #bfa17a;
+  padding-top:17px;
 }
 
 .prefecture-chapters h3 {
-  margin:0 0 13px;
-
-  padding-bottom:9px;
-  border-bottom:2px solid #bca17b;
-
-  font-size:16px;
-  font-weight:900;
+  margin:0 0 14px;
+  font:700 17px var(--en);
+  color:#805e43;
 }
 
 .chapter-entry {
   width:100%;
-
+  min-height:51px;
   display:flex;
   align-items:center;
-  gap:12px;
-
-  padding:11px 8px;
-
+  gap:13px;
+  padding:11px 9px;
   background:transparent;
   border:0;
-  border-bottom:1px solid #d7c4a5;
-
-  color:#38291d;
+  border-bottom:1px solid #d8c4a6;
+  color:#3c2c1f;
   text-align:left;
-
-  font-size:13px;
-  font-weight:700;
 }
 
-.chapter-entry:hover:not(:disabled) {
-  background:#ead7b8;
+.chapter-entry:not(:disabled):hover {
+  background:#f1e1c7;
 }
 
 .chapter-entry:disabled {
-  color:#a39582;
+  opacity:.55;
 }
 
 .chapter-entry-number {
-  min-width:35px;
+  font:700 13px var(--en);
   color:#b74432;
-  font:700 12px var(--en);
+  min-width:27px;
 }
 
 .chapter-entry-title {
   flex:1;
+  min-width:0;
+  font-size:14px;
+  font-weight:700;
+  overflow-wrap:anywhere;
 }
 
 .chapter-entry-lock {
-  font-size:12px;
+  font-size:14px;
+  flex-shrink:0;
 }
 
 /* =====================================================
-   BOOKMARK TABS
+   PREFECTURE BOOKMARK TABS
    ===================================================== */
 
 .bookmark-tabs {
   position:absolute;
-  z-index:10;
-
-  top:45px;
+  top:35px;
   right:-7px;
-
+  z-index:5;
   display:flex;
   flex-direction:column;
-  gap:5px;
-
-  max-width:85px;
+  align-items:flex-end;
+  gap:7px;
+  max-width:95px;
 }
 
 .bookmark-tab {
-  position:relative;
-
-  min-width:64px;
-  min-height:47px;
-
-  padding:7px 6px;
-
-  background:#e6d1ac;
-  border:2px solid #765537;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  min-width:67px;
+  max-width:92px;
+  padding:10px 6px;
+  background:#d8bd91;
+  border:2px solid #765337;
   border-right:0;
-
-  border-radius:6px 0 0 6px;
-
-  color:#58412d;
-
-  box-shadow:-2px 3px 4px #0002;
-
-  text-align:center;
-  font-weight:900;
+  border-radius:8px 0 0 8px;
+  color:#4c3726;
+  box-shadow:-2px 3px 5px #0002;
+  transition:background .2s;
 }
 
 .bookmark-tab.active {
   background:#b74432;
   color:white;
-  border-color:#7d2f24;
+  border-color:#713325;
+  min-width:78px;
+}
+
+.bookmark-tab:not(:disabled):hover {
+  background:#e8cc9f;
+}
+
+.bookmark-tab.active:hover {
+  background:#a63c2d;
 }
 
 .bookmark-tab:disabled {
-  background:#d8cbb6;
-  color:#9b8d7b;
-  opacity:.85;
+  opacity:.65;
 }
 
 .bookmark-tab-number {
-  display:block;
-
-  font:700 10px var(--en);
+  font:700 12px var(--en);
 }
 
 .bookmark-tab-name {
-  display:block;
-
-  font-size:11px;
-  line-height:1.3;
+  font-size:10px;
+  font-weight:900;
+  text-align:center;
+  overflow-wrap:anywhere;
 }
 
 /* =====================================================
@@ -830,14 +742,11 @@ a:focus-visible {
 
 .art-side {
   min-width:0;
-
   background:#ecdec4;
   padding:23px;
-
   display:flex;
   flex-direction:column;
   gap:14px;
-
   border-right:1px solid #bca582;
 }
 
@@ -849,68 +758,51 @@ a:focus-visible {
 
 .photo {
   width:min(100%,430px);
-
   padding:11px 11px 21px;
-
   background:#fffbf1;
-
   box-shadow:2px 8px 16px #4a34294b;
-
   transform:rotate(-1deg);
   position:relative;
-
   margin:auto;
 }
 
 .photo::before {
   content:'';
-
   position:absolute;
   top:-11px;
   left:calc(50% - 39px);
-
   width:78px;
   height:21px;
-
   background:#cdb085b0;
   transform:rotate(3deg);
 }
 
 .photo img {
   display:block;
-
   width:100%;
   aspect-ratio:1;
-
-  object-fit:cover;
+  object-fit:contain;
   image-rendering:pixelated;
 }
 
 .photo .photo-fallback {
   display:none;
-
   aspect-ratio:1;
-
   align-items:center;
   justify-content:center;
-
   background:linear-gradient(
     #99d2e0 0 55%,
     #82aa7d 55%
   );
-
   font-size:17px;
   font-weight:900;
-
   text-align:center;
   padding:16px;
 }
 
 .photo figcaption {
   padding-top:14px;
-
   text-align:center;
-
   color:#735a40;
   font-size:12px;
   font-weight:900;
@@ -918,11 +810,8 @@ a:focus-visible {
 
 .text-side {
   min-width:0;
-
   background:#fffaf0;
-
   padding:29px 31px 20px 35px;
-
   display:flex;
   flex-direction:column;
 }
@@ -931,7 +820,6 @@ a:focus-visible {
   display:flex;
   justify-content:space-between;
   gap:8px;
-
   font:700 11px var(--en);
   color:#80644b;
 }
@@ -939,11 +827,8 @@ a:focus-visible {
 .story-title {
   font-size:clamp(25px,3.6vw,35px);
   font-weight:900;
-
   line-height:1.32;
-
   margin:22px 0 12px;
-
   letter-spacing:-.02em;
   overflow-wrap:anywhere;
 }
@@ -951,34 +836,29 @@ a:focus-visible {
 .underline {
   height:5px;
   width:65px;
-
   background:var(--red);
   margin-bottom:19px;
 }
 
+/* Lined notebook text */
+
 .story {
   --leading:29px;
-
   font-size:16px;
   font-weight:500;
-
   line-height:var(--leading);
   letter-spacing:0;
-
   overflow-wrap:anywhere;
 }
 
 .story p {
   margin:0 0 4px;
-
   line-height:var(--leading);
-
   background:repeating-linear-gradient(
     to bottom,
     transparent 0 calc(var(--leading) - 1px),
     var(--rule) calc(var(--leading) - 1px) var(--leading)
   );
-
   background-size:100% var(--leading);
 }
 
@@ -990,13 +870,10 @@ a:focus-visible {
 .page-foot {
   margin-top:auto;
   padding-top:17px;
-
   border-top:1px solid #c8b495;
-
   display:flex;
   justify-content:space-between;
   gap:12px;
-
   color:#806c51;
   font:700 10px var(--en);
 }
@@ -1007,15 +884,12 @@ a:focus-visible {
 
 .pager {
   display:grid;
-
   grid-template-columns:
     minmax(0,1fr)
     auto
     minmax(0,1fr);
-
   align-items:center;
   gap:8px;
-
   margin:20px 0 24px;
 }
 
@@ -1023,37 +897,38 @@ a:focus-visible {
   width:100%;
   min-width:0;
   min-height:48px;
-
   padding:11px 8px;
+  box-sizing:border-box;
+}
+
+.pager .navbtn:last-child {
+  justify-self:stretch;
 }
 
 .navbtn {
   border:2px solid #c2a67d;
   background:#f6e5c9;
-
   border-radius:5px;
-
   padding:11px 14px;
   min-height:48px;
-
   font-weight:900;
   font-size:12px;
-
   color:#32251b;
-
   box-shadow:3px 3px 0 #071521;
   white-space:nowrap;
 }
 
-.navbtn:hover:not(:disabled) {
-  background:#ead2a8;
+.navbtn:not(:disabled):hover {
+  background:#ead1a8;
+}
+
+.navbtn:disabled {
+  opacity:.4;
 }
 
 .status {
   text-align:center;
-
   color:#f6e5c7;
-
   font-weight:700;
   font-size:11px;
   line-height:1.55;
@@ -1061,7 +936,6 @@ a:focus-visible {
 
 .status small {
   display:block;
-
   color:#d1b995;
   font-size:10px;
   font-weight:500;
@@ -1069,27 +943,22 @@ a:focus-visible {
 
 .footer {
   text-align:center;
-
   font:700 11px var(--en);
   letter-spacing:.09em;
-
   color:#dac6a7;
   padding:0 0 26px;
 }
 
 /* =====================================================
-   CHAPTER INDEX MODAL
+   TABLE OF CONTENTS MODAL
    ===================================================== */
 
 .overlay {
   position:fixed;
   inset:0;
   z-index:99;
-
   background:#07121de8;
-
   padding:12px;
-
   display:none;
   align-items:center;
   justify-content:center;
@@ -1102,14 +971,10 @@ a:focus-visible {
 .toc {
   width:min(700px,100%);
   max-height:90dvh;
-
   overflow-y:auto;
-
   background:#f8ecd5;
-
   border:6px solid #845b38;
   border-radius:8px;
-
   padding:17px;
 }
 
@@ -1117,7 +982,6 @@ a:focus-visible {
   display:flex;
   justify-content:space-between;
   align-items:center;
-
   border-bottom:1px solid #c4a580;
   padding-bottom:11px;
 }
@@ -1130,9 +994,7 @@ a:focus-visible {
 .close {
   border:0;
   background:#bb4736;
-
   color:white;
-
   padding:8px 14px;
   font-weight:900;
 }
@@ -1141,41 +1003,70 @@ a:focus-visible {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:9px;
-
   margin-top:14px;
 }
 
 .toc-entry {
   background:#fffaf0;
   border:1px solid #d4b995;
-
   padding:12px;
-
   text-align:left;
   color:#352a21;
-
   min-height:73px;
+}
+
+.toc-entry:not(:disabled):hover {
+  background:#f0dfc3;
 }
 
 .toc-entry strong {
   display:block;
-
   font-size:13px;
   line-height:1.4;
 }
 
 .toc-entry small {
   display:block;
-
   font-size:10px;
   color:#846f56;
-
   margin:3px 0;
 }
 
 .toc-entry:disabled {
   background:#e6d9c6;
   opacity:.7;
+}
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media(max-width:900px) {
+
+  .journey-index {
+    padding:30px 24px 38px;
+  }
+
+  .prefecture-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .bookmark-tabs {
+    top:20px;
+  }
+
+  .bookmark-tab {
+    min-width:57px;
+    max-width:72px;
+  }
+
+  .bookmark-tab.active {
+    min-width:66px;
+  }
+
+  .bookmark-tab-name {
+    font-size:9px;
+  }
 }
 
 /* =====================================================
@@ -1195,7 +1086,6 @@ a:focus-visible {
   .head-btn {
     height:36px;
     min-width:34px;
-
     padding:0 9px;
     font-size:11px;
   }
@@ -1210,7 +1100,6 @@ a:focus-visible {
 
   .notebook {
     padding:11px 10px 11px 30px;
-
     border-width:6px;
     margin-top:15px;
   }
@@ -1219,9 +1108,7 @@ a:focus-visible {
     left:9px;
     top:13px;
     bottom:13px;
-
     width:13px;
-
     background:repeating-linear-gradient(
       to bottom,
       #5c422b 0 12px,
@@ -1232,6 +1119,8 @@ a:focus-visible {
   .page {
     min-height:0;
   }
+
+  /* Cover */
 
   .cover {
     min-height:510px;
@@ -1246,25 +1135,32 @@ a:focus-visible {
     font-size:clamp(34px,8vw,58px);
   }
 
-  /* 全国目次 */
+  /* National index */
 
   .journey-index {
-    padding:26px 15px 30px;
+    padding:25px 14px 30px;
+  }
+
+  .index-heading h2 {
+    font-size:30px;
+  }
+
+  .journey-progress {
+    padding:13px 12px;
   }
 
   .prefecture-grid {
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-    gap:8px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px;
   }
 
   .prefecture-entry {
-    min-height:82px;
-    padding:10px 8px;
+    min-height:100px;
+    padding:10px 9px;
   }
 
   .prefecture-name {
-    font-size:14px;
+    font-size:13px;
   }
 
   .prefecture-en {
@@ -1273,21 +1169,73 @@ a:focus-visible {
 
   .visited-stamp {
     font-size:8px;
-    padding:1px 3px;
   }
 
-  /* 県別扉 */
+  .region-heading h3 {
+    font-size:15px;
+  }
+
+  /* Prefecture cover */
 
   .prefecture-cover {
-    min-height:500px;
-    padding:30px 17px;
+    min-height:510px;
+    padding:35px 18px;
+  }
+
+  .prefecture-cover::before {
+    inset:10px;
   }
 
   .prefecture-cover h2 {
-    font-size:clamp(37px,9vw,58px);
+    font-size:clamp(34px,9vw,52px);
   }
 
-  /* 物語 */
+  .prefecture-roman {
+    font-size:23px;
+  }
+
+  .prefecture-description {
+    font-size:14px;
+    line-height:1.8;
+  }
+
+  .chapter-entry {
+    gap:8px;
+    padding:10px 5px;
+  }
+
+  .chapter-entry-title {
+    font-size:13px;
+  }
+
+  /* Bookmark tabs */
+
+  .bookmark-tabs {
+    top:15px;
+    right:-6px;
+    gap:5px;
+  }
+
+  .bookmark-tab {
+    min-width:43px;
+    max-width:55px;
+    padding:7px 4px;
+    border-width:1px;
+  }
+
+  .bookmark-tab.active {
+    min-width:50px;
+  }
+
+  .bookmark-tab-number {
+    font-size:10px;
+  }
+
+  .bookmark-tab-name {
+    font-size:8px;
+  }
+
+  /* Story spread */
 
   .spread {
     display:block;
@@ -1313,7 +1261,6 @@ a:focus-visible {
 
   .story {
     --leading:29px;
-
     font-size:16px;
     line-height:var(--leading);
   }
@@ -1322,29 +1269,7 @@ a:focus-visible {
     margin-bottom:3px;
   }
 
-  /* しおり */
-
-  .bookmark-tabs {
-    top:35px;
-    right:-6px;
-    max-width:54px;
-  }
-
-  .bookmark-tab {
-    min-width:47px;
-    min-height:43px;
-    padding:6px 3px;
-  }
-
-  .bookmark-tab-number {
-    font-size:9px;
-  }
-
-  .bookmark-tab-name {
-    font-size:9px;
-  }
-
-  /* ナビゲーション */
+  /* Pager */
 
   .navbtn {
     padding:10px 7px;
@@ -1355,6 +1280,10 @@ a:focus-visible {
     grid-template-columns:1fr;
   }
 }
+
+/* =====================================================
+   SMALL MOBILE
+   ===================================================== */
 
 @media(max-width:370px) {
 
@@ -1370,6 +1299,22 @@ a:focus-visible {
     min-width:63px;
   }
 
+  .journey-index {
+    padding:22px 10px 27px;
+  }
+
+  .prefecture-entry {
+    padding:9px 7px;
+  }
+
+  .prefecture-name {
+    font-size:12px;
+  }
+
+  .prefecture-en {
+    font-size:8px;
+  }
+
   .story {
     font-size:15px;
     --leading:27px;
@@ -1377,14 +1322,6 @@ a:focus-visible {
 
   .status {
     font-size:10px;
-  }
-
-  .prefecture-entry {
-    padding:9px 6px;
-  }
-
-  .prefecture-name {
-    font-size:13px;
   }
 }
 
@@ -1402,8 +1339,9 @@ a:focus-visible {
     animation:none;
   }
 
+  .progress-fill,
   .prefecture-entry,
-  .progress-fill {
+  .bookmark-tab {
     transition:none;
   }
 }
