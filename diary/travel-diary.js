@@ -6,7 +6,9 @@
      TRAVELING TAKOYAKI
      TRAVEL DIARY — JAPAN 47 JOURNEY
 
-     47 PREFECTURES / ENGLISH & JAPANESE
+     COMPLETE VERSION
+     HOKKAIDO + AOMORI
+     ENGLISH / JAPANESE
      ===================================================== */
 
   const $ = id => document.getElementById(id);
@@ -85,8 +87,9 @@
     ja: item[1],
     region: item[2],
 
-    // 公開する県を追加する場合はここを変更
-    enabled: i === 0,
+    // 北海道と青森を公開
+    // 秋田追加時は i <= 2 に変更
+    enabled: i <= 1,
 
     file: "./stories/" + item[0].toLowerCase() + ".json"
   }));
@@ -116,7 +119,12 @@
     lang = localStorage.getItem(
       "travel-diary-language"
     ) === "ja" ? "ja" : "en";
-  } catch (e) {}
+  } catch (e) {
+    // Storage may be unavailable.
+  }
+
+  const localized = (ja, en) =>
+    lang === "ja" ? ja : en;
 
   /* =====================================================
      STATE
@@ -129,11 +137,7 @@
   };
 
   let navigating = false;
-
   let lastAvailableSignature = "";
-
-  const localized = (ja, en) =>
-    lang === "ja" ? ja : en;
 
   /* =====================================================
      DATE & RELEASE
@@ -201,11 +205,22 @@
       );
     }
 
-    // プロローグを章ID 0として扱う
-    const chapters = data.chapters.map((chapter, index) => ({
-      ...chapter,
-      id: Number(chapter.id ?? index)
-    }));
+    const chapters = data.chapters.map(
+      (chapter, index) => ({
+        ...chapter,
+        id: Number(chapter.id ?? index)
+      })
+    );
+
+    if (
+      chapters.some(
+        chapter => !Number.isInteger(chapter.id)
+      )
+    ) {
+      throw new Error(
+        "Invalid chapter ID: " + prefecture.key
+      );
+    }
 
     chapters.sort((a, b) => a.id - b.id);
 
@@ -253,7 +268,8 @@
     }
 
     if (page.type === "story") {
-      return page.prefecture + "-" + pad(page.chapter);
+      return page.prefecture + "-" +
+        pad(page.chapter);
     }
 
     return "cover";
@@ -268,14 +284,14 @@
     for (const p of prefectures) {
       if (!p.enabled) continue;
 
+      const data = storyCache[p.key];
+
+      if (!data) continue;
+
       pages.push({
         type: "prefecture",
         prefecture: p.key
       });
-
-      const data = storyCache[p.key];
-
-      if (!data) continue;
 
       for (const chapter of data.chapters) {
         if (!isReleased(chapter)) continue;
@@ -302,6 +318,8 @@
   }
 
   function getChapter(data, chapterId) {
+    if (!data) return null;
+
     return data.chapters.find(
       c => c.id === Number(chapterId)
     );
@@ -416,7 +434,7 @@
     const ja = lang === "ja";
 
     const visited = prefectures.filter(
-      p => p.enabled && storyCache[p.key]
+      p => p.enabled && !!storyCache[p.key]
     ).length;
 
     const groups = regions.map(region => {
@@ -636,7 +654,6 @@
     if (!chapter) return;
 
     const ja = lang === "ja";
-
     const isPrologue = chapter.id === 0;
 
     const storyCount = data.chapters.filter(
@@ -766,6 +783,7 @@
 
     if (!current) {
       container.hidden = true;
+      container.innerHTML = "";
       return;
     }
 
@@ -847,7 +865,10 @@
         dateLabel(upcoming[0]);
     } else {
       $("releaseInfo").textContent =
-        localized("旅は続く", "THE JOURNEY CONTINUES");
+        localized(
+          "旅は続く",
+          "THE JOURNEY CONTINUES"
+        );
     }
   }
 
@@ -876,7 +897,9 @@
       );
 
       $("pageNumber").textContent =
-        "STOP " + pad(p.id) + " / 47";
+        p
+          ? "STOP " + pad(p.id) + " / 47"
+          : "JOURNEY INDEX";
     }
 
     if (currentPage.type === "story") {
@@ -884,7 +907,7 @@
         currentPage.prefecture
       );
 
-      const data = storyCache[p.key];
+      const data = p ? storyCache[p.key] : null;
 
       const chapter = getChapter(
         data,
@@ -892,9 +915,13 @@
       );
 
       $("pageNumber").textContent =
-        chapter.id === 0
-          ? localized("プロローグ", "PROLOGUE")
-          : "CHAPTER " + pad(chapter.id);
+        chapter
+          ? (
+            chapter.id === 0
+              ? localized("プロローグ", "PROLOGUE")
+              : "CHAPTER " + pad(chapter.id)
+          )
+          : "JOURNEY INDEX";
     }
 
     updateReleaseInfo();
@@ -921,13 +948,9 @@
 
     if (currentPage.type === "cover") {
       renderCover();
-    }
-
-    if (currentPage.type === "index") {
+    } else if (currentPage.type === "index") {
       renderIndex();
-    }
-
-    if (
+    } else if (
       currentPage.type === "prefecture" ||
       currentPage.type === "story"
     ) {
@@ -935,19 +958,32 @@
         currentPage.prefecture
       );
 
-      const data = storyCache[p.key];
+      const data = p ? storyCache[p.key] : null;
 
-      if (!p || !data) {
+      if (!p || !p.enabled || !data) {
         currentPage = { type: "index" };
         renderIndex();
       } else if (currentPage.type === "prefecture") {
         renderPrefecture(p, data);
       } else {
-        renderStory(
-          p,
+        const chapter = getChapter(
           data,
           currentPage.chapter
         );
+
+        if (!chapter || !isReleased(chapter)) {
+          currentPage = {
+            type: "prefecture",
+            prefecture: p.key
+          };
+          renderPrefecture(p, data);
+        } else {
+          renderStory(
+            p,
+            data,
+            currentPage.chapter
+          );
+        }
       }
     }
 
@@ -980,13 +1016,21 @@
         location.search +
         hash
       );
-    } catch (e) {}
+    } catch (e) {
+      // Ignore history errors.
+    }
   }
 
   function parseHash() {
-    const hash = decodeURIComponent(
-      location.hash.replace(/^#/, "")
-    );
+    let hash;
+
+    try {
+      hash = decodeURIComponent(
+        location.hash.replace(/^#/, "")
+      );
+    } catch (e) {
+      return { type: "cover" };
+    }
 
     if (!hash || hash === "cover") {
       return { type: "cover" };
@@ -1021,7 +1065,7 @@
       }
     }
 
-    // 旧バージョンの北海道ページURLにも対応
+    // 旧北海道ページURLとの互換性
     const legacy = hash.match(/^page-(\d+)$/);
 
     if (legacy) {
@@ -1055,7 +1099,9 @@
         target.type === "prefecture" ||
         target.type === "story"
       ) {
-        const p = getPrefecture(target.prefecture);
+        const p = getPrefecture(
+          target.prefecture
+        );
 
         if (!p || !p.enabled) return;
 
@@ -1080,7 +1126,9 @@
 
       if (!options.noScroll) {
         $("notebook").scrollIntoView({
-          behavior: "smooth",
+          behavior: window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches ? "auto" : "smooth",
           block: "start"
         });
       }
@@ -1265,7 +1313,9 @@
         "travel-diary-language",
         lang
       );
-    } catch (e) {}
+    } catch (e) {
+      // Storage may be unavailable.
+    }
 
     render();
 
@@ -1319,6 +1369,8 @@
   $("page").addEventListener(
     "touchstart",
     e => {
+      if (!e.touches.length) return;
+
       touchX = e.touches[0].clientX;
       touchY = e.touches[0].clientY;
     },
@@ -1328,7 +1380,11 @@
   $("page").addEventListener(
     "touchend",
     e => {
-      if (touchX === null || touchY === null) {
+      if (
+        touchX === null ||
+        touchY === null ||
+        !e.changedTouches.length
+      ) {
         return;
       }
 
@@ -1341,7 +1397,6 @@
       touchX = null;
       touchY = null;
 
-      // 縦スクロールと区別する
       if (
         Math.abs(dx) > 85 &&
         Math.abs(dx) > Math.abs(dy) * 1.5
@@ -1410,10 +1465,8 @@
     if (signature !== lastAvailableSignature) {
       lastAvailableSignature = signature;
 
-      // 表示中のページを維持して再描画
       render();
 
-      // 開いている目次も更新
       if ($("overlay").classList.contains("open")) {
         showToc();
       }
@@ -1421,6 +1474,18 @@
       updateReleaseInfo();
     }
   }
+
+  /* =====================================================
+     HASH NAVIGATION
+     ===================================================== */
+
+  window.addEventListener("hashchange", () => {
+    const requested = parseHash();
+
+    navigate(requested, {
+      noScroll: true
+    });
+  });
 
   /* =====================================================
      INITIALIZE
@@ -1491,8 +1556,7 @@
     `;
   });
 
-  /* 1分ごとに新しい話の公開を確認 */
-
+  // 1分ごとに新しい章の公開を確認
   setInterval(checkNewReleases, 60000);
 
 })();
