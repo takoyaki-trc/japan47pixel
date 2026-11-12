@@ -1,1053 +1,1263 @@
 
 (() => {
-"use strict";
+  "use strict";
 
-/* =====================================================
-   TRAVELING TAKOYAKI — TRAVEL DIARY
-   47 PREFECTURES EDITION
-   ===================================================== */
+  /* =====================================================
+     TRAVELING TAKOYAKI
+     TRAVEL DIARY — JAPAN 47 JOURNEY
 
-const $ = id => document.getElementById(id);
+     47 PREFECTURES / ENGLISH & JAPANESE
+     ===================================================== */
 
-const safe = value => String(value ?? "").replace(
-  /[&<>"']/g,
-  c => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  }[c])
-);
+  const $ = id => document.getElementById(id);
 
-const pad = n => String(n).padStart(2,"0");
-
-/* =====================================================
-   47 PREFECTURES
-   ===================================================== */
-
-const prefectures = [
-  ["HOKKAIDO","北海道","HOKKAIDO"],
-  ["AOMORI","青森県","TOHOKU"],
-  ["AKITA","秋田県","TOHOKU"],
-  ["IWATE","岩手県","TOHOKU"],
-  ["YAMAGATA","山形県","TOHOKU"],
-  ["FUKUSHIMA","福島県","TOHOKU"],
-  ["MIYAGI","宮城県","TOHOKU"],
-  ["IBARAKI","茨城県","KANTO"],
-  ["TOCHIGI","栃木県","KANTO"],
-  ["GUNMA","群馬県","KANTO"],
-  ["SAITAMA","埼玉県","KANTO"],
-  ["CHIBA","千葉県","KANTO"],
-  ["TOKYO","東京都","KANTO"],
-  ["KANAGAWA","神奈川県","KANTO"],
-  ["NIIGATA","新潟県","CHUBU"],
-  ["TOYAMA","富山県","CHUBU"],
-  ["ISHIKAWA","石川県","CHUBU"],
-  ["FUKUI","福井県","CHUBU"],
-  ["YAMANASHI","山梨県","CHUBU"],
-  ["NAGANO","長野県","CHUBU"],
-  ["GIFU","岐阜県","CHUBU"],
-  ["SHIZUOKA","静岡県","CHUBU"],
-  ["AICHI","愛知県","CHUBU"],
-  ["MIE","三重県","KANSAI"],
-  ["SHIGA","滋賀県","KANSAI"],
-  ["KYOTO","京都府","KANSAI"],
-  ["OSAKA","大阪府","KANSAI"],
-  ["HYOGO","兵庫県","KANSAI"],
-  ["NARA","奈良県","KANSAI"],
-  ["WAKAYAMA","和歌山県","KANSAI"],
-  ["TOTTORI","鳥取県","CHUGOKU"],
-  ["SHIMANE","島根県","CHUGOKU"],
-  ["OKAYAMA","岡山県","CHUGOKU"],
-  ["HIROSHIMA","広島県","CHUGOKU"],
-  ["YAMAGUCHI","山口県","CHUGOKU"],
-  ["TOKUSHIMA","徳島県","SHIKOKU"],
-  ["KAGAWA","香川県","SHIKOKU"],
-  ["EHIME","愛媛県","SHIKOKU"],
-  ["KOCHI","高知県","SHIKOKU"],
-  ["FUKUOKA","福岡県","KYUSHU"],
-  ["SAGA","佐賀県","KYUSHU"],
-  ["NAGASAKI","長崎県","KYUSHU"],
-  ["KUMAMOTO","熊本県","KYUSHU"],
-  ["OITA","大分県","KYUSHU"],
-  ["MIYAZAKI","宮崎県","KYUSHU"],
-  ["KAGOSHIMA","鹿児島県","KYUSHU"],
-  ["OKINAWA","沖縄県","OKINAWA"]
-].map((p,i) => ({
-  id:i+1,
-  key:p[0].toLowerCase(),
-  en:p[0],
-  ja:p[1],
-  region:p[2],
-
-  // JSONを追加した県をここで有効にする
-  enabled:i===0,
-
-  file:"./stories/"+p[0].toLowerCase()+".json"
-}));
-
-const regions = [
-  ["HOKKAIDO","北海道","HOKKAIDO"],
-  ["TOHOKU","東北","TOHOKU"],
-  ["KANTO","関東","KANTO"],
-  ["CHUBU","中部","CHUBU"],
-  ["KANSAI","関西","KANSAI"],
-  ["CHUGOKU","中国","CHUGOKU"],
-  ["SHIKOKU","四国","SHIKOKU"],
-  ["KYUSHU","九州","KYUSHU"],
-  ["OKINAWA","沖縄","OKINAWA"]
-];
-
-/* =====================================================
-   STATE
-   ===================================================== */
-
-let lang = "en";
-
-try {
-  lang = localStorage.getItem(
-    "travel-diary-language"
-  ) === "ja" ? "ja" : "en";
-} catch(e) {}
-
-let currentPage = {
-  type:"cover",
-  prefecture:null,
-  chapter:null
-};
-
-let storyCache = {};
-let loading = false;
-
-const getPrefecture = key =>
-  prefectures.find(p => p.key === key);
-
-const isAvailable = chapter =>
-  !chapter.release ||
-  Date.now() >= Date.parse(chapter.release);
-
-const dateLabel = iso => {
-  if(!iso) return "";
-
-  const d = new Date(iso);
-
-  if(Number.isNaN(d.getTime())) return "";
-
-  return new Intl.DateTimeFormat(
-    lang === "ja" ? "ja-JP" : "en-GB",
-    {
-      timeZone:"Asia/Tokyo",
-      month:"short",
-      day:"numeric",
-      hour:"2-digit",
-      minute:"2-digit",
-      hour12:false
-    }
-  ).format(d)+" JST";
-};
-
-const textLines = lines =>
-  (Array.isArray(lines) ? lines : [])
-    .map(line => "<p>"+safe(line)+"</p>")
-    .join("");
-
-/* =====================================================
-   DATA LOADING
-   ===================================================== */
-
-async function loadStory(prefecture) {
-  if(!prefecture || !prefecture.enabled) {
-    return null;
-  }
-
-  if(storyCache[prefecture.key]) {
-    return storyCache[prefecture.key];
-  }
-
-  const response = await fetch(prefecture.file, {
-    cache:"no-cache"
-  });
-
-  if(!response.ok) {
-    throw new Error(
-      "Failed to load "+prefecture.file
-    );
-  }
-
-  const data = await response.json();
-
-  if(!Array.isArray(data.chapters)) {
-    throw new Error(
-      "Invalid story data: "+prefecture.key
-    );
-  }
-
-  storyCache[prefecture.key] = data;
-
-  return data;
-}
-
-/* =====================================================
-   COVER
-   ===================================================== */
-
-function renderCover() {
-  const ja = lang === "ja";
-
-  $("page").innerHTML = `
-    <article class="cover">
-
-      <div class="cover-kicker">
-        TRAVELING TAKOYAKI · JAPAN 47
-      </div>
-
-      <div class="cover-rule">
-        ✦ ───────── ✦ ───────── ✦
-      </div>
-
-      <div class="stamp">
-        ${ja ? "日本全国 · 47都道府県" : "JAPAN · 47 PREFECTURES"}
-      </div>
-
-      <h1 class="${ja ? "" : "en"}">
-        ${ja
-          ? "<span>たこ焼き</span><span>旅日記</span>"
-          : "<span>TAKOYAKI</span><span>TRAVEL DIARY</span>"
-        }
-      </h1>
-
-      <div class="cover-subtitle">
-        ${ja ? "鉄板の向こう側へ" : "BEYOND THE GRIDDLE"}
-      </div>
-
-      <p class="cover-description">
-        ${ja
-          ? "毎日焼かれて食べられる人生を抜け出し、ひとつのたこ焼きが旅に出た。日本全国47都道府県を巡る、小さくて壮大な冒険の記録。"
-          : "One takoyaki escaped the griddle and set out to explore all 47 prefectures of Japan. A little traveler on a very big adventure."
-        }
-      </p>
-
-      <button class="open-btn" id="openBook" type="button">
-        ${ja ? "日記を開く" : "OPEN DIARY"} →
-      </button>
-
-      <div class="cover-foot">
-        JAPAN 47 JOURNEY
-      </div>
-
-    </article>
-  `;
-
-  $("openBook").addEventListener(
-    "click",
-    () => navigate({type:"index"})
+  const safe = value => String(value ?? "").replace(
+    /[&<>"']/g,
+    c => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[c])
   );
-}
 
-/* =====================================================
-   NATIONAL INDEX
-   ===================================================== */
+  const pad = n => String(n).padStart(2, "0");
 
-function renderIndex() {
-  const ja = lang === "ja";
+  /* =====================================================
+     PREFECTURES
+     ===================================================== */
 
-  const visited = prefectures.filter(
-    p => p.enabled
-  ).length;
+  const prefectureList = [
+    ["HOKKAIDO", "北海道", "HOKKAIDO"],
+    ["AOMORI", "青森県", "TOHOKU"],
+    ["AKITA", "秋田県", "TOHOKU"],
+    ["IWATE", "岩手県", "TOHOKU"],
+    ["YAMAGATA", "山形県", "TOHOKU"],
+    ["FUKUSHIMA", "福島県", "TOHOKU"],
+    ["MIYAGI", "宮城県", "TOHOKU"],
+    ["IBARAKI", "茨城県", "KANTO"],
+    ["TOCHIGI", "栃木県", "KANTO"],
+    ["GUNMA", "群馬県", "KANTO"],
+    ["SAITAMA", "埼玉県", "KANTO"],
+    ["CHIBA", "千葉県", "KANTO"],
+    ["TOKYO", "東京都", "KANTO"],
+    ["KANAGAWA", "神奈川県", "KANTO"],
+    ["NIIGATA", "新潟県", "CHUBU"],
+    ["TOYAMA", "富山県", "CHUBU"],
+    ["ISHIKAWA", "石川県", "CHUBU"],
+    ["FUKUI", "福井県", "CHUBU"],
+    ["YAMANASHI", "山梨県", "CHUBU"],
+    ["NAGANO", "長野県", "CHUBU"],
+    ["GIFU", "岐阜県", "CHUBU"],
+    ["SHIZUOKA", "静岡県", "CHUBU"],
+    ["AICHI", "愛知県", "CHUBU"],
+    ["MIE", "三重県", "KANSAI"],
+    ["SHIGA", "滋賀県", "KANSAI"],
+    ["KYOTO", "京都府", "KANSAI"],
+    ["OSAKA", "大阪府", "KANSAI"],
+    ["HYOGO", "兵庫県", "KANSAI"],
+    ["NARA", "奈良県", "KANSAI"],
+    ["WAKAYAMA", "和歌山県", "KANSAI"],
+    ["TOTTORI", "鳥取県", "CHUGOKU"],
+    ["SHIMANE", "島根県", "CHUGOKU"],
+    ["OKAYAMA", "岡山県", "CHUGOKU"],
+    ["HIROSHIMA", "広島県", "CHUGOKU"],
+    ["YAMAGUCHI", "山口県", "CHUGOKU"],
+    ["TOKUSHIMA", "徳島県", "SHIKOKU"],
+    ["KAGAWA", "香川県", "SHIKOKU"],
+    ["EHIME", "愛媛県", "SHIKOKU"],
+    ["KOCHI", "高知県", "SHIKOKU"],
+    ["FUKUOKA", "福岡県", "KYUSHU"],
+    ["SAGA", "佐賀県", "KYUSHU"],
+    ["NAGASAKI", "長崎県", "KYUSHU"],
+    ["KUMAMOTO", "熊本県", "KYUSHU"],
+    ["OITA", "大分県", "KYUSHU"],
+    ["MIYAZAKI", "宮崎県", "KYUSHU"],
+    ["KAGOSHIMA", "鹿児島県", "KYUSHU"],
+    ["OKINAWA", "沖縄県", "OKINAWA"]
+  ];
 
-  const groups = regions.map(region => {
-    const items = prefectures.filter(
-      p => p.region === region[0]
+  const prefectures = prefectureList.map((item, i) => ({
+    id: i + 1,
+    key: item[0].toLowerCase(),
+    en: item[0],
+    ja: item[1],
+    region: item[2],
+
+    // 公開する県を追加する場合はここを変更
+    enabled: i === 0,
+
+    file: "./stories/" + item[0].toLowerCase() + ".json"
+  }));
+
+  const regions = [
+    ["HOKKAIDO", "北海道", "HOKKAIDO"],
+    ["TOHOKU", "東北", "TOHOKU"],
+    ["KANTO", "関東", "KANTO"],
+    ["CHUBU", "中部", "CHUBU"],
+    ["KANSAI", "関西", "KANSAI"],
+    ["CHUGOKU", "中国", "CHUGOKU"],
+    ["SHIKOKU", "四国", "SHIKOKU"],
+    ["KYUSHU", "九州", "KYUSHU"],
+    ["OKINAWA", "沖縄", "OKINAWA"]
+  ];
+
+  const getPrefecture = key =>
+    prefectures.find(p => p.key === key);
+
+  /* =====================================================
+     LANGUAGE
+     ===================================================== */
+
+  let lang = "en";
+
+  try {
+    lang = localStorage.getItem(
+      "travel-diary-language"
+    ) === "ja" ? "ja" : "en";
+  } catch (e) {}
+
+  /* =====================================================
+     STATE
+     ===================================================== */
+
+  const storyCache = {};
+
+  let currentPage = {
+    type: "cover"
+  };
+
+  let navigating = false;
+
+  let lastAvailableSignature = "";
+
+  const localized = (ja, en) =>
+    lang === "ja" ? ja : en;
+
+  /* =====================================================
+     DATE & RELEASE
+     ===================================================== */
+
+  function isReleased(chapter) {
+    if (!chapter.release) return true;
+
+    const timestamp = Date.parse(chapter.release);
+
+    return Number.isFinite(timestamp) &&
+      Date.now() >= timestamp;
+  }
+
+  function dateLabel(iso) {
+    if (!iso) return "";
+
+    const date = new Date(iso);
+
+    if (Number.isNaN(date.getTime())) {
+      return "";
+    }
+
+    return new Intl.DateTimeFormat(
+      lang === "ja" ? "ja-JP" : "en-GB",
+      {
+        timeZone: "Asia/Tokyo",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+      }
+    ).format(date) + " JST";
+  }
+
+  /* =====================================================
+     LOAD JSON
+     ===================================================== */
+
+  async function loadStory(prefecture) {
+    if (!prefecture || !prefecture.enabled) {
+      return null;
+    }
+
+    if (storyCache[prefecture.key]) {
+      return storyCache[prefecture.key];
+    }
+
+    const response = await fetch(prefecture.file, {
+      cache: "no-cache"
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        "Could not load " + prefecture.file
+      );
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data.chapters)) {
+      throw new Error(
+        "Invalid chapters: " + prefecture.key
+      );
+    }
+
+    // プロローグを章ID 0として扱う
+    const chapters = data.chapters.map((chapter, index) => ({
+      ...chapter,
+      id: Number(chapter.id ?? index)
+    }));
+
+    chapters.sort((a, b) => a.id - b.id);
+
+    const normalized = {
+      ...data,
+      chapters
+    };
+
+    storyCache[prefecture.key] = normalized;
+
+    return normalized;
+  }
+
+  async function loadEnabledStories() {
+    const enabled = prefectures.filter(p => p.enabled);
+
+    await Promise.all(
+      enabled.map(async p => {
+        try {
+          await loadStory(p);
+        } catch (error) {
+          console.error(error);
+        }
+      })
+    );
+  }
+
+  /* =====================================================
+     PAGE IDENTIFIERS
+     ===================================================== */
+
+  function pageKey(page) {
+    if (!page) return "cover";
+
+    if (page.type === "cover") {
+      return "cover";
+    }
+
+    if (page.type === "index") {
+      return "index";
+    }
+
+    if (page.type === "prefecture") {
+      return page.prefecture;
+    }
+
+    if (page.type === "story") {
+      return page.prefecture + "-" + pad(page.chapter);
+    }
+
+    return "cover";
+  }
+
+  function getPages() {
+    const pages = [
+      { type: "cover" },
+      { type: "index" }
+    ];
+
+    for (const p of prefectures) {
+      if (!p.enabled) continue;
+
+      pages.push({
+        type: "prefecture",
+        prefecture: p.key
+      });
+
+      const data = storyCache[p.key];
+
+      if (!data) continue;
+
+      for (const chapter of data.chapters) {
+        if (!isReleased(chapter)) continue;
+
+        pages.push({
+          type: "story",
+          prefecture: p.key,
+          chapter: chapter.id
+        });
+      }
+    }
+
+    return pages;
+  }
+
+  function getCurrentPosition() {
+    const pages = getPages();
+
+    const position = pages.findIndex(
+      p => pageKey(p) === pageKey(currentPage)
     );
 
-    return `
-      <section class="region-group">
+    return { pages, position };
+  }
 
-        <div class="region-heading">
-          <h3>
-            ${safe(ja ? region[1] : region[2])}
-          </h3>
+  function getChapter(data, chapterId) {
+    return data.chapters.find(
+      c => c.id === Number(chapterId)
+    );
+  }
+
+  /* =====================================================
+     TEXT & IMAGES
+     ===================================================== */
+
+  function textLines(lines) {
+    if (!Array.isArray(lines)) return "";
+
+    return lines.map(
+      line => "<p>" + safe(line) + "</p>"
+    ).join("");
+  }
+
+  function setupPhoto() {
+    const photo = $("storyPhoto");
+    const fallback = $("storyFallback");
+
+    if (!photo || !fallback) return;
+
+    function showFallback() {
+      photo.style.display = "none";
+      fallback.style.display = "flex";
+    }
+
+    function showPhoto() {
+      photo.style.display = "block";
+      fallback.style.display = "none";
+    }
+
+    photo.addEventListener("error", showFallback);
+    photo.addEventListener("load", showPhoto);
+
+    if (photo.complete) {
+      photo.naturalWidth > 0
+        ? showPhoto()
+        : showFallback();
+    }
+  }
+
+  /* =====================================================
+     COVER
+     ===================================================== */
+
+  function renderCover() {
+    const ja = lang === "ja";
+
+    $("page").innerHTML = `
+      <article class="cover">
+
+        <div class="cover-kicker">
+          TRAVELING TAKOYAKI · JAPAN 47
         </div>
 
-        <div class="prefecture-grid">
-
-          ${items.map(p => `
-            <button
-              type="button"
-              class="prefecture-entry ${p.enabled ? "" : "locked"}"
-              data-prefecture="${safe(p.key)}"
-              ${p.enabled ? "" : "disabled"}
-            >
-
-              <span class="prefecture-number">
-                ${pad(p.id)} / 47
-              </span>
-
-              <span class="prefecture-name">
-                ${safe(ja ? p.ja : p.en)}
-              </span>
-
-              <span class="prefecture-en">
-                ${safe(ja ? p.en : p.ja)}
-              </span>
-
-              ${p.enabled
-                ? '<span class="visited-stamp">VISITED</span>'
-                : '<span class="lock-mark">🔒</span>'
-              }
-
-            </button>
-          `).join("")}
-
-        </div>
-      </section>
-    `;
-  }).join("");
-
-  $("page").innerHTML = `
-    <article class="journey-index">
-
-      <header class="index-heading">
-
-        <div class="index-kicker">
-          TRAVELING TAKOYAKI
+        <div class="cover-rule">
+          ✦ ───────── ✦ ───────── ✦
         </div>
 
-        <h2>
-          ${ja ? "旅の目次" : "JOURNEY INDEX"}
-        </h2>
+        <div class="stamp">
+          ${ja
+            ? "日本全国 · 47都道府県"
+            : "JAPAN · 47 PREFECTURES"}
+        </div>
 
-        <div class="index-subtitle">
+        <h1 class="${ja ? "" : "en"}">
+          ${ja
+            ? "<span>たこ焼き</span><span>旅日記</span>"
+            : "<span>TAKOYAKI</span><span>TRAVEL DIARY</span>"}
+        </h1>
+
+        <div class="cover-subtitle">
+          ${ja
+            ? "鉄板の向こう側へ"
+            : "BEYOND THE GRIDDLE"}
+        </div>
+
+        <p class="cover-description">
+          ${ja
+            ? "毎日焼かれて食べられる人生を抜け出し、ひとつのたこ焼きが旅に出た。"
+            : "One takoyaki escaped the griddle to discover the world beyond the frying pan."}
+        </p>
+
+        <button
+          class="open-btn"
+          id="openBook"
+          type="button"
+        >
+          ${ja ? "日記を開く" : "OPEN DIARY"} →
+        </button>
+
+        <div class="cover-foot">
           JAPAN 47 JOURNEY
         </div>
 
-        <div class="index-rule"></div>
-
-      </header>
-
-      <div class="journey-progress">
-
-        <div class="progress-label">
-          <span>
-            ${ja ? "訪問した都道府県" : "PREFECTURES VISITED"}
-          </span>
-
-          <strong>${pad(visited)} / 47</strong>
-        </div>
-
-        <div class="progress-track">
-          <div
-            class="progress-fill"
-            style="width:${visited/47*100}%"
-          ></div>
-        </div>
-
-      </div>
-
-      ${groups}
-
-      <div class="index-bottom">
-        ${ja
-          ? "まだ見ぬ景色が、旅人を待っている。"
-          : "The road ahead is full of places yet to discover."
-        }
-      </div>
-
-    </article>
-  `;
-
-  $("page")
-    .querySelectorAll("[data-prefecture]")
-    .forEach(button => {
-      button.addEventListener("click", () => {
-        navigate({
-          type:"prefecture",
-          prefecture:button.dataset.prefecture
-        });
-      });
-    });
-}
-
-/* =====================================================
-   PREFECTURE COVER
-   ===================================================== */
-
-function renderPrefecture(prefecture,data) {
-  const ja = lang === "ja";
-
-  const chapters = data.chapters || [];
-
-  const description = ja
-    ? (data.descriptionJa || "")
-    : (data.descriptionEn || "");
-
-  const entries = chapters.map((c,i) => {
-    const open = isAvailable(c);
-
-    return `
-      <button
-        class="chapter-entry"
-        type="button"
-        data-chapter="${i}"
-        ${open ? "" : "disabled"}
-      >
-
-        <span class="chapter-entry-number">
-          ${pad(c.id ?? i)}
-        </span>
-
-        <span class="chapter-entry-title">
-          ${safe(ja ? c.title : c.titleEn)}
-        </span>
-
-        <span class="chapter-entry-lock">
-          ${open ? "→" : "🔒"}
-        </span>
-
-      </button>
+      </article>
     `;
-  }).join("");
 
-  $("page").innerHTML = `
-    <article class="prefecture-cover">
+    $("openBook").addEventListener(
+      "click",
+      () => navigate({ type: "index" })
+    );
+  }
 
-      <div class="prefecture-stop">
-        STOP ${pad(prefecture.id)} / 47
-      </div>
+  /* =====================================================
+     NATIONAL INDEX
+     ===================================================== */
 
-      <h2>${safe(prefecture.ja)}</h2>
+  function renderIndex() {
+    const ja = lang === "ja";
 
-      <div class="prefecture-roman">
-        ${safe(prefecture.en)}
-      </div>
+    const visited = prefectures.filter(
+      p => p.enabled && storyCache[p.key]
+    ).length;
 
-      <p class="prefecture-description">
-        ${safe(description)}
-      </p>
+    const groups = regions.map(region => {
+      const items = prefectures.filter(
+        p => p.region === region[0]
+      );
 
-      <div class="prefecture-chapters">
+      return `
+        <section class="region-group">
 
-        <h3>
-          ${ja ? "旅の記録" : "CHAPTER INDEX"}
-          · ${chapters.length}
-        </h3>
-
-        ${entries}
-
-      </div>
-
-    </article>
-  `;
-
-  $("page")
-    .querySelectorAll("[data-chapter]")
-    .forEach(button => {
-      button.addEventListener("click", () => {
-        navigate({
-          type:"story",
-          prefecture:prefecture.key,
-          chapter:Number(button.dataset.chapter)
-        });
-      });
-    });
-}
-
-/* =====================================================
-   STORY PAGE
-   ===================================================== */
-
-function renderStory(prefecture,data,chapterIndex) {
-  const c = data.chapters[chapterIndex];
-
-  if(!c) return;
-
-  const ja = lang === "ja";
-
-  const title = ja ? c.title : c.titleEn;
-  const place = ja
-    ? (c.scene || "")
-    : (c.sceneEn || "");
-
-  const lines = ja ? c.ja : c.en;
-
-  const label = c.id === 0
-    ? "PROLOGUE 00"
-    : "CHAPTER "+pad(c.id)+" / "+
-      pad(data.chapters.length-1);
-
-  const imagePath = c.image || "";
-
-  const date = c.release
-    ? dateLabel(c.release)
-    : "STOP "+pad(prefecture.id)+" / 47";
-
-  const isLast =
-    chapterIndex === data.chapters.length-1;
-
-  const nextPrefecture =
-    prefectures[prefecture.id];
-
-  $("page").innerHTML = `
-    <article class="spread">
-
-      <section class="art-side">
-
-        <div class="kicker">
-          ${safe(label)}
-        </div>
-
-        <figure class="photo">
-
-          <img
-            src="${safe(imagePath)}"
-            id="storyPhoto"
-            alt="${safe(place)}"
-          >
-
-          <div
-            class="photo-fallback"
-            id="storyFallback"
-          >
-            ${safe(place)}
+          <div class="region-heading">
+            <h3>
+              ${safe(ja ? region[1] : region[2])}
+            </h3>
           </div>
 
-          <figcaption>
-            ${safe(place)}
-          </figcaption>
+          <div class="prefecture-grid">
 
-        </figure>
+            ${items.map(p => {
+              const open = p.enabled &&
+                !!storyCache[p.key];
 
-      </section>
+              return `
+                <button
+                  type="button"
+                  class="prefecture-entry ${open ? "" : "locked"}"
+                  data-prefecture="${safe(p.key)}"
+                  ${open ? "" : "disabled"}
+                >
 
-      <section class="text-side">
+                  <span class="prefecture-number">
+                    ${pad(p.id)} / 47
+                  </span>
 
-        <div class="meta">
-          <span>${safe(label)}</span>
-          <span>${safe(date)}</span>
+                  <span class="prefecture-name">
+                    ${safe(ja ? p.ja : p.en)}
+                  </span>
+
+                  <span class="prefecture-en">
+                    ${safe(ja ? p.en : p.ja)}
+                  </span>
+
+                  ${open
+                    ? '<span class="visited-stamp">VISITED</span>'
+                    : '<span class="lock-mark">🔒</span>'}
+
+                </button>
+              `;
+            }).join("")}
+
+          </div>
+
+        </section>
+      `;
+    }).join("");
+
+    $("page").innerHTML = `
+      <article class="journey-index">
+
+        <header class="index-heading">
+
+          <div class="index-kicker">
+            TRAVELING TAKOYAKI
+          </div>
+
+          <h2>
+            ${ja ? "旅の目次" : "JOURNEY INDEX"}
+          </h2>
+
+          <div class="index-subtitle">
+            JAPAN 47 JOURNEY
+          </div>
+
+          <div class="index-rule"></div>
+
+        </header>
+
+        <div class="journey-progress">
+
+          <div class="progress-label">
+            <span>
+              ${ja
+                ? "訪問した都道府県"
+                : "PREFECTURES VISITED"}
+            </span>
+
+            <strong>${pad(visited)} / 47</strong>
+          </div>
+
+          <div class="progress-track">
+            <div
+              class="progress-fill"
+              style="width:${visited / 47 * 100}%"
+            ></div>
+          </div>
+
         </div>
 
-        <h2 class="story-title">
-          ${safe(title)}
-        </h2>
+        ${groups}
 
-        <div class="underline"></div>
-
-        <div class="story">
-          ${textLines(lines)}
+        <div class="index-bottom">
+          ${ja
+            ? "まだ見ぬ景色が、旅人を待っている。"
+            : "The road ahead is full of places yet to discover."}
         </div>
 
-        <div class="page-foot">
+      </article>
+    `;
 
-          <span>
-            ${isLast && nextPrefecture
-              ? "NEXT STOP — "+safe(nextPrefecture.en)
-              : "TRAVELING TAKOYAKI"
-            }
-          </span>
-
-          <span>${pad(c.id)}</span>
-
-        </div>
-
-      </section>
-
-    </article>
-  `;
-
-  const photo = $("storyPhoto");
-  const fallback = $("storyFallback");
-
-  const fail = () => {
-    photo.style.display = "none";
-    fallback.style.display = "flex";
-  };
-
-  const ok = () => {
-    photo.style.display = "block";
-    fallback.style.display = "none";
-  };
-
-  photo.addEventListener("error",fail);
-  photo.addEventListener("load",ok);
-
-  if(photo.complete) {
-    photo.naturalWidth > 0 ? ok() : fail();
-  }
-}
-
-/* =====================================================
-   BOOKMARKS
-   ===================================================== */
-
-function renderBookmarks() {
-  const container = $("bookmarkTabs");
-
-  if(
-    currentPage.type === "cover" ||
-    currentPage.type === "index"
-  ) {
-    container.hidden = true;
-    container.innerHTML = "";
-    return;
-  }
-
-  const current = getPrefecture(
-    currentPage.prefecture
-  );
-
-  if(!current) {
-    container.hidden = true;
-    return;
-  }
-
-  const nearby = prefectures.filter(
-    p => Math.abs(p.id-current.id) <= 1
-  );
-
-  container.innerHTML = nearby.map(p => `
-    <button
-      class="bookmark-tab ${
-        p.id === current.id ? "active" : ""
-      }"
-      type="button"
-      data-bookmark="${safe(p.key)}"
-      ${p.enabled ? "" : "disabled"}
-    >
-
-      <span class="bookmark-tab-number">
-        ${pad(p.id)}
-      </span>
-
-      <span class="bookmark-tab-name">
-        ${safe(lang === "ja" ? p.ja : p.en)}
-      </span>
-
-    </button>
-  `).join("");
-
-  container.hidden = false;
-
-  container
-    .querySelectorAll("[data-bookmark]")
-    .forEach(button => {
-      button.addEventListener("click", () => {
-        navigate({
-          type:"prefecture",
-          prefecture:button.dataset.bookmark
+    $("page")
+      .querySelectorAll("[data-prefecture]")
+      .forEach(button => {
+        button.addEventListener("click", () => {
+          navigate({
+            type: "prefecture",
+            prefecture: button.dataset.prefecture
+          });
         });
       });
-    });
-}
-
-/* =====================================================
-   PAGE ORDER
-   ===================================================== */
-
-function getPageList() {
-  const pages = [
-    {type:"cover"},
-    {type:"index"}
-  ];
-
-  for(const p of prefectures) {
-    if(!p.enabled) continue;
-
-    pages.push({
-      type:"prefecture",
-      prefecture:p.key
-    });
-
-    const data = storyCache[p.key];
-
-    if(!data) continue;
-
-    data.chapters.forEach((c,i) => {
-      if(isAvailable(c)) {
-        pages.push({
-          type:"story",
-          prefecture:p.key,
-          chapter:i
-        });
-      }
-    });
   }
 
-  return pages;
-}
+  /* =====================================================
+     PREFECTURE COVER
+     ===================================================== */
 
-function pageKey(page) {
-  if(page.type === "cover") return "cover";
-  if(page.type === "index") return "index";
+  function renderPrefecture(prefecture, data) {
+    const ja = lang === "ja";
 
-  if(page.type === "prefecture") {
-    return page.prefecture;
-  }
-
-  return page.prefecture+"-"+
-    pad(page.chapter);
-}
-
-/* =====================================================
-   NAVIGATION
-   ===================================================== */
-
-async function navigate(target,options={}) {
-  if(loading) return;
-
-  loading = true;
-
-  try {
-    if(
-      target.type === "prefecture" ||
-      target.type === "story"
-    ) {
-      const p = getPrefecture(target.prefecture);
-
-      if(!p || !p.enabled) return;
-
-      const data = await loadStory(p);
-
-      if(
-        target.type === "story" &&
-        (
-          !data.chapters[target.chapter] ||
-          !isAvailable(data.chapters[target.chapter])
-        )
-      ) {
-        return;
-      }
-    }
-
-    currentPage = {...target};
-
-    await render(true);
-
-    if(!options.noScroll) {
-      $("notebook").scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-    }
-
-  } catch(error) {
-    console.error(error);
-    alert(
-      lang === "ja"
-        ? "旅日記を読み込めませんでした。"
-        : "Could not load the travel diary."
-    );
-  } finally {
-    loading = false;
-  }
-}
-
-async function move(direction) {
-  if(loading) return;
-
-  // 有効な県のデータを先に読み込む
-  for(const p of prefectures) {
-    if(p.enabled) {
-      try {
-        await loadStory(p);
-      } catch(e) {
-        console.error(e);
-      }
-    }
-  }
-
-  const pages = getPageList();
-
-  const current = pages.findIndex(
-    p => pageKey(p) === pageKey(currentPage)
-  );
-
-  if(current < 0) return;
-
-  const target = pages[current+direction];
-
-  if(target) {
-    await navigate(target);
-  }
-}
-
-/* =====================================================
-   RENDER
-   ===================================================== */
-
-async function render(animated=false) {
-  document.documentElement.lang = lang;
-
-  $("tocBtn").textContent =
-    lang === "ja" ? "目次" : "INDEX";
-
-  $("langBtn").textContent =
-    lang === "ja" ? "ENGLISH" : "日本語";
-
-  $("prev").textContent =
-    lang === "ja" ? "← 前へ" : "← PREVIOUS";
-
-  $("next").textContent =
-    lang === "ja" ? "次へ →" : "NEXT →";
-
-  if(currentPage.type === "cover") {
-    renderCover();
-  }
-
-  if(currentPage.type === "index") {
-    renderIndex();
-  }
-
-  if(
-    currentPage.type === "prefecture" ||
-    currentPage.type === "story"
-  ) {
-    const p = getPrefecture(
-      currentPage.prefecture
+    const description = localized(
+      data.descriptionJa || "",
+      data.descriptionEn || ""
     );
 
-    const data = await loadStory(p);
+    const entries = data.chapters.map(chapter => {
+      const open = isReleased(chapter);
 
-    if(currentPage.type === "prefecture") {
-      renderPrefecture(p,data);
-    } else {
-      renderStory(
-        p,
-        data,
-        currentPage.chapter
+      const title = localized(
+        chapter.title,
+        chapter.titleEn
       );
-    }
-  }
-
-  renderBookmarks();
-
-  if(animated) {
-    $("page").classList.remove("turn");
-    void $("page").offsetWidth;
-    $("page").classList.add("turn");
-  }
-
-  const pages = getPageList();
-
-  const position = pages.findIndex(
-    p => pageKey(p) === pageKey(currentPage)
-  );
-
-  $("prev").disabled = position <= 0;
-
-  $("next").disabled =
-    position < 0 || position >= pages.length-1;
-
-  if(currentPage.type === "cover") {
-    $("pageNumber").textContent =
-      lang === "ja" ? "表紙" : "COVER";
-  }
-
-  if(currentPage.type === "index") {
-    $("pageNumber").textContent =
-      lang === "ja" ? "全国目次" : "JOURNEY INDEX";
-  }
-
-  if(currentPage.type === "prefecture") {
-    const p = getPrefecture(
-      currentPage.prefecture
-    );
-
-    $("pageNumber").textContent =
-      "STOP "+pad(p.id)+" / 47";
-  }
-
-  if(currentPage.type === "story") {
-    const p = getPrefecture(
-      currentPage.prefecture
-    );
-
-    const data = storyCache[p.key];
-    const c = data.chapters[currentPage.chapter];
-
-    $("pageNumber").textContent =
-      c.id === 0
-        ? "PROLOGUE"
-        : "CHAPTER "+pad(c.id);
-  }
-
-  updateReleaseInfo();
-
-  try {
-    const hash = currentPage.type === "cover"
-      ? ""
-      : "#"+pageKey(currentPage);
-
-    history.replaceState(
-      null,
-      "",
-      location.pathname+location.search+hash
-    );
-  } catch(e) {}
-}
-
-/* =====================================================
-   RELEASE INFORMATION
-   ===================================================== */
-
-function updateReleaseInfo() {
-  const upcoming = [];
-
-  for(const p of prefectures) {
-    if(!p.enabled) continue;
-
-    const data = storyCache[p.key];
-    if(!data) continue;
-
-    data.chapters.forEach(c => {
-      if(
-        c.release &&
-        Date.now() < Date.parse(c.release)
-      ) {
-        upcoming.push(c.release);
-      }
-    });
-  }
-
-  upcoming.sort(
-    (a,b) => Date.parse(a)-Date.parse(b)
-  );
-
-  if(upcoming.length) {
-    $("releaseInfo").textContent =
-      (lang === "ja" ? "次の公開：" : "NEXT: ")+
-      dateLabel(upcoming[0]);
-  } else {
-    $("releaseInfo").textContent =
-      lang === "ja"
-        ? "旅は続く"
-        : "THE JOURNEY CONTINUES";
-  }
-}
-
-/* =====================================================
-   CHAPTER INDEX MODAL
-   ===================================================== */
-
-async function showToc() {
-  $("tocTitle").textContent =
-    lang === "ja" ? "旅の目次" : "INDEX";
-
-  if(
-    currentPage.type === "cover" ||
-    currentPage.type === "index"
-  ) {
-    await navigate(
-      {type:"index"},
-      {noScroll:true}
-    );
-    return;
-  }
-
-  const p = getPrefecture(
-    currentPage.prefecture
-  );
-
-  if(!p) return;
-
-  const data = await loadStory(p);
-
-  $("tocItems").innerHTML =
-    data.chapters.map((c,i) => {
-      const open = isAvailable(c);
 
       return `
         <button
-          class="toc-entry"
-          data-chapter="${i}"
+          class="chapter-entry"
           type="button"
+          data-chapter="${chapter.id}"
           ${open ? "" : "disabled"}
         >
 
-          <small>
-            ${open ? "📖" : "🔒"}
-            ${c.id === 0
-              ? "PROLOGUE 00"
-              : "CHAPTER "+pad(c.id)
-            }
-          </small>
+          <span class="chapter-entry-number">
+            ${pad(chapter.id)}
+          </span>
 
-          <strong>
-            ${safe(
-              lang === "ja" ? c.title : c.titleEn
-            )}
-          </strong>
+          <span class="chapter-entry-title">
+            ${safe(title)}
+          </span>
 
-          ${c.release
-            ? "<small>"+
-              safe(dateLabel(c.release))+
-              "</small>"
-            : ""
-          }
+          <span class="chapter-entry-lock">
+            ${open ? "→" : "🔒"}
+          </span>
 
         </button>
       `;
     }).join("");
 
-  $("tocItems")
-    .querySelectorAll("[data-chapter]")
-    .forEach(button => {
-      button.addEventListener("click", () => {
-        closeToc();
+    $("page").innerHTML = `
+      <article class="prefecture-cover">
 
-        navigate({
-          type:"story",
-          prefecture:p.key,
-          chapter:Number(button.dataset.chapter)
+        <div class="prefecture-stop">
+          STOP ${pad(prefecture.id)} / 47
+        </div>
+
+        <h2>${safe(prefecture.ja)}</h2>
+
+        <div class="prefecture-roman">
+          ${safe(prefecture.en)}
+        </div>
+
+        <p class="prefecture-description">
+          ${safe(description)}
+        </p>
+
+        <div class="prefecture-chapters">
+
+          <h3>
+            ${ja ? "旅の記録" : "CHAPTER INDEX"}
+            · ${data.chapters.length}
+          </h3>
+
+          ${entries}
+
+        </div>
+
+      </article>
+    `;
+
+    $("page")
+      .querySelectorAll("[data-chapter]")
+      .forEach(button => {
+        button.addEventListener("click", () => {
+          navigate({
+            type: "story",
+            prefecture: prefecture.key,
+            chapter: Number(button.dataset.chapter)
+          });
         });
       });
+  }
+
+  /* =====================================================
+     STORY PAGE
+     ===================================================== */
+
+  function renderStory(prefecture, data, chapterId) {
+    const chapter = getChapter(data, chapterId);
+
+    if (!chapter) return;
+
+    const ja = lang === "ja";
+
+    const isPrologue = chapter.id === 0;
+
+    const storyCount = data.chapters.filter(
+      c => c.id > 0
+    ).length;
+
+    const label = isPrologue
+      ? "PROLOGUE 00"
+      : "CHAPTER " + pad(chapter.id) +
+        " / " + pad(storyCount);
+
+    const title = localized(
+      chapter.title,
+      chapter.titleEn
+    );
+
+    const place = localized(
+      chapter.scene || "",
+      chapter.sceneEn || ""
+    );
+
+    const lines = ja ? chapter.ja : chapter.en;
+
+    const date = chapter.release
+      ? dateLabel(chapter.release)
+      : pad(prefecture.id) +
+        " / 47 · " + prefecture.en;
+
+    const lastChapter = data.chapters[
+      data.chapters.length - 1
+    ];
+
+    const nextPrefecture = prefectures[
+      prefecture.id
+    ];
+
+    const isLast = chapter.id === lastChapter.id;
+
+    $("page").innerHTML = `
+      <article class="spread">
+
+        <section class="art-side">
+
+          <div class="kicker">
+            ${safe(label)}
+          </div>
+
+          <figure class="photo">
+
+            <img
+              src="${safe(chapter.image || "")}"
+              id="storyPhoto"
+              alt="${safe(place)}"
+            >
+
+            <div
+              class="photo-fallback"
+              id="storyFallback"
+            >
+              ${safe(place)}
+            </div>
+
+            <figcaption>
+              ${safe(place)}
+            </figcaption>
+
+          </figure>
+
+        </section>
+
+        <section class="text-side">
+
+          <div class="meta">
+            <span>${safe(label)}</span>
+            <span>${safe(date)}</span>
+          </div>
+
+          <h2 class="story-title">
+            ${safe(title)}
+          </h2>
+
+          <div class="underline"></div>
+
+          <div class="story">
+            ${textLines(lines)}
+          </div>
+
+          <div class="page-foot">
+
+            <span>
+              ${isLast && nextPrefecture
+                ? "NEXT STOP — " + safe(nextPrefecture.en)
+                : "TRAVELING TAKOYAKI"}
+            </span>
+
+            <span>${pad(chapter.id)}</span>
+
+          </div>
+
+        </section>
+
+      </article>
+    `;
+
+    setupPhoto();
+  }
+
+  /* =====================================================
+     BOOKMARKS
+     ===================================================== */
+
+  function renderBookmarks() {
+    const container = $("bookmarkTabs");
+
+    if (
+      currentPage.type === "cover" ||
+      currentPage.type === "index"
+    ) {
+      container.hidden = true;
+      container.innerHTML = "";
+      return;
+    }
+
+    const current = getPrefecture(
+      currentPage.prefecture
+    );
+
+    if (!current) {
+      container.hidden = true;
+      return;
+    }
+
+    const nearby = prefectures.filter(
+      p => Math.abs(p.id - current.id) <= 1
+    );
+
+    container.innerHTML = nearby.map(p => {
+      const open = p.enabled &&
+        !!storyCache[p.key];
+
+      return `
+        <button
+          class="bookmark-tab ${
+            p.id === current.id ? "active" : ""
+          }"
+          type="button"
+          data-bookmark="${safe(p.key)}"
+          ${open ? "" : "disabled"}
+        >
+
+          <span class="bookmark-tab-number">
+            ${pad(p.id)}
+          </span>
+
+          <span class="bookmark-tab-name">
+            ${safe(localized(p.ja, p.en))}
+          </span>
+
+        </button>
+      `;
+    }).join("");
+
+    container.hidden = false;
+
+    container
+      .querySelectorAll("[data-bookmark]")
+      .forEach(button => {
+        button.addEventListener("click", () => {
+          navigate({
+            type: "prefecture",
+            prefecture: button.dataset.bookmark
+          });
+        });
+      });
+  }
+
+  /* =====================================================
+     STATUS
+     ===================================================== */
+
+  function updateReleaseInfo() {
+    const upcoming = [];
+
+    for (const p of prefectures) {
+      if (!p.enabled) continue;
+
+      const data = storyCache[p.key];
+
+      if (!data) continue;
+
+      for (const chapter of data.chapters) {
+        if (
+          chapter.release &&
+          !isReleased(chapter)
+        ) {
+          upcoming.push(chapter.release);
+        }
+      }
+    }
+
+    upcoming.sort(
+      (a, b) => Date.parse(a) - Date.parse(b)
+    );
+
+    if (upcoming.length > 0) {
+      $("releaseInfo").textContent =
+        localized("次の公開：", "NEXT: ") +
+        dateLabel(upcoming[0]);
+    } else {
+      $("releaseInfo").textContent =
+        localized("旅は続く", "THE JOURNEY CONTINUES");
+    }
+  }
+
+  function updatePager() {
+    const { pages, position } = getCurrentPosition();
+
+    $("prev").disabled = position <= 0;
+
+    $("next").disabled =
+      position < 0 ||
+      position >= pages.length - 1;
+
+    if (currentPage.type === "cover") {
+      $("pageNumber").textContent =
+        localized("表紙", "COVER");
+    }
+
+    if (currentPage.type === "index") {
+      $("pageNumber").textContent =
+        localized("全国目次", "JOURNEY INDEX");
+    }
+
+    if (currentPage.type === "prefecture") {
+      const p = getPrefecture(
+        currentPage.prefecture
+      );
+
+      $("pageNumber").textContent =
+        "STOP " + pad(p.id) + " / 47";
+    }
+
+    if (currentPage.type === "story") {
+      const p = getPrefecture(
+        currentPage.prefecture
+      );
+
+      const data = storyCache[p.key];
+
+      const chapter = getChapter(
+        data,
+        currentPage.chapter
+      );
+
+      $("pageNumber").textContent =
+        chapter.id === 0
+          ? localized("プロローグ", "PROLOGUE")
+          : "CHAPTER " + pad(chapter.id);
+    }
+
+    updateReleaseInfo();
+  }
+
+  /* =====================================================
+     RENDER
+     ===================================================== */
+
+  function render(animated = false) {
+    document.documentElement.lang = lang;
+
+    $("tocBtn").textContent =
+      localized("目次", "INDEX");
+
+    $("langBtn").textContent =
+      lang === "ja" ? "ENGLISH" : "日本語";
+
+    $("prev").textContent =
+      localized("← 前へ", "← PREVIOUS");
+
+    $("next").textContent =
+      localized("次へ →", "NEXT →");
+
+    if (currentPage.type === "cover") {
+      renderCover();
+    }
+
+    if (currentPage.type === "index") {
+      renderIndex();
+    }
+
+    if (
+      currentPage.type === "prefecture" ||
+      currentPage.type === "story"
+    ) {
+      const p = getPrefecture(
+        currentPage.prefecture
+      );
+
+      const data = storyCache[p.key];
+
+      if (!p || !data) {
+        currentPage = { type: "index" };
+        renderIndex();
+      } else if (currentPage.type === "prefecture") {
+        renderPrefecture(p, data);
+      } else {
+        renderStory(
+          p,
+          data,
+          currentPage.chapter
+        );
+      }
+    }
+
+    renderBookmarks();
+    updatePager();
+
+    if (animated) {
+      $("page").classList.remove("turn");
+      void $("page").offsetWidth;
+      $("page").classList.add("turn");
+    }
+  }
+
+  /* =====================================================
+     URL
+     ===================================================== */
+
+  function updateURL() {
+    const key = pageKey(currentPage);
+
+    const hash = key === "cover"
+      ? ""
+      : "#" + key;
+
+    try {
+      history.replaceState(
+        null,
+        "",
+        location.pathname +
+        location.search +
+        hash
+      );
+    } catch (e) {}
+  }
+
+  function parseHash() {
+    const hash = decodeURIComponent(
+      location.hash.replace(/^#/, "")
+    );
+
+    if (!hash || hash === "cover") {
+      return { type: "cover" };
+    }
+
+    if (hash === "index") {
+      return { type: "index" };
+    }
+
+    const p = getPrefecture(hash);
+
+    if (p && p.enabled) {
+      return {
+        type: "prefecture",
+        prefecture: p.key
+      };
+    }
+
+    const match = hash.match(
+      /^([a-z]+)-(\d{2})$/
+    );
+
+    if (match) {
+      const prefecture = getPrefecture(match[1]);
+
+      if (prefecture && prefecture.enabled) {
+        return {
+          type: "story",
+          prefecture: prefecture.key,
+          chapter: Number(match[2])
+        };
+      }
+    }
+
+    // 旧バージョンの北海道ページURLにも対応
+    const legacy = hash.match(/^page-(\d+)$/);
+
+    if (legacy) {
+      const number = Number(legacy[1]);
+
+      if (number === 0) {
+        return { type: "cover" };
+      }
+
+      return {
+        type: "story",
+        prefecture: "hokkaido",
+        chapter: number - 1
+      };
+    }
+
+    return { type: "cover" };
+  }
+
+  /* =====================================================
+     NAVIGATION
+     ===================================================== */
+
+  async function navigate(target, options = {}) {
+    if (navigating) return;
+
+    navigating = true;
+
+    try {
+      if (
+        target.type === "prefecture" ||
+        target.type === "story"
+      ) {
+        const p = getPrefecture(target.prefecture);
+
+        if (!p || !p.enabled) return;
+
+        const data = await loadStory(p);
+
+        if (target.type === "story") {
+          const chapter = getChapter(
+            data,
+            target.chapter
+          );
+
+          if (!chapter || !isReleased(chapter)) {
+            return;
+          }
+        }
+      }
+
+      currentPage = { ...target };
+
+      render(true);
+      updateURL();
+
+      if (!options.noScroll) {
+        $("notebook").scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+    } catch (error) {
+      console.error(error);
+
+      alert(localized(
+        "旅日記を読み込めませんでした。",
+        "Could not load the travel diary."
+      ));
+    } finally {
+      navigating = false;
+    }
+  }
+
+  function move(direction) {
+    if (navigating) return;
+
+    const { pages, position } = getCurrentPosition();
+
+    if (position < 0) return;
+
+    const target = pages[position + direction];
+
+    if (target) {
+      navigate(target);
+    }
+  }
+
+  /* =====================================================
+     TABLE OF CONTENTS
+     ===================================================== */
+
+  function closeToc(restoreFocus = true) {
+    $("overlay").classList.remove("open");
+    $("overlay").hidden = true;
+
+    if (restoreFocus) {
+      $("tocBtn").focus();
+    }
+  }
+
+  function showToc() {
+    $("tocTitle").textContent =
+      localized("旅の目次", "INDEX");
+
+    const entries = [];
+
+    entries.push({
+      page: { type: "cover" },
+      label: "COVER",
+      title: localized("表紙", "Travel Diary"),
+      open: true
     });
 
-  $("overlay").hidden = false;
-  $("overlay").classList.add("open");
+    entries.push({
+      page: { type: "index" },
+      label: "JAPAN 47",
+      title: localized("全国目次", "Journey Index"),
+      open: true
+    });
 
-  $("tocClose").focus();
-}
+    for (const p of prefectures) {
+      if (!p.enabled) continue;
 
-function closeToc() {
-  $("overlay").classList.remove("open");
-  $("overlay").hidden = true;
-  $("tocBtn").focus();
-}
+      const data = storyCache[p.key];
 
-/* =====================================================
-   BUTTON EVENTS
-   ===================================================== */
+      if (!data) continue;
 
-$("prev").addEventListener(
-  "click",
-  () => move(-1)
-);
+      entries.push({
+        page: {
+          type: "prefecture",
+          prefecture: p.key
+        },
+        label: "STOP " + pad(p.id),
+        title: localized(p.ja, p.en),
+        open: true
+      });
 
-$("next").addEventListener(
-  "click",
-  () => move(1)
-);
+      for (const chapter of data.chapters) {
+        entries.push({
+          page: {
+            type: "story",
+            prefecture: p.key,
+            chapter: chapter.id
+          },
+          label: chapter.id === 0
+            ? "PROLOGUE 00"
+            : "CHAPTER " + pad(chapter.id),
+          title: localized(
+            chapter.title,
+            chapter.titleEn
+          ),
+          open: isReleased(chapter),
+          release: chapter.release
+        });
+      }
+    }
 
-$("tocBtn").addEventListener(
-  "click",
-  showToc
-);
+    $("tocItems").innerHTML = entries.map(
+      (entry, i) => `
+        <button
+          class="toc-entry"
+          type="button"
+          data-entry="${i}"
+          ${entry.open ? "" : "disabled"}
+        >
 
-$("tocClose").addEventListener(
-  "click",
-  closeToc
-);
+          <small>
+            ${entry.open ? "📖" : "🔒"}
+            ${safe(entry.label)}
+          </small>
 
-$("overlay").addEventListener("click",e => {
-  if(e.target === $("overlay")) {
-    closeToc();
+          <strong>
+            ${safe(entry.title)}
+          </strong>
+
+          ${entry.release
+            ? "<small>" +
+              safe(dateLabel(entry.release)) +
+              "</small>"
+            : ""}
+
+        </button>
+      `
+    ).join("");
+
+    $("tocItems")
+      .querySelectorAll("[data-entry]")
+      .forEach(button => {
+        button.addEventListener("click", () => {
+          const entry = entries[
+            Number(button.dataset.entry)
+          ];
+
+          closeToc(false);
+          navigate(entry.page);
+        });
+      });
+
+    $("overlay").hidden = false;
+    $("overlay").classList.add("open");
+    $("tocClose").focus();
   }
-});
 
-$("langBtn").addEventListener(
-  "click",
-  async () => {
+  /* =====================================================
+     BUTTON EVENTS
+     ===================================================== */
+
+  $("prev").addEventListener(
+    "click",
+    () => move(-1)
+  );
+
+  $("next").addEventListener(
+    "click",
+    () => move(1)
+  );
+
+  $("tocBtn").addEventListener(
+    "click",
+    showToc
+  );
+
+  $("tocClose").addEventListener(
+    "click",
+    () => closeToc()
+  );
+
+  $("overlay").addEventListener("click", e => {
+    if (e.target === $("overlay")) {
+      closeToc();
+    }
+  });
+
+  $("langBtn").addEventListener("click", () => {
     lang = lang === "ja" ? "en" : "ja";
 
     try {
@@ -1055,176 +1265,234 @@ $("langBtn").addEventListener(
         "travel-diary-language",
         lang
       );
-    } catch(e) {}
+    } catch (e) {}
 
-    await render();
-  }
-);
+    render();
 
-/* =====================================================
-   KEYBOARD
-   ===================================================== */
-
-document.addEventListener("keydown",e => {
-  if(e.key === "Escape") {
-    if($("overlay").classList.contains("open")) {
-      closeToc();
+    if ($("overlay").classList.contains("open")) {
+      showToc();
     }
-    return;
-  }
+  });
 
-  if($("overlay").classList.contains("open")) {
-    return;
-  }
+  /* =====================================================
+     KEYBOARD
+     ===================================================== */
 
-  if(e.key === "ArrowRight") {
-    move(1);
-  }
-
-  if(e.key === "ArrowLeft") {
-    move(-1);
-  }
-});
-
-/* =====================================================
-   MOBILE SWIPE
-   ===================================================== */
-
-let touchX = null;
-
-$("page").addEventListener(
-  "touchstart",
-  e => {
-    touchX = e.touches[0].clientX;
-  },
-  {passive:true}
-);
-
-$("page").addEventListener(
-  "touchend",
-  e => {
-    if(touchX === null) return;
-
-    const delta =
-      e.changedTouches[0].clientX-touchX;
-
-    touchX = null;
-
-    if(Math.abs(delta) > 85) {
-      move(delta < 0 ? 1 : -1);
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      if ($("overlay").classList.contains("open")) {
+        closeToc();
+      }
+      return;
     }
-  },
-  {passive:true}
-);
 
-/* =====================================================
-   HERO IMAGE
-   ===================================================== */
-
-const hero = $("heroImg");
-const heroFallback = $("heroFallback");
-
-function heroOK() {
-  hero.style.display = "block";
-  heroFallback.style.display = "none";
-}
-
-function heroFail() {
-  hero.style.display = "none";
-  heroFallback.style.display = "flex";
-}
-
-hero.addEventListener("load",heroOK);
-hero.addEventListener("error",heroFail);
-
-if(hero.complete) {
-  hero.naturalWidth > 0
-    ? heroOK()
-    : heroFail();
-}
-
-/* =====================================================
-   INITIALIZE
-   ===================================================== */
-
-async function init() {
-  // 有効な都道府県のJSONを読み込む
-  for(const p of prefectures) {
-    if(!p.enabled) continue;
-
-    try {
-      await loadStory(p);
-    } catch(error) {
-      console.error(error);
+    if ($("overlay").classList.contains("open")) {
+      return;
     }
-  }
 
-  const hash = decodeURIComponent(
-    location.hash.replace(/^#/,"")
+    const tag = document.activeElement?.tagName;
+
+    if (
+      tag === "INPUT" ||
+      tag === "TEXTAREA" ||
+      tag === "SELECT"
+    ) {
+      return;
+    }
+
+    if (e.key === "ArrowRight") {
+      move(1);
+    }
+
+    if (e.key === "ArrowLeft") {
+      move(-1);
+    }
+  });
+
+  /* =====================================================
+     MOBILE SWIPE
+     ===================================================== */
+
+  let touchX = null;
+  let touchY = null;
+
+  $("page").addEventListener(
+    "touchstart",
+    e => {
+      touchX = e.touches[0].clientX;
+      touchY = e.touches[0].clientY;
+    },
+    { passive: true }
   );
 
-  if(hash === "index") {
-    currentPage = {type:"index"};
-  } else {
-    const p = prefectures.find(
-      item => item.key === hash
-    );
+  $("page").addEventListener(
+    "touchend",
+    e => {
+      if (touchX === null || touchY === null) {
+        return;
+      }
 
-    if(p && p.enabled && storyCache[p.key]) {
-      currentPage = {
-        type:"prefecture",
-        prefecture:p.key
-      };
-    } else {
-      const match = hash.match(
-        /^([a-z]+)-(\d{2})$/
-      );
+      const dx =
+        e.changedTouches[0].clientX - touchX;
 
-      if(match) {
-        const pref = getPrefecture(match[1]);
+      const dy =
+        e.changedTouches[0].clientY - touchY;
 
-        if(pref && pref.enabled) {
-          const data = storyCache[pref.key];
+      touchX = null;
+      touchY = null;
 
-          const chapterIndex = data?.chapters
-            .findIndex(
-              c => Number(c.id) === Number(match[2])
-            );
+      // 縦スクロールと区別する
+      if (
+        Math.abs(dx) > 85 &&
+        Math.abs(dx) > Math.abs(dy) * 1.5
+      ) {
+        move(dx < 0 ? 1 : -1);
+      }
+    },
+    { passive: true }
+  );
 
-          if(
-            chapterIndex >= 0 &&
-            isAvailable(data.chapters[chapterIndex])
-          ) {
-            currentPage = {
-              type:"story",
-              prefecture:pref.key,
-              chapter:chapterIndex
-            };
-          }
+  /* =====================================================
+     HERO IMAGE
+     ===================================================== */
+
+  const hero = $("heroImg");
+  const heroFallback = $("heroFallback");
+
+  function heroOK() {
+    hero.style.display = "block";
+    heroFallback.style.display = "none";
+  }
+
+  function heroFail() {
+    hero.style.display = "none";
+    heroFallback.style.display = "flex";
+  }
+
+  hero.addEventListener("load", heroOK);
+  hero.addEventListener("error", heroFail);
+
+  if (hero.complete) {
+    hero.naturalWidth > 0
+      ? heroOK()
+      : heroFail();
+  }
+
+  /* =====================================================
+     AUTOMATIC RELEASE CHECK
+     ===================================================== */
+
+  function availableSignature() {
+    const released = [];
+
+    for (const p of prefectures) {
+      if (!p.enabled) continue;
+
+      const data = storyCache[p.key];
+
+      if (!data) continue;
+
+      for (const chapter of data.chapters) {
+        if (isReleased(chapter)) {
+          released.push(
+            p.key + "-" + pad(chapter.id)
+          );
         }
       }
     }
+
+    return released.join("|");
   }
 
-  await render();
-}
+  function checkNewReleases() {
+    const signature = availableSignature();
 
-init();
+    if (signature !== lastAvailableSignature) {
+      lastAvailableSignature = signature;
 
-/* =====================================================
-   AUTO RELEASE CHECK
-   ===================================================== */
+      // 表示中のページを維持して再描画
+      render();
 
-setInterval(async () => {
-  const pagesBefore = getPageList().length;
-
-  const pagesAfter = getPageList().length;
-
-  if(pagesAfter !== pagesBefore) {
-    await render();
-  } else {
-    updateReleaseInfo();
+      // 開いている目次も更新
+      if ($("overlay").classList.contains("open")) {
+        showToc();
+      }
+    } else {
+      updateReleaseInfo();
+    }
   }
-},60000);
+
+  /* =====================================================
+     INITIALIZE
+     ===================================================== */
+
+  async function init() {
+    await loadEnabledStories();
+
+    const requested = parseHash();
+
+    if (
+      requested.type === "prefecture" ||
+      requested.type === "story"
+    ) {
+      const p = getPrefecture(
+        requested.prefecture
+      );
+
+      const data = p
+        ? storyCache[p.key]
+        : null;
+
+      if (!p || !p.enabled || !data) {
+        currentPage = { type: "index" };
+      } else if (requested.type === "story") {
+        const chapter = getChapter(
+          data,
+          requested.chapter
+        );
+
+        if (chapter && isReleased(chapter)) {
+          currentPage = requested;
+        } else {
+          currentPage = {
+            type: "prefecture",
+            prefecture: p.key
+          };
+        }
+      } else {
+        currentPage = requested;
+      }
+    } else {
+      currentPage = requested;
+    }
+
+    lastAvailableSignature = availableSignature();
+
+    render();
+    updateURL();
+  }
+
+  init().catch(error => {
+    console.error(error);
+
+    $("page").innerHTML = `
+      <div style="
+        padding:40px 20px;
+        text-align:center;
+      ">
+        <h2>TRAVEL DIARY</h2>
+        <p>
+          ${safe(localized(
+            "旅日記の読み込みに失敗しました。",
+            "Failed to load the travel diary."
+          ))}
+        </p>
+      </div>
+    `;
+  });
+
+  /* 1分ごとに新しい話の公開を確認 */
+
+  setInterval(checkNewReleases, 60000);
 
 })();
