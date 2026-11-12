@@ -1,0 +1,406 @@
+
+{
+  "prefecture": "AOMORI",
+  "prefectureJa": "青森県",
+  "stop": 2,
+  "descriptionJa": "雪と海と、予想外の事件。たこ焼きカーが青森で出会う、笑いと小さな奇跡の12日記。",
+  "descriptionEn": "Snow, sea, and a string of unexpected mishaps. Twelve travel diary chapters from Aomori.",
+  "chapters": [
+    {
+      "id": 0,
+      "scene": "青森への道",
+      "sceneEn": "The Road to Aomori",
+      "title": "海を渡って、次の旅へ",
+      "titleEn": "Across the Sea, Into Aomori",
+      "image": "./assets/aomori-01.png",
+      "ja": [
+        "北海道をあとにした、たこ焼きカー。",
+        "海の向こうには、まだ知らない景色が待っている。",
+        "次の目的地は、青森。",
+        "「今度こそ、道に迷いませんように。」",
+        "そう願った直後、ナビが「ルートを再検索します」と告げた。",
+        "旅は、まだ始まったばかりだ。"
+      ],
+      "en": [
+        "The takoyaki truck left Hokkaido behind.",
+        "Across the water, a new landscape waited.",
+        "The next stop was Aomori.",
+        "“This time, I hope I won’t get lost.”",
+        "The navigation system immediately announced: “Recalculating route.”",
+        "The journey was only getting started."
+      ]
+    },
+    {
+      "id": 1,
+      "title": "青森の歓迎は、ちょっと寒い。",
+      "titleEn": "A Chilly Welcome to Aomori",
+      "scene": "雪原と寒立馬",
+      "ja": [
+        "青森に上陸した瞬間、風が横から殴ってきた。",
+        "雪原の向こうで、馬たちが何事もない顔で草を食べている。",
+        "「すみません、道を教えてください！」",
+        "「その前に、君は何なんだ」",
+        "「旅するたこ焼きです」",
+        "「風が強い日は、低く構えるんだ」",
+        "言われた通り身を低くすると、風が頭上を通り過ぎた。",
+        "お礼を言って車に戻ると、フロントガラスに馬の鼻息で大きな丸が描かれていた。",
+        "記念写真にした。景色はほとんど写っていない。"
+      ],
+      "en": [
+        "The moment I arrived in Aomori, the wind punched me from the side.",
+        "Beyond the snowy field, a few horses grazed as if nothing were happening.",
+        "“Excuse me! Could you tell me which way to go?”",
+        "“First, what exactly are you?”",
+        "“A traveling takoyaki.”",
+        "“When the wind gets strong, keep your head down.”",
+        "I crouched as instructed, and the wind swept right over me.",
+        "When I thanked them and returned to the truck, I found a huge circle of horse breath fogged onto the windshield.",
+        "I took a souvenir photo. You can barely see the scenery."
+      ],
+      "image": "./assets/aomori-01.png",
+      "release": "2026-11-25T10:00:00+09:00",
+      "sceneEn": "Snowfield and Kandachime Horses"
+    },
+    {
+      "id": 2,
+      "title": "列車に勝負を挑んだ日。",
+      "titleEn": "The Race Nobody Entered",
+      "scene": "雪景色と列車",
+      "ja": [
+        "雪の中を走っていると、オレンジ色の列車が並んだ。",
+        "「あっちは線路、こっちは道路。公平な勝負だ」",
+        "次のカーブで、あっさり姿を消した。",
+        "「ま、まあ、向こうはプロだから」",
+        "駅の近くで再会した列車は、静かに乗客を降ろしていた。",
+        "窓越しに手を振る子どもがいた。",
+        "旅は速さじゃない。誰かに見つけてもらえることも、うれしい。",
+        "そう思って車を出したら、ワイパーが凍っていた。",
+        "人生の教訓より先に、解氷スプレーが必要だった。"
+      ],
+      "en": [
+        "As I drove through the snow, an orange train pulled up alongside me.",
+        "“You have tracks, I have a road. Sounds like a fair race!”",
+        "At the next bend, the train vanished without a trace.",
+        "“W-well, it is a professional.”",
+        "I met the train again near a station, where it was quietly letting passengers off.",
+        "A child waved at me through the window.",
+        "Travel isn't about speed. Sometimes, just being noticed by someone feels wonderful.",
+        "I set off with that thought in my heart—only to discover my windshield wipers had frozen solid.",
+        "Before any grand life lesson, what I really needed was de-icer."
+      ],
+      "image": "./assets/aomori-02.png",
+      "release": "2026-11-27T10:00:00+09:00",
+      "sceneEn": "Winter Railway"
+    },
+    {
+      "id": 3,
+      "title": "池に落としたのは、鍵。",
+      "titleEn": "The Missing Key",
+      "scene": "青い池",
+      "ja": [
+        "森の奥で、信じられないほど青い池を見つけた。",
+        "空の色を全部集めて、こぼしたみたいだった。",
+        "「これは写真を撮らなきゃ」",
+        "落ちたのはカメラではなく、車の鍵だった。",
+        "「よりによって、そっち！？」",
+        "青い水の底で、小さな銀色がきらりと光った。",
+        "なんとか拾い上げた鍵は、冷たくて重かった。",
+        "さっきより少しだけ、きれいに見えた。",
+        "なお写真は一枚もない。記憶の画質だけ最高だ。"
+      ],
+      "en": [
+        "Deep in the forest, I discovered a pond so blue I could hardly believe it.",
+        "It looked as though someone had gathered up all the blue in the sky and spilled it here.",
+        "“I have to get a picture of this!”",
+        "What fell into the pond wasn't my camera. It was my truck key.",
+        "“Of all the things I could've dropped—THAT?!”",
+        "A tiny flash of silver glimmered at the bottom of the blue water.",
+        "Somehow, I managed to retrieve the key. It felt cold and heavy in my hand.",
+        "The pond looked just a little more beautiful than before.",
+        "I didn't take a single photo, though. At least the picture in my memory is in glorious high definition."
+      ],
+      "image": "./assets/aomori-03.png",
+      "release": "2026-11-29T10:00:00+09:00",
+      "sceneEn": "Blue Forest Pond"
+    },
+    {
+      "id": 4,
+      "title": "巨大なたこ焼きを発見！？",
+      "titleEn": "The Giant Takoyaki",
+      "scene": "奇岩の海岸",
+      "ja": [
+        "海辺に着くと、白くて大きな岩が並んでいた。",
+        "遠目には、巨大なたこ焼きの盛り合わせに見えた。",
+        "「親戚の集まりかな？」",
+        "岩だった。",
+        "波が岩にぶつかり、白いしぶきが舞う。",
+        "「ぼくも旅を続けたら、何かの形になるのかな」",
+        "その直後、波しぶきが全身にかかった。",
+        "塩味がついた。",
+        "岩の仲間入りは、思ったより早かった。"
+      ],
+      "en": [
+        "When I reached the shore, enormous pale rocks stood in a row.",
+        "From a distance, they looked like a platter of giant takoyaki.",
+        "“Is this some kind of family reunion?”",
+        "They were rocks.",
+        "Waves crashed against them, sending white spray into the air.",
+        "“If I keep traveling, I wonder if I'll take on a shape of my own.”",
+        "At that exact moment, a wave drenched me from head to toe.",
+        "Now I was seasoned with salt.",
+        "I'd joined the rock family much sooner than expected."
+      ],
+      "image": "./assets/aomori-04.png",
+      "release": "2026-12-01T10:00:00+09:00",
+      "sceneEn": "Rocky Coast"
+    },
+    {
+      "id": 5,
+      "title": "紅葉より目立つもの。",
+      "titleEn": "The Uninvited Photobomber",
+      "scene": "紅葉の湖",
+      "ja": [
+        "湖のまわりは、赤と黄色の葉っぱでいっぱいだった。",
+        "まるで山全体が、今日のために着替えたみたいだ。",
+        "「よし、最高の一枚を撮ろう」",
+        "振り向くと、小さな子どもが同じように写真を撮っていた。",
+        "「あの車、かわいい！」",
+        "景色を撮りに来たのに、景色の一部になってしまった。",
+        "なんだか悪くない。",
+        "撮れた写真を見せてもらうと、紅葉の真ん中にぼくがいた。",
+        "しかも目を閉じていた。よりによって。"
+      ],
+      "en": [
+        "The lake was surrounded by leaves in shades of red and gold.",
+        "It was as though the whole mountain had dressed up just for today.",
+        "“Right. Time to take the perfect picture.”",
+        "When I turned around, a little child was taking a picture too.",
+        "“That truck is so cute!”",
+        "I'd come to photograph the scenery, only to become part of it myself.",
+        "And somehow, I didn't mind.",
+        "The child showed me the photo. There I was, right in the middle of the autumn colors.",
+        "With my eyes closed. Of course."
+      ],
+      "image": "./assets/aomori-05.png",
+      "release": "2026-12-03T10:00:00+09:00",
+      "sceneEn": "Autumn Lake Towada"
+    },
+    {
+      "id": 6,
+      "title": "にんにく畑の大繁盛。",
+      "titleEn": "The Garlic Business",
+      "scene": "にんにく畑",
+      "ja": [
+        "畑に近づくほど、空気がにんにくになっていった。",
+        "「いい匂い……いや、強い！」",
+        "車を停めると、通りかかった人が立ち止まった。",
+        "「たこ焼き、売ってるの？」",
+        "「今日は旅の途中で……」",
+        "「にんにく入り、ある？」",
+        "夕方、畑の向こうに日が沈む。",
+        "誰かのお腹を満たせるのは、ちょっと誇らしかった。",
+        "ただし売上はゼロ。全員、匂いだけ嗅いで帰った。"
+      ],
+      "en": [
+        "The closer I got to the fields, the more the very air seemed to turn into garlic.",
+        "“Smells amazing... no, wait. That's STRONG!”",
+        "I parked the truck, and a passerby stopped beside me.",
+        "“Are you selling takoyaki?”",
+        "“Actually, I'm just passing through today...”",
+        "“Got any with garlic?”",
+        "By evening, the sun was setting beyond the fields.",
+        "The thought that I might fill someone's stomach made me feel a little proud.",
+        "Total sales: zero. Everyone sniffed the air and went home."
+      ],
+      "image": "./assets/aomori-06.png",
+      "release": "2026-12-05T10:00:00+09:00",
+      "sceneEn": "Garlic Fields"
+    },
+    {
+      "id": 7,
+      "title": "灯台を信じすぎた。",
+      "titleEn": "Following the Light",
+      "scene": "吹雪の灯台",
+      "ja": [
+        "吹雪の向こうに、灯台の光が見えた。",
+        "「あそこを目指せば、きっと道に戻れる！」",
+        "しばらく走ると、また灯台が見えた。",
+        "また灯台。",
+        "「……さっきも会ったよね？」",
+        "車のタイヤの跡を見て、ようやく気づいた。",
+        "同じ場所を三周していた。",
+        "でも希望だけでは、道順までは教えてくれない。",
+        "ナビを起動した。最初からそうすればよかった。"
+      ],
+      "en": [
+        "Through the blizzard, I spotted the beam of a lighthouse.",
+        "“If I head for that light, I'll find my way back!”",
+        "After driving for a while, I saw the lighthouse again.",
+        "And again.",
+        "“...Haven't we met already?”",
+        "It wasn't until I noticed the tire tracks in the snow that I understood.",
+        "I'd driven around the same spot three times.",
+        "Hope is a wonderful thing. Unfortunately, it doesn't come with turn-by-turn directions.",
+        "I switched on the GPS. I probably should've started there."
+      ],
+      "image": "./assets/aomori-07.png",
+      "release": "2026-12-07T10:00:00+09:00",
+      "sceneEn": "Lighthouse in a Blizzard"
+    },
+    {
+      "id": 8,
+      "title": "ウミネコ警備隊、出動。",
+      "titleEn": "The Seagull Security Team",
+      "scene": "ウミネコの島",
+      "ja": [
+        "島に着いた途端、空が白い鳥でいっぱいになった。",
+        "「すごい歓迎だ！」",
+        "一羽がたこ焼きカーの屋根に着地した。",
+        "次の瞬間、くちばしが窓をこつこつ叩いた。",
+        "どうやら目的は、ぼくではなく車に残ったソースの香りらしい。",
+        "慌てて窓を閉める。",
+        "外では鳥たちが大合唱していた。",
+        "海風の中で生きる彼らの声は、妙に力強かった。",
+        "「たこ焼き本人は、食べ放題じゃありません！」"
+      ],
+      "en": [
+        "The moment I reached the island, the sky filled with white seabirds.",
+        "“Wow! What a welcome!”",
+        "One bird landed on the roof of my takoyaki truck.",
+        "A second later, its beak began tapping at the window.",
+        "Apparently, it wasn't interested in me at all—just the lingering smell of sauce inside the truck.",
+        "I hurriedly rolled up the window.",
+        "Outside, the birds were singing at the top of their lungs.",
+        "Their cries carried a strange strength as they rang out over the sea wind.",
+        "“Just so we're clear, the takoyaki himself is NOT an all-you-can-eat buffet!”"
+      ],
+      "image": "./assets/aomori-08.png",
+      "release": "2026-12-09T10:00:00+09:00",
+      "sceneEn": "Kabushima Seabirds"
+    },
+    {
+      "id": 9,
+      "title": "近道は、どこへ行った。",
+      "titleEn": "The Longest Shortcut",
+      "scene": "湿原と木道",
+      "ja": [
+        "湿原には、まっすぐな木の道が続いていた。",
+        "「これなら絶対に迷わない」",
+        "「景色、変わらなすぎでは？」",
+        "振り返ると、遠くに自分の車が小さく見えた。",
+        "ところが、足を止めると風の音がよく聞こえた。",
+        "急いでいたら、聞こえなかった音だ。",
+        "しばらくその場で耳を澄ませた。",
+        "帰りはゆっくり歩こうと思った。",
+        "その結果、車まで戻るのに行きの三倍かかった。"
+      ],
+      "en": [
+        "A straight wooden boardwalk stretched across the marsh.",
+        "“There's no way I can get lost on this!”",
+        "“...Doesn't the scenery look exactly the same everywhere?”",
+        "When I looked back, my truck was a tiny speck in the distance.",
+        "But when I stopped walking, I could hear the wind much more clearly.",
+        "It was a sound I'd have missed if I'd kept rushing.",
+        "I stood still and listened for a while.",
+        "I decided to take my time on the way back.",
+        "Which meant getting back to the truck took three times as long as getting there."
+      ],
+      "image": "./assets/aomori-09.jpg",
+      "release": "2026-12-11T10:00:00+09:00",
+      "sceneEn": "Wetland Boardwalk"
+    },
+    {
+      "id": 10,
+      "title": "葉っぱレース世界大会。",
+      "titleEn": "The Leaf Racing Championship",
+      "scene": "森の滝",
+      "ja": [
+        "森の奥で、滝の音が聞こえてきた。",
+        "水が岩を滑り、白い線になって落ちている。",
+        "「葉っぱを流したら、どれが一番速いかな」",
+        "「赤、先行！ 黄色、追い上げる！」",
+        "黄色い葉っぱが岩に引っかかった。",
+        "赤い葉っぱは水に乗り、見えなくなった。",
+        "小さなものでも、流れに乗れば遠くへ行ける。",
+        "そう思うと、旅を始めた日のことを思い出した。",
+        "そして気づいた。車の鍵を握ったまま、水辺で実況していた。危ない。"
+      ],
+      "en": [
+        "Deep in the forest, I heard the sound of a waterfall.",
+        "Water slipped over the rocks and fell in long white ribbons.",
+        "“I wonder which leaf would win if I raced them down the stream.”",
+        "“Red takes the lead! Yellow is catching up!”",
+        "The yellow leaf got stuck on a rock.",
+        "The red one rode the current and disappeared from sight.",
+        "Even something tiny can travel far when it finds the right current.",
+        "It reminded me of the day I first set out on this journey.",
+        "Then I realized I was still holding my truck key while commentating beside the water. That was dangerously close."
+      ],
+      "image": "./assets/aomori-10.jpg",
+      "release": "2026-12-13T10:00:00+09:00",
+      "sceneEn": "Forest Stream and Falls"
+    },
+    {
+      "id": 11,
+      "title": "軒下でまさかのアルバイト。",
+      "titleEn": "An Unexpected Part-Time Job",
+      "scene": "雪のこみせ通り",
+      "ja": [
+        "雪の降る町で、屋根のある道を見つけた。",
+        "「青森、天才では？」",
+        "軒下でひと息ついていると、店先の人に声をかけられた。",
+        "「ちょっと、その箱を押さえてくれる？」",
+        "押さえる。もう一つ運ぶ。ついでに雪を払う。",
+        "「助かったよ。ありがとう」",
+        "温かい声に、雪の冷たさが少しやわらいだ。",
+        "旅先にも、居場所ってできるんだな。",
+        "そう思った瞬間、屋根から雪がどさっと落ちた。ぼくだけ直撃。"
+      ],
+      "en": [
+        "In a snowy town, I found a street sheltered by a long row of roofs.",
+        "“Aomori, you're a genius!”",
+        "As I caught my breath beneath the eaves, someone from a nearby shop called out.",
+        "“Could you hold this box for a second?”",
+        "I held the box. Then carried another. Then brushed away some snow for good measure.",
+        "“You really helped. Thank you.”",
+        "The warmth in that voice made the snow feel a little less cold.",
+        "Maybe you can find a place to belong, even somewhere you're only visiting.",
+        "Just as I thought that, a huge pile of snow slid off the roof. Straight onto me. Nobody else."
+      ],
+      "image": "./assets/aomori-11.png",
+      "release": "2026-12-15T10:00:00+09:00",
+      "sceneEn": "Snowy Komise Street"
+    },
+    {
+      "id": 12,
+      "title": "桜の向こうに続く道。",
+      "titleEn": "The Road Beyond the Blossoms",
+      "scene": "桜と虹の湖",
+      "ja": [
+        "雪ばかり見てきた旅の先に、桜が咲いていた。",
+        "湖の向こうには山。空には大きな虹。",
+        "「こんな景色、本当にあるんだ」",
+        "馬に驚かれ、列車に負け、鍵を落とした青森の旅。",
+        "でも思い返すと、笑えることのほうが多い。",
+        "旅を始める前のぼくには、想像もできなかった。",
+        "「次は秋田か。どんな景色が待ってるんだろう」",
+        "エンジンをかけて、そっと走り出した。",
+        "……五メートル先で停車。花びらを記念に拾い忘れた。"
+      ],
+      "en": [
+        "After a journey filled with snow, I finally found cherry blossoms in bloom.",
+        "Mountains rose beyond the lake, and a great rainbow stretched across the sky.",
+        "“Can a place this beautiful really exist?”",
+        "Aomori had been a trip of startling horses, losing races to trains, and dropping keys into ponds.",
+        "But looking back, most of those memories made me laugh.",
+        "Before I began this journey, I never could have imagined any of it.",
+        "“Akita's next. I wonder what kind of scenery is waiting for me there.”",
+        "I started the engine and gently drove forward.",
+        "...Then stopped five meters later. I'd forgotten to pick up a fallen petal as a keepsake."
+      ],
+      "image": "./assets/aomori-12.png",
+      "release": "2026-12-17T10:00:00+09:00",
+      "sceneEn": "Cherry Blossoms and Rainbow"
+    }
+  ]
+}
