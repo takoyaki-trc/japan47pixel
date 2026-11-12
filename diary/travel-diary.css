@@ -1,0 +1,1409 @@
+
+/* =====================================================
+   TRAVELING TAKOYAKI — TRAVEL DIARY
+   47 PREFECTURES EDITION
+   Vintage Travel Notebook Design
+   ===================================================== */
+
+:root {
+  --navy:#11283b;
+  --ink:#38291d;
+  --paper:#fffaf0;
+  --red:#b74432;
+  --rule:#ddd0bb;
+  --craft:#d3ac7b;
+  --craft-dark:#895a37;
+  --muted:#806c51;
+
+  --jp:'Zen Maru Gothic',
+       'Hiragino Maru Gothic ProN',
+       system-ui,sans-serif;
+
+  --en:'Fredoka',
+       'Zen Maru Gothic',
+       system-ui,sans-serif;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html {
+  scroll-behavior:smooth;
+}
+
+body {
+  margin:0;
+  background:radial-gradient(
+    ellipse at 50% 0%,
+    #2d526b,
+    #102638 58%,
+    #071622 100%
+  );
+  color:var(--ink);
+  font-family:var(--jp);
+}
+
+button {
+  font:inherit;
+  cursor:pointer;
+}
+
+button:disabled {
+  cursor:not-allowed;
+  opacity:.45;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline:3px solid #ffce6a;
+  outline-offset:3px;
+}
+
+[hidden] {
+  display:none!important;
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.header {
+  width:min(1050px,100%);
+  margin:auto;
+  padding:13px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:7px;
+
+  color:white;
+}
+
+.brand {
+  font:700 clamp(13px,2.9vw,19px)/1.15 var(--en);
+  white-space:nowrap;
+  letter-spacing:.015em;
+}
+
+.head-actions {
+  display:flex;
+  gap:6px;
+  align-items:center;
+  flex-shrink:0;
+}
+
+.head-btn {
+  height:40px;
+  min-width:42px;
+  padding:0 11px;
+
+  border:2px solid #0b1116;
+  background:#fff9ed;
+  color:#1d1a18;
+
+  box-shadow:3px 3px 0 #07131c;
+  border-radius:0;
+
+  text-decoration:none;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.head-btn:hover {
+  background:#f1dfb9;
+}
+
+#langBtn {
+  min-width:78px;
+}
+
+.home-btn {
+  font-size:22px;
+}
+
+/* =====================================================
+   HERO IMAGE
+   ===================================================== */
+
+.hero {
+  width:100%;
+  background:#285470;
+  overflow:hidden;
+}
+
+.hero img {
+  display:block;
+  width:100%;
+  height:auto;
+  image-rendering:pixelated;
+}
+
+.hero-fallback {
+  display:none;
+  min-height:145px;
+
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  padding:22px;
+  color:white;
+
+  font:700 clamp(23px,5vw,45px)/1.2 var(--en);
+}
+
+/* =====================================================
+   NOTEBOOK
+   ===================================================== */
+
+.container {
+  width:min(1050px,100%);
+  margin:auto;
+  padding:0 10px;
+}
+
+.notebook {
+  position:relative;
+
+  margin:22px 0 15px;
+  padding:13px 13px 13px 43px;
+
+  border:7px solid var(--craft-dark);
+  border-radius:17px;
+
+  background:linear-gradient(
+    130deg,
+    #e9c790,
+    #c8955d
+  );
+
+  box-shadow:
+    0 14px 33px #0006,
+    inset 0 0 0 4px #f2d6a5;
+}
+
+/* 四角いリング穴 */
+
+.notebook::before {
+  content:'';
+
+  position:absolute;
+  top:18px;
+  bottom:18px;
+  left:14px;
+
+  width:18px;
+
+  background:repeating-linear-gradient(
+    to bottom,
+    #5c422b 0 14px,
+    #f4d39c 14px 37px
+  );
+
+  box-shadow:
+    inset 2px 2px 2px #25170c77,
+    1px 0 #f7ddac;
+}
+
+.page {
+  position:relative;
+  background:var(--paper);
+  border-radius:2px;
+  min-height:520px;
+  overflow:hidden;
+}
+
+.page.turn {
+  animation:turn .27s ease-out;
+}
+
+@keyframes turn {
+  from {
+    opacity:.65;
+    transform:perspective(1200px) rotateY(-5deg);
+  }
+
+  to {
+    opacity:1;
+    transform:rotateY(0);
+  }
+}
+
+/* =====================================================
+   COVER
+   ===================================================== */
+
+.cover {
+  position:relative;
+  min-height:590px;
+  padding:46px 22px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  background-color:var(--craft);
+
+  background-image:
+    radial-gradient(
+      #815c3526 1px,
+      transparent 1px
+    ),
+    repeating-linear-gradient(
+      12deg,
+      transparent 0 13px,
+      #7347210b 14px 15px,
+      transparent 16px 30px
+    ),
+    linear-gradient(
+      145deg,
+      #e8cba1,
+      #d2ad7f 55%,
+      #c29965
+    );
+
+  background-size:16px 19px,auto,auto;
+}
+
+.cover::before {
+  content:'';
+  pointer-events:none;
+
+  position:absolute;
+  inset:16px;
+
+  border:3px double #795638;
+}
+
+.cover > * {
+  position:relative;
+  max-width:640px;
+}
+
+.cover-kicker {
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+
+.cover-rule {
+  margin:17px 0;
+  color:#8b6240;
+  font-weight:900;
+}
+
+.stamp {
+  border:3px solid #ab4534;
+  color:#ab4534;
+
+  padding:7px 15px;
+
+  font-weight:900;
+  letter-spacing:.08em;
+
+  transform:rotate(-5deg);
+
+  margin:6px 0 25px;
+
+  font-size:clamp(15px,3vw,22px);
+}
+
+.cover h1 {
+  margin:0;
+
+  font-family:var(--jp);
+  font-size:clamp(38px,7.8vw,75px);
+  font-weight:900;
+
+  line-height:1.12;
+  letter-spacing:-.045em;
+
+  color:#372719;
+}
+
+.cover h1.en {
+  font-family:var(--en);
+  font-weight:700;
+  letter-spacing:-.02em;
+}
+
+.cover h1 span {
+  display:block;
+}
+
+.cover-subtitle {
+  color:#9e4234;
+  font-weight:900;
+
+  font-size:clamp(18px,3.5vw,28px);
+
+  margin-top:20px;
+
+  border-top:1px solid #866343;
+  padding-top:14px;
+  width:86%;
+}
+
+.cover-description {
+  max-width:480px;
+  margin:23px 0 0;
+
+  line-height:1.72;
+  font-size:15px;
+  font-weight:700;
+}
+
+.open-btn {
+  margin-top:26px;
+
+  background:#c44834;
+  border:3px solid #3e241a;
+  color:white;
+
+  box-shadow:4px 4px 0 #593b29;
+
+  font-weight:900;
+  font-size:18px;
+
+  padding:12px 24px;
+}
+
+.open-btn:hover {
+  background:#a93829;
+}
+
+.cover-foot {
+  margin-top:29px;
+  font-size:12px;
+  font-weight:700;
+  color:#765538;
+}
+
+/* =====================================================
+   47 PREFECTURES INDEX
+   ===================================================== */
+
+.journey-index {
+  min-height:590px;
+  padding:34px 32px 38px;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 31px,
+      #e9ddc9 32px
+    ),
+    #fffaf0;
+}
+
+.index-heading {
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.index-kicker {
+  font:700 12px var(--en);
+  letter-spacing:.13em;
+  color:#a44a37;
+}
+
+.index-heading h2 {
+  margin:8px 0 4px;
+
+  font-size:clamp(29px,5vw,43px);
+  font-weight:900;
+
+  color:#39291b;
+}
+
+.index-subtitle {
+  font:700 12px var(--en);
+  color:#92765b;
+  letter-spacing:.09em;
+}
+
+.index-rule {
+  margin:20px auto;
+  width:70%;
+  height:2px;
+  background:#c7aa83;
+}
+
+.journey-progress {
+  max-width:510px;
+  margin:0 auto 25px;
+}
+
+.progress-label {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+
+  font-size:12px;
+  font-weight:900;
+
+  color:#765a40;
+}
+
+.progress-label strong {
+  color:#b74432;
+  font:700 17px var(--en);
+}
+
+.progress-track {
+  height:9px;
+  margin-top:9px;
+
+  background:#e4d4b9;
+  border:1px solid #c4a680;
+  border-radius:20px;
+
+  overflow:hidden;
+}
+
+.progress-fill {
+  width:0;
+  height:100%;
+
+  background:repeating-linear-gradient(
+    45deg,
+    #b74432 0 8px,
+    #c85b46 8px 16px
+  );
+
+  transition:width .35s ease;
+}
+
+/* 地域見出し */
+
+.region-group {
+  margin:26px 0 0;
+}
+
+.region-heading {
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  margin-bottom:11px;
+}
+
+.region-heading h3 {
+  margin:0;
+
+  color:#684b32;
+  font-size:15px;
+  font-weight:900;
+}
+
+.region-heading::after {
+  content:'';
+  flex:1;
+  height:1px;
+  background:#cdb695;
+}
+
+/* 都道府県一覧 */
+
+.prefecture-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+
+.prefecture-entry {
+  position:relative;
+
+  min-width:0;
+  min-height:90px;
+
+  padding:13px 11px;
+
+  background:#fffdf7;
+  border:1px solid #cdb99b;
+
+  color:#38291d;
+  text-align:left;
+
+  box-shadow:2px 3px 0 #c9b79c;
+  transition:
+    transform .15s,
+    background .15s;
+}
+
+.prefecture-entry:not(:disabled):hover {
+  background:#f6e7d1;
+  transform:translateY(-2px);
+}
+
+.prefecture-number {
+  display:block;
+  margin-bottom:5px;
+
+  font:700 11px var(--en);
+  color:#a44b39;
+}
+
+.prefecture-name {
+  display:block;
+
+  font-size:16px;
+  font-weight:900;
+  line-height:1.35;
+}
+
+.prefecture-en {
+  display:block;
+
+  margin-top:3px;
+
+  font:700 10px var(--en);
+  color:#90775c;
+
+  overflow-wrap:anywhere;
+}
+
+.prefecture-entry.locked {
+  background:#eee6d8;
+  border-color:#d4c8b7;
+  box-shadow:none;
+
+  color:#9b8d7c;
+  opacity:.8;
+}
+
+.prefecture-entry.locked
+.prefecture-number,
+.prefecture-entry.locked
+.prefecture-en {
+  color:#aaa093;
+}
+
+/* 訪問済みスタンプ */
+
+.visited-stamp {
+  position:absolute;
+  top:7px;
+  right:6px;
+
+  padding:2px 5px;
+
+  border:2px solid #b74432;
+  color:#b74432;
+
+  font:700 9px var(--en);
+  letter-spacing:.04em;
+
+  transform:rotate(-9deg);
+  opacity:.85;
+
+  pointer-events:none;
+}
+
+.lock-mark {
+  position:absolute;
+  top:8px;
+  right:8px;
+
+  font-size:13px;
+  opacity:.6;
+}
+
+.index-bottom {
+  text-align:center;
+  margin-top:32px;
+
+  font-size:12px;
+  font-weight:700;
+  color:#80694f;
+}
+
+/* =====================================================
+   PREFECTURE INTRO / CHAPTER INDEX
+   ===================================================== */
+
+.prefecture-cover {
+  min-height:570px;
+  padding:40px 30px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  background:
+    radial-gradient(
+      #86603a20 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      145deg,
+      #fff8e9,
+      #ead5b1
+    );
+
+  background-size:18px 18px,auto;
+}
+
+.prefecture-stop {
+  font:700 14px var(--en);
+  color:#b74432;
+  letter-spacing:.12em;
+}
+
+.prefecture-cover h2 {
+  margin:14px 0 0;
+
+  font-size:clamp(43px,8vw,75px);
+  font-weight:900;
+
+  color:#3c2b1d;
+}
+
+.prefecture-roman {
+  margin-top:6px;
+
+  font:700 clamp(20px,4vw,31px) var(--en);
+  color:#a44b37;
+
+  letter-spacing:.09em;
+}
+
+.prefecture-description {
+  max-width:490px;
+
+  margin:22px auto;
+
+  font-size:14px;
+  font-weight:700;
+  line-height:1.8;
+
+  color:#72583d;
+}
+
+.prefecture-chapters {
+  width:min(540px,100%);
+  margin:18px auto 0;
+
+  text-align:left;
+}
+
+.prefecture-chapters h3 {
+  margin:0 0 13px;
+
+  padding-bottom:9px;
+  border-bottom:2px solid #bca17b;
+
+  font-size:16px;
+  font-weight:900;
+}
+
+.chapter-entry {
+  width:100%;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  padding:11px 8px;
+
+  background:transparent;
+  border:0;
+  border-bottom:1px solid #d7c4a5;
+
+  color:#38291d;
+  text-align:left;
+
+  font-size:13px;
+  font-weight:700;
+}
+
+.chapter-entry:hover:not(:disabled) {
+  background:#ead7b8;
+}
+
+.chapter-entry:disabled {
+  color:#a39582;
+}
+
+.chapter-entry-number {
+  min-width:35px;
+  color:#b74432;
+  font:700 12px var(--en);
+}
+
+.chapter-entry-title {
+  flex:1;
+}
+
+.chapter-entry-lock {
+  font-size:12px;
+}
+
+/* =====================================================
+   BOOKMARK TABS
+   ===================================================== */
+
+.bookmark-tabs {
+  position:absolute;
+  z-index:10;
+
+  top:45px;
+  right:-7px;
+
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+
+  max-width:85px;
+}
+
+.bookmark-tab {
+  position:relative;
+
+  min-width:64px;
+  min-height:47px;
+
+  padding:7px 6px;
+
+  background:#e6d1ac;
+  border:2px solid #765537;
+  border-right:0;
+
+  border-radius:6px 0 0 6px;
+
+  color:#58412d;
+
+  box-shadow:-2px 3px 4px #0002;
+
+  text-align:center;
+  font-weight:900;
+}
+
+.bookmark-tab.active {
+  background:#b74432;
+  color:white;
+  border-color:#7d2f24;
+}
+
+.bookmark-tab:disabled {
+  background:#d8cbb6;
+  color:#9b8d7b;
+  opacity:.85;
+}
+
+.bookmark-tab-number {
+  display:block;
+
+  font:700 10px var(--en);
+}
+
+.bookmark-tab-name {
+  display:block;
+
+  font-size:11px;
+  line-height:1.3;
+}
+
+/* =====================================================
+   STORY SPREAD
+   ===================================================== */
+
+.spread {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:570px;
+}
+
+.art-side {
+  min-width:0;
+
+  background:#ecdec4;
+  padding:23px;
+
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+
+  border-right:1px solid #bca582;
+}
+
+.kicker {
+  font:700 12px var(--en);
+  color:#856a50;
+  letter-spacing:.09em;
+}
+
+.photo {
+  width:min(100%,430px);
+
+  padding:11px 11px 21px;
+
+  background:#fffbf1;
+
+  box-shadow:2px 8px 16px #4a34294b;
+
+  transform:rotate(-1deg);
+  position:relative;
+
+  margin:auto;
+}
+
+.photo::before {
+  content:'';
+
+  position:absolute;
+  top:-11px;
+  left:calc(50% - 39px);
+
+  width:78px;
+  height:21px;
+
+  background:#cdb085b0;
+  transform:rotate(3deg);
+}
+
+.photo img {
+  display:block;
+
+  width:100%;
+  aspect-ratio:1;
+
+  object-fit:cover;
+  image-rendering:pixelated;
+}
+
+.photo .photo-fallback {
+  display:none;
+
+  aspect-ratio:1;
+
+  align-items:center;
+  justify-content:center;
+
+  background:linear-gradient(
+    #99d2e0 0 55%,
+    #82aa7d 55%
+  );
+
+  font-size:17px;
+  font-weight:900;
+
+  text-align:center;
+  padding:16px;
+}
+
+.photo figcaption {
+  padding-top:14px;
+
+  text-align:center;
+
+  color:#735a40;
+  font-size:12px;
+  font-weight:900;
+}
+
+.text-side {
+  min-width:0;
+
+  background:#fffaf0;
+
+  padding:29px 31px 20px 35px;
+
+  display:flex;
+  flex-direction:column;
+}
+
+.meta {
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+
+  font:700 11px var(--en);
+  color:#80644b;
+}
+
+.story-title {
+  font-size:clamp(25px,3.6vw,35px);
+  font-weight:900;
+
+  line-height:1.32;
+
+  margin:22px 0 12px;
+
+  letter-spacing:-.02em;
+  overflow-wrap:anywhere;
+}
+
+.underline {
+  height:5px;
+  width:65px;
+
+  background:var(--red);
+  margin-bottom:19px;
+}
+
+.story {
+  --leading:29px;
+
+  font-size:16px;
+  font-weight:500;
+
+  line-height:var(--leading);
+  letter-spacing:0;
+
+  overflow-wrap:anywhere;
+}
+
+.story p {
+  margin:0 0 4px;
+
+  line-height:var(--leading);
+
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0 calc(var(--leading) - 1px),
+    var(--rule) calc(var(--leading) - 1px) var(--leading)
+  );
+
+  background-size:100% var(--leading);
+}
+
+.story p:last-child {
+  font-weight:900;
+  color:#a44334;
+}
+
+.page-foot {
+  margin-top:auto;
+  padding-top:17px;
+
+  border-top:1px solid #c8b495;
+
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+
+  color:#806c51;
+  font:700 10px var(--en);
+}
+
+/* =====================================================
+   PAGE NAVIGATION
+   ===================================================== */
+
+.pager {
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto
+    minmax(0,1fr);
+
+  align-items:center;
+  gap:8px;
+
+  margin:20px 0 24px;
+}
+
+.pager .navbtn {
+  width:100%;
+  min-width:0;
+  min-height:48px;
+
+  padding:11px 8px;
+}
+
+.navbtn {
+  border:2px solid #c2a67d;
+  background:#f6e5c9;
+
+  border-radius:5px;
+
+  padding:11px 14px;
+  min-height:48px;
+
+  font-weight:900;
+  font-size:12px;
+
+  color:#32251b;
+
+  box-shadow:3px 3px 0 #071521;
+  white-space:nowrap;
+}
+
+.navbtn:hover:not(:disabled) {
+  background:#ead2a8;
+}
+
+.status {
+  text-align:center;
+
+  color:#f6e5c7;
+
+  font-weight:700;
+  font-size:11px;
+  line-height:1.55;
+}
+
+.status small {
+  display:block;
+
+  color:#d1b995;
+  font-size:10px;
+  font-weight:500;
+}
+
+.footer {
+  text-align:center;
+
+  font:700 11px var(--en);
+  letter-spacing:.09em;
+
+  color:#dac6a7;
+  padding:0 0 26px;
+}
+
+/* =====================================================
+   CHAPTER INDEX MODAL
+   ===================================================== */
+
+.overlay {
+  position:fixed;
+  inset:0;
+  z-index:99;
+
+  background:#07121de8;
+
+  padding:12px;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+.overlay.open {
+  display:flex;
+}
+
+.toc {
+  width:min(700px,100%);
+  max-height:90dvh;
+
+  overflow-y:auto;
+
+  background:#f8ecd5;
+
+  border:6px solid #845b38;
+  border-radius:8px;
+
+  padding:17px;
+}
+
+.toc-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  border-bottom:1px solid #c4a580;
+  padding-bottom:11px;
+}
+
+.toc-head h2 {
+  font-size:20px;
+  margin:0;
+}
+
+.close {
+  border:0;
+  background:#bb4736;
+
+  color:white;
+
+  padding:8px 14px;
+  font-weight:900;
+}
+
+.toc-items {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+
+  margin-top:14px;
+}
+
+.toc-entry {
+  background:#fffaf0;
+  border:1px solid #d4b995;
+
+  padding:12px;
+
+  text-align:left;
+  color:#352a21;
+
+  min-height:73px;
+}
+
+.toc-entry strong {
+  display:block;
+
+  font-size:13px;
+  line-height:1.4;
+}
+
+.toc-entry small {
+  display:block;
+
+  font-size:10px;
+  color:#846f56;
+
+  margin:3px 0;
+}
+
+.toc-entry:disabled {
+  background:#e6d9c6;
+  opacity:.7;
+}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media(max-width:720px) {
+
+  .header {
+    padding:10px 9px;
+  }
+
+  .brand {
+    font-size:14px;
+  }
+
+  .head-btn {
+    height:36px;
+    min-width:34px;
+
+    padding:0 9px;
+    font-size:11px;
+  }
+
+  #langBtn {
+    min-width:72px;
+  }
+
+  .container {
+    padding:0 8px;
+  }
+
+  .notebook {
+    padding:11px 10px 11px 30px;
+
+    border-width:6px;
+    margin-top:15px;
+  }
+
+  .notebook::before {
+    left:9px;
+    top:13px;
+    bottom:13px;
+
+    width:13px;
+
+    background:repeating-linear-gradient(
+      to bottom,
+      #5c422b 0 12px,
+      #f4d39c 12px 33px
+    );
+  }
+
+  .page {
+    min-height:0;
+  }
+
+  .cover {
+    min-height:510px;
+    padding:46px 18px;
+  }
+
+  .cover::before {
+    inset:11px;
+  }
+
+  .cover h1 {
+    font-size:clamp(34px,8vw,58px);
+  }
+
+  /* 全国目次 */
+
+  .journey-index {
+    padding:26px 15px 30px;
+  }
+
+  .prefecture-grid {
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+
+  .prefecture-entry {
+    min-height:82px;
+    padding:10px 8px;
+  }
+
+  .prefecture-name {
+    font-size:14px;
+  }
+
+  .prefecture-en {
+    font-size:9px;
+  }
+
+  .visited-stamp {
+    font-size:8px;
+    padding:1px 3px;
+  }
+
+  /* 県別扉 */
+
+  .prefecture-cover {
+    min-height:500px;
+    padding:30px 17px;
+  }
+
+  .prefecture-cover h2 {
+    font-size:clamp(37px,9vw,58px);
+  }
+
+  /* 物語 */
+
+  .spread {
+    display:block;
+    min-height:0;
+  }
+
+  .art-side {
+    padding:17px;
+    border:0;
+  }
+
+  .photo {
+    width:min(91%,410px);
+  }
+
+  .text-side {
+    padding:23px 19px 19px;
+  }
+
+  .story-title {
+    font-size:26px;
+  }
+
+  .story {
+    --leading:29px;
+
+    font-size:16px;
+    line-height:var(--leading);
+  }
+
+  .story p {
+    margin-bottom:3px;
+  }
+
+  /* しおり */
+
+  .bookmark-tabs {
+    top:35px;
+    right:-6px;
+    max-width:54px;
+  }
+
+  .bookmark-tab {
+    min-width:47px;
+    min-height:43px;
+    padding:6px 3px;
+  }
+
+  .bookmark-tab-number {
+    font-size:9px;
+  }
+
+  .bookmark-tab-name {
+    font-size:9px;
+  }
+
+  /* ナビゲーション */
+
+  .navbtn {
+    padding:10px 7px;
+    font-size:11px;
+  }
+
+  .toc-items {
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:370px) {
+
+  .brand {
+    font-size:12px;
+  }
+
+  .head-btn {
+    padding:0 6px;
+  }
+
+  #langBtn {
+    min-width:63px;
+  }
+
+  .story {
+    font-size:15px;
+    --leading:27px;
+  }
+
+  .status {
+    font-size:10px;
+  }
+
+  .prefecture-entry {
+    padding:9px 6px;
+  }
+
+  .prefecture-name {
+    font-size:13px;
+  }
+}
+
+/* =====================================================
+   ACCESSIBILITY
+   ===================================================== */
+
+@media(prefers-reduced-motion:reduce) {
+
+  html {
+    scroll-behavior:auto;
+  }
+
+  .page.turn {
+    animation:none;
+  }
+
+  .prefecture-entry,
+  .progress-fill {
+    transition:none;
+  }
+}
