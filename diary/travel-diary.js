@@ -89,7 +89,7 @@
 
     // 北海道と青森を公開
     // 秋田追加時は i <= 2 に変更
-    enabled: i <= 0,
+    enabled: i <= 1,
 
     file: "./stories/" + item[0].toLowerCase() + ".json"
   }));
