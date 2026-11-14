@@ -28,9 +28,9 @@
     "nameJa": "青森県",
     "region": "TOHOKU",
 
-    "ticketImage": null,
+    "ticketImage": "https://japan47pixel.net/images/hpticket/2.png",
     "artImage": null,
-    "artBookImage": null,
+    "artBookImage": "https://japan47pixel.net/images/artBookImage/02.png",
 
     "ticketRevealed": false,
     "artRevealed": false,
@@ -41,8 +41,8 @@
     "ticketStatus": "COMING SOON",
     "artStatus": "COMING SOON",
 
-    "ticketSupply": null,
-    "ticketClaimed": null
+    "ticketSupply": 333,
+    "ticketClaimed": 333
   },
   {
     "_memo": "========== 03 秋田県 / AKITA ==========",
