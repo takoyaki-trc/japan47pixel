@@ -49,7 +49,16 @@
     "mintPrice": null,
     "artSupply": null,
 
-    "artGallery": []
+    "artGallery": [
+      "https://ul.h3z.jp/oHLrQFcg.png",
+      "https://ul.h3z.jp/aOR8jMRq.png",
+      "https://ul.h3z.jp/0vloKjXW.png",
+      "https://ul.h3z.jp/7WDVfZlJ.png",
+      "https://ul.h3z.jp/18GboHdY.png",
+      "https://ul.h3z.jp/KerclwaE.png",
+      "https://ul.h3z.jp/jQah92SE.png",
+      "https://ul.h3z.jp/kATTRB7n.png"
+    ]
   },
 
   "rarityExampleSupply": 99,
