@@ -332,6 +332,94 @@
       }
     }
 
+
+    /* HOW TO JOIN GUIDE — matches the Travel Diary feature */
+    .join-feature {
+      width: 100%;
+      padding: 8px 18px 16px;
+      background: #fff3d7;
+    }
+    .join-feature-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      min-height: 90px;
+      padding: 16px 20px;
+      border: 3px solid #11131a;
+      background: #c8ff35;
+      color: #11131a;
+      box-shadow: 4px 4px 0 #11131a;
+      text-decoration: none;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .join-feature-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 6px 0 #11131a;
+    }
+    .join-feature-link:focus-visible {
+      outline: 3px solid #ef4637;
+      outline-offset: 5px;
+    }
+    .join-feature-copy { min-width: 0; }
+    .join-feature-kicker {
+      display: block;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .09em;
+      line-height: 1.3;
+    }
+    .join-feature-title {
+      margin: 4px 0;
+      font-size: clamp(18px, 2.6vw, 25px);
+      font-weight: 900;
+      line-height: 1.15;
+    }
+    .join-feature-description {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .join-feature-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      min-height: 40px;
+      padding: 9px 15px;
+      border: 2px solid #11131a;
+      background: #ef4637;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+      box-shadow: 3px 3px 0 #11131a;
+    }
+    @media (min-width: 650px) {
+      .join-feature { padding: 8px 22px 20px; }
+      .join-feature-link { min-height: 105px; padding: 18px 22px; }
+      .join-feature-cta { min-height: 44px; padding: 11px 20px; font-size: 13px; }
+    }
+    @media (max-width: 649px) {
+      .join-feature { padding: 7px 13px 15px; }
+      .join-feature-link { min-height: 76px; padding: 11px 10px; gap: 10px; box-shadow: 3px 3px 0 #11131a; }
+      .join-feature-kicker { font-size: 9px; }
+      .join-feature-title { font-size: clamp(16px, 4.5vw, 20px); }
+      .join-feature-description { display: none; }
+      .join-feature-cta { min-height: 37px; padding: 9px 10px; font-size: 11px; box-shadow: 2px 2px 0 #11131a; }
+    }
+    @media (max-width: 380px) {
+      .join-feature { padding-left: 10px; padding-right: 10px; }
+      .join-feature-link { gap: 7px; padding: 8px; }
+      .join-feature-kicker { font-size: 8px; letter-spacing: 0; }
+      .join-feature-title { font-size: 15px; }
+      .join-feature-cta { padding: 8px 6px; font-size: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .join-feature-link { transition: none; }
+    }
+
   </style>
 </head>
 
@@ -501,6 +589,28 @@
 
     </a>
 
+  </section>
+
+  <!-- =========================================
+       HOW TO JOIN GUIDE
+       Below the Travel Diary feature.
+       ========================================= -->
+
+  <section class="join-feature" aria-label="How to join">
+    <a class="join-feature-link" href="./how-to-join/" title="HOW TO JOIN — Journey Guide">
+      <div class="join-feature-copy">
+        <span class="join-feature-kicker"
+              data-en="START HERE · JOURNEY GUIDE"
+              data-ja="はじめての方へ · 旅への参加ガイド">START HERE · JOURNEY GUIDE</span>
+        <h2 class="join-feature-title"
+            data-en="HOW TO JOIN"
+            data-ja="旅への参加方法">HOW TO JOIN</h2>
+        <p class="join-feature-description"
+           data-en="Tickets, free Artwork, holder presales and the next destination."
+           data-ja="チケット・無料アート・優先販売・次の旅への進み方を解説！">Tickets, free Artwork, holder presales and the next destination.</p>
+      </div>
+      <span class="join-feature-cta" data-en="GUIDE →" data-ja="見る →">GUIDE →</span>
+    </a>
   </section>
 
   <!-- =========================================
