@@ -1,14 +1,16 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="en" translate="no">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google" content="notranslate">
+<meta name="theme-color" content="#10233d">
 
 <title>HOW TO JOIN — TRAVELING TAKOYAKI</title>
 
 <meta name="description"
-content="Learn how Journey Tickets, Artwork NFTs, snapshots and holder benefits work in TRAVELING TAKOYAKI — Japan 47 Journey.">
+content="Learn how to collect Journey Tickets and Artwork NFTs across Japan's 47 prefectures.">
 
 <style>
 :root {
@@ -23,12 +25,18 @@ content="Learn how Journey Tickets, Artwork NFTs, snapshots and holder benefits 
   box-sizing:border-box;
 }
 
+html {
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
 body {
   margin:0;
   background:var(--cream);
   color:var(--ink);
   font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
   line-height:1.65;
+  overflow-wrap:break-word;
 }
 
 a {
@@ -58,7 +66,7 @@ button {
 
 .brand {
   text-decoration:none;
-  font-weight:1000;
+  font-weight:900;
   letter-spacing:.04em;
   line-height:1.05;
   font-size:18px;
@@ -101,8 +109,8 @@ button {
 
 .eyebrow {
   font-size:12px;
-  font-weight:1000;
-  letter-spacing:.14em;
+  font-weight:900;
+  letter-spacing:.12em;
 }
 
 .hero h1 {
@@ -114,7 +122,7 @@ button {
 
 .hero p {
   max-width:650px;
-  font-weight:750;
+  font-weight:700;
   font-size:clamp(15px,2.5vw,19px);
 }
 
@@ -146,7 +154,7 @@ button {
   box-shadow:4px 4px 0 var(--ink);
 }
 
-.step:first-of-type {
+.step:first-child {
   background:#f4ffe2;
 }
 
@@ -162,7 +170,7 @@ button {
   background:var(--ink);
   color:var(--lime);
   font-size:21px;
-  font-weight:1000;
+  font-weight:900;
   width:54px;
   height:54px;
   flex-shrink:0;
@@ -172,7 +180,6 @@ button {
   margin:0;
   font-size:21px;
   line-height:1.25;
-  overflow-wrap:break-word;
 }
 
 .step p {
@@ -182,7 +189,7 @@ button {
 .arrow {
   text-align:center;
   font-size:29px;
-  font-weight:1000;
+  font-weight:900;
   line-height:1.6;
 }
 
@@ -208,8 +215,7 @@ button {
   display:block;
   text-align:center;
   font-size:16px;
-  font-weight:1000;
-  line-height:1.4;
+  font-weight:900;
   margin-bottom:12px;
 }
 
@@ -225,7 +231,7 @@ button {
   display:block;
   font-size:clamp(17px,3.7vw,25px);
   line-height:1.3;
-  font-weight:1000;
+  font-weight:900;
 }
 
 .limit-grid {
@@ -254,60 +260,174 @@ button {
 .limit-art {
   font-size:clamp(12px,2.7vw,16px);
   font-weight:800;
-  line-height:1.3;
 }
 
 .limit-arrow {
   font-size:19px;
-  font-weight:1000;
+  font-weight:900;
   line-height:1;
 }
 
 .limit-ticket {
   font-size:clamp(14px,3.1vw,19px);
-  font-weight:1000;
-  line-height:1.3;
+  font-weight:900;
 }
 
 .limit-note {
   margin:13px 0 0!important;
   text-align:center;
   font-size:13px;
-  font-weight:750;
-  line-height:1.55;
+  font-weight:700;
 }
 
-.grid {
+/* =====================================
+   ARTWORK HOLDER BENEFITS
+   ===================================== */
+
+.benefits {
+  border:4px solid var(--ink);
+  background:#fff;
+  box-shadow:6px 6px 0 var(--ink);
+  padding:22px;
+  margin-top:20px;
+}
+
+.benefits-head {
+  background:var(--ink);
+  padding:18px 12px;
+  text-align:center;
+}
+
+.benefits-kicker {
+  display:block;
+  color:var(--lime);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.05em;
+}
+
+.benefits-head h3 {
+  margin:7px 0 0;
+  color:#fff;
+  font-size:clamp(20px,4.5vw,30px);
+  line-height:1.3;
+  font-weight:900;
+}
+
+.benefits-ticket {
+  display:block;
+  width:100%;
+  max-width:220px;
+  height:auto;
+  margin:24px auto;
+  object-fit:contain;
+  image-rendering:pixelated;
+}
+
+.benefits-intro {
+  max-width:600px;
+  margin:0 auto 22px;
+  text-align:center;
+  font-size:15px;
+  font-weight:700;
+  line-height:1.6;
+}
+
+.benefits-grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:16px;
+  gap:12px;
 }
 
-.panel {
+.benefit-card {
+  min-width:0;
   border:3px solid var(--ink);
-  background:#fff;
-  padding:18px;
-  box-shadow:4px 4px 0 var(--ink);
+  padding:16px 9px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
 }
 
-.panel h3 {
-  margin:0 0 8px;
-  font-size:19px;
+.benefit-card.free {
+  background:var(--lime);
 }
 
-.panel p {
-  margin:0;
+.benefit-card.paid {
+  background:#fff0cf;
 }
 
-.panel strong {
-  font-size:clamp(18px,3vw,25px);
-  overflow-wrap:break-word;
+.benefit-stage {
+  font-size:12px;
+  font-weight:900;
 }
 
-.smallprint {
+.benefit-number {
+  display:block;
+  font-size:clamp(32px,7vw,60px);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-.04em;
+  white-space:nowrap;
+}
+
+.benefit-heading {
+  font-size:clamp(13px,3vw,18px);
+  font-weight:900;
+  line-height:1.35;
+}
+
+.benefit-desc {
+  font-size:12px;
+  line-height:1.5;
+}
+
+.benefits-arrow {
+  text-align:center;
+  font-size:30px;
+  font-weight:900;
+  margin:8px 0;
+}
+
+.benefits-total {
+  border:3px solid var(--ink);
+  background:var(--red);
+  color:#fff;
+  padding:20px 12px;
+  text-align:center;
+}
+
+.benefits-total-kicker {
+  display:block;
   font-size:13px;
-  color:#404656;
+  font-weight:800;
 }
+
+.benefits-total strong {
+  display:block;
+  font-size:clamp(25px,6vw,44px);
+  line-height:1.25;
+  font-weight:900;
+  margin:8px 0;
+}
+
+.benefits-total-sub {
+  display:block;
+  font-size:14px;
+  font-weight:800;
+}
+
+.benefits-disclaimer {
+  font-size:12px;
+  color:#444;
+  line-height:1.65;
+  margin:16px 0 0;
+}
+
+/* =====================================
+   FAQ
+   ===================================== */
 
 .faq details {
   background:#fff;
@@ -345,6 +465,10 @@ button {
   margin-top:12px;
 }
 
+/* =====================================
+   MOBILE
+   ===================================== */
+
 @media(max-width:650px) {
 
   .header-inner {
@@ -363,10 +487,6 @@ button {
   .lang {
     font-size:12px;
     padding:7px;
-  }
-
-  .grid {
-    grid-template-columns:1fr;
   }
 
   .hero {
@@ -404,6 +524,55 @@ button {
   .limit-ticket {
     font-size:14px;
   }
+
+  .benefits {
+    padding:14px;
+  }
+
+  .benefits-head {
+    padding:15px 10px;
+  }
+
+  .benefits-head h3 {
+    font-size:21px;
+  }
+
+  .benefits-ticket {
+    max-width:190px;
+  }
+
+  .benefits-intro {
+    font-size:14px;
+  }
+
+  .benefit-card {
+    padding:12px 6px;
+    gap:7px;
+  }
+
+  .benefit-number {
+    font-size:clamp(29px,8vw,42px);
+  }
+
+  .benefit-heading {
+    font-size:13px;
+  }
+
+  .benefit-desc {
+    font-size:11px;
+  }
+
+  .benefits-total {
+    padding:17px 9px;
+  }
+
+  .benefits-total strong {
+    font-size:clamp(24px,6.5vw,34px);
+  }
+
+  .benefits-total-sub {
+    font-size:12px;
+  }
 }
 
 @media(max-width:380px) {
@@ -412,16 +581,28 @@ button {
     gap:7px;
   }
 
-  .limit-art {
-    font-size:11px;
+  .benefits-grid {
+    gap:7px;
   }
 
-  .limit-ticket {
-    font-size:13px;
+  .benefit-card {
+    padding:10px 4px;
   }
 
-  .limit-max strong {
-    font-size:15px;
+  .benefit-number {
+    font-size:29px;
+  }
+
+  .benefit-heading {
+    font-size:12px;
+  }
+
+  .benefit-desc {
+    font-size:10px;
+  }
+
+  .benefits-total strong {
+    font-size:24px;
   }
 }
 </style>
@@ -480,7 +661,7 @@ button {
     data-ja="重要：北海道（Stop 01）のJourney Ticketは無料配布でした。以下は青森（Stop 02）以降の予定方式です。価格・日程・参加条件・購入上限は各都道府県の正式発表を優先してください。"
   >Important: Hokkaido (Stop 01) began with a free Journey Ticket release. The guide below explains the planned system for Aomori (Stop 02) onward. Exact prices, dates, eligibility and limits are announced separately for each destination.</div>
 
-  <!-- JOURNEY STEPS -->
+  <!-- STEPS -->
 
   <h2 class="section-title"
     data-en="THE JOURNEY, STEP BY STEP"
@@ -514,8 +695,6 @@ button {
         data-ja="前の県のArtwork → 次の県のTicket"
       >PREVIOUS ARTWORK → NEXT TICKET</span>
 
-      <!-- PRIORITY PURCHASE LIMIT -->
-
       <div class="limit-box">
 
         <strong class="limit-title"
@@ -533,7 +712,6 @@ button {
         <div class="limit-grid">
 
           <div class="limit-item">
-
             <span class="limit-art"
               data-en="1 Artwork"
               data-ja="Artwork 1枚"
@@ -545,11 +723,9 @@ button {
               data-en="1 Ticket"
               data-ja="Ticket 最大1枚"
             >1 Ticket</strong>
-
           </div>
 
           <div class="limit-item">
-
             <span class="limit-art"
               data-en="2 Artworks"
               data-ja="Artwork 2枚"
@@ -561,11 +737,9 @@ button {
               data-en="2 Tickets"
               data-ja="Ticket 最大2枚"
             >2 Tickets</strong>
-
           </div>
 
           <div class="limit-item highlight">
-
             <span class="limit-art"
               data-en="3 Artworks"
               data-ja="Artwork 3枚"
@@ -577,11 +751,9 @@ button {
               data-en="3 Tickets"
               data-ja="Ticket 最大3枚"
             >3 Tickets</strong>
-
           </div>
 
           <div class="limit-item highlight">
-
             <span class="limit-art"
               data-en="10 Artworks"
               data-ja="Artwork 10枚"
@@ -593,7 +765,6 @@ button {
               data-en="3 Tickets"
               data-ja="Ticket 最大3枚"
             >3 Tickets</strong>
-
           </div>
 
         </div>
@@ -619,14 +790,12 @@ button {
     <section class="step">
 
       <div class="top">
-
         <span class="num">02</span>
 
         <h3
           data-en="HOLD YOUR TICKET FOR THE SNAPSHOT"
           data-ja="スナップショット時にTicketを保有する"
         >HOLD YOUR TICKET FOR THE SNAPSHOT</h3>
-
       </div>
 
       <p
@@ -643,25 +812,23 @@ button {
     <section class="step">
 
       <div class="top">
-
         <span class="num">03</span>
 
         <h3
           data-en="CLAIM FREE ARTWORK & JOIN THE PAID PRESALE"
-          data-ja="Artworkの無料取得・有料優先販売に参加"
+          data-ja="Artworkの無料取得・特別価格販売に参加"
         >CLAIM FREE ARTWORK & JOIN THE PAID PRESALE</h3>
-
       </div>
 
       <p
-        data-en="The planned Artwork launch has two separate holder stages: one free Artwork claim per eligible Ticket, followed by a paid presale with a limit of two Artwork NFTs per eligible Ticket. Each stage has its own terms and availability."
-        data-ja="Artworkには保有者向けの2つの販売ステージを予定しています。Ticket1枚につき無料取得1枚、その後の有料優先販売ではTicket1枚につき最大2枚が基本ルールです。各ステージの条件と在庫が適用されます。"
-      >The planned Artwork launch has two separate holder stages: one free Artwork claim per eligible Ticket, followed by a paid presale with a limit of two Artwork NFTs per eligible Ticket. Each stage has its own terms and availability.</p>
+        data-en="Eligible Ticket holders can claim one free Artwork NFT per Ticket, then buy up to two more Artworks at a special holder price in the next sale stage."
+        data-ja="対象Ticket1枚につき、まずArtwork NFTを1枚無料で取得できます。さらに次の販売ステージでは、保有者限定の特別価格で最大2枚まで購入できます。"
+      >Eligible Ticket holders can claim one free Artwork NFT per Ticket, then buy up to two more Artworks at a special holder price in the next sale stage.</p>
 
       <span class="tag"
-        data-en="TWO SEPARATE HOLDER STAGES"
-        data-ja="保有者向けの2ステージ"
-      >TWO SEPARATE HOLDER STAGES</span>
+        data-en="1 FREE + UP TO 2 AT HOLDER PRICE"
+        data-ja="無料1枚 ＋ 特別価格で最大2枚"
+      >1 FREE + UP TO 2 AT HOLDER PRICE</span>
 
     </section>
 
@@ -672,14 +839,12 @@ button {
     <section class="step">
 
       <div class="top">
-
         <span class="num">04</span>
 
         <h3
           data-en="CONTINUE TO THE NEXT PREFECTURE"
           data-ja="次の都道府県へ旅をつなぐ"
         >CONTINUE TO THE NEXT PREFECTURE</h3>
-
       </div>
 
       <p
@@ -691,59 +856,132 @@ button {
 
   </div>
 
-  <!-- ARTWORK STAGES -->
+  <!-- =====================================
+       ARTWORK HOLDER BENEFITS
+       ===================================== -->
 
   <h2 class="section-title"
-    data-en="UNDERSTANDING THE TWO ARTWORK STAGES"
-    data-ja="Artworkの2つの優先ステージ"
-  >UNDERSTANDING THE TWO ARTWORK STAGES</h2>
+    data-en="JOURNEY TICKET HOLDER BENEFITS"
+    data-ja="Journey Ticket保有者の特典"
+  >JOURNEY TICKET HOLDER BENEFITS</h2>
 
-  <div class="grid">
+  <section class="benefits">
 
-    <div class="panel">
+    <div class="benefits-head">
+
+      <span class="benefits-kicker">
+        JOURNEY TICKET HOLDER BENEFITS
+      </span>
 
       <h3
-        data-en="FREE CLAIM"
-        data-ja="無料取得ステージ"
-      >FREE CLAIM</h3>
-
-      <strong
-        data-en="1 ART / TICKET"
-        data-ja="Ticket1枚 → 1枚"
-      >1 ART / TICKET</strong>
-
-      <p
-        data-en="An eligible holder can claim up to one Artwork NFT for each Ticket counted at the snapshot. The Artwork price is zero; network fees may still apply."
-        data-ja="スナップショット対象のTicket1枚につき、Artwork NFTを最大1枚無料取得できます。作品価格は無料ですが、ネットワーク手数料が発生する場合があります。"
-      >An eligible holder can claim up to one Artwork NFT for each Ticket counted at the snapshot. The Artwork price is zero; network fees may still apply.</p>
+        data-en="1 TICKET. 2 BENEFITS."
+        data-ja="Ticket1枚で2つの特典！"
+      >1 TICKET. 2 BENEFITS.</h3>
 
     </div>
 
-    <div class="panel">
+    <!-- AOMORI TICKET IMAGE -->
 
-      <h3
-        data-en="PAID HOLDER PRESALE"
-        data-ja="有料優先販売ステージ"
-      >PAID HOLDER PRESALE</h3>
+    <img
+      class="benefits-ticket"
+      src="https://japan47pixel.net/images/hpticket/2.png"
+      alt="Aomori Journey Ticket"
+      loading="lazy"
+      translate="no"
+    >
 
-      <strong
-        data-en="UP TO 2 / TICKET"
-        data-ja="Ticket1枚 → 最大2枚"
-      >UP TO 2 / TICKET</strong>
+    <p class="benefits-intro"
+      data-en="Hold an eligible Journey Ticket at the snapshot to unlock two Artwork benefits."
+      data-ja="スナップショット時に対象Ticketを保有していると、Artworkの2つの特典を利用できます！"
+    >Hold an eligible Journey Ticket at the snapshot to unlock two Artwork benefits.</p>
 
-      <p
-        data-en="A separate paid stage for eligible Ticket holders, with a planned limit of up to two Artwork NFTs per Ticket. The price is announced for each chapter."
-        data-ja="対象Ticket1枚につき、Artwork NFTを最大2枚購入できる別ステージです。販売価格は各章の正式発表で案内します。"
-      >A separate paid stage for eligible Ticket holders, with a planned limit of up to two Artwork NFTs per Ticket. The price is announced for each chapter.</p>
+    <div class="benefits-grid">
+
+      <!-- FREE STAGE -->
+
+      <div class="benefit-card free">
+
+        <span class="benefit-stage"
+          data-en="STAGE 01"
+          data-ja="第1ステージ"
+        >STAGE 01</span>
+
+        <strong class="benefit-number"
+          data-en="1"
+          data-ja="1枚"
+        >1</strong>
+
+        <span class="benefit-heading"
+          data-en="FREE ARTWORK!"
+          data-ja="無料でGET！"
+        >FREE ARTWORK!</span>
+
+        <span class="benefit-desc"
+          data-en="Claim 1 Artwork NFT for free."
+          data-ja="Artwork NFTを1枚無料で取得"
+        >Claim 1 Artwork NFT for free.</span>
+
+      </div>
+
+      <!-- SPECIAL PRICE STAGE -->
+
+      <div class="benefit-card paid">
+
+        <span class="benefit-stage"
+          data-en="STAGE 02"
+          data-ja="第2ステージ"
+        >STAGE 02</span>
+
+        <strong class="benefit-number"
+          data-en="UP TO 2"
+          data-ja="最大2枚"
+        >UP TO 2</strong>
+
+        <span class="benefit-heading"
+          data-en="SPECIAL HOLDER PRICE!"
+          data-ja="特別価格で購入！"
+        >SPECIAL HOLDER PRICE!</span>
+
+        <span class="benefit-desc"
+          data-en="Buy up to 2 more Artwork NFTs at a special price."
+          data-ja="保有者限定価格で最大2枚購入"
+        >Buy up to 2 more Artwork NFTs at a special price.</span>
+
+      </div>
 
     </div>
 
-  </div>
+    <div class="benefits-arrow" aria-hidden="true">
+      ↓
+    </div>
 
-  <p class="smallprint"
-    data-en="These are stage-specific limits, not a promise of available supply. Any treatment of unused free claims in later stages will be specified in the official sale terms; do not assume automatic carryover."
-    data-ja="上記はステージごとの上限であり、在庫や取得成功を保証するものではありません。無料取得枠の未使用分が有料販売へ繰り越されるかどうかは、正式な販売条件で別途案内します。自動繰り越しを前提にしないでください。"
-  >These are stage-specific limits, not a promise of available supply. Any treatment of unused free claims in later stages will be specified in the official sale terms; do not assume automatic carryover.</p>
+    <!-- TOTAL -->
+
+    <div class="benefits-total">
+
+      <span class="benefits-total-kicker"
+        data-en="TOTAL PER ELIGIBLE TICKET"
+        data-ja="対象Ticket1枚につき"
+      >TOTAL PER ELIGIBLE TICKET</span>
+
+      <strong
+        data-en="UP TO 3 ARTWORKS!"
+        data-ja="合計最大3枚！"
+      >UP TO 3 ARTWORKS!</strong>
+
+      <span class="benefits-total-sub"
+        data-en="1 FREE + UP TO 2 AT A SPECIAL PRICE"
+        data-ja="無料1枚 ＋ 特別価格で最大2枚"
+      >1 FREE + UP TO 2 AT A SPECIAL PRICE</span>
+
+    </div>
+
+    <p class="benefits-disclaimer"
+      data-en="Free claims and special-price purchases take place in separate sale stages. Snapshot eligibility, supply and official sale conditions apply. Network fees may apply. Unused allowances do not automatically carry over between stages."
+      data-ja="※無料取得と特別価格での購入は別々の販売ステージです。スナップショットの対象条件・在庫・正式な販売条件が適用されます。ネットワーク手数料が発生する場合があります。未使用枠が次のステージへ自動的に繰り越されるものではありません。"
+    >Free claims and special-price purchases take place in separate sale stages. Snapshot eligibility, supply and official sale conditions apply. Network fees may apply. Unused allowances do not automatically carry over between stages.</p>
+
+  </section>
 
   <!-- FAQ -->
 
@@ -790,9 +1028,9 @@ button {
       >Do I need the previous prefecture's Artwork to join?</summary>
 
       <p
-        data-en="Not necessarily. Previous Artwork ownership is intended to provide priority access to the next Ticket. Public sales, when offered, let newcomers join too."
+        data-en="Not necessarily. Previous Artwork ownership provides priority access to the next Ticket. Public sales, when offered, let newcomers join too."
         data-ja="必須ではありません。前の県のArtworkは次のTicketの優先販売につながりますが、一般販売が実施される場合は途中からでも参加できます。"
-      >Not necessarily. Previous Artwork ownership is intended to provide priority access to the next Ticket. Public sales, when offered, let newcomers join too.</p>
+      >Not necessarily. Previous Artwork ownership provides priority access to the next Ticket. Public sales, when offered, let newcomers join too.</p>
 
     </details>
 
@@ -804,9 +1042,9 @@ button {
       >What if I own several Tickets?</summary>
 
       <p
-        data-en="The planned Artwork limits are calculated per eligible Ticket: one free claim and up to two paid presale purchases per Ticket, subject to each stage's final rules and supply."
-        data-ja="基本ルールでは対象Ticketの枚数に応じて枠が計算されます。Ticket1枚につき無料1枚、有料優先最大2枚です。ただし正式な販売条件と在庫が優先されます。"
-      >The planned Artwork limits are calculated per eligible Ticket: one free claim and up to two paid presale purchases per Ticket, subject to each stage's final rules and supply.</p>
+        data-en="Each eligible Ticket allows one free Artwork claim and up to two special-price Artwork purchases in separate stages. For example, 3 eligible Tickets allow up to 3 free Artworks and up to 6 special-price purchases, subject to supply and sale conditions."
+        data-ja="対象Ticket1枚につき、無料Artwork1枚と特別価格での最大2枚の購入枠があります。例えば対象Ticket3枚なら、無料取得は最大3枚、特別価格での購入は最大6枚です。在庫と販売条件が適用されます。"
+      >Each eligible Ticket allows one free Artwork claim and up to two special-price Artwork purchases in separate stages. For example, 3 eligible Tickets allow up to 3 free Artworks and up to 6 special-price purchases, subject to supply and sale conditions.</p>
 
     </details>
 
@@ -861,6 +1099,7 @@ button {
 
 <script>
 (function() {
+  "use strict";
 
   const button = document.getElementById("langSwitch");
   let lang = "en";
@@ -882,6 +1121,13 @@ button {
 
     button.textContent =
       lang === "en" ? "日本語" : "ENGLISH";
+
+    button.setAttribute(
+      "aria-label",
+      lang === "en"
+        ? "Switch to Japanese"
+        : "Switch to English"
+    );
 
   }
 
