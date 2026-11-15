@@ -1,0 +1,483 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HOW TO JOIN — TRAVELING TAKOYAKI</title>
+<meta name="description" content="Learn how Journey Tickets, Artwork NFTs, snapshots and holder benefits work in TRAVELING TAKOYAKI — Japan 47 Journey.">
+<style>
+:root {
+  --ink:#11131a;
+  --lime:#c8ff35;
+  --cream:#fff6df;
+  --red:#ef4637;
+  --navy:#10233d;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
+  line-height:1.65;
+}
+a { color:inherit; }
+button { font:inherit; cursor:pointer; }
+.header {
+  background:var(--navy);
+  color:#fff;
+  border-bottom:6px solid var(--ink);
+}
+.header-inner {
+  max-width:960px;
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+}
+.brand {
+  text-decoration:none;
+  font-weight:1000;
+  letter-spacing:.04em;
+  line-height:1.05;
+  font-size:18px;
+}
+.header-actions {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.back,.lang {
+  background:var(--lime);
+  color:var(--ink);
+  border:3px solid var(--ink);
+  padding:8px 12px;
+  font-weight:900;
+  text-decoration:none;
+  box-shadow:3px 3px 0 #000;
+}
+.lang { background:#fff; }
+.wrap {
+  max-width:960px;
+  margin:0 auto;
+  padding:26px 18px 65px;
+}
+.hero {
+  border:4px solid var(--ink);
+  background:var(--lime);
+  box-shadow:7px 7px 0 var(--ink);
+  padding:32px 24px;
+  margin-bottom:36px;
+}
+.eyebrow {
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:.14em;
+}
+.hero h1 {
+  font-size:clamp(34px,8vw,66px);
+  line-height:1.04;
+  letter-spacing:-.05em;
+  margin:12px 0;
+}
+.hero p {
+  max-width:650px;
+  font-weight:750;
+  font-size:clamp(15px,2.5vw,19px);
+}
+.note {
+  background:#fff;
+  border-left:7px solid var(--red);
+  padding:16px 18px;
+  margin:24px 0;
+  font-weight:700;
+}
+.section-title {
+  font-size:clamp(23px,4vw,34px);
+  line-height:1.2;
+  margin:38px 0 18px;
+}
+.flow {
+  display:grid;
+  gap:0;
+  max-width:750px;
+  margin:auto;
+}
+.step {
+  background:#fff;
+  border:3px solid var(--ink);
+  padding:20px 22px;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.step:nth-of-type(4n+1) {
+  background:#f4ffe2;
+}
+.step .top {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.num {
+  display:grid;
+  place-items:center;
+  background:var(--ink);
+  color:var(--lime);
+  font-size:21px;
+  font-weight:1000;
+  width:54px;
+  height:54px;
+  flex-shrink:0;
+}
+.step h3 {
+  margin:0;
+  font-size:21px;
+  line-height:1.25;
+}
+.step p { margin:12px 0 0; }
+.arrow {
+  text-align:center;
+  font-size:29px;
+  font-weight:1000;
+  line-height:1.6;
+}
+.mini {
+  font-size:13px;
+  color:#4d5361;
+}
+.tag {
+  display:inline-block;
+  background:var(--red);
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  padding:3px 8px;
+  margin-top:12px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.panel {
+  border:3px solid var(--ink);
+  background:#fff;
+  padding:18px;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.panel h3 {
+  margin:0 0 8px;
+  font-size:19px;
+}
+.panel p { margin:0; }
+.panel strong { font-size:25px; }
+.smallprint {
+  font-size:13px;
+  color:#404656;
+}
+.faq details {
+  background:#fff;
+  border:2px solid var(--ink);
+  margin:10px 0;
+  padding:14px 18px;
+}
+.faq summary {
+  font-weight:900;
+  cursor:pointer;
+}
+.faq p { margin:12px 0 0; }
+.footer {
+  text-align:center;
+  background:var(--navy);
+  color:#fff;
+  padding:25px 18px;
+  font-weight:700;
+}
+.cta {
+  display:inline-block;
+  background:var(--red);
+  color:#fff;
+  border:3px solid var(--ink);
+  padding:12px 18px;
+  box-shadow:4px 4px 0 var(--ink);
+  font-weight:900;
+  text-decoration:none;
+  margin-top:12px;
+}
+.hidden { display:none!important; }
+@media(max-width:650px) {
+  .header-inner { padding:12px; }
+  .brand { font-size:14px; }
+  .header-actions { gap:6px; }
+  .back,.lang { font-size:12px;padding:7px; }
+  .grid { grid-template-columns:1fr; }
+  .hero { padding:24px 18px; }
+  .step { padding:17px; }
+  .step h3 { font-size:18px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a class="brand" href="../">
+      TRAVELING<br>TAKOYAKI
+    </a>
+    <div class="header-actions">
+      <a class="back" href="../"
+         data-en="← HOME"
+         data-ja="← ホーム">← HOME</a>
+      <button class="lang" id="langSwitch" type="button">
+        日本語
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">
+      JAPAN 47 JOURNEY · COLLECT & EXPLORE
+    </div>
+    <h1>HOW TO JOIN</h1>
+    <p
+      data-en="One truck. 47 prefectures. Collect a Journey Ticket, discover pixel-art NFTs, and carry your journey into the next destination."
+      data-ja="一台のたこ焼きカーと、47都道府県を巡る旅。Journey Ticketを集め、ピクセルアートNFTを手に入れ、次の目的地へ進もう。"
+    >One truck. 47 prefectures. Collect a Journey Ticket, discover pixel-art NFTs, and carry your journey into the next destination.</p>
+  </section>
+
+  <div class="note"
+    data-en="Important: Hokkaido (Stop 01) began with a free Journey Ticket release. The guide below explains the planned system for Aomori (Stop 02) onward. Exact prices, dates, eligibility and limits are announced separately for each destination."
+    data-ja="重要：北海道（Stop 01）のJourney Ticketは無料配布でした。以下は青森（Stop 02）以降の予定方式です。価格・日程・参加条件・購入上限は各都道府県の正式発表を優先してください。"
+  >Important: Hokkaido (Stop 01) began with a free Journey Ticket release. The guide below explains the planned system for Aomori (Stop 02) onward. Exact prices, dates, eligibility and limits are announced separately for each destination.</div>
+
+  <h2 class="section-title"
+      data-en="THE JOURNEY, STEP BY STEP"
+      data-ja="旅への参加方法・4つのステップ"
+  >THE JOURNEY, STEP BY STEP</h2>
+
+  <div class="flow">
+
+    <section class="step">
+      <div class="top">
+        <span class="num">01</span>
+        <h3
+          data-en="GET THE NEXT JOURNEY TICKET"
+          data-ja="次の県のJourney Ticketを手に入れる"
+        >GET THE NEXT JOURNEY TICKET</h3>
+      </div>
+      <p
+        data-en="Holders of the previous prefecture’s Artwork NFT may qualify for priority access to the next prefecture’s Journey Ticket. A public sale may follow. The snapshot and wallet limits are announced for each release."
+        data-ja="前の都道府県のArtwork NFT保有者は、次の県のJourney Ticket優先販売の対象になります。その後、一般販売を予定しています。スナップショットとウォレットごとの上限は各回の発表をご確認ください。"
+      >Holders of the previous prefecture’s Artwork NFT may qualify for priority access to the next prefecture’s Journey Ticket. A public sale may follow. The snapshot and wallet limits are announced for each release.</p>
+      <span class="tag"
+        data-en="PREVIOUS ARTWORK → NEXT TICKET"
+        data-ja="前の県のArtwork → 次の県のTicket"
+      >PREVIOUS ARTWORK → NEXT TICKET</span>
+    </section>
+
+    <div class="arrow" aria-hidden="true">↓</div>
+
+    <section class="step">
+      <div class="top">
+        <span class="num">02</span>
+        <h3
+          data-en="HOLD YOUR TICKET FOR THE SNAPSHOT"
+          data-ja="スナップショット時にTicketを保有する"
+        >HOLD YOUR TICKET FOR THE SNAPSHOT</h3>
+      </div>
+      <p
+        data-en="A snapshot records which wallets hold the destination’s Journey Tickets at the announced point in time. Eligible wallets are used to prepare the Artwork priority-sale lists."
+        data-ja="指定された日時・ブロックのスナップショットで、その県のJourney Ticketを持つウォレットを確認します。この記録をもとにArtworkの優先販売対象を決定します。"
+      >A snapshot records which wallets hold the destination’s Journey Tickets at the announced point in time. Eligible wallets are used to prepare the Artwork priority-sale lists.</p>
+    </section>
+
+    <div class="arrow" aria-hidden="true">↓</div>
+
+    <section class="step">
+      <div class="top">
+        <span class="num">03</span>
+        <h3
+          data-en="CLAIM FREE ARTWORK & JOIN THE PAID PRESALE"
+          data-ja="Artworkの無料取得・有料優先販売に参加"
+        >CLAIM FREE ARTWORK & JOIN THE PAID PRESALE</h3>
+      </div>
+      <p
+        data-en="The planned Artwork launch has two separate holder stages: one free Artwork claim per eligible Ticket, followed by a paid presale with a limit of two Artwork NFTs per eligible Ticket. Each stage has its own terms and availability."
+        data-ja="Artworkには保有者向けの2つの販売ステージを予定しています。Ticket1枚につき無料取得1枚、その後の有料優先販売ではTicket1枚につき最大2枚が基本ルールです。各ステージの条件と在庫が適用されます。"
+      >The planned Artwork launch has two separate holder stages: one free Artwork claim per eligible Ticket, followed by a paid presale with a limit of two Artwork NFTs per eligible Ticket. Each stage has its own terms and availability.</p>
+      <span class="tag"
+        data-en="TWO SEPARATE HOLDER STAGES"
+        data-ja="保有者向けの2ステージ"
+      >TWO SEPARATE HOLDER STAGES</span>
+    </section>
+
+    <div class="arrow" aria-hidden="true">↓</div>
+
+    <section class="step">
+      <div class="top">
+        <span class="num">04</span>
+        <h3
+          data-en="CONTINUE TO THE NEXT PREFECTURE"
+          data-ja="次の都道府県へ旅をつなぐ"
+        >CONTINUE TO THE NEXT PREFECTURE</h3>
+      </div>
+      <p
+        data-en="Collect the Artwork from this chapter. It may make you eligible for priority access to the next prefecture’s Journey Ticket. Repeat the journey across Japan’s 47 destinations!"
+        data-ja="手に入れたArtworkは、次の都道府県のJourney Ticket優先販売につながります。47の目的地を巡りながら、旅のコレクションを増やしていきましょう！"
+      >Collect the Artwork from this chapter. It may make you eligible for priority access to the next prefecture’s Journey Ticket. Repeat the journey across Japan’s 47 destinations!</p>
+    </section>
+
+  </div>
+
+  <h2 class="section-title"
+    data-en="UNDERSTANDING THE TWO ARTWORK STAGES"
+    data-ja="Artworkの2つの優先ステージ"
+  >UNDERSTANDING THE TWO ARTWORK STAGES</h2>
+
+  <div class="grid">
+
+    <div class="panel">
+      <h3
+        data-en="FREE CLAIM"
+        data-ja="無料取得ステージ"
+      >FREE CLAIM</h3>
+      <strong
+        data-en="1 ART / TICKET"
+        data-ja="Ticket1枚 → 1枚"
+      >1 ART / TICKET</strong>
+      <p
+        data-en="An eligible holder can claim up to one Artwork NFT for each Ticket counted at the snapshot. The Artwork price is zero; network fees may still apply."
+        data-ja="スナップショット対象のTicket1枚につき、Artwork NFTを最大1枚無料取得できます。作品価格は無料ですが、ネットワーク手数料が発生する場合があります。"
+      >An eligible holder can claim up to one Artwork NFT for each Ticket counted at the snapshot. The Artwork price is zero; network fees may still apply.</p>
+    </div>
+
+    <div class="panel">
+      <h3
+        data-en="PAID HOLDER PRESALE"
+        data-ja="有料優先販売ステージ"
+      >PAID HOLDER PRESALE</h3>
+      <strong
+        data-en="UP TO 2 / TICKET"
+        data-ja="Ticket1枚 → 最大2枚"
+      >UP TO 2 / TICKET</strong>
+      <p
+        data-en="A separate paid stage for eligible Ticket holders, with a planned limit of up to two Artwork NFTs per Ticket. The price is announced for each chapter."
+        data-ja="対象Ticket1枚につき、Artwork NFTを最大2枚購入できる別ステージです。販売価格は各章の正式発表で案内します。"
+      >A separate paid stage for eligible Ticket holders, with a planned limit of up to two Artwork NFTs per Ticket. The price is announced for each chapter.</p>
+    </div>
+
+  </div>
+
+  <p class="smallprint"
+    data-en="These are stage-specific limits, not a promise of available supply. Any treatment of unused free claims in later stages will be specified in the official sale terms; do not assume automatic carryover."
+    data-ja="上記はステージごとの上限であり、在庫や取得成功を保証するものではありません。無料取得枠の未使用分が有料販売へ繰り越されるかどうかは、正式な販売条件で別途案内します。自動繰り越しを前提にしないでください。"
+  >These are stage-specific limits, not a promise of available supply. Any treatment of unused free claims in later stages will be specified in the official sale terms; do not assume automatic carryover.</p>
+
+  <h2 class="section-title"
+    data-en="COMMON QUESTIONS"
+    data-ja="よくある質問"
+  >COMMON QUESTIONS</h2>
+
+  <div class="faq">
+
+    <details>
+      <summary
+        data-en="What is a snapshot?"
+        data-ja="スナップショットとは？"
+      >What is a snapshot?</summary>
+      <p
+        data-en="It is a record of eligible NFT ownership at a specified point in time or blockchain block. Buying a Ticket after the snapshot does not automatically qualify you for that snapshot’s benefits."
+        data-ja="指定された日時またはブロックでのNFT保有状況を記録することです。スナップショット後にTicketを購入しても、その回の特典対象に自動的になるわけではありません。"
+      >It is a record of eligible NFT ownership at a specified point in time or blockchain block. Buying a Ticket after the snapshot does not automatically qualify you for that snapshot’s benefits.</p>
+    </details>
+
+    <details>
+      <summary
+        data-en="Do I need the previous prefecture’s Artwork to join?"
+        data-ja="前の県のArtworkがないと参加できませんか？"
+      >Do I need the previous prefecture’s Artwork to join?</summary>
+      <p
+        data-en="Not necessarily. Previous Artwork ownership is intended to provide priority access to the next Ticket. Public sales, when offered, let newcomers join too."
+        data-ja="必須ではありません。前の県のArtworkは次のTicketの優先販売につながりますが、一般販売が実施される場合は途中からでも参加できます。"
+      >Not necessarily. Previous Artwork ownership is intended to provide priority access to the next Ticket. Public sales, when offered, let newcomers join too.</p>
+    </details>
+
+    <details>
+      <summary
+        data-en="What if I own several Tickets?"
+        data-ja="Ticketを複数枚持っている場合は？"
+      >What if I own several Tickets?</summary>
+      <p
+        data-en="The planned Artwork limits are calculated per eligible Ticket: one free claim and up to two paid presale purchases per Ticket, subject to each stage’s final rules and supply."
+        data-ja="基本ルールでは対象Ticketの枚数に応じて枠が計算されます。Ticket1枚につき無料1枚、有料優先最大2枚です。ただし正式な販売条件と在庫が優先されます。"
+      >The planned Artwork limits are calculated per eligible Ticket: one free claim and up to two paid presale purchases per Ticket, subject to each stage’s final rules and supply.</p>
+    </details>
+
+    <details>
+      <summary
+        data-en="Does a Ticket guarantee Artwork?"
+        data-ja="TicketがあればArtworkを必ず取得できますか？"
+      >Does a Ticket guarantee Artwork?</summary>
+      <p
+        data-en="No. Eligibility, stage limits, available supply, transaction success and official sale terms all apply."
+        data-ja="いいえ。対象条件・販売ステージの上限・在庫・取引の成立・正式な販売条件によって異なります。"
+      >No. Eligibility, stage limits, available supply, transaction success and official sale terms all apply.</p>
+    </details>
+
+    <details>
+      <summary
+        data-en="Where are the exact dates and prices?"
+        data-ja="販売日時と価格はどこで確認できますか？"
+      >Where are the exact dates and prices?</summary>
+      <p
+        data-en="Check the official website, the project’s X account and the linked OpenSea sale pages. Always verify links before connecting a wallet."
+        data-ja="公式サイト・公式X・案内されているOpenSeaの販売ページをご確認ください。ウォレット接続前には必ずリンク先を確認してください。"
+      >Check the official website, the project’s X account and the linked OpenSea sale pages. Always verify links before connecting a wallet.</p>
+    </details>
+
+  </div>
+
+  <div style="text-align:center;margin-top:38px">
+    <a class="cta" href="../"
+      data-en="← BACK TO THE JOURNEY"
+      data-ja="← トップページに戻る"
+    >← BACK TO THE JOURNEY</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
+  <br>
+  <small>© TRAVELING TAKOYAKI</small>
+</footer>
+
+<script>
+(function() {
+  const b = document.getElementById('langSwitch');
+  let lang = 'en';
+
+  function render() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-en][data-ja]').forEach(el => {
+      el.textContent = el.getAttribute('data-' + lang);
+    });
+    b.textContent = lang === 'en' ? '日本語' : 'ENGLISH';
+  }
+
+  b.addEventListener('click', () => {
+    lang = lang === 'en' ? 'ja' : 'en';
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
