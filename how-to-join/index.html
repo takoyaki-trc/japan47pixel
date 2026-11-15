@@ -27,7 +27,7 @@ body {
   margin:0;
   background:var(--cream);
   color:var(--ink);
-  font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
   line-height:1.65;
 }
 
@@ -146,7 +146,7 @@ button {
   box-shadow:4px 4px 0 var(--ink);
 }
 
-.step:nth-of-type(4n+1) {
+.step:first-of-type {
   background:#f4ffe2;
 }
 
@@ -172,6 +172,7 @@ button {
   margin:0;
   font-size:21px;
   line-height:1.25;
+  overflow-wrap:break-word;
 }
 
 .step p {
@@ -185,19 +186,15 @@ button {
   line-height:1.6;
 }
 
-.mini {
-  font-size:13px;
-  color:#4d5361;
-}
-
 .tag {
   display:inline-block;
   background:var(--red);
   color:#fff;
   font-size:12px;
   font-weight:900;
-  padding:3px 8px;
-  margin-top:12px;
+  padding:4px 9px;
+  margin-top:14px;
+  line-height:1.5;
 }
 
 .limit-box {
@@ -209,45 +206,75 @@ button {
 
 .limit-title {
   display:block;
-  margin-bottom:10px;
-  font-size:17px;
+  text-align:center;
+  font-size:16px;
   font-weight:1000;
-  line-height:1.35;
+  line-height:1.4;
+  margin-bottom:12px;
+}
+
+.limit-max {
+  background:var(--lime);
+  border:2px solid var(--ink);
+  padding:12px 8px;
+  margin-bottom:14px;
+  text-align:center;
+}
+
+.limit-max strong {
+  display:block;
+  font-size:clamp(17px,3.7vw,25px);
+  line-height:1.3;
+  font-weight:1000;
 }
 
 .limit-grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:8px;
+  gap:10px;
 }
 
 .limit-item {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-width:0;
+  padding:13px 7px;
   background:#fff;
   border:2px solid var(--ink);
-  padding:10px;
   text-align:center;
 }
 
-.limit-item strong {
-  display:block;
-  font-size:16px;
-  font-weight:1000;
-}
-
-.limit-item span {
-  display:block;
-  font-size:12px;
-  font-weight:800;
-}
-
 .limit-item.highlight {
-  background:var(--lime);
+  background:#eaffb1;
+}
+
+.limit-art {
+  font-size:clamp(12px,2.7vw,16px);
+  font-weight:800;
+  line-height:1.3;
+}
+
+.limit-arrow {
+  font-size:19px;
+  font-weight:1000;
+  line-height:1;
+}
+
+.limit-ticket {
+  font-size:clamp(14px,3.1vw,19px);
+  font-weight:1000;
+  line-height:1.3;
 }
 
 .limit-note {
-  margin:12px 0 0!important;
+  margin:13px 0 0!important;
+  text-align:center;
   font-size:13px;
-  font-weight:800;
+  font-weight:750;
+  line-height:1.55;
 }
 
 .grid {
@@ -273,7 +300,8 @@ button {
 }
 
 .panel strong {
-  font-size:25px;
+  font-size:clamp(18px,3vw,25px);
+  overflow-wrap:break-word;
 }
 
 .smallprint {
@@ -318,6 +346,7 @@ button {
 }
 
 @media(max-width:650px) {
+
   .header-inner {
     padding:12px;
   }
@@ -357,21 +386,42 @@ button {
   }
 
   .limit-item {
-    padding:8px 4px;
+    padding:11px 5px;
   }
 
-  .limit-item strong {
-    font-size:13px;
+  .limit-title {
+    font-size:14px;
   }
 
-  .limit-item span {
-    font-size:11px;
+  .limit-max strong {
+    font-size:17px;
+  }
+
+  .limit-art {
+    font-size:12px;
+  }
+
+  .limit-ticket {
+    font-size:14px;
   }
 }
 
 @media(max-width:380px) {
+
   .limit-grid {
-    grid-template-columns:1fr;
+    gap:7px;
+  }
+
+  .limit-art {
+    font-size:11px;
+  }
+
+  .limit-ticket {
+    font-size:13px;
+  }
+
+  .limit-max strong {
+    font-size:15px;
   }
 }
 </style>
@@ -392,9 +442,11 @@ button {
          data-en="← HOME"
          data-ja="← ホーム">← HOME</a>
 
-      <button class="lang"
-              id="langSwitch"
-              type="button">
+      <button
+        class="lang"
+        id="langSwitch"
+        type="button"
+        aria-label="Switch language">
         日本語
       </button>
 
@@ -431,8 +483,8 @@ button {
   <!-- JOURNEY STEPS -->
 
   <h2 class="section-title"
-      data-en="THE JOURNEY, STEP BY STEP"
-      data-ja="旅への参加方法・4つのステップ"
+    data-en="THE JOURNEY, STEP BY STEP"
+    data-ja="旅への参加方法・4つのステップ"
   >THE JOURNEY, STEP BY STEP</h2>
 
   <div class="flow">
@@ -442,18 +494,20 @@ button {
     <section class="step">
 
       <div class="top">
+
         <span class="num">01</span>
 
         <h3
           data-en="GET THE NEXT JOURNEY TICKET"
           data-ja="次の県のJourney Ticketを手に入れる"
         >GET THE NEXT JOURNEY TICKET</h3>
+
       </div>
 
       <p
-        data-en="Holders of the previous prefecture's Artwork NFTs may qualify for priority access to the next prefecture's Journey Ticket sale. The number of Tickets available in this priority stage depends on how many eligible Artwork NFTs you hold, with a maximum of 3 Tickets per wallet."
-        data-ja="前の都道府県のArtwork NFT保有者は、次の県のJourney Ticket優先販売に参加できます。優先購入できるTicketの枚数は、対象Artworkの保有枚数に応じて決まります。ただし、1ウォレットにつき最大3枚までです。"
-      >Holders of the previous prefecture's Artwork NFTs may qualify for priority access to the next prefecture's Journey Ticket sale. The number of Tickets available in this priority stage depends on how many eligible Artwork NFTs you hold, with a maximum of 3 Tickets per wallet.</p>
+        data-en="Own Artwork NFTs from the previous prefecture to unlock priority access to the next Journey Ticket. Your purchase limit depends on how many eligible Artworks you hold."
+        data-ja="前の都道府県のArtwork NFTを保有していると、次の県のJourney Ticket優先販売に参加できます。購入できる枚数は、対象Artworkの保有枚数によって決まります。"
+      >Own Artwork NFTs from the previous prefecture to unlock priority access to the next Journey Ticket. Your purchase limit depends on how many eligible Artworks you hold.</p>
 
       <span class="tag"
         data-en="PREVIOUS ARTWORK → NEXT TICKET"
@@ -465,57 +519,96 @@ button {
       <div class="limit-box">
 
         <strong class="limit-title"
-          data-en="NEXT TICKET PRESALE · MAX 3 PER WALLET"
-          data-ja="次のTicket優先販売 · 1ウォレット最大3枚"
-        >NEXT TICKET PRESALE · MAX 3 PER WALLET</strong>
+          data-en="PRIORITY SALE LIMIT"
+          data-ja="優先販売の購入上限"
+        >PRIORITY SALE LIMIT</strong>
+
+        <div class="limit-max">
+          <strong
+            data-en="MAX 3 TICKETS / WALLET"
+            data-ja="1ウォレット最大3枚"
+          >MAX 3 TICKETS / WALLET</strong>
+        </div>
 
         <div class="limit-grid">
 
           <div class="limit-item">
-            <strong>1 ARTWORK → 1 TICKET</strong>
-            <span
-              data-en="Up to 1 Ticket"
-              data-ja="最大1枚購入可能"
-            >Up to 1 Ticket</span>
+
+            <span class="limit-art"
+              data-en="1 Artwork"
+              data-ja="Artwork 1枚"
+            >1 Artwork</span>
+
+            <span class="limit-arrow">↓</span>
+
+            <strong class="limit-ticket"
+              data-en="1 Ticket"
+              data-ja="Ticket 最大1枚"
+            >1 Ticket</strong>
+
           </div>
 
           <div class="limit-item">
-            <strong>2 ARTWORKS → 2 TICKETS</strong>
-            <span
-              data-en="Up to 2 Tickets"
-              data-ja="最大2枚購入可能"
-            >Up to 2 Tickets</span>
+
+            <span class="limit-art"
+              data-en="2 Artworks"
+              data-ja="Artwork 2枚"
+            >2 Artworks</span>
+
+            <span class="limit-arrow">↓</span>
+
+            <strong class="limit-ticket"
+              data-en="2 Tickets"
+              data-ja="Ticket 最大2枚"
+            >2 Tickets</strong>
+
           </div>
 
           <div class="limit-item highlight">
-            <strong>3 ARTWORKS → 3 TICKETS</strong>
-            <span
-              data-en="Maximum reached"
-              data-ja="上限の3枚"
-            >Maximum reached</span>
+
+            <span class="limit-art"
+              data-en="3 Artworks"
+              data-ja="Artwork 3枚"
+            >3 Artworks</span>
+
+            <span class="limit-arrow">↓</span>
+
+            <strong class="limit-ticket"
+              data-en="3 Tickets"
+              data-ja="Ticket 最大3枚"
+            >3 Tickets</strong>
+
           </div>
 
           <div class="limit-item highlight">
-            <strong>10 ARTWORKS → 3 TICKETS</strong>
-            <span
-              data-en="Still max 3 Tickets"
-              data-ja="10枚保有でも最大3枚"
-            >Still max 3 Tickets</span>
+
+            <span class="limit-art"
+              data-en="10 Artworks"
+              data-ja="Artwork 10枚"
+            >10 Artworks</span>
+
+            <span class="limit-arrow">↓</span>
+
+            <strong class="limit-ticket"
+              data-en="3 Tickets"
+              data-ja="Ticket 最大3枚"
+            >3 Tickets</strong>
+
           </div>
 
         </div>
 
         <p class="limit-note"
-          data-en="Holding more than 3 eligible Artwork NFTs does not increase the priority purchase limit beyond 3 Tickets per wallet. Eligibility is determined by the announced snapshot and sale rules."
-          data-ja="対象Artworkを4枚以上保有していても、次のTicketの優先購入上限は1ウォレット最大3枚です。対象者は指定されたスナップショットと販売条件に基づいて決定します。"
-        >Holding more than 3 eligible Artwork NFTs does not increase the priority purchase limit beyond 3 Tickets per wallet. Eligibility is determined by the announced snapshot and sale rules.</p>
+          data-en="Even with 10 Artworks, the maximum is 3 Tickets per wallet. Snapshot eligibility and sale conditions apply."
+          data-ja="Artworkを10枚保有していても、優先購入は最大3枚です。スナップショットと販売条件が適用されます。"
+        >Even with 10 Artworks, the maximum is 3 Tickets per wallet. Snapshot eligibility and sale conditions apply.</p>
 
       </div>
 
       <p
-        data-en="A public Ticket sale may follow the priority stage. Public-sale wallet limits and availability are announced separately."
-        data-ja="優先販売後にはTicketの一般販売を予定しています。一般販売の購入上限や在庫については別途発表します。"
-      >A public Ticket sale may follow the priority stage. Public-sale wallet limits and availability are announced separately.</p>
+        data-en="A public Ticket sale may follow the priority stage. Public-sale limits and availability will be announced separately."
+        data-ja="優先販売後にはTicketの一般販売を予定しています。一般販売の上限と在庫は別途案内します。"
+      >A public Ticket sale may follow the priority stage. Public-sale limits and availability will be announced separately.</p>
 
     </section>
 
@@ -526,12 +619,14 @@ button {
     <section class="step">
 
       <div class="top">
+
         <span class="num">02</span>
 
         <h3
           data-en="HOLD YOUR TICKET FOR THE SNAPSHOT"
           data-ja="スナップショット時にTicketを保有する"
         >HOLD YOUR TICKET FOR THE SNAPSHOT</h3>
+
       </div>
 
       <p
@@ -548,12 +643,14 @@ button {
     <section class="step">
 
       <div class="top">
+
         <span class="num">03</span>
 
         <h3
           data-en="CLAIM FREE ARTWORK & JOIN THE PAID PRESALE"
           data-ja="Artworkの無料取得・有料優先販売に参加"
         >CLAIM FREE ARTWORK & JOIN THE PAID PRESALE</h3>
+
       </div>
 
       <p
@@ -575,12 +672,14 @@ button {
     <section class="step">
 
       <div class="top">
+
         <span class="num">04</span>
 
         <h3
           data-en="CONTINUE TO THE NEXT PREFECTURE"
           data-ja="次の都道府県へ旅をつなぐ"
         >CONTINUE TO THE NEXT PREFECTURE</h3>
+
       </div>
 
       <p
@@ -656,6 +755,7 @@ button {
   <div class="faq">
 
     <details>
+
       <summary
         data-en="What is a snapshot?"
         data-ja="スナップショットとは？"
@@ -665,21 +765,25 @@ button {
         data-en="It is a record of eligible NFT ownership at a specified point in time or blockchain block. Buying a Ticket after the snapshot does not automatically qualify you for that snapshot's benefits."
         data-ja="指定された日時またはブロックでのNFT保有状況を記録することです。スナップショット後にTicketを購入しても、その回の特典対象に自動的になるわけではありません。"
       >It is a record of eligible NFT ownership at a specified point in time or blockchain block. Buying a Ticket after the snapshot does not automatically qualify you for that snapshot's benefits.</p>
+
     </details>
 
     <details>
+
       <summary
         data-en="How many next-prefecture Tickets can I buy in the priority sale?"
         data-ja="次の県のTicketは優先販売で何枚まで購入できますか？"
       >How many next-prefecture Tickets can I buy in the priority sale?</summary>
 
       <p
-        data-en="You can buy up to one next-prefecture Journey Ticket for each eligible Artwork NFT held from the previous prefecture, but no more than 3 Tickets per wallet. For example, holding 1 Artwork allows up to 1 Ticket, holding 2 allows up to 2, and holding 3 or more allows up to 3. Holding 10 Artworks does not raise the limit."
-        data-ja="前の県の対象Artwork NFT1枚につき、次の県のJourney Ticketを最大1枚優先購入できます。ただし1ウォレット最大3枚までです。Artwork1枚ならTicket最大1枚、2枚なら最大2枚、3枚以上なら最大3枚です。Artworkを10枚保有していても上限は3枚です。"
-      >You can buy up to one next-prefecture Journey Ticket for each eligible Artwork NFT held from the previous prefecture, but no more than 3 Tickets per wallet. For example, holding 1 Artwork allows up to 1 Ticket, holding 2 allows up to 2, and holding 3 or more allows up to 3. Holding 10 Artworks does not raise the limit.</p>
+        data-en="You can buy up to one next-prefecture Journey Ticket for each eligible Artwork NFT held from the previous prefecture, but no more than 3 Tickets per wallet. Holding 3 or more Artworks allows up to 3 Tickets. Holding 10 Artworks does not raise the limit."
+        data-ja="前の県の対象Artwork NFT1枚につき、次の県のJourney Ticketを最大1枚優先購入できます。ただし1ウォレット最大3枚までです。Artworkを3枚以上保有していても上限は3枚です。"
+      >You can buy up to one next-prefecture Journey Ticket for each eligible Artwork NFT held from the previous prefecture, but no more than 3 Tickets per wallet. Holding 3 or more Artworks allows up to 3 Tickets. Holding 10 Artworks does not raise the limit.</p>
+
     </details>
 
     <details>
+
       <summary
         data-en="Do I need the previous prefecture's Artwork to join?"
         data-ja="前の県のArtworkがないと参加できませんか？"
@@ -689,9 +793,11 @@ button {
         data-en="Not necessarily. Previous Artwork ownership is intended to provide priority access to the next Ticket. Public sales, when offered, let newcomers join too."
         data-ja="必須ではありません。前の県のArtworkは次のTicketの優先販売につながりますが、一般販売が実施される場合は途中からでも参加できます。"
       >Not necessarily. Previous Artwork ownership is intended to provide priority access to the next Ticket. Public sales, when offered, let newcomers join too.</p>
+
     </details>
 
     <details>
+
       <summary
         data-en="What if I own several Tickets?"
         data-ja="Ticketを複数枚持っている場合は？"
@@ -701,9 +807,11 @@ button {
         data-en="The planned Artwork limits are calculated per eligible Ticket: one free claim and up to two paid presale purchases per Ticket, subject to each stage's final rules and supply."
         data-ja="基本ルールでは対象Ticketの枚数に応じて枠が計算されます。Ticket1枚につき無料1枚、有料優先最大2枚です。ただし正式な販売条件と在庫が優先されます。"
       >The planned Artwork limits are calculated per eligible Ticket: one free claim and up to two paid presale purchases per Ticket, subject to each stage's final rules and supply.</p>
+
     </details>
 
     <details>
+
       <summary
         data-en="Does a Ticket guarantee Artwork?"
         data-ja="TicketがあればArtworkを必ず取得できますか？"
@@ -713,9 +821,11 @@ button {
         data-en="No. Eligibility, stage limits, available supply, transaction success and official sale terms all apply."
         data-ja="いいえ。対象条件・販売ステージの上限・在庫・取引の成立・正式な販売条件によって異なります。"
       >No. Eligibility, stage limits, available supply, transaction success and official sale terms all apply.</p>
+
     </details>
 
     <details>
+
       <summary
         data-en="Where are the exact dates and prices?"
         data-ja="販売日時と価格はどこで確認できますか？"
@@ -725,6 +835,7 @@ button {
         data-en="Check the official website, the project's X account and the linked OpenSea sale pages. Always verify links before connecting a wallet."
         data-ja="公式サイト・公式X・案内されているOpenSeaの販売ページをご確認ください。ウォレット接続前には必ずリンク先を確認してください。"
       >Check the official website, the project's X account and the linked OpenSea sale pages. Always verify links before connecting a wallet.</p>
+
     </details>
 
   </div>
@@ -751,18 +862,17 @@ button {
 <script>
 (function() {
 
-  const button = document.getElementById('langSwitch');
-  let lang = 'en';
+  const button = document.getElementById("langSwitch");
+  let lang = "en";
 
   function render() {
 
     document.documentElement.lang = lang;
 
-    document.querySelectorAll('[data-en][data-ja]')
+    document.querySelectorAll("[data-en][data-ja]")
       .forEach(function(el) {
 
-        const translated =
-          el.getAttribute('data-' + lang);
+        const translated = el.getAttribute("data-" + lang);
 
         if (translated !== null) {
           el.textContent = translated;
@@ -771,13 +881,13 @@ button {
       });
 
     button.textContent =
-      lang === 'en' ? '日本語' : 'ENGLISH';
+      lang === "en" ? "日本語" : "ENGLISH";
 
   }
 
-  button.addEventListener('click', function() {
+  button.addEventListener("click", function() {
 
-    lang = lang === 'en' ? 'ja' : 'en';
+    lang = lang === "en" ? "ja" : "en";
 
     render();
 
