@@ -1,202 +1,1787 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TRAVELING TAKOYAKI | Allowlist Generator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Allowlist Generator | TRAVELING TAKOYAKI</title>
+
 <style>
-:root{font-family:system-ui,'Noto Sans JP',sans-serif;color:#f1f4ed;background:#101510}
-*{box-sizing:border-box}
-body{margin:0;padding:24px}
-main{max-width:980px;margin:auto}
-h1{font-size:clamp(24px,5vw,38px);margin:5px 0}
-h2{font-size:19px}
-.tag{color:#c8ff29;font-size:12px;font-weight:900;letter-spacing:.16em}
-.card{background:#1d261e;border:1px solid #42503c;border-radius:15px;padding:20px;margin:18px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-label{display:block;font-size:13px;color:#cbd4c7;margin:8px 0 5px}
-input,select,button{font:inherit;border-radius:8px;padding:11px;width:100%;background:#101710;color:#fff;border:1px solid #5d6b57}
-button{cursor:pointer;background:#c8ff29;color:#121b0c;font-weight:800;border:0}
-button:disabled{opacity:.4;cursor:not-allowed}
-.muted{color:#abb6a6;font-size:13px;line-height:1.7}
-.radio{display:flex;gap:12px;flex-wrap:wrap}
-.radio label{background:#101710;padding:10px;border-radius:8px;border:1px solid #53634d;flex:1;min-width:200px}
-.radio input{width:auto}
-table{border-collapse:collapse;width:100%;font-size:12px}
-th,td{padding:9px;border-bottom:1px solid #43503d;text-align:left}
-td:first-child{overflow-wrap:anywhere}
-th{color:#c8ff29}
-#results{display:none}
-.stats{font-size:26px;font-weight:900;color:#c8ff29}
-.notice{border-left:4px solid #c8ff29;padding-left:12px}
-.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
-small{color:#aeb7a7}
-code{overflow-wrap:anywhere}
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #626262;
+  --line: #d9d9d9;
+  --panel: #f7f7f7;
+  --lime: #c8ff35;
+  --red: #b42318;
+  --green: #176b39;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, "Noto Sans JP", sans-serif;
+  line-height: 1.6;
+}
+
+header {
+  background: #ffffff;
+  border-bottom: 4px solid #111;
+  padding: 25px 16px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: clamp(22px, 5vw, 36px);
+  font-weight: 900;
+  letter-spacing: -0.5px;
+}
+
+header p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+main {
+  width: min(100%, 1050px);
+  margin: auto;
+  padding: 24px 15px 70px;
+}
+
+section {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #fff;
+}
+
+h2 {
+  margin: 0 0 18px;
+  font-size: 19px;
+  border-left: 6px solid #111;
+  padding-left: 12px;
+}
+
+h3 {
+  font-size: 16px;
+  margin: 20px 0 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 13px 0 6px;
+  font-size: 14px;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="datetime-local"],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #aaa;
+  border-radius: 7px;
+  background: #fff;
+  color: #111;
+}
+
+input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px dashed #aaa;
+  border-radius: 7px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #111;
+  outline-offset: 1px;
+}
+
+button {
+  border: 2px solid #111;
+  border-radius: 8px;
+  padding: 12px 18px;
+  background: #fff;
+  color: #111;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+button.primary {
+  background: var(--lime);
+}
+
+button.dark {
+  background: #111;
+  color: #fff;
+}
+
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  filter: brightness(.95);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.actions button {
+  flex: 1 1 180px;
+}
+
+.radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 12px;
+  background: var(--panel);
+  border-radius: 8px;
+}
+
+.radio-row label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.note {
+  padding: 13px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 8px;
+  font-size: 13px;
+  color: #333;
+}
+
+.warning {
+  border-left: 5px solid #b77b00;
+  padding: 12px;
+  background: #fff8e5;
+  font-size: 13px;
+}
+
+.error {
+  border-left: 5px solid var(--red);
+  padding: 12px;
+  background: #fff1f0;
+  color: var(--red);
+  font-weight: bold;
+}
+
+.success {
+  border-left: 5px solid var(--green);
+  padding: 12px;
+  background: #eaf8ee;
+  color: var(--green);
+  font-weight: bold;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.stat {
+  padding: 15px 8px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.stat span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 570px;
+  font-size: 13px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+th {
+  background: #eee;
+  white-space: nowrap;
+}
+
+td.num {
+  text-align: right;
+  font-weight: bold;
+}
+
+td.address {
+  font-family: monospace;
+  overflow-wrap: anywhere;
+}
+
+.small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+footer {
+  text-align: center;
+  padding: 25px 12px;
+  border-top: 1px solid var(--line);
+  color: #555;
+  font-size: 12px;
+}
+
+@media(max-width: 650px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 15px;
+  }
+
+  .stats {
+    gap: 6px;
+  }
+
+  .stat strong {
+    font-size: 21px;
+  }
+}
 </style>
 </head>
+
 <body>
+
+<header>
+  <h1>ALLOWLIST GENERATOR</h1>
+  <p>TRAVELING TAKOYAKI — JAPAN 47 JOURNEY</p>
+</header>
+
 <main>
-<div class="tag">TRAVELING TAKOYAKI / ADMIN UTILITY</div>
-<h1>ALLOWLIST GENERATOR</h1>
-<p class="muted">RobinScanなどの保有者CSVを読み込み、OpenSea登録用CSVを作成します。データはブラウザ内で処理され、外部に送信されません。</p>
 
-<div class="card">
-<h2>1. 販売設定</h2>
-<div class="radio">
-<label><input type="radio" name="mode" value="ticket" checked> Journey Ticket優先販売</label>
-<label><input type="radio" name="mode" value="art"> Artwork無料＋有料優先販売</label>
-</div>
-<div class="grid">
-<div><label>販売する都道府県</label><select id="pref"></select></div>
-<div><label>CSVで確認する保有NFT</label><div id="source" class="notice"></div></div>
-</div>
-<div class="grid">
-<div><label>運営ウォレット（任意）</label><input id="admin" value="0x5be22fb1d7acc907b0a5fbdc0b1895dafbb7cdb2" placeholder="0x..." spellcheck="false"></div>
-<div><label>運営ウォレットの購入上限（Ticket優先のみ）</label><input id="adminCap" type="number" min="0" value="10"></div>
-</div>
-<p class="muted">運営上限はTicket優先販売のみ適用。ArtworkはTicket保有数をそのまま無料枠・有料枠に使用します。</p>
-</div>
+<section>
+  <h2>01. 販売ステージ</h2>
 
-<div class="card">
-<h2>2. 保有者CSVを読み込む</h2>
-<label>RobinScanのHolders CSV（Address, Quantity列）または同等のCSV</label>
-<input id="file" type="file" accept=".csv,text/csv">
-<div class="grid">
-<div><label>スナップショット日時（記録用）</label><input id="snapshot" type="datetime-local"></div>
-<div><label>ブロック番号（任意・記録用）</label><input id="block" placeholder="例: 12345678"></div>
-</div>
-<p class="muted">日時とブロック番号は記録用です。このツールは指定ブロック時点の保有者を自動取得しません。必ずその時点で取得したCSVを使用してください。</p>
-<button id="generate">CSVからリストを生成</button>
-<p id="error" role="alert" style="color:#ffac9f"></p>
-</div>
+  <div class="radio-row">
+    <label>
+      <input type="radio" name="mode" value="ticket" checked>
+      Journey Ticket 優先販売
+    </label>
 
-<div id="results" class="card">
-<h2>3. 結果とダウンロード</h2>
-<div class="grid">
-<div><div class="muted">対象ウォレット数</div><div id="count" class="stats"></div></div>
-<div><div class="muted">購入上限の合計</div><div id="total" class="stats"></div></div>
-</div>
-<p id="summary" class="muted"></p>
-<div id="downloads" class="actions"></div>
-<div style="overflow-x:auto;margin-top:18px">
-<table>
-<thead><tr><th>Wallet</th><th>保有枚数</th><th>上限</th><th>区分</th></tr></thead>
-<tbody id="tbody"></tbody>
-</table>
-</div>
-<p class="muted">OpenSeaのCSV書式やステージ間の枠の持ち越しは、実際のDrop設定画面で確認してください。購入枠の合計はNFTの在庫予約を意味しません。</p>
-</div>
+    <label>
+      <input type="radio" name="mode" value="artwork">
+      Artwork 無料＋有料優先販売
+    </label>
+  </div>
+
+  <label for="prefecture">
+    対象都道府県
+  </label>
+
+  <select id="prefecture"></select>
+
+  <div id="sourceDescription" class="note"></div>
+</section>
+
+<section>
+  <h2>02. NFT保有者を取得</h2>
+
+  <label for="contract">
+    取得元NFTのコントラクトアドレス
+  </label>
+
+  <input
+    id="contract"
+    type="text"
+    placeholder="0x..."
+    spellcheck="false"
+  >
+
+  <div class="actions">
+    <button id="fetchButton" class="primary">
+      保有者を自動取得
+    </button>
+  </div>
+
+  <p class="small">
+    Robinhood ChainのNFT保有者情報を
+    Cloudflare Worker経由で取得します。
+  </p>
+
+  <h3>CSVから読み込む場合</h3>
+
+  <input
+    id="csvFile"
+    type="file"
+    accept=".csv,text/csv"
+  >
+
+  <p class="small">
+    RobinScanなどから取得した、
+    Address・Quantity列を含むCSVに対応します。
+    自動取得できない場合にも利用できます。
+  </p>
+
+  <div id="status" class="note">
+    まだ保有者データを読み込んでいません。
+  </div>
+</section>
+
+<section>
+  <h2>03. 優先購入ルール</h2>
+
+  <div class="row">
+    <div>
+      <label for="ticketCap">
+        Ticket優先購入上限（通常ウォレット）
+      </label>
+
+      <input
+        id="ticketCap"
+        type="number"
+        min="1"
+        max="100"
+        value="3"
+      >
+    </div>
+
+    <div>
+      <label for="operatorCap">
+        運営ウォレットのTicket上限
+      </label>
+
+      <input
+        id="operatorCap"
+        type="number"
+        min="0"
+        max="100"
+        value="10"
+      >
+    </div>
+  </div>
+
+  <label for="operator">
+    運営ウォレットアドレス
+  </label>
+
+  <input
+    id="operator"
+    type="text"
+    value="0x5be22fb1d7acc907b0a5fbdc0b1895dafbb7cdb2"
+    spellcheck="false"
+  >
+
+  <div class="note" style="margin-top:15px">
+    <strong>Ticket優先販売</strong>
+    <p>
+      前県のArtwork保有数に応じて、
+      通常ウォレットは最大3枚、
+      運営ウォレットは最大10枚。
+    </p>
+
+    <strong>Artwork無料取得</strong>
+    <p>
+      同じ県のJourney Ticket
+      1枚につきArtwork 1枚無料。
+    </p>
+
+    <strong>Artwork有料優先販売</strong>
+    <p>
+      同じ県のJourney Ticket
+      1枚につきArtwork 2枚を優先購入可能。
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>04. スナップショット情報</h2>
+
+  <div class="row">
+    <div>
+      <label for="snapshotDate">
+        スナップショット日時（記録用）
+      </label>
+
+      <input
+        id="snapshotDate"
+        type="datetime-local"
+      >
+    </div>
+
+    <div>
+      <label for="snapshotBlock">
+        ブロック番号（記録用）
+      </label>
+
+      <input
+        id="snapshotBlock"
+        type="text"
+        placeholder="例：12345678"
+      >
+    </div>
+  </div>
+
+  <p class="warning">
+    ここに日時やブロック番号を入力しても、
+    過去の保有状態を取得するわけではありません。
+    自動取得は実行時点の保有状況です。
+    スナップショット日時を厳密に固定したい場合は、
+    その時点で取得したデータを保存してください。
+  </p>
+</section>
+
+<section>
+  <h2>05. 保有者集計</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <strong id="walletCount">0</strong>
+      <span>保有ウォレット</span>
+    </div>
+
+    <div class="stat">
+      <strong id="tokenCount">0</strong>
+      <span>保有NFT合計</span>
+    </div>
+
+    <div class="stat">
+      <strong id="allowCount">0</strong>
+      <span id="allowLabel">優先購入枠合計</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button id="generateButton" class="dark" disabled>
+      Allowlistを生成
+    </button>
+
+    <button id="clearButton">
+      読み込みデータをクリア
+    </button>
+  </div>
+
+  <div id="resultMessage" class="note" style="margin-top:15px">
+    保有者データを読み込んでください。
+  </div>
+
+  <h3>保有者一覧</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ウォレットアドレス</th>
+          <th>保有数</th>
+          <th>無料枠</th>
+          <th>有料枠 / Ticket枠</th>
+        </tr>
+      </thead>
+
+      <tbody id="holderTable">
+        <tr>
+          <td colspan="4">
+            データがありません。
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="downloads" class="hidden">
+  <h2>06. CSVダウンロード</h2>
+
+  <div id="downloadButtons" class="actions"></div>
+
+  <p class="note">
+    OpenSea用CSVはヘッダーなし・UTF-8 BOMなしの
+    2列形式で出力します。
+    1列目がウォレットアドレス、
+    2列目が購入可能枚数です。
+  </p>
+</section>
+
+<section>
+  <h2>07. 運用上の注意</h2>
+
+  <div class="warning">
+    <p>
+      このツールはNFT保有者の一覧から、
+      OpenSeaにアップロードするための
+      Allowlist CSVを生成するものです。
+    </p>
+
+    <p>
+      無料ステージと有料ステージで
+      OpenSeaの購入上限が独立しているか、
+      実際のDrop設定で確認してください。
+    </p>
+
+    <p>
+      Cloudflare Workerによる自動取得は、
+      転送履歴を集計した結果です。
+      大量の転送履歴があるコントラクトや
+      API仕様変更時には取得できない場合があります。
+    </p>
+
+    <p>
+      正式な販売前には、RobinScanの保有者情報と
+      CSVの内容を照合してください。
+    </p>
+  </div>
+</section>
+
 </main>
+
+<footer>
+  TRAVELING TAKOYAKI — JAPAN 47 JOURNEY
+  <br>
+  ALLOWLIST GENERATOR
+</footer>
+
 <script>
-const prefs='HOKKAIDO,AOMORI,AKITA,IWATE,YAMAGATA,FUKUSHIMA,MIYAGI,IBARAKI,TOCHIGI,GUNMA,SAITAMA,CHIBA,TOKYO,KANAGAWA,NIIGATA,TOYAMA,ISHIKAWA,FUKUI,YAMANASHI,NAGANO,GIFU,SHIZUOKA,AICHI,MIE,SHIGA,KYOTO,OSAKA,HYOGO,NARA,WAKAYAMA,TOTTORI,SHIMANE,OKAYAMA,HIROSHIMA,YAMAGUCHI,TOKUSHIMA,KAGAWA,EHIME,KOCHI,FUKUOKA,SAGA,NAGASAKI,KUMAMOTO,OITA,MIYAZAKI,KAGOSHIMA,OKINAWA'.split(',');
-const $=x=>document.getElementById(x), pref=$('pref');
-prefs.forEach((p,i)=>{if(i){let o=document.createElement('option');o.value=i;o.textContent=`${String(i+1).padStart(2,'0')} ${p}`;pref.append(o)}});
-const mode=()=>document.querySelector('input[name=mode]:checked').value;
-function update(){
-let i=+pref.value;
-$('source').textContent=mode()==='ticket'?`${String(i).padStart(2,'0')} ${prefs[i-1]} ARTWORKの保有者CSV`:`${String(i+1).padStart(2,'0')} ${prefs[i]} JOURNEY TICKETの保有者CSV`;
-$('adminCap').disabled=mode()!=='ticket';
-$('results').style.display='none'
-}
-pref.onchange=update;
-document.querySelectorAll('[name=mode]').forEach(x=>x.onchange=update);
-update();
+"use strict";
 
-function parseCSV(t){
-t=t.replace(/^\uFEFF/,'');
-let rows=[],row=[],cell='',quote=false;
-for(let i=0;i<t.length;i++){
-let c=t[i];
-if(quote){
-if(c==='"'&&t[i+1]==='"'){cell+='"';i++}
-else if(c==='"')quote=false;
-else cell+=c
-}else if(c==='"')quote=true;
-else if(c===','){row.push(cell);cell=''}
-else if(c==='\n'||c==='\r'){
-if(c==='\r'&&t[i+1]==='\n')i++;
-row.push(cell);
-if(row.some(x=>x.trim()))rows.push(row);
-row=[];cell=''
-}else cell+=c
-}
-if(quote)throw Error('CSVの引用符が閉じていません');
-row.push(cell);
-if(row.some(x=>x.trim()))rows.push(row);
-return rows
-}
+(() => {
 
-const addr=/^0x[a-fA-F0-9]{40}$/;
-function csv(rows){
-return rows.map(r=>r.map(x=>'"'+String(x).replaceAll('"','""')+'"').join(',')).join('\r\n')+'\r\n'
-}
-function dl(name,rows){
-let blob=new Blob([csv(rows)],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
-a.href=url;a.download=name;a.click();
-setTimeout(()=>URL.revokeObjectURL(url),3000)
-}
-function button(text,name,rows){
-let b=document.createElement('button');
-b.textContent=text;
-b.onclick=()=>dl(name,rows);
-$('downloads').append(b)
-}
+  // =====================================================
+  // 設定
+  // =====================================================
 
-$('generate').onclick=async()=>{
-try{
-$('error').textContent='';
-let f=$('file').files[0];
-if(!f)throw Error('保有者CSVを選択してください');
-let rows=parseCSV(await f.text());
-if(rows.length<2)throw Error('CSVにデータがありません');
-let headers=rows[0].map(x=>x.trim().toLowerCase()),ai=headers.findIndex(x=>['address','wallet','wallet address','holder'].includes(x)),qi=headers.findIndex(x=>['quantity','balance','amount','count'].includes(x));
-if(ai<0||qi<0)throw Error('Address列とQuantity列が必要です。通常の取引履歴CSVではなくHolders CSVを選んでください。');
-let m=new Map();
-for(let r of rows.slice(1)){
-let a=(r[ai]||'').trim(),q=(r[qi]||'').trim();
-if(!a&&!q)continue;
-if(!addr.test(a))throw Error('不正なウォレットアドレス: '+a);
-if(!/^\d+$/.test(q))throw Error('保有枚数が不正です: '+q);
-let n=Number(q);
-if(!Number.isSafeInteger(n))throw Error('保有枚数が大きすぎます');
-m.set(a.toLowerCase(),(m.get(a.toLowerCase())||0)+n)
-}
-let admin=$('admin').value.trim().toLowerCase();
-if(admin&&!addr.test(admin))throw Error('運営ウォレットアドレスが不正です');
-let cap=Number($('adminCap').value);
-if(!Number.isSafeInteger(cap)||cap<0)throw Error('運営上限は0以上の整数で入力してください');
-let arr=[...m].filter(([a,q])=>q>0).map(([a,q])=>({a,q,limit:mode()==='ticket'&&a===admin?Math.min(q,cap):q,kind:a===admin?'運営':'一般'})).filter(x=>x.limit>0).sort((a,b)=>b.limit-a.limit||a.a.localeCompare(b.a));
-if(!arr.length)throw Error('対象ウォレットがありません');
-let i=+pref.value,slug=prefs[i].toLowerCase(),kind=mode(),meta=[['項目','値'],['販売先',`${String(i+1).padStart(2,'0')} ${prefs[i]}`],['種類',kind],['スナップショット日時',$('snapshot').value||'未記入'],['ブロック番号',$('block').value||'未記入'],['元CSV',f.name],['対象ウォレット数',arr.length],['購入枠合計',arr.reduce((s,x)=>s+x.limit,0)]];
-$('count').textContent=arr.length;
-$('total').textContent=arr.reduce((s,x)=>s+x.limit,0)+' 枚';
-$('summary').textContent=kind==='ticket'?'Ticket優先販売用の1ファイルを出力します。':'無料ミントと$1.50優先販売用の2ファイルを出力します。';
-$('downloads').replaceChildren();
-let allow=arr.map(x=>[x.a,x.limit]);
-if(kind==='ticket')button('OpenSea Ticket優先CSV',`${slug}_ticket_presale_allowlist.csv`,allow);
-else{
-button('FREE CLAIM用CSV',`${slug}_art_free_allowlist.csv`,allow);
-button('$1.50 優先販売用CSV',`${slug}_art_paid_allowlist.csv`,allow)
-}
-button('管理用CSV',`${slug}_${kind}_holders_review.csv`,[['wallet','holding_quantity','purchase_limit','category'],...arr.map(x=>[x.a,x.q,x.limit,x.kind])]);
-button('取得条件メモCSV',`${slug}_${kind}_snapshot_info.csv`,meta);
-$('tbody').replaceChildren();
-arr.forEach(x=>{
-let tr=document.createElement('tr');
-[x.a,x.q,x.limit,x.kind].forEach(v=>{
-let td=document.createElement('td');
-td.textContent=v;
-tr.append(td)
-});
-$('tbody').append(tr)
-});
-$('results').style.display='block';
-$('results').scrollIntoView({behavior:'smooth'});
-}catch(e){
-$('results').style.display='none';
-$('error').textContent=e.message
-}};
+  const WORKER =
+    "https://traveling-takoyaki-allowlist.japan47pixel.workers.dev";
+
+  const PREFECTURES = [
+    "HOKKAIDO",
+    "AOMORI",
+    "AKITA",
+    "IWATE",
+    "YAMAGATA",
+    "FUKUSHIMA",
+    "MIYAGI",
+    "IBARAKI",
+    "TOCHIGI",
+    "GUNMA",
+    "SAITAMA",
+    "CHIBA",
+    "TOKYO",
+    "KANAGAWA",
+    "NIIGATA",
+    "TOYAMA",
+    "ISHIKAWA",
+    "FUKUI",
+    "YAMANASHI",
+    "NAGANO",
+    "GIFU",
+    "SHIZUOKA",
+    "AICHI",
+    "MIE",
+    "SHIGA",
+    "KYOTO",
+    "OSAKA",
+    "HYOGO",
+    "NARA",
+    "WAKAYAMA",
+    "TOTTORI",
+    "SHIMANE",
+    "OKAYAMA",
+    "HIROSHIMA",
+    "YAMAGUCHI",
+    "TOKUSHIMA",
+    "KAGAWA",
+    "EHIME",
+    "KOCHI",
+    "FUKUOKA",
+    "SAGA",
+    "NAGASAKI",
+    "KUMAMOTO",
+    "OITA",
+    "MIYAZAKI",
+    "KAGOSHIMA",
+    "OKINAWA"
+  ];
+
+  const KNOWN_CONTRACTS = {
+    "HOKKAIDO_ARTWORK":
+      "0xe67970e7137Bd156aF1D74Bd0654031b7d1CaE5F"
+  };
+
+  const ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/;
+
+  // =====================================================
+  // DOM
+  // =====================================================
+
+  const $ = id => document.getElementById(id);
+
+  const prefecture = $("prefecture");
+  const contractInput = $("contract");
+  const sourceDescription = $("sourceDescription");
+
+  const fetchButton = $("fetchButton");
+  const csvFile = $("csvFile");
+
+  const status = $("status");
+
+  const ticketCap = $("ticketCap");
+  const operatorCap = $("operatorCap");
+  const operator = $("operator");
+
+  const walletCount = $("walletCount");
+  const tokenCount = $("tokenCount");
+  const allowCount = $("allowCount");
+  const allowLabel = $("allowLabel");
+
+  const generateButton = $("generateButton");
+  const clearButton = $("clearButton");
+
+  const resultMessage = $("resultMessage");
+  const holderTable = $("holderTable");
+
+  const downloads = $("downloads");
+  const downloadButtons = $("downloadButtons");
+
+  // =====================================================
+  // 状態
+  // =====================================================
+
+  let holders = [];
+  let dataSource = "";
+  let loadedContract = "";
+  let loadedMode = "";
+  let loadedPrefecture = "";
+  let currentBlock = "";
+
+  // =====================================================
+  // 初期化
+  // =====================================================
+
+  for (let i = 1; i < PREFECTURES.length; i++) {
+
+    const option = document.createElement("option");
+
+    option.value = String(i);
+    option.textContent =
+      String(i + 1).padStart(2, "0") +
+      " " +
+      PREFECTURES[i];
+
+    prefecture.appendChild(option);
+  }
+
+  prefecture.value = "1";
+
+  // =====================================================
+  // 共通関数
+  // =====================================================
+
+  function getMode() {
+    return document.querySelector(
+      'input[name="mode"]:checked'
+    ).value;
+  }
+
+  function selectedIndex() {
+    return Number(prefecture.value);
+  }
+
+  function selectedName() {
+    return PREFECTURES[selectedIndex()];
+  }
+
+  function previousName() {
+    return PREFECTURES[selectedIndex() - 1];
+  }
+
+  function sourceKey() {
+
+    if (getMode() === "ticket") {
+      return previousName() + "_ARTWORK";
+    }
+
+    return selectedName() + "_TICKET";
+  }
+
+  function setStatus(message, type = "note") {
+    status.className = type;
+    status.textContent = message;
+  }
+
+  function setResult(message, type = "note") {
+    resultMessage.className = type;
+    resultMessage.textContent = message;
+  }
+
+  function validAddress(value) {
+    return ADDRESS_REGEX.test(value);
+  }
+
+  function positiveInteger(value, min = 0) {
+
+    const n = Number(value);
+
+    if (
+      !Number.isSafeInteger(n) ||
+      n < min
+    ) {
+      throw new Error(
+        "購入上限の設定値が正しくありません。"
+      );
+    }
+
+    return n;
+  }
+
+  function escapeHTML(value) {
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function numberFormat(n) {
+    return n.toLocaleString("ja-JP");
+  }
+
+  // =====================================================
+  // 取得元表示
+  // =====================================================
+
+  function updateSource() {
+
+    const mode = getMode();
+
+    let description = "";
+
+    if (mode === "ticket") {
+
+      description =
+        "対象： " + selectedName() +
+        " Journey Ticket 優先販売\n" +
+        "取得元： " + previousName() +
+        " Artwork NFT 保有者\n" +
+        "通常ウォレットは最大3枚、" +
+        "運営ウォレットは最大10枚。";
+
+    } else {
+
+      description =
+        "対象： " + selectedName() +
+        " Artwork NFT\n" +
+        "取得元： " + selectedName() +
+        " Journey Ticket 保有者\n" +
+        "Ticket1枚につき無料1枚＋" +
+        "有料優先2枚。";
+    }
+
+    sourceDescription.textContent = description;
+    sourceDescription.style.whiteSpace = "pre-line";
+
+    const key = sourceKey();
+
+    contractInput.value = KNOWN_CONTRACTS[key] || "";
+
+    resetHolders();
+
+    updateLabels();
+  }
+
+  function updateLabels() {
+
+    if (getMode() === "ticket") {
+      allowLabel.textContent = "Ticket優先枠合計";
+    } else {
+      allowLabel.textContent = "Artwork最大取得枠";
+    }
+  }
+
+  // =====================================================
+  // 保有者データ初期化
+  // =====================================================
+
+  function resetHolders() {
+
+    holders = [];
+    dataSource = "";
+    loadedContract = "";
+    loadedMode = "";
+    loadedPrefecture = "";
+    currentBlock = "";
+
+    walletCount.textContent = "0";
+    tokenCount.textContent = "0";
+    allowCount.textContent = "0";
+
+    generateButton.disabled = true;
+
+    holderTable.innerHTML =
+      '<tr><td colspan="4">' +
+      'データがありません。' +
+      '</td></tr>';
+
+    downloads.classList.add("hidden");
+    downloadButtons.innerHTML = "";
+
+    setStatus(
+      "まだ保有者データを読み込んでいません。"
+    );
+
+    setResult(
+      "保有者データを読み込んでください。"
+    );
+  }
+
+  // =====================================================
+  // 保有者データ正規化
+  // =====================================================
+
+  function normalizeHolders(raw) {
+
+    const map = new Map();
+
+    for (const item of raw) {
+
+      const address = String(
+        item.address || ""
+      ).trim().toLowerCase();
+
+      const quantity = Number(item.quantity);
+
+      if (!validAddress(address)) {
+        throw new Error(
+          "不正なウォレットアドレス：" + address
+        );
+      }
+
+      if (
+        !Number.isSafeInteger(quantity) ||
+        quantity < 0
+      ) {
+        throw new Error(
+          "不正な保有枚数：" + address
+        );
+      }
+
+      if (quantity === 0) {
+        continue;
+      }
+
+      map.set(
+        address,
+        (map.get(address) || 0) + quantity
+      );
+
+      if (
+        !Number.isSafeInteger(map.get(address))
+      ) {
+        throw new Error(
+          "保有枚数が上限を超えています。"
+        );
+      }
+    }
+
+    return [...map].map(
+      ([address, quantity]) => ({
+        address,
+        quantity
+      })
+    ).sort(
+      (a, b) =>
+        b.quantity - a.quantity ||
+        a.address.localeCompare(b.address)
+    );
+  }
+
+  function loadHolders(raw, source, block = "") {
+
+    const normalized = normalizeHolders(raw);
+
+    if (!normalized.length) {
+      throw new Error(
+        "有効な保有者が見つかりません。"
+      );
+    }
+
+    holders = normalized;
+    dataSource = source;
+
+    loadedContract =
+      contractInput.value.trim().toLowerCase();
+
+    loadedMode = getMode();
+    loadedPrefecture = prefecture.value;
+    currentBlock = String(block || "");
+
+    if (
+      currentBlock &&
+      !$("snapshotBlock").value.trim()
+    ) {
+      $("snapshotBlock").value = currentBlock;
+    }
+
+    generateButton.disabled = false;
+
+    downloads.classList.add("hidden");
+
+    renderHolders();
+
+    setStatus(
+      numberFormat(holders.length) +
+      "ウォレットの保有情報を読み込みました。",
+      "success"
+    );
+
+    setResult(
+      "保有者データの読み込みが完了しました。" +
+      "内容を確認してAllowlistを生成してください。",
+      "success"
+    );
+  }
+
+  // =====================================================
+  // CSVパーサー
+  // =====================================================
+
+  function parseCSV(text) {
+
+    text = text.replace(/^\uFEFF/, "");
+
+    const rows = [];
+    let row = [];
+    let field = "";
+    let quoted = false;
+
+    for (let i = 0; i < text.length; i++) {
+
+      const ch = text[i];
+
+      if (quoted) {
+
+        if (ch === '"') {
+
+          if (text[i + 1] === '"') {
+            field += '"';
+            i++;
+          } else {
+            quoted = false;
+          }
+
+        } else {
+          field += ch;
+        }
+
+      } else {
+
+        if (ch === '"') {
+          quoted = true;
+
+        } else if (ch === ",") {
+          row.push(field);
+          field = "";
+
+        } else if (ch === "\n") {
+          row.push(field);
+          rows.push(row);
+          row = [];
+          field = "";
+
+        } else if (ch === "\r") {
+          if (text[i + 1] === "\n") {
+            continue;
+          }
+
+          row.push(field);
+          rows.push(row);
+          row = [];
+          field = "";
+
+        } else {
+          field += ch;
+        }
+      }
+    }
+
+    if (quoted) {
+      throw new Error(
+        "CSVの引用符が閉じられていません。"
+      );
+    }
+
+    if (field !== "" || row.length) {
+      row.push(field);
+      rows.push(row);
+    }
+
+    return rows.filter(
+      r => r.some(c => String(c).trim() !== "")
+    );
+  }
+
+  function parseHolderCSV(text) {
+
+    const rows = parseCSV(text);
+
+    if (rows.length < 2) {
+      throw new Error(
+        "CSVに保有者データがありません。"
+      );
+    }
+
+    const headers = rows[0].map(
+      x => String(x)
+        .trim()
+        .toLowerCase()
+        .replace(/[\s_-]/g, "")
+    );
+
+    const addressNames = [
+      "address",
+      "wallet",
+      "walletaddress",
+      "holder",
+      "holderaddress",
+      "owner"
+    ];
+
+    const quantityNames = [
+      "quantity",
+      "balance",
+      "amount",
+      "count",
+      "tokenbalance",
+      "nftbalance"
+    ];
+
+    const addressIndex = headers.findIndex(
+      x => addressNames.includes(x)
+    );
+
+    const quantityIndex = headers.findIndex(
+      x => quantityNames.includes(x)
+    );
+
+    if (
+      addressIndex < 0 ||
+      quantityIndex < 0
+    ) {
+      throw new Error(
+        "CSVにAddress列とQuantity列が必要です。"
+      );
+    }
+
+    return rows.slice(1).map(row => ({
+      address: row[addressIndex],
+      quantity: row[quantityIndex]
+    }));
+  }
+
+  // =====================================================
+  // 自動取得
+  // =====================================================
+
+  async function fetchHolders() {
+
+    const contract = contractInput.value.trim();
+
+    if (!validAddress(contract)) {
+
+      setStatus(
+        "正しいコントラクトアドレスを入力してください。",
+        "error"
+      );
+
+      return;
+    }
+
+    resetHolders();
+
+    fetchButton.disabled = true;
+    fetchButton.textContent = "取得中...";
+
+    setStatus(
+      "Cloudflare WorkerからNFT保有者を取得しています。"
+    );
+
+    try {
+
+      const url =
+        WORKER +
+        "/api/holders?contract=" +
+        encodeURIComponent(contract);
+
+      const response = await fetch(url, {
+        method: "GET",
+        cache: "no-store"
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.error ||
+          "保有者の取得に失敗しました。"
+        );
+      }
+
+      if (!Array.isArray(data.holders)) {
+        throw new Error(
+          "APIから正しい保有者一覧が返されませんでした。"
+        );
+      }
+
+      if (
+        String(data.contract || "").toLowerCase() !==
+        contract.toLowerCase()
+      ) {
+        throw new Error(
+          "取得したコントラクトが一致しません。"
+        );
+      }
+
+      loadHolders(
+        data.holders,
+        "Cloudflare Worker / " +
+        String(data.source || "API"),
+        data.lastBlock
+      );
+
+      if (
+        data.totalTokens !== undefined
+      ) {
+
+        const localTotal = holders.reduce(
+          (sum, h) => sum + h.quantity,
+          0
+        );
+
+        if (localTotal !== Number(data.totalTokens)) {
+
+          resetHolders();
+
+          throw new Error(
+            "APIのNFT合計枚数と集計結果が一致しません。"
+          );
+        }
+      }
+
+    } catch (error) {
+
+      resetHolders();
+
+      setStatus(
+        "自動取得エラー：" +
+        (error.message || String(error)),
+        "error"
+      );
+
+    } finally {
+
+      fetchButton.disabled = false;
+      fetchButton.textContent = "保有者を自動取得";
+    }
+  }
+
+  // =====================================================
+  // CSV読み込み
+  // =====================================================
+
+  async function importCSV(file) {
+
+    if (!file) {
+      return;
+    }
+
+    resetHolders();
+
+    try {
+
+      const text = await file.text();
+
+      const parsed = parseHolderCSV(text);
+
+      loadHolders(
+        parsed,
+        "CSV / " + file.name
+      );
+
+    } catch (error) {
+
+      resetHolders();
+
+      setStatus(
+        "CSV読み込みエラー：" +
+        (error.message || String(error)),
+        "error"
+      );
+    }
+  }
+
+  // =====================================================
+  // 優先購入枠計算
+  // =====================================================
+
+  function calculateRows() {
+
+    const mode = getMode();
+
+    const normalLimit = positiveInteger(
+      ticketCap.value,
+      1
+    );
+
+    const operatorLimit = positiveInteger(
+      operatorCap.value,
+      0
+    );
+
+    const operatorAddress =
+      operator.value.trim().toLowerCase();
+
+    if (
+      operatorAddress &&
+      !validAddress(operatorAddress)
+    ) {
+      throw new Error(
+        "運営ウォレットアドレスが正しくありません。"
+      );
+    }
+
+    return holders.map(holder => {
+
+      const quantity = holder.quantity;
+
+      const isOperator =
+        holder.address === operatorAddress;
+
+      if (mode === "ticket") {
+
+        const limit = isOperator
+          ? operatorLimit
+          : normalLimit;
+
+        const ticketAllowance = Math.min(
+          quantity,
+          limit
+        );
+
+        return {
+          address: holder.address,
+          quantity,
+          isOperator,
+          ticketAllowance,
+          freeAllowance: 0,
+          paidAllowance: 0,
+          totalAllowance: ticketAllowance
+        };
+      }
+
+      const freeAllowance = quantity;
+
+      const paidAllowance = quantity * 2;
+
+      if (
+        !Number.isSafeInteger(paidAllowance)
+      ) {
+        throw new Error(
+          "購入枠の計算値が大きすぎます。"
+        );
+      }
+
+      return {
+        address: holder.address,
+        quantity,
+        isOperator,
+        ticketAllowance: 0,
+        freeAllowance,
+        paidAllowance,
+        totalAllowance:
+          freeAllowance + paidAllowance
+      };
+    });
+  }
+
+  // =====================================================
+  // 表示更新
+  // =====================================================
+
+  function renderHolders() {
+
+    if (!holders.length) {
+      return;
+    }
+
+    try {
+
+      const rows = calculateRows();
+
+      const totalNFT = rows.reduce(
+        (sum, row) => sum + row.quantity,
+        0
+      );
+
+      const totalAllowance = rows.reduce(
+        (sum, row) => sum + row.totalAllowance,
+        0
+      );
+
+      walletCount.textContent =
+        numberFormat(rows.length);
+
+      tokenCount.textContent =
+        numberFormat(totalNFT);
+
+      allowCount.textContent =
+        numberFormat(totalAllowance);
+
+      holderTable.innerHTML = rows.map(row => {
+
+        return (
+          "<tr>" +
+          '<td class="address">' +
+          escapeHTML(row.address) +
+          "</td>" +
+          '<td class="num">' +
+          numberFormat(row.quantity) +
+          "</td>" +
+          '<td class="num">' +
+          numberFormat(row.freeAllowance) +
+          "</td>" +
+          '<td class="num">' +
+          numberFormat(
+            getMode() === "ticket"
+              ? row.ticketAllowance
+              : row.paidAllowance
+          ) +
+          "</td>" +
+          "</tr>"
+        );
+
+      }).join("");
+
+    } catch (error) {
+
+      generateButton.disabled = true;
+
+      setResult(
+        error.message || String(error),
+        "error"
+      );
+    }
+  }
+
+  // =====================================================
+  // CSV生成
+  // =====================================================
+
+  function csvEscape(value) {
+
+    const text = String(value);
+
+    if (/[",\r\n]/.test(text)) {
+      return '"' +
+        text.replace(/"/g, '""') +
+        '"';
+    }
+
+    return text;
+  }
+
+  function toCSV(rows) {
+
+    return rows.map(row =>
+      row.map(csvEscape).join(",")
+    ).join("\r\n") + "\r\n";
+  }
+
+  function downloadCSV(filename, rows) {
+
+    const csv = toCSV(rows);
+
+    // UTF-8 BOMなし
+    const blob = new Blob(
+      [csv],
+      {
+        type: "text/csv;charset=utf-8"
+      }
+    );
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+    }, 1000);
+  }
+
+  function filePrefix() {
+
+    const number = String(
+      selectedIndex() + 1
+    ).padStart(2, "0");
+
+    return (
+      number + "_" +
+      selectedName().toLowerCase()
+    );
+  }
+
+  function addDownloadButton(label, filename, rows) {
+
+    const button = document.createElement("button");
+
+    button.className = "primary";
+    button.textContent = label;
+
+    button.addEventListener("click", () => {
+      downloadCSV(filename, rows);
+    });
+
+    downloadButtons.appendChild(button);
+  }
+
+  function generateAllowlist() {
+
+    if (!holders.length) {
+      setResult(
+        "保有者データを読み込んでください。",
+        "error"
+      );
+      return;
+    }
+
+    if (
+      loadedMode !== getMode() ||
+      loadedPrefecture !== prefecture.value ||
+      (
+        loadedContract &&
+        loadedContract !==
+        contractInput.value.trim().toLowerCase()
+      )
+    ) {
+      setResult(
+        "取得元の設定が変更されました。" +
+        "保有者データを再取得してください。",
+        "error"
+      );
+      return;
+    }
+
+    try {
+
+      const rows = calculateRows();
+
+      const mode = getMode();
+
+      const prefix = filePrefix();
+
+      const date = new Date()
+        .toISOString()
+        .replace(/[:.]/g, "-");
+
+      downloadButtons.innerHTML = "";
+
+      if (mode === "ticket") {
+
+        const ticketRows = rows
+          .filter(row => row.ticketAllowance > 0)
+          .map(row => [
+            row.address,
+            row.ticketAllowance
+          ]);
+
+        if (!ticketRows.length) {
+          throw new Error(
+            "Ticket優先購入枠がありません。"
+          );
+        }
+
+        addDownloadButton(
+          "Ticket優先販売CSV",
+          prefix + "_ticket_allowlist.csv",
+          ticketRows
+        );
+
+      } else {
+
+        const freeRows = rows
+          .filter(row => row.freeAllowance > 0)
+          .map(row => [
+            row.address,
+            row.freeAllowance
+          ]);
+
+        const paidRows = rows
+          .filter(row => row.paidAllowance > 0)
+          .map(row => [
+            row.address,
+            row.paidAllowance
+          ]);
+
+        addDownloadButton(
+          "Artwork無料CSV",
+          prefix + "_artwork_free.csv",
+          freeRows
+        );
+
+        addDownloadButton(
+          "Artwork有料優先CSV",
+          prefix + "_artwork_paid.csv",
+          paidRows
+        );
+      }
+
+      const managementRows = [
+        [
+          "Address",
+          "NFT Quantity",
+          "Operator",
+          "Ticket Allowance",
+          "Free Allowance",
+          "Paid Allowance",
+          "Total Allowance"
+        ],
+        ...rows.map(row => [
+          row.address,
+          row.quantity,
+          row.isOperator ? "YES" : "NO",
+          row.ticketAllowance,
+          row.freeAllowance,
+          row.paidAllowance,
+          row.totalAllowance
+        ])
+      ];
+
+      addDownloadButton(
+        "管理用集計CSV",
+        prefix + "_management.csv",
+        managementRows
+      );
+
+      const memoRows = [
+        ["Field", "Value"],
+        ["Project", "TRAVELING TAKOYAKI"],
+        ["Prefecture", selectedName()],
+        ["Mode", mode],
+        ["Source NFT", sourceKey()],
+        ["Contract", contractInput.value.trim()],
+        ["Data Source", dataSource],
+        ["Generated At UTC", new Date().toISOString()],
+        ["Snapshot Date", $("snapshotDate").value],
+        ["Snapshot Block", $("snapshotBlock").value],
+        ["API Last Block", currentBlock],
+        ["Holder Wallets", rows.length],
+        [
+          "NFT Quantity",
+          rows.reduce(
+            (sum, row) => sum + row.quantity,
+            0
+          )
+        ],
+        [
+          "Total Allowance",
+          rows.reduce(
+            (sum, row) => sum + row.totalAllowance,
+            0
+          )
+        ],
+        ["Ticket Normal Cap", ticketCap.value],
+        ["Ticket Operator Cap", operatorCap.value],
+        ["Operator Wallet", operator.value.trim()],
+        ["Generated File ID", date]
+      ];
+
+      addDownloadButton(
+        "スナップショット記録CSV",
+        prefix + "_snapshot_memo.csv",
+        memoRows
+      );
+
+      downloads.classList.remove("hidden");
+
+      setResult(
+        "Allowlistの生成が完了しました。" +
+        "下のボタンからCSVをダウンロードできます。",
+        "success"
+      );
+
+      downloads.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    } catch (error) {
+
+      downloads.classList.add("hidden");
+
+      setResult(
+        "生成エラー：" +
+        (error.message || String(error)),
+        "error"
+      );
+    }
+  }
+
+  // =====================================================
+  // イベント
+  // =====================================================
+
+  document.querySelectorAll(
+    'input[name="mode"]'
+  ).forEach(input => {
+
+    input.addEventListener(
+      "change",
+      updateSource
+    );
+  });
+
+  prefecture.addEventListener(
+    "change",
+    updateSource
+  );
+
+  contractInput.addEventListener(
+    "input",
+    () => {
+      if (holders.length) {
+        resetHolders();
+      }
+    }
+  );
+
+  fetchButton.addEventListener(
+    "click",
+    fetchHolders
+  );
+
+  csvFile.addEventListener(
+    "change",
+    event => {
+
+      const file = event.target.files[0];
+
+      importCSV(file);
+
+      event.target.value = "";
+    }
+  );
+
+  generateButton.addEventListener(
+    "click",
+    generateAllowlist
+  );
+
+  clearButton.addEventListener(
+    "click",
+    resetHolders
+  );
+
+  [
+    ticketCap,
+    operatorCap,
+    operator
+  ].forEach(input => {
+
+    input.addEventListener(
+      "input",
+      () => {
+
+        if (holders.length) {
+          renderHolders();
+
+          downloads.classList.add("hidden");
+
+          setResult(
+            "設定が変更されました。" +
+            "Allowlistを再生成してください。"
+          );
+        }
+      }
+    );
+  });
+
+  // =====================================================
+  // 起動
+  // =====================================================
+
+  updateSource();
+
+})();
 </script>
+
 </body>
 </html>
