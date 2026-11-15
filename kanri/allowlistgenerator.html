@@ -1,0 +1,202 @@
+
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TRAVELING TAKOYAKI | Allowlist Generator</title>
+<style>
+:root{font-family:system-ui,'Noto Sans JP',sans-serif;color:#f1f4ed;background:#101510}
+*{box-sizing:border-box}
+body{margin:0;padding:24px}
+main{max-width:980px;margin:auto}
+h1{font-size:clamp(24px,5vw,38px);margin:5px 0}
+h2{font-size:19px}
+.tag{color:#c8ff29;font-size:12px;font-weight:900;letter-spacing:.16em}
+.card{background:#1d261e;border:1px solid #42503c;border-radius:15px;padding:20px;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+label{display:block;font-size:13px;color:#cbd4c7;margin:8px 0 5px}
+input,select,button{font:inherit;border-radius:8px;padding:11px;width:100%;background:#101710;color:#fff;border:1px solid #5d6b57}
+button{cursor:pointer;background:#c8ff29;color:#121b0c;font-weight:800;border:0}
+button:disabled{opacity:.4;cursor:not-allowed}
+.muted{color:#abb6a6;font-size:13px;line-height:1.7}
+.radio{display:flex;gap:12px;flex-wrap:wrap}
+.radio label{background:#101710;padding:10px;border-radius:8px;border:1px solid #53634d;flex:1;min-width:200px}
+.radio input{width:auto}
+table{border-collapse:collapse;width:100%;font-size:12px}
+th,td{padding:9px;border-bottom:1px solid #43503d;text-align:left}
+td:first-child{overflow-wrap:anywhere}
+th{color:#c8ff29}
+#results{display:none}
+.stats{font-size:26px;font-weight:900;color:#c8ff29}
+.notice{border-left:4px solid #c8ff29;padding-left:12px}
+.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+small{color:#aeb7a7}
+code{overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<main>
+<div class="tag">TRAVELING TAKOYAKI / ADMIN UTILITY</div>
+<h1>ALLOWLIST GENERATOR</h1>
+<p class="muted">RobinScanなどの保有者CSVを読み込み、OpenSea登録用CSVを作成します。データはブラウザ内で処理され、外部に送信されません。</p>
+
+<div class="card">
+<h2>1. 販売設定</h2>
+<div class="radio">
+<label><input type="radio" name="mode" value="ticket" checked> Journey Ticket優先販売</label>
+<label><input type="radio" name="mode" value="art"> Artwork無料＋有料優先販売</label>
+</div>
+<div class="grid">
+<div><label>販売する都道府県</label><select id="pref"></select></div>
+<div><label>CSVで確認する保有NFT</label><div id="source" class="notice"></div></div>
+</div>
+<div class="grid">
+<div><label>運営ウォレット（任意）</label><input id="admin" value="0x5be22fb1d7acc907b0a5fbdc0b1895dafbb7cdb2" placeholder="0x..." spellcheck="false"></div>
+<div><label>運営ウォレットの購入上限（Ticket優先のみ）</label><input id="adminCap" type="number" min="0" value="10"></div>
+</div>
+<p class="muted">運営上限はTicket優先販売のみ適用。ArtworkはTicket保有数をそのまま無料枠・有料枠に使用します。</p>
+</div>
+
+<div class="card">
+<h2>2. 保有者CSVを読み込む</h2>
+<label>RobinScanのHolders CSV（Address, Quantity列）または同等のCSV</label>
+<input id="file" type="file" accept=".csv,text/csv">
+<div class="grid">
+<div><label>スナップショット日時（記録用）</label><input id="snapshot" type="datetime-local"></div>
+<div><label>ブロック番号（任意・記録用）</label><input id="block" placeholder="例: 12345678"></div>
+</div>
+<p class="muted">日時とブロック番号は記録用です。このツールは指定ブロック時点の保有者を自動取得しません。必ずその時点で取得したCSVを使用してください。</p>
+<button id="generate">CSVからリストを生成</button>
+<p id="error" role="alert" style="color:#ffac9f"></p>
+</div>
+
+<div id="results" class="card">
+<h2>3. 結果とダウンロード</h2>
+<div class="grid">
+<div><div class="muted">対象ウォレット数</div><div id="count" class="stats"></div></div>
+<div><div class="muted">購入上限の合計</div><div id="total" class="stats"></div></div>
+</div>
+<p id="summary" class="muted"></p>
+<div id="downloads" class="actions"></div>
+<div style="overflow-x:auto;margin-top:18px">
+<table>
+<thead><tr><th>Wallet</th><th>保有枚数</th><th>上限</th><th>区分</th></tr></thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+<p class="muted">OpenSeaのCSV書式やステージ間の枠の持ち越しは、実際のDrop設定画面で確認してください。購入枠の合計はNFTの在庫予約を意味しません。</p>
+</div>
+</main>
+<script>
+const prefs='HOKKAIDO,AOMORI,AKITA,IWATE,YAMAGATA,FUKUSHIMA,MIYAGI,IBARAKI,TOCHIGI,GUNMA,SAITAMA,CHIBA,TOKYO,KANAGAWA,NIIGATA,TOYAMA,ISHIKAWA,FUKUI,YAMANASHI,NAGANO,GIFU,SHIZUOKA,AICHI,MIE,SHIGA,KYOTO,OSAKA,HYOGO,NARA,WAKAYAMA,TOTTORI,SHIMANE,OKAYAMA,HIROSHIMA,YAMAGUCHI,TOKUSHIMA,KAGAWA,EHIME,KOCHI,FUKUOKA,SAGA,NAGASAKI,KUMAMOTO,OITA,MIYAZAKI,KAGOSHIMA,OKINAWA'.split(',');
+const $=x=>document.getElementById(x), pref=$('pref');
+prefs.forEach((p,i)=>{if(i){let o=document.createElement('option');o.value=i;o.textContent=`${String(i+1).padStart(2,'0')} ${p}`;pref.append(o)}});
+const mode=()=>document.querySelector('input[name=mode]:checked').value;
+function update(){
+let i=+pref.value;
+$('source').textContent=mode()==='ticket'?`${String(i).padStart(2,'0')} ${prefs[i-1]} ARTWORKの保有者CSV`:`${String(i+1).padStart(2,'0')} ${prefs[i]} JOURNEY TICKETの保有者CSV`;
+$('adminCap').disabled=mode()!=='ticket';
+$('results').style.display='none'
+}
+pref.onchange=update;
+document.querySelectorAll('[name=mode]').forEach(x=>x.onchange=update);
+update();
+
+function parseCSV(t){
+t=t.replace(/^\uFEFF/,'');
+let rows=[],row=[],cell='',quote=false;
+for(let i=0;i<t.length;i++){
+let c=t[i];
+if(quote){
+if(c==='"'&&t[i+1]==='"'){cell+='"';i++}
+else if(c==='"')quote=false;
+else cell+=c
+}else if(c==='"')quote=true;
+else if(c===','){row.push(cell);cell=''}
+else if(c==='\n'||c==='\r'){
+if(c==='\r'&&t[i+1]==='\n')i++;
+row.push(cell);
+if(row.some(x=>x.trim()))rows.push(row);
+row=[];cell=''
+}else cell+=c
+}
+if(quote)throw Error('CSVの引用符が閉じていません');
+row.push(cell);
+if(row.some(x=>x.trim()))rows.push(row);
+return rows
+}
+
+const addr=/^0x[a-fA-F0-9]{40}$/;
+function csv(rows){
+return rows.map(r=>r.map(x=>'"'+String(x).replaceAll('"','""')+'"').join(',')).join('\r\n')+'\r\n'
+}
+function dl(name,rows){
+let blob=new Blob([csv(rows)],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+a.href=url;a.download=name;a.click();
+setTimeout(()=>URL.revokeObjectURL(url),3000)
+}
+function button(text,name,rows){
+let b=document.createElement('button');
+b.textContent=text;
+b.onclick=()=>dl(name,rows);
+$('downloads').append(b)
+}
+
+$('generate').onclick=async()=>{
+try{
+$('error').textContent='';
+let f=$('file').files[0];
+if(!f)throw Error('保有者CSVを選択してください');
+let rows=parseCSV(await f.text());
+if(rows.length<2)throw Error('CSVにデータがありません');
+let headers=rows[0].map(x=>x.trim().toLowerCase()),ai=headers.findIndex(x=>['address','wallet','wallet address','holder'].includes(x)),qi=headers.findIndex(x=>['quantity','balance','amount','count'].includes(x));
+if(ai<0||qi<0)throw Error('Address列とQuantity列が必要です。通常の取引履歴CSVではなくHolders CSVを選んでください。');
+let m=new Map();
+for(let r of rows.slice(1)){
+let a=(r[ai]||'').trim(),q=(r[qi]||'').trim();
+if(!a&&!q)continue;
+if(!addr.test(a))throw Error('不正なウォレットアドレス: '+a);
+if(!/^\d+$/.test(q))throw Error('保有枚数が不正です: '+q);
+let n=Number(q);
+if(!Number.isSafeInteger(n))throw Error('保有枚数が大きすぎます');
+m.set(a.toLowerCase(),(m.get(a.toLowerCase())||0)+n)
+}
+let admin=$('admin').value.trim().toLowerCase();
+if(admin&&!addr.test(admin))throw Error('運営ウォレットアドレスが不正です');
+let cap=Number($('adminCap').value);
+if(!Number.isSafeInteger(cap)||cap<0)throw Error('運営上限は0以上の整数で入力してください');
+let arr=[...m].filter(([a,q])=>q>0).map(([a,q])=>({a,q,limit:mode()==='ticket'&&a===admin?Math.min(q,cap):q,kind:a===admin?'運営':'一般'})).filter(x=>x.limit>0).sort((a,b)=>b.limit-a.limit||a.a.localeCompare(b.a));
+if(!arr.length)throw Error('対象ウォレットがありません');
+let i=+pref.value,slug=prefs[i].toLowerCase(),kind=mode(),meta=[['項目','値'],['販売先',`${String(i+1).padStart(2,'0')} ${prefs[i]}`],['種類',kind],['スナップショット日時',$('snapshot').value||'未記入'],['ブロック番号',$('block').value||'未記入'],['元CSV',f.name],['対象ウォレット数',arr.length],['購入枠合計',arr.reduce((s,x)=>s+x.limit,0)]];
+$('count').textContent=arr.length;
+$('total').textContent=arr.reduce((s,x)=>s+x.limit,0)+' 枚';
+$('summary').textContent=kind==='ticket'?'Ticket優先販売用の1ファイルを出力します。':'無料ミントと$1.50優先販売用の2ファイルを出力します。';
+$('downloads').replaceChildren();
+let allow=arr.map(x=>[x.a,x.limit]);
+if(kind==='ticket')button('OpenSea Ticket優先CSV',`${slug}_ticket_presale_allowlist.csv`,allow);
+else{
+button('FREE CLAIM用CSV',`${slug}_art_free_allowlist.csv`,allow);
+button('$1.50 優先販売用CSV',`${slug}_art_paid_allowlist.csv`,allow)
+}
+button('管理用CSV',`${slug}_${kind}_holders_review.csv`,[['wallet','holding_quantity','purchase_limit','category'],...arr.map(x=>[x.a,x.q,x.limit,x.kind])]);
+button('取得条件メモCSV',`${slug}_${kind}_snapshot_info.csv`,meta);
+$('tbody').replaceChildren();
+arr.forEach(x=>{
+let tr=document.createElement('tr');
+[x.a,x.q,x.limit,x.kind].forEach(v=>{
+let td=document.createElement('td');
+td.textContent=v;
+tr.append(td)
+});
+$('tbody').append(tr)
+});
+$('results').style.display='block';
+$('results').scrollIntoView({behavior:'smooth'});
+}catch(e){
+$('results').style.display='none';
+$('error').textContent=e.message
+}};
+</script>
+</body>
+</html>
