@@ -116,7 +116,14 @@ header{padding:7px 9px;background:#0d2530}.menu button{font-size:12px;min-height
 .fishHitBadge17 i{font-style:normal;font-size:1.2em}
 .fishHit1302:active .fishHitBadge17 span{background:#e9bd56;color:#26372b}
 .fishingBG15{filter:none!important;opacity:1!important}
-</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.17　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
+/* v0.18: sharper animal portraits and livestock management */
+.breed17 img{width:88px;height:74px;image-rendering:pixelated}
+.barn16animal{object-fit:contain;image-rendering:pixelated}
+.sheet [data-a^="v10barnManage:"]{background:#805d3c;color:#fff1d1;border:1px solid #d0a870;box-shadow:none}
+.sheet [data-a^="v10barnRelease:"]{background:#52443d;border:1px solid #a88b70;color:#ffecd2}
+.sheet[data-panel="barnManage18"] .pic10{width:70px;height:60px}
+.sheet[data-panel="barnManage18"] .pic10 img{width:64px;height:54px;object-fit:contain;image-rendering:pixelated}
+</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.18　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
 <script src="assets09/pixel-art-011.js"></script><script src="assets09/fishing-scene-015.js"></script><script src="assets09/fishing-scene-017.js"></script><script>
 const A=window.FARMELUNE_ART;
 if(Object.keys(A).length!==32){document.getElementById("toast").textContent="画像の読み込みに失敗しました。再読み込みしてください。";throw Error("Artwork incomplete");}
@@ -362,7 +369,7 @@ const sourceSize13={home:[119,100],seed:[96,84],market:[77,57],store:[98,72],chi
 function palette13(pixels,w,h){let base=new Uint8ClampedArray(pixels),out=new Uint8ClampedArray(pixels.length);const q=v=>Math.max(0,Math.min(255,Math.round(v/12)*12));for(let y=0;y<h;y++)for(let x=0;x<w;x++){let i=(y*w+x)*4;if(base[i+3]<128)continue;let r=base[i],g=base[i+1],b=base[i+2],n=1;for(let [dx,dy] of [[-1,0],[1,0],[0,-1],[0,1]]){let X=x+dx,Y=y+dy;if(X<0||Y<0||X>=w||Y>=h)continue;let j=(Y*w+X)*4;if(base[j+3]<128)continue;let d=Math.abs(base[j]-base[i])+Math.abs(base[j+1]-base[i+1])+Math.abs(base[j+2]-base[i+2]);if(d<=44){r+=base[j];g+=base[j+1];b+=base[j+2];n++}}out[i]=q(r/n);out[i+1]=q(g/n);out[i+2]=q(b/n);out[i+3]=255}return out}
 function bitmap13(src,bounds){return new Promise(resolve=>{let im=new Image();im.onload=()=>{try{let f=Math.min(1,bounds[0]*2/im.naturalWidth,bounds[1]*2/im.naturalHeight),w=Math.max(1,Math.round(im.naturalWidth*f)),h=Math.max(1,Math.round(im.naturalHeight*f)),cv=document.createElement('canvas');cv.width=w;cv.height=h;let ctx=cv.getContext('2d',{willReadFrequently:true});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(im,0,0,w,h);let image=ctx.getImageData(0,0,w,h);image.data.set(palette13(image.data,w,h));ctx.putImageData(image,0,0);ctx.imageSmoothingEnabled=false;resolve(cv.toDataURL('image/png'))}catch(e){resolve(src)}};im.onerror=()=>resolve(src);im.src=src})}
 function groundTile13(kind){let cv=document.createElement('canvas'),n=kind==='grass'?44:30;cv.width=cv.height=n;let c=cv.getContext('2d');c.imageSmoothingEnabled=false;c.fillStyle=kind==='grass'?'#80ad52':'#d1b77c';c.fillRect(0,0,n,n);let colors=kind==='grass'?['#7da950','#88b459','#77a44b']:['#ceb47a','#d7be86','#cbb17a'];for(let i=0;i<(kind==='grass'?7:4);i++){let x=(i*17+3)%n,y=(i*11+7)%n;c.fillStyle=colors[i%3];c.fillRect(x,y,i%3===0?2:1,1);if(kind==='grass'&&i%4===0)c.fillRect((x+1)%n,(y+n-1)%n,1,2)}return cv.toDataURL('image/png')}
-async function refreshArt13(){if(typeof Image!=='function')return;let originals=Object.entries(sourceSize13).filter(([k])=>typeof A[k]==='string');let results=await Promise.all(originals.map(async([k,b])=>[k,A[k],await bitmap13(A[k],b)]));let lookup=new Map();for(let [k,old,src] of results){A[k]=src;lookup.set(old,src)}for(let el of document.querySelectorAll('#map img,.sheet img,.stat img,.edit10 img')){let src=lookup.get(el.getAttribute('src'));if(src)el.src=src}try{A.grasstile=groundTile13('grass');A.pathtile=groundTile13('path');ground.style.backgroundImage='url('+A.grasstile+')';for(let el of document.querySelectorAll('.road'))el.style.backgroundImage='url('+A.pathtile+')'}catch(e){}stats();updateMap();if(panel&&panel!=='fishing'&&panel!=='battle12'&&panel!=='barnBreeds17'&&!(panel==='facility'&&barnIndex17(facility)>=0&&s.fac[facility]))render()}
+async function refreshArt13(){if(typeof Image!=='function')return;let originals=Object.entries(sourceSize13).filter(([k])=>typeof A[k]==='string');let results=await Promise.all(originals.map(async([k,b])=>[k,A[k],await bitmap13(A[k],b)]));let lookup=new Map();for(let [k,old,src] of results){A[k]=src;lookup.set(old,src)}for(let el of document.querySelectorAll('#map img,.sheet img,.stat img,.edit10 img')){let src=lookup.get(el.getAttribute('src'));if(src)el.src=src}try{A.grasstile=groundTile13('grass');A.pathtile=groundTile13('path');ground.style.backgroundImage='url('+A.grasstile+')';for(let el of document.querySelectorAll('.road'))el.style.backgroundImage='url('+A.pathtile+')'}catch(e){}stats();updateMap();if(panel&&panel!=='fishing'&&panel!=='battle12'&&panel!=='barnBreeds17'&&panel!=='barnManage18'&&!(panel==='facility'&&barnIndex17(facility)>=0&&s.fac[facility]))render()}
 
 
 
@@ -403,12 +410,104 @@ function barnReady16(i){let v=barnState16();return v.pens[i].reduce((n,p)=>n+p.f
 function barnMapStatus16(i){let n=barnReady16(i);return n?'回収 '+n+'個':barnCount16(i)?barnCount16(i)+barnCfg16[i].unit+' 飼育中':'動物を迎える'}
 function barnShopCard16(i){let c=barnCfg16[i],f=barnFac17[i],a=fac[f],v=barnState16();return card10(a[0],s.fac[f]?barnCount16(i)+'/'+v.unlocked[i]*3+c.unit+' ｜ 回収可能 '+barnReady16(i)+'個':'Lv.'+a[3]+' / '+fmt(a[2])+' G',a[7],s.fac[f]?b10('中に入る','barnOpen:'+i):btn('建設 '+fmt(a[2])+' G','facbuy:'+f,level()<a[3]||s.coins<a[2]))}
 function barnSvg17(svg){return 'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 40" shape-rendering="crispEdges">'+svg+'</svg>')}
-function barnAnimalArt17(i,b){let [m,l,d,o]=barnPal17[i===2?[0,0,1,2,3,4,6,7][b]:b],shape='';if(i===1&&b===0){d='#393b43';o='#33343a'}
- if(i===0){shape='<path fill="'+o+'" d="M5 18h6v-5h7v-5h13v5h7v7h6v6h-8v6H14v-4H7v-5H5z"/><path fill="'+m+'" d="M8 18h7v-5h14v4h7v8h-5v4H14v-4H8z"/><path fill="'+l+'" d="M16 15h13v4h5v5h-7v3H14v-6h2z"/><path fill="'+d+'" d="M9 19h10v7h-6v-3H9z"/><path fill="#b54439" d="M24 4h4v3h4v4h-8zM34 17h3v5h-3z"/><path fill="#e6ac48" d="M37 15h7v4h-7zM18 32h3v5h-6v-2h3zM29 32h3v5h-6v-2h3z"/><rect x="32" y="13" width="3" height="3" fill="#29292a"/>'}
- else if(i===1){shape='<path fill="'+o+'" d="M3 13h5V9h23v3h7V9h6v17h-5v5h-5v6h-6v-9H16v9h-6v-9H6V17H3z"/><path fill="'+m+'" d="M9 12h21v4h6v10H11v-4H8z"/><path fill="'+l+'" d="M12 12h16v4h-5v5H12z"/><path fill="'+d+'" d="M15 16h7v7h-6v-3h-4v-4zm10 6h7v5h-7z"/><path fill="'+l+'" d="M34 12h8v13h-8z"/><path fill="#e5b6a2" d="M34 20h11v6H34z"/><path fill="#392f32" d="M36 15h2v3h-2zm0 7h2v2h-2zm5 0h2v2h-2z"/><path fill="#e7d8b1" d="M33 6h3v5h-3zm9 0h3v5h-3z"/><path fill="'+d+'" d="M11 29h4v6h-4zm18 0h4v6h-4z"/>'}
- else{if(b===0){m='#d9919c';l='#f3b7b8';d='#b9667a';o='#674452'}shape='<path fill="'+o+'" d="M5 13h7V9h21v4h7v5h5v10h-7v4h-4v5h-6v-7H16v7h-6v-7H6v-7H2v-8h3z"/><path fill="'+m+'" d="M8 14h8v-3h16v5h6v12H12v-4H8z"/><path fill="'+l+'" d="M15 13h17v5h-4v5H13v-6h2zM33 17h9v10h-9z"/><path fill="'+d+'" d="M34 8h6v10h-6zm-22 20h4v7h-4zm18 0h4v7h-4z"/><path fill="#e8b6a8" d="M39 20h7v6h-7z"/><path fill="#514045" d="M36 16h3v3h-3zm4 6h2v2h-2zm3 0h2v2h-2z"/><path fill="'+m+'" d="M2 15h5v3H2z"/>'}
- if(b===6||b===7)shape+='<path fill="#fff1bc" d="M4 3h2v3h3v2H6v3H4V8H1V6h3z"/>';
- return barnSvg17(shape)
+
+/* Hand-built 48x40 pixel sprites: integer grid, solid palette, no filters or antialiasing. */
+function barnAnimalArt17(i,b){
+ const W=48,H=40,px=Array.from({length:H},()=>Array(W).fill(''));
+ const palettes=[
+ ['#eee1c7','#fff4dd','#c8b49a','#8b7563','#503d37'],
+ ['#b76a40','#e6a46c','#985137','#713d30','#4c3030'],
+ ['#565663','#88858c','#41414d','#30313b','#25242e'],
+ ['#b75d4b','#eb9271','#963e3b','#773534','#4d3033'],
+ ['#a8b5bd','#e3e8e5','#81939e','#5d737d','#354a55'],
+ ['#6c92b1','#a9cedc','#50738f','#405a75','#304052'],
+ ['#d9a33b','#ffe49a','#bc8032','#8c582a','#63432d'],
+ ['#9b7dbd','#e0c7ee','#795a9a','#564272','#3c304c']
+ ];
+ let palette=palettes[b];
+ if(i===2){palette=[
+ ['#dd929f','#ffd0c5','#bb7180','#96515d','#66404a'],
+ ['#eee4da','#fff6e8','#c6b3a7','#98837d','#5d4b4b'],
+ palettes[1],palettes[2],palettes[3],palettes[4],palettes[6],palettes[7]][b]}
+ let [m,l,d,sh,o]=palette;
+ if(i===1&&b===0){m='#f0e5d2';l='#fff6e6';d='#c5b8a6';sh='#796e69';o='#39343a'}
+ const dot=(x,y,c)=>{if(x>=0&&x<W&&y>=0&&y<H)px[y][x]=c};
+ const rect=(x,y,w,h,c)=>{for(let Y=y;Y<y+h;Y++)for(let X=x;X<x+w;X++)dot(X,Y,c)};
+ const poly=(p,c)=>{for(let y=0;y<H;y++)for(let x=0;x<W;x++){let inside=false;for(let j=0,k=p.length-1;j<p.length;k=j++){let a=p[j],z=p[k];if((a[1]>y+.5)!=(z[1]>y+.5)&&x+.5<(z[0]-a[0])*(y+.5-a[1])/(z[1]-a[1])+a[0])inside=!inside}if(inside)dot(x,y,c)}};
+ const P=(a,c)=>poly(a,c),R=rect;
+ if(i===0){
+  // Far leg, tail feathers, plump body, head and comb.
+  R(20,29,4,8,o);R(21,30,2,6,'#b77c43');R(19,36,7,2,o);R(20,36,5,1,'#e8ab59');
+  P([[4,12],[8,12],[8,15],[11,15],[11,10],[14,10],[18,17],[21,20],[18,28],[10,26],[5,21],[5,17],[3,17]],o);
+  P([[6,14],[8,16],[11,19],[13,13],[16,19],[18,22],[15,25],[9,23],[6,19]],sh);
+  P([[7,15],[10,18],[13,21],[14,17],[17,22],[15,23],[10,21]],d);
+  P([[10,20],[14,17],[21,15],[27,16],[30,12],[35,10],[40,12],[42,17],[46,18],[46,21],[41,22],[40,26],[35,29],[30,33],[21,34],[14,31],[10,27]],o);
+  P([[12,21],[16,19],[22,17],[28,18],[31,14],[35,12],[39,14],[40,19],[39,24],[34,28],[29,31],[22,32],[16,29],[12,26]],m);
+  P([[14,22],[18,20],[25,19],[30,20],[29,24],[24,28],[18,28],[14,25]],d);
+  P([[16,22],[19,20],[25,20],[28,22],[24,25],[20,26],[16,24]],l);
+  R(18,23,5,1,m);R(21,25,4,1,sh);R(15,26,3,1,sh);
+  P([[30,16],[32,13],[36,12],[39,15],[39,19],[35,22],[32,22]],l);
+  R(35,15,3,4,'#332b2d');R(35,15,1,1,'#fff7d9');
+  // Red comb and wattle with darker outlines.
+  P([[29,11],[29,7],[32,7],[32,4],[35,4],[35,7],[38,6],[40,9],[40,12],[36,13],[32,12]],'#71333a');
+  R(32,7,3,4,'#e6534b');R(33,5,1,3,'#f27b60');R(36,8,2,3,'#d84a44');
+  P([[40,17],[45,18],[45,20],[40,21]],'#bd7435');R(41,18,3,1,'#f6cf75');R(40,21,2,4,'#9b3e3c');R(40,21,1,2,'#e65d52');
+  P([[13,27],[17,29],[23,30],[29,29],[33,27],[30,31],[22,32],[17,30]],d);
+  R(27,32,4,6,o);R(28,33,2,4,'#c28a48');R(26,37,8,2,o);R(27,37,6,1,'#f1b85b');
+  if(b===7){R(32,14,1,1,'#ffe8ac');R(31,18,2,1,'#bfa9ec')}
+ }else if(i===1){
+  // Tail and far legs, body with stepped outline, neck, head, muzzle and horns.
+  P([[5,12],[3,12],[2,17],[3,24],[5,25],[7,22],[5,19],[5,15],[8,15]],o);R(3,21,3,4,sh);
+  R(12,25,5,12,o);R(13,26,3,8,sh);R(12,35,5,3,'#353036');
+  R(29,25,5,12,o);R(30,26,3,8,sh);R(29,35,5,3,'#353036');
+  P([[6,12],[10,9],[27,9],[33,11],[35,14],[38,12],[43,13],[46,17],[46,26],[43,29],[37,29],[34,27],[31,31],[11,31],[7,27],[5,21]],o);
+  P([[8,13],[11,11],[26,11],[32,13],[34,17],[35,23],[30,28],[12,29],[8,25],[7,20]],m);
+  P([[10,13],[13,12],[26,12],[30,14],[29,18],[18,17],[10,19]],l);
+  P([[9,23],[14,25],[22,27],[30,24],[33,22],[31,28],[12,29],[9,26]],d);
+  let spot=b===0?'#4a454b':sh,spotHi=b===0?'#70676d':d;
+  P([[11,11],[19,11],[21,15],[19,20],[15,21],[15,24],[10,22],[8,18],[8,14]],spot);
+  P([[12,12],[17,12],[19,15],[17,18],[12,18],[10,16]],spotHi);
+  P([[25,19],[30,17],[34,20],[33,25],[28,28],[24,25]],spot);
+  R(26,21,3,3,spotHi);
+  // Udder and nearer legs.
+  P([[18,27],[25,27],[27,30],[25,33],[19,33],[17,30]],o);R(19,29,6,3,'#dba4a1');R(20,32,2,2,'#b97880');R(24,32,1,2,'#b97880');
+  P([[9,27],[15,28],[15,34],[17,37],[10,38],[9,35]],o);R(11,29,3,6,m);R(11,35,5,2,'#484044');
+  P([[27,28],[33,27],[33,34],[35,37],[28,38],[27,34]],o);R(29,29,3,6,m);R(29,35,5,2,'#484044');
+  // Ears and horns.
+  P([[32,15],[29,12],[27,12],[27,15],[30,18],[34,17]],o);R(29,13,3,2,sh);
+  P([[43,15],[47,12],[47,17],[44,19]],o);R(44,15,2,2,'#d5a29b');
+  P([[32,14],[30,9],[31,5],[34,7],[35,13]],o);R(32,8,2,5,'#ead9aa');
+  P([[41,14],[42,7],[45,5],[46,8],[44,14]],o);R(43,8,2,5,'#ead9aa');
+  P([[34,14],[41,14],[44,17],[44,23],[41,27],[36,27],[33,23]],l);
+  P([[38,14],[41,14],[42,18],[40,20],[37,19],[36,16]],spot);
+  R(35,17,3,4,'#322c31');R(35,17,1,1,'#fff8e9');R(42,17,2,3,'#322c31');R(42,17,1,1,'#fff8e9');
+  P([[34,22],[44,22],[46,24],[46,28],[43,30],[36,30],[33,27],[33,24]],o);
+  R(35,23,9,5,'#e7b4a6');R(35,24,3,2,'#f8ccbc');R(36,25,2,2,'#98696a');R(42,25,2,2,'#98696a');R(38,28,5,1,'#c28a85');
+ }else{
+  // Curly tail, far legs, round pig body and a recognisable snout.
+  P([[7,16],[4,16],[4,13],[2,13],[1,15],[1,19],[5,20],[7,19]],o);R(2,15,2,3,d);R(4,17,3,1,m);
+  R(13,26,5,10,o);R(14,27,3,7,sh);R(29,26,5,10,o);R(30,27,3,7,sh);
+  P([[5,17],[9,13],[15,10],[29,10],[34,12],[38,12],[43,15],[44,20],[47,21],[47,27],[43,30],[37,30],[32,33],[13,33],[8,29],[5,25]],o);
+  P([[7,18],[11,15],[16,12],[28,12],[33,15],[37,14],[42,17],[43,25],[38,28],[32,31],[14,31],[10,27],[7,24]],m);
+  P([[11,16],[16,13],[27,13],[31,15],[30,19],[19,20],[13,19],[10,22]],l);
+  P([[8,24],[13,27],[21,29],[31,27],[36,25],[35,29],[30,31],[14,31],[10,28]],d);
+  R(13,23,5,1,d);R(16,24,4,1,d);R(19,25,3,1,d);
+  P([[10,29],[16,29],[17,35],[15,38],[9,38],[9,35]],o);R(11,30,4,5,m);R(10,36,5,1,sh);
+  P([[28,30],[34,28],[35,35],[33,38],[27,38],[27,35]],o);R(29,30,4,5,m);R(28,36,5,1,sh);
+  P([[30,16],[29,10],[31,6],[35,7],[39,12],[37,17]],o);P([[31,10],[32,8],[35,10],[37,13],[34,15]],d);R(32,10,2,3,l);
+  P([[39,14],[39,8],[42,7],[45,10],[44,16]],o);P([[40,10],[42,9],[43,12],[42,14]],d);
+  P([[34,17],[39,15],[43,17],[43,24],[40,28],[35,26],[33,22]],l);
+  R(36,18,3,4,'#392f33');R(36,18,1,1,'#fff6dd');R(35,24,3,2,b===0?'#dc8994':d);
+  P([[40,21],[46,21],[47,23],[47,27],[45,29],[39,29],[38,26],[38,23]],o);R(40,22,6,5,'#efb0ad');R(40,22,5,1,'#ffd1bf');R(40,24,2,2,'#9a6269');R(44,24,1,2,'#9a6269');R(41,27,4,1,'#c68082');
+ }
+ // Special coat accents, drawn as solid pixels rather than gradients.
+ if(b===6||b===7){
+  let c=b===6?'#fff1b3':'#eae1ff';R(5,4,1,5,c);R(3,6,5,1,c);R(7,3,1,1,c);R(3,10,1,1,c);
+  if(b===7){R(12,5,1,3,c);R(11,6,3,1,c)}
+ }
+ // Pack equal-colour runs into SVG paths; transparent outside the actual animal.
+ let runs={};for(let y=0;y<H;y++){for(let x=0;x<W;){let c=px[y][x],j=x+1;while(j<W&&px[y][j]===c)j++;if(c)(runs[c]??=[]).push('M'+x+' '+y+'h'+(j-x)+'v1h-'+(j-x)+'z');x=j}}
+ return barnSvg17(Object.entries(runs).map(([c,p])=>'<path fill="'+c+'" d="'+p.join('')+'"/>').join(''))
 }
 function barnProductArt17(i,b,rare=false){let [m,l,d,o]=barnPal17[b],c=rare?'#f8d26b':b===0?'#f4e8cd':l,shade=rare?'#bc8231':b===0?'#c6ac83':m;
  if(i===0)return barnSvg17('<path fill="#795b40" d="M18 5h12v4h5v7h4v15h-5v5H14v-5H9V17h4V9h5z"/><path fill="'+shade+'" d="M19 7h10v4h4v7h4v12h-5v4H16v-4h-5V18h4v-7h4z"/><path fill="'+c+'" d="M19 9h9v4h4v14h-4v4H17v-4h-4V18h4v-5h2z"/><path fill="#fff9e4" d="M19 12h4v5h-4v6h-4v-6h4z"/>');
@@ -444,7 +543,7 @@ function barnRender16(i){
  pens.forEach((p,j)=>{
   if(j>=v.unlocked[i]){h+='<div class="barn16pen lock17"><div class="barn16title">区画 '+String(j+1).padStart(2,'0')+'</div><div class="barn16floor"><div class="barn16locked17"><b>🔒</b>Lv.'+c.unlock[j]+' で解放</div></div><div class="barn16actions">'+b10('区画を拡張','barnExpand:'+i+':'+j,j!==v.unlocked[i]||level()<c.unlock[j])+'</div></div>';return}
   let animals=p.map((a,k)=>'<img class="barn16animal" data-barn-animal16="'+k+'" src="'+A['barnAnimal17_'+i+'_'+(a.breed||0)]+'" alt="'+c.names[a.breed||0]+'" style="left:'+(5+k*23)+'%;top:'+(30+k%2*14)+'%">').join('');
-  h+='<div class="barn16pen" data-barn-pen16="'+j+'"><div class="barn16title"><span>区画 '+String(j+1).padStart(2,'0')+'</span><span>'+p.length+'/3'+c.unit+'</span></div><div class="barn16floor '+['hen','cow','pig'][i]+'"><div class="barn16hay"></div><div class="barn16trough"></div>'+(!p.length?'<div class="barn16empty">空き区画</div>':'')+animals+'<img class="barn16product" src="'+A[c.good]+'" alt="" hidden></div><div class="barn16status"></div><div class="barn16actions">'+b10(p.length>=3?'満員':c.animal+'を選ぶ','barnChoose:'+i+':'+j,p.length>=3)+b10('回収','barnGet:'+i+':'+j,true)+'</div></div>';
+  h+='<div class="barn16pen" data-barn-pen16="'+j+'"><div class="barn16title"><span>区画 '+String(j+1).padStart(2,'0')+'</span><span>'+p.length+'/3'+c.unit+'</span></div><div class="barn16floor '+['hen','cow','pig'][i]+'"><div class="barn16hay"></div><div class="barn16trough"></div>'+(!p.length?'<div class="barn16empty">空き区画</div>':'')+animals+'<img class="barn16product" src="'+A[c.good]+'" alt="" hidden></div><div class="barn16status"></div><div class="barn16actions">'+b10(p.length>=3?'満員':c.animal+'を選ぶ','barnChoose:'+i+':'+j,p.length>=3)+b10('回収','barnGet:'+i+':'+j,true)+(p.length?b10('家畜の管理','barnManage:'+i+':'+j):'')+'</div></div>';
  });
  h+='</div></div><div id="barnRareNotice16" class="barn16rare" hidden></div>';
  if(v.legacy[i])h+=card10('以前の生産分','<span id="barnLegacyTime16"></span>',c.good,b10('回収','barnLegacy:'+i,v.legacy[i]>now()));
@@ -464,12 +563,29 @@ function barnTick16(){
  for(let b of document.querySelectorAll('[data-a^="v10barnExpand:"]')){let j=Number(b.dataset.a.split(':')[2]);b.disabled=j!==v.unlocked[i]||level()<c.unlock[j]}
  let legacy=$('barnLegacyTime16');if(legacy){legacy.textContent=v.legacy[i]<=now()?'回収可能':seconds(v.legacy[i])+'秒';let b=document.querySelector('[data-a="v10barnLegacy:'+i+'"]');if(b)b.disabled=v.legacy[i]>now()}
 }
-const renderBefore16=render;render=function(){let i=barnIndex17(facility);if(panel==='barnBreeds17'&&i>=0&&s.fac[facility])return barnBreedRender17(i);if(panel==='facility'&&i>=0&&s.fac[facility])return barnRender16(i);return renderBefore16()};
+
+let barnManagePen18=0;
+function barnManage18(i,j){let p=barnState16().pens[i]?.[j];if(!s.fac[barnFac17[i]]||!p||!p.length)return;barnManagePen18=j;panel='barnManage18';render();$('sheet').scrollTop=0}
+function barnManageRender18(i){let j=barnManagePen18,c=barnCfg16[i],p=barnState16().pens[i][j];
+ let h='<p>区画 '+(j+1)+' ｜ '+p.length+'/3'+c.unit+'<br>入れ替えたい家畜を選んで、野山に返すことができます。購入代金は戻りません。</p>';
+ h+=p.map((a,k)=>card10(c.names[a.breed||0],barnQualityName17(i,a.breed||0)+'<br>'+(a.end<=now()?'回収可能':seconds(a.end)+'秒で生産'),'barnAnimal17_'+i+'_'+(a.breed||0),b10('野山に返す','barnRelease:'+i+':'+j+':'+k))).join('');
+ h+=(!p.length?'<p>この区画には家畜がいません。</p>':'')+b10('小屋へ戻る','barnOpen:'+i);screen10('家畜の管理',h)
+}
+function barnRelease18(i,j,k){
+ let v=barnState16(),c=barnCfg16[i],p=v.pens[i]?.[j];
+ if(!s.fac[barnFac17[i]]||!p||!Number.isInteger(k)||k<0||k>=p.length)return false;
+ let a=p[k];if(a.end<=now()){note('先に区画の生産物を回収してください');return false}
+ if(!confirm(c.names[a.breed||0]+'を野山に返しますか？\\n購入代金は戻らず、育成中の生産物は失われます。'))return false;
+ p.splice(k,1);update(c.names[a.breed||0]+'を野山に返しました');return true
+}
+const renderBefore16=render;render=function(){let i=barnIndex17(facility);if(panel==='barnManage18'&&i>=0&&s.fac[facility])return barnManageRender18(i);if(panel==='barnBreeds17'&&i>=0&&s.fac[facility])return barnBreedRender17(i);if(panel==='facility'&&i>=0&&s.fac[facility])return barnRender16(i);return renderBefore16()};
 const clickBefore16=$('sheet').onclick;
 $('sheet').onclick=function(ev){
  let b=ev.target.closest('[data-a]');if(!b||b.disabled)return;let a=b.dataset.a,[cmd,x,y,z]=a.split(':'),i=Number(x),j=Number(y),breed=Number(z),valid=i>=0&&i<3&&Number.isInteger(i);
  if(cmd==='v10barnOpen'&&valid){facility=barnFac17[i];return open('facility')}
  if(cmd==='v10barnChoose'&&valid)return barnBreeds17(i,j);
+ if(cmd==='v10barnManage'&&valid)return barnManage18(i,j);
+ if(cmd==='v10barnRelease'&&valid)return barnRelease18(i,j,breed);
  if(cmd==='v10barnExpand'&&valid)return barnExpand17(i,j);
  if(cmd==='v10barnBuy'&&valid)return barnBuy16(i,j,breed);
  if(cmd==='v10barnGet'&&valid)return barnCollect16(i,j);
@@ -484,5 +600,5 @@ $('sheet').onclick=function(ev){
 barnState16();save();
 
 // Restore timer labels without re-creating the map or resetting the camera.
-stats();updateMap();resize();refreshArt13().catch(()=>{});setInterval(()=>{work10();updateMap();if(panel==='facility'&&barnIndex17(facility)>=0&&s.fac[facility])barnTick16();else if(panel==='barnBreeds17'){}else if(['facility','fac','pets','explore','shop','water','dragon','helper'].includes(panel))render()},1000);
+stats();updateMap();resize();refreshArt13().catch(()=>{});setInterval(()=>{work10();updateMap();if(panel==='facility'&&barnIndex17(facility)>=0&&s.fac[facility])barnTick16();else if(panel==='barnBreeds17'||panel==='barnManage18'){}else if(['facility','fac','pets','explore','shop','water','dragon','helper'].includes(panel))render()},1000);
 </script></body></html>
