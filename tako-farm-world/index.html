@@ -380,7 +380,8 @@ header{padding:7px 9px;background:#0d2530}.menu button{font-size:12px;min-height
 .eventCard37 .eventPrize37{display:flex;gap:8px;align-items:center;padding:8px;margin-top:8px;background:#252e49;border-radius:7px;color:#e4d7ff;font-size:12px}
 .eventPrize37 .lunaCoin37{width:24px;height:24px;font-size:17px}
 .eventNotice37{font-size:12px;color:#b6cbd0;line-height:1.6}
-</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.37　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat lunaStat37" data-menu="luna37" aria-label="ルナコインショップ"><span class="lunaCoin37" aria-hidden="true">☾</span><div><small>ルナコイン</small><b>— LC</b></div></button><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
+.weightRecord38{color:#ffdb7d;font-size:10px}.fishBook19 .fishEntry19 span{overflow-wrap:anywhere}
+</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.38　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat lunaStat37" data-menu="luna37" aria-label="ルナコインショップ"><span class="lunaCoin37" aria-hidden="true">☾</span><div><small>ルナコイン</small><b>— LC</b></div></button><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
 <script src="assets09/pixel-art-011.js"></script><script src="assets09/fishing-scene-015.js"></script><script src="assets09/fishing-scene-017.js"></script><script src="assets09/fishing-art-020.js"></script><script src="assets09/chicken-art-021.js?v=021"></script><script src="assets09/chicken-premium-026.js?v=026"></script><script src="assets09/cow-art-028.js?v=028"></script><script src="assets09/pig-art-029.js?v=029"></script><script>
 const A=window.FARMELUNE_ART;
 if(Object.keys(A).length!==32){document.getElementById("toast").textContent="画像の読み込みに失敗しました。再読み込みしてください。";throw Error("Artwork incomplete");}
@@ -592,7 +593,7 @@ const fishLoot19=[
 function state12(){
  if(!s.v12)s.v12={fishStock:[],fishBook:[],fishBest:[],treasures:0,attempt:null,last:null,motion:true};
  let v=s.v12;
- for(let key of ['fishStock','fishBook','fishBest','lootStock19','lootBook19']){
+ for(let key of ['fishStock','fishBook','fishBest','fishWeightBest38','lootStock19','lootBook19']){
   let n=key.startsWith('fish')?fishDefs12.length:fishLoot19.length;
   if(!Array.isArray(v[key]))v[key]=[];
   while(v[key].length<n)v[key].push(0);
@@ -756,6 +757,14 @@ function fishPick19(perfect,u=Math.random(),v=Math.random(),place=fishProgress32
  let weights=perfect?[48,30,15,6,1]:[68,23,7,1.8,.2],groups=ranks.map(rank=>loc.fish.filter(i=>fishDefs12[i][1]===rank)),total=weights.reduce((n,w,i)=>n+(groups[i].length?w:0),0),x=(u-threshold)/(1-threshold)*total,rank=0;
  for(let i=0;i<groups.length;i++){if(!groups[i].length)continue;rank=i;x-=weights[i];if(x<0)break}let ids=groups[rank];return {i:ids[Math.min(ids.length-1,Math.floor(v*ids.length))]}
 }
+
+/* Grams, with species-dependent body shape and individual variation.
+   These are game balance parameters, not zoological measurements. */
+const fishWeightFactor38=[.018,.011,.020,.014,.018,.008,.009,.003,.009,.010,.015,.009,.0022,.020,.010,.015,.014,.020,.014,.022];
+function fishWeight38(i,cm,u=Math.random()){if(!Number.isInteger(i)||!fishDefs12[i]||!Number.isFinite(cm)||cm<=0)return 0;let f=fishWeightFactor38[i]??.012;return Math.max(1,Math.round(f*cm**3*(.8+.4*Math.max(0,Math.min(1,u)))))}
+function fishWeightText38(g){return Number.isFinite(g)&&g>0?(g>=1000?(g/1000).toFixed(3).replace(/0+$/,'').replace(/\.$/,'')+' kg':fmt(g)+' g'):'未計測'}
+function fishRecordWeight38(v,i,g){let old=Number(v.fishWeightBest38[i])||0;v.fishWeightBest38[i]=Math.max(old,g);return g>old}
+
 function fishCatch12(t=now()){
  let v=state12(),q=v.attempt;if(!q||fishingPhase12(t)!=='strike')return false;
  let x=gauge12(t);if(x<q.target||x>q.target+26)return fishFail12();
@@ -768,13 +777,13 @@ function fishCatch12(t=now()){
   s.xp+=i===0?12:4;v.last={loot:i,g,perfect,newFind};let xp=fishGain32(a[1],perfect,true);v.last.xp32=xp.gain;update(a[0]+' を釣りました！'+fishGainText32(xp));if(i===0||i===2)banner12('fishloot19_'+i,a[0]+' 発見！','+'+g+' G',true);return true
  }
  let i=catch19.i,a=fishDefs12[i],cm=a[3]+Math.floor(Math.random()*(a[4]-a[3]+1)),newFind=!v.fishBook[i];
- v.fishStock[i]++;v.fishBook[i]++;v.fishBest[i]=Math.max(v.fishBest[i],cm);s.fish++;s.xp+=6+ranks.indexOf(a[1])*3;v.last={i,cm,perfect,newFind};let xp=fishGain32(a[1],perfect);v.last.xp32=xp.gain;update(a[0]+' を釣りました！'+fishGainText32(xp));
+ let grams=fishWeight38(i,cm),weightRecord=fishRecordWeight38(v,i,grams);v.fishStock[i]++;v.fishBook[i]++;v.fishBest[i]=Math.max(v.fishBest[i],cm);s.fish++;s.xp+=6+ranks.indexOf(a[1])*3;v.last={i,cm,grams,weightRecord,perfect,newFind};let xp=fishGain32(a[1],perfect);v.last.xp32=xp.gain;update(a[0]+' を釣りました！'+fishGainText32(xp));
  if(a[1]==='LR')banner12('fish12_'+i,'LEGENDARY！',a[0]+' '+cm+' cm',true);return true
 }
 function catchArt19(last){return last.loot!==undefined?'fishloot19_'+last.loot:last.treasure?'fishloot19_0':'fish12_'+last.i}
 function catchResult19(last){
  if(last.fail)return '<div class="fishresult12">逃げられた！ もう一度挑戦しよう。</div>';
- let loot=last.loot!==undefined||last.treasure,a=loot?fishLoot19[last.loot??0]:fishDefs12[last.i],grade=a[1],detail=loot?(last.g?'+'+fmt(last.g)+' G 獲得':a[3]):last.cm+' cm'+(last.perfect?' ｜ PERFECT！':'');
+ let loot=last.loot!==undefined||last.treasure,a=loot?fishLoot19[last.loot??0]:fishDefs12[last.i],grade=a[1],detail=loot?(last.g?'+'+fmt(last.g)+' G 獲得':a[3]):last.cm+' cm'+(last.grams?' ｜ '+fishWeightText38(last.grams):'')+(last.weightRecord?'<br><strong class="weightRecord38">重量 自己ベスト！</strong>':'')+(last.perfect?' ｜ PERFECT！':'');
  return '<div class="fishresult12 catch19 rank'+grade+(last.newFind?' newResult20':'')+'">'+(last.newFind?'<span class="newCatch19">NEW!</span>':'')+'<div class="catchPic19">'+icon(catchArt19(last))+'</div><div class="catchInfo19"><small>'+grade+' ｜ '+(loot?'アイテム':'釣果')+'</small><b>'+a[0]+'</b><span>'+detail+'</span></div></div>'
 }
 function lootValue19(){return state12().lootStock19.reduce((n,v,i)=>n+v*fishLoot19[i][2],0)}
@@ -852,7 +861,7 @@ let fishShown12='';
 let fishTab19='fish';
 function fishBook12(){let v=state12(),isFish=fishTab19==='fish',defs=isFish?fishDefs12:fishLoot19,book=isFish?v.fishBook:v.lootBook19;
  let ids=defs.map((_,i)=>i).filter(i=>fishFilter32<0||(isFish?fishPlaces32[fishFilter32].fish:fishPlaces32[fishFilter32].loot).includes(i));let h='<div class="tabs10">'+b10('魚 '+v.fishBook.filter(Boolean).length+'/'+fishDefs12.length,'fbookFish')+b10('拾い物 '+v.lootBook19.filter(Boolean).length+'/'+fishLoot19.length,'fbookLoot')+'</div>'+invTabs27([['-1','全釣り場'],...fishPlaces32.map((a,i)=>[String(i),a.name])],String(fishFilter32),'fishFilter32','fishFilter32')+'<p>発見 '+ids.filter(i=>book[i]>0).length+' / '+ids.length+' 種類</p><div class="fishBook19">';
- for(let rank of ranks)for(let i of ids){let a=defs[i];if(a[1]!==rank)continue;let found=book[i]>0,desc=found?(isFish?'累計 '+book[i]+'匹<br>最大 '+v.fishBest[i]+' cm<br>所持 '+v.fishStock[i]+'匹':'累計 '+book[i]+'個<br>所持 '+v.lootStock19[i]+'個<br>'+a[3]):'未発見';
+ for(let rank of ranks)for(let i of ids){let a=defs[i];if(a[1]!==rank)continue;let found=book[i]>0,desc=found?(isFish?'累計 '+book[i]+'匹<br>最大 '+v.fishBest[i]+' cm<br>最大重量 '+fishWeightText38(v.fishWeightBest38[i])+'<br>所持 '+v.fishStock[i]+'匹':'累計 '+book[i]+'個<br>所持 '+v.lootStock19[i]+'個<br>'+a[3]):'未発見';
  h+='<div class="fishEntry19 rank'+rank+'"><small>'+rank+'</small>'+(found?icon((isFish?'fish12_':'fishloot19_')+i):'<div class="fishUnknown19">？</div>')+'<b>'+(found?a[0]:'？？？')+'</b><span>'+desc+'</span><span class="fishHabitat32">'+fishHabitat32(i,isFish)+'</span></div>'}
  h+='</div>'+b10('釣り場へ戻る','nav:fishing');screen10('釣果図鑑',h)
 }
@@ -1386,7 +1395,7 @@ function lunaPreview37(){
 }
 function eventsPreview37(){
  let h='<p>定期開催予定の農園大会。参加無料・課金装備によるスコア優遇なし。開催日程と賞品の詳細は後日確定します。</p>';
- for(let a of [['釣り大会','fish12_0','大会期間内に釣った魚の得点・サイズなどで競う。'],['収穫物納品大会','board','大会期間内に指定作物を納品し、ポイントで競う。']]){
+ for(let a of [['釣り大会','fish12_0','大会期間中に対象魚を釣り、最も重い1匹の重量で順位を競う予定です。重量はグラム単位で集計。対象魚・釣り場は大会ごとに指定します。'],['収穫物納品大会','board','大会期間内に指定作物を納品し、ポイントで競う。']]){
  h+='<div class="eventCard37"><div class="eventTop37">'+icon(a[1])+'<div><h3>'+a[0]+'</h3><small>開催準備中 ｜ オンライン大会</small></div></div><div class="eventDetails37">'+a[2]+'</div><div class="eventPrize37"><span class="lunaCoin37" aria-hidden="true">☾</span> 上位報酬：無償LC・大会限定ペット（予定）</div>'+b10('開催準備中','eventPending37',true)+'</div>'
  }
  h+='<p class="eventNotice37">現在は大会サーバー未接続のため、順位・スコア・賞品は確定しません。</p>'+b10('ルナコインを見る','nav:luna37');screen10('大会・イベント',h)
