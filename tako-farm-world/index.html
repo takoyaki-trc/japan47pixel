@@ -247,11 +247,27 @@ header{padding:7px 9px;background:#0d2530}.menu button{font-size:12px;min-height
 .cowBarn28 .cow28:focus-visible{outline:2px solid #ffdf91}
 @media(prefers-reduced-motion:reduce){.cowBarn28 .cow28{transition:none}}.motionoff12 .cowBarn28 .cow28{transition:none}
 
-.pigBarn29 .barn16animal.pig29{width:37%;height:48%;z-index:5;pointer-events:auto;cursor:pointer;touch-action:manipulation;transition:left 1.35s steps(9,end),top 1.35s steps(9,end);-webkit-tap-highlight-color:transparent}
+.pigBarn29 .barn16animal.pig29{width:34%;height:44%;z-index:5;pointer-events:auto;cursor:pointer;touch-action:manipulation;transition:left 1.35s steps(9,end),top 1.35s steps(9,end);-webkit-tap-highlight-color:transparent}
 .pigBarn29 .egg22{position:absolute;left:var(--egg-x23,8%);top:var(--egg-y23,62%);right:auto;bottom:auto;width:19%;height:22%;object-fit:contain;image-rendering:pixelated;z-index:2;pointer-events:none}
 .pigBarn29 .egg22[hidden]{display:none!important}.pigBarn29 .pig29:focus-visible{outline:2px solid #ffdf91}
 @media(prefers-reduced-motion:reduce){.pigBarn29 .pig29{transition:none}}.motionoff12 .pigBarn29 .pig29{transition:none}
-</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.29　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
+/* v0.30 compact skin cards and village order board */
+.barn16breed17.skinGrid30{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.skinGrid30 .skinCard21{min-width:0;padding:6px 3px;gap:3px;display:flex;flex-direction:column;align-items:center}
+.skinGrid30 .skinCard21>img{height:64px;width:100%;object-fit:contain;image-rendering:pixelated}
+.skinGrid30 .skinCard21 b{font-size:11px;line-height:1.3;overflow-wrap:anywhere;min-height:2.6em;display:grid;place-items:center;text-align:center}
+.skinGrid30 .skinCard21 .skinEgg21{margin:2px 0}.skinGrid30 .skinCard21 .skinEgg21 img{width:30px;height:30px;object-fit:contain}
+.skinGrid30 .skinCard21 small{font-size:9px;line-height:1.25;overflow-wrap:anywhere;text-align:center;min-height:2.5em}
+.sheet .skinGrid30 .skinCard21 button{width:100%;min-height:33px;font-size:11px;padding:4px 1px;margin-top:auto}
+.orderHead30{background:#193e49;border:1px solid #41616b;border-radius:10px;padding:10px;margin:8px 0 12px}.orderHead30 .orderCount30{display:flex;align-items:center;justify-content:space-between;gap:5px;color:#c4d9d4;font-size:12px}.orderHead30 strong{color:#ffe29b;font-size:19px}.orderMeter30{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:8px 0}.orderMeter30 i{height:6px;border-radius:4px;background:#355661}.orderMeter30 i.used{background:#e9bd66}.orderCharm30{color:#ead6aa;font-size:11px;line-height:1.5}
+.orderBoard30{padding:10px;background:repeating-linear-gradient(0deg,#98663b 0 18px,#a77645 18px 35px,#855633 35px 37px);border:3px solid #5d3b28;border-radius:12px;box-shadow:inset 0 2px #bf8d57;display:grid;gap:11px}
+.orderPaper30{position:relative;background:#f5edcf;color:#483325;padding:13px 10px 10px;border:1px solid #d7c5a1;border-bottom:4px solid #d5c49e;border-radius:5px;box-shadow:0 2px 2px #55382277;min-width:0}
+.orderPin30{position:absolute;top:5px;left:50%;width:8px;height:8px;border-radius:50%;background:#c84d54;border:1px solid #9d3543;box-shadow:0 1px #8c6048}
+.orderTitle30{font-size:16px;font-weight:800;margin:3px 0 10px;color:#5c3a27;display:flex;align-items:center;justify-content:space-between;gap:4px}.orderTag30{font-size:10px;padding:3px 5px;background:#e8dab6;color:#82603e;border-radius:4px;white-space:nowrap}.orderTag30.active{background:#dce9ba;color:#4d6937}
+.orderItem30{display:grid;grid-template-columns:27px 1fr auto;gap:7px;align-items:center;min-height:35px;font-size:12px;font-weight:750}.orderItem30 img{width:27px;height:27px;object-fit:contain;image-rendering:pixelated}.orderItem30 span{overflow-wrap:anywhere}.orderItem30 strong{font-size:13px;color:#996047;white-space:nowrap}.orderItem30 strong.ok{color:#367b43}
+.orderReward30{display:flex;align-items:center;gap:5px;margin:9px 0 3px;font-size:12px;color:#77563c;flex-wrap:wrap}.orderReward30 img{width:18px;height:18px;object-fit:contain}.orderReward30 b{font-size:18px;color:#563a20}.orderDue30{font-size:11px;color:#84674d;margin:4px 0 9px}.orderDue30.expired{color:#aa433d;font-weight:800}
+.orderActions30{display:grid;grid-template-columns:1.4fr 1fr;gap:6px}.sheet .orderActions30 button{min-height:36px;font-size:12px;padding:5px 2px;border-radius:7px;box-shadow:none}.sheet .orderActions30 button.orderSkip30{background:#e4d6b6;border-color:#d1bf9a;color:#60432c}.orderPaper30.expired{opacity:.8}
+</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.30　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
 <script src="assets09/pixel-art-011.js"></script><script src="assets09/fishing-scene-015.js"></script><script src="assets09/fishing-scene-017.js"></script><script src="assets09/fishing-art-020.js"></script><script src="assets09/chicken-art-021.js?v=021"></script><script src="assets09/chicken-premium-026.js?v=026"></script><script src="assets09/cow-art-028.js?v=028"></script><script src="assets09/pig-art-029.js?v=029"></script><script>
 const A=window.FARMELUNE_ART;
 if(Object.keys(A).length!==32){document.getElementById("toast").textContent="画像の読み込みに失敗しました。再読み込みしてください。";throw Error("Artwork incomplete");}
@@ -900,7 +916,7 @@ function barnTick16(){
 let barnManagePen18=0,barnSkinPen21=0,barnSkinSlot21=0;
 function barnSkinOpen21(j,k){let p=barnState16().pens[0]?.[j];if(!chickenArt21||!p?.[k]||!s.fac[0])return;barnSkinPen21=j;barnSkinSlot21=k;panel='barnSkin21';render();$('sheet').scrollTop=0}
 function barnSkinRender21(){let j=barnSkinPen21,k=barnSkinSlot21,a=barnState16().pens[0]?.[j]?.[k];if(!a)return barnRender16(0);
- let h='<div class="skinNotice21">プレミアム鶏の着せ替えテスト（16種類）<br><small>テスト版では無料。生産時間・品質・売価は元の品種のままです。正式な課金機能は未実装です。</small></div><p>対象：'+chickenTitle21(a)+'</p><div class="barn16breed17">';
+ let h='<div class="skinNotice21">プレミアム鶏の着せ替えテスト（16種類）<br><small>テスト版では無料。生産時間・品質・売価は元の品種のままです。正式な課金機能は未実装です。</small></div><p>対象：'+chickenTitle21(a)+'</p><div class="barn16breed17 skinGrid30">';
  for(let b of [-1,...chickenNames21.map((_,i)=>i).filter(i=>i>=8&&!!chickenArt21.frames[chickenNames21[i]])]){let v=b<0?(a.breed||0):b,selected=b<0?chickenLook21(a)<8:chickenLook21(a)===b;h+='<div class="breed17 skinCard21 '+(selected?'active21':'')+'">'+icon('chickenSkin21_'+v)+'<b>'+(b<0?'元の品種':chickenPremium21[b-8])+'</b><div class="skinEgg21">'+icon('chickenEgg21_'+v)+'</div>'+b10(selected?'着用中':'試着する','barnSkinApply:'+j+':'+k+':'+b,selected)+'</div>'}
  h+='</div>'+b10('管理へ戻る','barnManage:0:'+j);screen10('プレミアム鶏スキン',h)}
 function barnSkinApply21(j,k,b){let a=barnState16().pens[0]?.[j]?.[k];if(!a||!s.fac[0]||!chickenArt21||!(b===-1||(Number.isInteger(b)&&b>=8&&b<chickenNames21.length&&!!chickenArt21.frames[chickenNames21[b]])))return;if(a.end<=now())eggType24(a);if(b===-1)delete a.skin21;else a.skin21=b;save();render()}
@@ -913,14 +929,14 @@ setInterval(animateChicken21,190);
 let cowSkinPen28=0,cowSkinSlot28=0;
 function cowSkinOpen28(j,k){if(!cowArt28||!s.fac[1]||!barnState16().pens[1]?.[j]?.[k])return;cowSkinPen28=j;cowSkinSlot28=k;open('cowSkin28')}
 function cowSkinRender28(){let j=cowSkinPen28,k=cowSkinSlot28,a=barnState16().pens[1]?.[j]?.[k];if(!a)return barnRender16(1);
- let h='<div class="skinNotice21">プレミアム牛の着せ替えテスト（18種類）<br><small>テスト版は無料。生産時間・品質・売価は元の品種のままです。正式な課金機能は未実装です。</small></div><p>対象：'+chickenEscape24(barnDisplay28(1,a))+'</p><div class="barn16breed17">';
+ let h='<div class="skinNotice21">プレミアム牛の着せ替えテスト（18種類）<br><small>テスト版は無料。生産時間・品質・売価は元の品種のままです。正式な課金機能は未実装です。</small></div><p>対象：'+chickenEscape24(barnDisplay28(1,a))+'</p><div class="barn16breed17 skinGrid30">';
  for(let b of [-1,...Array.from({length:18},(_,i)=>i+8)]){let v=b<0?a.breed||0:b,selected=b<0?cowLook28(a)<8:cowLook28(a)===b;h+='<div class="breed17 skinCard21 '+(selected?'active21':'')+'">'+icon('cowSkin28_'+v)+'<b>'+(b<0?'元の品種':cowPremium28[b-8])+'</b><div class="skinEgg21">'+icon(milkArt28(v))+'</div><small>'+milkNames28[v]+'</small>'+b10(selected?'着用中':'試着する','cowSkinApply28:'+j+':'+k+':'+b,selected)+'</div>'}
  h+='</div>'+b10('管理へ戻る','barnManage:1:'+j);screen10('プレミアム牛スキン',h)}
 function cowSkinApply28(j,k,b){let a=barnState16().pens[1]?.[j]?.[k];if(!a||!s.fac[1]||!cowArt28||!(b===-1||(Number.isInteger(b)&&b>=8&&b<26)))return false;if(a.end<=now())milkType28(a);if(b===-1)delete a.skin28;else a.skin28=b;save();render();return true}
 let pigSkinPen29=0,pigSkinSlot29=0;
 function pigSkinOpen29(j,k){if(!pigArt29||!s.fac[4]||!barnState16().pens[2]?.[j]?.[k])return;pigSkinPen29=j;pigSkinSlot29=k;open('pigSkin29')}
 function pigSkinRender29(){let j=pigSkinPen29,k=pigSkinSlot29,a=barnState16().pens[2]?.[j]?.[k];if(!a)return barnRender16(2);
- let h='<div class="skinNotice21">プレミアム豚の着せ替えテスト（18種類）<br><small>テスト版は無料。生産時間・品質・売価は元の品種のままです。正式な課金機能は未実装です。</small></div><p>対象：'+chickenEscape24(barnDisplay28(2,a))+'</p><div class="barn16breed17">';
+ let h='<div class="skinNotice21">プレミアム豚の着せ替えテスト（18種類）<br><small>テスト版は無料。生産時間・品質・売価は元の品種のままです。正式な課金機能は未実装です。</small></div><p>対象：'+chickenEscape24(barnDisplay28(2,a))+'</p><div class="barn16breed17 skinGrid30">';
  for(let b of [-1,...Array.from({length:18},(_,i)=>i+8)]){let v=b<0?a.breed||0:b,selected=b<0?pigLook29(a)<8:pigLook29(a)===b;h+='<div class="breed17 skinCard21 '+(selected?'active21':'')+'">'+icon('pigSkin29_'+v)+'<b>'+(b<0?'元の品種':pigPremium29[b-8])+'</b><div class="skinEgg21">'+icon(porkArt29(v))+'</div><small>'+porkNames29[v]+'</small>'+b10(selected?'着用中':'試着する','pigSkinApply29:'+j+':'+k+':'+b,selected)+'</div>'}
  h+='</div>'+b10('管理へ戻る','barnManage:2:'+j);screen10('プレミアム豚スキン',h)}
 function pigSkinApply29(j,k,b){let a=barnState16().pens[2]?.[j]?.[k];if(!a||!s.fac[4]||!pigArt29||!(b===-1||(Number.isInteger(b)&&b>=8&&b<26)))return false;if(a.end<=now())porkType29(a);if(b===-1)delete a.skin29;else a.skin29=b;save();render();return true}
@@ -1050,10 +1066,78 @@ function barnStockHtml27(i){let sub=['egg','milk','pork'][i],label=['卵','ミ�
  return h+'<div class="inv27actions">'+b10('持ち物を見る','barnInv27:'+i+':inventory')+b10('倉庫・出荷','barnInv27:'+i+':stock')+'</div></div>'
 }
 
-const renderBefore16=render;render=function(){if(panel==='stock'||panel==='inventory')return invRender27();if(panel==='kitchen25')return cookRender25();let i=barnIndex17(facility);if(panel==='barnSkin21'&&i===0)return barnSkinRender21();if(panel==='cowSkin28'&&i===1)return cowSkinRender28();if(panel==='pigSkin29'&&i===2)return pigSkinRender29();if(panel==='barnManage18'&&i>=0&&s.fac[facility])return barnManageRender18(i);if(panel==='barnBreeds17'&&i>=0&&s.fac[facility])return barnBreedRender17(i);if(panel==='facility'&&i>=0&&s.fac[facility])return barnRender16(i);return renderBefore16()};
+
+const ORDER_LIMIT30=5,ORDER_TTL30=3*60*60*1000,ORDER_SKIP30=5;
+const orderClients30=['宿屋のハナ','パン屋のミラ','料理人のルーク','市場のエマ','カフェのノア','旅人のリオ','村長のオリバー','牧場のリリー'];
+function orderCharm30(){let e=extra10(),points=[20,50,30,10];return e.placed.reduce((n,p)=>n+(points[p.id]||0),0)}
+function orderBonus30(){return Math.min(10,Math.floor(orderCharm30()/100))}
+function orderPool30(){
+ let pool=crops.map((a,i)=>({id:'crop_'+i,name:a[0],art:a[6],base:a[2],min:3,max:Math.min(20,5+Math.floor(level()/2)),eligible:level()>=a[4]}));
+ pool.push({id:'egg_any',name:'卵（通常品種）',art:'egg',base:45,min:2,max:Math.min(10,3+Math.floor(level()/3)),eligible:!!s.fac[0]&&barnCount16(0)>0},
+ {id:'milk_any',name:'ミルク（通常品種）',art:'milk',base:95,min:1,max:Math.min(8,2+Math.floor(level()/4)),eligible:!!s.fac[1]&&barnCount16(1)>0},
+ {id:'pork_any',name:'豚肉（通常品種）',art:'pork17',base:150,min:1,max:Math.min(6,2+Math.floor(level()/5)),eligible:!!s.fac[4]&&barnCount16(2)>0},
+ {id:'fish_any',name:'魚（種類は問わない）',art:'fish12_0',base:40,min:1,max:Math.min(5,2+Math.floor(level()/5)),eligible:level()>=3},
+ {id:'wool',name:'羊毛',art:'wool',base:65,min:1,max:4,eligible:extra10().animals[1]>0||extra10().animalGoods[1]>0},
+ {id:'goods_2',name:'小麦粉',art:'flour',base:90,min:1,max:4,eligible:!!s.fac[2]},
+ {id:'goods_3',name:'パン',art:'bread',base:260,min:1,max:3,eligible:!!s.fac[3]});
+ fruit10.forEach((a,i)=>pool.push({id:'fruit_'+i,name:a[1],art:'fruit'+i,base:a[5],min:2,max:6,eligible:extra10().trees.some(t=>t.id===i)||extra10().fruit[i]>0}));
+ return pool
+}
+function orderMake30(v,rng=Math.random){
+ let pool=orderPool30().filter(a=>a.eligible),req=[],count=Math.min(pool.length,level()>=5?3:2);
+ for(let i=0;i<count;i++){let a=pool.splice(Math.floor(rng()*pool.length),1)[0],qty=a.min+Math.floor(rng()*Math.max(1,a.max-a.min+1));req.push({id:a.id,qty,base:a.base})}
+ let base=Math.max(1,Math.round(req.reduce((n,a)=>n+a.base*a.qty,0)*1.25));
+ return {id:++v.seq,client:orderClients30[Math.floor(rng()*orderClients30.length)],req,base,xp:10+req.length*5,state:'offer'}
+}
+function orderState30(day=dkey10(),t=now()){
+ if(!s.order30)s.order30={day,used:0,skips:0,done:0,seq:0,slots:[]};
+ let v=s.order30,changed=false;
+ if(day>v.day){v.day=day;v.used=0;v.skips=0;v.done=0;v.slots=v.slots.filter(q=>q.state==='active'&&q.end>t);changed=true}
+ for(let q of v.slots)if(q.state==='active'&&q.end<=t){q.state='expired';changed=true}
+ while(v.slots.length<3){v.slots.push(orderMake30(v));changed=true}
+ if(changed)save();return v
+}
+function orderParts30(id,items=invItems27()){
+ let group=id==='egg_any'?'egg':id==='milk_any'?'milk':id==='pork_any'?'pork':'';
+ let selected=group?items.filter(a=>a.cat==='animal'&&a.sub===group&&Array.from({length:8},(_,i)=>group+'_'+i).includes(a.id)):id==='fish_any'?items.filter(a=>a.cat==='fish'&&a.sub==='fish'):items.filter(a=>a.id===id);
+ return selected.flatMap(a=>a.parts.map(p=>({p,item:a,rare:(a.cat==='crop'&&['SR','UR','LR'].includes(p.label))||(a.cat==='fish'&&['SR','UR','LR'].includes(p.label))||(a.cat==='animal'&&a.id!==group+'_0')}))).sort((a,b)=>(a.p.price||0)-(b.p.price||0))
+}
+function orderPlan30(q,items=invItems27()){
+ let plan=[],used=new Map(),rows=[];
+ for(let req of q.req){let parts=orderParts30(req.id,items),have=parts.reduce((n,a)=>n+Math.max(0,a.p.count()-(used.get(a.p)||0)),0),left=req.qty;
+ for(let a of parts){let qty=Math.min(left,Math.max(0,a.p.count()-(used.get(a.p)||0)));if(qty>0){plan.push({...a,qty});used.set(a.p,(used.get(a.p)||0)+qty);left-=qty}if(!left)break}
+ rows.push({id:req.id,qty:req.qty,have})
+ }return {plan,rows,ok:rows.every(a=>a.have>=a.qty)}
+}
+function orderAccept30(id,t=now(),day=dkey10()){let v=orderState30(day,t),q=v.slots.find(a=>a.id===id);if(!q||q.state!=='offer'||v.used>=ORDER_LIMIT30)return false;v.used++;q.state='active';q.end=t+ORDER_TTL30;q.bonus=orderBonus30();q.reward=Math.round(q.base*(1+q.bonus/100));update(q.client+'の注文を受けました');return true}
+function orderDeliver30(id,t=now(),day=dkey10(),ask=confirm){let v=orderState30(day,t),q=v.slots.find(a=>a.id===id);if(!q||q.state!=='active'||t>=q.end)return false;let p=orderPlan30(q);if(!p.ok){note('納品する素材が足りません');return false}
+ let rare=p.plan.filter(a=>a.rare);if(rare.length&&!ask('次の品質・品種の素材も納品に使います。よろしいですか？\n'+rare.map(a=>a.item.name+' '+a.p.label+' ×'+a.qty).join('\n')))return false;
+ for(let a of p.plan)a.p.take(a.qty);s.coins+=q.reward;s.xp+=q.xp;s.orders++;let e=extra10();e.earned+=q.reward;e.season+=15;v.done++;v.slots[v.slots.indexOf(q)]=orderMake30(v);update('納品完了！ '+fmt(q.reward)+' G ＋'+q.xp+' XP');return true
+}
+function orderSkip30(id,t=now(),day=dkey10()){let v=orderState30(day,t),q=v.slots.find(a=>a.id===id);if(!q||q.state==='active'||(q.state==='offer'&&(v.skips>=ORDER_SKIP30||v.used>=ORDER_LIMIT30)))return false;if(q.state==='offer')v.skips++;v.slots[v.slots.indexOf(q)]=orderMake30(v);update(q.state==='expired'?'期限切れの注文を更新しました':'別の注文に変更しました');return true}
+function orderTime30(end,t=now()){let n=Math.max(0,Math.ceil((end-t)/1000));return [Math.floor(n/3600),Math.floor(n%3600/60),n%60].map(x=>String(x).padStart(2,'0')).join(':')}
+function orderRender30(){let v=orderState30(),pool=orderPool30(),items=invItems27(),bonus=orderBonus30();
+ let h='<div class="orderHead30"><div class="orderCount30"><span>本日の受注</span><strong>'+v.used+' / 5件</strong></div><div class="orderMeter30">'+Array.from({length:5},(_,i)=>'<i class="'+(i<v.used?'used':'')+'"></i>').join('')+'</div><div class="orderCount30"><span>本日の納品 '+v.done+'件</span><span>残り受注 '+Math.max(0,5-v.used)+'件</span></div><div class="orderCharm30">✿ 農園の魅力 '+fmt(orderCharm30())+' ｜ 注文報酬 ＋'+bonus+'%（最大10%）</div></div><p>村人の注文を受け、3時間以内に倉庫の素材を届けましょう。受注は1日5件まで。納品でG・経験値・シーズンポイント15を獲得します。</p><div class="orderBoard30">';
+ for(let q of v.slots){let active=q.state==='active',expired=q.state==='expired',p=orderPlan30(q,items),reward=active||expired?q.reward:Math.round(q.base*(1+bonus/100));h+='<div class="orderPaper30 '+(expired?'expired':'')+'" data-order30="'+q.id+'"><i class="orderPin30"></i><div class="orderTitle30">'+q.client+'<span class="orderTag30 '+(active?'active':'')+'">'+(active?'受注済み':expired?'期限切れ':'募集中')+'</span></div>';
+ for(let a of p.rows){let def=pool.find(d=>d.id===a.id);if(!def)continue;h+='<div class="orderItem30">'+icon(def.art)+'<span>'+def.name+'</span><strong class="'+(a.have>=a.qty?'ok':'')+'">'+fmt(a.have)+'/'+a.qty+'</strong></div>'}
+ h+='<div class="orderReward30">'+icon('coin')+'<b>'+fmt(reward)+' G</b> ＋'+q.xp+' XP ＋SP15</div><div class="orderDue30 '+(expired?'expired':'')+'" '+(active?'data-order-due30="'+q.end+'"':'')+'>'+(active?'残り '+orderTime30(q.end):expired?'納品期限を過ぎました':'受注後3時間以内')+'</div><div class="orderActions30">';
+ if(active)h+=b10(p.ok?'納品する':'素材不足','orderDeliver30:'+q.id,!p.ok)+'<button class="orderSkip30" data-a="v10orderStock30">持ち物</button>';
+ else if(expired)h+=b10('注文を更新','orderSkip30:'+q.id);
+ else h+=b10(v.used>=5?'本日の上限':'注文を受ける','orderAccept30:'+q.id,v.used>=5)+'<button class="orderSkip30" data-a="v10orderSkip30:'+q.id+'" '+(v.skips>=ORDER_SKIP30||v.used>=5?'disabled':'')+'>スキップ</button>';
+ h+='</div></div>'}
+ h+='</div><p>スキップ残り '+Math.max(0,ORDER_SKIP30-v.skips)+'回。日付が変わると受注・スキップ回数が回復します。受注済みの注文は期限まで有効です。課金スキンの生産物・特別なレア畜産品は納品対象外です。</p>';screen10('注文ボード',h)
+}
+function orderTick30(){if(panel!=='orders')return;let old=s.order30,day=dkey10(),t=now();if(!old||day>old.day||old.slots.some(q=>q.state==='active'&&q.end<=t)){render();return}for(let el of document.querySelectorAll('[data-order-due30]'))el.textContent='残り '+orderTime30(Number(el.dataset.orderDue30),t)}
+
+const renderBefore16=render;render=function(){if(panel==='orders')return orderRender30();if(panel==='stock'||panel==='inventory')return invRender27();if(panel==='kitchen25')return cookRender25();let i=barnIndex17(facility);if(panel==='barnSkin21'&&i===0)return barnSkinRender21();if(panel==='cowSkin28'&&i===1)return cowSkinRender28();if(panel==='pigSkin29'&&i===2)return pigSkinRender29();if(panel==='barnManage18'&&i>=0&&s.fac[facility])return barnManageRender18(i);if(panel==='barnBreeds17'&&i>=0&&s.fac[facility])return barnBreedRender17(i);if(panel==='facility'&&i>=0&&s.fac[facility])return barnRender16(i);return renderBefore16()};
 const clickBefore16=$('sheet').onclick;
 $('sheet').onclick=function(ev){
  let b=ev.target.closest('[data-a]');if(!b||b.disabled)return;let a=b.dataset.a,[cmd,x,y,z]=a.split(':'),i=Number(x),j=Number(y),breed=Number(z),valid=i>=0&&i<3&&Number.isInteger(i);
+ if(cmd==='v10orderAccept30')return orderAccept30(i);
+ if(cmd==='v10orderDeliver30')return orderDeliver30(i);
+ if(cmd==='v10orderSkip30')return orderSkip30(i);
+ if(cmd==='v10orderStock30')return open('inventory');
+ if(cmd==='order')return;
  if(cmd==='v10invMode27'&&['stock','inventory'].includes(x)){invSel27='';return open(x)}
  if(cmd==='v10invCat27'&&invCats27.some(a=>a[0]===x)){invCat27=x;invSel27='';render();return}
  if(cmd==='v10invSub27'&&invAnimal27.some(a=>a[0]===x)){invSub27=x;invSel27='';render();return}
@@ -1096,5 +1180,5 @@ $('sheet').addEventListener('keydown',ev=>{let a=ev.target.closest('.chicken21[d
 barnState16();cookState25();save();
 
 // Restore timer labels without re-creating the map or resetting the camera.
-stats();updateMap();resize();refreshArt13().catch(()=>{});setInterval(()=>{work10();updateMap();if(panel==='facility'&&barnIndex17(facility)>=0&&s.fac[facility])barnTick16();else if(panel==='kitchen25')cookTick25();else if(panel==='barnBreeds17'||panel==='barnManage18'){}else if(['facility','fac','pets','explore','shop','water','dragon','helper'].includes(panel))render()},1000);
+stats();updateMap();resize();refreshArt13().catch(()=>{});setInterval(()=>{work10();updateMap();if(panel==='facility'&&barnIndex17(facility)>=0&&s.fac[facility])barnTick16();else if(panel==='kitchen25')cookTick25();else if(panel==='orders')orderTick30();else if(panel==='barnBreeds17'||panel==='barnManage18'){}else if(['facility','fac','pets','explore','shop','water','dragon','helper'].includes(panel))render()},1000);
 </script></body></html>
