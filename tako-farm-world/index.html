@@ -310,7 +310,53 @@ header{padding:7px 9px;background:#0d2530}.menu button{font-size:12px;min-height
 @media(max-height:550px){#sheet[data-panel="fishing"][data-fish-active34="1"] .fishControl34{padding:5px 0 7px}#sheet[data-panel="fishing"] .fishControl34 button.tap34{width:76px;height:76px;font-size:22px}#sheet[data-panel="fishing"] .fishControl34 button.tap34 small{font-size:9px}#sheet[data-panel="fishing"][data-fish-active34="1"] .fishscene12{max-height:35dvh;width:auto;align-self:center;aspect-ratio:16/9}}
 @media(prefers-reduced-motion:reduce){.fishPulse34,.fishImpact34{animation:none!important}}
 .motionoff12 .fishPulse34,.motionoff12 .fishImpact34{animation:none!important}
-</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.34　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
+/* v0.35 fishing interface hierarchy */
+#sheet[data-panel="fishing"] h2{font-size:22px;line-height:1.2;margin:2px 44px 10px 0}
+.fishHeader35{padding:5px 1px 8px;margin:0 0 5px;flex:none;clear:both}
+.fishHeader35 .fishHeaderRow35{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.fishHeader35 .fishLv35{font-size:16px;font-weight:850;color:#f7d78d;white-space:nowrap}
+.fishHeader35 .fishXpLabel35{font-size:10px;color:#b7d1ce;margin-left:7px;font-weight:600}
+.fishHeader35 .fishXp32{height:5px;margin:6px 0 4px;background:#294a55}
+.fishHeader35 .fishNext35{font-size:10px;color:#9ebcbf}
+.sheet button.fishSub35{background:#1a3b47;color:#d1e4df;border:1px solid #496771;box-shadow:none;border-radius:7px;font-size:11px;font-weight:650;min-height:34px;padding:5px 8px}
+.sheet button.fishSub35:active{background:#2c5661}
+.fishHeader35 button.fishSub35{white-space:nowrap;flex:none;display:flex;align-items:center;gap:4px}
+.fishIcon35{width:17px;height:17px;flex:none;display:inline-block;vertical-align:middle;color:inherit}
+#sheet[data-panel="fishing"] .fishscene12{margin:0 0 9px}
+#sheet[data-panel="fishing"] .fishresult12.catch19{min-height:69px;margin:0 0 9px;padding:7px 9px;gap:9px;border-width:1px;border-radius:8px;background:#163843}
+#sheet[data-panel="fishing"] .catch19 .catchPic19{width:31%;max-width:105px}
+#sheet[data-panel="fishing"] .catch19 .catchPic19 img{height:55px;max-height:55px;width:100%;object-fit:contain}
+#sheet[data-panel="fishing"] .catch19 .catchInfo19{gap:2px}
+#sheet[data-panel="fishing"] .catch19 .catchInfo19 b{font-size:17px;line-height:1.15}
+#sheet[data-panel="fishing"] .catch19 .catchInfo19 small{font-size:9px}
+#sheet[data-panel="fishing"] .catch19 .catchInfo19 span{font-size:11px}
+#sheet[data-panel="fishing"] .newCatch19{font-size:9px;padding:2px 4px}
+#sheet[data-panel="fishing"] .fishscene12 .fishjump12{width:29%;height:35%;left:40%;top:40%}
+#sheet[data-panel="fishing"] button.fishGear35{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 16px;align-items:center;gap:6px;width:100%;margin:0 0 11px;padding:8px 7px;background:#173945;border:1px solid #3d5e68;color:#e5e9d2;box-shadow:none;border-radius:8px;text-align:left;min-height:51px}
+.fishGear35 .gearPart35{display:flex;gap:5px;align-items:center;min-width:0}
+.fishGear35 .gearPart35+.gearPart35{border-left:1px solid #3d5e68;padding-left:6px}
+.fishGear35 img{width:29px;height:29px;object-fit:contain;image-rendering:pixelated;flex:none}
+.fishGear35 b{display:block;font-size:11px;line-height:1.25;overflow-wrap:anywhere}
+.fishGear35 small{display:block;font-size:10px;line-height:1.35;color:#9fbfc2;margin-top:2px}
+#sheet[data-panel="fishing"] .fishMain20{margin:0 0 11px}
+#sheet[data-panel="fishing"] .fishMain20 button{min-height:49px;border-radius:9px;font-size:16px}
+.fishUtility35{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding-top:9px;border-top:1px solid #31525d;margin:0 0 2px}
+#sheet[data-panel="fishing"] .fishUtility35 button{display:flex;align-items:center;justify-content:flex-start;gap:8px;min-width:0;min-height:46px;padding:7px 9px;text-align:left}
+.fishUtility35 .fishIcon35{width:22px;height:22px;color:#9fc3c7}
+.fishUtility35 b{font-size:12px;display:block;color:#deebe2}
+.fishUtility35 small{display:block;color:#aac7c7;font-size:10px;margin-top:2px}
+#sheet[data-panel="fishing"] .fishFoot20{margin:7px 0 0;font-size:10px;line-height:1.4;color:#93b3b7}
+#sheet[data-panel="fishing"][data-fish-active34="1"] .fishHeader35{margin:0 0 3px;padding-top:3px}
+#sheet[data-panel="fishing"][data-fish-active34="1"] .fishHeader35 .fishSub35{display:none}
+.ship35row{display:flex;align-items:center;gap:10px;margin:8px 0;padding:10px;background:#193b47;border:1px solid #42636c;border-radius:9px}
+.ship35row img{width:38px;height:38px;object-fit:contain;image-rendering:pixelated;flex:none}.ship35info{flex:1;min-width:0}.ship35info b{display:block;font-size:13px;color:#e4efdf}.ship35info small{font-size:11px;color:#a7c4c4}.ship35info strong{display:block;font-size:16px;color:#ffdd8e}
+#sheet[data-panel="fishShip35"] .ship35row button{min-width:62px;flex:none}
+#sheet[data-panel="fishShip35"] .ship35total{display:flex;align-items:center;justify-content:space-between;padding:12px 2px 8px;font-size:13px;color:#b9d2ce}
+#sheet[data-panel="fishShip35"] .ship35total strong{color:#ffdf91;font-size:21px}
+#sheet[data-panel="fishShip35"] .ship35all{width:100%;min-height:45px;margin:0 0 9px}
+#sheet[data-panel="fishShip35"] .ship35back{width:100%;margin-top:6px}
+@media(max-width:350px){.fishHeader35 .fishXpLabel35{font-size:9px;margin-left:3px}.fishGear35 img{width:24px;height:24px}.fishGear35 b{font-size:10px}#sheet[data-panel="fishing"] .fishUtility35 button{gap:5px;padding:6px}.fishHeader35 .fishLv35{font-size:14px}}
+</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.35　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
 <script src="assets09/pixel-art-011.js"></script><script src="assets09/fishing-scene-015.js"></script><script src="assets09/fishing-scene-017.js"></script><script src="assets09/fishing-art-020.js"></script><script src="assets09/chicken-art-021.js?v=021"></script><script src="assets09/chicken-premium-026.js?v=026"></script><script src="assets09/cow-art-028.js?v=028"></script><script src="assets09/pig-art-029.js?v=029"></script><script>
 const A=window.FARMELUNE_ART;
 if(Object.keys(A).length!==32){document.getElementById("toast").textContent="画像の読み込みに失敗しました。再読み込みしてください。";throw Error("Artwork incomplete");}
@@ -352,7 +398,7 @@ function zoom(f,x=world.clientWidth/2,y=world.clientHeight/2){let levels=zoomLev
 function pinchZoom13(f,x,y){if(pinchRaw13===null)pinchRaw13=scale;pinchRaw13=Math.max(fit,Math.min(fit*3,pinchRaw13*f));applyScale13(snapScale13(pinchRaw13),x,y)}
 $('plus').onclick=()=>zoom(1.25);$('minus').onclick=()=>zoom(.8);$('home').onclick=()=>{scale=fit;tx=0;ty=0;clamp()};$('fields').onclick=()=>{scale=fit;tx=0;ty=-620*scale;clamp()};new ResizeObserver(resize).observe(world);
 let pts=new Map(),moved=false,lastClick=0;world.addEventListener('pointerdown',e=>{if(e.target.closest('.tools,.edit10'))return;pts.set(e.pointerId,{x:e.clientX,y:e.clientY,ox:e.clientX,oy:e.clientY});if(pts.size===1)moved=false;else moved=true});world.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;let old=pts.get(e.pointerId),x=e.clientX,y=e.clientY;if(pts.size===2){let other=[...pts.entries()].find(a=>a[0]!==e.pointerId)[1],a=Math.hypot(old.x-other.x,old.y-other.y),b=Math.hypot(x-other.x,y-other.y),r=world.getBoundingClientRect();if(a>3)pinchZoom13(b/a,(x+other.x)/2-r.left,(y+other.y)/2-r.top);moved=true}else if(moved||Math.hypot(x-old.ox,y-old.oy)>5){moved=true;tx+=x-old.x;ty+=y-old.y;clamp()}pts.set(e.pointerId,{...old,x,y})});function end(e){if(moved)lastClick=performance.now();pts.delete(e.pointerId);if(pts.size<2)pinchRaw13=null}world.addEventListener('pointerup',end);world.addEventListener('pointercancel',end);map.addEventListener('click',e=>{if(performance.now()-lastClick<300&&lastClick){e.stopImmediatePropagation();e.preventDefault()}},true);world.addEventListener('wheel',e=>{if(e.target.closest('.tools,.edit10'))return;e.preventDefault();if(e.ctrlKey)zoom(e.deltaY<0?1.1:.9);else{ty-=e.deltaY;tx-=e.deltaX;clamp()}},{passive:false});
-function open(p){panel=p;$('shade').hidden=false;$('sheet').hidden=false;render()}function close(){panel='';$('shade').hidden=true;$('sheet').hidden=true}$('shade').onclick=close;const btn=(t,a,d=false)=>`<button class="primary" data-a="${a}" ${d?'disabled':''}>${t}</button>`,row=(n,d,b,k='')=>`<div class="item">${k?icon(k):''}<div class="desc">${n}<small>${d}</small></div>${b}</div>`;function price(i){return Math.round(crops[i][2]*(.8+((Math.floor(now()/86400000)*17+i*31)%41)/100))}function val(i){return s.stock[i].reduce((a,v,j)=>a+v*price(i)*mult[j],0)}
+function open(p){if(p!=='stock'&&p!=='inventory')fishStockBack35=false;panel=p;$('shade').hidden=false;$('sheet').hidden=false;render()}function close(){fishStockBack35=false;panel='';$('shade').hidden=true;$('sheet').hidden=true}$('shade').onclick=close;const btn=(t,a,d=false)=>`<button class="primary" data-a="${a}" ${d?'disabled':''}>${t}</button>`,row=(n,d,b,k='')=>`<div class="item">${k?icon(k):''}<div class="desc">${n}<small>${d}</small></div>${b}</div>`;function price(i){return Math.round(crops[i][2]*(.8+((Math.floor(now()/86400000)*17+i*31)%41)/100))}function val(i){return s.stock[i].reduce((a,v,j)=>a+v*price(i)*mult[j],0)}
 function render(){let t='',h='';if(panel==='shop'){t='種ショップ';h=crops.map((a,i)=>row(a[0],`${a[1]} G / ${a[3]}秒 / Lv.${a[4]} ｜ 所持 ${s.seeds[i]}`,btn('選択','pick:'+i,level()<a[4])+btn('＋5','buy:'+i,level()<a[4]||s.coins<a[1]*5),a[6])).join('')}
 else if(panel==='stock'){t='倉庫・出荷';h=crops.map((a,i)=>row(a[0],s.stock[i].map((v,j)=>ranks[j]+':'+v).join('　'),btn(fmt(val(i))+' G','sell:'+i,!val(i)),a[6])).join('')+'<div class="actions">'+btn('すべて出荷','sellall',!crops.some((_,i)=>val(i)))+'</div>'+fac.map((a,i)=>row(a[1],s.goods[i]+'個',btn('売却 '+fmt(s.goods[i]*a[6])+'G','goods:'+i,!s.goods[i]),a[7])).join('')}
 else if(panel==='book'){t='作物図鑑 '+s.book.flat().filter(Boolean).length+'/'+(crops.length*5);h=crops.map((a,i)=>row(a[0],s.book[i].reduce((a,b)=>a+b,0)+'個収穫',ranks.map((r,j)=>`<span class="rank ${s.book[i][j]?'':'off'}">${r}</span>`).join(' '),a[6])).join('')}
@@ -724,14 +770,39 @@ function fishControl34(phase){let active=phase==='bite'||phase==='strike',cmd=ph
  return '<div class="fishControl34"><span class="fishTapNote34" role="status">'+note+'</span><button type="button" class="tap34 '+phase+'34" data-a="v10'+cmd+'" '+(active?'':'disabled')+' aria-label="'+label+'"><strong>TAP</strong><small>'+label+'</small></button></div>'
 }
 
+
+function fishIcon35(type){
+ let d={map:'M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15',chev:'M9 5l7 7-7 7',ship:'M3 8l9-5 9 5v10l-9 4-9-4zM3 8l9 5 9-5M12 13v9M8 5l9 5',book:'M12 6C9 3 5 3 2 4v15c4-1 7 0 10 2 3-2 6-3 10-2V4c-3-1-7-1-10 2zM12 6v15'}[type]||'';
+ return '<svg class="fishIcon35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d+'"/></svg>'
+}
+function fishHeader35(active){
+ let p=fishProgress32(),l=fishLevel32(p.xp),next=fishPlaces32.find(a=>a.lv>l),base=fishXpNeed32(l),need=fishXpNeed32(l+1),pct=l>=100?100:Math.min(100,Math.max(0,(p.xp-base)/(need-base)*100));
+ return '<div class="fishHeader35"><div class="fishHeaderRow35"><div><span class="fishLv35">釣り Lv.'+l+'</span><span class="fishXpLabel35">'+(l>=100?'MAX':fmt(p.xp-base)+' / '+fmt(need-base)+' XP')+'</span></div>'+(!active?'<button class="fishSub35" data-a="v10fishPlaces32">'+fishIcon35('map')+'釣り場変更</button>':'')+'</div><div class="fishXp32"><i style="width:'+pct+'%"></i></div><div class="fishNext35">'+(next?'次の解放：'+next.name+' Lv.'+next.lv:'全釣り場解放済み')+'</div></div>'
+}
+function fishGearHtml35(){let g=fishGear31(),bait=fishBaits31[g.bait],rod=fishRods31[g.rod];return '<button class="fishGear35" data-a="v10gearOpen31" aria-label="釣り竿と餌を変更"><span class="gearPart35">'+icon('rod31_'+g.rod)+'<span><b>'+rod[0]+'</b><small>釣り竿</small></span></span><span class="gearPart35">'+icon('bait31_'+g.bait)+'<span><b>'+bait[0]+'</b><small>残り '+fmt(fishBaitCount31(g.bait))+' 個</small></span></span>'+fishIcon35('chev')+'</button>'}
+function fishUtility35(){let v=state12(),found=v.fishBook.filter(Boolean).length+v.lootBook19.filter(Boolean).length,total=fishDefs12.length+fishLoot19.length;return '<div class="fishUtility35"><button class="fishSub35" data-a="v10fishShipOpen35">'+fishIcon35('ship')+'<span><b>出荷</b><small>'+fmt(fishValue12()+lootValue19())+' G</small></span></button><button class="fishSub35" data-a="v10fbook">'+fishIcon35('book')+'<span><b>釣果図鑑</b><small>'+found+' / '+total+' 種類</small></span></button></div>'}
+function fishShipInfo35(){let v=state12();return {fish:Math.max(0,Number(s.fish)||0),loot:v.lootStock19.reduce((n,q,i)=>n+(fishLoot19[i]?.[2]>0?Math.max(0,Number(q)||0):0),0),fg:fishValue12(),lg:lootValue19()}}
+function fishShipRender35(){let a=fishShipInfo35();let h='<p>魚や拾い物を出荷できます。料理・収集用に残しておきたい素材は、個別出荷から選べます。</p>';
+ for(let [key,name,count,g,art] of [['fish','魚',a.fish,a.fg,'fish12_0'],['loot','拾い物',a.loot,a.lg,'fishloot19_3']])h+='<div class="ship35row">'+icon(art)+'<div class="ship35info"><b>'+name+'</b><small>所持 '+fmt(count)+'個</small><strong>'+fmt(g)+' G</strong></div><button class="fishSub35" data-a="v10fishShipSell35:'+key+'" '+(g<=0?'disabled':'')+'>出荷</button></div>';
+ h+='<div class="ship35total"><span>まとめて出荷</span><strong>'+fmt(a.fg+a.lg)+' G</strong></div><button class="primary ship35all" data-a="v10fishShipSell35:all" '+(a.fg+a.lg<=0?'disabled':'')+'>すべて出荷する</button><button class="fishSub35 ship35back" data-a="v10fishShipStock35">種類・個数を選んで出荷</button><button class="fishSub35 ship35back" data-a="v10nav:fishing">釣り場へ戻る</button>';screen10('釣果の出荷',h)
+}
+function fishShipSell35(type,ask=confirm){
+ if(panel!=='fishShip35'||s.fishEnd||!['fish','loot','all'].includes(type))return false;
+ let a=fishShipInfo35(),fish=type!=='loot',loot=type!=='fish',gold=(fish?a.fg:0)+(loot?a.lg:0);
+ if(gold<=0||!ask((type==='all'?'魚と拾い物':type==='fish'?'魚':'拾い物')+'をすべて出荷しますか？\n'+fmt(gold)+' G'))return false;
+ let v=state12();if(fish&&a.fg>0){s.fish=0;v.fishStock.fill(0)}
+ if(loot&&a.lg>0)for(let i=0;i<v.lootStock19.length;i++)if(fishLoot19[i]?.[2]>0)v.lootStock19[i]=0;
+ s.coins+=gold;extra10().earned+=gold;update('出荷しました：'+fmt(gold)+' G');return true
+}
+let fishStockBack35=false;
+
 function fishingRender12(){let v=state12(),phase=fishingPhase12(),q=v.attempt,last=v.last,place=fishProgress32().place;
 if(phase==='expired'){fishFail12();return}
 let msg={idle:'餌を選んで釣りをしよう',cast:'キャスト！',wait:'魚が来るまで待とう…',bite:'',strike:'緑のゾーンでタップ！'}[phase],h='<div class="fishscene12 '+phase+(phase==='idle'&&last&&!last.fail?' landed19':'')+(phase==='idle'&&last&&!last.fail&&((last.i!==undefined&&fishDefs12[last.i][1]==='LR')||last.loot===0||last.treasure)?' legendary19':'')+' place33 p33_'+place+'">'+fishBgHtml33(place)+fishLayers34(phase,q)+'<div class="pondShadows19" aria-hidden="true"><i></i><i></i><i></i></div><div class="landSplash19" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'+(msg?'<div class="hint12">'+msg+'</div>':'')+(phase==='idle'&&last&&!last.fail?'<img class="fishjump12" src="'+A[catchArt19(last)]+'" alt="">':'')+'</div>';
-if(phase==='idle'&&last)h+=catchResult19(last);h=fishLevelHtml32()+h;
+if(phase==='idle'&&last)h+=catchResult19(last);h=fishHeader35(phase!=='idle')+h;
 if(phase==='strike')h+='<div class="fishbar12"><div class="zone12" style="left:'+q.target+'%;width:26%"></div><div id="needle12" class="needle12" style="left:'+gauge12()+'%"></div></div><div id="fishClock12">残り '+Math.max(0,Math.ceil((8000-(now()-q.strike))/1000))+'秒</div>';
 if(phase!=='idle')h+=fishControl34(phase);
-else {h+=fishEquipHtml31()+'<div class="fishMain20">'+b10(last&&!last.fail?'続けて釣る':'竿を投げる','fstart',fishBaitCount31(fishGear31().bait)<1)+'</div>';
-h+='<div class="fishActions20">'+b10('魚を出荷 <small>'+fmt(fishValue12())+' G</small>','fsell',!s.fish)+b10('釣果図鑑 <small>'+(v.fishBook.filter(Boolean).length+v.lootBook19.filter(Boolean).length)+'/'+(fishDefs12.length+fishLoot19.length)+'</small>','fbook')+b10('拾った品を出荷 <small>'+fmt(lootValue19())+' G</small>','flootSell',!lootValue19())+'</div><p class="fishFoot20">魚の所持数：'+s.fish+'匹。緑の中央に近いほどレア魚の確率アップ。</p>';
+else {h+=fishGearHtml35()+'<div class="fishMain20">'+b10(last&&!last.fail?'続けて釣る':'竿を投げる','fstart',fishBaitCount31(fishGear31().bait)<1)+'</div>'+fishUtility35()+'<p class="fishFoot20">緑の中央に近いほどレア釣果の確率アップ。</p>';
 }
 screen10(fishPlaces32[fishProgress32().place].name+'・釣り場',h);let el=$('sheet');el.dataset.fishActive34=phase==='idle'?'0':'1';if(phase!=='idle'&&fishShown12!==phase)el.scrollTop=0;fishShown12=phase}
 let fishShown12='';
@@ -1192,7 +1263,7 @@ function invRender27(){let sell=panel==='stock',all=invItems27().filter(invMatch
  h+='<div class="inv27summary"><span>'+all.filter(a=>a.count).length+' / '+all.length+' 種類</span><b>合計 '+fmt(total)+'個</b></div>';
  if(selected)h+=invDetail27(selected,sell);
  h+=list.length?'<div class="inv27grid">'+list.map(a=>invTile27(a)).join('')+'</div>':'<div class="inv27empty">この種類の所持品はありません。</div>';
- h+='<p class="barnHelp27">'+(sell?'アイテムを選んで出荷する個数を指定できます。':'アイテムを選ぶと品質や所持数を確認できます。')+'</p>';screen10(sell?'倉庫・出荷':'持ち物',h)
+ h+='<p class="barnHelp27">'+(sell?'アイテムを選んで出荷する個数を指定できます。':'アイテムを選ぶと品質や所持数を確認できます。')+'</p>';if(fishStockBack35)h+='<button class="fishSub35" style="width:100%" data-a="v10fishShipBack35">釣果の出荷へ戻る</button>';screen10(sell?'倉庫・出荷':'持ち物',h)
 }
 function invSell27(id,idx,amount){if(panel!=='stock'||!Number.isInteger(idx))return false;let item=invItems27().find(a=>a.id===id&&invMatches27(a)),p=item?.parts[idx];if(!p||p.price===null)return false;let n=p.count(),q=amount==='all'?n:Number(amount);if(!Number.isInteger(q)||q<=0||q>n||!['1','10','all'].includes(amount))return false;let g=Math.round(q*p.price);p.take(q);s.coins+=g;extra10().earned+=g;update(item.name+' ×'+q+' を出荷 '+fmt(g)+' G');return true}
 function barnStockHtml27(i){let sub=['egg','milk','pork'][i],label=['卵','ミルク','豚肉'][i],all=invItems27().filter(a=>a.cat==='animal'&&a.sub===sub),owned=all.filter(a=>a.count>0),total=owned.reduce((n,a)=>n+a.count,0),list=barnAll27[i]?owned:owned.slice(0,6);
@@ -1265,10 +1336,14 @@ function orderRender30(){let v=orderState30(),pool=orderPool30(),items=invItems2
 }
 function orderTick30(){if(panel!=='orders')return;let old=s.order30,day=dkey10(),t=now();if(!old||day>old.day||old.slots.some(q=>q.state==='active'&&q.end<=t)){render();return}for(let el of document.querySelectorAll('[data-order-due30]'))el.textContent='残り '+orderTime30(Number(el.dataset.orderDue30),t)}
 
-const renderBefore16=render;render=function(){if(panel==='fishPlaces32')return fishPlacesRender32();if(panel==='gear31')return gearRender31();if(panel==='orders')return orderRender30();if(panel==='stock'||panel==='inventory')return invRender27();if(panel==='kitchen25')return cookRender25();let i=barnIndex17(facility);if(panel==='barnSkin21'&&i===0)return barnSkinRender21();if(panel==='cowSkin28'&&i===1)return cowSkinRender28();if(panel==='pigSkin29'&&i===2)return pigSkinRender29();if(panel==='barnManage18'&&i>=0&&s.fac[facility])return barnManageRender18(i);if(panel==='barnBreeds17'&&i>=0&&s.fac[facility])return barnBreedRender17(i);if(panel==='facility'&&i>=0&&s.fac[facility])return barnRender16(i);return renderBefore16()};
+const renderBefore16=render;render=function(){if(panel==='fishShip35')return fishShipRender35();if(panel==='fishPlaces32')return fishPlacesRender32();if(panel==='gear31')return gearRender31();if(panel==='orders')return orderRender30();if(panel==='stock'||panel==='inventory')return invRender27();if(panel==='kitchen25')return cookRender25();let i=barnIndex17(facility);if(panel==='barnSkin21'&&i===0)return barnSkinRender21();if(panel==='cowSkin28'&&i===1)return cowSkinRender28();if(panel==='pigSkin29'&&i===2)return pigSkinRender29();if(panel==='barnManage18'&&i>=0&&s.fac[facility])return barnManageRender18(i);if(panel==='barnBreeds17'&&i>=0&&s.fac[facility])return barnBreedRender17(i);if(panel==='facility'&&i>=0&&s.fac[facility])return barnRender16(i);return renderBefore16()};
 const clickBefore16=$('sheet').onclick;
 $('sheet').onclick=function(ev){
  let b=ev.target.closest('[data-a]');if(!b||b.disabled)return;let a=b.dataset.a,[cmd,x,y,z]=a.split(':'),i=Number(x),j=Number(y),breed=Number(z),valid=i>=0&&i<3&&Number.isInteger(i);
+ if(cmd==='v10fishShipOpen35'&&!s.fishEnd){fishStockBack35=false;return open('fishShip35')}
+ if(cmd==='v10fishShipSell35')return fishShipSell35(x);
+ if(cmd==='v10fishShipStock35'&&!s.fishEnd){fishStockBack35=true;invCat27='fish';invFish27='fish';invSel27='';invOwned27=true;return open('stock')}
+ if(cmd==='v10fishShipBack35'){fishStockBack35=false;return open('fishShip35')}
  if(cmd==='v10fishPlaces32'&&!s.fishEnd)return open('fishPlaces32');
  if(cmd==='v10fishPlaceGo32')return fishPlaceSelect32(i);
  if(cmd==='v10fishFilter32'&&Number.isInteger(i)&&i>=-1&&i<fishPlaces32.length){fishFilter32=i;render();return}
