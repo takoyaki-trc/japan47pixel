@@ -283,7 +283,34 @@ header{padding:7px 9px;background:#0d2530}.menu button{font-size:12px;min-height
 .fishscene12.ready33.p33_2 .fishPerson33{left:15%}.fishscene12.ready33.p33_2 .fishLayers15{transform:translate(5%,5%)}
 .fishscene12.ready33.p33_8 .fishPerson33{top:45%}
 .fishFilter32{grid-template-columns:repeat(3,minmax(0,1fr))}
-</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.33　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
+/* v0.34 synchronized fishing cast and thumb control */
+#sheet[data-panel="fishing"][data-fish-active34="1"]{top:3%;bottom:3%;height:94%;max-height:94%;transform:none;display:flex;flex-direction:column}
+#sheet[data-panel="fishing"][data-fish-active34="1"]>.close{position:absolute;right:14px;top:14px;float:none}
+#sheet[data-panel="fishing"][data-fish-active34="1"]>.fishLevel32{flex:none;margin:2px 0 9px}
+#sheet[data-panel="fishing"][data-fish-active34="1"]>.fishLevel32 button{display:none}
+#sheet[data-panel="fishing"] .fishscene12{flex:none}
+.fishControl34{margin-top:auto;position:sticky;bottom:0;z-index:4;display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 0 max(9px,env(safe-area-inset-bottom));background:#102f3b;flex:none}
+.fishControl34 .fishTapNote34{color:#b8d6d4;text-align:center;font-size:12px;line-height:1.3}
+#sheet[data-panel="fishing"] .fishControl34 button.tap34{width:clamp(96px,30vw,124px);height:clamp(96px,30vw,124px);min-height:0;max-width:100%;border-radius:50%;border:4px solid #ffe4a1;background:#f8ce64;color:#42301c;box-shadow:0 6px #a36b31,inset 0 -6px #e4ab45;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:29px;font-weight:1000;line-height:1;letter-spacing:1px;margin:0;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+#sheet[data-panel="fishing"] .fishControl34 button.tap34 small{font-size:11px;letter-spacing:0;margin-top:6px;font-weight:750}
+#sheet[data-panel="fishing"] .fishControl34 button.tap34:active:not(:disabled){transform:translateY(3px);box-shadow:0 3px #a36b31,inset 0 -3px #e4ab45}
+#sheet[data-panel="fishing"] .fishControl34 button.tap34:disabled{background:#294b55;color:#a9c6c8;border-color:#52747a;box-shadow:0 3px #0c252e;opacity:1}
+#sheet[data-panel="fishing"] .fishControl34 button.tap34.bite34{background:#ffce51;border-color:#fff0af;box-shadow:0 6px #a76724,0 0 0 5px #bc833755,inset 0 -6px #e4a23c}
+#sheet[data-panel="fishing"] .fishControl34 button.tap34.strike34{background:#a7dc91;color:#173d31;border-color:#e1f4ba;box-shadow:0 6px #477f50,inset 0 -6px #79bb71}
+.fishHitText34{font-family:system-ui,sans-serif;font-size:13px;font-style:italic;font-weight:1000;letter-spacing:1px;fill:#fff070;stroke:#502c23;stroke-width:1.1;paint-order:stroke fill;stroke-linejoin:round;text-anchor:middle}
+.fishPulse34{animation:fishPulse34 .85s steps(7,end) infinite;transform-origin:0 0;transform-box:view-box}
+.fishPulse34.delay34{animation-delay:-.42s}
+@keyframes fishPulse34{0%{transform:scale(.45);opacity:1}100%{transform:scale(1.55);opacity:0}}
+.fishCastLayer34{pointer-events:none;z-index:2}.fishCastLayer34 path{stroke-linecap:round;stroke-linejoin:round}
+.fishscene12 .fishPerson33{z-index:1}
+.fishCastLayer34 .fishImpact34{animation:fishImpact34 .38s steps(4,end) both}
+@keyframes fishImpact34{from{opacity:1}to{opacity:0}}
+#sheet[data-panel="fishing"][data-fish-active34="1"] #fishClock12{margin:7px 0 0;text-align:center;font-size:13px;color:#c1d9d5}
+#sheet[data-panel="fishing"][data-fish-active34="1"] .fishbar12{flex:none}
+@media(max-height:550px){#sheet[data-panel="fishing"][data-fish-active34="1"] .fishControl34{padding:5px 0 7px}#sheet[data-panel="fishing"] .fishControl34 button.tap34{width:76px;height:76px;font-size:22px}#sheet[data-panel="fishing"] .fishControl34 button.tap34 small{font-size:9px}#sheet[data-panel="fishing"][data-fish-active34="1"] .fishscene12{max-height:35dvh;width:auto;align-self:center;aspect-ratio:16/9}}
+@media(prefers-reduced-motion:reduce){.fishPulse34,.fishImpact34{animation:none!important}}
+.motionoff12 .fishPulse34,.motionoff12 .fishImpact34{animation:none!important}
+</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.34　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
 <script src="assets09/pixel-art-011.js"></script><script src="assets09/fishing-scene-015.js"></script><script src="assets09/fishing-scene-017.js"></script><script src="assets09/fishing-art-020.js"></script><script src="assets09/chicken-art-021.js?v=021"></script><script src="assets09/chicken-premium-026.js?v=026"></script><script src="assets09/cow-art-028.js?v=028"></script><script src="assets09/pig-art-029.js?v=029"></script><script>
 const A=window.FARMELUNE_ART;
 if(Object.keys(A).length!==32){document.getElementById("toast").textContent="画像の読み込みに失敗しました。再読み込みしてください。";throw Error("Artwork incomplete");}
@@ -609,7 +636,7 @@ function gearRender31(){
 function gearEquip31(i){if(s.fishEnd||!Number.isInteger(i))return false;let g=fishGear31();if(gearTab31==='rod'){let a=fishRods31[i];if(!a)return false;if(!g.owned.includes(i)){if(a[2]!==null&&s.coins<a[2])return false;if(a[2]!==null)s.coins-=a[2];g.owned.push(i)}g.rod=i}else{if(!fishBaits31[i])return false;g.bait=i}update('装備を変更しました');return true}
 function gearBuyBait31(i){if(s.fishEnd||![1,2].includes(i))return false;let cost=fishBaits31[i][1]*10;if(s.coins<cost)return false;s.coins-=cost;fishGear31().stock[i]+=10;update('餌を10個購入しました');return true}
 
-function fishingPhase12(t=now()){let q=state12().attempt;if(!s.fishEnd)return 'idle';if(!q)return t>=s.fishEnd?'bite':'wait';if(q.strike){return t-q.strike>=8000?'expired':'strike'}return t>=s.fishEnd?'bite':'wait'}
+function fishingPhase12(t=now()){let q=state12().attempt;if(!s.fishEnd)return 'idle';if(!q)return t>=s.fishEnd?'bite':'wait';if(q.strike){return t-q.strike>=8000?'expired':'strike'}if(q.castEnd34&&t<q.castEnd34)return 'cast';return t>=s.fishEnd?'bite':'wait'}
 function gauge12(t=now()){let q=state12().attempt;if(!q||!q.strike)return 0;let n=((t-q.strike)%1600+1600)%1600;return n<=800?n/8:(1600-n)/8}
 function fishValue12(){let v=state12(),sum=sum10(v.fishStock);return Math.max(0,s.fish-sum)*40+v.fishStock.reduce((n,a,i)=>n+a*fishDefs12[i][2],0)}
 
@@ -631,7 +658,7 @@ function fishPlacesRender32(){let p=fishProgress32(),l=fishLevel32(p.xp),h='<div
 let fishFilter32=-1;
 function fishHabitat32(i,isFish){return fishPlaces32.filter(a=>(isFish?a.fish:a.loot).includes(i)).map(a=>a.name).join('・')}
 
-function fishStart12(){let v=state12(),g=fishGear31();if(s.fishEnd||!fishBaitConsume31(g.bait))return false;s.fishEnd=now()+3500+Math.floor(Math.random()*4000)-fishBaits31[g.bait][2];v.attempt={strike:0,target:18+Math.floor(Math.random()*46),rod31:g.rod,bait31:g.bait,place32:fishProgress32().place};v.last=null;update('浮きを投げました');return true}
+function fishStart12(){let v=state12(),g=fishGear31();if(s.fishEnd||!fishBaitConsume31(g.bait))return false;let t=now(),castEnd=t+1050;s.fishEnd=castEnd+3500+Math.floor(Math.random()*4000)-fishBaits31[g.bait][2];v.attempt={strike:0,target:18+Math.floor(Math.random()*46),rod31:g.rod,bait31:g.bait,place32:fishProgress32().place,castStart34:t,castEnd34:castEnd};v.last=null;update('竿を振りかぶってキャスト！');return true}
 function fishHook12(){if(fishingPhase12()!=='bite')return false;let v=state12();v.attempt=v.attempt||{strike:0,target:35};v.attempt.strike=now();update('食いついた！ 緑のゾーンを狙おう');return true}
 function fishFail12(){let v=state12();s.fishEnd=0;v.attempt=null;v.last={fail:true};update('魚が逃げてしまいました');return false}
 
@@ -663,16 +690,50 @@ function catchResult19(last){
  return '<div class="fishresult12 catch19 rank'+grade+(last.newFind?' newResult20':'')+'">'+(last.newFind?'<span class="newCatch19">NEW!</span>':'')+'<div class="catchPic19">'+icon(catchArt19(last))+'</div><div class="catchInfo19"><small>'+grade+' ｜ '+(loot?'アイテム':'釣果')+'</small><b>'+a[0]+'</b><span>'+detail+'</span></div></div>'
 }
 function lootValue19(){return state12().lootStock19.reduce((n,v,i)=>n+v*fishLoot19[i][2],0)}
+
+function fishPose34(phase,q,t,motion=true){
+ let hand={x:26,y:52.5},angle=-50,fx=68,fy=66,visible=phase!=='idle',impact=false;
+ let lerp=(a,b,p)=>a+(b-a)*p,clamp=x=>Math.max(0,Math.min(1,x));
+ let castAge=t-(q?.castStart34??t),f=clamp((castAge-500)/550);
+ if(phase==='idle'){angle=-66;visible=false}
+ else if(phase==='cast'){
+  if(castAge<270){angle=lerp(-66,-145,clamp(castAge/270));visible=false}
+  else if(castAge<500){angle=lerp(-145,-22,clamp((castAge-270)/230));visible=false}
+  else angle=lerp(-22,-50,f);
+ }else if(phase==='bite'||phase==='strike'){
+  let step=motion?Math.floor(t/90)%6:2;angle=-50+[0,3,7,10,5,1][step];fy=66+(motion?[0,1,3,4,2,0][step]:2)
+ }else if(phase==='wait'){fy=66+(motion?[0,0,1,1,0,-1][Math.floor(t/160)%6]:0);impact=!!q?.castEnd34&&t-q.castEnd34<380}
+ if(!motion){angle=phase==='idle'?-66:-50;f=1;if(phase==='cast')visible=false}
+ let rad=angle*Math.PI/180,tx=hand.x+22*Math.cos(rad),ty=hand.y+22*Math.sin(rad);
+ let bend=phase==='bite'||phase==='strike'?2.4:0.9,mx=(hand.x+tx)/2,my=(hand.y+ty)/2-bend;
+ if(phase==='cast'&&visible){fx=lerp(tx,68,f);fy=lerp(ty,66,f)-Math.sin(Math.PI*f)*24}
+ let rod='M'+hand.x+' '+hand.y+' Q'+mx.toFixed(2)+' '+my.toFixed(2)+' '+tx.toFixed(2)+' '+ty.toFixed(2);
+ let line='M'+tx.toFixed(2)+' '+ty.toFixed(2)+' Q'+((tx+fx)/2).toFixed(2)+' '+(Math.min(ty,fy)-(phase==='cast'?5:1)).toFixed(2)+' '+fx.toFixed(2)+' '+fy.toFixed(2);
+ return {rod,line,fx,fy,visible,impact,ring:phase==='wait'||phase==='bite'||phase==='strike'}
+}
+function fishLayers34(phase,q){
+ let p=fishPose34(phase,q,now(),motion12()),hit=phase==='bite'||phase==='strike',c=fishRodColor31();
+ return '<svg class="fishLayers15 fishCastLayer34" viewBox="0 0 160 96" preserveAspectRatio="none" aria-hidden="true"><g fill="none"><path id="fishRodEdge34" d="'+p.rod+'" stroke="#382c22" stroke-width="2.8"/><path id="fishRodColor34" d="'+p.rod+'" stroke="'+c+'" stroke-width="1.2"/></g><g id="fishLineGroup34" '+(p.visible?'':'style="display:none"')+'><path id="fishLine34" d="'+p.line+'" stroke="#f4f8ec" stroke-width=".65" fill="none"/><g id="fishRing34" transform="translate('+p.fx+' '+p.fy+')" '+(p.ring?'':'style="display:none"')+' fill="none" stroke="'+(hit?'#fff0a8':'#ddfff7')+'" stroke-width="'+(hit?1.25:.75)+'"><ellipse rx="8" ry="2.7" class="fishPulse34"/><ellipse rx="14" ry="4.6" class="fishPulse34 delay34"/>'+(hit?'<ellipse rx="18" ry="6" stroke-dasharray="4 3"/>':'')+'</g><g id="fishFloat34" transform="translate('+p.fx+' '+p.fy+')" shape-rendering="crispEdges"><path d="M-2 -3h4v2h1v2h-6v-2h1z" fill="#302a28"/><path d="M-1 -3h2v2h-2z" fill="#eb553b"/><path d="M-2 -1h4v1h-4z" fill="#fff3d9"/></g>'+(p.impact||hit?'<g transform="translate(68 66)" fill="#edfffa" shape-rendering="crispEdges" class="'+(p.impact?'fishImpact34':'')+'"><path d="M-9 -4h2v3h-2zM-3 -10h2v4h-2zM5 -7h2v4H5zM11 -3h2v2h-2z"/></g>':'')+'</g>'+(phase==='bite'?'<g transform="translate(68 66)"><text class="fishHitText34" y="-13">HIT!</text></g>':'')+'</svg>'
+}
+function fishVisual34(phase,t=now()){
+ let edge=$('fishRodEdge34');if(!edge)return;let p=fishPose34(phase,state12().attempt,t,motion12());
+ edge.setAttribute('d',p.rod);$('fishRodColor34').setAttribute('d',p.rod);$('fishLine34').setAttribute('d',p.line);$('fishLineGroup34').style.display=p.visible?'':'none';
+ let tr='translate('+p.fx.toFixed(2)+' '+p.fy.toFixed(2)+')';$('fishFloat34').setAttribute('transform',tr);$('fishRing34').setAttribute('transform',tr);$('fishRing34').style.display=p.ring?'':'none'
+}
+function fishControl34(phase){let active=phase==='bite'||phase==='strike',cmd=phase==='bite'?'fhook':phase==='strike'?'fcatch':'fwait',label=phase==='bite'?'合わせる':phase==='strike'?'釣り上げる':phase==='cast'?'キャスト中':'待機中',note=phase==='bite'?'浮きにHIT！ ボタンをタップ':phase==='strike'?'針が緑のゾーンに入ったらタップ':phase==='cast'?'浮きが着水するまで…':'魚が食いつくまで待とう';
+ return '<div class="fishControl34"><span class="fishTapNote34" role="status">'+note+'</span><button type="button" class="tap34 '+phase+'34" data-a="v10'+cmd+'" '+(active?'':'disabled')+' aria-label="'+label+'"><strong>TAP</strong><small>'+label+'</small></button></div>'
+}
+
 function fishingRender12(){let v=state12(),phase=fishingPhase12(),q=v.attempt,last=v.last,place=fishProgress32().place;
 if(phase==='expired'){fishFail12();return}
-let msg={idle:'餌を選んで釣りをしよう',wait:'魚が来るまで待とう…',bite:'HIT！ 浮きが沈んだ！',strike:'緑のゾーンでタップ！'}[phase],h='<div class="fishscene12 '+phase+(phase==='idle'&&last&&!last.fail?' landed19':'')+(phase==='idle'&&last&&!last.fail&&((last.i!==undefined&&fishDefs12[last.i][1]==='LR')||last.loot===0||last.treasure)?' legendary19':'')+' place33 p33_'+place+'">'+fishBgHtml33(place)+'<svg class="fishLayers15" viewBox="0 0 160 96" preserveAspectRatio="none" aria-hidden="true"><g class="rod15" shape-rendering="crispEdges"><path d="M26 52.5 Q32 42 40.5 35.5" stroke="#382c22" stroke-width="2.8" fill="none"/><path d="M26 52.5 Q32 42 40.5 35.5" stroke="'+fishRodColor31()+'" stroke-width="1.1" fill="none"/></g><g class="castLine15"><path d="M40.5 35.5 Q54 31 68 64" stroke="#eaf9f2" stroke-width=".65" fill="none"/><g class="bobber15" shape-rendering="crispEdges"><path d="M66 63h4v2h1v2h-6v-2h1z" fill="#312d30"/><path d="M67 63h2v2h-2z" fill="#e64a36"/><path d="M66 65h4v1h-4z" fill="#fff5d8"/></g><g class="ripple15" fill="none" stroke="#d1f7ef" stroke-width=".8"><ellipse cx="68" cy="66" rx="8" ry="2.5"/><ellipse cx="68" cy="66" rx="14" ry="4.5"/></g><g class="splash15" fill="#d8fff6" shape-rendering="crispEdges"><path d="M63 60h2v3h-2zM70 56h2v4h-2zM75 61h2v3h-2zM58 64h3v1h-3zM77 66h4v1h-4z"/></g></g></svg><div class="pondShadows19" aria-hidden="true"><i></i><i></i><i></i></div><div class="landSplash19" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="hint12">'+msg+'</div>'+(phase==='bite'?'<button type="button" class="fishHit1302" data-a="v10fhook" aria-label="魚がヒット！ タップして合わせる"><div class="fishHitBadge17"><strong>HIT!!</strong><span>タップして合わせる <i>☝</i></span></div></button>':'')+(phase==='idle'&&last&&!last.fail?'<img class="fishjump12" src="'+A[catchArt19(last)]+'" alt="">':'')+'</div>';
+let msg={idle:'餌を選んで釣りをしよう',cast:'キャスト！',wait:'魚が来るまで待とう…',bite:'',strike:'緑のゾーンでタップ！'}[phase],h='<div class="fishscene12 '+phase+(phase==='idle'&&last&&!last.fail?' landed19':'')+(phase==='idle'&&last&&!last.fail&&((last.i!==undefined&&fishDefs12[last.i][1]==='LR')||last.loot===0||last.treasure)?' legendary19':'')+' place33 p33_'+place+'">'+fishBgHtml33(place)+fishLayers34(phase,q)+'<div class="pondShadows19" aria-hidden="true"><i></i><i></i><i></i></div><div class="landSplash19" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'+(msg?'<div class="hint12">'+msg+'</div>':'')+(phase==='idle'&&last&&!last.fail?'<img class="fishjump12" src="'+A[catchArt19(last)]+'" alt="">':'')+'</div>';
 if(phase==='idle'&&last)h+=catchResult19(last);h=fishLevelHtml32()+h;
-if(phase==='strike')h+='<div class="fishbar12"><div class="zone12" style="left:'+q.target+'%;width:26%"></div><div id="needle12" class="needle12" style="left:'+gauge12()+'%"></div></div><div id="fishClock12">残り '+Math.max(0,Math.ceil((8000-(now()-q.strike))/1000))+'秒</div>'+b10('釣り上げる！','fcatch');
-else if(phase==='wait')h+='<p id="fishClock12">魚を待っています…</p>'+b10('浮きを見守る','fwait',true);
-else if(phase==='bite')h+='<p role="status">魚が食いついた！ 画面をタップ</p>';
-else h+=fishEquipHtml31()+'<div class="fishMain20">'+b10(last&&!last.fail?'続けて釣る':'竿を投げる','fstart',fishBaitCount31(fishGear31().bait)<1)+'</div>';
+if(phase==='strike')h+='<div class="fishbar12"><div class="zone12" style="left:'+q.target+'%;width:26%"></div><div id="needle12" class="needle12" style="left:'+gauge12()+'%"></div></div><div id="fishClock12">残り '+Math.max(0,Math.ceil((8000-(now()-q.strike))/1000))+'秒</div>';
+if(phase!=='idle')h+=fishControl34(phase);
+else {h+=fishEquipHtml31()+'<div class="fishMain20">'+b10(last&&!last.fail?'続けて釣る':'竿を投げる','fstart',fishBaitCount31(fishGear31().bait)<1)+'</div>';
 h+='<div class="fishActions20">'+b10('魚を出荷 <small>'+fmt(fishValue12())+' G</small>','fsell',!s.fish)+b10('釣果図鑑 <small>'+(v.fishBook.filter(Boolean).length+v.lootBook19.filter(Boolean).length)+'/'+(fishDefs12.length+fishLoot19.length)+'</small>','fbook')+b10('拾った品を出荷 <small>'+fmt(lootValue19())+' G</small>','flootSell',!lootValue19())+'</div><p class="fishFoot20">魚の所持数：'+s.fish+'匹。緑の中央に近いほどレア魚の確率アップ。</p>';
-screen10(fishPlaces32[fishProgress32().place].name+'・釣り場',h);fishShown12=phase}
+}
+screen10(fishPlaces32[fishProgress32().place].name+'・釣り場',h);let el=$('sheet');el.dataset.fishActive34=phase==='idle'?'0':'1';if(phase!=='idle'&&fishShown12!==phase)el.scrollTop=0;fishShown12=phase}
 let fishShown12='';
 
 let fishTab19='fish';
@@ -702,7 +763,7 @@ if(sum10(extra10().hut)>huts||s.fac.filter(Boolean).length>facCount||count()>lan
 if(a.startsWith('v10dragonwork:')){let i=+a.split(':')[1];if(extra10().boost[i]>boost[i]){banner12('dragon'+i,['火の恵み','恵みの雨','花のそよ風'][i],dragon10[i][2]);if(motion12())for(let j=0;j<plotEls.length;j++)if(own(j)){let [x,y]=centerPlot12(j);particles12(x,y,['#f0b66b','#94dbec','#eab6d7'][i],4,i===1?'drop':'spark')}}}
 };
 $('app').classList.toggle('motionoff12',!state12().motion);
-function tick12(){if(panel==='fishing'){let phase=fishingPhase12();if(phase==='expired'){fishFail12();return}if(phase!==fishShown12){render();return}if(phase==='strike'){let needle=$('needle12');if(needle)needle.style.left=gauge12()+'%';let clock=$('fishClock12');if(clock)clock.textContent='残り '+Math.max(0,Math.ceil((8000-(now()-state12().attempt.strike))/1000))+'秒'}}if(panel==='battle12'&&replay12&&replay12.n<replay12.steps.length&&now()>=replay12.next){replay12.n++;replay12.next=now()+480/replay12.speed;render()}}
+function tick12(){if(panel==='fishing'){let phase=fishingPhase12();if(phase==='expired'){fishFail12();return}if(phase!==fishShown12){render();return}fishVisual34(phase);if(phase==='strike'){let needle=$('needle12');if(needle)needle.style.left=gauge12()+'%';let clock=$('fishClock12');if(clock)clock.textContent='残り '+Math.max(0,Math.ceil((8000-(now()-state12().attempt.strike))/1000))+'秒'}}if(panel==='battle12'&&replay12&&replay12.n<replay12.steps.length&&now()>=replay12.next){replay12.n++;replay12.next=now()+480/replay12.speed;render()}}
 setInterval(tick12,50);
 
 
