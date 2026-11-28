@@ -411,7 +411,45 @@ header{padding:7px 9px;background:#0d2530}.menu button{font-size:12px;min-height
 .fishGearSplit44 .gearText44{flex:1;min-width:0}
 .fishGearSplit44 .fishIcon35{width:12px;height:12px;flex:none;color:#b0cdca}
 @media(max-width:350px){#sheet[data-panel="fishing"] .fishGearSplit44 button.gearPart35{padding:6px 4px;gap:3px}.fishGearSplit44 .fishIcon35{width:10px;height:10px}}
-</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.45　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat lunaStat37" data-menu="luna37" aria-label="ルナコインショップ"><span class="lunaCoin37" aria-hidden="true">☾</span><div><small>ルナコイン</small><b>— LC</b></div></button><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
+
+/* v0.46 fishing presentation and compact collection book */
+#sheet[data-panel="fishing"] .fishscene12 .fishjump12{left:35%;top:24%;width:53%;height:60%;object-fit:contain;image-rendering:pixelated;animation:none;filter:drop-shadow(1px 2px 1px #102b40a0);transform-origin:center center}
+#sheet[data-panel="fishing"] .fishscene12 .fishjump12.catchPop46{animation:catchPop46 320ms ease-out 1 both}
+@keyframes catchPop46{0%{transform:translateY(10px) scale(.86);opacity:.2}40%{transform:translateY(-4px) scale(1.10);opacity:1}72%{transform:translateY(0) scale(.98);opacity:1}100%{transform:translateY(0) scale(1);opacity:1}}
+#sheet[data-panel="fishing"] .fishscene12 .fishjump12.catchLoot46{width:38%;height:48%;left:42%;top:31%}
+#sheet[data-panel="fishbook12"] h2{margin-bottom:12px}
+.bookTabs46{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;background:#0c2732;border:1px solid #34535e;padding:4px;border-radius:10px;margin:0 0 11px}
+#sheet .bookTabs46 button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:5px 2px;min-width:0;min-height:44px;font-size:12px;color:#a8c6ca;background:transparent;box-shadow:none;border:1px solid transparent;border-radius:7px;line-height:1.2}
+#sheet .bookTabs46 button.on46{background:#28515a;color:#fbe6ad;border-color:#69857d}
+.bookTabs46 button small{font-size:10px;font-weight:600;color:inherit}
+.bookFilter46{display:flex;align-items:center;gap:8px;margin:8px 0 10px}
+.bookFilter46 label{color:#a6c4c7;font-size:11px;white-space:nowrap}
+.bookFilter46 select{flex:1;min-width:0;width:100%;background:#193b47;color:#e3eee2;border:1px solid #4b6973;border-radius:7px;padding:9px 10px;font:inherit;font-size:12px;min-height:39px}
+.bookProgress46{display:flex;align-items:center;gap:8px;justify-content:space-between;color:#b7d0d0;font-size:11px;margin:4px 0 12px}
+.bookProgress46 strong{color:#f6d993;font-size:12px;white-space:nowrap}
+.bookMeter46{height:5px;background:#31525e;border-radius:4px;flex:1;overflow:hidden}
+.bookMeter46 i{display:block;height:100%;background:#8bceaa}
+#sheet .bookGrid46{gap:7px;margin-bottom:12px}
+#sheet .bookGrid46 button.fishEntry19{position:relative;display:flex;align-items:center;justify-content:flex-start;flex-direction:column;gap:4px;background:#193943;border:1px solid var(--rank19);border-radius:8px;box-shadow:none;min-width:0;min-height:117px;padding:5px 4px;text-align:center;white-space:normal}
+#sheet .bookGrid46 button.fishEntry19:active{background:#28515b}
+#sheet .bookGrid46 button.fishEntry19:disabled{opacity:1;background:#142f39;border-color:#37525c;cursor:default}
+#sheet .bookGrid46 .fishEntry19 img,#sheet .bookGrid46 .fishUnknown19{height:57px;max-width:100%;margin:0;object-fit:contain;image-rendering:pixelated}
+#sheet .bookGrid46 .fishEntry19 b{font-size:11px;line-height:1.3;color:#f8ead0;overflow-wrap:anywhere}
+#sheet .bookGrid46 .fishEntry19 span{font-size:10px;color:#a8c8ca}
+#sheet .bookGrid46 .fishEntry19 small{padding:1px 4px;line-height:1.2}
+#sheet .bookGrid46 .fishUnknown19{font-size:26px;color:#769199;background:transparent}
+.bookDetail46{padding:12px;background:#193943;border:1px solid var(--rank19);border-radius:10px;margin:10px 0}
+.bookDetail46 .bookArt46{display:flex;align-items:center;justify-content:center;background:#102f3b;border-radius:8px;min-height:116px;padding:9px}
+.bookArt46 img{width:140px;height:110px;object-fit:contain;image-rendering:pixelated}
+.bookDetail46 h3{font-size:19px;color:#ffedc6;margin:10px 0 8px}
+.bookDetail46 h3 small{color:var(--rank19);font-size:12px;margin-right:8px}
+.bookDetail46 dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 12px;margin:12px 0;font-size:12px;line-height:1.5}
+.bookDetail46 dt{color:#a9c6c8}.bookDetail46 dd{margin:0;color:#edf1df;overflow-wrap:anywhere}
+#sheet .bookBack46{width:100%;margin-top:8px;min-height:38px}
+@media(prefers-reduced-motion:reduce){#sheet[data-panel="fishing"] .fishscene12 .fishjump12.catchPop46{animation:none!important}}
+.motionoff12 #sheet[data-panel="fishing"] .fishscene12 .fishjump12.catchPop46{animation:none!important}
+
+</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.46　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat lunaStat37" data-menu="luna37" aria-label="ルナコインショップ"><span class="lunaCoin37" aria-hidden="true">☾</span><div><small>ルナコイン</small><b>— LC</b></div></button><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
 <script src="assets09/pixel-art-011.js"></script><script src="assets09/fishing-scene-015.js"></script><script src="assets09/fishing-scene-017.js"></script><script src="assets09/fishing-art-020.js"></script><script src="assets09/chicken-art-021.js?v=021"></script><script src="assets09/chicken-premium-026.js?v=026"></script><script src="assets09/cow-art-028.js?v=028"></script><script src="assets09/pig-art-029.js?v=029"></script><script src="assets09/fishing-art-045.js?v=045"></script><script>
 const A=window.FARMELUNE_ART;
 if(Object.keys(A).length!==32){document.getElementById("toast").textContent="画像の読み込みに失敗しました。再読み込みしてください。";throw Error("Artwork incomplete");}
@@ -432,7 +470,7 @@ function playerSkin36(phase='idle',id=s.playerSkin36){
  let catalog=window.FARMELUNE_PLAYER_SKINS36||{},def=typeof id==='string'&&id!=='default'&&Object.hasOwn(catalog,id)?catalog[id]:null;
  const src=key=>typeof key==='string'&&Object.hasOwn(A,key)&&typeof A[key]==='string'&&A[key]?A[key]:null;
  let mapSrc=src(def?.map)||A.farmer,fishSrc=src(def?.poses?.[phase])||src(def?.fishing)||mapSrc;
- let h=def?.hands?.[phase]||def?.hand,hand=Array.isArray(h)&&h.length===2&&h.every(Number.isFinite)&&h[0]>=0&&h[0]<=160&&h[1]>=0&&h[1]<=96?{x:h[0],y:h[1]}:{x:26,y:52.5};
+ let h=def?.hands?.[phase]||def?.hand,hand=Array.isArray(h)&&h.length===2&&h.every(Number.isFinite)&&h[0]>=0&&h[0]<=160&&h[1]>=0&&h[1]<=96?{x:h[0],y:h[1]}:{x:31,y:53.5};
  return {id:def?id:'default',mapSrc,fishSrc,hand}
 }
 function playerSkinSet36(id){
@@ -938,9 +976,13 @@ function fishShipSell35(type,ask=confirm){
 }
 let fishStockBack35=false;
 
+
+let lastPopped46=null;
+function fishCatchSprite46(last){if(!last||last.fail)return '';let pop=last!==lastPopped46;lastPopped46=last;let loot=last.loot!==undefined||last.treasure,rank=loot?'':fishDefs12[last.i]?.[1],scale=rank==='LR'?1.08:rank==='UR'?1.04:1;return '<img class="fishjump12'+(pop&&motion12()?' catchPop46':'')+(loot?' catchLoot46':'')+'" src="'+chickenEscape24(A[catchArt19(last)])+'" alt="" style="scale:'+scale+'">'}
+
 function fishingRender12(){let v=state12(),phase=fishingPhase12(),q=v.attempt,last=v.last,place=fishProgress32().place;
 if(phase==='expired'){fishFail12();return}
-let msg={idle:'餌を選んで釣りをしよう',cast:'キャスト！',wait:'魚が来るまで待とう…',bite:'',strike:'緑のゾーンでタップ！'}[phase],h='<div class="fishscene12 '+phase+(phase==='idle'&&last&&!last.fail?' landed19':'')+(phase==='idle'&&last&&!last.fail&&((last.i!==undefined&&fishDefs12[last.i][1]==='LR')||last.loot===0||last.treasure)?' legendary19':'')+' place33 p33_'+place+'">'+fishBgHtml33(place,phase)+fishLayers34(phase,q)+'<div class="pondShadows19" aria-hidden="true"><i></i><i></i><i></i></div><div class="landSplash19" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'+(msg?'<div class="hint12">'+msg+'</div>':'')+(phase==='idle'&&last&&!last.fail?'<img class="fishjump12" src="'+A[catchArt19(last)]+'" alt="">':'')+'</div>';
+let msg={idle:'餌を選んで釣りをしよう',cast:'キャスト！',wait:'魚が来るまで待とう…',bite:'',strike:'緑のゾーンでタップ！'}[phase],h='<div class="fishscene12 '+phase+(phase==='idle'&&last&&!last.fail?' landed19':'')+(phase==='idle'&&last&&!last.fail&&((last.i!==undefined&&fishDefs12[last.i][1]==='LR')||last.loot===0||last.treasure)?' legendary19':'')+' place33 p33_'+place+'">'+fishBgHtml33(place,phase)+fishLayers34(phase,q)+'<div class="pondShadows19" aria-hidden="true"><i></i><i></i><i></i></div><div class="landSplash19" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'+(msg?'<div class="hint12">'+msg+'</div>':'')+(phase==='idle'?fishCatchSprite46(last):'')+'</div>';
 if(phase==='idle'&&last)h+=catchResult19(last)+rodResult43(last);h=fishHeader35(phase!=='idle')+h;
 if(phase==='strike'){let z=rodZone43(q);h+='<div class="fishbar12"><div class="zone12" style="left:'+z.target+'%;width:'+z.width+'%"><i class="rodPerfect43" style="left:'+((z.width/2-4)/z.width*100)+'%;width:'+(8/z.width*100)+'%"></i></div><div id="needle12" class="needle12" style="left:'+gauge12()+'%"></div></div><div id="fishClock12">残り '+Math.max(0,Math.ceil((8000-(now()-q.strike))/1000))+'秒</div>';}
 if(phase!=='idle')h+=fishControl34(phase);
@@ -950,16 +992,24 @@ screen10(fishPlaces32[fishProgress32().place].name+'・釣り場',h);let el=$('s
 let fishShown12='';
 
 let fishTab19='fish';
-function fishBook12(){let v=state12(),legacy=fishTab19==='legacy',isFish=fishTab19!=='loot',defs=isFish?fishDefs12:fishLoot19,book=isFish?v.fishBook:v.lootBook19;
+
+let fishDetail46=-1,bookScroll46=0;
+function fishBookData46(){let v=state12(),legacy=fishTab19==='legacy',isFish=fishTab19!=='loot',defs=isFish?fishDefs12:fishLoot19,book=isFish?v.fishBook:v.lootBook19;
  let ids=defs.map((_,i)=>i).filter(i=>legacy?i<legacyFishCount45&&book[i]>0:(!isFish||i>=legacyFishCount45)&&(fishFilter32<0||(isFish?fishPlaces32[fishFilter32].fish:fishPlaces32[fishFilter32].loot).includes(i)));
- let h='<div class="tabs10">'+b10('魚 '+v.fishBook.slice(legacyFishCount45).filter(Boolean).length+'/'+(fishDefs12.length-legacyFishCount45),'fbookFish')+b10('拾い物 '+v.lootBook19.filter(Boolean).length+'/'+fishLoot19.length,'fbookLoot')+b10('旧釣果 '+v.fishBook.slice(0,legacyFishCount45).filter(Boolean).length,'fbookLegacy45')+'</div>';
- if(!legacy)h+=invTabs27([['-1','全釣り場'],...fishPlaces32.map((a,i)=>[String(i),a.name])],String(fishFilter32),'fishFilter32','fishFilter32');
- else h+='<p>以前の魚は記録・所持品として保存されます。新しい釣り場では釣れません。</p>';
- h+='<p>発見 '+ids.filter(i=>book[i]>0).length+' / '+ids.length+' 種類</p><div class="fishBook19">';
- for(let rank of ranks)for(let i of ids){let a=defs[i];if(a[1]!==rank)continue;let found=book[i]>0,desc=found?(isFish?'累計 '+book[i]+'匹<br>最大 '+v.fishBest[i]+' cm<br>最大重量 '+fishWeightText38(v.fishWeightBest38[i])+'<br>所持 '+v.fishStock[i]+'匹':'累計 '+book[i]+'個<br>所持 '+v.lootStock19[i]+'個<br>'+a[3]):'未発見';
- h+='<div class="fishEntry19 rank'+rank+'"><small>'+rank+'</small>'+(found?icon((isFish?'fish12_':'fishloot19_')+i):'<div class="fishUnknown19">？</div>')+'<b>'+(found?a[0]:'？？？')+'</b><span>'+desc+'</span><span class="fishHabitat32">'+fishHabitat32(i,isFish)+'</span></div>'}
- h+='</div>'+b10('釣り場へ戻る','nav:fishing');screen10('釣果図鑑',h)
+ return {v,legacy,isFish,defs,book,ids}}
+function fishBook12(){let {v,legacy,isFish,defs,book,ids}=fishBookData46(),esc=chickenEscape24;
+ if(fishDetail46>=0&&ids.includes(fishDetail46)&&book[fishDetail46]>0){let i=fishDetail46,a=defs[i],fields=isFish?[['累計',fmt(book[i])+' 匹'],['所持',fmt(v.fishStock[i])+' 匹'],['最大体長',v.fishBest[i]+' cm'],['最大重量',fishWeightText38(v.fishWeightBest38[i])],['出荷価格',fmt(a[2])+' G'],['生息地',fishHabitat32(i,true)]]:[['累計',fmt(book[i])+' 個'],['所持',fmt(v.lootStock19[i])+' 個'],['説明',a[3]],['入手場所',fishHabitat32(i,false)]];
+ let h='<button class="fishSub35 bookBack46" data-a="v10bookBack46">‹ 図鑑一覧へ戻る</button><div class="bookDetail46 rank'+a[1]+'"><div class="bookArt46">'+icon((isFish?'fish12_':'fishloot19_')+i)+'</div><h3><small>'+a[1]+'</small>'+esc(a[0])+'</h3><dl>'+fields.map(([k,val])=>'<dt>'+esc(k)+'</dt><dd>'+esc(val)+'</dd>').join('')+'</dl></div>';screen10('釣果詳細',h);return}
+ let tabs=[['fish','魚',v.fishBook.slice(legacyFishCount45).filter(Boolean).length+'/'+(fishDefs12.length-legacyFishCount45),'fbookFish'],['loot','拾い物',v.lootBook19.filter(Boolean).length+'/'+fishLoot19.length,'fbookLoot'],['legacy','旧釣果',v.fishBook.slice(0,legacyFishCount45).filter(Boolean).length,'fbookLegacy45']];
+ let h='<div class="bookTabs46" role="group" aria-label="図鑑の種類">'+tabs.map(a=>'<button type="button" class="'+(fishTab19===a[0]?'on46':'')+'" aria-pressed="'+(fishTab19===a[0])+'" data-a="v10'+a[3]+'">'+a[1]+'<small>'+a[2]+'</small></button>').join('')+'</div>';
+ if(!legacy)h+='<div class="bookFilter46"><label for="bookPlace46">釣り場</label><select id="bookPlace46" aria-label="釣り場を絞り込む">'+[['-1','全釣り場'],...fishPlaces32.map((a,i)=>[String(i),a.name])].map(([value,name])=>'<option value="'+value+'" '+(String(fishFilter32)===value?'selected':'')+'>'+esc(name)+'</option>').join('')+'</select></div>';
+ else h+='<p>以前の魚の記録です。新しい釣り場では釣れません。</p>';
+ let foundCount=ids.filter(i=>book[i]>0).length;h+='<div class="bookProgress46"><strong>発見 '+foundCount+' / '+ids.length+'</strong><div class="bookMeter46"><i style="width:'+(ids.length?foundCount/ids.length*100:0)+'%"></i></div><span>'+Math.floor(ids.length?foundCount/ids.length*100:0)+'%</span></div><div class="fishBook19 bookGrid46">';
+ for(let rank of ranks)for(let i of ids){let a=defs[i];if(a[1]!==rank)continue;let found=book[i]>0,count=isFish?v.fishStock[i]:v.lootStock19[i];
+ h+='<button type="button" class="fishEntry19 rank'+rank+'" '+(found?'data-a="v10bookDetail46:'+i+'" aria-label="'+esc(a[0])+'の詳細"':'disabled aria-label="未発見 '+rank+'"')+'><small>'+rank+'</small>'+(found?icon((isFish?'fish12_':'fishloot19_')+i):'<div class="fishUnknown19">？</div>')+'<b>'+(found?esc(a[0]):'？？？')+'</b><span>'+(found?'所持 '+fmt(count)+(isFish?'匹':'個'):'未発見')+'</span></button>'}
+ h+='</div>'+(!ids.length?'<p>まだ記録がありません。</p>':'')+'<button class="fishSub35 bookBack46" data-a="v10nav:fishing">釣り場へ戻る</button>';screen10('釣果図鑑',h)
 }
+
 // Arena: calculate the result once and save it, then show a skippable replay of real HP changes.
 let replay12=null;
 function battle12(i){let e=extra10();if(!e.pets.every(Boolean)||i<0||i>2)return;let team=e.team.map(j=>({id:j,hp:100+Math.floor(e.petXP[j]/30)*8,atk:20+Math.floor(e.petXP[j]/30)*2})),rival=[0,1,2].map(j=>({id:(j+i)%3,hp:70+i*25,atk:15+i*6})),strong=[1,2,0],steps=[],round=0;
@@ -970,7 +1020,7 @@ function battleRender12(){let r=replay12;if(!r){screen10('ペットアリーナ'
 const beforeRender12=render;render=function(){if(panel==='fishing')return fishingRender12();if(panel==='fishbook12')return fishBook12();if(panel==='battle12')return battleRender12();if(panel==='settings'){screen10('設定','<p>演出を減らすと農園の動きや装飾効果を控えめにできます。端末の動作軽減設定も尊重します。</p>'+b10(state12().motion?'演出：ON':'演出：OFF','motion')+'<p>保存先はこの端末です。</p>'+btn('最初から','reset')+'<p><a style="color:#ffdc91" href="classic-08.html">Ver.0.8（旧版）</a></p>');return}beforeRender12()};
 const beforeClick12=$('sheet').onclick;
 $('sheet').onclick=function(ev){let b=ev.target.closest('[data-a]');if(!b||b.disabled)return;let a=b.dataset.a;
-if(a==='v10fstart')return fishStart12();if(a==='v10fhook')return fishHook12();if(a==='v10fcatch')return fishCatch12();if(a==='v10fbook')return open('fishbook12');if(a==='v10fbookFish'||a==='v10fbookLoot'||a==='v10fbookLegacy45'){fishTab19=a==='v10fbookFish'?'fish':a==='v10fbookLoot'?'loot':'legacy';render();return}if(a==='v10flootSell'){let g=lootValue19();if(g){state12().lootStock19.fill(0);s.coins+=g;extra10().earned+=g;update('拾い物を出荷 '+fmt(g)+' G')}return}if(a==='v10fsell'){let g=fishValue12();if(s.fish){s.coins+=g;s.fish=0;state12().fishStock.fill(0);extra10().earned+=g;update('魚を出荷：'+fmt(g)+' G')}return}
+if(a==='v10fstart')return fishStart12();if(a==='v10fhook')return fishHook12();if(a==='v10fcatch')return fishCatch12();if(a==='v10fbook'){fishDetail46=-1;fishTab19='fish';fishFilter32=fishProgress32().place;bookScroll46=0;return open('fishbook12')}if(a==='v10fbookFish'||a==='v10fbookLoot'||a==='v10fbookLegacy45'){fishTab19=a==='v10fbookFish'?'fish':a==='v10fbookLoot'?'loot':'legacy';fishDetail46=-1;render();$('sheet').scrollTop=0;return}if(a==='v10flootSell'){let g=lootValue19();if(g){state12().lootStock19.fill(0);s.coins+=g;extra10().earned+=g;update('拾い物を出荷 '+fmt(g)+' G')}return}if(a==='v10fsell'){let g=fishValue12();if(s.fish){s.coins+=g;s.fish=0;state12().fishStock.fill(0);extra10().earned+=g;update('魚を出荷：'+fmt(g)+' G')}return}
 if(a==='v10motion'){let v=state12();v.motion=!v.motion;$('app').classList.toggle('motionoff12',!v.motion);save();render();return}
 if(a.startsWith('v10battle:'))return battle12(+a.split(':')[1]);if(a==='v10bSpeed'&&replay12){replay12.speed=replay12.speed===1?2:1;render();return}if(a==='v10bSkip'&&replay12){replay12.n=replay12.steps.length;render();return}
 let before=s.coins,e=extra10(),water=e.water,chests=e.chests,huts=sum10(e.hut),facCount=s.fac.filter(Boolean).length,boost=[...e.boost],land=count(),p=s.plots[selected];beforeClick12(ev);
@@ -1572,6 +1622,8 @@ $('sheet').onclick=function(ev){
  if(cmd==='v10fishShipBack35'){fishStockBack35=false;return open('fishShip35')}
  if(cmd==='v10fishPlaces32'&&!s.fishEnd)return open('fishPlaces32');
  if(cmd==='v10fishPlaceGo32')return fishPlaceSelect32(i);
+ if(cmd==='v10bookDetail46'&&panel==='fishbook12'){let d=fishBookData46();if(Number.isInteger(i)&&d.ids.includes(i)&&d.book[i]>0){bookScroll46=$('sheet').scrollTop;fishDetail46=i;render();$('sheet').scrollTop=0}return}
+ if(cmd==='v10bookBack46'&&panel==='fishbook12'){fishDetail46=-1;render();$('sheet').scrollTop=bookScroll46;return}
  if(cmd==='v10fishFilter32'&&Number.isInteger(i)&&i>=-1&&i<fishPlaces32.length){fishFilter32=i;render();return}
  if(cmd==='v10gearOpen31'&&!s.fishEnd){gearTab31=x==='bait'?'bait':'rod';return open('gear31')}
  if(cmd==='v10gearTab31'&&['rod','bait'].includes(x)){gearTab31=x;render();return}
@@ -1621,6 +1673,7 @@ $('sheet').onclick=function(ev){
  if(['v10hut','v10animal','v10animalget','v10animalSell'].includes(cmd)&&(i===0||i===2)){facility=i===0?0:1;return open('facility')}
  return clickBefore16(ev)
 };
+$('sheet').addEventListener('change',ev=>{if(panel==='fishbook12'&&ev.target.id==='bookPlace46'){let i=Number(ev.target.value);if(Number.isInteger(i)&&i>=-1&&i<fishPlaces32.length){fishFilter32=i;fishDetail46=-1;render();$('sheet').scrollTop=0}}});
 $('sheet').addEventListener('keydown',ev=>{let a=ev.target.closest('.chicken21[data-a],.cow28[data-a],.pig29[data-a]');if(a&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();a.click()}});
 barnState16();cookState25();fishProgress32();fishClearResult36();save();
 
