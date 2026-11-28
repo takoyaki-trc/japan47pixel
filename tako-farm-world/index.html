@@ -194,8 +194,26 @@ header{padding:7px 9px;background:#0d2530}.menu button{font-size:12px;min-height
 #sheet[data-panel="fishing"] .fishHitBadge17 span{display:flex;width:100%;white-space:normal;text-align:center;font-size:clamp(11px,3.7vw,16px);line-height:1.2;padding:6px 3px;border-radius:2px}
 .fishEntry19 img{height:82px;image-rendering:pixelated}
 @media(max-width:350px){#sheet[data-panel="fishing"]{padding:11px}.fishActions20{gap:8px}.fishActions20 button small{width:100%}.fishresult12.catch19{gap:6px;padding:8px}.catchInfo19 b{font-size:16px}}
-</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.20　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
-<script src="assets09/pixel-art-011.js"></script><script src="assets09/fishing-scene-015.js"></script><script src="assets09/fishing-scene-017.js"></script><script src="assets09/fishing-art-020.js"></script><script>
+
+.chickenBarn21 .barn16floor.hen{height:clamp(148px,34vw,185px)}
+.chickenBarn21 .barn16animal.chicken21{width:28%;height:48%;top:23%;transition:left .9s steps(6,end),top .9s steps(6,end);z-index:2}
+.eggRow21{position:absolute;bottom:8px;left:3%;right:3%;height:29%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;z-index:4;pointer-events:none}
+.eggSlot21{position:relative;min-width:0;display:flex;align-items:center;justify-content:center;border:1px solid transparent}
+.eggSlot21.occupied{background:#a8794540;border:1px dashed #916438;border-radius:5px}
+.eggSlot21.laid{background:#e5bf7555;border:1px solid #d8ac58}
+.eggSlot21 .egg21{position:absolute;inset:0 0 9px;width:100%;height:calc(100% - 9px);object-fit:contain;image-rendering:pixelated}
+.eggSlot21 small{position:absolute;bottom:0;left:0;right:0;color:#654529;font-size:9px;font-weight:800;text-align:center;line-height:10px}
+.chickenBarn21 .barn16actions{gap:7px;padding:7px}
+.chickenBarn21 .barn16actions button{min-height:38px;font-size:12px}
+.skinNotice21{padding:10px;background:#3c3527;border:1px solid #c4a75e;color:#f8df9c;line-height:1.55;border-radius:7px;font-weight:bold}
+.skinNotice21 small{font-weight:normal;color:#e7dcc2}
+.skinCard21.active21{border:2px solid #dfb55c}.skinCard21 .skinEgg21 img{width:36px;height:36px}
+.skinCard21 .skinEgg21{margin:3px 0 7px}
+@media(max-width:560px){.chickenBarn21 .barn16grid{grid-template-columns:1fr;gap:12px}.chickenBarn21 .barn16floor.hen{height:clamp(150px,42vw,190px)}}
+@media(prefers-reduced-motion:reduce){.chickenBarn21 .barn16animal.chicken21{transition:none}}
+.motionoff12 .chickenBarn21 .barn16animal.chicken21{transition:none}
+</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.21　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
+<script src="assets09/pixel-art-011.js"></script><script src="assets09/fishing-scene-015.js"></script><script src="assets09/fishing-scene-017.js"></script><script src="assets09/fishing-art-020.js"></script><script src="assets09/chicken-art-021.js?v=021"></script><script>
 const A=window.FARMELUNE_ART;
 if(Object.keys(A).length!==32){document.getElementById("toast").textContent="画像の読み込みに失敗しました。再読み込みしてください。";throw Error("Artwork incomplete");}
 const art011=window.installFarmeluneArt011(A);document.getElementById('coin011').src=A.coin;
@@ -711,6 +729,15 @@ function barnProductArt17(i,b,rare=false){let [m,l,d,o]=barnPal17[b],c=rare?'#f8
 }
 for(let i=0;i<3;i++){for(let b=0;b<8;b++){A['barnAnimal17_'+i+'_'+b]=barnAnimalArt17(i,b);A['barnProduct17_'+i+'_'+b]=barnProductArt17(i,b)}A['barnRare16_'+i]=barnProductArt17(i,6,true)}
 A.pig17=A.barnAnimal17_2_0;A.pork17=A.barnProduct17_2_0;
+const chickenNames21=['white','brown','black','red','silver','blue','gold','moon','sakura','witch','crystal','royal','berry','snow','steam','rainbow'];
+const chickenPremium21=['さくら鶏','ハロウィン鶏','クリスタル鶏','王冠鶏','いちごチョコ鶏','雪だるま鶏','スチーム鶏','虹羽鶏'];
+const chickenArt21=window.FARMELUNE_CHICKEN21;
+if(chickenArt21){chickenNames21.forEach((key,b)=>{A['chickenSkin21_'+b]=chickenArt21.frames[key][0];A['chickenEgg21_'+b]=chickenArt21.eggs[key];if(b<8){A['barnAnimal17_0_'+b]=A['chickenSkin21_'+b];A['barnProduct17_0_'+b]=A['chickenEgg21_'+b]}});A.egg=A.chickenEgg21_0;A.hen=A.chickenSkin21_0}
+function chickenLook21(a){return Number.isInteger(a.skin21)&&a.skin21>=8&&a.skin21<16?a.skin21:(a.breed||0)}
+function chickenTitle21(a){let b=chickenLook21(a);return b>=8?chickenPremium21[b-8]:barnCfg16[0].names[b]}
+function barnLookArt21(i,a){return i===0&&chickenArt21?'chickenSkin21_'+chickenLook21(a):'barnAnimal17_'+i+'_'+(a.breed||0)}
+function barnEggArt21(a){return chickenArt21?'chickenEgg21_'+chickenLook21(a):'barnProduct17_0_'+(a.breed||0)}
+
 function barnBreedPrice17(i,b){return barnCfg16[i].price*barnPrice17[b]}
 function barnBreedLevel17(i,b){return barnCfg16[i].unlock[0]+b*2}
 function barnGradePrice17(i,b){return Math.round(barnCfg16[i].sell*barnValue17[b])}
@@ -734,11 +761,12 @@ function barnBreedRender17(i){let c=barnCfg16[i],j=barnChosen17,v=barnState16(),
 }
 function barnRender16(i){
  let c=barnCfg16[i],v=barnState16(),pens=v.pens[i],f=barnFac17[i];
- let h='<div class="barn16"><div class="barn16header"><span>飼育区画 '+v.unlocked[i]+'/4</span><span>'+barnCount16(i)+' / '+v.unlocked[i]*3+c.unit+'</span></div><div class="barn16grid">';
+ let h='<div class="barn16 '+(i===0?'chickenBarn21':'')+'"><div class="barn16header"><span>飼育区画 '+v.unlocked[i]+'/4</span><span>'+barnCount16(i)+' / '+v.unlocked[i]*3+c.unit+'</span></div><div class="barn16grid">';
  pens.forEach((p,j)=>{
   if(j>=v.unlocked[i]){h+='<div class="barn16pen lock17"><div class="barn16title">区画 '+String(j+1).padStart(2,'0')+'</div><div class="barn16floor"><div class="barn16locked17"><b>🔒</b>Lv.'+c.unlock[j]+' で解放</div></div><div class="barn16actions">'+b10('区画を拡張','barnExpand:'+i+':'+j,j!==v.unlocked[i]||level()<c.unlock[j])+'</div></div>';return}
-  let animals=p.map((a,k)=>'<img class="barn16animal" data-barn-animal16="'+k+'" src="'+A['barnAnimal17_'+i+'_'+(a.breed||0)]+'" alt="'+c.names[a.breed||0]+'" style="left:'+(5+k*23)+'%;top:'+(30+k%2*14)+'%">').join('');
-  h+='<div class="barn16pen" data-barn-pen16="'+j+'"><div class="barn16title"><span>区画 '+String(j+1).padStart(2,'0')+'</span><span>'+p.length+'/3'+c.unit+'</span></div><div class="barn16floor '+['hen','cow','pig'][i]+'"><div class="barn16hay"></div><div class="barn16trough"></div>'+(!p.length?'<div class="barn16empty">空き区画</div>':'')+animals+'<img class="barn16product" src="'+A[c.good]+'" alt="" hidden></div><div class="barn16status"></div><div class="barn16actions">'+b10(p.length>=3?'満員':c.animal+'を選ぶ','barnChoose:'+i+':'+j,p.length>=3)+b10('回収','barnGet:'+i+':'+j,true)+(p.length?b10('家畜の管理','barnManage:'+i+':'+j):'')+'</div></div>';
+  let animals=p.map((a,k)=>'<img class="barn16animal '+(i===0?'chicken21':'')+'" data-barn-animal16="'+k+'" src="'+A[barnLookArt21(i,a)]+'" alt="'+(i===0?chickenTitle21(a):c.names[a.breed||0])+'" style="left:'+(i===0?3+k*33:5+k*23)+'%;top:'+(i===0?23:30+k%2*14)+'%">').join('');
+  let products=i===0?'<div class="eggRow21" aria-label="各ニワトリの卵">'+Array.from({length:3},(_,k)=>'<div class="eggSlot21 '+(p[k]?'occupied':'')+'"><img class="barn16product egg21" data-egg-slot21="'+k+'" src="'+A[p[k]?barnEggArt21(p[k]):'barnProduct17_0_0']+'" alt="卵 '+(k+1)+'" hidden><small>'+(p[k]?'0'+(k+1):'–')+'</small></div>').join('')+'</div>':'<img class="barn16product" src="'+A[c.good]+'" alt="" hidden>';
+  h+='<div class="barn16pen" data-barn-pen16="'+j+'"><div class="barn16title"><span>区画 '+String(j+1).padStart(2,'0')+'</span><span>'+p.length+'/3'+c.unit+'</span></div><div class="barn16floor '+['hen','cow','pig'][i]+'"><div class="barn16hay"></div><div class="barn16trough"></div>'+(!p.length?'<div class="barn16empty">空き区画</div>':'')+animals+products+'</div><div class="barn16status"></div><div class="barn16actions">'+b10(p.length>=3?'満員':c.animal+'を選ぶ','barnChoose:'+i+':'+j,p.length>=3)+b10('回収','barnGet:'+i+':'+j,true)+(p.length?b10('家畜の管理','barnManage:'+i+':'+j):'')+'</div></div>';
  });
  h+='</div></div><div id="barnRareNotice16" class="barn16rare" hidden></div>';
  if(v.legacy[i])h+=card10('以前の生産分','<span id="barnLegacyTime16"></span>',c.good,b10('回収','barnLegacy:'+i,v.legacy[i]>now()));
@@ -752,18 +780,30 @@ function barnTick16(){
   let j=+el.dataset.barnPen16,p=v.pens[i][j],ready=p.filter(a=>a.end<=now()),n=ready.length;
   let next=p.filter(a=>a.end>now()).map(a=>a.end);let status=el.querySelector('.barn16status'),button=el.querySelector('[data-a^="v10barnGet:"]');
   el.classList.toggle('ready',n>0);status.textContent=n?c.product+' '+n+'個 回収可能':p.length?'あと '+seconds(Math.min(...next))+'秒':'動物を迎えよう';
-  button.disabled=!n;button.textContent=n?'回収 '+n+'個':'生産待ち';let product=el.querySelector('.barn16product');product.hidden=!n;if(n){let src=A['barnProduct17_'+i+'_'+(ready[0].breed||0)];if(product.getAttribute('src')!==src)product.src=src}
-  if(motion12())for(let a of el.querySelectorAll('.barn16animal')){if(Math.random()<.65){let old=parseFloat(a.style.left),x=5+Math.floor(Math.random()*(i?54:60)),y=24+Math.floor(Math.random()*(i?23:28));a.style.left=x+'%';a.style.top=y+'%';a.style.transform=x<old?'scaleX(-1)':'scaleX(1)'}}
+  button.disabled=!n;button.textContent=n?'回収 '+n+'個':'生産待ち';if(i===0){for(let product of el.querySelectorAll('[data-egg-slot21]')){let a=p[Number(product.dataset.eggSlot21)],show=!!a&&a.end<=now();product.hidden=!show;product.parentElement.classList.toggle('laid',show);if(show){let src=A[barnEggArt21(a)];if(product.getAttribute('src')!==src)product.src=src}}}else{let product=el.querySelector('.barn16product');product.hidden=!n;if(n){let src=A['barnProduct17_'+i+'_'+(ready[0].breed||0)];if(product.getAttribute('src')!==src)product.src=src}}
+  if(motion12())for(let a of el.querySelectorAll('.barn16animal')){if(Math.random()<.55){let old=parseFloat(a.style.left),k=Number(a.dataset.barnAnimal16),x=i===0?2+k*33+Math.floor(Math.random()*5):5+Math.floor(Math.random()*54),y=i===0?20+Math.floor(Math.random()*5):24+Math.floor(Math.random()*23);a.style.left=x+'%';a.style.top=y+'%';a.style.transform=i===0?(x>old?'scaleX(-1)':'scaleX(1)'):(x<old?'scaleX(-1)':'scaleX(1)');if(i===0)a.dataset.walkUntil21=String(now()+1000)}}
  }
  for(let b of document.querySelectorAll('[data-a^="v10barnExpand:"]')){let j=Number(b.dataset.a.split(':')[2]);b.disabled=j!==v.unlocked[i]||level()<c.unlock[j]}
  let legacy=$('barnLegacyTime16');if(legacy){legacy.textContent=v.legacy[i]<=now()?'回収可能':seconds(v.legacy[i])+'秒';let b=document.querySelector('[data-a="v10barnLegacy:'+i+'"]');if(b)b.disabled=v.legacy[i]>now()}
 }
 
-let barnManagePen18=0;
+let barnManagePen18=0,barnSkinPen21=0,barnSkinSlot21=0;
+function barnSkinOpen21(j,k){let p=barnState16().pens[0]?.[j];if(!chickenArt21||!p?.[k]||!s.fac[0])return;barnSkinPen21=j;barnSkinSlot21=k;panel='barnSkin21';render();$('sheet').scrollTop=0}
+function barnSkinRender21(){let j=barnSkinPen21,k=barnSkinSlot21,a=barnState16().pens[0]?.[j]?.[k];if(!a)return barnRender16(0);
+ let h='<div class="skinNotice21">プレミアム鶏の着せ替えテスト<br><small>テスト版では無料。生産時間・品質・売価は元の品種のままです。正式な課金機能は未実装です。</small></div><p>対象：'+chickenTitle21(a)+'</p><div class="barn16breed17">';
+ for(let b of [-1,8,9,10,11,12,13,14,15]){let v=b<0?(a.breed||0):b,selected=b<0?chickenLook21(a)<8:chickenLook21(a)===b;h+='<div class="breed17 skinCard21 '+(selected?'active21':'')+'">'+icon('chickenSkin21_'+v)+'<b>'+(b<0?'元の品種':chickenPremium21[b-8])+'</b><div class="skinEgg21">'+icon('chickenEgg21_'+v)+'</div>'+b10(selected?'着用中':'試着する','barnSkinApply:'+j+':'+k+':'+b,selected)+'</div>'}
+ h+='</div>'+b10('管理へ戻る','barnManage:0:'+j);screen10('プレミアム鶏スキン',h)}
+function barnSkinApply21(j,k,b){let a=barnState16().pens[0]?.[j]?.[k];if(!a||!s.fac[0]||!chickenArt21||!(b===-1||(Number.isInteger(b)&&b>=8&&b<16)))return;if(b===-1)delete a.skin21;else a.skin21=b;save();render()}
+function animateChicken21(){if(!chickenArt21||panel!=='facility'||facility!==0)return;let v=barnState16(),t=now();
+ for(let pen of document.querySelectorAll('[data-barn-pen16]'))for(let el of pen.querySelectorAll('.chicken21')){let a=v.pens[0][Number(pen.dataset.barnPen16)]?.[Number(el.dataset.barnAnimal16)];if(!a)continue;let k=Number(el.dataset.barnAnimal16),b=chickenLook21(a),f=0,phase=(Math.floor(t/190)+k*2);
+ if(motion12()){if(Number(el.dataset.walkUntil21)>t)f=2+phase%4;else if(a.end<=t)f=9+phase%2;else if(Math.floor(t/2100+k)%3===0)f=6+phase%3;else f=phase%2}
+ let src=chickenArt21.frames[chickenNames21[b]][f];if(el.getAttribute('src')!==src)el.src=src}}
+setInterval(animateChicken21,190);
+
 function barnManage18(i,j){let p=barnState16().pens[i]?.[j];if(!s.fac[barnFac17[i]]||!p||!p.length)return;barnManagePen18=j;panel='barnManage18';render();$('sheet').scrollTop=0}
 function barnManageRender18(i){let j=barnManagePen18,c=barnCfg16[i],p=barnState16().pens[i][j];
  let h='<p>区画 '+(j+1)+' ｜ '+p.length+'/3'+c.unit+'<br>入れ替えたい家畜を選んで、野山に返すことができます。購入代金は戻りません。</p>';
- h+=p.map((a,k)=>card10(c.names[a.breed||0],barnQualityName17(i,a.breed||0)+'<br>'+(a.end<=now()?'回収可能':seconds(a.end)+'秒で生産'),'barnAnimal17_'+i+'_'+(a.breed||0),b10('野山に返す','barnRelease:'+i+':'+j+':'+k))).join('');
+ h+=p.map((a,k)=>card10(i===0?chickenTitle21(a):c.names[a.breed||0],barnQualityName17(i,a.breed||0)+'<br>'+(a.end<=now()?'回収可能':seconds(a.end)+'秒で生産'),barnLookArt21(i,a),(i===0&&chickenArt21?b10('着せ替え','barnSkinOpen:'+j+':'+k):'')+b10('野山に返す','barnRelease:'+i+':'+j+':'+k))).join('');
  h+=(!p.length?'<p>この区画には家畜がいません。</p>':'')+b10('小屋へ戻る','barnOpen:'+i);screen10('家畜の管理',h)
 }
 function barnRelease18(i,j,k){
@@ -773,13 +813,13 @@ function barnRelease18(i,j,k){
  if(!confirm(c.names[a.breed||0]+'を野山に返しますか？\\n購入代金は戻らず、育成中の生産物は失われます。'))return false;
  p.splice(k,1);update(c.names[a.breed||0]+'を野山に返しました');return true
 }
-const renderBefore16=render;render=function(){let i=barnIndex17(facility);if(panel==='barnManage18'&&i>=0&&s.fac[facility])return barnManageRender18(i);if(panel==='barnBreeds17'&&i>=0&&s.fac[facility])return barnBreedRender17(i);if(panel==='facility'&&i>=0&&s.fac[facility])return barnRender16(i);return renderBefore16()};
+const renderBefore16=render;render=function(){let i=barnIndex17(facility);if(panel==='barnSkin21'&&i===0)return barnSkinRender21();if(panel==='barnManage18'&&i>=0&&s.fac[facility])return barnManageRender18(i);if(panel==='barnBreeds17'&&i>=0&&s.fac[facility])return barnBreedRender17(i);if(panel==='facility'&&i>=0&&s.fac[facility])return barnRender16(i);return renderBefore16()};
 const clickBefore16=$('sheet').onclick;
 $('sheet').onclick=function(ev){
  let b=ev.target.closest('[data-a]');if(!b||b.disabled)return;let a=b.dataset.a,[cmd,x,y,z]=a.split(':'),i=Number(x),j=Number(y),breed=Number(z),valid=i>=0&&i<3&&Number.isInteger(i);
  if(cmd==='v10barnOpen'&&valid){facility=barnFac17[i];return open('facility')}
  if(cmd==='v10barnChoose'&&valid)return barnBreeds17(i,j);
- if(cmd==='v10barnManage'&&valid)return barnManage18(i,j);
+ if(cmd==='v10barnManage'&&valid)return barnManage18(i,j);if(cmd==='v10barnSkinOpen')return barnSkinOpen21(i,j);if(cmd==='v10barnSkinApply')return barnSkinApply21(i,j,breed);
  if(cmd==='v10barnRelease'&&valid)return barnRelease18(i,j,breed);
  if(cmd==='v10barnExpand'&&valid)return barnExpand17(i,j);
  if(cmd==='v10barnBuy'&&valid)return barnBuy16(i,j,breed);
