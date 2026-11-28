@@ -381,7 +381,15 @@ header{padding:7px 9px;background:#0d2530}.menu button{font-size:12px;min-height
 .eventPrize37 .lunaCoin37{width:24px;height:24px;font-size:17px}
 .eventNotice37{font-size:12px;color:#b6cbd0;line-height:1.6}
 .weightRecord38{color:#ffdb7d;font-size:10px}.fishBook19 .fishEntry19 span{overflow-wrap:anywhere}
-</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.38　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat lunaStat37" data-menu="luna37" aria-label="ルナコインショップ"><span class="lunaCoin37" aria-hidden="true">☾</span><div><small>ルナコイン</small><b>— LC</b></div></button><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
+/* v0.39 farm wanderer and period-isolated event records */
+#map .playerWalk39{z-index:5;pointer-events:auto;cursor:pointer;touch-action:manipulation;transform:translateY(var(--hop39,0px)) scaleX(var(--face39,1));transform-origin:center bottom;image-rendering:pixelated;filter:drop-shadow(0 3px 0 #304f3866);-webkit-tap-highlight-color:transparent}
+#map .playerWalk39:focus-visible{outline:3px solid #ffe59a;outline-offset:3px}
+#map .playerSpeech39{position:absolute;z-index:9;width:max-content;max-width:286px;min-width:100px;padding:12px 14px;background:#fff4d8;color:#4b392c;border:3px solid #785536;border-radius:9px;box-shadow:0 4px #4b3c3055;font-size:23px;font-weight:750;line-height:1.35;text-align:center;pointer-events:none;overflow-wrap:anywhere}
+#map .playerSpeech39:after{content:"";position:absolute;left:var(--tail39,50%);bottom:-12px;width:15px;height:15px;background:#fff4d8;border-right:3px solid #785536;border-bottom:3px solid #785536;transform:translateX(-50%) rotate(45deg)}
+#map .playerSpeech39[hidden]{display:none}
+.eventLocal39{background:#102e39;border:1px solid #46626c;border-radius:8px;padding:9px;margin-top:9px;color:#c5ded8;font-size:12px;line-height:1.6}
+.eventLocal39 strong{color:#ffe19a}
+</style></head><body><main id="app"><header><div class="title"><strong>☾ FARMELUNE</strong><small>TEST 0.39　<a href="classic-08.html" style="color:#e4ce91">旧版</a></small></div><div class="stats"><div class="stat"><span class="coin"><img id="coin011" alt=""></span><div><small>ファームコイン</small><b id="money"></b></div></div><button class="stat lunaStat37" data-menu="luna37" aria-label="ルナコインショップ"><span class="lunaCoin37" aria-hidden="true">☾</span><div><small>ルナコイン</small><b>— LC</b></div></button><button class="stat" data-menu="shop"><img id="seedimg"><div><small>選択中の種</small><b id="seed"></b></div></button><button class="stat" data-menu="profile"><div><small>農園ランク</small><b id="rank"></b></div></button></div><div class="menu" id="menu"></div><div class="xp"><strong id="level"></strong><div class="bar"><i id="xpbar"></i></div><span id="xp"></span><span id="save">保存済み</span></div></header><section class="world" id="world"><div id="map"></div><div class="hud">☀ 晴れ ｜ わたしの農園</div><div class="tools"><button id="plus" aria-label="拡大">＋</button><button id="minus" aria-label="縮小">−</button><button id="home" aria-label="中央に戻る">⌂</button><button id="fields">畑へ</button></div><div class="toast" id="toast">畑をタップして種まき・収穫</div></section><div class="foot"><button id="plantall">一括種まき</button><button id="harvestall">一括収穫</button><button data-menu="stock">倉庫・出荷</button></div><div class="shade" id="shade" hidden></div><section class="sheet" id="sheet" hidden></section></main><script>window.FARMELUNE_ART={};</script><script src="assets09/sprites-01.js"></script><script src="assets09/sprites-02.js"></script><script src="assets09/sprites-03.js"></script><script src="assets09/sprites-04.js"></script><script src="assets09/sprites-05.js"></script><script src="assets09/sprites-06.js"></script><script src="assets09/sprites-07.js"></script><script src="assets09/sprites-08.js"></script><script src="assets09/sprites-09.js"></script><script src="assets09/sprites-10.js"></script><script src="assets09/sprites-11.js"></script>
 <script src="assets09/pixel-art-011.js"></script><script src="assets09/fishing-scene-015.js"></script><script src="assets09/fishing-scene-017.js"></script><script src="assets09/fishing-art-020.js"></script><script src="assets09/chicken-art-021.js?v=021"></script><script src="assets09/chicken-premium-026.js?v=026"></script><script src="assets09/cow-art-028.js?v=028"></script><script src="assets09/pig-art-029.js?v=029"></script><script>
 const A=window.FARMELUNE_ART;
 if(Object.keys(A).length!==32){document.getElementById("toast").textContent="画像の読み込みに失敗しました。再読み込みしてください。";throw Error("Artwork incomplete");}
@@ -427,7 +435,7 @@ A.pigHouse17='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3
 const sprout='data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 20" shape-rendering="crispEdges"><path fill="#365526" d="M7 6h2v13H7zM2 4h6v6H2zM9 2h6v7H9z"/><path fill="#82bc49" d="M3 4h4v4H3zM10 2h4v5h-4zM7 11h2v7H7z"/><path fill="#c2e27a" d="M3 4h3v1H3zM10 2h3v1h-3z"/></svg>`);for(let el of plotEls)el.querySelector('.sprouts').innerHTML=Array.from({length:1},()=>`<img src="${sprout}" alt="">`).join('');
 const wheatStages14=[0,1,2].map(stage=>{let body='<path fill="#335633" d="M19 34h3V'+(stage===0?20:8)+'h-3z"/><path fill="#7eb64a" d="M19 27h-3v-3h-4v-4h5v3h3zM22 24h3v-4h4v-4h-5v3h-2z"/>';if(stage===2)body+='<path fill="#76502c" d="M18 3h5v4h3v4h-2v4h2v4h-3v5h-5v-4h-3v-4h2v-4h-2V8h3z"/><path fill="#dba648" d="M19 5h3v5h2v3h-3v4h3v2h-3v3h-2v-4h-2v-3h3v-4h-3V9h2z"/><path fill="#ffe08a" d="M19 6h2v4h-2zm2 7h2v2h-2zm-3 3h2v2h-2z"/>';return 'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" shape-rendering="crispEdges">'+body+'</svg>')});
 function updateMap(){let src=playerSkin36().mapSrc;if(playerMap36.getAttribute('src')!==src)playerMap36.src=src;plotGroupLabels14.forEach((el,g)=>{el.hidden=own(g*6);el.textContent=landNames[terrain(g*6)]+' ＋ '+fmt(cost(g*6))+'G'});plotEls.forEach((el,i)=>{let p=s.plots[i],im=el.querySelector('.cropimg'),sp=el.querySelector('.sprouts'),label=el.querySelector('.sign'),m=ready(p),locked=!own(i);el.className='plot cell14 '+(locked?'lock':!p?'empty':m?'ready':'empty');im.hidden=!p;sp.hidden=true;if(p){let stage=m?2:(p.end-now())<(p.duration||crops[p.id][3]*1000)*.52?1:0;let src=p.id===0?wheatStages14[stage]:stage===2?A[crops[p.id][6]]:A[crops[p.id][6].replace('crop_','plot_')+'_'+stage];im.classList.toggle('sheetCrop14',p.id!==0&&stage!==2);if(im.getAttribute('src')!==src)im.src=src}label.textContent=locked||!p?'':m?'✓':seconds(p.end)+'s';el.setAttribute('aria-label','畑 '+(group14(i)+1)+' マス '+(i%6+1)+' '+(locked?'未購入':p?crops[p.id][0]+(m?' 収穫可能':' 育成中'):'種まき'))});objs.forEach(({el,idx})=>{if(idx<0)return;let p=s.fac[idx],tag=el.querySelector('.state');el.classList.toggle('lock',!p);tag.hidden=false;tag.textContent=!p?'建設 '+fmt(fac[idx][2])+'G':barnIndex17(idx)>=0?barnMapStatus16(barnIndex17(idx)):p.end?seconds(p.end)?seconds(p.end)+'秒':'回収可能':'稼働待ち'})}
-function plant(i){if(!own(i)||s.plots[i]||!s.seeds[s.seed])return false;let dur=Math.round(crops[s.seed][3]*1000*(1-s.tool*.08)*(terrain(i)===2?.85:1)*(1-.03*extra10().up[0]));s.seeds[s.seed]--;s.plots[i]={id:s.seed,end:now()+dur,duration:dur};return true}function harvest(i){let p=s.plots[i];if(!ready(p))return null;let u=Math.random()/(terrain(i)===3?1.5:1),q=u<.001?4:u<.01?3:u<.05?2:u<.18?1:0,n=terrain(i)===1&&Math.random()<.25?2:1;s.stock[p.id][q]+=n;s.book[p.id][q]+=n;s.xp+=crops[p.id][5];s.harvests+=n;mutate10(+i,p.id);s.plots[i]=null;return ranks[q]+' '+crops[p.id][0]}function tap(i){selected=i;if(!own(i))return open('buyland');if(ready(s.plots[i]))return update(harvest(i)+' を収穫！');if(s.plots[i])return open('water');if(plant(i))update('種をまきました');else open('shop')}$('plantall').onclick=()=>{let n=Object.keys(s.plots).filter(plant).length;update(n?n+'マスに種まき':'種または空き畑がありません')};$('harvestall').onclick=()=>{let a=Object.keys(s.plots).map(harvest).filter(Boolean);update(a.length?a.length+'マスを収穫！':'収穫できる作物はありません')};
+function plant(i){if(!own(i)||s.plots[i]||!s.seeds[s.seed])return false;let dur=Math.round(crops[s.seed][3]*1000*(1-s.tool*.08)*(terrain(i)===2?.85:1)*(1-.03*extra10().up[0]));s.seeds[s.seed]--;s.plots[i]={id:s.seed,end:now()+dur,duration:dur};return true}function harvest(i,earnedAt=now()){let p=s.plots[i];if(!ready(p))return null;let u=Math.random()/(terrain(i)===3?1.5:1),q=u<.001?4:u<.01?3:u<.05?2:u<.18?1:0,n=terrain(i)===1&&Math.random()<.25?2:1;s.stock[p.id][q]+=n;s.book[p.id][q]+=n;s.xp+=crops[p.id][5];s.harvests+=n;eventHarvest39(p.id,q,n,earnedAt);mutate10(+i,p.id);s.plots[i]=null;return ranks[q]+' '+crops[p.id][0]}function tap(i){selected=i;if(!own(i))return open('buyland');if(ready(s.plots[i]))return update(harvest(i)+' を収穫！');if(s.plots[i])return open('water');if(plant(i))update('種をまきました');else open('shop')}$('plantall').onclick=()=>{let n=Object.keys(s.plots).filter(plant).length;update(n?n+'マスに種まき':'種または空き畑がありません')};$('harvestall').onclick=()=>{let a=Object.keys(s.plots).map(i=>harvest(i)).filter(Boolean);update(a.length?a.length+'マスを収穫！':'収穫できる作物はありません')};
 
 /* Grid = two logical map units. Keep fit view, snap enlarged view to physical pixels. */
 let scale=1,fit=1,tx=0,ty=0,first=true,pinchRaw13=null;
@@ -564,7 +572,7 @@ object('dragon0','ドラゴン村','dragon',290,1320,180,130);
 deco('dragon1',160,1390,75,75);deco('dragon2',520,1390,75,75);
 const oldMap10=updateMap;updateMap=function(){oldMap10();let e=extra10();document.querySelectorAll('.placed10,.orchfruit10,.animalmap10,.flagmap10').forEach(n=>n.remove());e.placed.forEach(p=>{let el=deco(decor10[p.id][1],p.x-21,p.y-21,42,42);el.classList.add('placed10');el.style.zIndex='3'});e.trees.forEach((p,i)=>{let el=deco('fruitTree'+p.id,90+i*72,1170,68,85);el.classList.add('orchfruit10');el.style.filter=p.end<=now()?'drop-shadow(0 0 5px #ffdf60)':''});for(let i=0;i<3;i++){let base=[[70,355],[84,1200],[80,550]][i];for(let j=0;j<e.animals[i];j++){let el=deco(animal10[i][5],base[0]+(j%3)*27,base[1]+Math.floor(j/3)*25,25,25);el.classList.add('animalmap10');el.style.zIndex='4'}}let flag=add('div','flagmap10 decor',413,148,55,24);flag.textContent='LUNE';Object.assign(flag.style,{background:['#a8506e','#3d86b4','#429675','#7659a4','#a88632','#35445e'][e.flag],border:'2px solid #dfba70',fontSize:'12px',textAlign:'center',fontWeight:'bold',zIndex:'3'});document.querySelector('.hud').textContent='☀ 晴れ ｜ ⚡ '+e.energy+'/20';};
 const oldUpdate10=update;update=function(t){oldUpdate10(t);if(editing10)editorRender10()};
-function work10(){let e=extra10(),until=Math.min(now(),e.helperEnd);if(!e.helperTick||until<=e.helperTick)return;let elapsed=until-e.helperTick;if(elapsed<1000)return;let start=Math.max(e.helperTick,until-86400000),changed=false;for(let i of Object.keys(s.plots)){let p=s.plots[i],t=start;for(let n=0;n<200;n++){if(p&&p.end<=until){t=Math.max(t,p.end);let r=harvest(i);if(!r)break;p=null;changed=true}if(!p&&s.seeds[s.seed]>0&&t<until){if(!plant(i))break;p=s.plots[i];p.end=t+p.duration;changed=true}else break;if(p.end>until)break}}e.helperTick=until;if(changed){save();stats();updateMap()}}
+function work10(){let e=extra10(),until=Math.min(now(),e.helperEnd);if(!e.helperTick||until<=e.helperTick)return;let elapsed=until-e.helperTick;if(elapsed<1000)return;let start=Math.max(e.helperTick,until-86400000),changed=false;for(let i of Object.keys(s.plots)){let p=s.plots[i],t=start;for(let n=0;n<200;n++){if(p&&p.end<=until){t=Math.max(t,p.end);let r=harvest(i,t);if(!r)break;p=null;changed=true}if(!p&&s.seeds[s.seed]>0&&t<until){if(!plant(i))break;p=s.plots[i];p.end=t+p.duration;changed=true}else break;if(p.end>until)break}}e.helperTick=until;if(changed){save();stats();updateMap()}}
 extra10();work10();
 
 
@@ -777,7 +785,7 @@ function fishCatch12(t=now()){
   s.xp+=i===0?12:4;v.last={loot:i,g,perfect,newFind};let xp=fishGain32(a[1],perfect,true);v.last.xp32=xp.gain;update(a[0]+' を釣りました！'+fishGainText32(xp));if(i===0||i===2)banner12('fishloot19_'+i,a[0]+' 発見！','+'+g+' G',true);return true
  }
  let i=catch19.i,a=fishDefs12[i],cm=a[3]+Math.floor(Math.random()*(a[4]-a[3]+1)),newFind=!v.fishBook[i];
- let grams=fishWeight38(i,cm),weightRecord=fishRecordWeight38(v,i,grams);v.fishStock[i]++;v.fishBook[i]++;v.fishBest[i]=Math.max(v.fishBest[i],cm);s.fish++;s.xp+=6+ranks.indexOf(a[1])*3;v.last={i,cm,grams,weightRecord,perfect,newFind};let xp=fishGain32(a[1],perfect);v.last.xp32=xp.gain;update(a[0]+' を釣りました！'+fishGainText32(xp));
+ let grams=fishWeight38(i,cm),weightRecord=fishRecordWeight38(v,i,grams);eventFish39(i,grams,q.place32??0,t);v.fishStock[i]++;v.fishBook[i]++;v.fishBest[i]=Math.max(v.fishBest[i],cm);s.fish++;s.xp+=6+ranks.indexOf(a[1])*3;v.last={i,cm,grams,weightRecord,perfect,newFind};let xp=fishGain32(a[1],perfect);v.last.xp32=xp.gain;update(a[0]+' を釣りました！'+fishGainText32(xp));
  if(a[1]==='LR')banner12('fish12_'+i,'LEGENDARY！',a[0]+' '+cm+' cm',true);return true
 }
 function catchArt19(last){return last.loot!==undefined?'fishloot19_'+last.loot:last.treasure?'fishloot19_0':'fish12_'+last.i}
@@ -1393,12 +1401,78 @@ function lunaPreview37(){
  let h='<div class="lunaWallet37"><span class="lunaCoin37" aria-hidden="true">☾</span><div><small>ルナコイン残高</small><strong>— LC</strong><small>アカウント・決済未接続</small></div></div><div class="lunaPanel37"><h3>ルナコイン購入（予定）</h3><div class="lunaOffer37"><strong>'+fmt(lunaOffer37.coins)+' LC</strong><b>¥'+fmt(lunaOffer37.yen)+'</b></div><small>価格・交換量は開発中の仮設定です。</small>'+b10('購入機能は準備中','lunaPending37',true)+'</div><div class="lunaPanel37"><h3>使い道</h3><small>キャラクター・家畜のスキン、釣り竿、ルアー、装飾など。ファームコインとは別のゲーム内通貨です。</small></div><div class="lunaPanel37"><h3>大会で獲得</h3><small>無料参加の大会で上位入賞すると、購入分とは別に無償ルナコインやペットを獲得できる予定です。</small>'+b10('大会を見る','nav:events37')+'</div><p class="eventNotice37">換金・送金・プレイヤー間の売買には使用できません。現在は開発用表示のみで、購入・付与・消費は行われません。</p>';
  screen10('ルナコイン',h)
 }
+
+/* No real event dates are enabled yet. Each future definition must have a unique
+   id, type, start/end epoch milliseconds and eligible species/crops. */
+const eventSchedule39=[];
+function eventActive39(type,earnedAt=now(),clock=now(),schedule=eventSchedule39){
+ return schedule.find(e=>e.type===type&&typeof e.id==='string'&&e.id&&Number.isFinite(e.start)&&Number.isFinite(e.end)&&e.start<e.end&&e.start<=clock&&clock<e.end&&e.start<=earnedAt&&earnedAt<e.end)||null
+}
+function eventLedger39(e){
+ if(!s.eventRecords39||typeof s.eventRecords39!=='object'||Array.isArray(s.eventRecords39))s.eventRecords39={};
+ if(!Object.hasOwn(s.eventRecords39,e.id))Object.defineProperty(s.eventRecords39,e.id,{value:{type:e.type,start:e.start,end:e.end,best:null,harvested:{},delivered:{},score:0},enumerable:true,writable:true,configurable:true});
+ let r=s.eventRecords39[e.id];return r&&r.type===e.type&&r.start===e.start&&r.end===e.end?r:null
+}
+function eventFish39(i,grams,place,earnedAt=now(),clock=now(),schedule=eventSchedule39){
+ let e=eventActive39('fish',earnedAt,clock,schedule);if(!e||!Number.isSafeInteger(grams)||grams<=0||!Number.isInteger(i)||!fishDefs12[i]||(Array.isArray(e.fish)&&!e.fish.includes(i))||(Array.isArray(e.places)&&!e.places.includes(place)))return false;
+ let r=eventLedger39(e);if(!r||r.best&&r.best.grams>=grams)return false;r.best={i,grams,place,at:earnedAt};r.score=grams;return true
+}
+function eventHarvest39(i,grade,n,earnedAt=now(),clock=now(),schedule=eventSchedule39){
+ let e=eventActive39('harvest',earnedAt,clock,schedule);if(!e||!Number.isInteger(i)||!crops[i]||!Number.isInteger(grade)||grade<0||grade>=ranks.length||!Number.isSafeInteger(n)||n<=0||(Array.isArray(e.crops)&&!e.crops.includes(i)))return false;
+ let r=eventLedger39(e);if(!r)return false;let key=i+':'+grade;r.harvested[key]=(r.harvested[key]||0)+n;return true
+}
+function eventDelivery39(id,i,grade,n,clock=now(),schedule=eventSchedule39){
+ let e=eventActive39('harvest',clock,clock,schedule);if(!e||e.id!==id||!Number.isInteger(i)||!Number.isInteger(grade)||!Number.isSafeInteger(n)||n<=0||!s.stock[i]||!Number.isFinite(s.stock[i][grade]))return false;
+ let r=eventLedger39(e),key=i+':'+grade;if(!r||n>(r.harvested[key]||0)-(r.delivered[key]||0)||n>s.stock[i][grade])return false;
+ s.stock[i][grade]-=n;r.delivered[key]=(r.delivered[key]||0)+n;r.score+=n;return true
+}
+function eventPeriodState39(e,t=now()){return t<e.start?'upcoming':t>=e.end?'ended':'active'}
+function eventPreviewStatus39(type){let e=eventActive39(type);if(!e)return '<div class="eventLocal39">大会ごとに新規記録。開始前・終了後の釣果や収穫は対象外です。</div>';let r=eventLedger39(e);return '<div class="eventLocal39">大会ID：'+chickenEscape24(e.id)+'<br>期間内の記録：<strong>'+(type==='fish'?fishWeightText38(r?.score||0):fmt(r?.score||0)+'個納品')+'</strong></div>'}
+
 function eventsPreview37(){
  let h='<p>定期開催予定の農園大会。参加無料・課金装備によるスコア優遇なし。開催日程と賞品の詳細は後日確定します。</p>';
- for(let a of [['釣り大会','fish12_0','大会期間中に対象魚を釣り、最も重い1匹の重量で順位を競う予定です。重量はグラム単位で集計。対象魚・釣り場は大会ごとに指定します。'],['収穫物納品大会','board','大会期間内に指定作物を納品し、ポイントで競う。']]){
- h+='<div class="eventCard37"><div class="eventTop37">'+icon(a[1])+'<div><h3>'+a[0]+'</h3><small>開催準備中 ｜ オンライン大会</small></div></div><div class="eventDetails37">'+a[2]+'</div><div class="eventPrize37"><span class="lunaCoin37" aria-hidden="true">☾</span> 上位報酬：無償LC・大会限定ペット（予定）</div>'+b10('開催準備中','eventPending37',true)+'</div>'
+ for(let a of [['釣り大会','fish12_0','大会期間中に対象魚を釣り、最も重い1匹の重量で順位を競う予定です。重量はグラム単位で集計。過去大会の記録・自己ベストは引き継ぎません。'],['収穫物納品大会','board','大会期間内に収穫した指定作物を期間内に納品して競います。開催前の在庫・過去大会の記録は得点に加えません。']]){
+ h+='<div class="eventCard37"><div class="eventTop37">'+icon(a[1])+'<div><h3>'+a[0]+'</h3><small>開催準備中 ｜ オンライン大会</small></div></div><div class="eventDetails37">'+a[2]+'</div>'+eventPreviewStatus39(a[0]==='釣り大会'?'fish':'harvest')+'<div class="eventPrize37"><span class="lunaCoin37" aria-hidden="true">☾</span> 上位報酬：無償LC・大会限定ペット（予定）</div>'+b10('開催準備中','eventPending37',true)+'</div>'
  }
  h+='<p class="eventNotice37">現在は大会サーバー未接続のため、順位・スコア・賞品は確定しません。</p>'+b10('ルナコインを見る','nav:luna37');screen10('大会・イベント',h)
+}
+
+
+const playerLines39=[
+ '今日も農園日和だね。','畑を見回りに行こうかな。','小麦が元気に育つといいな。','収穫の音って気持ちいいよね。','そろそろ種を買い足そうかな。','水やり、忘れてない？',
+ 'あの鶏、今日も元気だね。','卵を集めたら何を作ろう？','牛たちの顔を見に行こう。','豚さん、またお昼寝してるのかな。','動物にも名前をつけてあげたいね。','なでると喜んでくれるよ。',
+ '今日は大物が釣れそうな気がする！','釣り糸が切れませんように。','空き缶も立派な釣果…かな？','あの池には何がいるんだろう。','いつか銀河の海へ行ってみたいな。','釣り大会、自己ベストを狙おう！',
+ '注文ボードに新しい依頼がないかな。','おいしい料理を作りたいな。','倉庫の整理も大事だね。','レアな作物、見つけた？','農園をもっとかわいく飾りたいな。','ペットと散歩するのもいいね。',
+ '急がなくても、農園は逃げないよ。','たまにはのんびりしよう。','今日は何をしようかな。','月がきれいな夜になりそう。','あっ、見つかっちゃった！','明日も一緒に農園を育てよう。'
+];
+// Feet follow road centers and clear gaps between building/field hitboxes.
+const playerNodes39=[[253,251],[385,251],[575,251],[253,429],[385,429],[485,429],[575,429],[253,620],[224,620],[382,620],[485,620],[542,620],[665,620],[224,835],[382,835],[542,835],[665,835],[224,1035],[382,1035],[542,1035],[665,1035]];
+const playerEdges39=[[0,1],[1,2],[0,3],[1,4],[3,4],[4,5],[5,6],[3,7],[5,10],[7,8],[7,9],[9,10],[10,11],[11,12],[8,13],[9,14],[11,15],[12,16],[13,14],[14,15],[15,16],[13,17],[14,18],[15,19],[16,20],[17,18],[18,19],[19,20]];
+function playerNext39(node,prev,rng=Math.random){let opts=playerEdges39.filter(e=>e.includes(node)).map(e=>e[0]===node?e[1]:e[0]),fresh=opts.filter(n=>n!==prev);if(fresh.length)opts=fresh;return opts[Math.min(opts.length-1,Math.floor(rng()*opts.length))]??node}
+let playerWalk39={node:1,prev:-1,target:null,x:385,y:251,face:1,last:0,pause:0,deck:[],lastLine:-1};
+let playerSpeech39;
+function playerLine39(w,rng=Math.random){if(!w.deck.length){w.deck=playerLines39.map((_,i)=>i);for(let i=w.deck.length-1;i>0;i--){let j=Math.floor(rng()*(i+1));[w.deck[i],w.deck[j]]=[w.deck[j],w.deck[i]]}if(w.deck.at(-1)===w.lastLine)[w.deck[0],w.deck[w.deck.length-1]]=[w.deck[w.deck.length-1],w.deck[0]]}let i=w.deck.pop();w.lastLine=i;return playerLines39[i]}
+function playerPaint39(w,walking=false,t=now()){
+ playerMap36.style.left=Math.round(w.x-28)+'px';playerMap36.style.top=Math.round(w.y-68)+'px';
+ playerMap36.style.setProperty('--face39',w.face);playerMap36.style.setProperty('--hop39',walking&&Math.floor(t/160)%2?'-3px':'0px');
+ if(playerSpeech39&&!playerSpeech39.hidden){let width=playerSpeech39.offsetWidth||250,left=Math.max(8,Math.min(760-width-8,w.x-width/2));playerSpeech39.style.left=Math.round(left)+'px';playerSpeech39.style.top=Math.max(5,Math.round(w.y-74-playerSpeech39.offsetHeight))+'px';playerSpeech39.style.setProperty('--tail39',Math.max(12,Math.min(width-12,w.x-left))+'px')}
+}
+function playerTick39(t=now()){
+ let w=playerWalk39,dt=w.last?Math.min(.12,Math.max(0,(t-w.last)/1000)):0;w.last=t;
+ if(playerSpeech39&&!playerSpeech39.hidden&&t>=w.pause)playerSpeech39.hidden=true;
+ if(panel||document.hidden||editing10||!motion12()||t<w.pause){playerPaint39(w,false,t);return}
+ if(w.target===null)w.target=playerNext39(w.node,w.prev);
+ let [x,y]=playerNodes39[w.target],dx=x-w.x,dy=y-w.y,d=Math.hypot(dx,dy),step=49*dt;
+ if(d<=step||d<.01){w.x=x;w.y=y;w.prev=w.node;w.node=w.target;w.target=null;w.pause=t+350+Math.random()*850;playerPaint39(w,false,t);return}
+ if(Math.abs(dx)>.1)w.face=dx>0?-1:1;
+ w.x+=dx/d*step;w.y+=dy/d*step;playerPaint39(w,true,t)
+}
+function playerTalk39(){let w=playerWalk39;w.pause=now()+4200;playerSpeech39.textContent=playerLine39(w);playerSpeech39.hidden=false;playerPaint39(w,false);return true}
+function playerInit39(){
+ playerMap36.classList.add('playerWalk39');playerMap36.setAttribute('role','button');playerMap36.tabIndex=0;playerMap36.setAttribute('aria-label','農園のキャラクターに話しかける');
+ playerSpeech39=add('div','playerSpeech39',0,0,0,0);playerSpeech39.style.width='max-content';playerSpeech39.style.height='auto';playerSpeech39.hidden=true;playerSpeech39.setAttribute('role','status');
+ playerMap36.addEventListener('click',e=>{e.stopPropagation();playerTalk39()});playerMap36.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();playerTalk39()}});
+ playerPaint39(playerWalk39);setInterval(playerTick39,70)
 }
 
 const renderBefore16=render;render=function(){if(panel==='luna37')return lunaPreview37();if(panel==='events37')return eventsPreview37();if(panel==='fishShip35')return fishShipRender35();if(panel==='fishPlaces32')return fishPlacesRender32();if(panel==='gear31')return gearRender31();if(panel==='orders')return orderRender30();if(panel==='stock'||panel==='inventory')return invRender27();if(panel==='kitchen25')return cookRender25();let i=barnIndex17(facility);if(panel==='barnSkin21'&&i===0)return barnSkinRender21();if(panel==='cowSkin28'&&i===1)return cowSkinRender28();if(panel==='pigSkin29'&&i===2)return pigSkinRender29();if(panel==='barnManage18'&&i>=0&&s.fac[facility])return barnManageRender18(i);if(panel==='barnBreeds17'&&i>=0&&s.fac[facility])return barnBreedRender17(i);if(panel==='facility'&&i>=0&&s.fac[facility])return barnRender16(i);return renderBefore16()};
@@ -1463,5 +1537,5 @@ $('sheet').addEventListener('keydown',ev=>{let a=ev.target.closest('.chicken21[d
 barnState16();cookState25();fishProgress32();fishClearResult36();save();
 
 // Restore timer labels without re-creating the map or resetting the camera.
-stats();updateMap();resize();refreshArt13().catch(()=>{});setInterval(()=>{work10();updateMap();if(panel==='facility'&&barnIndex17(facility)>=0&&s.fac[facility])barnTick16();else if(panel==='kitchen25')cookTick25();else if(panel==='orders')orderTick30();else if(panel==='barnBreeds17'||panel==='barnManage18'){}else if(['facility','fac','pets','explore','shop','water','dragon','helper'].includes(panel))render()},1000);
+playerInit39();stats();updateMap();resize();refreshArt13().catch(()=>{});setInterval(()=>{work10();updateMap();if(panel==='facility'&&barnIndex17(facility)>=0&&s.fac[facility])barnTick16();else if(panel==='kitchen25')cookTick25();else if(panel==='orders')orderTick30();else if(panel==='barnBreeds17'||panel==='barnManage18'){}else if(['facility','fac','pets','explore','shop','water','dragon','helper'].includes(panel))render()},1000);
 </script></body></html>
